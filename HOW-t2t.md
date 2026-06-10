@@ -1,7 +1,13 @@
-1. cd into your project directory
-2. `git clone https://github.com/guitarvydas/pbp`
-4. `cp ./pbp/@make-proto/@make .`
-5. `cp ./pbp/@make-proto/@defc .`
-6. `cp ./pbp/@make-proto/@makec .`
-7. `cp ./pbp/@make-proto/@testc .`
-8. `./pbp/minimize-for-t2t.sh`
+- cd into your project directory
+- create a grammar and a rewrite rule file with the same basename,
+  - e.g. `xxx.ohm` and `xxx.rwr`
+- `git clone https://github.com/guitarvydas/pbp`
+- `cp ./pbp/@make-proto/@make .`
+- `cp ./pbp/@make-proto/@defc .`
+- `cp ./pbp/@make-proto/@makec-t2t ./@makec`
+- `cp ./pbp/@make-proto/@testc .`
+- `./pbp/minimize-for-t2t.sh`
+- modify TARGET in @make from "default" to the basename for the grammar/rwr
+  - e.g. `xxx`
+- modify the variable `output` in @makec from `/dev/stdout` to whatever file you want the output written to
+- `./@make`

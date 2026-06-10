@@ -1,0 +1,19 @@
+#!/bin/bash
+
+######### commands specific to this project #############
+# env vars that may be used in this script:
+#  $PATH
+#  $TOOLWD ($(pwd))
+#  $CALLERPATH
+#  $TARGET
+#  $PYTHONPATH
+
+grammar=$target.ohm
+rewrite=$target.rwr
+output=/dev/stdout
+./pbp/t2t $grammar $rewrite >$output
+
+############################
+
+
+
