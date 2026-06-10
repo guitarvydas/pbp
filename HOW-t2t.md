@@ -10,4 +10,6 @@
 - modify TARGET in @defc from "default" to the basename for the grammar/rwr
   - e.g. `xxx`
 - modify the variable `output` in @makec from `/dev/stdout` to whatever file you want the output written to
+- `chmod +x ./@*`
+- `./pbp/INSTALL.sh` # needed only once
 - `./@make`
