@@ -7,7 +7,7 @@
 - `cp ./pbp/@make-proto/@makec-t2t ./@makec`
 - `cp ./pbp/@make-proto/@testc .`
 - `./pbp/minimize-for-t2t.sh`
-- modify TARGET in @make from "default" to the basename for the grammar/rwr
+- modify TARGET in @defc from "default" to the basename for the grammar/rwr
   - e.g. `xxx`
 - modify the variable `output` in @makec from `/dev/stdout` to whatever file you want the output written to
 - `./@make`
