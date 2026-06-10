@@ -1,0 +1,60 @@
+#!/bin/bash
+
+set -eE
+export SHELLOPTS
+shopt -s nullglob
+
+if [ "$#" -eq 0 ]; then
+    level=top
+elif [ "$#" -eq 3 ]; then
+    level=sub
+else
+    # error: usage
+    echo "Usage: $0 [tool-working-dir caller-working-dir diagram-name]" >&2
+    exit 1
+fi
+
+# set up env vars depending on whether this script was called from elsewhere or is the top level
+if [ "$level" = "top" ]; then
+    # no arguments - top level build
+    # current working directory
+    export TOOLWD="$(pwd)"
+    source ./@defc
+
+#./@sub "$(realpath ~/projects/sm-pbp)" "$(realpath ~/projects/pbp-pong)" ballhit
+else
+    # exactly three arguments
+    # $1 is callee's working dir                                       TOOLWD
+    # $2 is caller's working dir                                       CALLERPATH
+    # $3 is basename (no suffix) of the caller's file to be processed  TARGET
+    #  override values set in @defc
+    export TOOLWD="$1"
+    source ./@defc
+    export CALLERPATH="$2"
+    export TARGET="$3"
+fi
+
+
+
+# common
+
+set -eE pipefail
+
+"${PBP}"/resetlog
+
+rm -f *.mr
+rm -f *.json
+rm -f temp.*
+rm -f out.*
+cd "${TOOLWD}"
+
+./@makec ${TARGET}
+# @makec is expected to call checkfailure at the appropriate point(s) in the custom script
+if [ "$level" = "top" ]; then
+    ./@testc
+fi
+
+rm -f temp.*
+
+
+
