@@ -5,13 +5,11 @@
 #  $PATH
 #  $TOOLWD ($(pwd))
 #  $CALLERPATH
-#  $TARGET
+#  $1 (same as $TARGET)
 #  $PYTHONPATH
 
-grammar=$target.ohm
-rewrite=$target.rwr
 output=/dev/stdout
-./pbp/t2t $grammar $rewrite >$output
+./pbp/t2t $1 </dev/null >$output
 
 ############################
 

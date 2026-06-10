@@ -7,9 +7,13 @@
 - `cp ./pbp/@make-proto/@makec-t2t ./@makec`
 - `cp ./pbp/@make-proto/@testc .`
 - `./pbp/minimize-for-t2t.sh`
+- `echo >support.mjs`
 - modify TARGET in @defc from "default" to the basename for the grammar/rwr
   - e.g. `xxx`
 - modify the variable `output` in @makec from `/dev/stdout` to whatever file you want the output written to
+- modify `support.mjs` to include support functions for the rewrite rules
+  - functions must be written in javascript
+  - by default, there are no support functions needed, so leave `support.mjs` empty
 - `chmod +x ./@*`
 - `./pbp/INSTALL.sh` # needed only once
 - `./@make`
