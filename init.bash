@@ -8,5 +8,9 @@ if [ -z "./pbp/" ]; then
 fi
 cp ./pbp/das/PBP.xml .
 cp ./pbp/kernel/package.json .
+cp ./pbp/main.py .
+cp ./pbp/@make-proto/@make .
+cp ./pbp/@make-proto/@defc .
+cp ./pbp/@make-proto/@testc .
 npm install yargs prompt-sync ohm-js @xmldom/xmldom
 
