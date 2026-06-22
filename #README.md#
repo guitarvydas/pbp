@@ -99,15 +99,17 @@ The `pbp/t2t.bash` script[^scr] performs the necessary work to run a transmogrif
 
 ---
 
-# Using the Tools for Programming Projects
+## Using the Tools for Programming Projects
+aside: This is a link to an older style of setup. It should still work. I will create a new video and change this section at some point in the future.
+
 Instructions and video in another repo: [hello world from first principles](https://github.com/guitarvydas/pbp_helloworld)
 
 ![API](./api.md)
 
-# Mevent Flow Basics
+## Mevent Flow Basics
 [mevent flow basics](https://www.youtube.com/watch?v=yPg4wVRQfYE&list=PLHh2_dCKBPjbBN2R8xwBiS4nHlo5iQjqS&index=2)
 
-# Philosophy Corner
+## Philosophy Corner
 Computers are not merely “better paper,” yet we continue to program them using notations intended for use on paper, a practice that dates back to the 1960s.
 
 A significant advancement in programming language (PL) design occurred in the early 1970s with the invention of UNIX pipes[^p], but this innovation was largely ignored and conflated with the concept of “operating systems” rather than “programming languages.”
