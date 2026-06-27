@@ -1,4 +1,0 @@
-#!/bin/bash
-# git clone https://github.com/guitarvydas/pbp
-./pbp/init.bash
-cp ./pbp/@make-proto/@makec-pbp ./@makec

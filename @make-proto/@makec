@@ -1,22 +1,29 @@
 #!/bin/bash
 
-echo "@makec empty"
+######### commands specific to this project #############
+# env vars that may be used in this script:
+#  $PATH
+#  $TOOLWD ($(pwd))
+#  $CALLERPATH
+#  $TARGET
+#  $PYTHONPATH
 
-# ######### commands specific to this project #############
-# # env vars that may be used in this script:
-# #  $PATH
-# #  $TOOLWD ($(pwd))
-# #  $CALLERPATH
-# #  $TARGET
-# #  $PYTHONPATH
 
-## modify the below manually to customize for your project...
+drawwaretool="<customize this>"
+target="$1"
 
-# node ./pbp/das/das2json.mjs <drawing>.drawio
-# rm -f out.md
-# python main.py '<arg>' <top-most tab name> <drawing>.drawio.json
+# 1. rebuild the drawwaretoolrifier ("compiler") every time...
+das2json ${drawwaretool}.drawio
+python ${drawwaretool}.py "${CALLERPATH}/$target".drawio main ${drawwaretool}.drawio.json | splitoutputs
+checkfailure
+mv out.py "${CALLERPATH}/$target.py"
 
-# ############################
+# # if you only want to use the T2T tool, then comment out the above and use the following:
+# output=/dev/stdout
+# ./pbp/t2t "$target" </dev/null >$output
+
+
+############################
 
 
 
