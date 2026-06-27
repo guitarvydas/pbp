@@ -9,7 +9,6 @@
 #  $PYTHONPATH
 
 
-drawwaretool="<customize this>"
 target="$1"
 
 # 1. rebuild the drawwaretoolrifier ("compiler") every time...
