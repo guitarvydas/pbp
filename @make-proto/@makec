@@ -1,5 +1,22 @@
 #!/bin/bash
-# set -o pipefail
-# test=$( [ "$1" = "<top>" ] && echo "example_frish" || echo "$1" )
-# cat ${test}.grid | ${PBP}/t2t strexpander | ${PBP}/t2t pythonize
+
 echo "@makec empty"
+
+# ######### commands specific to this project #############
+# # env vars that may be used in this script:
+# #  $PATH
+# #  $TOOLWD ($(pwd))
+# #  $CALLERPATH
+# #  $TARGET
+# #  $PYTHONPATH
+
+## modify the below manually to customize for your project...
+
+# node ./pbp/das/das2json.mjs <drawing>.drawio
+# rm -f out.md
+# python main.py '<arg>' <top-most tab name> <drawing>.drawio.json
+
+# ############################
+
+
+
