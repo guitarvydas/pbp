@@ -5,14 +5,13 @@
 #  $PATH
 #  $TOOLWD ($(pwd))
 #  $CALLERPATH
-#  $TARGET
 #  $PYTHONPATH
 
-
+#  $1 is the name of the target
 target="$1"
 
 # 1. rebuild the drawwaretoolrifier ("compiler") every time...
-das2json ${drawwaretool}.drawio
+das2json ${target}.drawio
 python main.py "${CALLERPATH}/${target}".drawio main ${target}.drawio.json | splitoutputs
 checkfailure
 mv out.py "${CALLERPATH}/${target}.py"
