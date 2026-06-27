@@ -20,3 +20,5 @@ rm -rf ./pbp/attic
 rm -rf ./pbp/doc
 rm -rf ./pbp/kernel-self
 rm ./pbp/api.md
+rm ./pbp/README.md
+rm pbp-lifecycle.*
