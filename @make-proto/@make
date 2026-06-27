@@ -48,7 +48,7 @@ rm -f temp.*
 rm -f out.*
 cd "${TOOLWD}"
 
-./@makec ${TARGET}
+./@makec
 # @makec is expected to call checkfailure at the appropriate point(s) in the custom script
 if [ "$level" = "top" ]; then
     ./@testc
