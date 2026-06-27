@@ -11,8 +11,10 @@ cp ./pbp/@make-proto/@defc .
 cp ./pbp/@make-proto/@makec .
 cp ./pbp/main.py .
 
+# keep ./pbp/das
+# keep ./pbp/t2td
+# keep all of the scripts in ./pbp
 rm -rf ./pbp/@make-proto
-rm -rf ./pbp/das
 rm -rf ./pbp/tas*
 rm -rf *.png
 rm -rf ./pbp/.git
