@@ -1,7 +1,7 @@
 #!/bin/bash
 # git clone https://github.com/guitarvydas/pbp
-./pbp/@setup-init.bash
-cp ./pbp/kernel0d.py ./pbp
+./pbp/@setup-init.sh
+cp ./pbp/kernel/kernel0d.py ./pbp
 rm -rf ./pbp/kernel
 mkdir ./pbp/kernel
 mv ./pbp/kernel0d.py ./pbp/kernel
