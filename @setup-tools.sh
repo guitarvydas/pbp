@@ -3,10 +3,12 @@
 ./pbp/@setup-init.sh
 cp ./pbp/kernel/kernel0d.py ./pbp
 cp ./pbp/kernel/repl.py ./pbp
+cp ./pbp/kernel/splitoutput.js ./pbp
 rm -rf ./pbp/kernel
 mkdir ./pbp/kernel
 mv ./pbp/kernel0d.py ./pbp/kernel
 mv ./pbp/repl.py ./pbp/kernel
+mv ./pbp/splitoutput.js ./pbp/kernel
 
 cp ./pbp/@make-proto/@make .
 cp ./pbp/@make-proto/@defc .
