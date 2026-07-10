@@ -27,11 +27,13 @@ This gets you the whole directory structure, suitable for maintaining the PBP to
 To simply _use_ the tools, run one of the scripts below to prune files out and to copy customizable files up to the current working directory (see below).
 
 ## For PBP toolset usage
-`./pbp/@setup-pbp.sh`
+`./pbp/@setup-tools.sh`
+`./pbp/@setup-init.sh` (once)
 manually modify `@makec`, `@defc` and `@testc` for the current project (note that `@make` is generic and calls the `*c` (custom) scripts as required for building the project)
 
-## For T2T subset usage
-`./pbp/@setup-t2t.sh`
+## For T2T maintenance
+`./pbp/@setup-maintain.sh`
+`./pbp/@setup-init.sh` (once)
 manually modify `@makec`, `@defc` and `@testc` for the current project (note that `@make` is generic and calls the `*c` (custom) scripts as required for building the project)
 
 aside: cloning the tools on a per-project basis tends to alleviate the "version hell" problem. The tool files are not very big and there is no need to share them across projects and, consequently, worrying about versioning. We no longer need to conserve disk space like back in the stone age.
