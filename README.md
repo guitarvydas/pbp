@@ -32,7 +32,8 @@ manually modify `@makec`, `@defc` and `@testc` for the current project (note tha
 
 ## For T2T maintenance
 `./pbp/@setup-maintain.sh`
-manually modify `@makec`, `@defc` and `@testc` for the current project (note that `@make` is generic and calls the `*c` (custom) scripts as required for building the project)
+Manually modify `@makec`, `@defc` and `@testc` for the current project (note that `@make` is generic and calls the `*c` (custom) scripts as required for building the project).
+Choose a tooset use-case (see @makec #1, #2, #3). The default is use-case #1 (build a drawware PBP program). If you want a different use-case, comment out use-case #1 and uncomment #2 or #3. If just transpiling (use-case #3), then edit "**modify this (the source file to be transmogrified)**" and replace it with your source filename.
 
 aside: cloning the tools on a per-project basis tends to alleviate the "version hell" problem. The tool files are not very big and there is no need to share them across projects and, consequently, worrying about versioning. We no longer need to conserve disk space like back in the stone age.
 
