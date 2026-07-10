@@ -17,20 +17,20 @@
 
 # use-case 1 (default)
 das2json ${TARGET}.drawio
-python main.py "${CALLERPATH}/${TARGET}".drawio main ${TARGET}.drawio.json
+python main.py "${TARGET}".drawio main ${TARGET}.drawio.json
 rm ${TARGET}.drawio.json
 
 
 # # use-case 2 (build a drawware tool that is like a compiler that transmogrifies a custom language to some existing language (say custom-to-Python)
 # # 1. rebuild the drawwaretoolrifier ("compiler") every time...
-# das2json ${TARGET}.drawio
-# python main.py "${CALLERPATH}/${TARGET}".drawio main ${TARGET}.drawio.json | splitoutputs
+# das2json ${TRANSMOGRIFIER}.drawio
+# python main.py "${TARGET}".drawio main ${TRANSMOGRIFIER}.drawio.json | splitoutputs
 # checkfailure
-# mv out.py "${CALLERPATH}/${TARGET}.py"
+# mv out.py "${TARGET}.py"
 # rm ${TARGET}.drawio.json
 
 
-# # use-case 2 just use the T2T tool to convert some text to some other text ("transmogrify")
+# # use-case 3 just use the T2T tool to convert some text to some other text ("transmogrify")
 # # if you only want to use the T2T tool, then comment out the above and use the following:
 # output=/dev/stdout
 # ./pbp/t2t "${TARGET}" </dev/null >$output

@@ -15,11 +15,18 @@ cp ./pbp/@make-proto/@defc .
 cp ./pbp/@make-proto/@makec .
 cp ./pbp/main.py .
 
+# keep ./pbp/tas/brace_indenter.mjs
+cp pbp/tas/brace_indenter.mjs ./pbp
+cp pbp/tas/indenter.mjs ./pbp
+rm -rf ./pbp/tas*
+mkdir ./pbp/tas
+mv ./pbp/brace_indenter.mjs ./pbp/tas
+mv ./pbp/indenter.mjs ./pbp/tas
+
 # keep ./pbp/das
 # keep ./pbp/t2td
 # keep all of the scripts in ./pbp
 rm -rf ./pbp/@make-proto
-rm -rf ./pbp/tas*
 rm -rf *.png
 rm -rf ./pbp/.git
 rm -rf ./pbp/attic

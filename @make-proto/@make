@@ -19,7 +19,7 @@ if [ "$level" = "top" ]; then
     # no arguments - top level build
     # current working directory
     export TOOLWD="$(pwd)"
-    source ./@defc
+    source "${TOOLWD}/@defc"
 
 #./@sub "$(realpath ~/projects/sm-pbp)" "$(realpath ~/projects/pbp-pong)" ballhit
 else
@@ -29,9 +29,9 @@ else
     # $3 is basename (no suffix) of the caller's file to be processed  TARGET
     #  override values set in @defc
     export TOOLWD="$1"
-    source ./@defc
+    source "${TOOLWD}/@defc"
     export CALLERPATH="$2"
-    export TARGET="$3"
+    export TARGET="${CALLERPATH}/$3"
 fi
 
 
@@ -51,6 +51,8 @@ cd "${TOOLWD}"
 ./@makec
 # @makec is expected to call checkfailure at the appropriate point(s) in the custom script
 if [ "$level" = "top" ]; then
+    echo
+    echo "TEST"
     ./@testc
 fi
 
