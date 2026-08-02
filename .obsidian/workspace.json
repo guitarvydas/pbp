@@ -213,8 +213,11 @@
   },
   "active": "2aafda6bd4dc58d5",
   "lastOpenFiles": [
-    "doc/Semantics.md",
+    "README.md",
     "TOOLS.md",
+    "doc/pbp-lifecycle.drawio.png",
+    "doc/pbp-lifecycle.drawio",
+    "doc/Semantics.md",
     "api.md",
     "#HOW-t2t.md#",
     "@make-proto/#@make#",
@@ -225,7 +228,6 @@
     "kernel/before-Mon 13 Apr 2026 09:35:56 EDT/kernel0d.py",
     "kernel/before-Mon 13 Apr 2026 09:35:56 EDT",
     "kernel-self/new-kernel0d.py",
-    "kernel-self/out.js",
     "@make-proto/prompt.md",
     "TAS_README_WIP.md",
     "@make-proto/NOTES.md",
@@ -249,7 +251,6 @@
     "kernel-self/node_modules/string-width/node_modules/ansi-regex/readme.md",
     "kernel-self/node_modules/string-width/readme.md",
     "kernel-self/node_modules/wrap-ansi/node_modules/strip-ansi/readme.md",
-    "kernel-self/node_modules/wrap-ansi/node_modules/ansi-regex/readme.md",
     "pbp/sm/pbp/pbp-lifecycle.drawio.png",
     "pbp/dtree/pbp/pbp-lifecycle.drawio.png",
     "t2t-d/doc-d/rwr/rwr-overview.drawio.png",
@@ -257,7 +258,6 @@
     "t2t-d/doc-d/rwr/rwr-overview-t2t c-t2t c.jpg",
     "t2t-d/doc-d/rwr/rwr-overview-t2t b.drawio.png",
     "t2t-d/doc-d/rwr/rwr-overview-t2t c-t2t c.drawio.png",
-    "t2t-d/doc-d/rwr/rwr-overview-t2t b copy.drawio.png",
-    "t2t-d/doc-d/rwr/rwr-overview-Python.drawio.png"
+    "t2t-d/doc-d/rwr/rwr-overview-t2t b copy.drawio.png"
   ]
 }

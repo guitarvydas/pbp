@@ -241,19 +241,67 @@ prototype `main.py` for use in PBP projects
 - "modifying" means adding a line or two of code - this is not hard to do (generalization is overkill that leads to unneccesary complexity, so I favour making small edits like this instead of over-generalizing project builds)
 
 ## output_begin*
+(see `output_to_port`)
 ## output_end*
+(see `output_to_port`)
 ## output_to_port*
-## pbp-lifecycle.drawio
-## pbp-lifecycle.drawio.png
+Attempt to simulate PBP-like mevent outputs to ports, represented in final form as a JSON array, using shell commands.
+
+One uses `output_to_port ...name... < ...value...` during a run of a parts based program, where `...name...` is a string representing the output port name, and `...value...` is the payload as a string.
+
+Multiple calls to `output_to_port` are allowed and are converted to ordered JSON key/value pairs, as is done by the PBP kernel.
+
+The beginning and end of the run of a parts based program must be bracketed by
+- `output_begin`
+- `output_end`
+
+You only need to use these if you are using shell commands and pipelines to simulate parts based programming. You can ignore all of this if you just use the PBP system and kernel.
+## doc/pbp-lifecycle.drawio
+source for `doc/pbp-lifecycle.drawio.png`
+## doc/pbp-lifecycle.drawio.png
+sketch of the PBP life cycle.
 ## pbplog*
+Appends a log message to `pbplog.txt` in the current working directory (`${CALLERPATH}/pbplog.txt`)
 ## README.md
+main README.md for the PBP repository
 ## resetlog*
+Clears `pbplog.txt` in the current directory (`${CALLERPATH}/pbplog.txt`)
 ## rigid_indent*
+DEPRECATED
+
+Prepends the given command line argument to each line of `stdin`.
 ## splitoutputs*
+Pipeline filter than unwinds PBP outputs from JSON key/value form into a separate, ordered file for each key.
+
+The name of the files is `out` with a suffix that is the key, e.g. `out.py`.
+
+Useful for writing transmogrifiers which create a single output for each target language, e.g. `out.py`, `out.js`, `out.lisp`, etc.
 ## t2t*
+The main driver command for text-to-text transmogrification.
+
+This needs a grammar specification and a rewrite specification. It inhales source text from `stdout` and produces transmogrified text on `stdout`.
+
+When invoked with only one command line argument, the argument is assumed to be the name of the grammar and the rewrite files. `.ohm` and `.rwr` suffixes are appended to the name to specify the two required specifications.
+
+When invoked with two command line arguments, each argument is a full pathname of a file. The first argument is the grammar file, the second argument is the rewrite file.
+
+Example:
+- `t2t xyz` is the same as `t2t xyz.ohm xyz.rwr`
+- `t2t xyz.ohm pqrxyz.rwr` cannot be written using only one argument.
+
+To create a T2T Part using a PBP drawing, use shell-out syntax for the part name, for example: `:$ t2t xyz`. (See the `make_leaf (Leaf or LJIT part)` syntax section in `README.md`)
 ## t2td/
+### Tool Use
+To simply use T2T, you only need to keep the subdirectory `t2td/lib/` which contains scripts and snippets of code necessary to build the RWR portion of T2T and to run T2T on your code.
+### Ohm Grammar Specification
+see `ohmjs.org`
+### Rewrite Specification
+see `t2td/doc/rwr/RWR Spec.pdf`
+### Maintenance
+[TBD] - the rest of the stuff in `t2td/` to be documented at a later date.
 ## tas/
 ignore
 ## tas-bloated/
 ignore
 ## TOOLS.md
+this file
