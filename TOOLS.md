@@ -119,22 +119,106 @@ This gets copied into your project directory when you run `@setup-tools.sh`.
 Don't use this script directly. It is invoked by `./@setup-tools.sh` and `./@setup-maintain.sh`.
 
 ## @setup-maintain.sh*
-## @setup-tools.sh*
-## api.md
-## attic/
-ignore
-## brace_indent*
+First time initialization for maintainers. If you just want to use the tools, see `@setup-tools.sh` instead.
 
+Keeps everything and runs the first-time initialization, including npm install.
+
+The pbp directory contains `.git/` to allow it to be a stand-alone git repository
+## @setup-tools.sh*
+First time initialization for users of the tools. 
+
+This is intended to be the main way to incorporate the tools into a new project, i.e. the default way to set up a new project that will use the tools.
+
+It creates a `./pbp` subdirectory within the current directory (i.e. a new project directory) and copies certain files up into the current directory and gets rid of a lot of files that aren't needed for just using the tools, like the generator for kernel code, etc. 
+
+The `.pbp/git/` subdirectory is deleted, so that it doesn't interfere with the git repository for the new project. The new project repository should be made to include the `./pbp/` directory (`git add pbp`) so that all changes to the tools (if any) are local to the new project. Trying to generalize the tools so that they work in every project and can be shared across projects results in lots of extra, unnecessary work.
+## api.md
+Documentation of the PBP api for Container and Leaf parts
+## attic/
+ignore - contains stuff that I couldn't imagine throwing away. 
+
+Ideally, this directory should become empty and should not even exist.
+## brace_indent*
+Source code indentation (pretty-printing) tool that uses braces (`{` and `}`) instead of unicode symbols as in the `indent` tool.
+
+Written in node.js, but works on source code for any language.
+
+The default tool is `indent`. This tool (`brace_indent`) is for special cases.
 ## brace_indent_del*
+Like `brace_indent` but also removes the braces.
+
+This is for special use-cases. Use `indent` by default.
 ## check-for-html*
+Checks for any left-over HTML (e.g. `span`) commands in the incoming source. Returns a shell error code if any left-overs are present.
+
+Meant to be used in a pipeline to check source code generated from diagrams.
+
+This is needed as a stop-gap measure. We're using drawio as a drawing editor for now, because we don't have a proper DaS (Diagrams as Syntax) code editor. Drawio will sometimes insert various bits of HTML into text if we forget to disable the `word wrap` and `formatted text` options in drawio. 
+
+If you get an error thrown by this tool, disable the formatting options in drawio (on a per-figure basis) and try again.
+
+The drawing transmogrifier uses text on the drawings as names of parts. HTML in part names will confuse the transmogrifier and typically cause part-not-found errors.
+
+Some time in the future, we'll build a proper drawing source code editor, or, we'll find a way to disable all formatting in draw.io by default, but, not yet.
 ## checkfailure*
+PBP drawware must produce the file `out.👍👎`.
+
+If that file contains "fail" then it outputs the file `out.txt` (if it exists) and returns a shell error code to stop any further processing.
+
+Again, this is a stop-gap measure to allow PBP drawware (such as transpilers and transmogrifiers) to work in conjunction with shell scripts and pipelines, "as is".
 ## das/
 ## das2json*
+Takes one command-line arg - the name of a `<name>.drawio` file.
+
+Converts the file to `<name>.drawio.json`, discarding graphics-only information (i.e. most of the info - noise). Emits each tab on the drawio diagram as a JSON object
+- {
+	- `"name": "..."`,
+	- `"children": [ {"name": "...", "id" : NN}, {"name": "...", "id" : NN}, ... {"name": "...", "id" : NN} ]`
+	- `"connections": [{ "dir": 1, "source": { "name": "...", "id": NN },"source_port": "...","target_port": "...", "target": { "name": "...", "id": NN "" }, ... }`,
+	- `"file": "..."`
+- }
+
+where `children` is a JSON array of children template names and unique ids,
+where `connections` is a JSON array of wires between one source and one target object
+where `"dir"` is
+- 0 for a down connection (from parent input port to child input port)
+- 1 for an across connection (from child output port to child input port)
+- 2 for an up connection (from child output port to parent output port)
+- 3 for a through connection (from parent input port to parent output port)
+
+For down connections, the source is not specified and is inferred to be "self". Only the source_port is specified.
+
+For up connections, the target is not specified and is inferred to be "self". Only the target_port is specified.
 ## del_blank_lines*
+A pipeline filter that deletes blank lines from the input. Used mainly for human-readability while debugging.
 ## doc/
+Contains the document "semantics.pdf" and various files containing drawings included in that document.
 ## errgrep*
+At present, semantics error messages are inserted by PBP transmogrifiers into intermediate code with the prefix `>>>`.
+
+`Errgrep` is a pipeline filter that detects the presence of such error messages. If found, it displays the messages and halts further processing (by returning a shell error code).
 ## fanout*
+A shell pipeline filter that sends `stdin` to `stdout` _AND_ to `stderr`.
+
+Essentially a half-measure to cover for the fact that shell pipelines don't actually support reasonable fan-out.
+
+Shell pipes do not provide fan-out. When any receiver consumes an output from a pipe, that item is gone and cannot also be delivered to other receivers.
+
+Fan-out is essential to creating software architectures that are more interesting than those inspired by functional-only thinking.
+
+This is done better in the PBP kernel. But, if you insist on using shell pipelines, this is one way to achieve actual fan-out.
 ## include*
+Shell pipeline filter that inserts included files based on syntax such as:
+```
+    ⊕⟨xinterpret.frish⟩
+    ⊕⟨../shared/macros.frish⟩
+```
+
+Note that the include prefix `⊕` and brackets `⟨` `⟩` are unicode characters.
+
+The shell command `m4` can also be used to perform file includes, but `m4` also does many other kinds of things.
+
+This simpler version of `include` was written in Python by Claude 4.
 ## indent*
 Indenter for generated Python code. Input contains unicode symbols for indent `⤷` and outdent `⤶`, output is Python friendly indented code using 4 spaces as indentation.
 

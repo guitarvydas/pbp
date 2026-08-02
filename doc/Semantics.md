@@ -97,6 +97,8 @@ This run-to-completion semantics ensures predictable, deterministic behavior whi
 
 ### Fan-Out Implementation
 
+![](Fan-Out%20For%20Layering.png)
+
 Fan-out requires copying mevents or adopting copy-on-write conventions. Modern garbage collection makes copying practical. Garbage collectors become simpler when operating on a single base data type (strings).
 
 Parts cannot invoke functions in other parts. All connections are pure dataflow without hidden synchronization. When a part sends a mevent, it knows only that receivers will _eventually_ process it. There are no guarantees about when or in what order multiple receivers will run. This loose coupling is what makes parts truly independent and reusable.
@@ -142,9 +144,9 @@ Critically, children cannot use direct function calls to their parent or sibling
 
 Bare functions impose synchronous behavior and cannot fire-and-forget. Achieving this in the functional paradigm requires explicit queues and dispatchers (as seen in operating systems). This implementation burden discourages fire-and-forget designs and makes proper layering difficult to conceive. For instance, Ethernet stack implementations are often considered difficult because they're typically coded in languages imposing hidden synchronization.
 
-### Port Mapping and Software LEGO®
+### Port Mapping and Software LEGO® and Namespaces and Topology Blindness
 
-To minimize namespace problems, sender ports in wires cannot reference receiver ports directly. This is fundamental to achieving LEGO®-like pluggability.
+To minimize namespace problems, sender ports in wires cannot reference receiver ports directly. This is fundamental to achieving LEGO®-like pluggability (aka "topology blindness")
 
 Namespace problems occur when names are hard-coded into sending code. Hard-wired names prevent part independence and LEGO®-like assembly. When receiver names are embedded in sender code, parts cannot be easily rearranged within architectures. Reuse becomes difficult or impossible. The parts are no longer pluggable.
 
