@@ -10,4 +10,7 @@ export T2TLIBD="${PBP}/t2td/lib"
 # These are the top-level defaults.
 # For use at a sub-level (@makec is called with 3 args), @makec must override CALLERPATH and TARGET
 export CALLERPATH="${TOOLWD}"
+export TRANSMOGRIFIER="<customize this>"
 export TARGET="<customize this>"
+export SRC="<customize this>"
+export DEST="<customize this>"

@@ -9,24 +9,17 @@
 #  $TARGET
 
 # use-cases
-# 1. default: build a drawware program
-# 2. build a transmogrifier
+# 1. build a transmogrifier
+# 2.       <deprecated>
 # 3. use T2T to transmogrify some text to some other text
 
-# if you want to build a use-case 2 or use-case 3 tool, then comment out use-case 1 below and uncomment the appropriate use-case
+# if you want to build a usee-case 3 tool, then comment out use-case 1 below and uncomment the appropriate use-case
 
-# use-case 1 (default)
-das2json ${TARGET}.drawio
-python main.py "${TARGET}".drawio main ${TARGET}.drawio.json
-rm ${TARGET}.drawio.json
-
-
-# # use-case 2 (build a drawware tool that is like a compiler that transmogrifies a custom language to some existing language (say custom-to-Python)
-# # 1. rebuild the drawwaretoolrifier ("compiler") every time...
+# # use-case 1 (build a drawware tool that is like a compiler that transmogrifies a custom language to some existing language (say custom-to-Python)
 # das2json ${TRANSMOGRIFIER}.drawio
-# python main.py "${TARGET}".drawio main ${TRANSMOGRIFIER}.drawio.json | splitoutputs
+# python main.py "${TARGET}.${SRC_EXTENSION}" main ${TRANSMOGRIFIER}.drawio.json | splitoutputs
 # checkfailure
-# mv out.py "${TARGET}.py"
+# mv out.${DEST_EXTENSION} "${TARGET}.${DEST_EXTENSION}"
 # rm ${TARGET}.drawio.json
 
 

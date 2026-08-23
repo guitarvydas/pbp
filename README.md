@@ -5,7 +5,7 @@ The main code editor currently is draw.io (drawio.com). Theoretically, other edi
 
 A subset of the tools can also be used raw just for manipulating text. `T2T` is "text to text transmogrification".
 
-PBP is bascially an asynchronous message passing programming language. PBP creates parts that are loosely coupled and can be used to snap programs together in a LEGO-like manner. Most textual programming languages, like Python, Javascript, Rust, etc. create functions that are too tightly coupled to allow easy composition in a LEGO-like manner (they only fool you into thinking that you can do LEGO-like composition via functional composition, but this devolves into head-scratching and bloat due to the implicit tight coupling of functions).
+PBP is basically an asynchronous message passing programming language. PBP creates parts that are loosely coupled and can be used to snap programs together in a LEGO-like manner. Most textual programming languages, like Python, Javascript, Rust, etc. create functions that are too tightly coupled to allow easy composition in a LEGO-like manner (they only fool you into thinking that you can do LEGO-like composition via functional composition, but this devolves into head-scratching and bloat due to the implicit tight coupling of functions).
 
 The main tools are the subdirectories
 - kernel
