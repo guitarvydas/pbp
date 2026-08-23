@@ -13,14 +13,14 @@
 # 2.       <deprecated>
 # 3. use T2T to transmogrify some text to some other text
 
-# if you want to build a usee-case 3 tool, then comment out use-case 1 below and uncomment the appropriate use-case
+# if you want to build a use-case 3 tool, then comment out use-case 1 below and uncomment the appropriate use-case
 
 # # use-case 1 (build a drawware tool that is like a compiler that transmogrifies a custom language to some existing language (say custom-to-Python)
-# das2json ${TRANSMOGRIFIER}.drawio
-# python main.py "${TARGET}.${SRC_EXTENSION}" main ${TRANSMOGRIFIER}.drawio.json | splitoutputs
-# checkfailure
-# mv out.${DEST_EXTENSION} "${TARGET}.${DEST_EXTENSION}"
-# rm ${TARGET}.drawio.json
+das2json ${TRANSMOGRIFIER}.drawio
+python main.py "${TARGET}.${SRC_EXTENSION}" main ${TRANSMOGRIFIER}.drawio.json | splitoutputs
+checkfailure
+mv out.${DEST_EXTENSION} "${TARGET}.${DEST_EXTENSION}"
+rm ${TARGET}.drawio.json
 
 
 # # use-case 3 just use the T2T tool to convert some text to some other text ("transmogrify")
