@@ -19,7 +19,7 @@
 das2json "${TRANSMOGRIFIER}.drawio"
 python main.py "${TARGET}.${SRC_EXTENSION}" main "${TRANSMOGRIFIER}.drawio.json" | splitoutputs
 checkfailure
-mv" out.${DEST_EXTENSION}" "${TARGET}.${DEST_EXTENSION}"
+mv "out.${DEST_EXTENSION}" "${TARGET}.${DEST_EXTENSION}"
 rm "${TRANSMOGRIFIER}.drawio.json"
 
 
