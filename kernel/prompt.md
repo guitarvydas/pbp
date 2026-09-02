@@ -1186,3 +1186,12 @@ else
   say there was a regression error
   show the results of a diff between `regression_kernel0d.py` and `regression2_kernel0d.py`
 fi
+
+---
+
+In bash, I want to create a list of basenames `defs templates container leaf jit stock start`
+Then I want to run `./tas.bash $i` on each of the basenames ($i)
+Then I want to create and empty `kernel0d.py`, `kernel0d.js`, `kernel0d.lisp`
+Then I want to append each of the basenames, suffixed by `.py`, into `kernel0d.py`
+Then I want to append each of the basenames, suffixed by `.js`, into `kernel0d.js`
+Then I want to append each of the basenames, suffixed by `.lisp`, into `kernel0d.lisp`

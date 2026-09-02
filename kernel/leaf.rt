@@ -1,0 +1,31 @@
+⌈ Creates a new leaf component out of a handler function, and a data parameter⌉
+⌈ that will be passed back to your handler when called.⌉
+
+defn make_leaf (name, owner, instance_data, arg, handler, reset_handler) {
+    deftemp eh ⇐ #fresh (Eh)
+    deftemp nm ⇐ “”
+    if ϕ != owner {
+        nm ⇐ owner.name
+    }
+    eh.name ⇐ #strcons (nm, #strcons (“▹”, name))
+    eh.owner ⇐ owner
+    eh.handler ⇐ handler
+    eh.reset_handler ⇐ reset_handler
+    eh.finject ⇐ ↪︎injector
+    eh.stop ⇐ ↪︎leaf_reset
+    eh.instance_data ⇐ instance_data
+    eh.arg ⇐ arg
+    eh.state ⇐ “idle”
+    eh.kind ⇐ “leaf”
+    return eh
+}
+
+⌈ Reset Leaf part to a known, idle state. Hit the big red button. ⌉
+defn leaf_reset (part) {
+    #resetQueue (part.inq)
+    #resetQueue (part.outq)
+    if (part.reset_handler !=  ϕ) {
+        part.reset_handler (part)
+    }
+    part.state  ⇐ "idle"
+}

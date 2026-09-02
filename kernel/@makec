@@ -2,10 +2,19 @@
 set -e
 npm install
 node das2json.mjs kernel.drawio
-./tas.bash 'jit'
-./tas.bash 'stock'
-./tas.bash '0d'
-cat 0d.py jit.py stock.py >regression_kernel0d.py
-cat 0d.js jit.js stock.js >kernel0d.js
-cat 0d.lisp jit.lisp stock.lisp >kernel0d.lisp
 
+basenames=(defs templates container leaf jit stock start)
+
+for i in "${basenames[@]}"; do
+    ./tas.bash "$i"
+done
+
+: > regression_kernel0d.py
+: > regression_kernel0d.js
+: > regression_kernel0d.lisp
+
+for i in "${basenames[@]}"; do
+    cat "$i.py" >> regression_kernel0d.py
+    cat "$i.js" >> regression_kernel0d.js
+    cat "$i.lisp" >> regression_kernel0d.lisp
+done

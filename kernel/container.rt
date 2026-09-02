@@ -1,0 +1,311 @@
+defn create_down_connector (container, proto_conn, connectors, children_by_id) {
+⌈ JSON: {'dir': 0, 'source': {'name': '', 'id': 0}, 'source_port': '', 'target': {'name': 'Echo', 'id': 12}, 'target_port': ''},⌉
+    deftemp connector ⇐ #fresh (Connector)
+    connector.direction ⇐ “down”
+    connector.sender ⇐ mkSender (container.name, container, proto_conn@“source_port”)
+    target_proto ≡ proto_conn@“target”
+    id_proto ≡ target_proto@“id”
+    target_component ≡ children_by_id@id_proto
+    if (target_component = ϕ) {
+        load_error (#strcons (“internal error: .Down connection target internal error ”, (proto_conn@“target”)@“name”))}
+    else{
+        connector.receiver ⇐ mkReceiver (target_component.name, target_component, proto_conn@“target_port”, target_component.inq)
+    }
+    return connector
+}
+
+defn create_across_connector (container, proto_conn, connectors, children_by_id) {
+    deftemp connector ⇐ #fresh (Connector)
+    connector.direction ⇐ “across”
+    source_component ≡ children_by_id@((proto_conn@“source”)@“id”)
+    target_component ≡ children_by_id@((proto_conn@“target”)@“id”)
+    if source_component = ϕ {
+        load_error (#strcons (“internal error: .Across connection source not ok ”, (proto_conn@“source”)@“name”))
+    } else {
+        connector.sender ⇐ mkSender (source_component.name, source_component, proto_conn@“source_port”)
+        if target_component = ϕ {
+            load_error (#strcons (“internal error: .Across connection target not ok ”, (proto_conn@“target”)@“name”))
+        } else {
+            connector.receiver ⇐ mkReceiver (target_component.name, target_component, proto_conn@“target_port”, target_component.inq)
+        }
+     }
+    return connector
+}
+
+defn create_up_connector (container, proto_conn, connectors, children_by_id) {
+    deftemp connector ⇐ #fresh (Connector)
+    connector.direction ⇐ “up”
+    source_component ≡ children_by_id@((proto_conn@“source”)@“id”)
+    if source_component = ϕ {
+        load_error (#strcons (“internal error: .Up connection source not ok ”, (proto_conn@“source”)@“name”)) }
+    else {
+        connector.sender ⇐ mkSender (source_component.name, source_component, proto_conn@“source_port”)
+        connector.receiver ⇐ mkReceiver (container.name, container, proto_conn@“target_port”, container.outq)
+    }
+    return connector
+}
+
+defn create_through_connector (container, proto_conn, connectors, children_by_id) {
+    deftemp connector ⇐ #fresh (Connector)
+    connector.direction ⇐ “through”
+    connector.sender ⇐ mkSender (container.name, container, proto_conn@“source_port”)
+    connector.receiver ⇐ mkReceiver (container.name, container, proto_conn@“target_port”, container.outq)
+    return connector
+}
+
+
+defn container_instantiator (reg, owner, container_name, desc, arg) {
+    global enumDown, enumUp, enumAcross, enumThrough
+    container ≡ make_container (container_name, owner)
+    children ≡ []
+    children_by_id ≡ {} ⌈ not strictly necessary, but, we can remove 1 runtime lookup by “compiling it out“ here⌉
+    ⌈ collect children⌉
+    for child_desc in desc@“children” {
+        child_instance ≡ get_component_instance (reg, child_desc@“name”, container)
+        #append (children, child_instance)
+        id ≡ child_desc@“id”
+        children_by_id@id ⇐ child_instance
+
+    }
+    container.children ⇐ children
+    
+    connectors ≡ []
+    for proto_conn in desc@“connections” {
+        deftemp connector ⇐ #fresh (Connector)
+        if proto_conn@“dir” = enumDown {
+            #append (connectors, create_down_connector (container, proto_conn, connectors, children_by_id))
+        } elif proto_conn@“dir” = enumAcross {
+            #append (connectors, create_across_connector (container, proto_conn, connectors, children_by_id))
+        } elif proto_conn@“dir” = enumUp {
+            #append (connectors, create_up_connector (container, proto_conn, connectors, children_by_id))
+        } elif proto_conn@“dir” = enumThrough {
+            #append (connectors, create_through_connector (container, proto_conn, connectors, children_by_id))
+        }
+     }            
+    container.connections ⇐ connectors
+    return container
+}
+
+⌈ The default handler for container components.⌉
+defn container_handler (container, mevent) {
+    route (container, ⌈ from= ⌉container, mevent) ⌈ references to 'self' are replaced by the container during instantiation⌉
+    while any_child_ready (container) {
+        step_children (container, mevent)}
+}
+
+⌈ Stop all children. Reset to a known state. Hit the big red button. ⌉
+defn container_reset_children (container) {
+    for child in container.children {
+        child.stop (child)
+    }
+    #resetQueue (container.visit_ordering)
+    #resetQueue (container.routings)
+    #resetQueue (container.inq)
+    #resetQueue (container.outq)
+    container.state  ⇐ "idle"
+}
+
+⌈ Frees the given container and associated data.⌉
+defn destroy_container (eh) {
+    pass
+}
+⌈ Checks if two senders match, by pointer equality and port name matching.⌉
+defn sender_eq (s1, s2) {
+    same_components ≡ (s1.component = s2.component)
+    same_ports ≡ (s1.port = s2.port)
+    return same_components and same_ports
+}
+
+⌈ Delivers the given mevent to the receiver of this connector.⌉
+
+defn deposit (parent, conn, mevent) {
+    new_mevent ≡ make_mevent (conn.receiver.port, mevent.datum)
+    push_mevent (parent, conn.receiver.component, conn.receiver.queue, new_mevent)
+}
+
+defn force_tick (parent, eh) {
+    tick_mev ≡ make_mevent (“.”, new_datum_bang ())
+    push_mevent (parent, eh, eh.inq, tick_mev)
+    return tick_mev
+}
+
+defn push_mevent (parent, receiver, inq, m) {
+    #enqueue (inq, m)
+    if (receiver.special) {
+      #prequeue (parent.visit_ordering, receiver)
+    } else {
+      #enqueue (parent.visit_ordering, receiver)
+  }
+    
+}
+
+defn is_self (child, container) {
+    ⌈ in an earlier version “self“ was denoted as ϕ⌉
+    return child = container
+}
+
+defn step_child_once (child, mev) {
+    if (#show_stepping ()) {
+        #print_stderr (#strcons (“-- stepping ❮”, #strcons (child.name, “❯”)))
+        #print_nl_stderr ()
+    }
+    before_state ≡ child.state
+    child.handler(child, mev)
+    after_state ≡ child.state
+    return [before_state = “idle” and after_state != “idle”, 
+            before_state != “idle” and after_state != “idle”,
+            before_state != “idle” and after_state = “idle”]
+}
+
+defn step_children (container, causingMevent) {
+    container.state ⇐ “idle”
+
+    ⌈ phase 1 - loop through children and process inputs or children that not "idle" ⌉
+    for child in #queue2list (container.visit_ordering) {
+        ⌈ child = container represents self, skip it⌉
+        if (not (is_self (child, container))){
+            if (not (#empty (child.inq))){
+                mev ≡ #dequeue (child.inq)
+		step_child_once (child, mev)
+		
+                destroy_mevent(mev)
+            } else {
+                if child.state =  “idle” {
+		    pass
+                } else {
+                    mev ≡ force_tick (container, child)
+		    step_child_once (child, mev)
+                    destroy_mevent(mev)
+                 }
+             }
+         }
+    }
+    #resetQueue (container.visit_ordering)
+
+    ⌈ phase 2 - loop through children and route their outputs to appropriate receiver queues based on .connections ⌉
+    for child in container.children {
+            if child.state = “active” {
+                ⌈ if child remains active, then the container must remain active and must propagate “ticks“ to child⌉
+                container.state ⇐ “active”
+             }
+            
+            while (not (#empty (child.outq))) {
+                mev ≡ #dequeue (child.outq)
+                route(container, child, mev)
+                destroy_mevent(mev)
+             }
+    }
+}
+
+defn attempt_tick (parent, eh) {
+    if eh.state != “idle” {
+        force_tick (parent, eh)
+    }
+}
+
+defn is_tick (mev) {
+    return “.” = mev.port ⌈ assume that any mevent that is sent to port "." is a tick ⌉
+}
+
+⌈ Routes a single mevent to all matching destinations, according to⌉
+⌈ the container's connection network.⌉
+
+defn route (container, from_component, mevent) {
+    deftemp was_sent ⇐ ⊥ ⌈ for checking that output went somewhere (at least during bootstrap)⌉
+    deftemp fromname ⇐ “”
+    global ticktime
+    ticktime ⇐ ticktime + 1
+    if is_tick (mevent){
+        for child in container.children {
+            attempt_tick (container, child) }
+        was_sent ⇐ ⊤
+    } else {
+        if (not (is_self (from_component, container))) {
+            fromname ⇐ from_component.name
+        }
+        from_sender ≡ mkSender (fromname, from_component, mevent.port)
+        
+        for connector in container.connections {
+            if sender_eq (from_sender, connector.sender) {
+                deposit (container, connector, mevent)
+                was_sent ⇐ ⊤
+            }
+        }
+    }
+    if not (was_sent) {
+        #live_update (“internal error”, #strcons (container.name, #strcons (“: mevent on port '”, #strcons (mevent.port, #strcons (“' from ”, #strcons (fromname, “ dropped on floor...”))))))
+    }
+}
+
+defn any_child_ready (container) {
+    for child in container.children {
+        if child_is_ready(child) {
+            return ⊤
+        }
+    }
+    return ⊥
+}
+
+defn child_is_ready (eh) {
+    return (not (#empty (eh.outq))) or (not (#empty (eh.inq))) or ( eh.state != “idle”) or (any_child_ready (eh))
+}
+
+defn append_routing_descriptor (container, desc) {
+    #enqueue (container.routings, desc)
+}
+
+defn injector (eh, mevent) {
+    eh.handler (eh, mevent)
+}
+
+
+⌈ Creates a component that acts as a container. It is the same as a `Eh` instance⌉
+⌈ whose handler function is `container_handler`.⌉
+defn make_container (name, owner) {
+    deftemp eh ⇐ #fresh (Eh)
+    eh.name ⇐ name
+    eh.owner ⇐ owner
+    eh.handler ⇐ ↪︎container_handler
+    eh.finject ⇐ ↪︎injector
+    eh.stop ⇐ ↪︎container_reset_children
+    eh.state ⇐ “idle”
+    eh.kind ⇐ “container”
+    return eh
+}
+
+⌈ Sends a mevent on the given `port` with `data`, placing it on the output⌉
+⌈ of the given component.⌉
+
+defn send (eh,port,obj,causingMevent) {
+    deftemp d ⇐ #fresh (Datum)
+    d.v ⇐ obj
+    d.clone ⇐ λ: obj_clone (d)
+    d.reclaim ⇐ ϕ
+    mev ≡ make_mevent(port, d)
+    put_output (eh, mev)
+}
+
+defn forward (eh, port, mev) {
+    fwdmev ≡ make_mevent(port, mev.datum)
+    put_output (eh, fwdmev)
+}
+
+defn inject_mevent (eh, mev) {
+    eh.finject (eh, mev)
+}
+
+defn set_active (eh) {
+    eh.state ⇐ “active”
+}
+
+defn set_idle (eh) {
+    eh.state ⇐ “idle”
+}
+
+defn put_output (eh, mev) {
+    #enqueue (eh.outq, mev)
+}
+
+defn obj_clone (obj) {
+    return obj
+}
