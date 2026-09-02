@@ -1174,3 +1174,15 @@ Now, when the WebSocket receives the message `[{"":"reset"}]`, it will:
 3. Return early without processing the message further
 
 The rest of the functionality remains unchanged. Would you like me to explain any part of the implementation in more detail?
+
+---
+
+In a bash script, I want to say:
+if `regression_kernel0d.py` is the same as `regression2_kernel0d.py`
+then
+  save `kernel0d.py` as dated-kernel0d.py
+  mv `regression2_kernel0d.py` into `kernel0d.py`
+else
+  say there was a regression error
+  show the results of a diff between `regression_kernel0d.py` and `regression2_kernel0d.py`
+fi
