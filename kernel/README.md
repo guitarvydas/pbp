@@ -14,6 +14,13 @@
 `./@make` runs `./@testc` which re-builds kernel0d.py using the newly-built kernel0d.py. If the two `.py` kernels are the same, the regression version is copied to `kernel0d.py` after saving the previous version of `kernel0d.py` with  `cp kernel0d.py "_$(date +%Y%m%d_%H%M%S)_kernel0d.py"`.
 
 If there are differences, an error message is displayed and the previous `kernel0d.py` is left in place. The intent being, that the new kernel code will be fixed and recompiled using another run of `./@make`.
+
+# Sources
+See `@makec` for the line `basenames=(defs templates container leaf jit stock start)`
+
+Each of these files, suffixed by `.rt`, is a source file that makes up the final kernel(s). 
+
+The list of files is subject to change. Refer to the active version in `@makec`
 # Notes
 
 `:$ cmd arg1 arg2 ...` is a shell-out
@@ -31,3 +38,4 @@ An attempt to clean out this directory has been made, but there might still be s
 ---
 
 The Javascript and Common Lisp versions of the kernel haven't been tested lately (they were tested earlier on). Various `.lisp` support files for the kernel are included in this directory.
+

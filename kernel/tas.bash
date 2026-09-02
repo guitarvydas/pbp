@@ -1,6 +1,5 @@
 #!/bin/bash
 set -e
-echo $1
 python3 main.py . - "$1.rt" main kernel.drawio.json | node decodeoutput.mjs
 cat out.md
 mv out.py $1.py
