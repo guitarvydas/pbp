@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "README.md",
+                "file": "kernel/README.md",
                 "mode": "source",
                 "source": false
               },
@@ -186,7 +186,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "README.md",
+                "file": "kernel/README.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
@@ -215,22 +215,23 @@
   },
   "active": "2aafda6bd4dc58d5",
   "lastOpenFiles": [
+    "kernel/_20260902_090550_kernel0d.py",
+    "kernel/out.js",
+    "kernel/out.py",
+    "kernel/out.lisp",
+    "kernel/temp.nanodsl.mjs",
+    "kernel/temp.rewrite.mjs",
+    "kernel/out.md",
+    "kernel/out.wasm",
+    "kernel/kernel.drawio.json",
+    "README.md",
     "t2td/self-compile/#t2t.rewrite#",
     "TOOLS.md",
-    "README.md",
     "doc/pbp-lifecycle.drawio.png",
     "doc/pbp-lifecycle.drawio",
     "doc/Semantics.md",
     "api.md",
     "#HOW-t2t.md#",
-    "@make-proto/#@make#",
-    "@make-proto/@defc-prototype",
-    "#pbplog#",
-    "checkfailure",
-    "checkfail",
-    "kernel/before-Mon 13 Apr 2026 09:35:56 EDT/kernel0d.py",
-    "kernel/before-Mon 13 Apr 2026 09:35:56 EDT",
-    "kernel-self/new-kernel0d.py",
     "@make-proto/prompt.md",
     "TAS_README_WIP.md",
     "@make-proto/NOTES.md",
@@ -252,7 +253,6 @@
     "kernel-self/node_modules/emoji-regex/README.md",
     "kernel-self/node_modules/string-width/node_modules/strip-ansi/readme.md",
     "kernel-self/node_modules/string-width/node_modules/ansi-regex/readme.md",
-    "kernel-self/node_modules/string-width/readme.md",
     "pbp/sm/pbp/pbp-lifecycle.drawio.png",
     "pbp/dtree/pbp/pbp-lifecycle.drawio.png",
     "t2t-d/doc-d/rwr/rwr-overview.drawio.png",
