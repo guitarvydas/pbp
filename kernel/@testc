@@ -3,9 +3,7 @@ set -e
 npm install
 node das2json.mjs kernel.drawio
 
-basenames=(defs templates container leaf jit stock start)
-
-for i in "${basenames[@]}"; do
+for i in $BASENAMES; do
     ./regression_tas.bash "$i"
 done
 
@@ -13,7 +11,7 @@ done
 : > regression2_kernel0d.js
 : > regression2_kernel0d.lisp
 
-for i in "${basenames[@]}"; do
+for i in $BASENAMES; do
     cat "$i.py" >> regression2_kernel0d.py
     cat "$i.js" >> regression2_kernel0d.js
     cat "$i.lisp" >> regression2_kernel0d.lisp
@@ -27,6 +25,6 @@ if diff -q regression_kernel0d.py regression2_kernel0d.py > /dev/null; then
     mv regression2_kernel0d.lisp kernel0d.lisp
 else
     echo "Regression error: regression_kernel0d.py and regression2_kernel0d.py differ"
-    diff regression_kernel0d.py regression2_kernel0d.py
+    echo "use diff regression_kernel0d.py regression2_kernel0d.py"
 fi
 
