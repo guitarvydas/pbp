@@ -43,7 +43,7 @@ set -eE pipefail
 "${PBP}"/resetlog
 
 rm -f *.mr
-rm -f *.json
+rm -f *.drawio.json
 rm -f temp.*
 rm -f out.*
 cd "${TOOLWD}"
