@@ -1,18 +1,18 @@
 #!/bin/bash
 set -e
-npm install
+# npm install
 node das2json.mjs kernel.drawio
 
 for i in $BASENAMES; do
     ./tas.bash "$i"
 done
 
-: > regression_kernel0d.py
-: > regression_kernel0d.js
-: > regression_kernel0d.lisp
+: > new_kernel0d.py
+: > new_kernel0d.js
+: > new_kernel0d.lisp
 
 for i in $BASENAMES; do
-    cat "$i.py" >> regression_kernel0d.py
-    cat "$i.js" >> regression_kernel0d.js
-    cat "$i.lisp" >> regression_kernel0d.lisp
+    cat "$i.py" >> new_kernel0d.py
+    cat "$i.js" >> new_kernel0d.js
+    cat "$i.lisp" >> new_kernel0d.lisp
 done

@@ -9,6 +9,10 @@
       {
         "name": "Generate",
         "id": 12
+      },
+      {
+        "name": ":?A",
+        "id": 19
       }
     ],
     "connections": [
@@ -19,6 +23,15 @@
         "target": {
           "name": "List Filenames",
           "id": 7
+        }
+      },
+      {
+        "dir": 0,
+        "source_port": "",
+        "target_port": "",
+        "target": {
+          "name": ":?A",
+          "id": 19
         }
       },
       {

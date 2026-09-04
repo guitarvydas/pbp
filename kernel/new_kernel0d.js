@@ -237,7 +237,11 @@ class Eh {
 let  load_errors =  false;                             /* line 227 */
 let  runtime_errors =  false;                          /* line 228 *//* line 229 */
 function clone_string (s) {                            /* line 230 */
-    return  s;                                         /* line 231 *//* line 232 */
+    return  s;                                         /* line 231 *//* line 232 *//* line 233 */
+}
+
+function injector (eh,mevent) {                        /* line 234 */
+    eh.handler ( eh, mevent)                           /* line 235 *//* line 236 *//* line 237 */
 }
 function mkTemplate (name,template_data,instantiator) {/* line 1 */
     let  templ =  new Template ();                     /* line 2 */;
@@ -610,59 +614,55 @@ function child_is_ready (eh) {                         /* line 243 */
 function append_routing_descriptor (container,desc) {  /* line 247 */
     container.routings.push ( desc)                    /* line 248 *//* line 249 *//* line 250 */
 }
-
-function injector (eh,mevent) {                        /* line 251 */
-    eh.handler ( eh, mevent)                           /* line 252 *//* line 253 *//* line 254 */
-}
-                                                       /* line 255 */
-/*  Creates a component that acts as a container. It is the same as a `Eh` instance *//* line 256 */
-/*  whose handler function is `container_handler`. */  /* line 257 */
-function make_container (name,owner) {                 /* line 258 */
-    let  eh =  new Eh ();                              /* line 259 */;
-    eh.name =  name;                                   /* line 260 */
-    eh.owner =  owner;                                 /* line 261 */
-    eh.handler =  container_handler;                   /* line 262 */
-    eh.finject =  injector;                            /* line 263 */
-    eh.stop =  container_reset_children;               /* line 264 */
-    eh.state =  "idle";                                /* line 265 */
-    eh.kind =  "container";                            /* line 266 */
-    return  eh;                                        /* line 267 *//* line 268 *//* line 269 */
+                                                       /* line 251 */
+/*  Creates a component that acts as a container. It is the same as a `Eh` instance *//* line 252 */
+/*  whose handler function is `container_handler`. */  /* line 253 */
+function make_container (name,owner) {                 /* line 254 */
+    let  eh =  new Eh ();                              /* line 255 */;
+    eh.name =  name;                                   /* line 256 */
+    eh.owner =  owner;                                 /* line 257 */
+    eh.handler =  container_handler;                   /* line 258 */
+    eh.finject =  injector;                            /* line 259 */
+    eh.stop =  container_reset_children;               /* line 260 */
+    eh.state =  "idle";                                /* line 261 */
+    eh.kind =  "container";                            /* line 262 */
+    return  eh;                                        /* line 263 *//* line 264 *//* line 265 */
 }
 
-/*  Sends a mevent on the given `port` with `data`, placing it on the output *//* line 270 */
-/*  of the given component. */                         /* line 271 *//* line 272 */
-function send (eh,port,obj,causingMevent) {            /* line 273 */
-    let  d =  new Datum ();                            /* line 274 */;
-    d.v =  obj;                                        /* line 275 */
-    d.clone =  function () {return obj_clone ( d)      /* line 276 */;};
-    d.reclaim =  null;                                 /* line 277 */
-    let mev = make_mevent ( port, d)                   /* line 278 */;
-    put_output ( eh, mev)                              /* line 279 *//* line 280 *//* line 281 */
+/*  Sends a mevent on the given `port` with `data`, placing it on the output *//* line 266 */
+/*  of the given component. */                         /* line 267 *//* line 268 */
+function send (eh,port,obj,causingMevent) {            /* line 269 */
+    let  d =  new Datum ();                            /* line 270 */;
+    d.v =  obj;                                        /* line 271 */
+    d.clone =  function () {return obj_clone ( d)      /* line 272 */;};
+    d.reclaim =  null;                                 /* line 273 */
+    let mev = make_mevent ( port, d)                   /* line 274 */;
+    put_output ( eh, mev)                              /* line 275 *//* line 276 *//* line 277 */
 }
 
-function forward (eh,port,mev) {                       /* line 282 */
-    let fwdmev = make_mevent ( port, mev.datum)        /* line 283 */;
-    put_output ( eh, fwdmev)                           /* line 284 *//* line 285 *//* line 286 */
+function forward (eh,port,mev) {                       /* line 278 */
+    let fwdmev = make_mevent ( port, mev.datum)        /* line 279 */;
+    put_output ( eh, fwdmev)                           /* line 280 *//* line 281 *//* line 282 */
 }
 
-function inject_mevent (eh,mev) {                      /* line 287 */
-    eh.finject ( eh, mev)                              /* line 288 *//* line 289 *//* line 290 */
+function inject_mevent (eh,mev) {                      /* line 283 */
+    eh.finject ( eh, mev)                              /* line 284 *//* line 285 *//* line 286 */
 }
 
-function set_active (eh) {                             /* line 291 */
-    eh.state =  "active";                              /* line 292 *//* line 293 *//* line 294 */
+function set_active (eh) {                             /* line 287 */
+    eh.state =  "active";                              /* line 288 *//* line 289 *//* line 290 */
 }
 
-function set_idle (eh) {                               /* line 295 */
-    eh.state =  "idle";                                /* line 296 *//* line 297 *//* line 298 */
+function set_idle (eh) {                               /* line 291 */
+    eh.state =  "idle";                                /* line 292 *//* line 293 *//* line 294 */
 }
 
-function put_output (eh,mev) {                         /* line 299 */
-    eh.outq.push ( mev)                                /* line 300 *//* line 301 *//* line 302 */
+function put_output (eh,mev) {                         /* line 295 */
+    eh.outq.push ( mev)                                /* line 296 *//* line 297 *//* line 298 */
 }
 
-function obj_clone (obj) {                             /* line 303 */
-    return  obj;                                       /* line 304 *//* line 305 */
+function obj_clone (obj) {                             /* line 299 */
+    return  obj;                                       /* line 300 *//* line 301 */
 }
 /*  Creates a new leaf component out of a handler function, and a data parameter *//* line 1 */
 /*  that will be passed back to your handler when called. *//* line 2 *//* line 3 */

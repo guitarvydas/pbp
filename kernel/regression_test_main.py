@@ -1,5 +1,5 @@
 import sys
-import regression_kernel0d as zd
+import new_kernel0d as zd
 
 try:
     [palette, env] = zd.initialize_from_files (["kernel.drawio.json"])

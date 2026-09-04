@@ -223,10 +223,7 @@ class Eh:
 load_errors =  False                                   #line 227
 runtime_errors =  False                                #line 228#line 229
 def clone_string (s):                                  #line 230
-    return  s                                          #line 231#line 232#line 233
-
-def injector (eh,mevent):                              #line 234
-    eh.handler ( eh, mevent)                           #line 235#line 236#line 237
+    return  s                                          #line 231#line 232
 def mkTemplate (name,template_data,instantiator):      #line 1
     templ =  Template ()                               #line 2
     templ.name =  name                                 #line 3
@@ -527,48 +524,51 @@ def child_is_ready (eh):                               #line 243
 
 def append_routing_descriptor (container,desc):        #line 247
     container.routings.append ( desc)                  #line 248#line 249#line 250
-                                                       #line 251
-# Creates a component that acts as a container. It is the same as a `Eh` instance#line 252
-# whose handler function is `container_handler`.       #line 253
-def make_container (name,owner):                       #line 254
-    eh =  Eh ()                                        #line 255
-    eh.name =  name                                    #line 256
-    eh.owner =  owner                                  #line 257
-    eh.handler =  container_handler                    #line 258
-    eh.finject =  injector                             #line 259
-    eh.stop =  container_reset_children                #line 260
-    eh.state =  "idle"                                 #line 261
-    eh.kind =  "container"                             #line 262
-    return  eh                                         #line 263#line 264#line 265
 
-# Sends a mevent on the given `port` with `data`, placing it on the output#line 266
-# of the given component.                              #line 267#line 268
-def send (eh,port,obj,causingMevent):                  #line 269
-    d =  Datum ()                                      #line 270
-    d.v =  obj                                         #line 271
-    d.clone =  lambda : obj_clone ( d)                 #line 272
-    d.reclaim =  None                                  #line 273
-    mev = make_mevent ( port, d)                       #line 274
-    put_output ( eh, mev)                              #line 275#line 276#line 277
+def injector (eh,mevent):                              #line 251
+    eh.handler ( eh, mevent)                           #line 252#line 253#line 254
+                                                       #line 255
+# Creates a component that acts as a container. It is the same as a `Eh` instance#line 256
+# whose handler function is `container_handler`.       #line 257
+def make_container (name,owner):                       #line 258
+    eh =  Eh ()                                        #line 259
+    eh.name =  name                                    #line 260
+    eh.owner =  owner                                  #line 261
+    eh.handler =  container_handler                    #line 262
+    eh.finject =  injector                             #line 263
+    eh.stop =  container_reset_children                #line 264
+    eh.state =  "idle"                                 #line 265
+    eh.kind =  "container"                             #line 266
+    return  eh                                         #line 267#line 268#line 269
 
-def forward (eh,port,mev):                             #line 278
-    fwdmev = make_mevent ( port, mev.datum)            #line 279
-    put_output ( eh, fwdmev)                           #line 280#line 281#line 282
+# Sends a mevent on the given `port` with `data`, placing it on the output#line 270
+# of the given component.                              #line 271#line 272
+def send (eh,port,obj,causingMevent):                  #line 273
+    d =  Datum ()                                      #line 274
+    d.v =  obj                                         #line 275
+    d.clone =  lambda : obj_clone ( d)                 #line 276
+    d.reclaim =  None                                  #line 277
+    mev = make_mevent ( port, d)                       #line 278
+    put_output ( eh, mev)                              #line 279#line 280#line 281
 
-def inject_mevent (eh,mev):                            #line 283
-    eh.finject ( eh, mev)                              #line 284#line 285#line 286
+def forward (eh,port,mev):                             #line 282
+    fwdmev = make_mevent ( port, mev.datum)            #line 283
+    put_output ( eh, fwdmev)                           #line 284#line 285#line 286
 
-def set_active (eh):                                   #line 287
-    eh.state =  "active"                               #line 288#line 289#line 290
+def inject_mevent (eh,mev):                            #line 287
+    eh.finject ( eh, mev)                              #line 288#line 289#line 290
 
-def set_idle (eh):                                     #line 291
-    eh.state =  "idle"                                 #line 292#line 293#line 294
+def set_active (eh):                                   #line 291
+    eh.state =  "active"                               #line 292#line 293#line 294
 
-def put_output (eh,mev):                               #line 295
-    eh.outq.append ( mev)                              #line 296#line 297#line 298
+def set_idle (eh):                                     #line 295
+    eh.state =  "idle"                                 #line 296#line 297#line 298
 
-def obj_clone (obj):                                   #line 299
-    return  obj                                        #line 300#line 301
+def put_output (eh,mev):                               #line 299
+    eh.outq.append ( mev)                              #line 300#line 301#line 302
+
+def obj_clone (obj):                                   #line 303
+    return  obj                                        #line 304#line 305
 # Creates a new leaf component out of a handler function, and a data parameter#line 1
 # that will be passed back to your handler when called.#line 2#line 3
 def make_leaf (name,owner,instance_data,arg,handler,reset_handler):#line 4

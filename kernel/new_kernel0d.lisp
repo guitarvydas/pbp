@@ -306,6 +306,10 @@ x))))
   (declare (ignorable  s))                                  #|line 230|#
   (return-from clone_string  s)                             #|line 231|# #|line 232|#
   )
+(defun injector (&optional  eh  mevent)
+  (declare (ignorable  eh  mevent))                         #|line 234|#
+  (funcall (slot-value  eh 'handler)   eh  mevent           #|line 235|#) #|line 236|#
+  )
 (defun mkTemplate (&optional  name  template_data  instantiator)
   (declare (ignorable  name  template_data  instantiator))  #|line 1|#
   (let (( templ  (make-instance 'Template)                  #|line 2|#))
@@ -748,60 +752,56 @@ x))))
 (defun append_routing_descriptor (&optional  container  desc)
   (declare (ignorable  container  desc))                    #|line 247|#
   (enqueue (slot-value  container 'routings)  desc)         #|line 248|# #|line 249|#
-  )
-(defun injector (&optional  eh  mevent)
-  (declare (ignorable  eh  mevent))                         #|line 251|#
-  (funcall (slot-value  eh 'handler)   eh  mevent           #|line 252|#) #|line 253|#
-  )                                                         #|line 255|# #|  Creates a component that acts as a container. It is the same as a `Eh` instance |# #|line 256|# #|  whose handler function is `container_handler`. |# #|line 257|#
+  )                                                         #|line 251|# #|  Creates a component that acts as a container. It is the same as a `Eh` instance |# #|line 252|# #|  whose handler function is `container_handler`. |# #|line 253|#
 (defun make_container (&optional  name  owner)
-  (declare (ignorable  name  owner))                        #|line 258|#
-  (let (( eh  (make-instance 'Eh)                           #|line 259|#))
+  (declare (ignorable  name  owner))                        #|line 254|#
+  (let (( eh  (make-instance 'Eh)                           #|line 255|#))
     (declare (ignorable  eh))
-    (setf (slot-value  eh 'name)  name)                     #|line 260|#
-    (setf (slot-value  eh 'owner)  owner)                   #|line 261|#
-    (setf (slot-value  eh 'handler)  #'container_handler)   #|line 262|#
-    (setf (slot-value  eh 'finject)  #'injector)            #|line 263|#
-    (setf (slot-value  eh 'stop)  #'container_reset_children) #|line 264|#
-    (setf (slot-value  eh 'state)  "idle")                  #|line 265|#
-    (setf (slot-value  eh 'kind)  "container")              #|line 266|#
-    (return-from make_container  eh)                        #|line 267|#) #|line 268|#
-  ) #|  Sends a mevent on the given `port` with `data`, placing it on the output |# #|line 270|# #|  of the given component. |# #|line 271|# #|line 272|#
+    (setf (slot-value  eh 'name)  name)                     #|line 256|#
+    (setf (slot-value  eh 'owner)  owner)                   #|line 257|#
+    (setf (slot-value  eh 'handler)  #'container_handler)   #|line 258|#
+    (setf (slot-value  eh 'finject)  #'injector)            #|line 259|#
+    (setf (slot-value  eh 'stop)  #'container_reset_children) #|line 260|#
+    (setf (slot-value  eh 'state)  "idle")                  #|line 261|#
+    (setf (slot-value  eh 'kind)  "container")              #|line 262|#
+    (return-from make_container  eh)                        #|line 263|#) #|line 264|#
+  ) #|  Sends a mevent on the given `port` with `data`, placing it on the output |# #|line 266|# #|  of the given component. |# #|line 267|# #|line 268|#
 (defun send (&optional  eh  port  obj  causingMevent)
-  (declare (ignorable  eh  port  obj  causingMevent))       #|line 273|#
-  (let (( d  (make-instance 'Datum)                         #|line 274|#))
+  (declare (ignorable  eh  port  obj  causingMevent))       #|line 269|#
+  (let (( d  (make-instance 'Datum)                         #|line 270|#))
     (declare (ignorable  d))
-    (setf (slot-value  d 'v)  obj)                          #|line 275|#
-    (setf (slot-value  d 'clone)  #'(lambda (&optional )(funcall (quote obj_clone)   d  #|line 276|#)))
-    (setf (slot-value  d 'reclaim)  nil)                    #|line 277|#
-    (let ((mev (funcall (quote make_mevent)   port  d       #|line 278|#)))
+    (setf (slot-value  d 'v)  obj)                          #|line 271|#
+    (setf (slot-value  d 'clone)  #'(lambda (&optional )(funcall (quote obj_clone)   d  #|line 272|#)))
+    (setf (slot-value  d 'reclaim)  nil)                    #|line 273|#
+    (let ((mev (funcall (quote make_mevent)   port  d       #|line 274|#)))
       (declare (ignorable mev))
-      (funcall (quote put_output)   eh  mev                 #|line 279|#))) #|line 280|#
+      (funcall (quote put_output)   eh  mev                 #|line 275|#))) #|line 276|#
   )
 (defun forward (&optional  eh  port  mev)
-  (declare (ignorable  eh  port  mev))                      #|line 282|#
-  (let ((fwdmev (funcall (quote make_mevent)   port (slot-value  mev 'datum)  #|line 283|#)))
+  (declare (ignorable  eh  port  mev))                      #|line 278|#
+  (let ((fwdmev (funcall (quote make_mevent)   port (slot-value  mev 'datum)  #|line 279|#)))
     (declare (ignorable fwdmev))
-    (funcall (quote put_output)   eh  fwdmev                #|line 284|#)) #|line 285|#
+    (funcall (quote put_output)   eh  fwdmev                #|line 280|#)) #|line 281|#
   )
 (defun inject_mevent (&optional  eh  mev)
-  (declare (ignorable  eh  mev))                            #|line 287|#
-  (funcall (slot-value  eh 'finject)   eh  mev              #|line 288|#) #|line 289|#
+  (declare (ignorable  eh  mev))                            #|line 283|#
+  (funcall (slot-value  eh 'finject)   eh  mev              #|line 284|#) #|line 285|#
   )
 (defun set_active (&optional  eh)
-  (declare (ignorable  eh))                                 #|line 291|#
-  (setf (slot-value  eh 'state)  "active")                  #|line 292|# #|line 293|#
+  (declare (ignorable  eh))                                 #|line 287|#
+  (setf (slot-value  eh 'state)  "active")                  #|line 288|# #|line 289|#
   )
 (defun set_idle (&optional  eh)
-  (declare (ignorable  eh))                                 #|line 295|#
-  (setf (slot-value  eh 'state)  "idle")                    #|line 296|# #|line 297|#
+  (declare (ignorable  eh))                                 #|line 291|#
+  (setf (slot-value  eh 'state)  "idle")                    #|line 292|# #|line 293|#
   )
 (defun put_output (&optional  eh  mev)
-  (declare (ignorable  eh  mev))                            #|line 299|#
-  (enqueue (slot-value  eh 'outq)  mev)                     #|line 300|# #|line 301|#
+  (declare (ignorable  eh  mev))                            #|line 295|#
+  (enqueue (slot-value  eh 'outq)  mev)                     #|line 296|# #|line 297|#
   )
 (defun obj_clone (&optional  obj)
-  (declare (ignorable  obj))                                #|line 303|#
-  (return-from obj_clone  obj)                              #|line 304|# #|line 305|#
+  (declare (ignorable  obj))                                #|line 299|#
+  (return-from obj_clone  obj)                              #|line 300|# #|line 301|#
   )
 #|  Creates a new leaf component out of a handler function, and a data parameter |# #|line 1|# #|  that will be passed back to your handler when called. |# #|line 2|# #|line 3|#
 (defun make_leaf (&optional  name  owner  instance_data  arg  handler  reset_handler)

@@ -230,3 +230,8 @@ defvar runtime_errors ⇐ ⊥
 defn clone_string (s) {
     return s
 }
+
+defn injector (eh, mevent) {
+    eh.handler (eh, mevent)
+}
+
