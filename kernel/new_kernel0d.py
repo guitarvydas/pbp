@@ -454,121 +454,122 @@ def is_self (child,container):                         #line 142
 def step_child_once (child,mev):                       #line 147
     if ( ("PBPSTEPPING" in os.environ) ):              #line 148
         print ( str( "-- stepping ❮") +  str( child.name) +  "❯"  , file=sys.stderr)#line 149
-                                                       #line 150#line 151#line 152#line 153
+                                                       #line 150#line 151
+    child.handler ( child, mev)                        #line 152#line 153#line 154
 
-def step_children (container,causingMevent):           #line 154
-    container.state =  "idle"                          #line 155#line 156
-    # phase 1 - loop through children and process inputs or children that not "idle" #line 157
-    for child in  list ( container.visit_ordering):    #line 158
-        # child = container represents self, skip it   #line 159
-        if (not (is_self ( child, container))):        #line 160
-            if (not ((0==len( child.inq)))):           #line 161
-                mev =  child.inq.popleft ()            #line 162
-                step_child_once ( child, mev)          #line 163#line 164
-                destroy_mevent ( mev)                  #line 165
-            else:                                      #line 166
-                if  child.state ==  "idle":            #line 167
-                    pass                               #line 168
-                else:                                  #line 169
-                    mev = force_tick ( container, child)#line 170
-                    step_child_once ( child, mev)      #line 171
-                    destroy_mevent ( mev)              #line 172#line 173#line 174#line 175#line 176
+def step_children (container,causingMevent):           #line 155
+    container.state =  "idle"                          #line 156#line 157
+    # phase 1 - loop through children and process inputs or children that not "idle" #line 158
+    for child in  list ( container.visit_ordering):    #line 159
+        # child = container represents self, skip it   #line 160
+        if (not (is_self ( child, container))):        #line 161
+            if (not ((0==len( child.inq)))):           #line 162
+                mev =  child.inq.popleft ()            #line 163
+                step_child_once ( child, mev)          #line 164#line 165
+                destroy_mevent ( mev)                  #line 166
+            else:                                      #line 167
+                if  child.state ==  "idle":            #line 168
+                    pass                               #line 169
+                else:                                  #line 170
+                    mev = force_tick ( container, child)#line 171
+                    step_child_once ( child, mev)      #line 172
+                    destroy_mevent ( mev)              #line 173#line 174#line 175#line 176#line 177
 
-    container.visit_ordering.clear ()                  #line 177#line 178
-    # phase 2 - loop through children and route their outputs to appropriate receiver queues based on .connections #line 179
-    for child in  container.children:                  #line 180
-        if  child.state ==  "active":                  #line 181
-            # if child remains active, then the container must remain active and must propagate “ticks“ to child#line 182
-            container.state =  "active"                #line 183#line 184#line 185
-        while (not ((0==len( child.outq)))):           #line 186
-            mev =  child.outq.popleft ()               #line 187
-            route ( container, child, mev)             #line 188
-            destroy_mevent ( mev)                      #line 189#line 190#line 191#line 192#line 193
+    container.visit_ordering.clear ()                  #line 178#line 179
+    # phase 2 - loop through children and route their outputs to appropriate receiver queues based on .connections #line 180
+    for child in  container.children:                  #line 181
+        if  child.state ==  "active":                  #line 182
+            # if child remains active, then the container must remain active and must propagate “ticks“ to child#line 183
+            container.state =  "active"                #line 184#line 185#line 186
+        while (not ((0==len( child.outq)))):           #line 187
+            mev =  child.outq.popleft ()               #line 188
+            route ( container, child, mev)             #line 189
+            destroy_mevent ( mev)                      #line 190#line 191#line 192#line 193#line 194
 
-def attempt_tick (parent,eh):                          #line 194
-    if  eh.state!= "idle":                             #line 195
-        force_tick ( parent, eh)                       #line 196#line 197#line 198#line 199
+def attempt_tick (parent,eh):                          #line 195
+    if  eh.state!= "idle":                             #line 196
+        force_tick ( parent, eh)                       #line 197#line 198#line 199#line 200
 
-def is_tick (mev):                                     #line 200
+def is_tick (mev):                                     #line 201
     return  "." ==  mev.port
-    # assume that any mevent that is sent to port "." is a tick #line 201#line 202#line 203
+    # assume that any mevent that is sent to port "." is a tick #line 202#line 203#line 204
 
-# Routes a single mevent to all matching destinations, according to#line 204
-# the container's connection network.                  #line 205#line 206
-def route (container,from_component,mevent):           #line 207
+# Routes a single mevent to all matching destinations, according to#line 205
+# the container's connection network.                  #line 206#line 207
+def route (container,from_component,mevent):           #line 208
     was_sent =  False
-    # for checking that output went somewhere (at least during bootstrap)#line 208
-    fromname =  ""                                     #line 209
-    global ticktime                                    #line 210
-    ticktime =  ticktime+ 1                            #line 211
-    if is_tick ( mevent):                              #line 212
-        for child in  container.children:              #line 213
-            attempt_tick ( container, child)           #line 214
-        was_sent =  True                               #line 215
-    else:                                              #line 216
-        if (not (is_self ( from_component, container))):#line 217
-            fromname =  from_component.name            #line 218#line 219
-        from_sender = mkSender ( fromname, from_component, mevent.port)#line 220#line 221
-        for connector in  container.connections:       #line 222
-            if sender_eq ( from_sender, connector.sender):#line 223
-                deposit ( container, connector, mevent)#line 224
-                was_sent =  True                       #line 225#line 226#line 227#line 228
-    if not ( was_sent):                                #line 229
-        live_update ( "internal error",  str( container.name) +  str( ": mevent on port '") +  str( mevent.port) +  str( "' from ") +  str( fromname) +  " dropped on floor..."     )#line 230#line 231#line 232#line 233
+    # for checking that output went somewhere (at least during bootstrap)#line 209
+    fromname =  ""                                     #line 210
+    global ticktime                                    #line 211
+    ticktime =  ticktime+ 1                            #line 212
+    if is_tick ( mevent):                              #line 213
+        for child in  container.children:              #line 214
+            attempt_tick ( container, child)           #line 215
+        was_sent =  True                               #line 216
+    else:                                              #line 217
+        if (not (is_self ( from_component, container))):#line 218
+            fromname =  from_component.name            #line 219#line 220
+        from_sender = mkSender ( fromname, from_component, mevent.port)#line 221#line 222
+        for connector in  container.connections:       #line 223
+            if sender_eq ( from_sender, connector.sender):#line 224
+                deposit ( container, connector, mevent)#line 225
+                was_sent =  True                       #line 226#line 227#line 228#line 229
+    if not ( was_sent):                                #line 230
+        live_update ( "internal error",  str( container.name) +  str( ": mevent on port '") +  str( mevent.port) +  str( "' from ") +  str( fromname) +  " dropped on floor..."     )#line 231#line 232#line 233#line 234
 
-def any_child_ready (container):                       #line 234
-    for child in  container.children:                  #line 235
-        if child_is_ready ( child):                    #line 236
-            return  True                               #line 237#line 238#line 239
-    return  False                                      #line 240#line 241#line 242
+def any_child_ready (container):                       #line 235
+    for child in  container.children:                  #line 236
+        if child_is_ready ( child):                    #line 237
+            return  True                               #line 238#line 239#line 240
+    return  False                                      #line 241#line 242#line 243
 
-def child_is_ready (eh):                               #line 243
-    return (not ((0==len( eh.outq)))) or (not ((0==len( eh.inq)))) or ( eh.state!= "idle") or (any_child_ready ( eh))#line 244#line 245#line 246
+def child_is_ready (eh):                               #line 244
+    return (not ((0==len( eh.outq)))) or (not ((0==len( eh.inq)))) or ( eh.state!= "idle") or (any_child_ready ( eh))#line 245#line 246#line 247
 
-def append_routing_descriptor (container,desc):        #line 247
-    container.routings.append ( desc)                  #line 248#line 249#line 250
-                                                       #line 251
-# Creates a component that acts as a container. It is the same as a `Eh` instance#line 252
-# whose handler function is `container_handler`.       #line 253
-def make_container (name,owner):                       #line 254
-    eh =  Eh ()                                        #line 255
-    eh.name =  name                                    #line 256
-    eh.owner =  owner                                  #line 257
-    eh.handler =  container_handler                    #line 258
-    eh.finject =  injector                             #line 259
-    eh.stop =  container_reset_children                #line 260
-    eh.state =  "idle"                                 #line 261
-    eh.kind =  "container"                             #line 262
-    return  eh                                         #line 263#line 264#line 265
+def append_routing_descriptor (container,desc):        #line 248
+    container.routings.append ( desc)                  #line 249#line 250#line 251
+                                                       #line 252
+# Creates a component that acts as a container. It is the same as a `Eh` instance#line 253
+# whose handler function is `container_handler`.       #line 254
+def make_container (name,owner):                       #line 255
+    eh =  Eh ()                                        #line 256
+    eh.name =  name                                    #line 257
+    eh.owner =  owner                                  #line 258
+    eh.handler =  container_handler                    #line 259
+    eh.finject =  injector                             #line 260
+    eh.stop =  container_reset_children                #line 261
+    eh.state =  "idle"                                 #line 262
+    eh.kind =  "container"                             #line 263
+    return  eh                                         #line 264#line 265#line 266
 
-# Sends a mevent on the given `port` with `data`, placing it on the output#line 266
-# of the given component.                              #line 267#line 268
-def send (eh,port,obj,causingMevent):                  #line 269
-    d =  Datum ()                                      #line 270
-    d.v =  obj                                         #line 271
-    d.clone =  lambda : obj_clone ( d)                 #line 272
-    d.reclaim =  None                                  #line 273
-    mev = make_mevent ( port, d)                       #line 274
-    put_output ( eh, mev)                              #line 275#line 276#line 277
+# Sends a mevent on the given `port` with `data`, placing it on the output#line 267
+# of the given component.                              #line 268#line 269
+def send (eh,port,obj,causingMevent):                  #line 270
+    d =  Datum ()                                      #line 271
+    d.v =  obj                                         #line 272
+    d.clone =  lambda : obj_clone ( d)                 #line 273
+    d.reclaim =  None                                  #line 274
+    mev = make_mevent ( port, d)                       #line 275
+    put_output ( eh, mev)                              #line 276#line 277#line 278
 
-def forward (eh,port,mev):                             #line 278
-    fwdmev = make_mevent ( port, mev.datum)            #line 279
-    put_output ( eh, fwdmev)                           #line 280#line 281#line 282
+def forward (eh,port,mev):                             #line 279
+    fwdmev = make_mevent ( port, mev.datum)            #line 280
+    put_output ( eh, fwdmev)                           #line 281#line 282#line 283
 
-def inject_mevent (eh,mev):                            #line 283
-    eh.finject ( eh, mev)                              #line 284#line 285#line 286
+def inject_mevent (eh,mev):                            #line 284
+    eh.finject ( eh, mev)                              #line 285#line 286#line 287
 
-def set_active (eh):                                   #line 287
-    eh.state =  "active"                               #line 288#line 289#line 290
+def set_active (eh):                                   #line 288
+    eh.state =  "active"                               #line 289#line 290#line 291
 
-def set_idle (eh):                                     #line 291
-    eh.state =  "idle"                                 #line 292#line 293#line 294
+def set_idle (eh):                                     #line 292
+    eh.state =  "idle"                                 #line 293#line 294#line 295
 
-def put_output (eh,mev):                               #line 295
-    eh.outq.append ( mev)                              #line 296#line 297#line 298
+def put_output (eh,mev):                               #line 296
+    eh.outq.append ( mev)                              #line 297#line 298#line 299
 
-def obj_clone (obj):                                   #line 299
-    return  obj                                        #line 300#line 301
+def obj_clone (obj):                                   #line 300
+    return  obj                                        #line 301#line 302
 # Creates a new leaf component out of a handler function, and a data parameter#line 1
 # that will be passed back to your handler when called.#line 2#line 3
 def make_leaf (name,owner,instance_data,arg,handler,reset_handler):#line 4
