@@ -3,190 +3,16 @@
     "name": "main",
     "children": [
       {
-        "name": "Generate Finalization Signal",
+        "name": "Front End",
         "id": 7
       },
       {
-        "name": "Generate",
-        "id": 12
-      },
-      {
-        "name": ":?A",
-        "id": 19
-      }
-    ],
-    "connections": [
-      {
-        "dir": 0,
-        "source_port": "",
-        "target_port": "",
-        "target": {
-          "name": "Generate Finalization Signal",
-          "id": 7
-        }
-      },
-      {
-        "dir": 0,
-        "source_port": "",
-        "target_port": "",
-        "target": {
-          "name": ":?A",
-          "id": 19
-        }
-      },
-      {
-        "dir": 1,
-        "source_port": "",
-        "target_port": "",
-        "source": {
-          "name": "Generate Finalization Signal",
-          "id": 7
-        },
-        "target": {
-          "name": "Generate",
-          "id": 12
-        }
-      },
-      {
-        "dir": 1,
-        "source_port": "fini",
-        "target_port": "fini",
-        "source": {
-          "name": "Generate Finalization Signal",
-          "id": 7
-        },
-        "target": {
-          "name": "Generate",
-          "id": 12
-        }
-      },
-      {
-        "dir": 2,
-        "source_port": "✗",
-        "target_port": "✗",
-        "source": {
-          "name": "Generate Finalization Signal",
-          "id": 7
-        }
-      },
-      {
-        "dir": 2,
-        "source_port": "Python",
-        "target_port": "Python",
-        "source": {
-          "name": "Generate",
-          "id": 12
-        }
-      },
-      {
-        "dir": 2,
-        "source_port": "✗",
-        "target_port": "✗",
-        "source": {
-          "name": "Generate",
-          "id": 12
-        }
-      },
-      {
-        "dir": 2,
-        "source_port": "Javascript",
-        "target_port": "Javascript",
-        "source": {
-          "name": "Generate",
-          "id": 12
-        }
-      },
-      {
-        "dir": 2,
-        "source_port": "CL",
-        "target_port": "CommonLisp",
-        "source": {
-          "name": "Generate",
-          "id": 12
-        }
-      }
-    ],
-    "file": "kernel.drawio"
-  },
-  {
-    "name": "Generate Finalization Signal",
-    "children": [
-      {
-        "name": ":DONE",
-        "id": 5
-      },
-      {
-        "name": "1then2",
-        "id": 8
-      }
-    ],
-    "connections": [
-      {
-        "dir": 0,
-        "source_port": "",
-        "target_port": "1",
-        "target": {
-          "name": "1then2",
-          "id": 8
-        }
-      },
-      {
-        "dir": 0,
-        "source_port": "",
-        "target_port": "2",
-        "target": {
-          "name": "1then2",
-          "id": 8
-        }
-      },
-      {
-        "dir": 1,
-        "source_port": "2",
-        "target_port": "",
-        "source": {
-          "name": "1then2",
-          "id": 8
-        },
-        "target": {
-          "name": ":DONE",
-          "id": 5
-        }
-      },
-      {
-        "dir": 2,
-        "source_port": "",
-        "target_port": "fini",
-        "source": {
-          "name": ":DONE",
-          "id": 5
-        }
-      },
-      {
-        "dir": 2,
-        "source_port": "1",
-        "target_port": "",
-        "source": {
-          "name": "1then2",
-          "id": 8
-        }
-      }
-    ],
-    "file": "kernel.drawio"
-  },
-  {
-    "name": "Generate",
-    "children": [
-      {
-        "name": "Front End",
-        "id": 8
-      },
-      {
         "name": "Back End",
-        "id": 12
+        "id": 11
       },
       {
         "name": ":?ghi",
-        "id": 19
+        "id": 17
       }
     ],
     "connections": [
@@ -196,16 +22,7 @@
         "target_port": "",
         "target": {
           "name": "Front End",
-          "id": 8
-        }
-      },
-      {
-        "dir": 0,
-        "source_port": "fini",
-        "target_port": "fini",
-        "target": {
-          "name": "Back End",
-          "id": 12
+          "id": 7
         }
       },
       {
@@ -214,7 +31,7 @@
         "target_port": "",
         "target": {
           "name": ":?ghi",
-          "id": 19
+          "id": 17
         }
       },
       {
@@ -223,11 +40,11 @@
         "target_port": "",
         "source": {
           "name": "Front End",
-          "id": 8
+          "id": 7
         },
         "target": {
           "name": "Back End",
-          "id": 12
+          "id": 11
         }
       },
       {
@@ -236,7 +53,7 @@
         "target_port": "✗",
         "source": {
           "name": "Front End",
-          "id": 8
+          "id": 7
         }
       },
       {
@@ -245,7 +62,7 @@
         "target_port": "Javascript",
         "source": {
           "name": "Back End",
-          "id": 12
+          "id": 11
         }
       },
       {
@@ -254,7 +71,7 @@
         "target_port": "✗",
         "source": {
           "name": "Back End",
-          "id": 12
+          "id": 11
         }
       },
       {
@@ -263,16 +80,16 @@
         "target_port": "Python",
         "source": {
           "name": "Back End",
-          "id": 12
+          "id": 11
         }
       },
       {
         "dir": 2,
         "source_port": "CL",
-        "target_port": "CL",
+        "target_port": "CommonLisp",
         "source": {
           "name": "Back End",
-          "id": 12
+          "id": 11
         }
       }
     ],
@@ -286,12 +103,8 @@
         "id": 5
       },
       {
-        "name": "Syntax Check",
-        "id": 9
-      },
-      {
         "name": "Semantics Check",
-        "id": 13
+        "id": 9
       }
     ],
     "connections": [
@@ -309,24 +122,11 @@
         "source_port": "",
         "target_port": "",
         "source": {
-          "name": "Syntax Check",
-          "id": 9
-        },
-        "target": {
-          "name": "Semantics Check",
-          "id": 13
-        }
-      },
-      {
-        "dir": 1,
-        "source_port": "",
-        "target_port": "",
-        "source": {
           "name": "Inhale",
           "id": 5
         },
         "target": {
-          "name": "Syntax Check",
+          "name": "Semantics Check",
           "id": 9
         }
       },
@@ -336,7 +136,7 @@
         "target_port": "",
         "source": {
           "name": "Semantics Check",
-          "id": 13
+          "id": 9
         }
       },
       {
@@ -345,15 +145,6 @@
         "target_port": "✗",
         "source": {
           "name": "Semantics Check",
-          "id": 13
-        }
-      },
-      {
-        "dir": 2,
-        "source_port": "✗",
-        "target_port": "✗",
-        "source": {
-          "name": "Syntax Check",
           "id": 9
         }
       },
@@ -374,15 +165,19 @@
     "children": [
       {
         "name": "Generate Javascript",
-        "id": 8
+        "id": 7
       },
       {
         "name": "Generate Python",
-        "id": 13
+        "id": 11
       },
       {
         "name": "Generate Common Lisp",
-        "id": 18
+        "id": 15
+      },
+      {
+        "name": "Cleanup",
+        "id": 19
       },
       {
         "name": "Cleanup",
@@ -391,10 +186,6 @@
       {
         "name": "Cleanup",
         "id": 27
-      },
-      {
-        "name": "Cleanup",
-        "id": 31
       }
     ],
     "connections": [
@@ -404,16 +195,7 @@
         "target_port": "",
         "target": {
           "name": "Generate Common Lisp",
-          "id": 18
-        }
-      },
-      {
-        "dir": 0,
-        "source_port": "fini",
-        "target_port": "fini",
-        "target": {
-          "name": "Generate Common Lisp",
-          "id": 18
+          "id": 15
         }
       },
       {
@@ -422,7 +204,7 @@
         "target_port": "",
         "target": {
           "name": "Generate Javascript",
-          "id": 8
+          "id": 7
         }
       },
       {
@@ -431,25 +213,7 @@
         "target_port": "",
         "target": {
           "name": "Generate Python",
-          "id": 13
-        }
-      },
-      {
-        "dir": 0,
-        "source_port": "fini",
-        "target_port": "fini",
-        "target": {
-          "name": "Generate Python",
-          "id": 13
-        }
-      },
-      {
-        "dir": 0,
-        "source_port": "fini",
-        "target_port": "fini",
-        "target": {
-          "name": "Generate Javascript",
-          "id": 8
+          "id": 11
         }
       },
       {
@@ -458,33 +222,7 @@
         "target_port": "",
         "source": {
           "name": "Generate Javascript",
-          "id": 8
-        },
-        "target": {
-          "name": "Cleanup",
-          "id": 31
-        }
-      },
-      {
-        "dir": 1,
-        "source_port": "",
-        "target_port": "",
-        "source": {
-          "name": "Generate Python",
-          "id": 13
-        },
-        "target": {
-          "name": "Cleanup",
-          "id": 23
-        }
-      },
-      {
-        "dir": 1,
-        "source_port": "",
-        "target_port": "",
-        "source": {
-          "name": "Generate Common Lisp",
-          "id": 18
+          "id": 7
         },
         "target": {
           "name": "Cleanup",
@@ -492,12 +230,38 @@
         }
       },
       {
+        "dir": 1,
+        "source_port": "",
+        "target_port": "",
+        "source": {
+          "name": "Generate Python",
+          "id": 11
+        },
+        "target": {
+          "name": "Cleanup",
+          "id": 19
+        }
+      },
+      {
+        "dir": 1,
+        "source_port": "",
+        "target_port": "",
+        "source": {
+          "name": "Generate Common Lisp",
+          "id": 15
+        },
+        "target": {
+          "name": "Cleanup",
+          "id": 23
+        }
+      },
+      {
         "dir": 2,
         "source_port": "✗",
         "target_port": "✗",
         "source": {
           "name": "Generate Javascript",
-          "id": 8
+          "id": 7
         }
       },
       {
@@ -506,7 +270,7 @@
         "target_port": "✗",
         "source": {
           "name": "Generate Python",
-          "id": 13
+          "id": 11
         }
       },
       {
@@ -515,7 +279,7 @@
         "target_port": "✗",
         "source": {
           "name": "Generate Common Lisp",
-          "id": 18
+          "id": 15
         }
       },
       {
@@ -524,7 +288,7 @@
         "target_port": "Python",
         "source": {
           "name": "Cleanup",
-          "id": 23
+          "id": 19
         }
       },
       {
@@ -533,7 +297,7 @@
         "target_port": "✗",
         "source": {
           "name": "Cleanup",
-          "id": 23
+          "id": 19
         }
       },
       {
@@ -542,7 +306,7 @@
         "target_port": "Javascript",
         "source": {
           "name": "Cleanup",
-          "id": 31
+          "id": 27
         }
       },
       {
@@ -551,7 +315,7 @@
         "target_port": "✗",
         "source": {
           "name": "Cleanup",
-          "id": 31
+          "id": 27
         }
       },
       {
@@ -560,7 +324,7 @@
         "target_port": "CL",
         "source": {
           "name": "Cleanup",
-          "id": 27
+          "id": 23
         }
       },
       {
@@ -569,7 +333,7 @@
         "target_port": "✗",
         "source": {
           "name": "Cleanup",
-          "id": 27
+          "id": 23
         }
       }
     ],
@@ -580,23 +344,19 @@
     "children": [
       {
         "name": "RT to Javascript",
-        "id": 6
+        "id": 5
       },
       {
         "name": "Exhale Javascript",
-        "id": 10
+        "id": 9
       },
       {
         "name": ":$ python3 jsrelocate.py 55",
-        "id": 14
+        "id": 13
       },
       {
         "name": "Grep for Errors",
-        "id": 18
-      },
-      {
-        "name": "String Concat *",
-        "id": 22
+        "id": 17
       }
     ],
     "connections": [
@@ -606,16 +366,7 @@
         "target_port": "",
         "target": {
           "name": "RT to Javascript",
-          "id": 6
-        }
-      },
-      {
-        "dir": 0,
-        "source_port": "fini",
-        "target_port": "fini",
-        "target": {
-          "name": "String Concat *",
-          "id": 22
+          "id": 5
         }
       },
       {
@@ -624,11 +375,11 @@
         "target_port": "",
         "source": {
           "name": "Exhale Javascript",
-          "id": 10
+          "id": 9
         },
         "target": {
           "name": ":$ python3 jsrelocate.py 55",
-          "id": 14
+          "id": 13
         }
       },
       {
@@ -637,11 +388,11 @@
         "target_port": "",
         "source": {
           "name": "RT to Javascript",
-          "id": 6
+          "id": 5
         },
         "target": {
           "name": "Exhale Javascript",
-          "id": 10
+          "id": 9
         }
       },
       {
@@ -650,24 +401,11 @@
         "target_port": "",
         "source": {
           "name": ":$ python3 jsrelocate.py 55",
-          "id": 14
+          "id": 13
         },
         "target": {
           "name": "Grep for Errors",
-          "id": 18
-        }
-      },
-      {
-        "dir": 1,
-        "source_port": "",
-        "target_port": "",
-        "source": {
-          "name": "Grep for Errors",
-          "id": 18
-        },
-        "target": {
-          "name": "String Concat *",
-          "id": 22
+          "id": 17
         }
       },
       {
@@ -676,7 +414,7 @@
         "target_port": "✗",
         "source": {
           "name": "RT to Javascript",
-          "id": 6
+          "id": 5
         }
       },
       {
@@ -685,7 +423,7 @@
         "target_port": "✗",
         "source": {
           "name": "Exhale Javascript",
-          "id": 10
+          "id": 9
         }
       },
       {
@@ -694,7 +432,7 @@
         "target_port": "✗",
         "source": {
           "name": ":$ python3 jsrelocate.py 55",
-          "id": 14
+          "id": 13
         }
       },
       {
@@ -703,16 +441,7 @@
         "target_port": "✗",
         "source": {
           "name": "Grep for Errors",
-          "id": 18
-        }
-      },
-      {
-        "dir": 2,
-        "source_port": "✗",
-        "target_port": "✗",
-        "source": {
-          "name": "String Concat *",
-          "id": 22
+          "id": 17
         }
       },
       {
@@ -720,8 +449,8 @@
         "source_port": "",
         "target_port": "",
         "source": {
-          "name": "String Concat *",
-          "id": 22
+          "name": "Grep for Errors",
+          "id": 17
         }
       }
     ],
@@ -732,42 +461,29 @@
     "children": [
       {
         "name": "RT to Python",
-        "id": 6
+        "id": 5
       },
       {
         "name": "Exhale Python",
-        "id": 10
+        "id": 9
       },
       {
         "name": ":$ python3 pyrelocate.py 55",
-        "id": 14
+        "id": 13
       },
       {
         "name": "Grep for Errors",
-        "id": 18
-      },
-      {
-        "name": "String Concat *",
-        "id": 22
+        "id": 17
       }
     ],
     "connections": [
       {
         "dir": 0,
-        "source_port": "fini",
-        "target_port": "fini",
-        "target": {
-          "name": "String Concat *",
-          "id": 22
-        }
-      },
-      {
-        "dir": 0,
         "source_port": "",
         "target_port": "",
         "target": {
           "name": "RT to Python",
-          "id": 6
+          "id": 5
         }
       },
       {
@@ -776,11 +492,11 @@
         "target_port": "",
         "source": {
           "name": "Exhale Python",
-          "id": 10
+          "id": 9
         },
         "target": {
           "name": ":$ python3 pyrelocate.py 55",
-          "id": 14
+          "id": 13
         }
       },
       {
@@ -789,24 +505,11 @@
         "target_port": "",
         "source": {
           "name": "RT to Python",
-          "id": 6
+          "id": 5
         },
         "target": {
           "name": "Exhale Python",
-          "id": 10
-        }
-      },
-      {
-        "dir": 1,
-        "source_port": "",
-        "target_port": "",
-        "source": {
-          "name": "Grep for Errors",
-          "id": 18
-        },
-        "target": {
-          "name": "String Concat *",
-          "id": 22
+          "id": 9
         }
       },
       {
@@ -815,11 +518,11 @@
         "target_port": "",
         "source": {
           "name": ":$ python3 pyrelocate.py 55",
-          "id": 14
+          "id": 13
         },
         "target": {
           "name": "Grep for Errors",
-          "id": 18
+          "id": 17
         }
       },
       {
@@ -828,7 +531,7 @@
         "target_port": "✗",
         "source": {
           "name": "RT to Python",
-          "id": 6
+          "id": 5
         }
       },
       {
@@ -837,7 +540,7 @@
         "target_port": "✗",
         "source": {
           "name": "Exhale Python",
-          "id": 10
+          "id": 9
         }
       },
       {
@@ -846,16 +549,7 @@
         "target_port": "✗",
         "source": {
           "name": "Grep for Errors",
-          "id": 18
-        }
-      },
-      {
-        "dir": 2,
-        "source_port": "✗",
-        "target_port": "✗",
-        "source": {
-          "name": "String Concat *",
-          "id": 22
+          "id": 17
         }
       },
       {
@@ -864,7 +558,7 @@
         "target_port": "✗",
         "source": {
           "name": ":$ python3 pyrelocate.py 55",
-          "id": 14
+          "id": 13
         }
       },
       {
@@ -872,8 +566,8 @@
         "source_port": "",
         "target_port": "",
         "source": {
-          "name": "String Concat *",
-          "id": 22
+          "name": "Grep for Errors",
+          "id": 17
         }
       }
     ],
@@ -884,42 +578,29 @@
     "children": [
       {
         "name": "RT to Common Lisp",
-        "id": 6
+        "id": 5
       },
       {
         "name": "Exhale Common Lisp",
-        "id": 10
+        "id": 9
       },
       {
         "name": ":$ python3 clrelocate.py 60",
-        "id": 14
+        "id": 13
       },
       {
         "name": "Grep for Errors",
-        "id": 18
-      },
-      {
-        "name": "String Concat *",
-        "id": 22
+        "id": 17
       }
     ],
     "connections": [
       {
         "dir": 0,
-        "source_port": "fini",
-        "target_port": "fini",
-        "target": {
-          "name": "String Concat *",
-          "id": 22
-        }
-      },
-      {
-        "dir": 0,
         "source_port": "",
         "target_port": "",
         "target": {
           "name": "RT to Common Lisp",
-          "id": 6
+          "id": 5
         }
       },
       {
@@ -928,11 +609,11 @@
         "target_port": "",
         "source": {
           "name": "Exhale Common Lisp",
-          "id": 10
+          "id": 9
         },
         "target": {
           "name": ":$ python3 clrelocate.py 60",
-          "id": 14
+          "id": 13
         }
       },
       {
@@ -941,24 +622,11 @@
         "target_port": "",
         "source": {
           "name": "RT to Common Lisp",
-          "id": 6
+          "id": 5
         },
         "target": {
           "name": "Exhale Common Lisp",
-          "id": 10
-        }
-      },
-      {
-        "dir": 1,
-        "source_port": "",
-        "target_port": "",
-        "source": {
-          "name": "Grep for Errors",
-          "id": 18
-        },
-        "target": {
-          "name": "String Concat *",
-          "id": 22
+          "id": 9
         }
       },
       {
@@ -967,11 +635,11 @@
         "target_port": "",
         "source": {
           "name": ":$ python3 clrelocate.py 60",
-          "id": 14
+          "id": 13
         },
         "target": {
           "name": "Grep for Errors",
-          "id": 18
+          "id": 17
         }
       },
       {
@@ -980,7 +648,7 @@
         "target_port": "✗",
         "source": {
           "name": "RT to Common Lisp",
-          "id": 6
+          "id": 5
         }
       },
       {
@@ -989,7 +657,7 @@
         "target_port": "✗",
         "source": {
           "name": "Exhale Common Lisp",
-          "id": 10
+          "id": 9
         }
       },
       {
@@ -998,16 +666,7 @@
         "target_port": "✗",
         "source": {
           "name": "Grep for Errors",
-          "id": 18
-        }
-      },
-      {
-        "dir": 2,
-        "source_port": "✗",
-        "target_port": "✗",
-        "source": {
-          "name": "String Concat *",
-          "id": 22
+          "id": 17
         }
       },
       {
@@ -1016,7 +675,7 @@
         "target_port": "✗",
         "source": {
           "name": ":$ python3 clrelocate.py 60",
-          "id": 14
+          "id": 13
         }
       },
       {
@@ -1024,8 +683,8 @@
         "source_port": "",
         "target_port": "",
         "source": {
-          "name": "String Concat *",
-          "id": 22
+          "name": "Grep for Errors",
+          "id": 17
         }
       }
     ],
@@ -1091,45 +750,6 @@
         "source": {
           "name": ":$ ./ndsl internalize.ohm internalize.rwr",
           "id": 9
-        }
-      }
-    ],
-    "file": "kernel.drawio"
-  },
-  {
-    "name": "Syntax Check",
-    "children": [
-      {
-        "name": ":$ ./ndsl syntax.ohm syntax.rwr",
-        "id": 5
-      }
-    ],
-    "connections": [
-      {
-        "dir": 0,
-        "source_port": "",
-        "target_port": "",
-        "target": {
-          "name": ":$ ./ndsl syntax.ohm syntax.rwr",
-          "id": 5
-        }
-      },
-      {
-        "dir": 2,
-        "source_port": "",
-        "target_port": "",
-        "source": {
-          "name": ":$ ./ndsl syntax.ohm syntax.rwr",
-          "id": 5
-        }
-      },
-      {
-        "dir": 2,
-        "source_port": "✗",
-        "target_port": "✗",
-        "source": {
-          "name": ":$ ./ndsl syntax.ohm syntax.rwr",
-          "id": 5
         }
       }
     ],
@@ -1493,137 +1113,6 @@
         "target_port": "✗",
         "source": {
           "name": "Javascript Indenter",
-          "id": 13
-        }
-      }
-    ],
-    "file": "kernel.drawio"
-  },
-  {
-    "name": "seq12",
-    "children": [
-      {
-        "name": "1then2",
-        "id": 6
-      }
-    ],
-    "connections": [
-      {
-        "dir": 0,
-        "source_port": "1",
-        "target_port": "1",
-        "target": {
-          "name": "1then2",
-          "id": 6
-        }
-      },
-      {
-        "dir": 0,
-        "source_port": "2",
-        "target_port": "2",
-        "target": {
-          "name": "1then2",
-          "id": 6
-        }
-      },
-      {
-        "dir": 2,
-        "source_port": "2",
-        "target_port": "2",
-        "source": {
-          "name": "1then2",
-          "id": 6
-        }
-      },
-      {
-        "dir": 2,
-        "source_port": "1",
-        "target_port": "1",
-        "source": {
-          "name": "1then2",
-          "id": 6
-        }
-      }
-    ],
-    "file": "kernel.drawio"
-  },
-  {
-    "name": "seq123",
-    "children": [
-      {
-        "name": "1then2",
-        "id": 8
-      },
-      {
-        "name": "1then2",
-        "id": 13
-      }
-    ],
-    "connections": [
-      {
-        "dir": 0,
-        "source_port": "1",
-        "target_port": "1",
-        "target": {
-          "name": "1then2",
-          "id": 8
-        }
-      },
-      {
-        "dir": 0,
-        "source_port": "2",
-        "target_port": "2",
-        "target": {
-          "name": "1then2",
-          "id": 8
-        }
-      },
-      {
-        "dir": 0,
-        "source_port": "3",
-        "target_port": "2",
-        "target": {
-          "name": "1then2",
-          "id": 13
-        }
-      },
-      {
-        "dir": 1,
-        "source_port": "2",
-        "target_port": "1",
-        "source": {
-          "name": "1then2",
-          "id": 8
-        },
-        "target": {
-          "name": "1then2",
-          "id": 13
-        }
-      },
-      {
-        "dir": 2,
-        "source_port": "1",
-        "target_port": "1",
-        "source": {
-          "name": "1then2",
-          "id": 8
-        }
-      },
-      {
-        "dir": 2,
-        "source_port": "1",
-        "target_port": "2",
-        "source": {
-          "name": "1then2",
-          "id": 13
-        }
-      },
-      {
-        "dir": 2,
-        "source_port": "2",
-        "target_port": "3",
-        "source": {
-          "name": "1then2",
           "id": 13
         }
       }
@@ -2080,117 +1569,6 @@
         "source": {
           "name": ":$ python3 cleanup.py",
           "id": 5
-        }
-      }
-    ],
-    "file": "kernel.drawio"
-  },
-  {
-    "name": "Write To Python File",
-    "children": [
-      {
-        "name": ":/tmp/xxx.xxx",
-        "id": 3
-      },
-      {
-        "name": "1then2",
-        "id": 6
-      },
-      {
-        "name": "syncfilewrite",
-        "id": 11
-      },
-      {
-        "name": "?B",
-        "id": 16
-      },
-      {
-        "name": "?C",
-        "id": 18
-      }
-    ],
-    "connections": [
-      {
-        "dir": 0,
-        "source_port": "",
-        "target_port": "",
-        "target": {
-          "name": ":/tmp/xxx.xxx",
-          "id": 3
-        }
-      },
-      {
-        "dir": 0,
-        "source_port": "",
-        "target_port": "2",
-        "target": {
-          "name": "1then2",
-          "id": 6
-        }
-      },
-      {
-        "dir": 1,
-        "source_port": "done",
-        "target_port": "",
-        "source": {
-          "name": "syncfilewrite",
-          "id": 11
-        },
-        "target": {
-          "name": "?B",
-          "id": 16
-        }
-      },
-      {
-        "dir": 1,
-        "source_port": "✗",
-        "target_port": "",
-        "source": {
-          "name": "syncfilewrite",
-          "id": 11
-        },
-        "target": {
-          "name": "?C",
-          "id": 18
-        }
-      },
-      {
-        "dir": 1,
-        "source_port": "",
-        "target_port": "1",
-        "source": {
-          "name": ":/tmp/xxx.xxx",
-          "id": 3
-        },
-        "target": {
-          "name": "1then2",
-          "id": 6
-        }
-      },
-      {
-        "dir": 1,
-        "source_port": "1",
-        "target_port": "filename",
-        "source": {
-          "name": "1then2",
-          "id": 6
-        },
-        "target": {
-          "name": "syncfilewrite",
-          "id": 11
-        }
-      },
-      {
-        "dir": 1,
-        "source_port": "2",
-        "target_port": "input",
-        "source": {
-          "name": "1then2",
-          "id": 6
-        },
-        "target": {
-          "name": "syncfilewrite",
-          "id": 11
         }
       }
     ],
