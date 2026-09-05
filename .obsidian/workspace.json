@@ -215,10 +215,10 @@
   },
   "active": "2aafda6bd4dc58d5",
   "lastOpenFiles": [
-    "kernel/_20260905_085115_kernel0d.py",
+    "kernel/_20260905_085503_kernel0d.py",
+    "kernel/new_kernel0d.lisp",
     "kernel/new_kernel0d.js",
     "kernel/new_kernel0d.py",
-    "kernel/new_kernel0d.lisp",
     "kernel/temp.nanodsl.mjs",
     "kernel/temp.rewrite.mjs",
     "kernel/out.md",
