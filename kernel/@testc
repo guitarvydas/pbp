@@ -12,8 +12,6 @@ done
 : > regression_test_kernel0d.js
 : > regression_test_kernel0d.lisp
 
-exit 0
-
 for i in $BASENAMES; do
     cat "$i.py" >> regression_test_kernel0d.py
     cat "$i.js" >> regression_test_kernel0d.js
