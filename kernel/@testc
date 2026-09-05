@@ -7,24 +7,24 @@ for i in $BASENAMES; do
     ./regression_test_tas.bash "$i"
 done
 
-: > regression_test_kernel0d.py
-: > regression_test_kernel0d.js
-: > regression_test_kernel0d.lisp
+: > regression_test/rtkernel0d.py
+: > regression_test/rtkernel0d.js
+: > regression_test/rtkernel0d.lisp
 
 for i in $BASENAMES; do
-    cat "$i.py" >> regression_test_kernel0d.py
-    cat "$i.js" >> regression_test_kernel0d.js
-    cat "$i.lisp" >> regression_test_kernel0d.lisp
+    cat "$i.py" >> regression_test/rtkernel0d.py
+    cat "$i.js" >> regression_test/rtkernel0d.js
+    cat "$i.lisp" >> regression_test/rtkernel0d.lisp
 done
 
-if diff -q new_kernel0d.py regression_test_kernel0d.py > /dev/null; then
+if diff -q new_kernel0d.py regression_test/rtkernel0d.py > /dev/null; then
     echo "OK, created: _$(date +%Y%m%d_%H%M%S)_kernel0d.py"
     cp kernel0d.py "_$(date +%Y%m%d_%H%M%S)_kernel0d.py"
     mv new_kernel0d.py kernel0d.py
     mv new_kernel0d.js kernel0d.js
     mv new_kernel0d.lisp kernel0d.lisp
 else
-    echo "Regression error: new_kernel0d.py and regression_test_kernel0d.py differ"
-    echo "use diff new_kernel0d.py regression_test_kernel0d.py"
+    echo "Regression error: new_kernel0d.py and regression_test/rtkernel0d.py differ"
+    echo "use diff new_kernel0d.py regression_test/rtkernel0d.py"
 fi
 
