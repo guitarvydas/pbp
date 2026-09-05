@@ -68,17 +68,6 @@
             <mxPoint x="800" y="110" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="Tfemyl4lfQaa9BCcmA3R-0" parent="OY6sq_71K0fKI4oSS7iQ-1" style="rounded=1;whiteSpace=wrap;html=1;sketch=0;container=1;recursiveResize=0;verticalAlign=bottom;arcSize=6;fontStyle=0;autosize=0;points=[];absoluteArcSize=1;shadow=0;strokeColor=#d79b00;fillColor=#FFFFFF;fontFamily=Helvetica;fontSize=11;dashed=1;opacity=30;align=right;textOpacity=30;gradientColor=#006666;fontColor=default;" value=":?A" vertex="1">
-          <mxGeometry height="50" width="40" x="160" y="280" as="geometry">
-            <mxRectangle height="26" width="99" x="-98" y="-1230" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="Tfemyl4lfQaa9BCcmA3R-1" parent="Tfemyl4lfQaa9BCcmA3R-0" style="rounded=1;whiteSpace=wrap;html=1;sketch=0;points=[[0,0.5,0,0,0],[1,0.5,0,0,0]];arcSize=50;fontFamily=Helvetica;fontSize=11;fontColor=default;dashed=1;textOpacity=50;opacity=30;fontStyle=0" value="" vertex="1">
-          <mxGeometry height="25" width="39.25" x="-12" y="12.5" as="geometry" />
-        </mxCell>
-        <mxCell id="Tfemyl4lfQaa9BCcmA3R-2" edge="1" parent="OY6sq_71K0fKI4oSS7iQ-1" source="OY6sq_71K0fKI4oSS7iQ-2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;curved=0;" target="Tfemyl4lfQaa9BCcmA3R-1">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>

@@ -4,7 +4,6 @@ set -e
 node das2json.mjs kernel.drawio
 
 for i in $BASENAMES; do
-    echo "./regression_test_tas.bash $i"
     ./regression_test_tas.bash "$i"
 done
 
