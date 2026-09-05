@@ -3,63 +3,6 @@
     "name": "main",
     "children": [
       {
-        "name": "Generate",
-        "id": 7
-      }
-    ],
-    "connections": [
-      {
-        "dir": 0,
-        "source_port": "",
-        "target_port": "",
-        "target": {
-          "name": "Generate",
-          "id": 7
-        }
-      },
-      {
-        "dir": 2,
-        "source_port": "Python",
-        "target_port": "Python",
-        "source": {
-          "name": "Generate",
-          "id": 7
-        }
-      },
-      {
-        "dir": 2,
-        "source_port": "✗",
-        "target_port": "✗",
-        "source": {
-          "name": "Generate",
-          "id": 7
-        }
-      },
-      {
-        "dir": 2,
-        "source_port": "Javascript",
-        "target_port": "Javascript",
-        "source": {
-          "name": "Generate",
-          "id": 7
-        }
-      },
-      {
-        "dir": 2,
-        "source_port": "CL",
-        "target_port": "CommonLisp",
-        "source": {
-          "name": "Generate",
-          "id": 7
-        }
-      }
-    ],
-    "file": "kernel.drawio"
-  },
-  {
-    "name": "Generate",
-    "children": [
-      {
         "name": "Front End",
         "id": 7
       },
@@ -143,7 +86,7 @@
       {
         "dir": 2,
         "source_port": "CL",
-        "target_port": "CL",
+        "target_port": "CommonLisp",
         "source": {
           "name": "Back End",
           "id": 11
