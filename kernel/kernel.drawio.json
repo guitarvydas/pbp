@@ -103,12 +103,8 @@
         "id": 5
       },
       {
-        "name": "Syntax Check",
-        "id": 9
-      },
-      {
         "name": "Semantics Check",
-        "id": 13
+        "id": 9
       }
     ],
     "connections": [
@@ -126,24 +122,11 @@
         "source_port": "",
         "target_port": "",
         "source": {
-          "name": "Syntax Check",
-          "id": 9
-        },
-        "target": {
-          "name": "Semantics Check",
-          "id": 13
-        }
-      },
-      {
-        "dir": 1,
-        "source_port": "",
-        "target_port": "",
-        "source": {
           "name": "Inhale",
           "id": 5
         },
         "target": {
-          "name": "Syntax Check",
+          "name": "Semantics Check",
           "id": 9
         }
       },
@@ -153,7 +136,7 @@
         "target_port": "",
         "source": {
           "name": "Semantics Check",
-          "id": 13
+          "id": 9
         }
       },
       {
@@ -162,15 +145,6 @@
         "target_port": "✗",
         "source": {
           "name": "Semantics Check",
-          "id": 13
-        }
-      },
-      {
-        "dir": 2,
-        "source_port": "✗",
-        "target_port": "✗",
-        "source": {
-          "name": "Syntax Check",
           "id": 9
         }
       },
@@ -776,45 +750,6 @@
         "source": {
           "name": ":$ ./ndsl internalize.ohm internalize.rwr",
           "id": 9
-        }
-      }
-    ],
-    "file": "kernel.drawio"
-  },
-  {
-    "name": "Syntax Check",
-    "children": [
-      {
-        "name": ":$ ./ndsl syntax.ohm syntax.rwr",
-        "id": 5
-      }
-    ],
-    "connections": [
-      {
-        "dir": 0,
-        "source_port": "",
-        "target_port": "",
-        "target": {
-          "name": ":$ ./ndsl syntax.ohm syntax.rwr",
-          "id": 5
-        }
-      },
-      {
-        "dir": 2,
-        "source_port": "",
-        "target_port": "",
-        "source": {
-          "name": ":$ ./ndsl syntax.ohm syntax.rwr",
-          "id": 5
-        }
-      },
-      {
-        "dir": 2,
-        "source_port": "✗",
-        "target_port": "✗",
-        "source": {
-          "name": ":$ ./ndsl syntax.ohm syntax.rwr",
-          "id": 5
         }
       }
     ],
