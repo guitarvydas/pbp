@@ -149,12 +149,7 @@ defn step_child_once (child, mev) {
         #print_stderr (#strcons (“-- stepping ❮”, #strcons (child.name, “❯”)))
         #print_nl_stderr ()
     }
-    before_state ≡ child.state
     child.handler(child, mev)
-    after_state ≡ child.state
-    return [before_state = “idle” and after_state != “idle”, 
-            before_state != “idle” and after_state != “idle”,
-            before_state != “idle” and after_state = “idle”]
 }
 
 defn step_children (container, causingMevent) {
@@ -252,10 +247,6 @@ defn child_is_ready (eh) {
 
 defn append_routing_descriptor (container, desc) {
     #enqueue (container.routings, desc)
-}
-
-defn injector (eh, mevent) {
-    eh.handler (eh, mevent)
 }
 
 

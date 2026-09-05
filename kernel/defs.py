@@ -223,4 +223,7 @@ class Eh:
 load_errors =  False                                   #line 227
 runtime_errors =  False                                #line 228#line 229
 def clone_string (s):                                  #line 230
-    return  s                                          #line 231#line 232
+    return  s                                          #line 231#line 232#line 233
+
+def injector (eh,mevent):                              #line 234
+    eh.handler ( eh, mevent)                           #line 235#line 236#line 237

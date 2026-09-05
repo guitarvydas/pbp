@@ -39,3 +39,7 @@ An attempt to clean out this directory has been made, but there might still be s
 
 The Javascript and Common Lisp versions of the kernel haven't been tested lately (they were tested earlier on). Various `.lisp` support files for the kernel are included in this directory.
 
+---
+
+`@makec` produces `new_kernel0d.py` (and .js and .lisp)
+`@testc` uses the new kernel via `regression_test_main.py` to produce `regression_test_new_kernel0d.py`, and, if there are no differences between it and `new_kernel0d.py`, it promotes `new_kernel0d.py` to `kernel0d.py` (same with .js and .lisp versions)

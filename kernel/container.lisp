@@ -195,192 +195,183 @@
       (format *error-output* "
       ")                                                    #|line 150|# #|line 151|#
       ))
-  (let ((before_state (slot-value  child 'state)))
-    (declare (ignorable before_state))                      #|line 152|#
-    (funcall (slot-value  child 'handler)   child  mev      #|line 153|#)
-    (let ((after_state (slot-value  child 'state)))
-      (declare (ignorable after_state))                     #|line 154|#
-      (return-from step_child_once (values ( and  ( equal    before_state  "idle") (not (equal   after_state  "idle")))  #|line 155|#( and  (not (equal   before_state  "idle")) (not (equal   after_state  "idle")))  #|line 156|#( and  (not (equal   before_state  "idle")) ( equal    after_state  "idle")))) #|line 157|#)) #|line 158|#
+  (funcall (slot-value  child 'handler)   child  mev        #|line 152|#) #|line 153|#
   )
 (defun step_children (&optional  container  causingMevent)
-  (declare (ignorable  container  causingMevent))           #|line 160|#
-  (setf (slot-value  container 'state)  "idle")             #|line 161|# #|line 162|#
-  #|  phase 1 - loop through children and process inputs or children that not "idle"  |# #|line 163|#
+  (declare (ignorable  container  causingMevent))           #|line 155|#
+  (setf (slot-value  container 'state)  "idle")             #|line 156|# #|line 157|#
+  #|  phase 1 - loop through children and process inputs or children that not "idle"  |# #|line 158|#
   (loop for child in (queue2list (slot-value  container 'visit_ordering))
     do
       (progn
-        child                                               #|line 164|#
-        #|  child = container represents self, skip it |#   #|line 165|#
+        child                                               #|line 159|#
+        #|  child = container represents self, skip it |#   #|line 160|#
         (cond
-          ((not (funcall (quote is_self)   child  container )) #|line 166|#
+          ((not (funcall (quote is_self)   child  container )) #|line 161|#
             (cond
-              ((not (empty? (slot-value  child 'inq)))      #|line 167|#
-                (let ((mev (dequeue (slot-value  child 'inq)) #|line 168|#))
+              ((not (empty? (slot-value  child 'inq)))      #|line 162|#
+                (let ((mev (dequeue (slot-value  child 'inq)) #|line 163|#))
                   (declare (ignorable mev))
-                  (funcall (quote step_child_once)   child  mev  #|line 169|#) #|line 170|#
-                  (funcall (quote destroy_mevent)   mev     #|line 171|#))
+                  (funcall (quote step_child_once)   child  mev  #|line 164|#) #|line 165|#
+                  (funcall (quote destroy_mevent)   mev     #|line 166|#))
                 )
-              (t                                            #|line 172|#
+              (t                                            #|line 167|#
                 (cond
-                  (( equal   (slot-value  child 'state)  "idle") #|line 173|#
-                    #| pass |#                              #|line 174|#
+                  (( equal   (slot-value  child 'state)  "idle") #|line 168|#
+                    #| pass |#                              #|line 169|#
                     )
-                  (t                                        #|line 175|#
-                    (let ((mev (funcall (quote force_tick)   container  child  #|line 176|#)))
+                  (t                                        #|line 170|#
+                    (let ((mev (funcall (quote force_tick)   container  child  #|line 171|#)))
                       (declare (ignorable mev))
-                      (funcall (quote step_child_once)   child  mev  #|line 177|#)
-                      (funcall (quote destroy_mevent)   mev  #|line 178|#)) #|line 179|#
-                    ))                                      #|line 180|#
-                ))                                          #|line 181|#
-            ))                                              #|line 182|#
+                      (funcall (quote step_child_once)   child  mev  #|line 172|#)
+                      (funcall (quote destroy_mevent)   mev  #|line 173|#)) #|line 174|#
+                    ))                                      #|line 175|#
+                ))                                          #|line 176|#
+            ))                                              #|line 177|#
         ))
 
-  (setf (slot-value  container 'visit_ordering) (make-instance 'Queue)) #|line 183|# #|line 184|#
-  #|  phase 2 - loop through children and route their outputs to appropriate receiver queues based on .connections  |# #|line 185|#
+  (setf (slot-value  container 'visit_ordering) (make-instance 'Queue)) #|line 178|# #|line 179|#
+  #|  phase 2 - loop through children and route their outputs to appropriate receiver queues based on .connections  |# #|line 180|#
   (loop for child in (slot-value  container 'children)
     do
       (progn
-        child                                               #|line 186|#
+        child                                               #|line 181|#
         (cond
-          (( equal   (slot-value  child 'state)  "active")  #|line 187|#
-            #|  if child remains active, then the container must remain active and must propagate “ticks“ to child |# #|line 188|#
-            (setf (slot-value  container 'state)  "active") #|line 189|# #|line 190|#
-            ))                                              #|line 191|#
+          (( equal   (slot-value  child 'state)  "active")  #|line 182|#
+            #|  if child remains active, then the container must remain active and must propagate “ticks“ to child |# #|line 183|#
+            (setf (slot-value  container 'state)  "active") #|line 184|# #|line 185|#
+            ))                                              #|line 186|#
         (loop while (not (empty? (slot-value  child 'outq)))
           do
-            (progn                                          #|line 192|#
-              (let ((mev (dequeue (slot-value  child 'outq)) #|line 193|#))
+            (progn                                          #|line 187|#
+              (let ((mev (dequeue (slot-value  child 'outq)) #|line 188|#))
                 (declare (ignorable mev))
-                (funcall (quote route)   container  child  mev  #|line 194|#)
-                (funcall (quote destroy_mevent)   mev       #|line 195|#)) #|line 196|#
-              ))                                            #|line 197|#
-        ))                                                  #|line 198|#
+                (funcall (quote route)   container  child  mev  #|line 189|#)
+                (funcall (quote destroy_mevent)   mev       #|line 190|#)) #|line 191|#
+              ))                                            #|line 192|#
+        ))                                                  #|line 193|#
   )
 (defun attempt_tick (&optional  parent  eh)
-  (declare (ignorable  parent  eh))                         #|line 200|#
+  (declare (ignorable  parent  eh))                         #|line 195|#
   (cond
-    ((not (equal  (slot-value  eh 'state)  "idle"))         #|line 201|#
-      (funcall (quote force_tick)   parent  eh              #|line 202|#) #|line 203|#
-      ))                                                    #|line 204|#
+    ((not (equal  (slot-value  eh 'state)  "idle"))         #|line 196|#
+      (funcall (quote force_tick)   parent  eh              #|line 197|#) #|line 198|#
+      ))                                                    #|line 199|#
   )
 (defun is_tick (&optional  mev)
-  (declare (ignorable  mev))                                #|line 206|#
+  (declare (ignorable  mev))                                #|line 201|#
   (return-from is_tick ( equal    "." (slot-value  mev 'port))
-    #|  assume that any mevent that is sent to port "." is a tick  |# #|line 207|#) #|line 208|#
-  ) #|  Routes a single mevent to all matching destinations, according to |# #|line 210|# #|  the container's connection network. |# #|line 211|# #|line 212|#
+    #|  assume that any mevent that is sent to port "." is a tick  |# #|line 202|#) #|line 203|#
+  ) #|  Routes a single mevent to all matching destinations, according to |# #|line 205|# #|  the container's connection network. |# #|line 206|# #|line 207|#
 (defun route (&optional  container  from_component  mevent)
-  (declare (ignorable  container  from_component  mevent))  #|line 213|#
+  (declare (ignorable  container  from_component  mevent))  #|line 208|#
   (let (( was_sent  nil))
     (declare (ignorable  was_sent))
-    #|  for checking that output went somewhere (at least during bootstrap) |# #|line 214|#
+    #|  for checking that output went somewhere (at least during bootstrap) |# #|line 209|#
     (let (( fromname  ""))
-      (declare (ignorable  fromname))                       #|line 215|# #|line 216|#
-      (setf  ticktime (+  ticktime  1))                     #|line 217|#
+      (declare (ignorable  fromname))                       #|line 210|# #|line 211|#
+      (setf  ticktime (+  ticktime  1))                     #|line 212|#
       (cond
-        ((funcall (quote is_tick)   mevent )                #|line 218|#
+        ((funcall (quote is_tick)   mevent )                #|line 213|#
           (loop for child in (slot-value  container 'children)
             do
               (progn
-                child                                       #|line 219|#
-                (funcall (quote attempt_tick)   container  child ) #|line 220|#
+                child                                       #|line 214|#
+                (funcall (quote attempt_tick)   container  child ) #|line 215|#
                 ))
-          (setf  was_sent  t)                               #|line 221|#
+          (setf  was_sent  t)                               #|line 216|#
           )
-        (t                                                  #|line 222|#
+        (t                                                  #|line 217|#
           (cond
-            ((not (funcall (quote is_self)   from_component  container )) #|line 223|#
-              (setf  fromname (slot-value  from_component 'name)) #|line 224|# #|line 225|#
+            ((not (funcall (quote is_self)   from_component  container )) #|line 218|#
+              (setf  fromname (slot-value  from_component 'name)) #|line 219|# #|line 220|#
               ))
-          (let ((from_sender (funcall (quote mkSender)   fromname  from_component (slot-value  mevent 'port)  #|line 226|#)))
-            (declare (ignorable from_sender))               #|line 227|#
+          (let ((from_sender (funcall (quote mkSender)   fromname  from_component (slot-value  mevent 'port)  #|line 221|#)))
+            (declare (ignorable from_sender))               #|line 222|#
             (loop for connector in (slot-value  container 'connections)
               do
                 (progn
-                  connector                                 #|line 228|#
+                  connector                                 #|line 223|#
                   (cond
-                    ((funcall (quote sender_eq)   from_sender (slot-value  connector 'sender) ) #|line 229|#
-                      (funcall (quote deposit)   container  connector  mevent  #|line 230|#)
-                      (setf  was_sent  t)                   #|line 231|# #|line 232|#
-                      ))                                    #|line 233|#
-                  )))                                       #|line 234|#
+                    ((funcall (quote sender_eq)   from_sender (slot-value  connector 'sender) ) #|line 224|#
+                      (funcall (quote deposit)   container  connector  mevent  #|line 225|#)
+                      (setf  was_sent  t)                   #|line 226|# #|line 227|#
+                      ))                                    #|line 228|#
+                  )))                                       #|line 229|#
           ))
       (cond
-        ((not  was_sent)                                    #|line 235|#
-          (live_update  "internal error"  (concatenate 'string (slot-value  container 'name)  (concatenate 'string  ": mevent on port '"  (concatenate 'string (slot-value  mevent 'port)  (concatenate 'string  "' from "  (concatenate 'string  fromname  " dropped on floor...")))))) #|line 236|# #|line 237|#
-          ))))                                              #|line 238|#
+        ((not  was_sent)                                    #|line 230|#
+          (live_update  "internal error"  (concatenate 'string (slot-value  container 'name)  (concatenate 'string  ": mevent on port '"  (concatenate 'string (slot-value  mevent 'port)  (concatenate 'string  "' from "  (concatenate 'string  fromname  " dropped on floor...")))))) #|line 231|# #|line 232|#
+          ))))                                              #|line 233|#
   )
 (defun any_child_ready (&optional  container)
-  (declare (ignorable  container))                          #|line 240|#
+  (declare (ignorable  container))                          #|line 235|#
   (loop for child in (slot-value  container 'children)
     do
       (progn
-        child                                               #|line 241|#
+        child                                               #|line 236|#
         (cond
-          ((funcall (quote child_is_ready)   child )        #|line 242|#
-            (return-from any_child_ready  t)                #|line 243|# #|line 244|#
-            ))                                              #|line 245|#
+          ((funcall (quote child_is_ready)   child )        #|line 237|#
+            (return-from any_child_ready  t)                #|line 238|# #|line 239|#
+            ))                                              #|line 240|#
         ))
-  (return-from any_child_ready  nil)                        #|line 246|# #|line 247|#
+  (return-from any_child_ready  nil)                        #|line 241|# #|line 242|#
   )
 (defun child_is_ready (&optional  eh)
-  (declare (ignorable  eh))                                 #|line 249|#
-  (return-from child_is_ready ( or  ( or  ( or  (not (empty? (slot-value  eh 'outq))) (not (empty? (slot-value  eh 'inq)))) (not (equal  (slot-value  eh 'state)  "idle"))) (funcall (quote any_child_ready)   eh ))) #|line 250|# #|line 251|#
+  (declare (ignorable  eh))                                 #|line 244|#
+  (return-from child_is_ready ( or  ( or  ( or  (not (empty? (slot-value  eh 'outq))) (not (empty? (slot-value  eh 'inq)))) (not (equal  (slot-value  eh 'state)  "idle"))) (funcall (quote any_child_ready)   eh ))) #|line 245|# #|line 246|#
   )
 (defun append_routing_descriptor (&optional  container  desc)
-  (declare (ignorable  container  desc))                    #|line 253|#
-  (enqueue (slot-value  container 'routings)  desc)         #|line 254|# #|line 255|#
-  )
-(defun injector (&optional  eh  mevent)
-  (declare (ignorable  eh  mevent))                         #|line 257|#
-  (funcall (slot-value  eh 'handler)   eh  mevent           #|line 258|#) #|line 259|#
-  )                                                         #|line 261|# #|  Creates a component that acts as a container. It is the same as a `Eh` instance |# #|line 262|# #|  whose handler function is `container_handler`. |# #|line 263|#
+  (declare (ignorable  container  desc))                    #|line 248|#
+  (enqueue (slot-value  container 'routings)  desc)         #|line 249|# #|line 250|#
+  )                                                         #|line 252|# #|  Creates a component that acts as a container. It is the same as a `Eh` instance |# #|line 253|# #|  whose handler function is `container_handler`. |# #|line 254|#
 (defun make_container (&optional  name  owner)
-  (declare (ignorable  name  owner))                        #|line 264|#
-  (let (( eh  (make-instance 'Eh)                           #|line 265|#))
+  (declare (ignorable  name  owner))                        #|line 255|#
+  (let (( eh  (make-instance 'Eh)                           #|line 256|#))
     (declare (ignorable  eh))
-    (setf (slot-value  eh 'name)  name)                     #|line 266|#
-    (setf (slot-value  eh 'owner)  owner)                   #|line 267|#
-    (setf (slot-value  eh 'handler)  #'container_handler)   #|line 268|#
-    (setf (slot-value  eh 'finject)  #'injector)            #|line 269|#
-    (setf (slot-value  eh 'stop)  #'container_reset_children) #|line 270|#
-    (setf (slot-value  eh 'state)  "idle")                  #|line 271|#
-    (setf (slot-value  eh 'kind)  "container")              #|line 272|#
-    (return-from make_container  eh)                        #|line 273|#) #|line 274|#
-  ) #|  Sends a mevent on the given `port` with `data`, placing it on the output |# #|line 276|# #|  of the given component. |# #|line 277|# #|line 278|#
+    (setf (slot-value  eh 'name)  name)                     #|line 257|#
+    (setf (slot-value  eh 'owner)  owner)                   #|line 258|#
+    (setf (slot-value  eh 'handler)  #'container_handler)   #|line 259|#
+    (setf (slot-value  eh 'finject)  #'injector)            #|line 260|#
+    (setf (slot-value  eh 'stop)  #'container_reset_children) #|line 261|#
+    (setf (slot-value  eh 'state)  "idle")                  #|line 262|#
+    (setf (slot-value  eh 'kind)  "container")              #|line 263|#
+    (return-from make_container  eh)                        #|line 264|#) #|line 265|#
+  ) #|  Sends a mevent on the given `port` with `data`, placing it on the output |# #|line 267|# #|  of the given component. |# #|line 268|# #|line 269|#
 (defun send (&optional  eh  port  obj  causingMevent)
-  (declare (ignorable  eh  port  obj  causingMevent))       #|line 279|#
-  (let (( d  (make-instance 'Datum)                         #|line 280|#))
+  (declare (ignorable  eh  port  obj  causingMevent))       #|line 270|#
+  (let (( d  (make-instance 'Datum)                         #|line 271|#))
     (declare (ignorable  d))
-    (setf (slot-value  d 'v)  obj)                          #|line 281|#
-    (setf (slot-value  d 'clone)  #'(lambda (&optional )(funcall (quote obj_clone)   d  #|line 282|#)))
-    (setf (slot-value  d 'reclaim)  nil)                    #|line 283|#
-    (let ((mev (funcall (quote make_mevent)   port  d       #|line 284|#)))
+    (setf (slot-value  d 'v)  obj)                          #|line 272|#
+    (setf (slot-value  d 'clone)  #'(lambda (&optional )(funcall (quote obj_clone)   d  #|line 273|#)))
+    (setf (slot-value  d 'reclaim)  nil)                    #|line 274|#
+    (let ((mev (funcall (quote make_mevent)   port  d       #|line 275|#)))
       (declare (ignorable mev))
-      (funcall (quote put_output)   eh  mev                 #|line 285|#))) #|line 286|#
+      (funcall (quote put_output)   eh  mev                 #|line 276|#))) #|line 277|#
   )
 (defun forward (&optional  eh  port  mev)
-  (declare (ignorable  eh  port  mev))                      #|line 288|#
-  (let ((fwdmev (funcall (quote make_mevent)   port (slot-value  mev 'datum)  #|line 289|#)))
+  (declare (ignorable  eh  port  mev))                      #|line 279|#
+  (let ((fwdmev (funcall (quote make_mevent)   port (slot-value  mev 'datum)  #|line 280|#)))
     (declare (ignorable fwdmev))
-    (funcall (quote put_output)   eh  fwdmev                #|line 290|#)) #|line 291|#
+    (funcall (quote put_output)   eh  fwdmev                #|line 281|#)) #|line 282|#
   )
 (defun inject_mevent (&optional  eh  mev)
-  (declare (ignorable  eh  mev))                            #|line 293|#
-  (funcall (slot-value  eh 'finject)   eh  mev              #|line 294|#) #|line 295|#
+  (declare (ignorable  eh  mev))                            #|line 284|#
+  (funcall (slot-value  eh 'finject)   eh  mev              #|line 285|#) #|line 286|#
   )
 (defun set_active (&optional  eh)
-  (declare (ignorable  eh))                                 #|line 297|#
-  (setf (slot-value  eh 'state)  "active")                  #|line 298|# #|line 299|#
+  (declare (ignorable  eh))                                 #|line 288|#
+  (setf (slot-value  eh 'state)  "active")                  #|line 289|# #|line 290|#
   )
 (defun set_idle (&optional  eh)
-  (declare (ignorable  eh))                                 #|line 301|#
-  (setf (slot-value  eh 'state)  "idle")                    #|line 302|# #|line 303|#
+  (declare (ignorable  eh))                                 #|line 292|#
+  (setf (slot-value  eh 'state)  "idle")                    #|line 293|# #|line 294|#
   )
 (defun put_output (&optional  eh  mev)
-  (declare (ignorable  eh  mev))                            #|line 305|#
-  (enqueue (slot-value  eh 'outq)  mev)                     #|line 306|# #|line 307|#
+  (declare (ignorable  eh  mev))                            #|line 296|#
+  (enqueue (slot-value  eh 'outq)  mev)                     #|line 297|# #|line 298|#
   )
 (defun obj_clone (&optional  obj)
-  (declare (ignorable  obj))                                #|line 309|#
-  (return-from obj_clone  obj)                              #|line 310|# #|line 311|#
+  (declare (ignorable  obj))                                #|line 300|#
+  (return-from obj_clone  obj)                              #|line 301|# #|line 302|#
   )

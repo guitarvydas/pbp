@@ -3,12 +3,16 @@
     "name": "main",
     "children": [
       {
-        "name": "List Filenames",
+        "name": "Generate Finalization Signal",
         "id": 7
       },
       {
         "name": "Generate",
         "id": 12
+      },
+      {
+        "name": ":?A",
+        "id": 19
       }
     ],
     "connections": [
@@ -17,8 +21,17 @@
         "source_port": "",
         "target_port": "",
         "target": {
-          "name": "List Filenames",
+          "name": "Generate Finalization Signal",
           "id": 7
+        }
+      },
+      {
+        "dir": 0,
+        "source_port": "",
+        "target_port": "",
+        "target": {
+          "name": ":?A",
+          "id": 19
         }
       },
       {
@@ -26,7 +39,7 @@
         "source_port": "",
         "target_port": "",
         "source": {
-          "name": "List Filenames",
+          "name": "Generate Finalization Signal",
           "id": 7
         },
         "target": {
@@ -39,7 +52,7 @@
         "source_port": "fini",
         "target_port": "fini",
         "source": {
-          "name": "List Filenames",
+          "name": "Generate Finalization Signal",
           "id": 7
         },
         "target": {
@@ -52,7 +65,7 @@
         "source_port": "✗",
         "target_port": "✗",
         "source": {
-          "name": "List Filenames",
+          "name": "Generate Finalization Signal",
           "id": 7
         }
       },
@@ -96,7 +109,7 @@
     "file": "kernel.drawio"
   },
   {
-    "name": "List Filenames",
+    "name": "Generate Finalization Signal",
     "children": [
       {
         "name": ":DONE",

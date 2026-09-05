@@ -158,158 +158,151 @@ function step_child_once (child,mev) {                 /* line 147 */
       console.error ( ( "-- stepping ❮".toString ()+  ( child.name.toString ()+  "❯".toString ()) .toString ()) );/* line 149 */
                                                        /* line 150 *//* line 151 */
     }
-    let before_state =  child.state;                   /* line 152 */
-    child.handler ( child, mev)                        /* line 153 */
-    let after_state =  child.state;                    /* line 154 */
-    return [(( before_state ==  "idle") && ( after_state!= "idle")),(( before_state!= "idle") && ( after_state!= "idle")),(( before_state!= "idle") && ( after_state ==  "idle"))];/* line 157 *//* line 158 *//* line 159 */
+    child.handler ( child, mev)                        /* line 152 *//* line 153 *//* line 154 */
 }
 
-function step_children (container,causingMevent) {     /* line 160 */
-    container.state =  "idle";                         /* line 161 *//* line 162 */
-    /*  phase 1 - loop through children and process inputs or children that not "idle"  *//* line 163 */
-    for (let child of   container.visit_ordering) {    /* line 164 */
-      /*  child = container represents self, skip it *//* line 165 */
-      if (((! (is_self ( child, container))))) {       /* line 166 */
-        if (((! ((0=== child.inq.length))))) {         /* line 167 */
-          let mev =  child.inq.shift ()                /* line 168 */;
-          step_child_once ( child, mev)                /* line 169 *//* line 170 */
-          destroy_mevent ( mev)                        /* line 171 */
+function step_children (container,causingMevent) {     /* line 155 */
+    container.state =  "idle";                         /* line 156 *//* line 157 */
+    /*  phase 1 - loop through children and process inputs or children that not "idle"  *//* line 158 */
+    for (let child of   container.visit_ordering) {    /* line 159 */
+      /*  child = container represents self, skip it *//* line 160 */
+      if (((! (is_self ( child, container))))) {       /* line 161 */
+        if (((! ((0=== child.inq.length))))) {         /* line 162 */
+          let mev =  child.inq.shift ()                /* line 163 */;
+          step_child_once ( child, mev)                /* line 164 *//* line 165 */
+          destroy_mevent ( mev)                        /* line 166 */
         }
-        else {                                         /* line 172 */
-          if ( child.state ==  "idle") {               /* line 173 *//* line 174 */
+        else {                                         /* line 167 */
+          if ( child.state ==  "idle") {               /* line 168 *//* line 169 */
           }
-          else {                                       /* line 175 */
-            let mev = force_tick ( container, child)   /* line 176 */;
-            step_child_once ( child, mev)              /* line 177 */
-            destroy_mevent ( mev)                      /* line 178 *//* line 179 */
-          }                                            /* line 180 */
-        }                                              /* line 181 */
-      }                                                /* line 182 */
+          else {                                       /* line 170 */
+            let mev = force_tick ( container, child)   /* line 171 */;
+            step_child_once ( child, mev)              /* line 172 */
+            destroy_mevent ( mev)                      /* line 173 *//* line 174 */
+          }                                            /* line 175 */
+        }                                              /* line 176 */
+      }                                                /* line 177 */
     }
 
-    container.visit_ordering = [];                     /* line 183 *//* line 184 */
-    /*  phase 2 - loop through children and route their outputs to appropriate receiver queues based on .connections  *//* line 185 */
-    for (let child of  container.children) {           /* line 186 */
-      if ( child.state ==  "active") {                 /* line 187 */
-        /*  if child remains active, then the container must remain active and must propagate “ticks“ to child *//* line 188 */
-        container.state =  "active";                   /* line 189 *//* line 190 */
-      }                                                /* line 191 */
-      while (((! ((0=== child.outq.length))))) {       /* line 192 */
-        let mev =  child.outq.shift ()                 /* line 193 */;
-        route ( container, child, mev)                 /* line 194 */
-        destroy_mevent ( mev)                          /* line 195 *//* line 196 */
-      }                                                /* line 197 */
-    }                                                  /* line 198 *//* line 199 */
+    container.visit_ordering = [];                     /* line 178 *//* line 179 */
+    /*  phase 2 - loop through children and route their outputs to appropriate receiver queues based on .connections  *//* line 180 */
+    for (let child of  container.children) {           /* line 181 */
+      if ( child.state ==  "active") {                 /* line 182 */
+        /*  if child remains active, then the container must remain active and must propagate “ticks“ to child *//* line 183 */
+        container.state =  "active";                   /* line 184 *//* line 185 */
+      }                                                /* line 186 */
+      while (((! ((0=== child.outq.length))))) {       /* line 187 */
+        let mev =  child.outq.shift ()                 /* line 188 */;
+        route ( container, child, mev)                 /* line 189 */
+        destroy_mevent ( mev)                          /* line 190 *//* line 191 */
+      }                                                /* line 192 */
+    }                                                  /* line 193 *//* line 194 */
 }
 
-function attempt_tick (parent,eh) {                    /* line 200 */
-    if ( eh.state!= "idle") {                          /* line 201 */
-      force_tick ( parent, eh)                         /* line 202 *//* line 203 */
-    }                                                  /* line 204 *//* line 205 */
+function attempt_tick (parent,eh) {                    /* line 195 */
+    if ( eh.state!= "idle") {                          /* line 196 */
+      force_tick ( parent, eh)                         /* line 197 *//* line 198 */
+    }                                                  /* line 199 *//* line 200 */
 }
 
-function is_tick (mev) {                               /* line 206 */
+function is_tick (mev) {                               /* line 201 */
     return  "." ==  mev.port
-    /*  assume that any mevent that is sent to port "." is a tick  *//* line 207 */;/* line 208 *//* line 209 */
+    /*  assume that any mevent that is sent to port "." is a tick  *//* line 202 */;/* line 203 *//* line 204 */
 }
 
-/*  Routes a single mevent to all matching destinations, according to *//* line 210 */
-/*  the container's connection network. */             /* line 211 *//* line 212 */
-function route (container,from_component,mevent) {     /* line 213 */
+/*  Routes a single mevent to all matching destinations, according to *//* line 205 */
+/*  the container's connection network. */             /* line 206 *//* line 207 */
+function route (container,from_component,mevent) {     /* line 208 */
     let  was_sent =  false;
-    /*  for checking that output went somewhere (at least during bootstrap) *//* line 214 */
-    let  fromname =  "";                               /* line 215 *//* line 216 */
-    ticktime =  ticktime+ 1;                           /* line 217 */
-    if (is_tick ( mevent)) {                           /* line 218 */
-      for (let child of  container.children) {         /* line 219 */
-        attempt_tick ( container, child)               /* line 220 */
+    /*  for checking that output went somewhere (at least during bootstrap) *//* line 209 */
+    let  fromname =  "";                               /* line 210 *//* line 211 */
+    ticktime =  ticktime+ 1;                           /* line 212 */
+    if (is_tick ( mevent)) {                           /* line 213 */
+      for (let child of  container.children) {         /* line 214 */
+        attempt_tick ( container, child)               /* line 215 */
       }
-      was_sent =  true;                                /* line 221 */
+      was_sent =  true;                                /* line 216 */
     }
-    else {                                             /* line 222 */
-      if (((! (is_self ( from_component, container))))) {/* line 223 */
-        fromname =  from_component.name;               /* line 224 *//* line 225 */
+    else {                                             /* line 217 */
+      if (((! (is_self ( from_component, container))))) {/* line 218 */
+        fromname =  from_component.name;               /* line 219 *//* line 220 */
       }
-      let from_sender = mkSender ( fromname, from_component, mevent.port)/* line 226 */;/* line 227 */
-      for (let connector of  container.connections) {  /* line 228 */
-        if (sender_eq ( from_sender, connector.sender)) {/* line 229 */
-          deposit ( container, connector, mevent)      /* line 230 */
-          was_sent =  true;                            /* line 231 *//* line 232 */
-        }                                              /* line 233 */
-      }                                                /* line 234 */
+      let from_sender = mkSender ( fromname, from_component, mevent.port)/* line 221 */;/* line 222 */
+      for (let connector of  container.connections) {  /* line 223 */
+        if (sender_eq ( from_sender, connector.sender)) {/* line 224 */
+          deposit ( container, connector, mevent)      /* line 225 */
+          was_sent =  true;                            /* line 226 *//* line 227 */
+        }                                              /* line 228 */
+      }                                                /* line 229 */
     }
-    if ((! ( was_sent))) {                             /* line 235 */
-      console.error ( "internal error" + ": " +  ( container.name.toString ()+  ( ": mevent on port '".toString ()+  ( mevent.port.toString ()+  ( "' from ".toString ()+  ( fromname.toString ()+  " dropped on floor...".toString ()) .toString ()) .toString ()) .toString ()) .toString ()) )/* line 236 *//* line 237 */
-    }                                                  /* line 238 *//* line 239 */
+    if ((! ( was_sent))) {                             /* line 230 */
+      console.error ( "internal error" + ": " +  ( container.name.toString ()+  ( ": mevent on port '".toString ()+  ( mevent.port.toString ()+  ( "' from ".toString ()+  ( fromname.toString ()+  " dropped on floor...".toString ()) .toString ()) .toString ()) .toString ()) .toString ()) )/* line 231 *//* line 232 */
+    }                                                  /* line 233 *//* line 234 */
 }
 
-function any_child_ready (container) {                 /* line 240 */
-    for (let child of  container.children) {           /* line 241 */
-      if (child_is_ready ( child)) {                   /* line 242 */
-        return  true;                                  /* line 243 *//* line 244 */
-      }                                                /* line 245 */
+function any_child_ready (container) {                 /* line 235 */
+    for (let child of  container.children) {           /* line 236 */
+      if (child_is_ready ( child)) {                   /* line 237 */
+        return  true;                                  /* line 238 *//* line 239 */
+      }                                                /* line 240 */
     }
-    return  false;                                     /* line 246 *//* line 247 *//* line 248 */
+    return  false;                                     /* line 241 *//* line 242 *//* line 243 */
 }
 
-function child_is_ready (eh) {                         /* line 249 */
-    return ((((((((! ((0=== eh.outq.length))))) || (((! ((0=== eh.inq.length))))))) || (( eh.state!= "idle")))) || ((any_child_ready ( eh))));/* line 250 *//* line 251 *//* line 252 */
+function child_is_ready (eh) {                         /* line 244 */
+    return ((((((((! ((0=== eh.outq.length))))) || (((! ((0=== eh.inq.length))))))) || (( eh.state!= "idle")))) || ((any_child_ready ( eh))));/* line 245 *//* line 246 *//* line 247 */
 }
 
-function append_routing_descriptor (container,desc) {  /* line 253 */
-    container.routings.push ( desc)                    /* line 254 *//* line 255 *//* line 256 */
+function append_routing_descriptor (container,desc) {  /* line 248 */
+    container.routings.push ( desc)                    /* line 249 *//* line 250 *//* line 251 */
+}
+                                                       /* line 252 */
+/*  Creates a component that acts as a container. It is the same as a `Eh` instance *//* line 253 */
+/*  whose handler function is `container_handler`. */  /* line 254 */
+function make_container (name,owner) {                 /* line 255 */
+    let  eh =  new Eh ();                              /* line 256 */;
+    eh.name =  name;                                   /* line 257 */
+    eh.owner =  owner;                                 /* line 258 */
+    eh.handler =  container_handler;                   /* line 259 */
+    eh.finject =  injector;                            /* line 260 */
+    eh.stop =  container_reset_children;               /* line 261 */
+    eh.state =  "idle";                                /* line 262 */
+    eh.kind =  "container";                            /* line 263 */
+    return  eh;                                        /* line 264 *//* line 265 *//* line 266 */
 }
 
-function injector (eh,mevent) {                        /* line 257 */
-    eh.handler ( eh, mevent)                           /* line 258 *//* line 259 *//* line 260 */
-}
-                                                       /* line 261 */
-/*  Creates a component that acts as a container. It is the same as a `Eh` instance *//* line 262 */
-/*  whose handler function is `container_handler`. */  /* line 263 */
-function make_container (name,owner) {                 /* line 264 */
-    let  eh =  new Eh ();                              /* line 265 */;
-    eh.name =  name;                                   /* line 266 */
-    eh.owner =  owner;                                 /* line 267 */
-    eh.handler =  container_handler;                   /* line 268 */
-    eh.finject =  injector;                            /* line 269 */
-    eh.stop =  container_reset_children;               /* line 270 */
-    eh.state =  "idle";                                /* line 271 */
-    eh.kind =  "container";                            /* line 272 */
-    return  eh;                                        /* line 273 *//* line 274 *//* line 275 */
+/*  Sends a mevent on the given `port` with `data`, placing it on the output *//* line 267 */
+/*  of the given component. */                         /* line 268 *//* line 269 */
+function send (eh,port,obj,causingMevent) {            /* line 270 */
+    let  d =  new Datum ();                            /* line 271 */;
+    d.v =  obj;                                        /* line 272 */
+    d.clone =  function () {return obj_clone ( d)      /* line 273 */;};
+    d.reclaim =  null;                                 /* line 274 */
+    let mev = make_mevent ( port, d)                   /* line 275 */;
+    put_output ( eh, mev)                              /* line 276 *//* line 277 *//* line 278 */
 }
 
-/*  Sends a mevent on the given `port` with `data`, placing it on the output *//* line 276 */
-/*  of the given component. */                         /* line 277 *//* line 278 */
-function send (eh,port,obj,causingMevent) {            /* line 279 */
-    let  d =  new Datum ();                            /* line 280 */;
-    d.v =  obj;                                        /* line 281 */
-    d.clone =  function () {return obj_clone ( d)      /* line 282 */;};
-    d.reclaim =  null;                                 /* line 283 */
-    let mev = make_mevent ( port, d)                   /* line 284 */;
-    put_output ( eh, mev)                              /* line 285 *//* line 286 *//* line 287 */
+function forward (eh,port,mev) {                       /* line 279 */
+    let fwdmev = make_mevent ( port, mev.datum)        /* line 280 */;
+    put_output ( eh, fwdmev)                           /* line 281 *//* line 282 *//* line 283 */
 }
 
-function forward (eh,port,mev) {                       /* line 288 */
-    let fwdmev = make_mevent ( port, mev.datum)        /* line 289 */;
-    put_output ( eh, fwdmev)                           /* line 290 *//* line 291 *//* line 292 */
+function inject_mevent (eh,mev) {                      /* line 284 */
+    eh.finject ( eh, mev)                              /* line 285 *//* line 286 *//* line 287 */
 }
 
-function inject_mevent (eh,mev) {                      /* line 293 */
-    eh.finject ( eh, mev)                              /* line 294 *//* line 295 *//* line 296 */
+function set_active (eh) {                             /* line 288 */
+    eh.state =  "active";                              /* line 289 *//* line 290 *//* line 291 */
 }
 
-function set_active (eh) {                             /* line 297 */
-    eh.state =  "active";                              /* line 298 *//* line 299 *//* line 300 */
+function set_idle (eh) {                               /* line 292 */
+    eh.state =  "idle";                                /* line 293 *//* line 294 *//* line 295 */
 }
 
-function set_idle (eh) {                               /* line 301 */
-    eh.state =  "idle";                                /* line 302 *//* line 303 *//* line 304 */
+function put_output (eh,mev) {                         /* line 296 */
+    eh.outq.push ( mev)                                /* line 297 *//* line 298 *//* line 299 */
 }
 
-function put_output (eh,mev) {                         /* line 305 */
-    eh.outq.push ( mev)                                /* line 306 *//* line 307 *//* line 308 */
-}
-
-function obj_clone (obj) {                             /* line 309 */
-    return  obj;                                       /* line 310 *//* line 311 */
+function obj_clone (obj) {                             /* line 300 */
+    return  obj;                                       /* line 301 *//* line 302 */
 }

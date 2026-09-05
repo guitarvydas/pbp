@@ -306,3 +306,7 @@ x))))
   (declare (ignorable  s))                                  #|line 230|#
   (return-from clone_string  s)                             #|line 231|# #|line 232|#
   )
+(defun injector (&optional  eh  mevent)
+  (declare (ignorable  eh  mevent))                         #|line 234|#
+  (funcall (slot-value  eh 'handler)   eh  mevent           #|line 235|#) #|line 236|#
+  )

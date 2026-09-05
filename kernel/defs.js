@@ -237,5 +237,9 @@ class Eh {
 let  load_errors =  false;                             /* line 227 */
 let  runtime_errors =  false;                          /* line 228 *//* line 229 */
 function clone_string (s) {                            /* line 230 */
-    return  s;                                         /* line 231 *//* line 232 */
+    return  s;                                         /* line 231 *//* line 232 *//* line 233 */
+}
+
+function injector (eh,mevent) {                        /* line 234 */
+    eh.handler ( eh, mevent)                           /* line 235 *//* line 236 *//* line 237 */
 }
