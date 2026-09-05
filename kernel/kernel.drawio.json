@@ -580,20 +580,20 @@
       },
       {
         "dir": 2,
-        "source_port": "",
-        "target_port": "",
-        "source": {
-          "name": "Grep for Errors",
-          "id": 17
-        }
-      },
-      {
-        "dir": 2,
         "source_port": "✗",
         "target_port": "✗",
         "source": {
           "name": ":$ python3 pyrelocate.py 55",
           "id": 13
+        }
+      },
+      {
+        "dir": 2,
+        "source_port": "",
+        "target_port": "",
+        "source": {
+          "name": "Grep for Errors",
+          "id": 17
         }
       }
     ],
@@ -697,20 +697,20 @@
       },
       {
         "dir": 2,
-        "source_port": "",
-        "target_port": "",
-        "source": {
-          "name": "Grep for Errors",
-          "id": 17
-        }
-      },
-      {
-        "dir": 2,
         "source_port": "✗",
         "target_port": "✗",
         "source": {
           "name": ":$ python3 clrelocate.py 60",
           "id": 13
+        }
+      },
+      {
+        "dir": 2,
+        "source_port": "",
+        "target_port": "",
+        "source": {
+          "name": "Grep for Errors",
+          "id": 17
         }
       }
     ],
@@ -1185,137 +1185,6 @@
     "file": "kernel.drawio"
   },
   {
-    "name": "seq12",
-    "children": [
-      {
-        "name": "1then2",
-        "id": 6
-      }
-    ],
-    "connections": [
-      {
-        "dir": 0,
-        "source_port": "1",
-        "target_port": "1",
-        "target": {
-          "name": "1then2",
-          "id": 6
-        }
-      },
-      {
-        "dir": 0,
-        "source_port": "2",
-        "target_port": "2",
-        "target": {
-          "name": "1then2",
-          "id": 6
-        }
-      },
-      {
-        "dir": 2,
-        "source_port": "2",
-        "target_port": "2",
-        "source": {
-          "name": "1then2",
-          "id": 6
-        }
-      },
-      {
-        "dir": 2,
-        "source_port": "1",
-        "target_port": "1",
-        "source": {
-          "name": "1then2",
-          "id": 6
-        }
-      }
-    ],
-    "file": "kernel.drawio"
-  },
-  {
-    "name": "seq123",
-    "children": [
-      {
-        "name": "1then2",
-        "id": 8
-      },
-      {
-        "name": "1then2",
-        "id": 13
-      }
-    ],
-    "connections": [
-      {
-        "dir": 0,
-        "source_port": "1",
-        "target_port": "1",
-        "target": {
-          "name": "1then2",
-          "id": 8
-        }
-      },
-      {
-        "dir": 0,
-        "source_port": "2",
-        "target_port": "2",
-        "target": {
-          "name": "1then2",
-          "id": 8
-        }
-      },
-      {
-        "dir": 0,
-        "source_port": "3",
-        "target_port": "2",
-        "target": {
-          "name": "1then2",
-          "id": 13
-        }
-      },
-      {
-        "dir": 1,
-        "source_port": "2",
-        "target_port": "1",
-        "source": {
-          "name": "1then2",
-          "id": 8
-        },
-        "target": {
-          "name": "1then2",
-          "id": 13
-        }
-      },
-      {
-        "dir": 2,
-        "source_port": "1",
-        "target_port": "1",
-        "source": {
-          "name": "1then2",
-          "id": 8
-        }
-      },
-      {
-        "dir": 2,
-        "source_port": "1",
-        "target_port": "2",
-        "source": {
-          "name": "1then2",
-          "id": 13
-        }
-      },
-      {
-        "dir": 2,
-        "source_port": "2",
-        "target_port": "3",
-        "source": {
-          "name": "1then2",
-          "id": 13
-        }
-      }
-    ],
-    "file": "kernel.drawio"
-  },
-  {
     "name": "Encode",
     "children": [
       {
@@ -1765,117 +1634,6 @@
         "source": {
           "name": ":$ python3 cleanup.py",
           "id": 5
-        }
-      }
-    ],
-    "file": "kernel.drawio"
-  },
-  {
-    "name": "Write To Python File",
-    "children": [
-      {
-        "name": ":/tmp/xxx.xxx",
-        "id": 3
-      },
-      {
-        "name": "1then2",
-        "id": 6
-      },
-      {
-        "name": "syncfilewrite",
-        "id": 11
-      },
-      {
-        "name": "?B",
-        "id": 16
-      },
-      {
-        "name": "?C",
-        "id": 18
-      }
-    ],
-    "connections": [
-      {
-        "dir": 0,
-        "source_port": "",
-        "target_port": "",
-        "target": {
-          "name": ":/tmp/xxx.xxx",
-          "id": 3
-        }
-      },
-      {
-        "dir": 0,
-        "source_port": "",
-        "target_port": "2",
-        "target": {
-          "name": "1then2",
-          "id": 6
-        }
-      },
-      {
-        "dir": 1,
-        "source_port": "done",
-        "target_port": "",
-        "source": {
-          "name": "syncfilewrite",
-          "id": 11
-        },
-        "target": {
-          "name": "?B",
-          "id": 16
-        }
-      },
-      {
-        "dir": 1,
-        "source_port": "✗",
-        "target_port": "",
-        "source": {
-          "name": "syncfilewrite",
-          "id": 11
-        },
-        "target": {
-          "name": "?C",
-          "id": 18
-        }
-      },
-      {
-        "dir": 1,
-        "source_port": "",
-        "target_port": "1",
-        "source": {
-          "name": ":/tmp/xxx.xxx",
-          "id": 3
-        },
-        "target": {
-          "name": "1then2",
-          "id": 6
-        }
-      },
-      {
-        "dir": 1,
-        "source_port": "1",
-        "target_port": "filename",
-        "source": {
-          "name": "1then2",
-          "id": 6
-        },
-        "target": {
-          "name": "syncfilewrite",
-          "id": 11
-        }
-      },
-      {
-        "dir": 1,
-        "source_port": "2",
-        "target_port": "input",
-        "source": {
-          "name": "1then2",
-          "id": 6
-        },
-        "target": {
-          "name": "syncfilewrite",
-          "id": 11
         }
       }
     ],
