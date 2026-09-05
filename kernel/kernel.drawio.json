@@ -3,16 +3,12 @@
     "name": "main",
     "children": [
       {
-        "name": "Generate Finalization Signal",
+        "name": "Generate",
         "id": 7
       },
       {
-        "name": "Generate",
-        "id": 12
-      },
-      {
         "name": ":?A",
-        "id": 19
+        "id": 13
       }
     ],
     "connections": [
@@ -21,7 +17,7 @@
         "source_port": "",
         "target_port": "",
         "target": {
-          "name": "Generate Finalization Signal",
+          "name": "Generate",
           "id": 7
         }
       },
@@ -31,42 +27,7 @@
         "target_port": "",
         "target": {
           "name": ":?A",
-          "id": 19
-        }
-      },
-      {
-        "dir": 1,
-        "source_port": "",
-        "target_port": "",
-        "source": {
-          "name": "Generate Finalization Signal",
-          "id": 7
-        },
-        "target": {
-          "name": "Generate",
-          "id": 12
-        }
-      },
-      {
-        "dir": 1,
-        "source_port": "fini",
-        "target_port": "fini",
-        "source": {
-          "name": "Generate Finalization Signal",
-          "id": 7
-        },
-        "target": {
-          "name": "Generate",
-          "id": 12
-        }
-      },
-      {
-        "dir": 2,
-        "source_port": "✗",
-        "target_port": "✗",
-        "source": {
-          "name": "Generate Finalization Signal",
-          "id": 7
+          "id": 13
         }
       },
       {
@@ -75,7 +36,7 @@
         "target_port": "Python",
         "source": {
           "name": "Generate",
-          "id": 12
+          "id": 7
         }
       },
       {
@@ -84,7 +45,7 @@
         "target_port": "✗",
         "source": {
           "name": "Generate",
-          "id": 12
+          "id": 7
         }
       },
       {
@@ -93,7 +54,7 @@
         "target_port": "Javascript",
         "source": {
           "name": "Generate",
-          "id": 12
+          "id": 7
         }
       },
       {
@@ -102,72 +63,7 @@
         "target_port": "CommonLisp",
         "source": {
           "name": "Generate",
-          "id": 12
-        }
-      }
-    ],
-    "file": "kernel.drawio"
-  },
-  {
-    "name": "Generate Finalization Signal",
-    "children": [
-      {
-        "name": ":DONE",
-        "id": 5
-      },
-      {
-        "name": "1then2",
-        "id": 8
-      }
-    ],
-    "connections": [
-      {
-        "dir": 0,
-        "source_port": "",
-        "target_port": "1",
-        "target": {
-          "name": "1then2",
-          "id": 8
-        }
-      },
-      {
-        "dir": 0,
-        "source_port": "",
-        "target_port": "2",
-        "target": {
-          "name": "1then2",
-          "id": 8
-        }
-      },
-      {
-        "dir": 1,
-        "source_port": "2",
-        "target_port": "",
-        "source": {
-          "name": "1then2",
-          "id": 8
-        },
-        "target": {
-          "name": ":DONE",
-          "id": 5
-        }
-      },
-      {
-        "dir": 2,
-        "source_port": "",
-        "target_port": "fini",
-        "source": {
-          "name": ":DONE",
-          "id": 5
-        }
-      },
-      {
-        "dir": 2,
-        "source_port": "1",
-        "target_port": "",
-        "source": {
-          "name": "1then2",
-          "id": 8
+          "id": 7
         }
       }
     ],
@@ -178,15 +74,15 @@
     "children": [
       {
         "name": "Front End",
-        "id": 8
+        "id": 7
       },
       {
         "name": "Back End",
-        "id": 12
+        "id": 11
       },
       {
         "name": ":?ghi",
-        "id": 19
+        "id": 17
       }
     ],
     "connections": [
@@ -196,16 +92,7 @@
         "target_port": "",
         "target": {
           "name": "Front End",
-          "id": 8
-        }
-      },
-      {
-        "dir": 0,
-        "source_port": "fini",
-        "target_port": "fini",
-        "target": {
-          "name": "Back End",
-          "id": 12
+          "id": 7
         }
       },
       {
@@ -214,7 +101,7 @@
         "target_port": "",
         "target": {
           "name": ":?ghi",
-          "id": 19
+          "id": 17
         }
       },
       {
@@ -223,11 +110,11 @@
         "target_port": "",
         "source": {
           "name": "Front End",
-          "id": 8
+          "id": 7
         },
         "target": {
           "name": "Back End",
-          "id": 12
+          "id": 11
         }
       },
       {
@@ -236,7 +123,7 @@
         "target_port": "✗",
         "source": {
           "name": "Front End",
-          "id": 8
+          "id": 7
         }
       },
       {
@@ -245,7 +132,7 @@
         "target_port": "Javascript",
         "source": {
           "name": "Back End",
-          "id": 12
+          "id": 11
         }
       },
       {
@@ -254,7 +141,7 @@
         "target_port": "✗",
         "source": {
           "name": "Back End",
-          "id": 12
+          "id": 11
         }
       },
       {
@@ -263,7 +150,7 @@
         "target_port": "Python",
         "source": {
           "name": "Back End",
-          "id": 12
+          "id": 11
         }
       },
       {
@@ -272,7 +159,7 @@
         "target_port": "CL",
         "source": {
           "name": "Back End",
-          "id": 12
+          "id": 11
         }
       }
     ],
@@ -374,82 +261,63 @@
     "children": [
       {
         "name": "Generate Javascript",
-        "id": 8
+        "id": 7
       },
       {
         "name": "Generate Python",
-        "id": 13
+        "id": 12
       },
       {
         "name": "Generate Common Lisp",
-        "id": 18
+        "id": 17
       },
       {
         "name": "Cleanup",
-        "id": 23
+        "id": 22
       },
       {
         "name": "Cleanup",
-        "id": 27
+        "id": 26
       },
       {
         "name": "Cleanup",
-        "id": 31
+        "id": 30
+      },
+      {
+        "name": ":DONE",
+        "id": 34
+      },
+      {
+        "name": "1then2",
+        "id": 37
       }
     ],
     "connections": [
       {
         "dir": 0,
-        "source_port": "",
-        "target_port": "",
-        "target": {
-          "name": "Generate Common Lisp",
-          "id": 18
-        }
-      },
-      {
-        "dir": 0,
-        "source_port": "fini",
-        "target_port": "fini",
-        "target": {
-          "name": "Generate Common Lisp",
-          "id": 18
-        }
-      },
-      {
-        "dir": 0,
-        "source_port": "",
+        "source_port": "Javascript",
         "target_port": "",
         "target": {
           "name": "Generate Javascript",
-          "id": 8
+          "id": 7
         }
       },
       {
         "dir": 0,
         "source_port": "",
-        "target_port": "",
+        "target_port": "1",
         "target": {
-          "name": "Generate Python",
-          "id": 13
+          "name": "1then2",
+          "id": 37
         }
       },
       {
         "dir": 0,
-        "source_port": "fini",
-        "target_port": "fini",
+        "source_port": "",
+        "target_port": "2",
         "target": {
-          "name": "Generate Python",
-          "id": 13
-        }
-      },
-      {
-        "dir": 0,
-        "source_port": "fini",
-        "target_port": "fini",
-        "target": {
-          "name": "Generate Javascript",
-          "id": 8
+          "name": "1then2",
+          "id": 37
         }
       },
       {
@@ -458,11 +326,11 @@
         "target_port": "",
         "source": {
           "name": "Generate Javascript",
-          "id": 8
+          "id": 7
         },
         "target": {
           "name": "Cleanup",
-          "id": 31
+          "id": 30
         }
       },
       {
@@ -471,11 +339,24 @@
         "target_port": "",
         "source": {
           "name": "Generate Python",
-          "id": 13
+          "id": 12
         },
         "target": {
           "name": "Cleanup",
-          "id": 23
+          "id": 22
+        }
+      },
+      {
+        "dir": 1,
+        "source_port": "1",
+        "target_port": "",
+        "source": {
+          "name": "1then2",
+          "id": 37
+        },
+        "target": {
+          "name": "Generate Common Lisp",
+          "id": 17
         }
       },
       {
@@ -484,11 +365,76 @@
         "target_port": "",
         "source": {
           "name": "Generate Common Lisp",
-          "id": 18
+          "id": 17
         },
         "target": {
           "name": "Cleanup",
-          "id": 27
+          "id": 26
+        }
+      },
+      {
+        "dir": 1,
+        "source_port": "",
+        "target_port": "fini",
+        "source": {
+          "name": ":DONE",
+          "id": 34
+        },
+        "target": {
+          "name": "Generate Common Lisp",
+          "id": 17
+        }
+      },
+      {
+        "dir": 1,
+        "source_port": "1",
+        "target_port": "",
+        "source": {
+          "name": "1then2",
+          "id": 37
+        },
+        "target": {
+          "name": "Generate Python",
+          "id": 12
+        }
+      },
+      {
+        "dir": 1,
+        "source_port": "",
+        "target_port": "fini",
+        "source": {
+          "name": ":DONE",
+          "id": 34
+        },
+        "target": {
+          "name": "Generate Python",
+          "id": 12
+        }
+      },
+      {
+        "dir": 1,
+        "source_port": "",
+        "target_port": "fini",
+        "source": {
+          "name": ":DONE",
+          "id": 34
+        },
+        "target": {
+          "name": "Generate Javascript",
+          "id": 7
+        }
+      },
+      {
+        "dir": 1,
+        "source_port": "2",
+        "target_port": "",
+        "source": {
+          "name": "1then2",
+          "id": 37
+        },
+        "target": {
+          "name": ":DONE",
+          "id": 34
         }
       },
       {
@@ -497,7 +443,7 @@
         "target_port": "✗",
         "source": {
           "name": "Generate Javascript",
-          "id": 8
+          "id": 7
         }
       },
       {
@@ -506,7 +452,7 @@
         "target_port": "✗",
         "source": {
           "name": "Generate Python",
-          "id": 13
+          "id": 12
         }
       },
       {
@@ -515,7 +461,7 @@
         "target_port": "✗",
         "source": {
           "name": "Generate Common Lisp",
-          "id": 18
+          "id": 17
         }
       },
       {
@@ -524,7 +470,7 @@
         "target_port": "Python",
         "source": {
           "name": "Cleanup",
-          "id": 23
+          "id": 22
         }
       },
       {
@@ -533,7 +479,7 @@
         "target_port": "✗",
         "source": {
           "name": "Cleanup",
-          "id": 23
+          "id": 22
         }
       },
       {
@@ -542,7 +488,7 @@
         "target_port": "Javascript",
         "source": {
           "name": "Cleanup",
-          "id": 31
+          "id": 30
         }
       },
       {
@@ -551,7 +497,7 @@
         "target_port": "✗",
         "source": {
           "name": "Cleanup",
-          "id": 31
+          "id": 30
         }
       },
       {
@@ -560,7 +506,7 @@
         "target_port": "CL",
         "source": {
           "name": "Cleanup",
-          "id": 27
+          "id": 26
         }
       },
       {
@@ -569,7 +515,7 @@
         "target_port": "✗",
         "source": {
           "name": "Cleanup",
-          "id": 27
+          "id": 26
         }
       }
     ],
