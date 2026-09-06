@@ -12,7 +12,9 @@ done
 : > new_kernel0d.lisp
 
 for i in $BASENAMES; do
-    cat "$i.py" >> new_kernel0d.py
-    cat "$i.js" >> new_kernel0d.js
-    cat "$i.lisp" >> new_kernel0d.lisp
+    cat "_python/$i.py" >> new_kernel0d.py
+    cat "_js/$i.js" >> new_kernel0d.js
+    cat "_lisp/$i.lisp" >> new_kernel0d.lisp
 done
+
+rm -f out.*
