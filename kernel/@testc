@@ -18,8 +18,8 @@ for i in $BASENAMES; do
 done
 
 if diff -q new_kernel0d.py regression_test/rtkernel0d.py > /dev/null; then
-    echo "OK, created: _$(date +%Y%m%d_%H%M%S)_kernel0d.py"
-    cp kernel0d.py "_$(date +%Y%m%d_%H%M%S)_kernel0d.py"
+    echo "OK, created: _backup/_$(date +%Y%m%d_%H%M%S)_kernel0d.py"
+    cp kernel0d.py "_backup/_$(date +%Y%m%d_%H%M%S)_kernel0d.py"
     mv new_kernel0d.py kernel0d.py
     mv new_kernel0d.js kernel0d.js
     mv new_kernel0d.lisp kernel0d.lisp
