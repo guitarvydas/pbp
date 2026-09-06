@@ -12,9 +12,9 @@ done
 : > regression_test/rtkernel0d.lisp
 
 for i in $BASENAMES; do
-    cat "$i.py" >> regression_test/rtkernel0d.py
-    cat "$i.js" >> regression_test/rtkernel0d.js
-    cat "$i.lisp" >> regression_test/rtkernel0d.lisp
+    cat "_python/$i.py" >> regression_test/rtkernel0d.py
+    cat "_js/$i.js" >> regression_test/rtkernel0d.js
+    cat "_lisp/$i.lisp" >> regression_test/rtkernel0d.lisp
 done
 
 if diff -q new_kernel0d.py regression_test/rtkernel0d.py > /dev/null; then
@@ -28,3 +28,4 @@ else
     echo "use diff new_kernel0d.py regression_test/rtkernel0d.py"
 fi
 
+rm -f out.*
