@@ -698,7 +698,7 @@
         "id": 5
       },
       {
-        "name": ":$ ./ndsl internalize.ohm internalize.rwr",
+        "name": ":$ _/t2t internalize",
         "id": 9
       }
     ],
@@ -721,7 +721,7 @@
           "id": 5
         },
         "target": {
-          "name": ":$ ./ndsl internalize.ohm internalize.rwr",
+          "name": ":$ _/t2t internalize",
           "id": 9
         }
       },
@@ -730,7 +730,7 @@
         "source_port": "",
         "target_port": "",
         "source": {
-          "name": ":$ ./ndsl internalize.ohm internalize.rwr",
+          "name": ":$ _/t2t internalize",
           "id": 9
         }
       },
@@ -748,7 +748,7 @@
         "source_port": "✗",
         "target_port": "✗",
         "source": {
-          "name": ":$ ./ndsl internalize.ohm internalize.rwr",
+          "name": ":$ _/t2t internalize",
           "id": 9
         }
       }
@@ -759,7 +759,7 @@
     "name": "Semantics Check",
     "children": [
       {
-        "name": ":$ ./ndsl semantics.ohm semantics.rwr",
+        "name": ":$ _/t2t semantics",
         "id": 5
       }
     ],
@@ -769,7 +769,7 @@
         "source_port": "",
         "target_port": "",
         "target": {
-          "name": ":$ ./ndsl semantics.ohm semantics.rwr",
+          "name": ":$ _/t2t semantics",
           "id": 5
         }
       },
@@ -778,7 +778,7 @@
         "source_port": "",
         "target_port": "",
         "source": {
-          "name": ":$ ./ndsl semantics.ohm semantics.rwr",
+          "name": ":$ _/t2t semantics",
           "id": 5
         }
       },
@@ -787,7 +787,7 @@
         "source_port": "✗",
         "target_port": "✗",
         "source": {
-          "name": ":$ ./ndsl semantics.ohm semantics.rwr",
+          "name": ":$ _/t2t semantics",
           "id": 5
         }
       }
@@ -798,7 +798,7 @@
     "name": "RT to Javascript",
     "children": [
       {
-        "name": ":$ ./ndsl emit.ohm emitjs.rwr",
+        "name": ":$ _/t2t emit emitjs",
         "id": 5
       }
     ],
@@ -808,7 +808,7 @@
         "source_port": "",
         "target_port": "",
         "target": {
-          "name": ":$ ./ndsl emit.ohm emitjs.rwr",
+          "name": ":$ _/t2t emit emitjs",
           "id": 5
         }
       },
@@ -817,7 +817,7 @@
         "source_port": "",
         "target_port": "",
         "source": {
-          "name": ":$ ./ndsl emit.ohm emitjs.rwr",
+          "name": ":$ _/t2t emit emitjs",
           "id": 5
         }
       },
@@ -826,7 +826,7 @@
         "source_port": "✗",
         "target_port": "✗",
         "source": {
-          "name": ":$ ./ndsl emit.ohm emitjs.rwr",
+          "name": ":$ _/t2t emit emitjs",
           "id": 5
         }
       }
@@ -837,7 +837,7 @@
     "name": "RT to Python",
     "children": [
       {
-        "name": ":$ ./ndsl emit.ohm emitPython.rwr",
+        "name": ":$ _/t2t emit emitpython",
         "id": 5
       }
     ],
@@ -847,7 +847,7 @@
         "source_port": "",
         "target_port": "",
         "target": {
-          "name": ":$ ./ndsl emit.ohm emitPython.rwr",
+          "name": ":$ _/t2t emit emitpython",
           "id": 5
         }
       },
@@ -856,7 +856,7 @@
         "source_port": "",
         "target_port": "",
         "source": {
-          "name": ":$ ./ndsl emit.ohm emitPython.rwr",
+          "name": ":$ _/t2t emit emitpython",
           "id": 5
         }
       },
@@ -865,7 +865,7 @@
         "source_port": "✗",
         "target_port": "✗",
         "source": {
-          "name": ":$ ./ndsl emit.ohm emitPython.rwr",
+          "name": ":$ _/t2t emit emitpython",
           "id": 5
         }
       }
@@ -876,7 +876,7 @@
     "name": "RT to Common Lisp",
     "children": [
       {
-        "name": ":$ ./ndsl emit.ohm emitcl.rwr",
+        "name": ":$ _/t2t emit emitcl",
         "id": 5
       }
     ],
@@ -886,7 +886,7 @@
         "source_port": "",
         "target_port": "",
         "target": {
-          "name": ":$ ./ndsl emit.ohm emitcl.rwr",
+          "name": ":$ _/t2t emit emitcl",
           "id": 5
         }
       },
@@ -895,7 +895,7 @@
         "source_port": "",
         "target_port": "",
         "source": {
-          "name": ":$ ./ndsl emit.ohm emitcl.rwr",
+          "name": ":$ _/t2t emit emitcl",
           "id": 5
         }
       },
@@ -904,7 +904,7 @@
         "source_port": "✗",
         "target_port": "✗",
         "source": {
-          "name": ":$ ./ndsl emit.ohm emitcl.rwr",
+          "name": ":$ _/t2t emit emitcl",
           "id": 5
         }
       }
@@ -954,7 +954,7 @@
     "name": "Decode For Javascript",
     "children": [
       {
-        "name": ":$ ./ndsl jsdecode.ohm jsdecode.rwr",
+        "name": ":$ _/t2t jsdecode",
         "id": 5
       }
     ],
@@ -964,7 +964,7 @@
         "source_port": "",
         "target_port": "",
         "target": {
-          "name": ":$ ./ndsl jsdecode.ohm jsdecode.rwr",
+          "name": ":$ _/t2t jsdecode",
           "id": 5
         }
       },
@@ -973,7 +973,7 @@
         "source_port": "",
         "target_port": "",
         "source": {
-          "name": ":$ ./ndsl jsdecode.ohm jsdecode.rwr",
+          "name": ":$ _/t2t jsdecode",
           "id": 5
         }
       },
@@ -982,7 +982,7 @@
         "source_port": "✗",
         "target_port": "✗",
         "source": {
-          "name": ":$ ./ndsl jsdecode.ohm jsdecode.rwr",
+          "name": ":$ _/t2t jsdecode",
           "id": 5
         }
       }
@@ -1253,7 +1253,7 @@
     "name": "Decode for Python",
     "children": [
       {
-        "name": ":$ ./ndsl pydecode.ohm pydecode.rwr",
+        "name": ":$ _/t2t pydecode",
         "id": 5
       }
     ],
@@ -1263,7 +1263,7 @@
         "source_port": "",
         "target_port": "",
         "target": {
-          "name": ":$ ./ndsl pydecode.ohm pydecode.rwr",
+          "name": ":$ _/t2t pydecode",
           "id": 5
         }
       },
@@ -1272,7 +1272,7 @@
         "source_port": "",
         "target_port": "",
         "source": {
-          "name": ":$ ./ndsl pydecode.ohm pydecode.rwr",
+          "name": ":$ _/t2t pydecode",
           "id": 5
         }
       },
@@ -1281,7 +1281,7 @@
         "source_port": "✗",
         "target_port": "✗",
         "source": {
-          "name": ":$ ./ndsl pydecode.ohm pydecode.rwr",
+          "name": ":$ _/t2t pydecode",
           "id": 5
         }
       }
@@ -1461,7 +1461,7 @@
     "name": "Decode For Common Lisp",
     "children": [
       {
-        "name": ":$ ./ndsl cldecode.ohm cldecode.rwr",
+        "name": ":$ _/t2t cldecode",
         "id": 5
       }
     ],
@@ -1471,7 +1471,7 @@
         "source_port": "",
         "target_port": "",
         "target": {
-          "name": ":$ ./ndsl cldecode.ohm cldecode.rwr",
+          "name": ":$ _/t2t cldecode",
           "id": 5
         }
       },
@@ -1480,7 +1480,7 @@
         "source_port": "",
         "target_port": "",
         "source": {
-          "name": ":$ ./ndsl cldecode.ohm cldecode.rwr",
+          "name": ":$ _/t2t cldecode",
           "id": 5
         }
       },
@@ -1489,7 +1489,7 @@
         "source_port": "✗",
         "target_port": "✗",
         "source": {
-          "name": ":$ ./ndsl cldecode.ohm cldecode.rwr",
+          "name": ":$ _/t2t cldecode",
           "id": 5
         }
       }
