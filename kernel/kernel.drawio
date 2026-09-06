@@ -826,7 +826,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="dadaQ9JWyLtnCKq2mLA4-1" parent="1" style="rounded=1;sketch=0;container=1;recursiveResize=0;verticalAlign=top;arcSize=6;fontStyle=1;autosize=0;points=[];absoluteArcSize=1;shadow=1;strokeColor=#001DBC;fillColor=#0050ef;fontColor=#ffffff;fontFamily=Helvetica;fontSize=11;" value=":$ ./ndsl internalize.ohm internalize.rwr" vertex="1">
+        <mxCell id="dadaQ9JWyLtnCKq2mLA4-1" parent="1" style="rounded=1;sketch=0;container=1;recursiveResize=0;verticalAlign=top;arcSize=6;fontStyle=1;autosize=0;points=[];absoluteArcSize=1;shadow=1;strokeColor=#001DBC;fillColor=#0050ef;fontColor=#ffffff;fontFamily=Helvetica;fontSize=11;" value=":$ _/t2t internalize" vertex="1">
           <mxGeometry height="110" width="320" x="370" y="120" as="geometry">
             <mxRectangle height="26" width="99" x="-98" y="-1230" as="alternateBounds" />
           </mxGeometry>
@@ -860,7 +860,7 @@
         <mxCell id="3agkhUF_di49Wr5K8_dQ-4" parent="3agkhUF_di49Wr5K8_dQ-1" style="rhombus;whiteSpace=wrap;html=1;rounded=1;fillColor=#0050ef;fontColor=#ffffff;strokeColor=#001DBC;fontStyle=1;glass=0;sketch=0;fontSize=12;points=[[0,0.5,0,0,0],[0.5,0,0,0,0],[0.5,1,0,0,0],[1,0.5,0,0,0]];shadow=1;textOpacity=30;" value="✗" vertex="1">
           <mxGeometry height="40" width="40" x="470" y="260" as="geometry" />
         </mxCell>
-        <mxCell id="3agkhUF_di49Wr5K8_dQ-5" parent="3agkhUF_di49Wr5K8_dQ-1" style="rounded=1;sketch=0;container=1;recursiveResize=0;verticalAlign=top;arcSize=6;fontStyle=1;autosize=0;points=[];absoluteArcSize=1;shadow=1;strokeColor=#001DBC;fillColor=#0050ef;fontColor=#ffffff;fontFamily=Helvetica;fontSize=11;" value=":$ ./ndsl semantics.ohm semantics.rwr" vertex="1">
+        <mxCell id="3agkhUF_di49Wr5K8_dQ-5" parent="3agkhUF_di49Wr5K8_dQ-1" style="rounded=1;sketch=0;container=1;recursiveResize=0;verticalAlign=top;arcSize=6;fontStyle=1;autosize=0;points=[];absoluteArcSize=1;shadow=1;strokeColor=#001DBC;fillColor=#0050ef;fontColor=#ffffff;fontFamily=Helvetica;fontSize=11;" value=":$ _/t2t semantics" vertex="1">
           <mxGeometry height="110" width="230" x="120" y="120" as="geometry">
             <mxRectangle height="26" width="99" x="-98" y="-1230" as="alternateBounds" />
           </mxGeometry>
@@ -894,7 +894,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="QfMkjQi60-kuk4cKw3E2" name="RT to Javascript">
-    <mxGraphModel dx="1057" dy="783" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+    <mxGraphModel dx="1096" dy="752" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -907,7 +907,7 @@
         <mxCell id="IO6PlH4Jl6gjGxsQ-cl9-3" parent="1" style="rhombus;whiteSpace=wrap;html=1;rounded=1;fillColor=#0050ef;fontColor=#ffffff;strokeColor=#001DBC;fontStyle=1;glass=0;sketch=0;fontSize=12;points=[[0,0.5,0,0,0],[0.5,0,0,0,0],[0.5,1,0,0,0],[1,0.5,0,0,0]];shadow=1;textOpacity=30;" value="✗" vertex="1">
           <mxGeometry height="40" width="40" x="440" y="260" as="geometry" />
         </mxCell>
-        <mxCell id="IO6PlH4Jl6gjGxsQ-cl9-4" parent="1" style="rounded=1;sketch=0;container=1;recursiveResize=0;verticalAlign=top;arcSize=6;fontStyle=1;autosize=0;points=[];absoluteArcSize=1;shadow=1;strokeColor=#001DBC;fillColor=#0050ef;fontColor=#ffffff;fontFamily=Helvetica;fontSize=11;" value=":$ ./ndsl emit.ohm emitjs.rwr" vertex="1">
+        <mxCell id="IO6PlH4Jl6gjGxsQ-cl9-4" parent="1" style="rounded=1;sketch=0;container=1;recursiveResize=0;verticalAlign=top;arcSize=6;fontStyle=1;autosize=0;points=[];absoluteArcSize=1;shadow=1;strokeColor=#001DBC;fillColor=#0050ef;fontColor=#ffffff;fontFamily=Helvetica;fontSize=11;" value=":$ _/t2t emit emitjs" vertex="1">
           <mxGeometry height="110" width="190" x="130" y="120" as="geometry">
             <mxRectangle height="26" width="99" x="-98" y="-1230" as="alternateBounds" />
           </mxGeometry>
@@ -941,7 +941,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="hqZgSY2pOB1q9fmTs0JZ" name="RT to Python">
-    <mxGraphModel dx="1057" dy="783" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+    <mxGraphModel dx="1096" dy="752" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -954,7 +954,7 @@
         <mxCell id="ZC9i2CFqTmacdV5gmGcM-3" parent="1" style="rhombus;whiteSpace=wrap;html=1;rounded=1;fillColor=#0050ef;fontColor=#ffffff;strokeColor=#001DBC;fontStyle=1;glass=0;sketch=0;fontSize=12;points=[[0,0.5,0,0,0],[0.5,0,0,0,0],[0.5,1,0,0,0],[1,0.5,0,0,0]];shadow=1;textOpacity=30;" value="✗" vertex="1">
           <mxGeometry height="40" width="40" x="440" y="260" as="geometry" />
         </mxCell>
-        <mxCell id="ZC9i2CFqTmacdV5gmGcM-4" parent="1" style="rounded=1;sketch=0;container=1;recursiveResize=0;verticalAlign=top;arcSize=6;fontStyle=1;autosize=0;points=[];absoluteArcSize=1;shadow=1;strokeColor=#001DBC;fillColor=#0050ef;fontColor=#ffffff;fontFamily=Helvetica;fontSize=11;" value=":$ ./ndsl emit.ohm emitPython.rwr" vertex="1">
+        <mxCell id="ZC9i2CFqTmacdV5gmGcM-4" parent="1" style="rounded=1;sketch=0;container=1;recursiveResize=0;verticalAlign=top;arcSize=6;fontStyle=1;autosize=0;points=[];absoluteArcSize=1;shadow=1;strokeColor=#001DBC;fillColor=#0050ef;fontColor=#ffffff;fontFamily=Helvetica;fontSize=11;" value=":$ _/t2t emit emitpython" vertex="1">
           <mxGeometry height="110" width="190" x="130" y="120" as="geometry">
             <mxRectangle height="26" width="99" x="-98" y="-1230" as="alternateBounds" />
           </mxGeometry>
@@ -988,7 +988,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="Rqw9GuQsN1vaa-JMX1Ie" name="RT to Common Lisp">
-    <mxGraphModel dx="1057" dy="783" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+    <mxGraphModel dx="1096" dy="752" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -1001,7 +1001,7 @@
         <mxCell id="8YWdPHGE6ZoPQTHgXTvZ-3" parent="1" style="rhombus;whiteSpace=wrap;html=1;rounded=1;fillColor=#0050ef;fontColor=#ffffff;strokeColor=#001DBC;fontStyle=1;glass=0;sketch=0;fontSize=12;points=[[0,0.5,0,0,0],[0.5,0,0,0,0],[0.5,1,0,0,0],[1,0.5,0,0,0]];shadow=1;textOpacity=30;" value="✗" vertex="1">
           <mxGeometry height="40" width="40" x="440" y="260" as="geometry" />
         </mxCell>
-        <mxCell id="8YWdPHGE6ZoPQTHgXTvZ-4" parent="1" style="rounded=1;sketch=0;container=1;recursiveResize=0;verticalAlign=top;arcSize=6;fontStyle=1;autosize=0;points=[];absoluteArcSize=1;shadow=1;strokeColor=#001DBC;fillColor=#0050ef;fontColor=#ffffff;fontFamily=Helvetica;fontSize=11;" value=":$ ./ndsl emit.ohm emitcl.rwr" vertex="1">
+        <mxCell id="8YWdPHGE6ZoPQTHgXTvZ-4" parent="1" style="rounded=1;sketch=0;container=1;recursiveResize=0;verticalAlign=top;arcSize=6;fontStyle=1;autosize=0;points=[];absoluteArcSize=1;shadow=1;strokeColor=#001DBC;fillColor=#0050ef;fontColor=#ffffff;fontFamily=Helvetica;fontSize=11;" value=":$ _/t2t emit emitcl" vertex="1">
           <mxGeometry height="110" width="190" x="130" y="120" as="geometry">
             <mxRectangle height="26" width="99" x="-98" y="-1230" as="alternateBounds" />
           </mxGeometry>
@@ -1014,9 +1014,6 @@
         </mxCell>
         <mxCell id="8YWdPHGE6ZoPQTHgXTvZ-7" parent="8YWdPHGE6ZoPQTHgXTvZ-4" style="rounded=1;whiteSpace=wrap;html=1;sketch=0;points=[[0,0.5,0,0,0],[1,0.5,0,0,0]];fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;arcSize=50;fontFamily=Helvetica;fontSize=11;textOpacity=30;" value="✗" vertex="1">
           <mxGeometry height="25" width="35.25" x="170" y="67.5" as="geometry" />
-        </mxCell>
-        <mxCell id="8YWdPHGE6ZoPQTHgXTvZ-8" parent="8YWdPHGE6ZoPQTHgXTvZ-4" style="rounded=1;whiteSpace=wrap;sketch=0;points=[[0,0.5,0,0,0],[1,0.5,0,0,0]];fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;arcSize=50;fontFamily=Helvetica;fontSize=11;labelBackgroundColor=none;" value="👀" vertex="1">
-          <mxGeometry height="25" width="35.25" x="77.37" y="85" as="geometry" />
         </mxCell>
         <mxCell id="8YWdPHGE6ZoPQTHgXTvZ-9" edge="1" parent="1" source="8YWdPHGE6ZoPQTHgXTvZ-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;strokeWidth=2;" target="8YWdPHGE6ZoPQTHgXTvZ-5">
           <mxGeometry relative="1" as="geometry" />
@@ -1038,7 +1035,7 @@
     </mxGraphModel>
   </diagram>
   <diagram name="Uninternalize" id="yR5oZ1h_S7ZLmSGezaBp">
-    <mxGraphModel dx="1057" dy="783" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+    <mxGraphModel dx="1096" dy="752" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
       <root>
         <mxCell id="c91dSZDJYJj_W9c63cXH-0" />
         <mxCell id="c91dSZDJYJj_W9c63cXH-1" parent="c91dSZDJYJj_W9c63cXH-0" />
@@ -1085,7 +1082,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="DWxpu4sDnWmoSE2PDSY-" name="Decode For Javascript">
-    <mxGraphModel dx="1057" dy="783" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+    <mxGraphModel dx="1096" dy="752" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -1098,7 +1095,7 @@
         <mxCell id="d5O_rO45kLhP89n0BcdW-3" parent="1" style="rhombus;whiteSpace=wrap;html=1;rounded=1;fillColor=#0050ef;fontColor=#ffffff;strokeColor=#001DBC;fontStyle=1;glass=0;sketch=0;fontSize=12;points=[[0,0.5,0,0,0],[0.5,0,0,0,0],[0.5,1,0,0,0],[1,0.5,0,0,0]];shadow=1;textOpacity=30;" value="✗" vertex="1">
           <mxGeometry height="40" width="40" x="500" y="260" as="geometry" />
         </mxCell>
-        <mxCell id="d5O_rO45kLhP89n0BcdW-4" parent="1" style="rounded=1;sketch=0;container=1;recursiveResize=0;verticalAlign=top;arcSize=6;fontStyle=1;autosize=0;points=[];absoluteArcSize=1;shadow=1;strokeColor=#001DBC;fillColor=#0050ef;fontColor=#ffffff;fontFamily=Helvetica;fontSize=11;" value=":$ ./ndsl jsdecode.ohm jsdecode.rwr" vertex="1">
+        <mxCell id="d5O_rO45kLhP89n0BcdW-4" parent="1" style="rounded=1;sketch=0;container=1;recursiveResize=0;verticalAlign=top;arcSize=6;fontStyle=1;autosize=0;points=[];absoluteArcSize=1;shadow=1;strokeColor=#001DBC;fillColor=#0050ef;fontColor=#ffffff;fontFamily=Helvetica;fontSize=11;" value=":$ _/t2t jsdecode" vertex="1">
           <mxGeometry height="110" width="250" x="130" y="120" as="geometry">
             <mxRectangle height="26" width="99" x="-98" y="-1230" as="alternateBounds" />
           </mxGeometry>
@@ -1132,7 +1129,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="JeOKKricKCzmu5PoCy9M" name="Javascript Indenter">
-    <mxGraphModel dx="1057" dy="783" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+    <mxGraphModel dx="1096" dy="752" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -1410,7 +1407,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="7wdPJ3TAZ5cbLgi_i7a8" name="Decode for Python">
-    <mxGraphModel dx="1057" dy="783" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+    <mxGraphModel dx="1096" dy="752" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -1423,7 +1420,7 @@
         <mxCell id="LGHM_up3pVyl5e4dFS0S-3" parent="1" style="rhombus;whiteSpace=wrap;html=1;rounded=1;fillColor=#0050ef;fontColor=#ffffff;strokeColor=#001DBC;fontStyle=1;glass=0;sketch=0;fontSize=12;points=[[0,0.5,0,0,0],[0.5,0,0,0,0],[0.5,1,0,0,0],[1,0.5,0,0,0]];shadow=1;textOpacity=30;" value="✗" vertex="1">
           <mxGeometry height="40" width="40" x="500" y="260" as="geometry" />
         </mxCell>
-        <mxCell id="LGHM_up3pVyl5e4dFS0S-4" parent="1" style="rounded=1;sketch=0;container=1;recursiveResize=0;verticalAlign=top;arcSize=6;fontStyle=1;autosize=0;points=[];absoluteArcSize=1;shadow=1;strokeColor=#001DBC;fillColor=#0050ef;fontColor=#ffffff;fontFamily=Helvetica;fontSize=11;" value=":$ ./ndsl pydecode.ohm pydecode.rwr" vertex="1">
+        <mxCell id="LGHM_up3pVyl5e4dFS0S-4" parent="1" style="rounded=1;sketch=0;container=1;recursiveResize=0;verticalAlign=top;arcSize=6;fontStyle=1;autosize=0;points=[];absoluteArcSize=1;shadow=1;strokeColor=#001DBC;fillColor=#0050ef;fontColor=#ffffff;fontFamily=Helvetica;fontSize=11;" value=":$ _/t2t pydecode" vertex="1">
           <mxGeometry height="110" width="250" x="130" y="120" as="geometry">
             <mxRectangle height="26" width="99" x="-98" y="-1230" as="alternateBounds" />
           </mxGeometry>
@@ -1457,7 +1454,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="rakoffg9tUMsYpARlFxs" name="Python Indenter">
-    <mxGraphModel dx="1057" dy="783" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+    <mxGraphModel dx="1096" dy="752" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -1636,7 +1633,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="TZrzFXD8MfoQMuFOmH84" name="Decode For Common Lisp">
-    <mxGraphModel dx="1057" dy="783" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+    <mxGraphModel dx="1096" dy="752" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -1649,7 +1646,7 @@
         <mxCell id="zOlpRbpYc2PoQo7tLMLE-3" parent="1" style="rhombus;whiteSpace=wrap;html=1;rounded=1;fillColor=#0050ef;fontColor=#ffffff;strokeColor=#001DBC;fontStyle=1;glass=0;sketch=0;fontSize=12;points=[[0,0.5,0,0,0],[0.5,0,0,0,0],[0.5,1,0,0,0],[1,0.5,0,0,0]];shadow=1;textOpacity=30;" value="✗" vertex="1">
           <mxGeometry height="40" width="40" x="520" y="260" as="geometry" />
         </mxCell>
-        <mxCell id="zOlpRbpYc2PoQo7tLMLE-4" parent="1" style="rounded=1;sketch=0;container=1;recursiveResize=0;verticalAlign=top;arcSize=6;fontStyle=1;autosize=0;points=[];absoluteArcSize=1;shadow=1;strokeColor=#001DBC;fillColor=#0050ef;fontColor=#ffffff;fontFamily=Helvetica;fontSize=11;" value=":$ ./ndsl cldecode.ohm cldecode.rwr" vertex="1">
+        <mxCell id="zOlpRbpYc2PoQo7tLMLE-4" parent="1" style="rounded=1;sketch=0;container=1;recursiveResize=0;verticalAlign=top;arcSize=6;fontStyle=1;autosize=0;points=[];absoluteArcSize=1;shadow=1;strokeColor=#001DBC;fillColor=#0050ef;fontColor=#ffffff;fontFamily=Helvetica;fontSize=11;" value=":$ _/t2t cldecode" vertex="1">
           <mxGeometry height="110" width="270" x="130" y="120" as="geometry">
             <mxRectangle height="26" width="99" x="-98" y="-1230" as="alternateBounds" />
           </mxGeometry>
@@ -1683,7 +1680,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="pi6j_Dy-WRJjeVx93RjM" name="Common Lisp Indenter">
-    <mxGraphModel dx="1057" dy="783" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+    <mxGraphModel dx="1096" dy="752" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />

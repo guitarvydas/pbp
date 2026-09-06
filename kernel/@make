@@ -57,6 +57,4 @@ if [ "$level" = "top" ]; then
 fi
 
 rm -f temp.*
-
-
-
+rm -f *.drawio.json
