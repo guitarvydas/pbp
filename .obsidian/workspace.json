@@ -215,17 +215,18 @@
   },
   "active": "2aafda6bd4dc58d5",
   "lastOpenFiles": [
+    "kernel/video/C Port of PBP Kernel - Remove The Old Preamble.mp4.crswap",
+    "kernel/video/C Port of PBP Kernel - Remove The Old Preamble.mp4",
+    "kernel/video/C Port of PBP Kernel.mp4.crswap",
+    "kernel/video/20-erase-preamble.mov",
+    "kernel/video/C Port of PBP Kernel.mp4",
+    "kernel/video/probe.png",
     "kernel/video/13-fifth-run.mov",
     "kernel/temp.nanodsl.6253.mjs",
     "kernel/temp.nanodsl.3527.mjs",
     "kernel/temp.nanodsl.801.mjs",
     "kernel/temp.nanodsl.14913.mjs",
     "kernel/temp.nanodsl.24966.mjs",
-    "kernel/temp.nanodsl.5402.mjs",
-    "kernel/temp.nanodsl.17697.mjs",
-    "kernel/temp.nanodsl.14971.mjs",
-    "kernel/temp.nanodsl.27267.mjs",
-    "kernel/temp.nanodsl.8611.mjs",
     "kernel/out.md",
     "kernel/C-PORT.md",
     "kernel/_notes/prompt.md",
@@ -259,7 +260,6 @@
     "t2t-d/doc-d/rwr/rwr-overview-t2t c.drawio.png",
     "t2t-d/doc-d/rwr/rwr-overview-t2t c-t2t c.jpg",
     "t2t-d/doc-d/rwr/rwr-overview-t2t b.drawio.png",
-    "t2t-d/doc-d/rwr/rwr-overview-t2t c-t2t c.drawio.png",
-    "t2t-d/doc-d/rwr/rwr-overview-t2t b copy.drawio.png"
+    "t2t-d/doc-d/rwr/rwr-overview-t2t c-t2t c.drawio.png"
   ]
 }
