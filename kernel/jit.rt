@@ -25,7 +25,7 @@ defn handle_jit (eh, mev) {
 }
 
 defn probe_handler (eh, tag, mev) {
-    s ≡ mev.datum.v
+    s ≡ mev.payload.v
     #live_update (“Info”,
         #strcons (“  @”, 
                   #strcons (#asstr (ticktime),
@@ -37,7 +37,7 @@ defn probe_handler (eh, tag, mev) {
 }
 
 defn shell_out_handler (eh, cmd, mev) {
-    s ≡ mev.datum.v
+    s ≡ mev.payload.v
     deftemp ret ⇐ ϕ
     deftemp rc ⇐ ϕ
     deftemp stdout ⇐ ϕ

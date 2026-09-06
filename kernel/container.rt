@@ -119,7 +119,7 @@ defn sender_eq (s1, s2) {
 ⌈ Delivers the given mevent to the receiver of this connector.⌉
 
 defn deposit (parent, conn, mevent) {
-    new_mevent ≡ make_mevent (conn.receiver.port, mevent.datum)
+    new_mevent ≡ make_mevent (conn.receiver.port, mevent.payload)
     push_mevent (parent, conn.receiver.component, conn.receiver.queue, new_mevent)
 }
 
@@ -277,7 +277,7 @@ defn send (eh,port,obj,causingMevent) {
 }
 
 defn forward (eh, port, mev) {
-    fwdmev ≡ make_mevent(port, mev.datum)
+    fwdmev ≡ make_mevent(port, mev.payload)
     put_output (eh, fwdmev)
 }
 

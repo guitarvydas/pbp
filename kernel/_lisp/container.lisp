@@ -160,7 +160,7 @@
   ) #|  Delivers the given mevent to the receiver of this connector. |# #|line 119|# #|line 120|#
 (defun deposit (&optional  parent  conn  mevent)
   (declare (ignorable  parent  conn  mevent))               #|line 121|#
-  (let ((new_mevent (funcall (quote make_mevent)  (slot-value (slot-value  conn 'receiver) 'port) (slot-value  mevent 'datum)  #|line 122|#)))
+  (let ((new_mevent (funcall (quote make_mevent)  (slot-value (slot-value  conn 'receiver) 'port) (slot-value  mevent 'payload)  #|line 122|#)))
     (declare (ignorable new_mevent))
     (funcall (quote push_mevent)   parent (slot-value (slot-value  conn 'receiver) 'component) (slot-value (slot-value  conn 'receiver) 'queue)  new_mevent  #|line 123|#)) #|line 124|#
   )
@@ -351,7 +351,7 @@
   )
 (defun forward (&optional  eh  port  mev)
   (declare (ignorable  eh  port  mev))                      #|line 279|#
-  (let ((fwdmev (funcall (quote make_mevent)   port (slot-value  mev 'datum)  #|line 280|#)))
+  (let ((fwdmev (funcall (quote make_mevent)   port (slot-value  mev 'payload)  #|line 280|#)))
     (declare (ignorable fwdmev))
     (funcall (quote put_output)   eh  fwdmev                #|line 281|#)) #|line 282|#
   )

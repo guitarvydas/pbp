@@ -20,11 +20,11 @@ def handle_jit (eh,mev):                               #line 14
         send ( eh, "",  s[1:] , mev)                   #line 23#line 24#line 25#line 26
 
 def probe_handler (eh,tag,mev):                        #line 27
-    s =  mev.datum.v                                   #line 28
+    s =  mev.payload.v                                 #line 28
     live_update ( "Info",  str( "  @") +  str(str ( ticktime)) +  str( "  ") +  str( "probe ") +  str( eh.name) +  str( ": ") + str ( s)      )#line 36#line 37#line 38
 
 def shell_out_handler (eh,cmd,mev):                    #line 39
-    s =  mev.datum.v                                   #line 40
+    s =  mev.payload.v                                 #line 40
     ret =  None                                        #line 41
     rc =  None                                         #line 42
     stdout =  None                                     #line 43

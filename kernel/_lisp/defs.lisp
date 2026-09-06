@@ -138,7 +138,7 @@ x))))
 (defclass Mevent ()                                         #|line 43|#
   (
     (port :accessor port :initarg :port :initform  nil)     #|line 44|#
-    (datum :accessor datum :initarg :datum :initform  nil)  #|line 45|#)) #|line 46|#
+    (payload :accessor payload :initarg :payload :initform  nil)  #|line 45|#)) #|line 46|#
 
                                                             #|line 47|#
 (defun clone_port (&optional  s)
@@ -152,7 +152,7 @@ x))))
     (let (( m  (make-instance 'Mevent)                      #|line 56|#))
       (declare (ignorable  m))
       (setf (slot-value  m 'port)  p)                       #|line 57|#
-      (setf (slot-value  m 'datum) (funcall (slot-value  datum 'clone) )) #|line 58|#
+      (setf (slot-value  m 'payload) (funcall (slot-value  datum 'clone) )) #|line 58|#
       (return-from make_mevent  m)                          #|line 59|#)) #|line 60|#
   ) #|  Clones a mevent. Primarily used internally for “fanning out“ a mevent to multiple destinations. |# #|line 62|#
 (defun mevent_clone (&optional  mev)
@@ -160,7 +160,7 @@ x))))
   (let (( m  (make-instance 'Mevent)                        #|line 64|#))
     (declare (ignorable  m))
     (setf (slot-value  m 'port) (funcall (quote clone_port)  (slot-value  mev 'port)  #|line 65|#))
-    (setf (slot-value  m 'datum) (funcall (slot-value (slot-value  mev 'datum) 'clone) )) #|line 66|#
+    (setf (slot-value  m 'payload) (funcall (slot-value (slot-value  mev 'payload) 'clone) )) #|line 66|#
     (return-from mevent_clone  m)                           #|line 67|#) #|line 68|#
   ) #|  Frees a mevent. |#                                  #|line 70|#
 (defun destroy_mevent (&optional  mev)
@@ -183,7 +183,7 @@ x))))
       (return-from format_mevent  "{}")                     #|line 87|#
       )
     (t                                                      #|line 88|#
-      (return-from format_mevent  (concatenate 'string  "{%5C”"  (concatenate 'string (slot-value  m 'port)  (concatenate 'string  "%5C”:%5C”"  (concatenate 'string (slot-value (slot-value  m 'datum) 'v)  "%5C”}")))) #|line 89|#) #|line 90|#
+      (return-from format_mevent  (concatenate 'string  "{%5C”"  (concatenate 'string (slot-value  m 'port)  (concatenate 'string  "%5C”:%5C”"  (concatenate 'string (slot-value (slot-value  m 'payload) 'v)  "%5C”}")))) #|line 89|#) #|line 90|#
       ))                                                    #|line 91|#
   )
 (defun format_mevent_raw (&optional  m)
@@ -193,7 +193,7 @@ x))))
       (return-from format_mevent_raw  "")                   #|line 94|#
       )
     (t                                                      #|line 95|#
-      (return-from format_mevent_raw (slot-value (slot-value  m 'datum) 'v)) #|line 96|# #|line 97|#
+      (return-from format_mevent_raw (slot-value (slot-value  m 'payload) 'v)) #|line 96|# #|line 97|#
       ))                                                    #|line 98|#
   )
 (defparameter  enumDown  0)

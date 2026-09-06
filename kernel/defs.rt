@@ -42,7 +42,7 @@ defobj Datum () {
 ⌈ `payload` is the data attached to this mevent.⌉
 defobj Mevent () {
         • port ⇐ ϕ
-        • datum ⇐ ϕ
+        • payload ⇐ ϕ
 }
 
 defn clone_port (s) {
@@ -55,7 +55,7 @@ defn make_mevent (port, datum) {
     p ≡ clone_string (port)
     deftemp m ⇐ #fresh (Mevent)
     m.port ⇐ p
-    m.datum ⇐ datum.clone ()
+    m.payload ⇐ datum.clone ()
     return m
 }
 
@@ -63,7 +63,7 @@ defn make_mevent (port, datum) {
 defn mevent_clone (mev) {
     deftemp m ⇐ #fresh (Mevent)
     m.port ⇐ clone_port (mev.port)
-    m.datum ⇐ mev.datum.clone ()
+    m.payload ⇐ mev.payload.clone ()
     return m
 }
 
@@ -86,14 +86,14 @@ defn format_mevent (m) {
     if m = ϕ {
         return “{}”
     } else {
-        return #strcons (“{\"”, #strcons (m.port, #strcons (“\":\"”, #strcons (m.datum.v, “\"}”))))
+        return #strcons (“{\"”, #strcons (m.port, #strcons (“\":\"”, #strcons (m.payload.v, “\"}”))))
     }
 }
 defn format_mevent_raw (m) {
     if m = ϕ {
         return “”
     } else {
-        return m.datum.v
+        return m.payload.v
     }
 }
 

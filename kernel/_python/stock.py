@@ -72,7 +72,7 @@ def low_level_read_text_file_instantiate (reg,owner,name,template_data,arg):#lin
     return make_leaf ( name_with_id, owner, None, "", low_level_read_text_file_handler, None)#line 82#line 83#line 84
 
 def low_level_read_text_file_handler (eh,mev):         #line 85
-    fname =  mev.datum.v                               #line 86
+    fname =  mev.payload.v                             #line 86
 
     try:
         f = open (fname)
@@ -94,10 +94,10 @@ def ensure_string_datum_instantiate (reg,owner,name,template_data,arg):#line 90
     return make_leaf ( name_with_id, owner, None, "", ensure_string_datum_handler, None)#line 92#line 93#line 94
 
 def ensure_string_datum_handler (eh,mev):              #line 95
-    if  "string" ==  mev.datum.kind ():                #line 96
+    if  "string" ==  mev.payload.kind ():              #line 96
         forward ( eh, "", mev)                         #line 97
     else:                                              #line 98
-        emev =  str( "*** ensure: type error (expected a string datum) but got ") +  mev.datum #line 99
+        emev =  str( "*** ensure: type error (expected a string payload) but got ") +  mev.payload #line 99
         send ( eh, "✗", emev, mev)                     #line 100#line 101#line 102#line 103
 
 class Syncfilewrite_Data:
@@ -116,12 +116,12 @@ def syncfilewrite_instantiate (reg,owner,name,template_data,arg):#line 113
 def syncfilewrite_handler (eh,mev):                    #line 119
     inst =  eh.instance_data                           #line 120
     if  "filename" ==  mev.port:                       #line 121
-        inst.filename =  mev.datum.v                   #line 122
+        inst.filename =  mev.payload.v                 #line 122
     elif  "input" ==  mev.port:                        #line 123
-        contents =  mev.datum.v                        #line 124
+        contents =  mev.payload.v                      #line 124
         f = open ( inst.filename, "w")                 #line 125
         if  f!= None:                                  #line 126
-            f.write ( mev.datum.v)                     #line 127
+            f.write ( mev.payload.v)                   #line 127
             f.close ()                                 #line 128
             send ( eh, "done",new_datum_bang (), mev)  #line 129
         else:                                          #line 130
@@ -145,10 +145,10 @@ def stringconcat_instantiate (reg,owner,name,template_data,arg):#line 147
 def stringconcat_handler (eh,mev):                     #line 153
     inst =  eh.instance_data                           #line 154
     if  "1" ==  mev.port:                              #line 155
-        inst.buffer1 = clone_string ( mev.datum.v)     #line 156
+        inst.buffer1 = clone_string ( mev.payload.v)   #line 156
         maybe_stringconcat ( eh, inst, mev)            #line 157
     elif  "2" ==  mev.port:                            #line 158
-        inst.buffer2 = clone_string ( mev.datum.v)     #line 159
+        inst.buffer2 = clone_string ( mev.payload.v)   #line 159
         maybe_stringconcat ( eh, inst, mev)            #line 160
     elif  "reset" ==  mev.port:                        #line 161
         inst.buffer1 =  None                           #line 162
@@ -237,7 +237,7 @@ def strcatstar_instantiate (reg,owner,name,template_data,arg):#line 258
 def strcatstar_handler (eh,mev):                       #line 264
     accum =  eh.instance_data                          #line 265
     if  "" ==  mev.port:                               #line 266
-        accum.s =  str( accum.s) +  mev.datum.v        #line 267
+        accum.s =  str( accum.s) +  mev.payload.v      #line 267
     elif  "fini" ==  mev.port:                         #line 268
         send ( eh, "", accum.s, mev)                   #line 269
     else:                                              #line 270
@@ -255,7 +255,7 @@ def stop_handler (eh,mev):                             #line 281
     print ( s, file=sys.stderr)                        #line 285
                                                        #line 286
     parent.stop ( parent)                              #line 287
-    send ( eh, "", mev.datum.v, mev)                   #line 288#line 289#line 290
+    send ( eh, "", mev.payload.v, mev)                 #line 288#line 289#line 290
 
 # all of the the built_in leaves are listed here       #line 291
 # future: refactor this such that programmers can pick and choose which (lumps of) builtins are used in a specific project#line 292#line 293

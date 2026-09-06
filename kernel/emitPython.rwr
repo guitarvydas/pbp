@@ -115,7 +115,7 @@ def deque_to_json(d):⤷
     #     A JSON string representation of the deque
     # """
     # # Convert deque to list of objects where each mevent's key contains its payload
-    ordered_list = [{mev.port: "" if mev.datum.v is None else mev.datum.v} for mev in d]
+    ordered_list = [{mev.port: "" if mev.payload.v is None else mev.payload.v} for mev in d]
     
     # # Convert to JSON with indentation for readability
     return json.dumps(ordered_list, indent=2)
