@@ -1,0 +1,1968 @@
+[
+  {
+    "name": "main",
+    "children": [
+      {
+        "name": "Front End",
+        "id": 8
+      },
+      {
+        "name": "Back End",
+        "id": 12
+      },
+      {
+        "name": ":?ghi",
+        "id": 19
+      }
+    ],
+    "connections": [
+      {
+        "dir": 0,
+        "source_port": "",
+        "target_port": "",
+        "target": {
+          "name": "Front End",
+          "id": 8
+        }
+      },
+      {
+        "dir": 0,
+        "source_port": "",
+        "target_port": "",
+        "target": {
+          "name": ":?ghi",
+          "id": 19
+        }
+      },
+      {
+        "dir": 1,
+        "source_port": "",
+        "target_port": "",
+        "source": {
+          "name": "Front End",
+          "id": 8
+        },
+        "target": {
+          "name": "Back End",
+          "id": 12
+        }
+      },
+      {
+        "dir": 2,
+        "source_port": "✗",
+        "target_port": "✗",
+        "source": {
+          "name": "Front End",
+          "id": 8
+        }
+      },
+      {
+        "dir": 2,
+        "source_port": "Javascript",
+        "target_port": "Javascript",
+        "source": {
+          "name": "Back End",
+          "id": 12
+        }
+      },
+      {
+        "dir": 2,
+        "source_port": "✗",
+        "target_port": "✗",
+        "source": {
+          "name": "Back End",
+          "id": 12
+        }
+      },
+      {
+        "dir": 2,
+        "source_port": "Python",
+        "target_port": "Python",
+        "source": {
+          "name": "Back End",
+          "id": 12
+        }
+      },
+      {
+        "dir": 2,
+        "source_port": "CL",
+        "target_port": "CommonLisp",
+        "source": {
+          "name": "Back End",
+          "id": 12
+        }
+      },
+      {
+        "dir": 2,
+        "source_port": "c",
+        "target_port": "c",
+        "source": {
+          "name": "Back End",
+          "id": 12
+        }
+      }
+    ],
+    "file": "kernel.drawio"
+  },
+  {
+    "name": "Front End",
+    "children": [
+      {
+        "name": "Inhale",
+        "id": 5
+      },
+      {
+        "name": "Semantics Check",
+        "id": 9
+      }
+    ],
+    "connections": [
+      {
+        "dir": 0,
+        "source_port": "",
+        "target_port": "",
+        "target": {
+          "name": "Inhale",
+          "id": 5
+        }
+      },
+      {
+        "dir": 1,
+        "source_port": "",
+        "target_port": "",
+        "source": {
+          "name": "Inhale",
+          "id": 5
+        },
+        "target": {
+          "name": "Semantics Check",
+          "id": 9
+        }
+      },
+      {
+        "dir": 2,
+        "source_port": "",
+        "target_port": "",
+        "source": {
+          "name": "Semantics Check",
+          "id": 9
+        }
+      },
+      {
+        "dir": 2,
+        "source_port": "✗",
+        "target_port": "✗",
+        "source": {
+          "name": "Semantics Check",
+          "id": 9
+        }
+      },
+      {
+        "dir": 2,
+        "source_port": "✗",
+        "target_port": "✗",
+        "source": {
+          "name": "Inhale",
+          "id": 5
+        }
+      }
+    ],
+    "file": "kernel.drawio"
+  },
+  {
+    "name": "Back End",
+    "children": [
+      {
+        "name": "Generate Javascript",
+        "id": 8
+      },
+      {
+        "name": "Generate Python",
+        "id": 12
+      },
+      {
+        "name": "Generate Common Lisp",
+        "id": 16
+      },
+      {
+        "name": "Cleanup",
+        "id": 20
+      },
+      {
+        "name": "Cleanup",
+        "id": 24
+      },
+      {
+        "name": "Cleanup",
+        "id": 28
+      },
+      {
+        "name": "Generate C",
+        "id": 32
+      },
+      {
+        "name": "Cleanup",
+        "id": 36
+      }
+    ],
+    "connections": [
+      {
+        "dir": 0,
+        "source_port": "",
+        "target_port": "",
+        "target": {
+          "name": "Generate Common Lisp",
+          "id": 16
+        }
+      },
+      {
+        "dir": 0,
+        "source_port": "",
+        "target_port": "",
+        "target": {
+          "name": "Generate Javascript",
+          "id": 8
+        }
+      },
+      {
+        "dir": 0,
+        "source_port": "",
+        "target_port": "",
+        "target": {
+          "name": "Generate Python",
+          "id": 12
+        }
+      },
+      {
+        "dir": 0,
+        "source_port": "",
+        "target_port": "",
+        "target": {
+          "name": "Generate C",
+          "id": 32
+        }
+      },
+      {
+        "dir": 1,
+        "source_port": "",
+        "target_port": "",
+        "source": {
+          "name": "Generate Javascript",
+          "id": 8
+        },
+        "target": {
+          "name": "Cleanup",
+          "id": 28
+        }
+      },
+      {
+        "dir": 1,
+        "source_port": "",
+        "target_port": "",
+        "source": {
+          "name": "Generate Python",
+          "id": 12
+        },
+        "target": {
+          "name": "Cleanup",
+          "id": 20
+        }
+      },
+      {
+        "dir": 1,
+        "source_port": "",
+        "target_port": "",
+        "source": {
+          "name": "Generate Common Lisp",
+          "id": 16
+        },
+        "target": {
+          "name": "Cleanup",
+          "id": 24
+        }
+      },
+      {
+        "dir": 1,
+        "source_port": "",
+        "target_port": "",
+        "source": {
+          "name": "Generate C",
+          "id": 32
+        },
+        "target": {
+          "name": "Cleanup",
+          "id": 36
+        }
+      },
+      {
+        "dir": 2,
+        "source_port": "✗",
+        "target_port": "✗",
+        "source": {
+          "name": "Generate Javascript",
+          "id": 8
+        }
+      },
+      {
+        "dir": 2,
+        "source_port": "✗",
+        "target_port": "✗",
+        "source": {
+          "name": "Generate Python",
+          "id": 12
+        }
+      },
+      {
+        "dir": 2,
+        "source_port": "✗",
+        "target_port": "✗",
+        "source": {
+          "name": "Generate Common Lisp",
+          "id": 16
+        }
+      },
+      {
+        "dir": 2,
+        "source_port": "",
+        "target_port": "Python",
+        "source": {
+          "name": "Cleanup",
+          "id": 20
+        }
+      },
+      {
+        "dir": 2,
+        "source_port": "✗",
+        "target_port": "✗",
+        "source": {
+          "name": "Cleanup",
+          "id": 20
+        }
+      },
+      {
+        "dir": 2,
+        "source_port": "",
+        "target_port": "Javascript",
+        "source": {
+          "name": "Cleanup",
+          "id": 28
+        }
+      },
+      {
+        "dir": 2,
+        "source_port": "✗",
+        "target_port": "✗",
+        "source": {
+          "name": "Cleanup",
+          "id": 28
+        }
+      },
+      {
+        "dir": 2,
+        "source_port": "",
+        "target_port": "CL",
+        "source": {
+          "name": "Cleanup",
+          "id": 24
+        }
+      },
+      {
+        "dir": 2,
+        "source_port": "✗",
+        "target_port": "✗",
+        "source": {
+          "name": "Cleanup",
+          "id": 24
+        }
+      },
+      {
+        "dir": 2,
+        "source_port": "",
+        "target_port": "c",
+        "source": {
+          "name": "Cleanup",
+          "id": 36
+        }
+      },
+      {
+        "dir": 2,
+        "source_port": "✗",
+        "target_port": "✗",
+        "source": {
+          "name": "Cleanup",
+          "id": 36
+        }
+      },
+      {
+        "dir": 2,
+        "source_port": "✗",
+        "target_port": "✗",
+        "source": {
+          "name": "Generate C",
+          "id": 32
+        }
+      }
+    ],
+    "file": "kernel.drawio"
+  },
+  {
+    "name": "Generate Javascript",
+    "children": [
+      {
+        "name": "RT to Javascript",
+        "id": 5
+      },
+      {
+        "name": "Exhale Javascript",
+        "id": 9
+      },
+      {
+        "name": ":$ python3 jsrelocate.py 55",
+        "id": 13
+      },
+      {
+        "name": "Grep for Errors",
+        "id": 17
+      }
+    ],
+    "connections": [
+      {
+        "dir": 0,
+        "source_port": "",
+        "target_port": "",
+        "target": {
+          "name": "RT to Javascript",
+          "id": 5
+        }
+      },
+      {
+        "dir": 1,
+        "source_port": "",
+        "target_port": "",
+        "source": {
+          "name": "Exhale Javascript",
+          "id": 9
+        },
+        "target": {
+          "name": ":$ python3 jsrelocate.py 55",
+          "id": 13
+        }
+      },
+      {
+        "dir": 1,
+        "source_port": "",
+        "target_port": "",
+        "source": {
+          "name": "RT to Javascript",
+          "id": 5
+        },
+        "target": {
+          "name": "Exhale Javascript",
+          "id": 9
+        }
+      },
+      {
+        "dir": 1,
+        "source_port": "",
+        "target_port": "",
+        "source": {
+          "name": ":$ python3 jsrelocate.py 55",
+          "id": 13
+        },
+        "target": {
+          "name": "Grep for Errors",
+          "id": 17
+        }
+      },
+      {
+        "dir": 2,
+        "source_port": "✗",
+        "target_port": "✗",
+        "source": {
+          "name": "RT to Javascript",
+          "id": 5
+        }
+      },
+      {
+        "dir": 2,
+        "source_port": "✗",
+        "target_port": "✗",
+        "source": {
+          "name": "Exhale Javascript",
+          "id": 9
+        }
+      },
+      {
+        "dir": 2,
+        "source_port": "✗",
+        "target_port": "✗",
+        "source": {
+          "name": ":$ python3 jsrelocate.py 55",
+          "id": 13
+        }
+      },
+      {
+        "dir": 2,
+        "source_port": "✗",
+        "target_port": "✗",
+        "source": {
+          "name": "Grep for Errors",
+          "id": 17
+        }
+      },
+      {
+        "dir": 2,
+        "source_port": "",
+        "target_port": "",
+        "source": {
+          "name": "Grep for Errors",
+          "id": 17
+        }
+      }
+    ],
+    "file": "kernel.drawio"
+  },
+  {
+    "name": "Generate Python",
+    "children": [
+      {
+        "name": "RT to Python",
+        "id": 5
+      },
+      {
+        "name": "Exhale Python",
+        "id": 9
+      },
+      {
+        "name": ":$ python3 pyrelocate.py 55",
+        "id": 13
+      },
+      {
+        "name": "Grep for Errors",
+        "id": 17
+      }
+    ],
+    "connections": [
+      {
+        "dir": 0,
+        "source_port": "",
+        "target_port": "",
+        "target": {
+          "name": "RT to Python",
+          "id": 5
+        }
+      },
+      {
+        "dir": 1,
+        "source_port": "",
+        "target_port": "",
+        "source": {
+          "name": "Exhale Python",
+          "id": 9
+        },
+        "target": {
+          "name": ":$ python3 pyrelocate.py 55",
+          "id": 13
+        }
+      },
+      {
+        "dir": 1,
+        "source_port": "",
+        "target_port": "",
+        "source": {
+          "name": "RT to Python",
+          "id": 5
+        },
+        "target": {
+          "name": "Exhale Python",
+          "id": 9
+        }
+      },
+      {
+        "dir": 1,
+        "source_port": "",
+        "target_port": "",
+        "source": {
+          "name": ":$ python3 pyrelocate.py 55",
+          "id": 13
+        },
+        "target": {
+          "name": "Grep for Errors",
+          "id": 17
+        }
+      },
+      {
+        "dir": 2,
+        "source_port": "✗",
+        "target_port": "✗",
+        "source": {
+          "name": "RT to Python",
+          "id": 5
+        }
+      },
+      {
+        "dir": 2,
+        "source_port": "✗",
+        "target_port": "✗",
+        "source": {
+          "name": "Exhale Python",
+          "id": 9
+        }
+      },
+      {
+        "dir": 2,
+        "source_port": "✗",
+        "target_port": "✗",
+        "source": {
+          "name": "Grep for Errors",
+          "id": 17
+        }
+      },
+      {
+        "dir": 2,
+        "source_port": "✗",
+        "target_port": "✗",
+        "source": {
+          "name": ":$ python3 pyrelocate.py 55",
+          "id": 13
+        }
+      },
+      {
+        "dir": 2,
+        "source_port": "",
+        "target_port": "",
+        "source": {
+          "name": "Grep for Errors",
+          "id": 17
+        }
+      }
+    ],
+    "file": "kernel.drawio"
+  },
+  {
+    "name": "Generate C",
+    "children": [
+      {
+        "name": "RT to C",
+        "id": 5
+      },
+      {
+        "name": "Exhale C",
+        "id": 9
+      },
+      {
+        "name": ":$ python3 crelocate.py 55",
+        "id": 13
+      },
+      {
+        "name": "Grep for Errors",
+        "id": 17
+      }
+    ],
+    "connections": [
+      {
+        "dir": 0,
+        "source_port": "",
+        "target_port": "",
+        "target": {
+          "name": "RT to C",
+          "id": 5
+        }
+      },
+      {
+        "dir": 1,
+        "source_port": "",
+        "target_port": "",
+        "source": {
+          "name": "Exhale C",
+          "id": 9
+        },
+        "target": {
+          "name": ":$ python3 crelocate.py 55",
+          "id": 13
+        }
+      },
+      {
+        "dir": 1,
+        "source_port": "",
+        "target_port": "",
+        "source": {
+          "name": "RT to C",
+          "id": 5
+        },
+        "target": {
+          "name": "Exhale C",
+          "id": 9
+        }
+      },
+      {
+        "dir": 1,
+        "source_port": "",
+        "target_port": "",
+        "source": {
+          "name": ":$ python3 crelocate.py 55",
+          "id": 13
+        },
+        "target": {
+          "name": "Grep for Errors",
+          "id": 17
+        }
+      },
+      {
+        "dir": 2,
+        "source_port": "✗",
+        "target_port": "✗",
+        "source": {
+          "name": "RT to C",
+          "id": 5
+        }
+      },
+      {
+        "dir": 2,
+        "source_port": "✗",
+        "target_port": "✗",
+        "source": {
+          "name": "Exhale C",
+          "id": 9
+        }
+      },
+      {
+        "dir": 2,
+        "source_port": "✗",
+        "target_port": "✗",
+        "source": {
+          "name": "Grep for Errors",
+          "id": 17
+        }
+      },
+      {
+        "dir": 2,
+        "source_port": "✗",
+        "target_port": "✗",
+        "source": {
+          "name": ":$ python3 crelocate.py 55",
+          "id": 13
+        }
+      },
+      {
+        "dir": 2,
+        "source_port": "",
+        "target_port": "",
+        "source": {
+          "name": "Grep for Errors",
+          "id": 17
+        }
+      }
+    ],
+    "file": "kernel.drawio"
+  },
+  {
+    "name": "Generate Common Lisp",
+    "children": [
+      {
+        "name": "RT to Common Lisp",
+        "id": 5
+      },
+      {
+        "name": "Exhale Common Lisp",
+        "id": 9
+      },
+      {
+        "name": ":$ python3 clrelocate.py 60",
+        "id": 13
+      },
+      {
+        "name": "Grep for Errors",
+        "id": 17
+      }
+    ],
+    "connections": [
+      {
+        "dir": 0,
+        "source_port": "",
+        "target_port": "",
+        "target": {
+          "name": "RT to Common Lisp",
+          "id": 5
+        }
+      },
+      {
+        "dir": 1,
+        "source_port": "",
+        "target_port": "",
+        "source": {
+          "name": "Exhale Common Lisp",
+          "id": 9
+        },
+        "target": {
+          "name": ":$ python3 clrelocate.py 60",
+          "id": 13
+        }
+      },
+      {
+        "dir": 1,
+        "source_port": "",
+        "target_port": "",
+        "source": {
+          "name": "RT to Common Lisp",
+          "id": 5
+        },
+        "target": {
+          "name": "Exhale Common Lisp",
+          "id": 9
+        }
+      },
+      {
+        "dir": 1,
+        "source_port": "",
+        "target_port": "",
+        "source": {
+          "name": ":$ python3 clrelocate.py 60",
+          "id": 13
+        },
+        "target": {
+          "name": "Grep for Errors",
+          "id": 17
+        }
+      },
+      {
+        "dir": 2,
+        "source_port": "✗",
+        "target_port": "✗",
+        "source": {
+          "name": "RT to Common Lisp",
+          "id": 5
+        }
+      },
+      {
+        "dir": 2,
+        "source_port": "✗",
+        "target_port": "✗",
+        "source": {
+          "name": "Exhale Common Lisp",
+          "id": 9
+        }
+      },
+      {
+        "dir": 2,
+        "source_port": "✗",
+        "target_port": "✗",
+        "source": {
+          "name": "Grep for Errors",
+          "id": 17
+        }
+      },
+      {
+        "dir": 2,
+        "source_port": "✗",
+        "target_port": "✗",
+        "source": {
+          "name": ":$ python3 clrelocate.py 60",
+          "id": 13
+        }
+      },
+      {
+        "dir": 2,
+        "source_port": "",
+        "target_port": "",
+        "source": {
+          "name": "Grep for Errors",
+          "id": 17
+        }
+      }
+    ],
+    "file": "kernel.drawio"
+  },
+  {
+    "name": "Inhale",
+    "children": [
+      {
+        "name": "Read Text File",
+        "id": 5
+      },
+      {
+        "name": ":$ _/t2t internalize",
+        "id": 9
+      }
+    ],
+    "connections": [
+      {
+        "dir": 0,
+        "source_port": "",
+        "target_port": "",
+        "target": {
+          "name": "Read Text File",
+          "id": 5
+        }
+      },
+      {
+        "dir": 1,
+        "source_port": "",
+        "target_port": "",
+        "source": {
+          "name": "Read Text File",
+          "id": 5
+        },
+        "target": {
+          "name": ":$ _/t2t internalize",
+          "id": 9
+        }
+      },
+      {
+        "dir": 2,
+        "source_port": "",
+        "target_port": "",
+        "source": {
+          "name": ":$ _/t2t internalize",
+          "id": 9
+        }
+      },
+      {
+        "dir": 2,
+        "source_port": "✗",
+        "target_port": "✗",
+        "source": {
+          "name": "Read Text File",
+          "id": 5
+        }
+      },
+      {
+        "dir": 2,
+        "source_port": "✗",
+        "target_port": "✗",
+        "source": {
+          "name": ":$ _/t2t internalize",
+          "id": 9
+        }
+      }
+    ],
+    "file": "kernel.drawio"
+  },
+  {
+    "name": "Semantics Check",
+    "children": [
+      {
+        "name": ":$ _/t2t semantics",
+        "id": 5
+      }
+    ],
+    "connections": [
+      {
+        "dir": 0,
+        "source_port": "",
+        "target_port": "",
+        "target": {
+          "name": ":$ _/t2t semantics",
+          "id": 5
+        }
+      },
+      {
+        "dir": 2,
+        "source_port": "",
+        "target_port": "",
+        "source": {
+          "name": ":$ _/t2t semantics",
+          "id": 5
+        }
+      },
+      {
+        "dir": 2,
+        "source_port": "✗",
+        "target_port": "✗",
+        "source": {
+          "name": ":$ _/t2t semantics",
+          "id": 5
+        }
+      }
+    ],
+    "file": "kernel.drawio"
+  },
+  {
+    "name": "RT to Javascript",
+    "children": [
+      {
+        "name": ":$ _/t2t emit emitjs",
+        "id": 5
+      }
+    ],
+    "connections": [
+      {
+        "dir": 0,
+        "source_port": "",
+        "target_port": "",
+        "target": {
+          "name": ":$ _/t2t emit emitjs",
+          "id": 5
+        }
+      },
+      {
+        "dir": 2,
+        "source_port": "",
+        "target_port": "",
+        "source": {
+          "name": ":$ _/t2t emit emitjs",
+          "id": 5
+        }
+      },
+      {
+        "dir": 2,
+        "source_port": "✗",
+        "target_port": "✗",
+        "source": {
+          "name": ":$ _/t2t emit emitjs",
+          "id": 5
+        }
+      }
+    ],
+    "file": "kernel.drawio"
+  },
+  {
+    "name": "RT to Python",
+    "children": [
+      {
+        "name": ":$ _/t2t emit emitpython",
+        "id": 5
+      }
+    ],
+    "connections": [
+      {
+        "dir": 0,
+        "source_port": "",
+        "target_port": "",
+        "target": {
+          "name": ":$ _/t2t emit emitpython",
+          "id": 5
+        }
+      },
+      {
+        "dir": 2,
+        "source_port": "",
+        "target_port": "",
+        "source": {
+          "name": ":$ _/t2t emit emitpython",
+          "id": 5
+        }
+      },
+      {
+        "dir": 2,
+        "source_port": "✗",
+        "target_port": "✗",
+        "source": {
+          "name": ":$ _/t2t emit emitpython",
+          "id": 5
+        }
+      }
+    ],
+    "file": "kernel.drawio"
+  },
+  {
+    "name": "RT to C",
+    "children": [
+      {
+        "name": ":$ _/t2t emit emitc",
+        "id": 5
+      }
+    ],
+    "connections": [
+      {
+        "dir": 0,
+        "source_port": "",
+        "target_port": "",
+        "target": {
+          "name": ":$ _/t2t emit emitc",
+          "id": 5
+        }
+      },
+      {
+        "dir": 2,
+        "source_port": "",
+        "target_port": "",
+        "source": {
+          "name": ":$ _/t2t emit emitc",
+          "id": 5
+        }
+      },
+      {
+        "dir": 2,
+        "source_port": "✗",
+        "target_port": "✗",
+        "source": {
+          "name": ":$ _/t2t emit emitc",
+          "id": 5
+        }
+      }
+    ],
+    "file": "kernel.drawio"
+  },
+  {
+    "name": "RT to Common Lisp",
+    "children": [
+      {
+        "name": ":$ _/t2t emit emitcl",
+        "id": 5
+      }
+    ],
+    "connections": [
+      {
+        "dir": 0,
+        "source_port": "",
+        "target_port": "",
+        "target": {
+          "name": ":$ _/t2t emit emitcl",
+          "id": 5
+        }
+      },
+      {
+        "dir": 2,
+        "source_port": "",
+        "target_port": "",
+        "source": {
+          "name": ":$ _/t2t emit emitcl",
+          "id": 5
+        }
+      },
+      {
+        "dir": 2,
+        "source_port": "✗",
+        "target_port": "✗",
+        "source": {
+          "name": ":$ _/t2t emit emitcl",
+          "id": 5
+        }
+      }
+    ],
+    "file": "kernel.drawio"
+  },
+  {
+    "name": "Uninternalize",
+    "children": [
+      {
+        "name": ":$ node unencode.mjs",
+        "id": 5
+      }
+    ],
+    "connections": [
+      {
+        "dir": 0,
+        "source_port": "",
+        "target_port": "",
+        "target": {
+          "name": ":$ node unencode.mjs",
+          "id": 5
+        }
+      },
+      {
+        "dir": 2,
+        "source_port": "",
+        "target_port": "",
+        "source": {
+          "name": ":$ node unencode.mjs",
+          "id": 5
+        }
+      },
+      {
+        "dir": 2,
+        "source_port": "✗",
+        "target_port": "✗",
+        "source": {
+          "name": ":$ node unencode.mjs",
+          "id": 5
+        }
+      }
+    ],
+    "file": "kernel.drawio"
+  },
+  {
+    "name": "Decode For Javascript",
+    "children": [
+      {
+        "name": ":$ _/t2t jsdecode",
+        "id": 5
+      }
+    ],
+    "connections": [
+      {
+        "dir": 0,
+        "source_port": "",
+        "target_port": "",
+        "target": {
+          "name": ":$ _/t2t jsdecode",
+          "id": 5
+        }
+      },
+      {
+        "dir": 2,
+        "source_port": "",
+        "target_port": "",
+        "source": {
+          "name": ":$ _/t2t jsdecode",
+          "id": 5
+        }
+      },
+      {
+        "dir": 2,
+        "source_port": "✗",
+        "target_port": "✗",
+        "source": {
+          "name": ":$ _/t2t jsdecode",
+          "id": 5
+        }
+      }
+    ],
+    "file": "kernel.drawio"
+  },
+  {
+    "name": "Javascript Indenter",
+    "children": [
+      {
+        "name": ":$ node jsindenter.mjs",
+        "id": 5
+      }
+    ],
+    "connections": [
+      {
+        "dir": 0,
+        "source_port": "",
+        "target_port": "",
+        "target": {
+          "name": ":$ node jsindenter.mjs",
+          "id": 5
+        }
+      },
+      {
+        "dir": 2,
+        "source_port": "",
+        "target_port": "",
+        "source": {
+          "name": ":$ node jsindenter.mjs",
+          "id": 5
+        }
+      },
+      {
+        "dir": 2,
+        "source_port": "✗",
+        "target_port": "✗",
+        "source": {
+          "name": ":$ node jsindenter.mjs",
+          "id": 5
+        }
+      }
+    ],
+    "file": "kernel.drawio"
+  },
+  {
+    "name": "Exhale Javascript",
+    "children": [
+      {
+        "name": "Decode For Javascript",
+        "id": 5
+      },
+      {
+        "name": "Uninternalize",
+        "id": 9
+      },
+      {
+        "name": "Javascript Indenter",
+        "id": 13
+      }
+    ],
+    "connections": [
+      {
+        "dir": 0,
+        "source_port": "",
+        "target_port": "",
+        "target": {
+          "name": "Decode For Javascript",
+          "id": 5
+        }
+      },
+      {
+        "dir": 1,
+        "source_port": "",
+        "target_port": "",
+        "source": {
+          "name": "Decode For Javascript",
+          "id": 5
+        },
+        "target": {
+          "name": "Uninternalize",
+          "id": 9
+        }
+      },
+      {
+        "dir": 1,
+        "source_port": "",
+        "target_port": "",
+        "source": {
+          "name": "Uninternalize",
+          "id": 9
+        },
+        "target": {
+          "name": "Javascript Indenter",
+          "id": 13
+        }
+      },
+      {
+        "dir": 2,
+        "source_port": "✗",
+        "target_port": "✗",
+        "source": {
+          "name": "Decode For Javascript",
+          "id": 5
+        }
+      },
+      {
+        "dir": 2,
+        "source_port": "✗",
+        "target_port": "✗",
+        "source": {
+          "name": "Uninternalize",
+          "id": 9
+        }
+      },
+      {
+        "dir": 2,
+        "source_port": "",
+        "target_port": "",
+        "source": {
+          "name": "Javascript Indenter",
+          "id": 13
+        }
+      },
+      {
+        "dir": 2,
+        "source_port": "✗",
+        "target_port": "✗",
+        "source": {
+          "name": "Javascript Indenter",
+          "id": 13
+        }
+      }
+    ],
+    "file": "kernel.drawio"
+  },
+  {
+    "name": "Encode",
+    "children": [
+      {
+        "name": ":$ node mencode.mjs",
+        "id": 5
+      }
+    ],
+    "connections": [
+      {
+        "dir": 0,
+        "source_port": "",
+        "target_port": "",
+        "target": {
+          "name": ":$ node mencode.mjs",
+          "id": 5
+        }
+      },
+      {
+        "dir": 2,
+        "source_port": "",
+        "target_port": "",
+        "source": {
+          "name": ":$ node mencode.mjs",
+          "id": 5
+        }
+      },
+      {
+        "dir": 2,
+        "source_port": "✗",
+        "target_port": "✗",
+        "source": {
+          "name": ":$ node mencode.mjs",
+          "id": 5
+        }
+      }
+    ],
+    "file": "kernel.drawio"
+  },
+  {
+    "name": "Exhale Python",
+    "children": [
+      {
+        "name": "Decode for Python",
+        "id": 5
+      },
+      {
+        "name": "Uninternalize",
+        "id": 9
+      },
+      {
+        "name": "Python Indenter",
+        "id": 13
+      }
+    ],
+    "connections": [
+      {
+        "dir": 0,
+        "source_port": "",
+        "target_port": "",
+        "target": {
+          "name": "Decode for Python",
+          "id": 5
+        }
+      },
+      {
+        "dir": 1,
+        "source_port": "",
+        "target_port": "",
+        "source": {
+          "name": "Decode for Python",
+          "id": 5
+        },
+        "target": {
+          "name": "Uninternalize",
+          "id": 9
+        }
+      },
+      {
+        "dir": 1,
+        "source_port": "",
+        "target_port": "",
+        "source": {
+          "name": "Uninternalize",
+          "id": 9
+        },
+        "target": {
+          "name": "Python Indenter",
+          "id": 13
+        }
+      },
+      {
+        "dir": 2,
+        "source_port": "✗",
+        "target_port": "✗",
+        "source": {
+          "name": "Decode for Python",
+          "id": 5
+        }
+      },
+      {
+        "dir": 2,
+        "source_port": "✗",
+        "target_port": "✗",
+        "source": {
+          "name": "Uninternalize",
+          "id": 9
+        }
+      },
+      {
+        "dir": 2,
+        "source_port": "",
+        "target_port": "",
+        "source": {
+          "name": "Python Indenter",
+          "id": 13
+        }
+      },
+      {
+        "dir": 2,
+        "source_port": "✗",
+        "target_port": "✗",
+        "source": {
+          "name": "Python Indenter",
+          "id": 13
+        }
+      }
+    ],
+    "file": "kernel.drawio"
+  },
+  {
+    "name": "Exhale C",
+    "children": [
+      {
+        "name": "Decode for C",
+        "id": 5
+      },
+      {
+        "name": "Uninternalize",
+        "id": 9
+      },
+      {
+        "name": "C Indenter",
+        "id": 13
+      }
+    ],
+    "connections": [
+      {
+        "dir": 0,
+        "source_port": "",
+        "target_port": "",
+        "target": {
+          "name": "Decode for C",
+          "id": 5
+        }
+      },
+      {
+        "dir": 1,
+        "source_port": "",
+        "target_port": "",
+        "source": {
+          "name": "Decode for C",
+          "id": 5
+        },
+        "target": {
+          "name": "Uninternalize",
+          "id": 9
+        }
+      },
+      {
+        "dir": 1,
+        "source_port": "",
+        "target_port": "",
+        "source": {
+          "name": "Uninternalize",
+          "id": 9
+        },
+        "target": {
+          "name": "C Indenter",
+          "id": 13
+        }
+      },
+      {
+        "dir": 2,
+        "source_port": "✗",
+        "target_port": "✗",
+        "source": {
+          "name": "Decode for C",
+          "id": 5
+        }
+      },
+      {
+        "dir": 2,
+        "source_port": "✗",
+        "target_port": "✗",
+        "source": {
+          "name": "Uninternalize",
+          "id": 9
+        }
+      },
+      {
+        "dir": 2,
+        "source_port": "",
+        "target_port": "",
+        "source": {
+          "name": "C Indenter",
+          "id": 13
+        }
+      },
+      {
+        "dir": 2,
+        "source_port": "✗",
+        "target_port": "✗",
+        "source": {
+          "name": "C Indenter",
+          "id": 13
+        }
+      }
+    ],
+    "file": "kernel.drawio"
+  },
+  {
+    "name": "Decode for Python",
+    "children": [
+      {
+        "name": ":$ _/t2t pydecode",
+        "id": 5
+      }
+    ],
+    "connections": [
+      {
+        "dir": 0,
+        "source_port": "",
+        "target_port": "",
+        "target": {
+          "name": ":$ _/t2t pydecode",
+          "id": 5
+        }
+      },
+      {
+        "dir": 2,
+        "source_port": "",
+        "target_port": "",
+        "source": {
+          "name": ":$ _/t2t pydecode",
+          "id": 5
+        }
+      },
+      {
+        "dir": 2,
+        "source_port": "✗",
+        "target_port": "✗",
+        "source": {
+          "name": ":$ _/t2t pydecode",
+          "id": 5
+        }
+      }
+    ],
+    "file": "kernel.drawio"
+  },
+  {
+    "name": "Decode for C",
+    "children": [
+      {
+        "name": ":$ _/t2t cdecode",
+        "id": 5
+      }
+    ],
+    "connections": [
+      {
+        "dir": 0,
+        "source_port": "",
+        "target_port": "",
+        "target": {
+          "name": ":$ _/t2t cdecode",
+          "id": 5
+        }
+      },
+      {
+        "dir": 2,
+        "source_port": "",
+        "target_port": "",
+        "source": {
+          "name": ":$ _/t2t cdecode",
+          "id": 5
+        }
+      },
+      {
+        "dir": 2,
+        "source_port": "✗",
+        "target_port": "✗",
+        "source": {
+          "name": ":$ _/t2t cdecode",
+          "id": 5
+        }
+      }
+    ],
+    "file": "kernel.drawio"
+  },
+  {
+    "name": "Python Indenter",
+    "children": [
+      {
+        "name": ":$ node indenter.mjs",
+        "id": 5
+      }
+    ],
+    "connections": [
+      {
+        "dir": 0,
+        "source_port": "",
+        "target_port": "",
+        "target": {
+          "name": ":$ node indenter.mjs",
+          "id": 5
+        }
+      },
+      {
+        "dir": 2,
+        "source_port": "",
+        "target_port": "",
+        "source": {
+          "name": ":$ node indenter.mjs",
+          "id": 5
+        }
+      },
+      {
+        "dir": 2,
+        "source_port": "✗",
+        "target_port": "✗",
+        "source": {
+          "name": ":$ node indenter.mjs",
+          "id": 5
+        }
+      }
+    ],
+    "file": "kernel.drawio"
+  },
+  {
+    "name": "C Indenter",
+    "children": [
+      {
+        "name": ":$ node indenter.mjs",
+        "id": 5
+      }
+    ],
+    "connections": [
+      {
+        "dir": 0,
+        "source_port": "",
+        "target_port": "",
+        "target": {
+          "name": ":$ node indenter.mjs",
+          "id": 5
+        }
+      },
+      {
+        "dir": 2,
+        "source_port": "",
+        "target_port": "",
+        "source": {
+          "name": ":$ node indenter.mjs",
+          "id": 5
+        }
+      },
+      {
+        "dir": 2,
+        "source_port": "✗",
+        "target_port": "✗",
+        "source": {
+          "name": ":$ node indenter.mjs",
+          "id": 5
+        }
+      }
+    ],
+    "file": "kernel.drawio"
+  },
+  {
+    "name": "Grep for Errors",
+    "children": [
+      {
+        "name": ":$ python3 errgrep.py",
+        "id": 5
+      }
+    ],
+    "connections": [
+      {
+        "dir": 0,
+        "source_port": "",
+        "target_port": "",
+        "target": {
+          "name": ":$ python3 errgrep.py",
+          "id": 5
+        }
+      },
+      {
+        "dir": 2,
+        "source_port": "",
+        "target_port": "",
+        "source": {
+          "name": ":$ python3 errgrep.py",
+          "id": 5
+        }
+      },
+      {
+        "dir": 2,
+        "source_port": "✗",
+        "target_port": "✗",
+        "source": {
+          "name": ":$ python3 errgrep.py",
+          "id": 5
+        }
+      }
+    ],
+    "file": "kernel.drawio"
+  },
+  {
+    "name": "Exhale Common Lisp",
+    "children": [
+      {
+        "name": "Decode For Common Lisp",
+        "id": 5
+      },
+      {
+        "name": "Uninternalize",
+        "id": 9
+      },
+      {
+        "name": "Common Lisp Indenter",
+        "id": 13
+      }
+    ],
+    "connections": [
+      {
+        "dir": 0,
+        "source_port": "",
+        "target_port": "",
+        "target": {
+          "name": "Decode For Common Lisp",
+          "id": 5
+        }
+      },
+      {
+        "dir": 1,
+        "source_port": "",
+        "target_port": "",
+        "source": {
+          "name": "Decode For Common Lisp",
+          "id": 5
+        },
+        "target": {
+          "name": "Uninternalize",
+          "id": 9
+        }
+      },
+      {
+        "dir": 1,
+        "source_port": "",
+        "target_port": "",
+        "source": {
+          "name": "Uninternalize",
+          "id": 9
+        },
+        "target": {
+          "name": "Common Lisp Indenter",
+          "id": 13
+        }
+      },
+      {
+        "dir": 2,
+        "source_port": "✗",
+        "target_port": "✗",
+        "source": {
+          "name": "Decode For Common Lisp",
+          "id": 5
+        }
+      },
+      {
+        "dir": 2,
+        "source_port": "✗",
+        "target_port": "✗",
+        "source": {
+          "name": "Uninternalize",
+          "id": 9
+        }
+      },
+      {
+        "dir": 2,
+        "source_port": "",
+        "target_port": "",
+        "source": {
+          "name": "Common Lisp Indenter",
+          "id": 13
+        }
+      },
+      {
+        "dir": 2,
+        "source_port": "✗",
+        "target_port": "✗",
+        "source": {
+          "name": "Common Lisp Indenter",
+          "id": 13
+        }
+      }
+    ],
+    "file": "kernel.drawio"
+  },
+  {
+    "name": "Decode For Common Lisp",
+    "children": [
+      {
+        "name": ":$ _/t2t cldecode",
+        "id": 5
+      }
+    ],
+    "connections": [
+      {
+        "dir": 0,
+        "source_port": "",
+        "target_port": "",
+        "target": {
+          "name": ":$ _/t2t cldecode",
+          "id": 5
+        }
+      },
+      {
+        "dir": 2,
+        "source_port": "",
+        "target_port": "",
+        "source": {
+          "name": ":$ _/t2t cldecode",
+          "id": 5
+        }
+      },
+      {
+        "dir": 2,
+        "source_port": "✗",
+        "target_port": "✗",
+        "source": {
+          "name": ":$ _/t2t cldecode",
+          "id": 5
+        }
+      }
+    ],
+    "file": "kernel.drawio"
+  },
+  {
+    "name": "Common Lisp Indenter",
+    "children": [
+      {
+        "name": ":$ node clindenter.mjs",
+        "id": 5
+      }
+    ],
+    "connections": [
+      {
+        "dir": 0,
+        "source_port": "",
+        "target_port": "",
+        "target": {
+          "name": ":$ node clindenter.mjs",
+          "id": 5
+        }
+      },
+      {
+        "dir": 2,
+        "source_port": "",
+        "target_port": "",
+        "source": {
+          "name": ":$ node clindenter.mjs",
+          "id": 5
+        }
+      },
+      {
+        "dir": 2,
+        "source_port": "✗",
+        "target_port": "✗",
+        "source": {
+          "name": ":$ node clindenter.mjs",
+          "id": 5
+        }
+      }
+    ],
+    "file": "kernel.drawio"
+  },
+  {
+    "name": "Cleanup",
+    "children": [
+      {
+        "name": ":$ python3 cleanup.py",
+        "id": 5
+      }
+    ],
+    "connections": [
+      {
+        "dir": 0,
+        "source_port": "",
+        "target_port": "",
+        "target": {
+          "name": ":$ python3 cleanup.py",
+          "id": 5
+        }
+      },
+      {
+        "dir": 2,
+        "source_port": "",
+        "target_port": "",
+        "source": {
+          "name": ":$ python3 cleanup.py",
+          "id": 5
+        }
+      },
+      {
+        "dir": 2,
+        "source_port": "✗",
+        "target_port": "✗",
+        "source": {
+          "name": ":$ python3 cleanup.py",
+          "id": 5
+        }
+      }
+    ],
+    "file": "kernel.drawio"
+  }
+]
