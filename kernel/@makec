@@ -9,6 +9,7 @@ done
 
 : > new_kernel0d.py
 : > new_kernel0d.js
+: > new_kernel0d.lisp
 : > new_kernel0d.c
 
 for i in $BASENAMES; do
