@@ -39,7 +39,7 @@ class Mevent {
   constructor () {                                     /* line 43 */
 
     this.port =  null;                                 /* line 44 */
-    this.datum =  null;                                /* line 45 *//* line 46 */
+    this.payload =  null;                              /* line 45 *//* line 46 */
   }
 }
                                                        /* line 47 */
@@ -53,7 +53,7 @@ function make_mevent (port,datum) {                    /* line 54 */
     let p = clone_string ( port)                       /* line 55 */;
     let  m =  new Mevent ();                           /* line 56 */;
     m.port =  p;                                       /* line 57 */
-    m.datum =  datum.clone ();                         /* line 58 */
+    m.payload =  datum.clone ();                       /* line 58 */
     return  m;                                         /* line 59 *//* line 60 *//* line 61 */
 }
 
@@ -61,7 +61,7 @@ function make_mevent (port,datum) {                    /* line 54 */
 function mevent_clone (mev) {                          /* line 63 */
     let  m =  new Mevent ();                           /* line 64 */;
     m.port = clone_port ( mev.port)                    /* line 65 */;
-    m.datum =  mev.datum.clone ();                     /* line 66 */
+    m.payload =  mev.payload.clone ();                 /* line 66 */
     return  m;                                         /* line 67 *//* line 68 *//* line 69 */
 }
 
@@ -82,7 +82,7 @@ function format_mevent (m) {                           /* line 85 */
       return  "{}";                                    /* line 87 */
     }
     else {                                             /* line 88 */
-      return  ( "{%5C”".toString ()+  ( m.port.toString ()+  ( "%5C”:%5C”".toString ()+  ( m.datum.v.toString ()+  "%5C”}".toString ()) .toString ()) .toString ()) .toString ()) /* line 89 */;/* line 90 */
+      return  ( "{%5C”".toString ()+  ( m.port.toString ()+  ( "%5C”:%5C”".toString ()+  ( m.payload.v.toString ()+  "%5C”}".toString ()) .toString ()) .toString ()) .toString ()) /* line 89 */;/* line 90 */
     }                                                  /* line 91 */
 }
 
@@ -91,7 +91,7 @@ function format_mevent_raw (m) {                       /* line 92 */
       return  "";                                      /* line 94 */
     }
     else {                                             /* line 95 */
-      return  m.datum.v;                               /* line 96 *//* line 97 */
+      return  m.payload.v;                             /* line 96 *//* line 97 */
     }                                                  /* line 98 *//* line 99 */
 }
 

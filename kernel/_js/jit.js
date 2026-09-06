@@ -26,12 +26,12 @@ function handle_jit (eh,mev) {                         /* line 14 */
 }
 
 function probe_handler (eh,tag,mev) {                  /* line 27 */
-    let s =  mev.datum.v;                              /* line 28 */
+    let s =  mev.payload.v;                            /* line 28 */
     console.error ( "Info" + ": " +  ( "  @".toString ()+  (`${ ticktime}`.toString ()+  ( "  ".toString ()+  ( "probe ".toString ()+  ( eh.name.toString ()+  ( ": ".toString ()+ `${ s}`.toString ()) .toString ()) .toString ()) .toString ()) .toString ()) .toString ()) )/* line 36 *//* line 37 *//* line 38 */
 }
 
 function shell_out_handler (eh,cmd,mev) {              /* line 39 */
-    let s =  mev.datum.v;                              /* line 40 */
+    let s =  mev.payload.v;                            /* line 40 */
     let  ret =  null;                                  /* line 41 */
     let  rc =  null;                                   /* line 42 */
     let  stdout =  null;                               /* line 43 */

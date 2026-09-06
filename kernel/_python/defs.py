@@ -27,7 +27,7 @@ def deque_to_json(d):
     #     A JSON string representation of the deque
     # """
     # # Convert deque to list of objects where each mevent's key contains its payload
-    ordered_list = [{mev.port: "" if mev.datum.v is None else mev.datum.v} for mev in d]
+    ordered_list = [{mev.port: "" if mev.payload.v is None else mev.payload.v} for mev in d]
 
     # # Convert to JSON with indentation for readability
     return json.dumps(ordered_list, indent=2)
@@ -64,7 +64,7 @@ class Datum:
 class Mevent:
     def __init__ (self,):                              #line 43
         self.port =  None                              #line 44
-        self.datum =  None                             #line 45#line 46
+        self.payload =  None                           #line 45#line 46
                                                        #line 47
 def clone_port (s):                                    #line 48
     return clone_string ( s)                           #line 49#line 50#line 51
@@ -75,14 +75,14 @@ def make_mevent (port,datum):                          #line 54
     p = clone_string ( port)                           #line 55
     m =  Mevent ()                                     #line 56
     m.port =  p                                        #line 57
-    m.datum =  datum.clone ()                          #line 58
+    m.payload =  datum.clone ()                        #line 58
     return  m                                          #line 59#line 60#line 61
 
 # Clones a mevent. Primarily used internally for “fanning out“ a mevent to multiple destinations.#line 62
 def mevent_clone (mev):                                #line 63
     m =  Mevent ()                                     #line 64
     m.port = clone_port ( mev.port)                    #line 65
-    m.datum =  mev.datum.clone ()                      #line 66
+    m.payload =  mev.payload.clone ()                  #line 66
     return  m                                          #line 67#line 68#line 69
 
 # Frees a mevent.                                      #line 70
@@ -101,13 +101,13 @@ def format_mevent (m):                                 #line 85
     if  m ==  None:                                    #line 86
         return  "{}"                                   #line 87
     else:                                              #line 88
-        return  str( "{%5C”") +  str( m.port) +  str( "%5C”:%5C”") +  str( m.datum.v) +  "%5C”}"    #line 89#line 90#line 91
+        return  str( "{%5C”") +  str( m.port) +  str( "%5C”:%5C”") +  str( m.payload.v) +  "%5C”}"    #line 89#line 90#line 91
 
 def format_mevent_raw (m):                             #line 92
     if  m ==  None:                                    #line 93
         return  ""                                     #line 94
     else:                                              #line 95
-        return  m.datum.v                              #line 96#line 97#line 98#line 99
+        return  m.payload.v                            #line 96#line 97#line 98#line 99
 
 enumDown =  0                                          #line 100
 enumAcross =  1                                        #line 101

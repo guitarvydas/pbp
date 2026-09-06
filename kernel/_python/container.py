@@ -105,7 +105,7 @@ def sender_eq (s1,s2):                                 #line 113
 
 # Delivers the given mevent to the receiver of this connector.#line 119#line 120
 def deposit (parent,conn,mevent):                      #line 121
-    new_mevent = make_mevent ( conn.receiver.port, mevent.datum)#line 122
+    new_mevent = make_mevent ( conn.receiver.port, mevent.payload)#line 122
     push_mevent ( parent, conn.receiver.component, conn.receiver.queue, new_mevent)#line 123#line 124#line 125
 
 def force_tick (parent,eh):                            #line 126
@@ -226,7 +226,7 @@ def send (eh,port,obj,causingMevent):                  #line 270
     put_output ( eh, mev)                              #line 276#line 277#line 278
 
 def forward (eh,port,mev):                             #line 279
-    fwdmev = make_mevent ( port, mev.datum)            #line 280
+    fwdmev = make_mevent ( port, mev.payload)          #line 280
     put_output ( eh, fwdmev)                           #line 281#line 282#line 283
 
 def inject_mevent (eh,mev):                            #line 284

@@ -34,13 +34,13 @@
   )
 (defun probe_handler (&optional  eh  tag  mev)
   (declare (ignorable  eh  tag  mev))                       #|line 27|#
-  (let ((s (slot-value (slot-value  mev 'datum) 'v)))
+  (let ((s (slot-value (slot-value  mev 'payload) 'v)))
     (declare (ignorable s))                                 #|line 28|#
     (live_update  "Info"  (concatenate 'string  "  @"  (concatenate 'string (format nil "~a"  ticktime)  (concatenate 'string  "  "  (concatenate 'string  "probe "  (concatenate 'string (slot-value  eh 'name)  (concatenate 'string  ": " (format nil "~a"  s)))))))) #|line 36|#) #|line 37|#
   )
 (defun shell_out_handler (&optional  eh  cmd  mev)
   (declare (ignorable  eh  cmd  mev))                       #|line 39|#
-  (let ((s (slot-value (slot-value  mev 'datum) 'v)))
+  (let ((s (slot-value (slot-value  mev 'payload) 'v)))
     (declare (ignorable s))                                 #|line 40|#
     (let (( ret  nil))
       (declare (ignorable  ret))                            #|line 41|#

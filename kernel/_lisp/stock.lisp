@@ -104,7 +104,7 @@
   )
 (defun low_level_read_text_file_handler (&optional  eh  mev)
   (declare (ignorable  eh  mev))                            #|line 85|#
-  (let ((fname (slot-value (slot-value  mev 'datum) 'v)))
+  (let ((fname (slot-value (slot-value  mev 'payload) 'v)))
     (declare (ignorable fname))                             #|line 86|#
 
     ;; read text from a named file fname, send the text out on port "" else send error info on port "✗"
@@ -125,11 +125,11 @@
 (defun ensure_string_datum_handler (&optional  eh  mev)
   (declare (ignorable  eh  mev))                            #|line 95|#
   (cond
-    (( equal    "string" (funcall (slot-value (slot-value  mev 'datum) 'kind) )) #|line 96|#
+    (( equal    "string" (funcall (slot-value (slot-value  mev 'payload) 'kind) )) #|line 96|#
       (funcall (quote forward)   eh  ""  mev                #|line 97|#)
       )
     (t                                                      #|line 98|#
-      (let ((emev  (concatenate 'string  "*** ensure: type error (expected a string datum) but got " (slot-value  mev 'datum)) #|line 99|#))
+      (let ((emev  (concatenate 'string  "*** ensure: type error (expected a string payload) but got " (slot-value  mev 'payload)) #|line 99|#))
         (declare (ignorable emev))
         (funcall (quote send)   eh  "✗"  emev  mev          #|line 100|#)) #|line 101|#
       ))                                                    #|line 102|#
@@ -157,16 +157,16 @@
     (declare (ignorable  inst))                             #|line 120|#
     (cond
       (( equal    "filename" (slot-value  mev 'port))       #|line 121|#
-        (setf (slot-value  inst 'filename) (slot-value (slot-value  mev 'datum) 'v)) #|line 122|#
+        (setf (slot-value  inst 'filename) (slot-value (slot-value  mev 'payload) 'v)) #|line 122|#
         )
       (( equal    "input" (slot-value  mev 'port))          #|line 123|#
-        (let ((contents (slot-value (slot-value  mev 'datum) 'v)))
+        (let ((contents (slot-value (slot-value  mev 'payload) 'v)))
           (declare (ignorable contents))                    #|line 124|#
           (let (( f (funcall (quote open)  (slot-value  inst 'filename)  "w"  #|line 125|#)))
             (declare (ignorable  f))
             (cond
               ((not (equal   f  nil))                       #|line 126|#
-                (funcall (slot-value  f 'write)  (slot-value (slot-value  mev 'datum) 'v)  #|line 127|#)
+                (funcall (slot-value  f 'write)  (slot-value (slot-value  mev 'payload) 'v)  #|line 127|#)
                 (funcall (slot-value  f 'close) )           #|line 128|#
                 (funcall (quote send)   eh  "done" (funcall (quote new_datum_bang) )  mev  #|line 129|#)
                 )
@@ -202,11 +202,11 @@
     (declare (ignorable  inst))                             #|line 154|#
     (cond
       (( equal    "1" (slot-value  mev 'port))              #|line 155|#
-        (setf (slot-value  inst 'buffer1) (funcall (quote clone_string)  (slot-value (slot-value  mev 'datum) 'v)  #|line 156|#))
+        (setf (slot-value  inst 'buffer1) (funcall (quote clone_string)  (slot-value (slot-value  mev 'payload) 'v)  #|line 156|#))
         (funcall (quote maybe_stringconcat)   eh  inst  mev  #|line 157|#)
         )
       (( equal    "2" (slot-value  mev 'port))              #|line 158|#
-        (setf (slot-value  inst 'buffer2) (funcall (quote clone_string)  (slot-value (slot-value  mev 'datum) 'v)  #|line 159|#))
+        (setf (slot-value  inst 'buffer2) (funcall (quote clone_string)  (slot-value (slot-value  mev 'payload) 'v)  #|line 159|#))
         (funcall (quote maybe_stringconcat)   eh  inst  mev  #|line 160|#)
         )
       (( equal    "reset" (slot-value  mev 'port))          #|line 161|#
@@ -338,7 +338,7 @@
     (declare (ignorable  accum))                            #|line 265|#
     (cond
       (( equal    "" (slot-value  mev 'port))               #|line 266|#
-        (setf (slot-value  accum 's)  (concatenate 'string (slot-value  accum 's) (slot-value (slot-value  mev 'datum) 'v)) #|line 267|#)
+        (setf (slot-value  accum 's)  (concatenate 'string (slot-value  accum 's) (slot-value (slot-value  mev 'payload) 'v)) #|line 267|#)
         )
       (( equal    "fini" (slot-value  mev 'port))           #|line 268|#
         (funcall (quote send)   eh  "" (slot-value  accum 's)  mev  #|line 269|#)
@@ -367,7 +367,7 @@
         (format *error-output* "
         ")                                                  #|line 286|#
         (funcall (slot-value  parent 'stop)   parent        #|line 287|#)
-        (funcall (quote send)   eh  "" (slot-value (slot-value  mev 'datum) 'v)  mev  #|line 288|#)))) #|line 289|#
+        (funcall (quote send)   eh  "" (slot-value (slot-value  mev 'payload) 'v)  mev  #|line 288|#)))) #|line 289|#
   ) #|  all of the the built_in leaves are listed here |#   #|line 291|# #|  future: refactor this such that programmers can pick and choose which (lumps of) builtins are used in a specific project |# #|line 292|# #|line 293|#
 (defun initialize_stock_components (&optional  reg)
   (declare (ignorable  reg))                                #|line 294|#
