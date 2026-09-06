@@ -39,7 +39,7 @@ class Mevent {
   constructor () {                                     /* line 43 */
 
     this.port =  null;                                 /* line 44 */
-    this.datum =  null;                                /* line 45 *//* line 46 */
+    this.payload =  null;                              /* line 45 *//* line 46 */
   }
 }
                                                        /* line 47 */
@@ -53,7 +53,7 @@ function make_mevent (port,datum) {                    /* line 54 */
     let p = clone_string ( port)                       /* line 55 */;
     let  m =  new Mevent ();                           /* line 56 */;
     m.port =  p;                                       /* line 57 */
-    m.datum =  datum.clone ();                         /* line 58 */
+    m.payload =  datum.clone ();                       /* line 58 */
     return  m;                                         /* line 59 *//* line 60 *//* line 61 */
 }
 
@@ -61,7 +61,7 @@ function make_mevent (port,datum) {                    /* line 54 */
 function mevent_clone (mev) {                          /* line 63 */
     let  m =  new Mevent ();                           /* line 64 */;
     m.port = clone_port ( mev.port)                    /* line 65 */;
-    m.datum =  mev.datum.clone ();                     /* line 66 */
+    m.payload =  mev.payload.clone ();                 /* line 66 */
     return  m;                                         /* line 67 *//* line 68 *//* line 69 */
 }
 
@@ -82,7 +82,7 @@ function format_mevent (m) {                           /* line 85 */
       return  "{}";                                    /* line 87 */
     }
     else {                                             /* line 88 */
-      return  ( "{%5C”".toString ()+  ( m.port.toString ()+  ( "%5C”:%5C”".toString ()+  ( m.datum.v.toString ()+  "%5C”}".toString ()) .toString ()) .toString ()) .toString ()) /* line 89 */;/* line 90 */
+      return  ( "{%5C”".toString ()+  ( m.port.toString ()+  ( "%5C”:%5C”".toString ()+  ( m.payload.v.toString ()+  "%5C”}".toString ()) .toString ()) .toString ()) .toString ()) /* line 89 */;/* line 90 */
     }                                                  /* line 91 */
 }
 
@@ -91,7 +91,7 @@ function format_mevent_raw (m) {                       /* line 92 */
       return  "";                                      /* line 94 */
     }
     else {                                             /* line 95 */
-      return  m.datum.v;                               /* line 96 *//* line 97 */
+      return  m.payload.v;                             /* line 96 *//* line 97 */
     }                                                  /* line 98 *//* line 99 */
 }
 
@@ -487,7 +487,7 @@ function sender_eq (s1,s2) {                           /* line 113 */
 
 /*  Delivers the given mevent to the receiver of this connector. *//* line 119 *//* line 120 */
 function deposit (parent,conn,mevent) {                /* line 121 */
-    let new_mevent = make_mevent ( conn.receiver.port, mevent.datum)/* line 122 */;
+    let new_mevent = make_mevent ( conn.receiver.port, mevent.payload)/* line 122 */;
     push_mevent ( parent, conn.receiver.component, conn.receiver.queue, new_mevent)/* line 123 *//* line 124 *//* line 125 */
 }
 
@@ -642,7 +642,7 @@ function send (eh,port,obj,causingMevent) {            /* line 270 */
 }
 
 function forward (eh,port,mev) {                       /* line 279 */
-    let fwdmev = make_mevent ( port, mev.datum)        /* line 280 */;
+    let fwdmev = make_mevent ( port, mev.payload)      /* line 280 */;
     put_output ( eh, fwdmev)                           /* line 281 *//* line 282 *//* line 283 */
 }
 
@@ -725,12 +725,12 @@ function handle_jit (eh,mev) {                         /* line 14 */
 }
 
 function probe_handler (eh,tag,mev) {                  /* line 27 */
-    let s =  mev.datum.v;                              /* line 28 */
+    let s =  mev.payload.v;                            /* line 28 */
     console.error ( "Info" + ": " +  ( "  @".toString ()+  (`${ ticktime}`.toString ()+  ( "  ".toString ()+  ( "probe ".toString ()+  ( eh.name.toString ()+  ( ": ".toString ()+ `${ s}`.toString ()) .toString ()) .toString ()) .toString ()) .toString ()) .toString ()) )/* line 36 *//* line 37 *//* line 38 */
 }
 
 function shell_out_handler (eh,cmd,mev) {              /* line 39 */
-    let s =  mev.datum.v;                              /* line 40 */
+    let s =  mev.payload.v;                            /* line 40 */
     let  ret =  null;                                  /* line 41 */
     let  rc =  null;                                   /* line 42 */
     let  stdout =  null;                               /* line 43 */
@@ -852,7 +852,7 @@ function low_level_read_text_file_instantiate (reg,owner,name,template_data,arg)
 }
 
 function low_level_read_text_file_handler (eh,mev) {   /* line 85 */
-    let fname =  mev.datum.v;                          /* line 86 */
+    let fname =  mev.payload.v;                        /* line 86 */
 
     if (fname == "0") {
     data = fs.readFileSync (0, { encoding: 'utf8'});
@@ -873,11 +873,11 @@ function ensure_string_datum_instantiate (reg,owner,name,template_data,arg) {/* 
 }
 
 function ensure_string_datum_handler (eh,mev) {        /* line 95 */
-    if ( "string" ==  mev.datum.kind ()) {             /* line 96 */
+    if ( "string" ==  mev.payload.kind ()) {           /* line 96 */
       forward ( eh, "", mev)                           /* line 97 */
     }
     else {                                             /* line 98 */
-      let emev =  ( "*** ensure: type error (expected a string datum) but got ".toString ()+  mev.datum.toString ()) /* line 99 */;
+      let emev =  ( "*** ensure: type error (expected a string payload) but got ".toString ()+  mev.payload.toString ()) /* line 99 */;
       send ( eh, "✗", emev, mev)                       /* line 100 *//* line 101 */
     }                                                  /* line 102 *//* line 103 */
 }
@@ -903,13 +903,13 @@ function syncfilewrite_instantiate (reg,owner,name,template_data,arg) {/* line 1
 function syncfilewrite_handler (eh,mev) {              /* line 119 */
     let  inst =  eh.instance_data;                     /* line 120 */
     if ( "filename" ==  mev.port) {                    /* line 121 */
-      inst.filename =  mev.datum.v;                    /* line 122 */
+      inst.filename =  mev.payload.v;                  /* line 122 */
     }
     else if ( "input" ==  mev.port) {                  /* line 123 */
-      let contents =  mev.datum.v;                     /* line 124 */
+      let contents =  mev.payload.v;                   /* line 124 */
       let  f = open ( inst.filename, "w")              /* line 125 */;
       if ( f!= null) {                                 /* line 126 */
-        f.write ( mev.datum.v)                         /* line 127 */
+        f.write ( mev.payload.v)                       /* line 127 */
         f.close ()                                     /* line 128 */
         send ( eh, "done",new_datum_bang (), mev)      /* line 129 */
       }
@@ -942,11 +942,11 @@ function stringconcat_instantiate (reg,owner,name,template_data,arg) {/* line 14
 function stringconcat_handler (eh,mev) {               /* line 153 */
     let  inst =  eh.instance_data;                     /* line 154 */
     if ( "1" ==  mev.port) {                           /* line 155 */
-      inst.buffer1 = clone_string ( mev.datum.v)       /* line 156 */;
+      inst.buffer1 = clone_string ( mev.payload.v)     /* line 156 */;
       maybe_stringconcat ( eh, inst, mev)              /* line 157 */
     }
     else if ( "2" ==  mev.port) {                      /* line 158 */
-      inst.buffer2 = clone_string ( mev.datum.v)       /* line 159 */;
+      inst.buffer2 = clone_string ( mev.payload.v)     /* line 159 */;
       maybe_stringconcat ( eh, inst, mev)              /* line 160 */
     }
     else if ( "reset" ==  mev.port) {                  /* line 161 */
@@ -1064,7 +1064,7 @@ function strcatstar_instantiate (reg,owner,name,template_data,arg) {/* line 258 
 function strcatstar_handler (eh,mev) {                 /* line 264 */
     let  accum =  eh.instance_data;                    /* line 265 */
     if ( "" ==  mev.port) {                            /* line 266 */
-      accum.s =  ( accum.s.toString ()+  mev.datum.v.toString ()) /* line 267 */;
+      accum.s =  ( accum.s.toString ()+  mev.payload.v.toString ()) /* line 267 */;
     }
     else if ( "fini" ==  mev.port) {                   /* line 268 */
       send ( eh, "", accum.s, mev)                     /* line 269 */
@@ -1087,7 +1087,7 @@ function stop_handler (eh,mev) {                       /* line 281 */
     console.error ( s);                                /* line 285 */
                                                        /* line 286 */
     parent.stop ( parent)                              /* line 287 */
-    send ( eh, "", mev.datum.v, mev)                   /* line 288 *//* line 289 *//* line 290 */
+    send ( eh, "", mev.payload.v, mev)                 /* line 288 *//* line 289 *//* line 290 */
 }
 
 /*  all of the the built_in leaves are listed here */  /* line 291 */

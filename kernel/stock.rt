@@ -83,7 +83,7 @@ defn low_level_read_text_file_instantiate (reg, owner, name, template_data, arg)
 }
 
 defn low_level_read_text_file_handler (eh, mev) {
-    fname ≡ mev.datum.v
+    fname ≡ mev.payload.v
     # low_level_read_text_file_handler (eh, mev, fname, “”, “✗”)
 }
 
@@ -93,10 +93,10 @@ defn ensure_string_datum_instantiate (reg, owner, name, template_data, arg) {
 }
 
 defn ensure_string_datum_handler (eh, mev) {
-    if “string” = mev.datum.kind () {
+    if “string” = mev.payload.kind () {
         forward (eh, “”, mev)
     } else {
-        emev ≡ #strcons (“*** ensure: type error (expected a string datum) but got ”, mev.datum)
+        emev ≡ #strcons (“*** ensure: type error (expected a string payload) but got ”, mev.payload)
         send (eh, “✗”, emev, mev)
     }
 }
@@ -119,12 +119,12 @@ defn syncfilewrite_instantiate (reg, owner, name, template_data, arg) {
 defn syncfilewrite_handler (eh, mev) {
     deftemp inst ⇐ eh.instance_data
     if “filename” = mev.port {
-        inst.filename ⇐ mev.datum.v
+        inst.filename ⇐ mev.payload.v
     } elif “input” = mev.port {
-        contents ≡ mev.datum.v
+        contents ≡ mev.payload.v
         deftemp f ⇐ open (inst.filename, “w”)
         if f != ϕ {
-            f.write (mev.datum.v)
+            f.write (mev.payload.v)
             f.close ()
             send (eh, “done”, new_datum_bang (), mev)
         } else {
@@ -153,10 +153,10 @@ defn stringconcat_instantiate (reg, owner, name, template_data, arg) {
 defn stringconcat_handler (eh, mev) {
     deftemp inst ⇐ eh.instance_data
     if “1” = mev.port{
-        inst.buffer1  ⇐ clone_string (mev.datum.v)
+        inst.buffer1  ⇐ clone_string (mev.payload.v)
         maybe_stringconcat (eh, inst, mev)
     } elif “2” = mev.port {
-        inst.buffer2 ⇐ clone_string (mev.datum.v)
+        inst.buffer2 ⇐ clone_string (mev.payload.v)
         maybe_stringconcat (eh, inst, mev)
     } elif “reset” = mev.port {
 	inst.buffer1 ⇐ ϕ
@@ -264,7 +264,7 @@ defn strcatstar_instantiate (reg, owner, name, template_data, arg) {
 defn strcatstar_handler (eh, mev) {
     deftemp accum ⇐ eh.instance_data
     if “” = mev.port {
-        accum.s ⇐ #strcons (accum.s, mev.datum.v)
+        accum.s ⇐ #strcons (accum.s, mev.payload.v)
     } elif “fini” = mev.port {
         send (eh, “”, accum.s, mev)
     } else {
@@ -285,7 +285,7 @@ defn stop_handler (eh, mev) {
     #print_stderr (s)
     #print_nl_stderr ()
     parent.stop (parent)
-    send (eh, “”, mev.datum.v, mev)
+    send (eh, “”, mev.payload.v, mev)
 }
 
 ⌈ all of the the built_in leaves are listed here⌉

@@ -95,7 +95,7 @@ function low_level_read_text_file_instantiate (reg,owner,name,template_data,arg)
 }
 
 function low_level_read_text_file_handler (eh,mev) {   /* line 85 */
-    let fname =  mev.datum.v;                          /* line 86 */
+    let fname =  mev.payload.v;                        /* line 86 */
 
     if (fname == "0") {
     data = fs.readFileSync (0, { encoding: 'utf8'});
@@ -116,11 +116,11 @@ function ensure_string_datum_instantiate (reg,owner,name,template_data,arg) {/* 
 }
 
 function ensure_string_datum_handler (eh,mev) {        /* line 95 */
-    if ( "string" ==  mev.datum.kind ()) {             /* line 96 */
+    if ( "string" ==  mev.payload.kind ()) {           /* line 96 */
       forward ( eh, "", mev)                           /* line 97 */
     }
     else {                                             /* line 98 */
-      let emev =  ( "*** ensure: type error (expected a string datum) but got ".toString ()+  mev.datum.toString ()) /* line 99 */;
+      let emev =  ( "*** ensure: type error (expected a string payload) but got ".toString ()+  mev.payload.toString ()) /* line 99 */;
       send ( eh, "✗", emev, mev)                       /* line 100 *//* line 101 */
     }                                                  /* line 102 *//* line 103 */
 }
@@ -146,13 +146,13 @@ function syncfilewrite_instantiate (reg,owner,name,template_data,arg) {/* line 1
 function syncfilewrite_handler (eh,mev) {              /* line 119 */
     let  inst =  eh.instance_data;                     /* line 120 */
     if ( "filename" ==  mev.port) {                    /* line 121 */
-      inst.filename =  mev.datum.v;                    /* line 122 */
+      inst.filename =  mev.payload.v;                  /* line 122 */
     }
     else if ( "input" ==  mev.port) {                  /* line 123 */
-      let contents =  mev.datum.v;                     /* line 124 */
+      let contents =  mev.payload.v;                   /* line 124 */
       let  f = open ( inst.filename, "w")              /* line 125 */;
       if ( f!= null) {                                 /* line 126 */
-        f.write ( mev.datum.v)                         /* line 127 */
+        f.write ( mev.payload.v)                       /* line 127 */
         f.close ()                                     /* line 128 */
         send ( eh, "done",new_datum_bang (), mev)      /* line 129 */
       }
@@ -185,11 +185,11 @@ function stringconcat_instantiate (reg,owner,name,template_data,arg) {/* line 14
 function stringconcat_handler (eh,mev) {               /* line 153 */
     let  inst =  eh.instance_data;                     /* line 154 */
     if ( "1" ==  mev.port) {                           /* line 155 */
-      inst.buffer1 = clone_string ( mev.datum.v)       /* line 156 */;
+      inst.buffer1 = clone_string ( mev.payload.v)     /* line 156 */;
       maybe_stringconcat ( eh, inst, mev)              /* line 157 */
     }
     else if ( "2" ==  mev.port) {                      /* line 158 */
-      inst.buffer2 = clone_string ( mev.datum.v)       /* line 159 */;
+      inst.buffer2 = clone_string ( mev.payload.v)     /* line 159 */;
       maybe_stringconcat ( eh, inst, mev)              /* line 160 */
     }
     else if ( "reset" ==  mev.port) {                  /* line 161 */
@@ -307,7 +307,7 @@ function strcatstar_instantiate (reg,owner,name,template_data,arg) {/* line 258 
 function strcatstar_handler (eh,mev) {                 /* line 264 */
     let  accum =  eh.instance_data;                    /* line 265 */
     if ( "" ==  mev.port) {                            /* line 266 */
-      accum.s =  ( accum.s.toString ()+  mev.datum.v.toString ()) /* line 267 */;
+      accum.s =  ( accum.s.toString ()+  mev.payload.v.toString ()) /* line 267 */;
     }
     else if ( "fini" ==  mev.port) {                   /* line 268 */
       send ( eh, "", accum.s, mev)                     /* line 269 */
@@ -330,7 +330,7 @@ function stop_handler (eh,mev) {                       /* line 281 */
     console.error ( s);                                /* line 285 */
                                                        /* line 286 */
     parent.stop ( parent)                              /* line 287 */
-    send ( eh, "", mev.datum.v, mev)                   /* line 288 *//* line 289 *//* line 290 */
+    send ( eh, "", mev.payload.v, mev)                 /* line 288 *//* line 289 *//* line 290 */
 }
 
 /*  all of the the built_in leaves are listed here */  /* line 291 */

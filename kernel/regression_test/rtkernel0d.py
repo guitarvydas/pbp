@@ -27,7 +27,7 @@ def deque_to_json(d):
     #     A JSON string representation of the deque
     # """
     # # Convert deque to list of objects where each mevent's key contains its payload
-    ordered_list = [{mev.port: "" if mev.datum.v is None else mev.datum.v} for mev in d]
+    ordered_list = [{mev.port: "" if mev.payload.v is None else mev.payload.v} for mev in d]
 
     # # Convert to JSON with indentation for readability
     return json.dumps(ordered_list, indent=2)
@@ -64,7 +64,7 @@ class Datum:
 class Mevent:
     def __init__ (self,):                              #line 43
         self.port =  None                              #line 44
-        self.datum =  None                             #line 45#line 46
+        self.payload =  None                           #line 45#line 46
                                                        #line 47
 def clone_port (s):                                    #line 48
     return clone_string ( s)                           #line 49#line 50#line 51
@@ -75,14 +75,14 @@ def make_mevent (port,datum):                          #line 54
     p = clone_string ( port)                           #line 55
     m =  Mevent ()                                     #line 56
     m.port =  p                                        #line 57
-    m.datum =  datum.clone ()                          #line 58
+    m.payload =  datum.clone ()                        #line 58
     return  m                                          #line 59#line 60#line 61
 
 # Clones a mevent. Primarily used internally for “fanning out“ a mevent to multiple destinations.#line 62
 def mevent_clone (mev):                                #line 63
     m =  Mevent ()                                     #line 64
     m.port = clone_port ( mev.port)                    #line 65
-    m.datum =  mev.datum.clone ()                      #line 66
+    m.payload =  mev.payload.clone ()                  #line 66
     return  m                                          #line 67#line 68#line 69
 
 # Frees a mevent.                                      #line 70
@@ -101,13 +101,13 @@ def format_mevent (m):                                 #line 85
     if  m ==  None:                                    #line 86
         return  "{}"                                   #line 87
     else:                                              #line 88
-        return  str( "{%5C”") +  str( m.port) +  str( "%5C”:%5C”") +  str( m.datum.v) +  "%5C”}"    #line 89#line 90#line 91
+        return  str( "{%5C”") +  str( m.port) +  str( "%5C”:%5C”") +  str( m.payload.v) +  "%5C”}"    #line 89#line 90#line 91
 
 def format_mevent_raw (m):                             #line 92
     if  m ==  None:                                    #line 93
         return  ""                                     #line 94
     else:                                              #line 95
-        return  m.datum.v                              #line 96#line 97#line 98#line 99
+        return  m.payload.v                            #line 96#line 97#line 98#line 99
 
 enumDown =  0                                          #line 100
 enumAcross =  1                                        #line 101
@@ -432,7 +432,7 @@ def sender_eq (s1,s2):                                 #line 113
 
 # Delivers the given mevent to the receiver of this connector.#line 119#line 120
 def deposit (parent,conn,mevent):                      #line 121
-    new_mevent = make_mevent ( conn.receiver.port, mevent.datum)#line 122
+    new_mevent = make_mevent ( conn.receiver.port, mevent.payload)#line 122
     push_mevent ( parent, conn.receiver.component, conn.receiver.queue, new_mevent)#line 123#line 124#line 125
 
 def force_tick (parent,eh):                            #line 126
@@ -553,7 +553,7 @@ def send (eh,port,obj,causingMevent):                  #line 270
     put_output ( eh, mev)                              #line 276#line 277#line 278
 
 def forward (eh,port,mev):                             #line 279
-    fwdmev = make_mevent ( port, mev.datum)            #line 280
+    fwdmev = make_mevent ( port, mev.payload)          #line 280
     put_output ( eh, fwdmev)                           #line 281#line 282#line 283
 
 def inject_mevent (eh,mev):                            #line 284
@@ -620,11 +620,11 @@ def handle_jit (eh,mev):                               #line 14
         send ( eh, "",  s[1:] , mev)                   #line 23#line 24#line 25#line 26
 
 def probe_handler (eh,tag,mev):                        #line 27
-    s =  mev.datum.v                                   #line 28
+    s =  mev.payload.v                                 #line 28
     live_update ( "Info",  str( "  @") +  str(str ( ticktime)) +  str( "  ") +  str( "probe ") +  str( eh.name) +  str( ": ") + str ( s)      )#line 36#line 37#line 38
 
 def shell_out_handler (eh,cmd,mev):                    #line 39
-    s =  mev.datum.v                                   #line 40
+    s =  mev.payload.v                                 #line 40
     ret =  None                                        #line 41
     rc =  None                                         #line 42
     stdout =  None                                     #line 43
@@ -737,7 +737,7 @@ def low_level_read_text_file_instantiate (reg,owner,name,template_data,arg):#lin
     return make_leaf ( name_with_id, owner, None, "", low_level_read_text_file_handler, None)#line 82#line 83#line 84
 
 def low_level_read_text_file_handler (eh,mev):         #line 85
-    fname =  mev.datum.v                               #line 86
+    fname =  mev.payload.v                             #line 86
 
     try:
         f = open (fname)
@@ -759,10 +759,10 @@ def ensure_string_datum_instantiate (reg,owner,name,template_data,arg):#line 90
     return make_leaf ( name_with_id, owner, None, "", ensure_string_datum_handler, None)#line 92#line 93#line 94
 
 def ensure_string_datum_handler (eh,mev):              #line 95
-    if  "string" ==  mev.datum.kind ():                #line 96
+    if  "string" ==  mev.payload.kind ():              #line 96
         forward ( eh, "", mev)                         #line 97
     else:                                              #line 98
-        emev =  str( "*** ensure: type error (expected a string datum) but got ") +  mev.datum #line 99
+        emev =  str( "*** ensure: type error (expected a string payload) but got ") +  mev.payload #line 99
         send ( eh, "✗", emev, mev)                     #line 100#line 101#line 102#line 103
 
 class Syncfilewrite_Data:
@@ -781,12 +781,12 @@ def syncfilewrite_instantiate (reg,owner,name,template_data,arg):#line 113
 def syncfilewrite_handler (eh,mev):                    #line 119
     inst =  eh.instance_data                           #line 120
     if  "filename" ==  mev.port:                       #line 121
-        inst.filename =  mev.datum.v                   #line 122
+        inst.filename =  mev.payload.v                 #line 122
     elif  "input" ==  mev.port:                        #line 123
-        contents =  mev.datum.v                        #line 124
+        contents =  mev.payload.v                      #line 124
         f = open ( inst.filename, "w")                 #line 125
         if  f!= None:                                  #line 126
-            f.write ( mev.datum.v)                     #line 127
+            f.write ( mev.payload.v)                   #line 127
             f.close ()                                 #line 128
             send ( eh, "done",new_datum_bang (), mev)  #line 129
         else:                                          #line 130
@@ -810,10 +810,10 @@ def stringconcat_instantiate (reg,owner,name,template_data,arg):#line 147
 def stringconcat_handler (eh,mev):                     #line 153
     inst =  eh.instance_data                           #line 154
     if  "1" ==  mev.port:                              #line 155
-        inst.buffer1 = clone_string ( mev.datum.v)     #line 156
+        inst.buffer1 = clone_string ( mev.payload.v)   #line 156
         maybe_stringconcat ( eh, inst, mev)            #line 157
     elif  "2" ==  mev.port:                            #line 158
-        inst.buffer2 = clone_string ( mev.datum.v)     #line 159
+        inst.buffer2 = clone_string ( mev.payload.v)   #line 159
         maybe_stringconcat ( eh, inst, mev)            #line 160
     elif  "reset" ==  mev.port:                        #line 161
         inst.buffer1 =  None                           #line 162
@@ -902,7 +902,7 @@ def strcatstar_instantiate (reg,owner,name,template_data,arg):#line 258
 def strcatstar_handler (eh,mev):                       #line 264
     accum =  eh.instance_data                          #line 265
     if  "" ==  mev.port:                               #line 266
-        accum.s =  str( accum.s) +  mev.datum.v        #line 267
+        accum.s =  str( accum.s) +  mev.payload.v      #line 267
     elif  "fini" ==  mev.port:                         #line 268
         send ( eh, "", accum.s, mev)                   #line 269
     else:                                              #line 270
@@ -920,7 +920,7 @@ def stop_handler (eh,mev):                             #line 281
     print ( s, file=sys.stderr)                        #line 285
                                                        #line 286
     parent.stop ( parent)                              #line 287
-    send ( eh, "", mev.datum.v, mev)                   #line 288#line 289#line 290
+    send ( eh, "", mev.payload.v, mev)                 #line 288#line 289#line 290
 
 # all of the the built_in leaves are listed here       #line 291
 # future: refactor this such that programmers can pick and choose which (lumps of) builtins are used in a specific project#line 292#line 293
