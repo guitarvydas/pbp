@@ -20,4 +20,4 @@ export DEST_EXTENSION="<not applicable>"
 
 
 # names must not contain spaces, since space is the separator used in for loops in @makec and @testc
-export BASENAMES="dev"
+export BASENAMES="defs templates container leaf jit stock start"

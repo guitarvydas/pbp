@@ -1,7 +1,7 @@
 typedef struct _Mevent {
                                                        /* line 1 */
-    port;
-    payload;                                           /* line 4 */
+    char* port;                                        /* line 2 */
+    char* payload;                                     /* line 3 *//* line 4 */
 } Mevent;
 Mevent fresh_Mevent () {
     Mevent *self;

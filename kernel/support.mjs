@@ -17,11 +17,6 @@ function enspace (arr) {
     //return arr.join (" ");
 }
 
-function pycommentify (s) {
-    return s;
-    //return s.replaceAll (/\n/g, "\n#").replaceAll ("%0A", "%0A#");
-}
-
 // In Javascript:
 // s is a string containing a two-level list.
 // The top level items are separated by "⫶".
