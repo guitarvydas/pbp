@@ -7,7 +7,7 @@ void create_down_connector (container,proto_conn,connectors,children_by_id) {
     target_proto =  proto_conn [ "target"]             /* line 6 */
     id_proto =  target_proto [ "id"]                   /* line 7 */
     target_component =  children_by_id [id_proto]      /* line 8 */
-    if ( target_component ==  nil):                    /* line 9 */
+    if ( target_component ==  NULL):                   /* line 9 */
         load_error ( str( "internal error: .Down connection target internal error ") + ( proto_conn [ "target"]) [ "name"] )/* line 10 */
     else:                                              /* line 11 */
         connector.receiver = mkReceiver ( target_component.name, target_component, proto_conn [ "target_port"], target_component.inq)/* line 12 *//* line 13 */
@@ -19,11 +19,11 @@ void create_across_connector (container,proto_conn,connectors,children_by_id) {
     connector.direction =  "across"                    /* line 19 */
     source_component =  children_by_id [(( proto_conn [ "source"]) [ "id"])]/* line 20 */
     target_component =  children_by_id [(( proto_conn [ "target"]) [ "id"])]/* line 21 */
-    if  source_component ==  nil:                      /* line 22 */
+    if  source_component ==  NULL:                     /* line 22 */
         load_error ( str( "internal error: .Across connection source not ok ") + ( proto_conn [ "source"]) [ "name"] )/* line 23 */
     else:                                              /* line 24 */
         connector.sender = mkSender ( source_component.name, source_component, proto_conn [ "source_port"])/* line 25 */
-        if  target_component ==  nil:                  /* line 26 */
+        if  target_component ==  NULL:                 /* line 26 */
             load_error ( str( "internal error: .Across connection target not ok ") + ( proto_conn [ "target"]) [ "name"] )/* line 27 */
         else:                                          /* line 28 */
             connector.receiver = mkReceiver ( target_component.name, target_component, proto_conn [ "target_port"], target_component.inq)/* line 29 *//* line 30 *//* line 31 */
@@ -34,7 +34,7 @@ void create_up_connector (container,proto_conn,connectors,children_by_id) {
     connector =  Connector ()                          /* line 36 */
     connector.direction =  "up"                        /* line 37 */
     source_component =  children_by_id [(( proto_conn [ "source"]) [ "id"])]/* line 38 */
-    if  source_component ==  nil:                      /* line 39 */
+    if  source_component ==  NULL:                     /* line 39 */
         load_error ( str( "internal error: .Up connection source not ok ") + ( proto_conn [ "source"]) [ "name"] )/* line 40 */
     else:                                              /* line 41 */
         connector.sender = mkSender ( source_component.name, source_component, proto_conn [ "source_port"])/* line 42 */
@@ -244,7 +244,7 @@ void send (eh,port,obj,causingMevent) {
     d =  Datum ()                                      /* line 271 */
     d.v =  obj                                         /* line 272 */
     d.clone =  lambda : obj_clone ( d)                 /* line 273 */
-    d.reclaim =  nil                                   /* line 274 */
+    d.reclaim =  NULL                                  /* line 274 */
     mev = make_mevent ( port, d)                       /* line 275 */
     put_output ( eh, mev)                              /* line 276 *//* line 277 *//* line 278 */}
 

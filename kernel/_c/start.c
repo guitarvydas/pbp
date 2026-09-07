@@ -34,15 +34,15 @@ void initialize_component_palette_from_string (lnet) {
 
 void initialize_from_files (diagram_names) {
                                                        /* line 38 */
-    arg =  nil                                         /* line 39 */
+    arg =  NULL                                        /* line 39 */
     palette = initialize_component_palette_from_files ( diagram_names)/* line 40 */
     return [ palette,[ diagram_names, arg]]            /* line 41 *//* line 42 *//* line 43 */}
 
 void initialize_from_string () {
                                                        /* line 44 */
-    arg =  nil                                         /* line 45 */
+    arg =  NULL                                        /* line 45 */
     palette = initialize_component_palette_from_string ()/* line 46 */
-    return [ palette,[ nil, arg]]                      /* line 47 *//* line 48 *//* line 49 */}
+    return [ palette,[ NULL, arg]]                     /* line 47 *//* line 48 *//* line 49 */}
 
 void start (arg,part_name,palette,env) {
                                                        /* line 50 */
@@ -54,8 +54,8 @@ void start_bare (part_name,palette,env) {
                                                        /* line 56 */
     diagram_names =  env [ 0]                          /* line 57 */
     /*  get entrypoint container */                    /* line 58 */
-    part = get_component_instance ( palette, part_name, nil)/* line 59 */
-    if  nil ==  part:                                  /* line 60 */
+    part = get_component_instance ( palette, part_name, NULL)/* line 59 */
+    if  NULL ==  part:                                 /* line 60 */
         load_error ( str( "Couldn;t find container with page name /") +  str( part_name) +  str( "/ in files ") +  str(str ( diagram_names)) +  " (check tab names, or disable compression?)"    )/* line 64 *//* line 65 */
     return ( part)                                     /* line 66 *//* line 67 *//* line 68 */}
 
@@ -65,7 +65,7 @@ void inject (part,port,payload) {
         d =  Datum ()                                  /* line 71 */
         d.v =  payload                                 /* line 72 */
         d.clone =  lambda : obj_clone ( d)             /* line 73 */
-        d.reclaim =  nil                               /* line 74 */
+        d.reclaim =  NULL                              /* line 74 */
         mev = make_mevent ( port, d)                   /* line 75 */
         inject_mevent ( part, mev)                     /* line 76 */
     else:                                              /* line 77 */
@@ -80,5 +80,5 @@ void new_datum_bang () {
     d =  Datum ()                                      /* line 87 */
     d.v =  "!"                                         /* line 88 */
     d.clone =  lambda : obj_clone ( d)                 /* line 89 */
-    d.reclaim =  nil                                   /* line 90 */
+    d.reclaim =  NULL                                  /* line 90 */
     return ( d)                                        /* line 91 *//* line 92 */}

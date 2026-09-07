@@ -2,7 +2,7 @@
 void jit_instantiate (reg,owner,name,arg) {
                                                        /* line 3 */
     name_with_id = gensymbol ( name)                   /* line 4 */
-    inst = make_leaf ( name_with_id, owner, nil, arg, handle_jit, nil)/* line 5 */
+    inst = make_leaf ( name_with_id, owner, NULL, arg, handle_jit, NULL)/* line 5 */
     firstc =  name [ 1]                                /* line 6 */
     if ( firstc!= "$"):                                /* line 7 */
         /*  probes get to go to the front of the line  *//* line 8 */
@@ -29,10 +29,10 @@ void probe_handler (eh,tag,mev) {
 void shell_out_handler (eh,cmd,mev) {
                                                        /* line 39 */
     s =  mev.payload.v                                 /* line 40 */
-    ret =  nil                                         /* line 41 */
-    rc =  nil                                          /* line 42 */
-    stdout =  nil                                      /* line 43 */
-    stderr =  nil                                      /* line 44 */
+    ret =  NULL                                        /* line 41 */
+    rc =  NULL                                         /* line 42 */
+    stdout =  NULL                                     /* line 43 */
+    stderr =  NULL                                     /* line 44 */
     command =  cmd                                     /* line 45 */
     pbpRoot = os.getenv('PBP', '<none>')               /* line 46 */
     if  pbpRoot!= "":                                  /* line 47 */

@@ -27,10 +27,10 @@ typedef struct _Datum {
 Datum fresh_Datum () {
     Datum *self;
     self = (Mevent*)malloc(sizeof(Mevent));
-    self->v =  nil;                                    /* line 32 */
-    self->clone =  nil;                                /* line 33 */
-    self->reclaim =  nil;                              /* line 34 */
-    self->other =  nil; /*  reserved for use on per-project basis  *//* line 35 *//* line 36 */
+    self->v =  NULL;                                   /* line 32 */
+    self->clone =  NULL;                               /* line 33 */
+    self->reclaim =  NULL;                             /* line 34 */
+    self->other =  NULL; /*  reserved for use on per-project basis  *//* line 35 *//* line 36 */
     return self;
 }
                                                        /* line 37 *//* line 38 */
@@ -46,8 +46,8 @@ typedef struct _Mevent {
 Mevent fresh_Mevent () {
     Mevent *self;
     self = (Mevent*)malloc(sizeof(Mevent));
-    self->port =  nil;                                 /* line 44 */
-    self->payload =  nil;                              /* line 45 *//* line 46 */
+    self->port =  NULL;                                /* line 44 */
+    self->payload =  NULL;                             /* line 45 *//* line 46 */
     return self;
 }
                                                        /* line 47 */
@@ -90,14 +90,14 @@ void destroy_port (mev) {
 /*  */                                                 /* line 84 */
 void format_mevent (m) {
                                                        /* line 85 */
-    if  m ==  nil:                                     /* line 86 */
+    if  m ==  NULL:                                    /* line 86 */
         return ( "{}")                                 /* line 87 */
     else:                                              /* line 88 */
         return ( str( "{%5C”") +  str( m.port) +  str( "%5C”:%5C”") +  str( m.payload.v) +  "%5C”}"    /* line 89 */)/* line 90 *//* line 91 */}
 
 void format_mevent_raw (m) {
                                                        /* line 92 */
-    if  m ==  nil:                                     /* line 93 */
+    if  m ==  NULL:                                    /* line 93 */
         return ( "")                                   /* line 94 */
     else:                                              /* line 95 */
         return ( m.payload.v)                          /* line 96 *//* line 97 *//* line 98 *//* line 99 */}
@@ -117,198 +117,183 @@ Component_Registry fresh_Component_Registry () {
     return self;
 }
                                                        /* line 109 */
-typedef struct _Template {
-                                                       /* line 110 */
-    char* name;                                        /* line 111 */
-    char* container;                                   /* line 112 */
-    char* instantiator;                                /* line 113 *//* line 114 */
-} Template;
-Template fresh_Template () {
-    Template *self;
-    self = (Mevent*)malloc(sizeof(Mevent));
-    self->name =  nil;                                 /* line 111 */
-    self->container =  nil;                            /* line 112 */
-    self->instantiator =  nil;                         /* line 113 *//* line 114 */
-    return self;
-}
-                                                       /* line 115 */
-/*  Routing connection for a container component. The `direction` field has *//* line 116 */
-/*  no affect on the default mevent routing system _ it is there for debugging *//* line 117 */
-/*  purposes, or for reading by other tools. */        /* line 118 *//* line 119 */
+/*  Routing connection for a container component. The `direction` field has *//* line 110 */
+/*  no affect on the default mevent routing system _ it is there for debugging *//* line 111 */
+/*  purposes, or for reading by other tools. */        /* line 112 *//* line 113 */
 typedef struct _Connector {
-                                                       /* line 120 */
-    char* direction; /*  down, across, up, through */  /* line 121 */
-    char* sender;                                      /* line 122 */
-    char* receiver;                                    /* line 123 *//* line 124 */
+                                                       /* line 114 */
+    char* direction; /*  down, across, up, through */  /* line 115 */
+    char* sender;                                      /* line 116 */
+    char* receiver;                                    /* line 117 *//* line 118 */
 } Connector;
 Connector fresh_Connector () {
     Connector *self;
     self = (Mevent*)malloc(sizeof(Mevent));
-    self->direction =  nil; /*  down, across, up, through *//* line 121 */
-    self->sender =  nil;                               /* line 122 */
-    self->receiver =  nil;                             /* line 123 *//* line 124 */
+    self->direction =  NULL; /*  down, across, up, through *//* line 115 */
+    self->sender =  NULL;                              /* line 116 */
+    self->receiver =  NULL;                            /* line 117 *//* line 118 */
     return self;
 }
-                                                       /* line 125 */
-/*  `Sender` is used to “pattern match“ which `Receiver` a mevent should go to, *//* line 126 */
-/*  based on component ID (pointer) and port name. */  /* line 127 *//* line 128 */
+                                                       /* line 119 */
+/*  `Sender` is used to “pattern match“ which `Receiver` a mevent should go to, *//* line 120 */
+/*  based on component ID (pointer) and port name. */  /* line 121 *//* line 122 */
 typedef struct _Sender {
-                                                       /* line 129 */
-    char* name;                                        /* line 130 */
-    char* component;                                   /* line 131 */
-    char* port;                                        /* line 132 *//* line 133 */
+                                                       /* line 123 */
+    char* name;                                        /* line 124 */
+    char* component;                                   /* line 125 */
+    char* port;                                        /* line 126 *//* line 127 */
 } Sender;
 Sender fresh_Sender () {
     Sender *self;
     self = (Mevent*)malloc(sizeof(Mevent));
-    self->name =  nil;                                 /* line 130 */
-    self->component =  nil;                            /* line 131 */
-    self->port =  nil;                                 /* line 132 *//* line 133 */
+    self->name =  NULL;                                /* line 124 */
+    self->component =  NULL;                           /* line 125 */
+    self->port =  NULL;                                /* line 126 *//* line 127 */
     return self;
 }
-                                                       /* line 134 *//* line 135 *//* line 136 */
-/*  `Receiver` is a handle to a destination queue, and a `port` name to assign *//* line 137 */
-/*  to incoming mevents to this queue. */              /* line 138 *//* line 139 */
+                                                       /* line 128 *//* line 129 *//* line 130 */
+/*  `Receiver` is a handle to a destination queue, and a `port` name to assign *//* line 131 */
+/*  to incoming mevents to this queue. */              /* line 132 *//* line 133 */
 typedef struct _Receiver {
-                                                       /* line 140 */
-    char* name;                                        /* line 141 */
-    char* queue;                                       /* line 142 */
-    char* port;                                        /* line 143 */
-    char* component;                                   /* line 144 *//* line 145 */
+                                                       /* line 134 */
+    char* name;                                        /* line 135 */
+    char* queue;                                       /* line 136 */
+    char* port;                                        /* line 137 */
+    char* component;                                   /* line 138 *//* line 139 */
 } Receiver;
 Receiver fresh_Receiver () {
     Receiver *self;
     self = (Mevent*)malloc(sizeof(Mevent));
-    self->name =  nil;                                 /* line 141 */
-    self->queue =  nil;                                /* line 142 */
-    self->port =  nil;                                 /* line 143 */
-    self->component =  nil;                            /* line 144 *//* line 145 */
+    self->name =  NULL;                                /* line 135 */
+    self->queue =  NULL;                               /* line 136 */
+    self->port =  NULL;                                /* line 137 */
+    self->component =  NULL;                           /* line 138 *//* line 139 */
     return self;
 }
-                                                       /* line 146 */
+                                                       /* line 140 */
 void mkSender (name,component,port) {
-                                                       /* line 147 */
-    s =  Sender ()                                     /* line 148 */
-    s.name =  name                                     /* line 149 */
-    s.component =  component                           /* line 150 */
-    s.port =  port                                     /* line 151 */
-    return ( s)                                        /* line 152 *//* line 153 *//* line 154 */}
+                                                       /* line 141 */
+    s =  Sender ()                                     /* line 142 */
+    s.name =  name                                     /* line 143 */
+    s.component =  component                           /* line 144 */
+    s.port =  port                                     /* line 145 */
+    return ( s)                                        /* line 146 *//* line 147 *//* line 148 */}
 
 void mkReceiver (name,component,port,q) {
-                                                       /* line 155 */
-    r =  Receiver ()                                   /* line 156 */
-    r.name =  name                                     /* line 157 */
-    r.component =  component                           /* line 158 */
-    r.port =  port                                     /* line 159 */
-    /*  We need a way to determine which queue to target. "Down" and "Across" go to inq, "Up" and "Through" go to outq. *//* line 160 */
-    r.queue =  q                                       /* line 161 */
-    return ( r)                                        /* line 162 *//* line 163 *//* line 164 */}
-                                                       /* line 165 */
+                                                       /* line 149 */
+    r =  Receiver ()                                   /* line 150 */
+    r.name =  name                                     /* line 151 */
+    r.component =  component                           /* line 152 */
+    r.port =  port                                     /* line 153 */
+    /*  We need a way to determine which queue to target. "Down" and "Across" go to inq, "Up" and "Through" go to outq. *//* line 154 */
+    r.queue =  q                                       /* line 155 */
+    return ( r)                                        /* line 156 *//* line 157 *//* line 158 */}
+                                                       /* line 159 */
 typedef struct _Component_Registry {
-                                                       /* line 166 */
-    char* templates;                                   /* line 167 *//* line 168 */
+                                                       /* line 160 */
+    char* templates;                                   /* line 161 *//* line 162 */
 } Component_Registry;
 Component_Registry fresh_Component_Registry () {
     Component_Registry *self;
     self = (Mevent*)malloc(sizeof(Mevent));
-    self->templates = {};                              /* line 167 *//* line 168 */
+    self->templates = {};                              /* line 161 *//* line 162 */
     return self;
 }
-                                                       /* line 169 */
+                                                       /* line 163 */
 typedef struct _Template {
-                                                       /* line 170 */
-    char* name;                                        /* line 171 */
-    char* container;                                   /* line 172 */
-    char* instantiator;                                /* line 173 *//* line 174 */
+                                                       /* line 164 */
+    char* name;                                        /* line 165 */
+    char* container;                                   /* line 166 */
+    char* instantiator;                                /* line 167 *//* line 168 */
 } Template;
 Template fresh_Template () {
     Template *self;
     self = (Mevent*)malloc(sizeof(Mevent));
-    self->name =  nil;                                 /* line 171 */
-    self->container =  nil;                            /* line 172 */
-    self->instantiator =  nil;                         /* line 173 *//* line 174 */
+    self->name =  NULL;                                /* line 165 */
+    self->container =  NULL;                           /* line 166 */
+    self->instantiator =  NULL;                        /* line 167 *//* line 168 */
     return self;
 }
-                                                       /* line 175 */
+                                                       /* line 169 */
 void mkTemplate (name,template_data,instantiator) {
-                                                       /* line 176 */
-    templ =  Template ()                               /* line 177 */
-    templ.name =  name                                 /* line 178 */
-    templ.template_data =  template_data               /* line 179 */
-    templ.instantiator =  instantiator                 /* line 180 */
-    return ( templ)                                    /* line 181 *//* line 182 *//* line 183 */}
+                                                       /* line 170 */
+    templ =  Template ()                               /* line 171 */
+    templ.name =  name                                 /* line 172 */
+    templ.template_data =  template_data               /* line 173 */
+    templ.instantiator =  instantiator                 /* line 174 */
+    return ( templ)                                    /* line 175 *//* line 176 *//* line 177 */}
 
 void make_component_registry () {
-                                                       /* line 184 */
-    return ( Component_Registry ()                     /* line 185 */)/* line 186 *//* line 187 */}
+                                                       /* line 178 */
+    return ( Component_Registry ()                     /* line 179 */)/* line 180 *//* line 181 */}
 
-/*  Data for an asyncronous component _ effectively, a function with input *//* line 188 */
-/*  and output queues of mevents. */                   /* line 189 */
+/*  Data for an asyncronous component _ effectively, a function with input *//* line 182 */
+/*  and output queues of mevents. */                   /* line 183 */
+/*  */                                                 /* line 184 */
+/*  Components can either be a user_supplied function (“leaf“), or a “container“ *//* line 185 */
+/*  that routes mevents to child components according to a list of connections *//* line 186 */
+/*  that serve as a mevent routing table. */           /* line 187 */
+/*  */                                                 /* line 188 */
+/*  Child components themselves can be leaves or other containers. *//* line 189 */
 /*  */                                                 /* line 190 */
-/*  Components can either be a user_supplied function (“leaf“), or a “container“ *//* line 191 */
-/*  that routes mevents to child components according to a list of connections *//* line 192 */
-/*  that serve as a mevent routing table. */           /* line 193 */
-/*  */                                                 /* line 194 */
-/*  Child components themselves can be leaves or other containers. *//* line 195 */
-/*  */                                                 /* line 196 */
-/*  `handler` invokes the code that is attached to this component. *//* line 197 */
-/*  */                                                 /* line 198 */
-/*  `instance_data` is a pointer to instance data that the `leaf_handler` *//* line 199 */
-/*  function may want whenever it is invoked again. */ /* line 200 *//* line 201 */
-/*  TODO: what is .routings for? (is it a historical artefact that can be removed?)  *//* line 202 *//* line 203 */
-/*  Eh_States :: enum { idle, active } */              /* line 204 */
+/*  `handler` invokes the code that is attached to this component. *//* line 191 */
+/*  */                                                 /* line 192 */
+/*  `instance_data` is a pointer to instance data that the `leaf_handler` *//* line 193 */
+/*  function may want whenever it is invoked again. */ /* line 194 *//* line 195 */
+/*  TODO: what is .routings for? (is it a historical artefact that can be removed?)  *//* line 196 *//* line 197 */
+/*  Eh_States :: enum { idle, active } */              /* line 198 */
 typedef struct _Eh {
-                                                       /* line 205 */
-    char* name;                                        /* line 206 */
+                                                       /* line 199 */
+    char* name;                                        /* line 200 */
     char* inq;
     char* outq;
-    char* owner;                                       /* line 209 */
-    char* children;                                    /* line 210 */
+    char* owner;                                       /* line 203 */
+    char* children;                                    /* line 204 */
     char* visit_ordering;
-    char* connections;                                 /* line 212 */
+    char* connections;                                 /* line 206 */
     char* routings;
-    char* handler;                                     /* line 214 */
-    char* reset_instance_data;                         /* line 215 */
-    char* finject;                                     /* line 216 */
-    char* stop;                                        /* line 217 */
-    char* instance_data;                               /* line 218 *//*  arg needed for probe support  *//* line 219 */
-    char* arg;                                         /* line 220 */
-    char* state;                                       /* line 221 */
-    char* special;                                     /* line 222 *//*  bootstrap debugging *//* line 223 */
-    char* kind; /*  enum { container, leaf, } */       /* line 224 *//* line 225 */
+    char* handler;                                     /* line 208 */
+    char* reset_instance_data;                         /* line 209 */
+    char* finject;                                     /* line 210 */
+    char* stop;                                        /* line 211 */
+    char* instance_data;                               /* line 212 *//*  arg needed for probe support  *//* line 213 */
+    char* arg;                                         /* line 214 */
+    char* state;                                       /* line 215 */
+    char* special;                                     /* line 216 *//*  bootstrap debugging *//* line 217 */
+    char* kind; /*  enum { container, leaf, } */       /* line 218 *//* line 219 */
 } Eh;
 Eh fresh_Eh () {
     Eh *self;
     self = (Mevent*)malloc(sizeof(Mevent));
-    self->name =  "";                                  /* line 206 */
-    self->inq =  deque ([])                            /* line 207 */;
-    self->outq =  deque ([])                           /* line 208 */;
-    self->owner =  nil;                                /* line 209 */
-    self->children = [];                               /* line 210 */
-    self->visit_ordering =  deque ([])                 /* line 211 */;
-    self->connections = [];                            /* line 212 */
-    self->routings =  deque ([])                       /* line 213 */;
-    self->handler =  nil;                              /* line 214 */
-    self->reset_instance_data =  nil;                  /* line 215 */
-    self->finject =  nil;                              /* line 216 */
-    self->stop =  nil;                                 /* line 217 */
-    self->instance_data =  nil;                        /* line 218 *//*  arg needed for probe support  *//* line 219 */
-    self->arg =  "";                                   /* line 220 */
-    self->state =  "idle";                             /* line 221 */
-    self->special =  False;                            /* line 222 *//*  bootstrap debugging *//* line 223 */
-    self->kind =  nil; /*  enum { container, leaf, } *//* line 224 *//* line 225 */
+    self->name =  "";                                  /* line 200 */
+    self->inq =  deque ([])                            /* line 201 */;
+    self->outq =  deque ([])                           /* line 202 */;
+    self->owner =  NULL;                               /* line 203 */
+    self->children = [];                               /* line 204 */
+    self->visit_ordering =  deque ([])                 /* line 205 */;
+    self->connections = [];                            /* line 206 */
+    self->routings =  deque ([])                       /* line 207 */;
+    self->handler =  NULL;                             /* line 208 */
+    self->reset_instance_data =  NULL;                 /* line 209 */
+    self->finject =  NULL;                             /* line 210 */
+    self->stop =  NULL;                                /* line 211 */
+    self->instance_data =  NULL;                       /* line 212 *//*  arg needed for probe support  *//* line 213 */
+    self->arg =  "";                                   /* line 214 */
+    self->state =  "idle";                             /* line 215 */
+    self->special =  False;                            /* line 216 *//*  bootstrap debugging *//* line 217 */
+    self->kind =  NULL; /*  enum { container, leaf, } *//* line 218 *//* line 219 */
     return self;
 }
-                                                       /* line 226 */
-int  load_errors =  False                              /* line 227 */;
-int  runtime_errors =  False                           /* line 228 */;/* line 229 */
+                                                       /* line 220 */
+int  load_errors =  False                              /* line 221 */;
+int  runtime_errors =  False                           /* line 222 */;/* line 223 */
 void clone_string (s) {
-                                                       /* line 230 */
-    return ( s)                                        /* line 231 *//* line 232 *//* line 233 */}
+                                                       /* line 224 */
+    return ( s)                                        /* line 225 *//* line 226 *//* line 227 */}
 
 void injector (eh,mevent) {
-                                                       /* line 234 */
-    eh.handler ( eh, mevent)                           /* line 235 *//* line 236 *//* line 237 */}
+                                                       /* line 228 */
+    eh.handler ( eh, mevent)                           /* line 229 *//* line 230 *//* line 231 */}
 void mkTemplate (name,template_data,instantiator) {
                                                        /* line 1 */
     templ =  Template ()                               /* line 2 */
@@ -371,7 +356,7 @@ void register_component_allow_overwriting (reg,template) {
 void abstracted_register_component (reg,template,ok_to_overwrite) {
                                                        /* line 37 */
     name = mangle_name ( template.name)                /* line 38 */
-    if  reg!= nil and  name in  reg.templates and not  ok_to_overwrite:/* line 39 */
+    if  reg!= NULL and  name in  reg.templates and not  ok_to_overwrite:/* line 39 */
         load_error ( str( "Component /") +  str( template.name) +  "/ already declared"  )/* line 40 */
         return ( reg)                                  /* line 41 */
     else:                                              /* line 42 */
@@ -392,22 +377,22 @@ void get_component_instance (reg,full_name,owner) {
     else:                                              /* line 58 */
         if  template_name in  reg.templates:           /* line 59 */
             template =  reg.templates [template_name]  /* line 60 */
-            if ( template ==  nil):                    /* line 61 */
+            if ( template ==  NULL):                   /* line 61 */
                 load_error ( str( "Registry Error (A): Can't find component /") +  str( template_name) +  "/"  )/* line 62 */
-                return ( nil)                          /* line 63 */
+                return ( NULL)                         /* line 63 */
             else:                                      /* line 64 */
                 instance_name = generate_instance_name ( owner, template_name)/* line 65 */
                 instance =  template.instantiator ( reg, owner, instance_name, template.template_data, "")/* line 66 */
                 return ( instance)                     /* line 67 *//* line 68 */
         else:                                          /* line 69 */
             load_error ( str( "Registry Error (B): Can't find component /") +  str( template_name) +  "/"  )/* line 70 */
-            return ( nil)                              /* line 71 *//* line 72 *//* line 73 *//* line 74 *//* line 75 */}
+            return ( NULL)                             /* line 71 *//* line 72 *//* line 73 *//* line 74 *//* line 75 */}
 
 void generate_instance_name (owner,template_name) {
                                                        /* line 76 */
     owner_name =  ""                                   /* line 77 */
     instance_name =  template_name                     /* line 78 */
-    if  nil!= owner:                                   /* line 79 */
+    if  NULL!= owner:                                  /* line 79 */
         owner_name =  owner.name                       /* line 80 */
         instance_name =  str( owner_name) +  str( "▹") +  template_name  /* line 81 */
     else:                                              /* line 82 */
@@ -427,7 +412,7 @@ void create_down_connector (container,proto_conn,connectors,children_by_id) {
     target_proto =  proto_conn [ "target"]             /* line 6 */
     id_proto =  target_proto [ "id"]                   /* line 7 */
     target_component =  children_by_id [id_proto]      /* line 8 */
-    if ( target_component ==  nil):                    /* line 9 */
+    if ( target_component ==  NULL):                   /* line 9 */
         load_error ( str( "internal error: .Down connection target internal error ") + ( proto_conn [ "target"]) [ "name"] )/* line 10 */
     else:                                              /* line 11 */
         connector.receiver = mkReceiver ( target_component.name, target_component, proto_conn [ "target_port"], target_component.inq)/* line 12 *//* line 13 */
@@ -439,11 +424,11 @@ void create_across_connector (container,proto_conn,connectors,children_by_id) {
     connector.direction =  "across"                    /* line 19 */
     source_component =  children_by_id [(( proto_conn [ "source"]) [ "id"])]/* line 20 */
     target_component =  children_by_id [(( proto_conn [ "target"]) [ "id"])]/* line 21 */
-    if  source_component ==  nil:                      /* line 22 */
+    if  source_component ==  NULL:                     /* line 22 */
         load_error ( str( "internal error: .Across connection source not ok ") + ( proto_conn [ "source"]) [ "name"] )/* line 23 */
     else:                                              /* line 24 */
         connector.sender = mkSender ( source_component.name, source_component, proto_conn [ "source_port"])/* line 25 */
-        if  target_component ==  nil:                  /* line 26 */
+        if  target_component ==  NULL:                 /* line 26 */
             load_error ( str( "internal error: .Across connection target not ok ") + ( proto_conn [ "target"]) [ "name"] )/* line 27 */
         else:                                          /* line 28 */
             connector.receiver = mkReceiver ( target_component.name, target_component, proto_conn [ "target_port"], target_component.inq)/* line 29 *//* line 30 *//* line 31 */
@@ -454,7 +439,7 @@ void create_up_connector (container,proto_conn,connectors,children_by_id) {
     connector =  Connector ()                          /* line 36 */
     connector.direction =  "up"                        /* line 37 */
     source_component =  children_by_id [(( proto_conn [ "source"]) [ "id"])]/* line 38 */
-    if  source_component ==  nil:                      /* line 39 */
+    if  source_component ==  NULL:                     /* line 39 */
         load_error ( str( "internal error: .Up connection source not ok ") + ( proto_conn [ "source"]) [ "name"] )/* line 40 */
     else:                                              /* line 41 */
         connector.sender = mkSender ( source_component.name, source_component, proto_conn [ "source_port"])/* line 42 */
@@ -664,7 +649,7 @@ void send (eh,port,obj,causingMevent) {
     d =  Datum ()                                      /* line 271 */
     d.v =  obj                                         /* line 272 */
     d.clone =  lambda : obj_clone ( d)                 /* line 273 */
-    d.reclaim =  nil                                   /* line 274 */
+    d.reclaim =  NULL                                  /* line 274 */
     mev = make_mevent ( port, d)                       /* line 275 */
     put_output ( eh, mev)                              /* line 276 *//* line 277 *//* line 278 */}
 
@@ -698,7 +683,7 @@ void make_leaf (name,owner,instance_data,arg,handler,reset_handler) {
                                                        /* line 4 */
     eh =  Eh ()                                        /* line 5 */
     nm =  ""                                           /* line 6 */
-    if  nil!= owner:                                   /* line 7 */
+    if  NULL!= owner:                                  /* line 7 */
         nm =  owner.name                               /* line 8 *//* line 9 */
     eh.name =  str( nm) +  str( "▹") +  name           /* line 10 */
     eh.owner =  owner                                  /* line 11 */
@@ -719,14 +704,14 @@ void leaf_reset (part) {
     part.inq.clear ()                                  /* line 25 */
     external
     part.outq.clear ()                                 /* line 26 */
-    if ( part.reset_handler!= nil):                    /* line 27 */
+    if ( part.reset_handler!= NULL):                   /* line 27 */
         part.reset_handler ( part)                     /* line 28 *//* line 29 */
     part.state =  "idle"                               /* line 30 *//* line 31 */}
 /*  (This used to be called `external` due to historical reasons). This has evolved into 2 kinds of Leaf parts: AOT and JIT (statically generated before runtime, vs. dynamically generated at runtime). If a part name begins with ;:', it is treated specially as a JIT part, else the part is assumed to have been pre-loaded into the register in the regular way.  *//* line 1 *//* line 2 */
 void jit_instantiate (reg,owner,name,arg) {
                                                        /* line 3 */
     name_with_id = gensymbol ( name)                   /* line 4 */
-    inst = make_leaf ( name_with_id, owner, nil, arg, handle_jit, nil)/* line 5 */
+    inst = make_leaf ( name_with_id, owner, NULL, arg, handle_jit, NULL)/* line 5 */
     firstc =  name [ 1]                                /* line 6 */
     if ( firstc!= "$"):                                /* line 7 */
         /*  probes get to go to the front of the line  *//* line 8 */
@@ -753,10 +738,10 @@ void probe_handler (eh,tag,mev) {
 void shell_out_handler (eh,cmd,mev) {
                                                        /* line 39 */
     s =  mev.payload.v                                 /* line 40 */
-    ret =  nil                                         /* line 41 */
-    rc =  nil                                          /* line 42 */
-    stdout =  nil                                      /* line 43 */
-    stderr =  nil                                      /* line 44 */
+    ret =  NULL                                        /* line 41 */
+    rc =  NULL                                         /* line 42 */
+    stdout =  NULL                                     /* line 43 */
+    stderr =  NULL                                     /* line 44 */
     command =  cmd                                     /* line 45 */
     pbpRoot = os.getenv('PBP', '<none>')               /* line 46 */
     if  pbpRoot!= "":                                  /* line 47 */
@@ -795,7 +780,7 @@ void shell_out_handler (eh,cmd,mev) {
 void trash_instantiate (reg,owner,name,template_data,arg) {
                                                        /* line 2 */
     name_with_id = gensymbol ( "trash")                /* line 3 */
-    return (make_leaf ( name_with_id, owner, nil, "", trash_handler, nil)/* line 4 */)/* line 5 *//* line 6 */}
+    return (make_leaf ( name_with_id, owner, NULL, "", trash_handler, NULL)/* line 4 */)/* line 5 *//* line 6 */}
 
 void trash_handler (eh,mev) {
                                                        /* line 7 */
@@ -810,8 +795,8 @@ typedef struct _TwoMevents {
 TwoMevents fresh_TwoMevents () {
     TwoMevents *self;
     self = (Mevent*)malloc(sizeof(Mevent));
-    self->firstmev =  nil;                             /* line 12 */
-    self->secondmev =  nil;                            /* line 13 *//* line 14 */
+    self->firstmev =  NULL;                            /* line 12 */
+    self->secondmev =  NULL;                           /* line 13 *//* line 14 */
     return self;
 }
                                                        /* line 15 */
@@ -824,8 +809,8 @@ typedef struct _Deracer_Instance_Data {
 Deracer_Instance_Data fresh_Deracer_Instance_Data () {
     Deracer_Instance_Data *self;
     self = (Mevent*)malloc(sizeof(Mevent));
-    self->state =  nil;                                /* line 18 */
-    self->buffer =  nil;                               /* line 19 *//* line 20 */
+    self->state =  NULL;                               /* line 18 */
+    self->buffer =  NULL;                              /* line 19 *//* line 20 */
     return self;
 }
                                                        /* line 21 */
@@ -886,7 +871,7 @@ void deracer_handler (eh,mev) {
 void low_level_read_text_file_instantiate (reg,owner,name,template_data,arg) {
                                                        /* line 80 */
     name_with_id = gensymbol ( "Low Level Read Text File")/* line 81 */
-    return (make_leaf ( name_with_id, owner, nil, "", low_level_read_text_file_handler, nil)/* line 82 */)/* line 83 *//* line 84 */}
+    return (make_leaf ( name_with_id, owner, NULL, "", low_level_read_text_file_handler, NULL)/* line 82 */)/* line 83 *//* line 84 */}
 
 void low_level_read_text_file_handler (eh,mev) {
                                                        /* line 85 */
@@ -910,7 +895,7 @@ void low_level_read_text_file_handler (eh,mev) {
 void ensure_string_datum_instantiate (reg,owner,name,template_data,arg) {
                                                        /* line 90 */
     name_with_id = gensymbol ( "Ensure String Datum")  /* line 91 */
-    return (make_leaf ( name_with_id, owner, nil, "", ensure_string_datum_handler, nil)/* line 92 */)/* line 93 *//* line 94 */}
+    return (make_leaf ( name_with_id, owner, NULL, "", ensure_string_datum_handler, NULL)/* line 92 */)/* line 93 *//* line 94 */}
 
 void ensure_string_datum_handler (eh,mev) {
                                                        /* line 95 */
@@ -950,7 +935,7 @@ void syncfilewrite_handler (eh,mev) {
     elif  "input" ==  mev.port:                        /* line 123 */
         contents =  mev.payload.v                      /* line 124 */
         f = open ( inst.filename, "w")                 /* line 125 */
-        if  f!= nil:                                   /* line 126 */
+        if  f!= NULL:                                  /* line 126 */
             f.write ( mev.payload.v)                   /* line 127 */
             f.close ()                                 /* line 128 */
             send ( eh, "done",new_datum_bang (), mev)  /* line 129 */
@@ -965,16 +950,16 @@ typedef struct _StringConcat_Instance_Data {
 StringConcat_Instance_Data fresh_StringConcat_Instance_Data () {
     StringConcat_Instance_Data *self;
     self = (Mevent*)malloc(sizeof(Mevent));
-    self->buffer1 =  nil;                              /* line 137 */
-    self->buffer2 =  nil;                              /* line 138 *//* line 139 */
+    self->buffer1 =  NULL;                             /* line 137 */
+    self->buffer2 =  NULL;                             /* line 138 *//* line 139 */
     return self;
 }
                                                        /* line 140 */
 void stringconcat_reset_handler (eh) {
                                                        /* line 141 */
     inst =  eh.instance_data                           /* line 142 */
-    inst.buffer1 =  nil                                /* line 143 */
-    inst.buffer2 =  nil                                /* line 144 *//* line 145 *//* line 146 */}
+    inst.buffer1 =  NULL                               /* line 143 */
+    inst.buffer2 =  NULL                               /* line 144 *//* line 145 *//* line 146 */}
 
 void stringconcat_instantiate (reg,owner,name,template_data,arg) {
                                                        /* line 147 */
@@ -992,14 +977,14 @@ void stringconcat_handler (eh,mev) {
         inst.buffer2 = clone_string ( mev.payload.v)   /* line 159 */
         maybe_stringconcat ( eh, inst, mev)            /* line 160 */
     elif  "reset" ==  mev.port:                        /* line 161 */
-        inst.buffer1 =  nil                            /* line 162 */
-        inst.buffer2 =  nil                            /* line 163 */
+        inst.buffer1 =  NULL                           /* line 162 */
+        inst.buffer2 =  NULL                           /* line 163 */
     else:                                              /* line 164 */
         runtime_error ( str( "bad mev.port for stringconcat: ") +  mev.port )/* line 165 *//* line 166 *//* line 167 *//* line 168 */}
 
 void maybe_stringconcat (eh,inst,mev) {
                                                        /* line 169 */
-    if  inst.buffer1!= nil and  inst.buffer2!= nil:    /* line 170 */
+    if  inst.buffer1!= NULL and  inst.buffer2!= NULL:  /* line 170 */
         concatenated_string =  ""                      /* line 171 */
         if  0 == len ( inst.buffer1):                  /* line 172 */
             concatenated_string =  inst.buffer2        /* line 173 */
@@ -1008,8 +993,8 @@ void maybe_stringconcat (eh,inst,mev) {
         else:                                          /* line 176 */
             concatenated_string =  inst.buffer1+ inst.buffer2/* line 177 *//* line 178 */
         send ( eh, "", concatenated_string, mev)       /* line 179 */
-        inst.buffer1 =  nil                            /* line 180 */
-        inst.buffer2 =  nil                            /* line 181 *//* line 182 *//* line 183 *//* line 184 */}
+        inst.buffer1 =  NULL                           /* line 180 */
+        inst.buffer2 =  NULL                           /* line 181 *//* line 182 *//* line 183 *//* line 184 */}
 
 /*  */                                                 /* line 185 *//* line 186 */
 void string_constant_instantiate (reg,owner,name,template_data,arg) {
@@ -1019,7 +1004,7 @@ void string_constant_instantiate (reg,owner,name,template_data,arg) {
     s =  template_data                                 /* line 190 */
     if  projectRoot!= "":                              /* line 191 */
         s = re.sub ( "_00_",  projectRoot,  s)         /* line 192 *//* line 193 */
-    return (make_leaf ( name_with_id, owner, s, "", string_constant_handler, nil)/* line 194 */)/* line 195 *//* line 196 */}
+    return (make_leaf ( name_with_id, owner, s, "", string_constant_handler, NULL)/* line 194 */)/* line 195 *//* line 196 */}
 
 void string_constant_handler (eh,mev) {
                                                        /* line 197 */
@@ -1029,7 +1014,7 @@ void string_constant_handler (eh,mev) {
 void fakepipename_instantiate (reg,owner,name,template_data,arg) {
                                                        /* line 202 */
     instance_name = gensymbol ( "fakepipe")            /* line 203 */
-    return (make_leaf ( instance_name, owner, nil, "", fakepipename_handler, nil)/* line 204 */)/* line 205 *//* line 206 */}
+    return (make_leaf ( instance_name, owner, NULL, "", fakepipename_handler, NULL)/* line 204 */)/* line 205 *//* line 206 */}
 
 int  rand =  0                                         /* line 207 */;/* line 208 */
 void fakepipename_handler (eh,mev) {
@@ -1112,8 +1097,8 @@ void strcatstar_handler (eh,mev) {
 void stop_instantiate (reg,owner,name,template_data,arg) {
                                                        /* line 275 */
     name_with_id = gensymbol ( "Stop")                 /* line 276 */
-    inst =  nil                                        /* line 277 */
-    return (make_leaf ( name_with_id, owner, inst, "", stop_handler, nil)/* line 278 */)/* line 279 *//* line 280 */}
+    inst =  NULL                                       /* line 277 */
+    return (make_leaf ( name_with_id, owner, inst, "", stop_handler, NULL)/* line 278 */)/* line 279 *//* line 280 */}
 
 void stop_handler (eh,mev) {
                                                        /* line 281 */
@@ -1129,19 +1114,19 @@ void stop_handler (eh,mev) {
 /*  future: refactor this such that programmers can pick and choose which (lumps of) builtins are used in a specific project *//* line 292 *//* line 293 */
 void initialize_stock_components (reg) {
                                                        /* line 294 */
-    register_component ( reg,mkTemplate ( "1then2", nil, deracer_instantiate))/* line 295 */
-    register_component ( reg,mkTemplate ( "1→2", nil, deracer_instantiate))/* line 296 */
-    register_component ( reg,mkTemplate ( "trash", nil, trash_instantiate))/* line 297 */
-    register_component ( reg,mkTemplate ( "🗑️", nil, trash_instantiate))/* line 298 */
-    register_component ( reg,mkTemplate ( "🚫", nil, stop_instantiate))/* line 299 *//* line 300 *//* line 301 */
-    register_component ( reg,mkTemplate ( "Read Text File", nil, low_level_read_text_file_instantiate))/* line 302 */
-    register_component ( reg,mkTemplate ( "Ensure String Datum", nil, ensure_string_datum_instantiate))/* line 303 *//* line 304 */
-    register_component ( reg,mkTemplate ( "syncfilewrite", nil, syncfilewrite_instantiate))/* line 305 */
-    register_component ( reg,mkTemplate ( "String Concat", nil, stringconcat_instantiate))/* line 306 */
-    register_component ( reg,mkTemplate ( "switch1*", nil, switch1star_instantiate))/* line 307 */
-    register_component ( reg,mkTemplate ( "String Concat *", nil, strcatstar_instantiate))/* line 308 */
+    register_component ( reg,mkTemplate ( "1then2", NULL, deracer_instantiate))/* line 295 */
+    register_component ( reg,mkTemplate ( "1→2", NULL, deracer_instantiate))/* line 296 */
+    register_component ( reg,mkTemplate ( "trash", NULL, trash_instantiate))/* line 297 */
+    register_component ( reg,mkTemplate ( "🗑️", NULL, trash_instantiate))/* line 298 */
+    register_component ( reg,mkTemplate ( "🚫", NULL, stop_instantiate))/* line 299 *//* line 300 *//* line 301 */
+    register_component ( reg,mkTemplate ( "Read Text File", NULL, low_level_read_text_file_instantiate))/* line 302 */
+    register_component ( reg,mkTemplate ( "Ensure String Datum", NULL, ensure_string_datum_instantiate))/* line 303 *//* line 304 */
+    register_component ( reg,mkTemplate ( "syncfilewrite", NULL, syncfilewrite_instantiate))/* line 305 */
+    register_component ( reg,mkTemplate ( "String Concat", NULL, stringconcat_instantiate))/* line 306 */
+    register_component ( reg,mkTemplate ( "switch1*", NULL, switch1star_instantiate))/* line 307 */
+    register_component ( reg,mkTemplate ( "String Concat *", NULL, strcatstar_instantiate))/* line 308 */
     /*  for fakepipe */                                /* line 309 */
-    register_component ( reg,mkTemplate ( "fakepipename", nil, fakepipename_instantiate))/* line 310 *//* line 311 *//* line 312 */}
+    register_component ( reg,mkTemplate ( "fakepipename", NULL, fakepipename_instantiate))/* line 310 *//* line 311 *//* line 312 */}
 /* line 1 */
 void load_error (s) {
                                                        /* line 2 */
@@ -1178,15 +1163,15 @@ void initialize_component_palette_from_string (lnet) {
 
 void initialize_from_files (diagram_names) {
                                                        /* line 38 */
-    arg =  nil                                         /* line 39 */
+    arg =  NULL                                        /* line 39 */
     palette = initialize_component_palette_from_files ( diagram_names)/* line 40 */
     return [ palette,[ diagram_names, arg]]            /* line 41 *//* line 42 *//* line 43 */}
 
 void initialize_from_string () {
                                                        /* line 44 */
-    arg =  nil                                         /* line 45 */
+    arg =  NULL                                        /* line 45 */
     palette = initialize_component_palette_from_string ()/* line 46 */
-    return [ palette,[ nil, arg]]                      /* line 47 *//* line 48 *//* line 49 */}
+    return [ palette,[ NULL, arg]]                     /* line 47 *//* line 48 *//* line 49 */}
 
 void start (arg,part_name,palette,env) {
                                                        /* line 50 */
@@ -1198,8 +1183,8 @@ void start_bare (part_name,palette,env) {
                                                        /* line 56 */
     diagram_names =  env [ 0]                          /* line 57 */
     /*  get entrypoint container */                    /* line 58 */
-    part = get_component_instance ( palette, part_name, nil)/* line 59 */
-    if  nil ==  part:                                  /* line 60 */
+    part = get_component_instance ( palette, part_name, NULL)/* line 59 */
+    if  NULL ==  part:                                 /* line 60 */
         load_error ( str( "Couldn;t find container with page name /") +  str( part_name) +  str( "/ in files ") +  str(str ( diagram_names)) +  " (check tab names, or disable compression?)"    )/* line 64 *//* line 65 */
     return ( part)                                     /* line 66 *//* line 67 *//* line 68 */}
 
@@ -1209,7 +1194,7 @@ void inject (part,port,payload) {
         d =  Datum ()                                  /* line 71 */
         d.v =  payload                                 /* line 72 */
         d.clone =  lambda : obj_clone ( d)             /* line 73 */
-        d.reclaim =  nil                               /* line 74 */
+        d.reclaim =  NULL                              /* line 74 */
         mev = make_mevent ( port, d)                   /* line 75 */
         inject_mevent ( part, mev)                     /* line 76 */
     else:                                              /* line 77 */
@@ -1224,5 +1209,5 @@ void new_datum_bang () {
     d =  Datum ()                                      /* line 87 */
     d.v =  "!"                                         /* line 88 */
     d.clone =  lambda : obj_clone ( d)                 /* line 89 */
-    d.reclaim =  nil                                   /* line 90 */
+    d.reclaim =  NULL                                  /* line 90 */
     return ( d)                                        /* line 91 *//* line 92 */}

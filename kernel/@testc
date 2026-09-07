@@ -15,6 +15,7 @@ for i in $BASENAMES; do
     cat "_python/$i.py" >> regression_test/rtkernel0d.py
     cat "_js/$i.js" >> regression_test/rtkernel0d.js
     cat "_lisp/$i.lisp" >> regression_test/rtkernel0d.lisp
+    cat "_c/$i.c" >> regression_test/rtkernel0d.c
 done
 
 if diff -q new_kernel0d.py regression_test/rtkernel0d.py > /dev/null; then
@@ -23,6 +24,7 @@ if diff -q new_kernel0d.py regression_test/rtkernel0d.py > /dev/null; then
     mv new_kernel0d.py kernel0d.py
     mv new_kernel0d.js kernel0d.js
     mv new_kernel0d.lisp kernel0d.lisp
+    mv new_kernel0d.c kernel0d.c
 else
     echo "Regression error: new_kernel0d.py and regression_test/rtkernel0d.py differ"
     echo "use diff new_kernel0d.py regression_test/rtkernel0d.py"

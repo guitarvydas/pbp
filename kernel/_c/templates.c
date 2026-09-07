@@ -60,7 +60,7 @@ void register_component_allow_overwriting (reg,template) {
 void abstracted_register_component (reg,template,ok_to_overwrite) {
                                                        /* line 37 */
     name = mangle_name ( template.name)                /* line 38 */
-    if  reg!= nil and  name in  reg.templates and not  ok_to_overwrite:/* line 39 */
+    if  reg!= NULL and  name in  reg.templates and not  ok_to_overwrite:/* line 39 */
         load_error ( str( "Component /") +  str( template.name) +  "/ already declared"  )/* line 40 */
         return ( reg)                                  /* line 41 */
     else:                                              /* line 42 */
@@ -81,22 +81,22 @@ void get_component_instance (reg,full_name,owner) {
     else:                                              /* line 58 */
         if  template_name in  reg.templates:           /* line 59 */
             template =  reg.templates [template_name]  /* line 60 */
-            if ( template ==  nil):                    /* line 61 */
+            if ( template ==  NULL):                   /* line 61 */
                 load_error ( str( "Registry Error (A): Can't find component /") +  str( template_name) +  "/"  )/* line 62 */
-                return ( nil)                          /* line 63 */
+                return ( NULL)                         /* line 63 */
             else:                                      /* line 64 */
                 instance_name = generate_instance_name ( owner, template_name)/* line 65 */
                 instance =  template.instantiator ( reg, owner, instance_name, template.template_data, "")/* line 66 */
                 return ( instance)                     /* line 67 *//* line 68 */
         else:                                          /* line 69 */
             load_error ( str( "Registry Error (B): Can't find component /") +  str( template_name) +  "/"  )/* line 70 */
-            return ( nil)                              /* line 71 *//* line 72 *//* line 73 *//* line 74 *//* line 75 */}
+            return ( NULL)                             /* line 71 *//* line 72 *//* line 73 *//* line 74 *//* line 75 */}
 
 void generate_instance_name (owner,template_name) {
                                                        /* line 76 */
     owner_name =  ""                                   /* line 77 */
     instance_name =  template_name                     /* line 78 */
-    if  nil!= owner:                                   /* line 79 */
+    if  NULL!= owner:                                  /* line 79 */
         owner_name =  owner.name                       /* line 80 */
         instance_name =  str( owner_name) +  str( "▹") +  template_name  /* line 81 */
     else:                                              /* line 82 */

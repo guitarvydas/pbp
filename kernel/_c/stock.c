@@ -2,7 +2,7 @@
 void trash_instantiate (reg,owner,name,template_data,arg) {
                                                        /* line 2 */
     name_with_id = gensymbol ( "trash")                /* line 3 */
-    return (make_leaf ( name_with_id, owner, nil, "", trash_handler, nil)/* line 4 */)/* line 5 *//* line 6 */}
+    return (make_leaf ( name_with_id, owner, NULL, "", trash_handler, NULL)/* line 4 */)/* line 5 *//* line 6 */}
 
 void trash_handler (eh,mev) {
                                                        /* line 7 */
@@ -17,8 +17,8 @@ typedef struct _TwoMevents {
 TwoMevents fresh_TwoMevents () {
     TwoMevents *self;
     self = (Mevent*)malloc(sizeof(Mevent));
-    self->firstmev =  nil;                             /* line 12 */
-    self->secondmev =  nil;                            /* line 13 *//* line 14 */
+    self->firstmev =  NULL;                            /* line 12 */
+    self->secondmev =  NULL;                           /* line 13 *//* line 14 */
     return self;
 }
                                                        /* line 15 */
@@ -31,8 +31,8 @@ typedef struct _Deracer_Instance_Data {
 Deracer_Instance_Data fresh_Deracer_Instance_Data () {
     Deracer_Instance_Data *self;
     self = (Mevent*)malloc(sizeof(Mevent));
-    self->state =  nil;                                /* line 18 */
-    self->buffer =  nil;                               /* line 19 *//* line 20 */
+    self->state =  NULL;                               /* line 18 */
+    self->buffer =  NULL;                              /* line 19 *//* line 20 */
     return self;
 }
                                                        /* line 21 */
@@ -93,7 +93,7 @@ void deracer_handler (eh,mev) {
 void low_level_read_text_file_instantiate (reg,owner,name,template_data,arg) {
                                                        /* line 80 */
     name_with_id = gensymbol ( "Low Level Read Text File")/* line 81 */
-    return (make_leaf ( name_with_id, owner, nil, "", low_level_read_text_file_handler, nil)/* line 82 */)/* line 83 *//* line 84 */}
+    return (make_leaf ( name_with_id, owner, NULL, "", low_level_read_text_file_handler, NULL)/* line 82 */)/* line 83 *//* line 84 */}
 
 void low_level_read_text_file_handler (eh,mev) {
                                                        /* line 85 */
@@ -117,7 +117,7 @@ void low_level_read_text_file_handler (eh,mev) {
 void ensure_string_datum_instantiate (reg,owner,name,template_data,arg) {
                                                        /* line 90 */
     name_with_id = gensymbol ( "Ensure String Datum")  /* line 91 */
-    return (make_leaf ( name_with_id, owner, nil, "", ensure_string_datum_handler, nil)/* line 92 */)/* line 93 *//* line 94 */}
+    return (make_leaf ( name_with_id, owner, NULL, "", ensure_string_datum_handler, NULL)/* line 92 */)/* line 93 *//* line 94 */}
 
 void ensure_string_datum_handler (eh,mev) {
                                                        /* line 95 */
@@ -157,7 +157,7 @@ void syncfilewrite_handler (eh,mev) {
     elif  "input" ==  mev.port:                        /* line 123 */
         contents =  mev.payload.v                      /* line 124 */
         f = open ( inst.filename, "w")                 /* line 125 */
-        if  f!= nil:                                   /* line 126 */
+        if  f!= NULL:                                  /* line 126 */
             f.write ( mev.payload.v)                   /* line 127 */
             f.close ()                                 /* line 128 */
             send ( eh, "done",new_datum_bang (), mev)  /* line 129 */
@@ -172,16 +172,16 @@ typedef struct _StringConcat_Instance_Data {
 StringConcat_Instance_Data fresh_StringConcat_Instance_Data () {
     StringConcat_Instance_Data *self;
     self = (Mevent*)malloc(sizeof(Mevent));
-    self->buffer1 =  nil;                              /* line 137 */
-    self->buffer2 =  nil;                              /* line 138 *//* line 139 */
+    self->buffer1 =  NULL;                             /* line 137 */
+    self->buffer2 =  NULL;                             /* line 138 *//* line 139 */
     return self;
 }
                                                        /* line 140 */
 void stringconcat_reset_handler (eh) {
                                                        /* line 141 */
     inst =  eh.instance_data                           /* line 142 */
-    inst.buffer1 =  nil                                /* line 143 */
-    inst.buffer2 =  nil                                /* line 144 *//* line 145 *//* line 146 */}
+    inst.buffer1 =  NULL                               /* line 143 */
+    inst.buffer2 =  NULL                               /* line 144 *//* line 145 *//* line 146 */}
 
 void stringconcat_instantiate (reg,owner,name,template_data,arg) {
                                                        /* line 147 */
@@ -199,14 +199,14 @@ void stringconcat_handler (eh,mev) {
         inst.buffer2 = clone_string ( mev.payload.v)   /* line 159 */
         maybe_stringconcat ( eh, inst, mev)            /* line 160 */
     elif  "reset" ==  mev.port:                        /* line 161 */
-        inst.buffer1 =  nil                            /* line 162 */
-        inst.buffer2 =  nil                            /* line 163 */
+        inst.buffer1 =  NULL                           /* line 162 */
+        inst.buffer2 =  NULL                           /* line 163 */
     else:                                              /* line 164 */
         runtime_error ( str( "bad mev.port for stringconcat: ") +  mev.port )/* line 165 *//* line 166 *//* line 167 *//* line 168 */}
 
 void maybe_stringconcat (eh,inst,mev) {
                                                        /* line 169 */
-    if  inst.buffer1!= nil and  inst.buffer2!= nil:    /* line 170 */
+    if  inst.buffer1!= NULL and  inst.buffer2!= NULL:  /* line 170 */
         concatenated_string =  ""                      /* line 171 */
         if  0 == len ( inst.buffer1):                  /* line 172 */
             concatenated_string =  inst.buffer2        /* line 173 */
@@ -215,8 +215,8 @@ void maybe_stringconcat (eh,inst,mev) {
         else:                                          /* line 176 */
             concatenated_string =  inst.buffer1+ inst.buffer2/* line 177 *//* line 178 */
         send ( eh, "", concatenated_string, mev)       /* line 179 */
-        inst.buffer1 =  nil                            /* line 180 */
-        inst.buffer2 =  nil                            /* line 181 *//* line 182 *//* line 183 *//* line 184 */}
+        inst.buffer1 =  NULL                           /* line 180 */
+        inst.buffer2 =  NULL                           /* line 181 *//* line 182 *//* line 183 *//* line 184 */}
 
 /*  */                                                 /* line 185 *//* line 186 */
 void string_constant_instantiate (reg,owner,name,template_data,arg) {
@@ -226,7 +226,7 @@ void string_constant_instantiate (reg,owner,name,template_data,arg) {
     s =  template_data                                 /* line 190 */
     if  projectRoot!= "":                              /* line 191 */
         s = re.sub ( "_00_",  projectRoot,  s)         /* line 192 *//* line 193 */
-    return (make_leaf ( name_with_id, owner, s, "", string_constant_handler, nil)/* line 194 */)/* line 195 *//* line 196 */}
+    return (make_leaf ( name_with_id, owner, s, "", string_constant_handler, NULL)/* line 194 */)/* line 195 *//* line 196 */}
 
 void string_constant_handler (eh,mev) {
                                                        /* line 197 */
@@ -236,7 +236,7 @@ void string_constant_handler (eh,mev) {
 void fakepipename_instantiate (reg,owner,name,template_data,arg) {
                                                        /* line 202 */
     instance_name = gensymbol ( "fakepipe")            /* line 203 */
-    return (make_leaf ( instance_name, owner, nil, "", fakepipename_handler, nil)/* line 204 */)/* line 205 *//* line 206 */}
+    return (make_leaf ( instance_name, owner, NULL, "", fakepipename_handler, NULL)/* line 204 */)/* line 205 *//* line 206 */}
 
 int  rand =  0                                         /* line 207 */;/* line 208 */
 void fakepipename_handler (eh,mev) {
@@ -319,8 +319,8 @@ void strcatstar_handler (eh,mev) {
 void stop_instantiate (reg,owner,name,template_data,arg) {
                                                        /* line 275 */
     name_with_id = gensymbol ( "Stop")                 /* line 276 */
-    inst =  nil                                        /* line 277 */
-    return (make_leaf ( name_with_id, owner, inst, "", stop_handler, nil)/* line 278 */)/* line 279 *//* line 280 */}
+    inst =  NULL                                       /* line 277 */
+    return (make_leaf ( name_with_id, owner, inst, "", stop_handler, NULL)/* line 278 */)/* line 279 *//* line 280 */}
 
 void stop_handler (eh,mev) {
                                                        /* line 281 */
@@ -336,16 +336,16 @@ void stop_handler (eh,mev) {
 /*  future: refactor this such that programmers can pick and choose which (lumps of) builtins are used in a specific project *//* line 292 *//* line 293 */
 void initialize_stock_components (reg) {
                                                        /* line 294 */
-    register_component ( reg,mkTemplate ( "1then2", nil, deracer_instantiate))/* line 295 */
-    register_component ( reg,mkTemplate ( "1→2", nil, deracer_instantiate))/* line 296 */
-    register_component ( reg,mkTemplate ( "trash", nil, trash_instantiate))/* line 297 */
-    register_component ( reg,mkTemplate ( "🗑️", nil, trash_instantiate))/* line 298 */
-    register_component ( reg,mkTemplate ( "🚫", nil, stop_instantiate))/* line 299 *//* line 300 *//* line 301 */
-    register_component ( reg,mkTemplate ( "Read Text File", nil, low_level_read_text_file_instantiate))/* line 302 */
-    register_component ( reg,mkTemplate ( "Ensure String Datum", nil, ensure_string_datum_instantiate))/* line 303 *//* line 304 */
-    register_component ( reg,mkTemplate ( "syncfilewrite", nil, syncfilewrite_instantiate))/* line 305 */
-    register_component ( reg,mkTemplate ( "String Concat", nil, stringconcat_instantiate))/* line 306 */
-    register_component ( reg,mkTemplate ( "switch1*", nil, switch1star_instantiate))/* line 307 */
-    register_component ( reg,mkTemplate ( "String Concat *", nil, strcatstar_instantiate))/* line 308 */
+    register_component ( reg,mkTemplate ( "1then2", NULL, deracer_instantiate))/* line 295 */
+    register_component ( reg,mkTemplate ( "1→2", NULL, deracer_instantiate))/* line 296 */
+    register_component ( reg,mkTemplate ( "trash", NULL, trash_instantiate))/* line 297 */
+    register_component ( reg,mkTemplate ( "🗑️", NULL, trash_instantiate))/* line 298 */
+    register_component ( reg,mkTemplate ( "🚫", NULL, stop_instantiate))/* line 299 *//* line 300 *//* line 301 */
+    register_component ( reg,mkTemplate ( "Read Text File", NULL, low_level_read_text_file_instantiate))/* line 302 */
+    register_component ( reg,mkTemplate ( "Ensure String Datum", NULL, ensure_string_datum_instantiate))/* line 303 *//* line 304 */
+    register_component ( reg,mkTemplate ( "syncfilewrite", NULL, syncfilewrite_instantiate))/* line 305 */
+    register_component ( reg,mkTemplate ( "String Concat", NULL, stringconcat_instantiate))/* line 306 */
+    register_component ( reg,mkTemplate ( "switch1*", NULL, switch1star_instantiate))/* line 307 */
+    register_component ( reg,mkTemplate ( "String Concat *", NULL, strcatstar_instantiate))/* line 308 */
     /*  for fakepipe */                                /* line 309 */
-    register_component ( reg,mkTemplate ( "fakepipename", nil, fakepipename_instantiate))/* line 310 *//* line 311 *//* line 312 */}
+    register_component ( reg,mkTemplate ( "fakepipename", NULL, fakepipename_instantiate))/* line 310 *//* line 311 *//* line 312 */}

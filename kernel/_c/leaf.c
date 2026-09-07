@@ -4,7 +4,7 @@ void make_leaf (name,owner,instance_data,arg,handler,reset_handler) {
                                                        /* line 4 */
     eh =  Eh ()                                        /* line 5 */
     nm =  ""                                           /* line 6 */
-    if  nil!= owner:                                   /* line 7 */
+    if  NULL!= owner:                                  /* line 7 */
         nm =  owner.name                               /* line 8 *//* line 9 */
     eh.name =  str( nm) +  str( "▹") +  name           /* line 10 */
     eh.owner =  owner                                  /* line 11 */
@@ -25,6 +25,6 @@ void leaf_reset (part) {
     part.inq.clear ()                                  /* line 25 */
     external
     part.outq.clear ()                                 /* line 26 */
-    if ( part.reset_handler!= nil):                    /* line 27 */
+    if ( part.reset_handler!= NULL):                   /* line 27 */
         part.reset_handler ( part)                     /* line 28 *//* line 29 */
     part.state =  "idle"                               /* line 30 *//* line 31 */}

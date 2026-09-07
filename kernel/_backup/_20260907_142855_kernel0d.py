@@ -117,110 +117,116 @@ class Component_Registry:
     def __init__ (self,):                              #line 106
         self.templates = {}                            #line 107#line 108
                                                        #line 109
-# Routing connection for a container component. The `direction` field has#line 110
-# no affect on the default mevent routing system _ it is there for debugging#line 111
-# purposes, or for reading by other tools.             #line 112#line 113
-class Connector:
-    def __init__ (self,):                              #line 114
-        self.direction =  None # down, across, up, through#line 115
-        self.sender =  None                            #line 116
-        self.receiver =  None                          #line 117#line 118
-                                                       #line 119
-# `Sender` is used to “pattern match“ which `Receiver` a mevent should go to,#line 120
-# based on component ID (pointer) and port name.       #line 121#line 122
-class Sender:
-    def __init__ (self,):                              #line 123
-        self.name =  None                              #line 124
-        self.component =  None                         #line 125
-        self.port =  None                              #line 126#line 127
-                                                       #line 128#line 129#line 130
-# `Receiver` is a handle to a destination queue, and a `port` name to assign#line 131
-# to incoming mevents to this queue.                   #line 132#line 133
-class Receiver:
-    def __init__ (self,):                              #line 134
-        self.name =  None                              #line 135
-        self.queue =  None                             #line 136
-        self.port =  None                              #line 137
-        self.component =  None                         #line 138#line 139
-                                                       #line 140
-def mkSender (name,component,port):                    #line 141
-    s =  Sender ()                                     #line 142
-    s.name =  name                                     #line 143
-    s.component =  component                           #line 144
-    s.port =  port                                     #line 145
-    return  s                                          #line 146#line 147#line 148
-
-def mkReceiver (name,component,port,q):                #line 149
-    r =  Receiver ()                                   #line 150
-    r.name =  name                                     #line 151
-    r.component =  component                           #line 152
-    r.port =  port                                     #line 153
-    # We need a way to determine which queue to target. "Down" and "Across" go to inq, "Up" and "Through" go to outq.#line 154
-    r.queue =  q                                       #line 155
-    return  r                                          #line 156#line 157#line 158
-                                                       #line 159
-class Component_Registry:
-    def __init__ (self,):                              #line 160
-        self.templates = {}                            #line 161#line 162
-                                                       #line 163
 class Template:
-    def __init__ (self,):                              #line 164
-        self.name =  None                              #line 165
-        self.container =  None                         #line 166
-        self.instantiator =  None                      #line 167#line 168
+    def __init__ (self,):                              #line 110
+        self.name =  None                              #line 111
+        self.container =  None                         #line 112
+        self.instantiator =  None                      #line 113#line 114
+                                                       #line 115
+# Routing connection for a container component. The `direction` field has#line 116
+# no affect on the default mevent routing system _ it is there for debugging#line 117
+# purposes, or for reading by other tools.             #line 118#line 119
+class Connector:
+    def __init__ (self,):                              #line 120
+        self.direction =  None # down, across, up, through#line 121
+        self.sender =  None                            #line 122
+        self.receiver =  None                          #line 123#line 124
+                                                       #line 125
+# `Sender` is used to “pattern match“ which `Receiver` a mevent should go to,#line 126
+# based on component ID (pointer) and port name.       #line 127#line 128
+class Sender:
+    def __init__ (self,):                              #line 129
+        self.name =  None                              #line 130
+        self.component =  None                         #line 131
+        self.port =  None                              #line 132#line 133
+                                                       #line 134#line 135#line 136
+# `Receiver` is a handle to a destination queue, and a `port` name to assign#line 137
+# to incoming mevents to this queue.                   #line 138#line 139
+class Receiver:
+    def __init__ (self,):                              #line 140
+        self.name =  None                              #line 141
+        self.queue =  None                             #line 142
+        self.port =  None                              #line 143
+        self.component =  None                         #line 144#line 145
+                                                       #line 146
+def mkSender (name,component,port):                    #line 147
+    s =  Sender ()                                     #line 148
+    s.name =  name                                     #line 149
+    s.component =  component                           #line 150
+    s.port =  port                                     #line 151
+    return  s                                          #line 152#line 153#line 154
+
+def mkReceiver (name,component,port,q):                #line 155
+    r =  Receiver ()                                   #line 156
+    r.name =  name                                     #line 157
+    r.component =  component                           #line 158
+    r.port =  port                                     #line 159
+    # We need a way to determine which queue to target. "Down" and "Across" go to inq, "Up" and "Through" go to outq.#line 160
+    r.queue =  q                                       #line 161
+    return  r                                          #line 162#line 163#line 164
+                                                       #line 165
+class Component_Registry:
+    def __init__ (self,):                              #line 166
+        self.templates = {}                            #line 167#line 168
                                                        #line 169
-def mkTemplate (name,template_data,instantiator):      #line 170
-    templ =  Template ()                               #line 171
-    templ.name =  name                                 #line 172
-    templ.template_data =  template_data               #line 173
-    templ.instantiator =  instantiator                 #line 174
-    return  templ                                      #line 175#line 176#line 177
+class Template:
+    def __init__ (self,):                              #line 170
+        self.name =  None                              #line 171
+        self.container =  None                         #line 172
+        self.instantiator =  None                      #line 173#line 174
+                                                       #line 175
+def mkTemplate (name,template_data,instantiator):      #line 176
+    templ =  Template ()                               #line 177
+    templ.name =  name                                 #line 178
+    templ.template_data =  template_data               #line 179
+    templ.instantiator =  instantiator                 #line 180
+    return  templ                                      #line 181#line 182#line 183
 
-def make_component_registry ():                        #line 178
-    return  Component_Registry ()                      #line 179#line 180#line 181
+def make_component_registry ():                        #line 184
+    return  Component_Registry ()                      #line 185#line 186#line 187
 
-# Data for an asyncronous component _ effectively, a function with input#line 182
-# and output queues of mevents.                        #line 183
-#                                                      #line 184
-# Components can either be a user_supplied function (“leaf“), or a “container“#line 185
-# that routes mevents to child components according to a list of connections#line 186
-# that serve as a mevent routing table.                #line 187
-#                                                      #line 188
-# Child components themselves can be leaves or other containers.#line 189
+# Data for an asyncronous component _ effectively, a function with input#line 188
+# and output queues of mevents.                        #line 189
 #                                                      #line 190
-# `handler` invokes the code that is attached to this component.#line 191
-#                                                      #line 192
-# `instance_data` is a pointer to instance data that the `leaf_handler`#line 193
-# function may want whenever it is invoked again.      #line 194#line 195
-# TODO: what is .routings for? (is it a historical artefact that can be removed?) #line 196#line 197
-# Eh_States :: enum { idle, active }                   #line 198
+# Components can either be a user_supplied function (“leaf“), or a “container“#line 191
+# that routes mevents to child components according to a list of connections#line 192
+# that serve as a mevent routing table.                #line 193
+#                                                      #line 194
+# Child components themselves can be leaves or other containers.#line 195
+#                                                      #line 196
+# `handler` invokes the code that is attached to this component.#line 197
+#                                                      #line 198
+# `instance_data` is a pointer to instance data that the `leaf_handler`#line 199
+# function may want whenever it is invoked again.      #line 200#line 201
+# TODO: what is .routings for? (is it a historical artefact that can be removed?) #line 202#line 203
+# Eh_States :: enum { idle, active }                   #line 204
 class Eh:
-    def __init__ (self,):                              #line 199
-        self.name =  ""                                #line 200
-        self.inq =  deque ([])                         #line 201
-        self.outq =  deque ([])                        #line 202
-        self.owner =  None                             #line 203
-        self.children = []                             #line 204
-        self.visit_ordering =  deque ([])              #line 205
-        self.connections = []                          #line 206
-        self.routings =  deque ([])                    #line 207
-        self.handler =  None                           #line 208
-        self.reset_instance_data =  None               #line 209
-        self.finject =  None                           #line 210
-        self.stop =  None                              #line 211
-        self.instance_data =  None                     #line 212# arg needed for probe support #line 213
-        self.arg =  ""                                 #line 214
-        self.state =  "idle"                           #line 215
-        self.special =  False                          #line 216# bootstrap debugging#line 217
-        self.kind =  None # enum { container, leaf, }  #line 218#line 219
-                                                       #line 220
-load_errors =  False                                   #line 221
-runtime_errors =  False                                #line 222#line 223
-def clone_string (s):                                  #line 224
-    return  s                                          #line 225#line 226#line 227
+    def __init__ (self,):                              #line 205
+        self.name =  ""                                #line 206
+        self.inq =  deque ([])                         #line 207
+        self.outq =  deque ([])                        #line 208
+        self.owner =  None                             #line 209
+        self.children = []                             #line 210
+        self.visit_ordering =  deque ([])              #line 211
+        self.connections = []                          #line 212
+        self.routings =  deque ([])                    #line 213
+        self.handler =  None                           #line 214
+        self.reset_instance_data =  None               #line 215
+        self.finject =  None                           #line 216
+        self.stop =  None                              #line 217
+        self.instance_data =  None                     #line 218# arg needed for probe support #line 219
+        self.arg =  ""                                 #line 220
+        self.state =  "idle"                           #line 221
+        self.special =  False                          #line 222# bootstrap debugging#line 223
+        self.kind =  None # enum { container, leaf, }  #line 224#line 225
+                                                       #line 226
+load_errors =  False                                   #line 227
+runtime_errors =  False                                #line 228#line 229
+def clone_string (s):                                  #line 230
+    return  s                                          #line 231#line 232#line 233
 
-def injector (eh,mevent):                              #line 228
-    eh.handler ( eh, mevent)                           #line 229#line 230#line 231
+def injector (eh,mevent):                              #line 234
+    eh.handler ( eh, mevent)                           #line 235#line 236#line 237
 def mkTemplate (name,template_data,instantiator):      #line 1
     templ =  Template ()                               #line 2
     templ.name =  name                                 #line 3

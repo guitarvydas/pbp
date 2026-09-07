@@ -29,10 +29,10 @@ defn subscripted_digit (n) {
 }
 
 defobj Datum () {
-      • v ⇐ ϕ
-      • clone ⇐ ϕ
-      • reclaim ⇐ ϕ
-      • other ⇐ ϕ ⌈ reserved for use on per-project basis ⌉
+      • v : STR ⇐ ϕ
+      • clone : FGEN ⇐ ϕ
+      • reclaim : FPROC ⇐ ϕ
+      • other : FVOID ⇐ ϕ ⌈ reserved for use on per-project basis ⌉
 }
 
 
@@ -41,8 +41,8 @@ defobj Datum () {
 ⌈ `port` refers to the name of the incoming or outgoing port of this component.⌉
 ⌈ `payload` is the data attached to this mevent.⌉
 defobj Mevent () {
-        • port ⇐ ϕ
-        • payload ⇐ ϕ
+        • port : STR ⇐ ϕ
+        • payload : STR ⇐ ϕ
 }
 
 defn clone_port (s) {
@@ -104,7 +104,7 @@ defconst enumThrough ≡ 3
 
 
 defobj Component_Registry () {
-        • templates ⇐ {}
+        • templates : DICT ⇐ {}
 }
 
 ⌈ Routing connection for a container component. The `direction` field has⌉
@@ -112,18 +112,18 @@ defobj Component_Registry () {
 ⌈ purposes, or for reading by other tools.⌉
 
 defobj Connector () {
-        • direction ⇐ ϕ ⌈ down, across, up, through⌉
-        • sender ⇐ ϕ
-        • receiver ⇐ ϕ
+        • direction : BYTE ⇐ ϕ ⌈ down, across, up, through⌉
+        • sender : SENDERP ⇐ ϕ
+        • receiver : RECEIVERP ⇐ ϕ
 }
 
 ⌈ `Sender` is used to “pattern match“ which `Receiver` a mevent should go to,⌉
 ⌈ based on component ID (pointer) and port name.⌉
 
 defobj Sender () {
-        • name ⇐ ϕ
-        • component ⇐ ϕ
-        • port ⇐ ϕ
+        • name : STR ⇐ ϕ
+        • component : PARTP ⇐ ϕ
+        • port : STR ⇐ ϕ
 }
 
 
@@ -132,10 +132,10 @@ defobj Sender () {
 ⌈ to incoming mevents to this queue.⌉
 
 defobj Receiver () {
-        • name ⇐ ϕ
-        • queue ⇐ ϕ
-        • port ⇐ ϕ
-        • component ⇐ ϕ
+        • name :STR ⇐ ϕ
+        • queue :QP ⇐ ϕ
+        • port :STR ⇐ ϕ
+        • component :PARTP ⇐ ϕ
 }
 
 defn mkSender (name, component, port) {
@@ -158,12 +158,12 @@ defn mkReceiver (name, component, port, q) {
 
 
 defobj Component_Registry () {
-        • templates ⇐ {}
+        • templates :DICTP ⇐ {}
 }
 
 defobj Template () {
-        • name ⇐ ϕ
-        • container ⇐ ϕ
+        • name :STR ⇐ ϕ
+        • container :CONTAINERP ⇐ ϕ
         • instantiator ⇐ ϕ
 }
 
