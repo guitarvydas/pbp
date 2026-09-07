@@ -18,12 +18,12 @@ Defn [ _4 ident Formals StatementBlock line?] = ‛\nvoid «ident» «Formals» 
 
 Defobj [ _defobj ident Formals line1? lb line2? init+ rb line3?] = ‛
 typedef struct _«ident» {⤷
-«line1»«line2»⎨first ‛«init»’⎬«line3»⤶
+  «line1»«line2»⎨first ‛«init»’⎬«line3»⤶
 } «ident»;
 «ident» fresh_«ident» («Formals») {⤷
-«ident» *self;
-self = (Mevent*)malloc(sizeof(Mevent));⎨second ‛«init»’⎬«line3»
-return self;⤶
+  «ident» *self;
+  self = (Mevent*)malloc(sizeof(Mevent));⎨second ‛«init»’⎬«line3»
+  return self;⤶
 }
 ’
 
@@ -156,6 +156,7 @@ Defsynonym_legal [id _eqv e rec?] = ‛\n«id» = «e»«rec»’
 
 
 InitStatement [ _mark ident _33 Exp fluff*] = ‛\nchar* «ident»; «fluff»◦\nself->«ident» = «Exp»; «fluff»⫶’
+
 IfStatement [ _35 Exp StatementBlock ElifStatement* ElseStatement? rec?] = ‛\nif «Exp»:«StatementBlock»«ElifStatement»«ElseStatement»«rec»’
 ElifStatement [ _37 Exp StatementBlock] = ‛\nelif «Exp»:«StatementBlock»’
 ElseStatement [ _39 StatementBlock] = ‛\nelse:«StatementBlock»’
