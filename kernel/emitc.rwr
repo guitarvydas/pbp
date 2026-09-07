@@ -15,7 +15,18 @@ kw [ s] = ‛«s»’
 Defvar [ __ lval _eq e line?] = ‛\nint «lval» = «e»«line»;’
 Defconst [ __ lval _eq e line?] = ‛const int \n«lval» = «e»«line»;’
 Defn [ _4 ident Formals StatementBlock line?] = ‛\nvoid «ident» «Formals» {\n«StatementBlock»«line»}\n’
-Defobj [ _defobj ident Formals line1? lb line2? init+ rb line3?] = ‛\ntypedef struct _«ident» {⤷\n«line1»⤷«line2»«init»«line3»} «ident»;⤶⤶\n\nstruct «ident» (self,«Formals») {⤷\n«init»«line3»}⤶⤶\n’
+
+Defobj [ _defobj ident Formals line1? lb line2? init+ rb line3?] = ‛
+typedef struct _«ident» {⤷
+«line1»«line2»⎨first ‛«init»’⎬«line3»⤶
+} «ident»;
+«ident» fresh_«ident» («Formals») {⤷
+«ident» *self;
+self = (Mevent*)malloc(sizeof(Mevent));⎨second ‛«init»’⎬«line3»
+return self;⤶
+}
+’
+
 Import [ _10 ident line?] = ‛’
 StatementBlock [ line1? lb line2? Statement     line3? rb  line4?] = ‛«line1»«line2»⤷«Statement»«line3»«line4»⤶’
 
@@ -144,7 +155,7 @@ Defsynonym_illegal [ lval err _eqv e rec?] = ‛\n«lval» «err» = «e»«rec�
 Defsynonym_legal [id _eqv e rec?] = ‛\n«id» = «e»«rec»’
 
 
-InitStatement [ _mark ident _33 Exp fluff*] = ‛\nself.«ident» = «Exp» «fluff»’
+InitStatement [ _mark ident _33 Exp fluff*] = ‛\n«ident»;◦\nself->«ident» = «Exp»; «fluff»⫶’
 IfStatement [ _35 Exp StatementBlock ElifStatement* ElseStatement? rec?] = ‛\nif «Exp»:«StatementBlock»«ElifStatement»«ElseStatement»«rec»’
 ElifStatement [ _37 Exp StatementBlock] = ‛\nelif «Exp»:«StatementBlock»’
 ElseStatement [ _39 StatementBlock] = ‛\nelse:«StatementBlock»’
@@ -198,7 +209,7 @@ Atom_paren [ _70 Exp _71] =‛«_70»«Exp»«_71»’
 Atom_listconst [ lb line1? PrimaryComma+ line2? rb] =‛«lb»«PrimaryComma»«rb»«line2»’
 Atom_dict [ _78 line1? PairComma+ line2? _79] =‛«_78»«line1»«PairComma»«line2»«_79»’
 Atom_lambda [ _80 Formals? _81 Exp] =‛ lambda «Formals»: «Exp»’
-Atom_phi [ phi] =‛ None’
+Atom_phi [ phi] =‛ nil’
 Atom_true [ _88] =‛ True’
 Atom_false [ _89] =‛ False’
 Atom_subr [_ ident] = ‛ «ident»’
@@ -241,7 +252,7 @@ andOrIn_in [op] = ‛ in ’
 boolOp [ _191] = ‛ «_191» ’
 boolEq [op] = ‛==’
 boolNeq [op] = ‛!=’
-phi [ _192] = ‛ None’
+phi [ _192] = ‛ nil’
 
 string [lb cs* rb] = ‛«lb»«cs»«rb»’
 stringchar_rec [lb cs* rb] = ‛«lb»«cs»«rb»’

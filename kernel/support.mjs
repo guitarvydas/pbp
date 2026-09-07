@@ -11,17 +11,6 @@ function getlineinc () {
     return `${linenumber}`;
 }
 
-function part (s, i) {
-    let lis = s.split ("⫶");
-    let len = lis.length - 1
-    let r = []
-    let ix = Number (i);
-    for (; ix < len ; ix += 3) {
-	r.push (`${lis [ix]}`);
-    }
-    return `${r.join ('')}`;
-}
-
 function enspace (arr) {
     // create space-separated args for exec
     return arr;
@@ -32,3 +21,20 @@ function pycommentify (s) {
     return s;
     //return s.replaceAll (/\n/g, "\n#").replaceAll ("%0A", "%0A#");
 }
+
+// In Javascript:
+// s is a string containing a two-level list.
+// The top level items are separated by "⫶".
+// Each inner item contains sub-items separated by "◦".
+// The top level list always contains a trailing "⫶", resulting in an empty final top level item.
+// example: s = "aaa◦bbb⫶ccc◦ddd⫶"
+// Function `first(s)` .joins('') every first sub-item of every inner item.
+// Function `second(s)` .joins('') every second sub-item of every inner item.
+function first(s) {
+  return s.split('⫶').slice(0, -1).map(item => item.split('◦')[0]).join('');
+}
+
+function second(s) {
+  return s.split('⫶').slice(0, -1).map(item => item.split('◦')[1]).join('');
+}
+
