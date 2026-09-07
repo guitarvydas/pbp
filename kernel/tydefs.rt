@@ -112,7 +112,7 @@ defobj Component_Registry () {
 ⌈ purposes, or for reading by other tools.⌉
 
 defobj Connector () {
-        • direction : BYTE ⇐ ϕ ⌈ down, across, up, through⌉
+        • direction :DIRENUM ⇐ ϕ ⌈ down, across, up, through⌉
         • sender : SENDERP ⇐ ϕ
         • receiver : RECEIVERP ⇐ ϕ
 }
@@ -164,7 +164,7 @@ defobj Component_Registry () {
 defobj Template () {
         • name :STR ⇐ ϕ
         • container :CONTAINERP ⇐ ϕ
-        • instantiator ⇐ ϕ
+        • instantiator :FINST ⇐ ϕ
 }
 
 defn mkTemplate (name, template_data, instantiator) {
@@ -197,25 +197,25 @@ defn make_component_registry () {
 
 ⌈ Eh_States :: enum { idle, active }⌉
 defobj Eh () {
-        • name ⇐ “”
-        • inq ⇐ #freshQueue ()
-        • outq ⇐ #freshQueue ()
-        • owner ⇐ ϕ
-        • children ⇐ []
-        • visit_ordering ⇐ # freshQueue ()
-        • connections ⇐ []
-        • routings ⇐ #freshQueue ()
-        • handler ⇐ ϕ
-        • reset_instance_data ⇐ ϕ
-        • finject ⇐ ϕ
-        • stop ⇐ ϕ
-        • instance_data ⇐ ϕ
+        • name :STR ⇐ “”
+        • inq :QP ⇐ #freshQueue ()
+        • outq :QP ⇐ #freshQueue ()
+        • owner :PARTP ⇐ ϕ
+        • children :LISTP ⇐ []
+        • visit_ordering :QP ⇐ # freshQueue ()
+        • connections :LISTP ⇐ []
+        • routings :QP ⇐ #freshQueue ()
+        • handler :FHANDLER ⇐ ϕ
+        • reset_instance_data :FPROC ⇐ ϕ
+        • finject :FINJECT ⇐ ϕ
+        • stop :FPROC ⇐ ϕ
+        • instance_data :STR ⇐ ϕ
         ⌈ arg needed for probe support ⌉
-        • arg ⇐ “”
-        • state ⇐ “idle”
-        • special ⇐ ⊥
+        • arg :STR ⇐ “”
+        • state :STR ⇐ “idle”
+        • special :FLAG ⇐ ⊥
         ⌈ bootstrap debugging⌉
-        • kind ⇐ ϕ ⌈ enum { container, leaf, }⌉
+        • kind :KINDENUM ⇐ ϕ ⌈ enum { container, leaf, }⌉
 }
 
 defvar load_errors ⇐ ⊥

@@ -183,6 +183,8 @@ Defsynonym_legal [id _eqv e rec?] = ‛\n«id» = «e»«rec»’
 
 
 InitStatement [ _mark ident ty? _33 Exp fluff*] = ‛\nself.«ident» = «Exp» «fluff»’
+Type [_colon id] = ‛«id»’
+
 IfStatement [ _35 Exp StatementBlock ElifStatement* ElseStatement? rec?] = ‛\nif «Exp»:«StatementBlock»«ElifStatement»«ElseStatement»«rec»’
 ElifStatement [ _37 Exp StatementBlock] = ‛\nelif «Exp»:«StatementBlock»’
 ElseStatement [ _39 StatementBlock] = ‛\nelse:«StatementBlock»’

@@ -137,7 +137,9 @@ Defsynonym_illegal [ lval err _eqv e rec?] = ‛\nlet «lval» «err» = «e»;�
 Defsynonym_legal [id _eqv e rec?] = ‛\nlet «id» = «e»;«rec»’
 
 
-InitStatement [ _mark ident _33 Exp fluff*] = ‛\nthis.«ident» = «Exp»;«fluff»’
+InitStatement [ _mark ident ty? _33 Exp fluff*] = ‛\nthis.«ident» = «Exp»;«fluff»’
+Type [_colon id] = ‛«id»’
+
 IfStatement [ _35 Exp StatementBlock ElifStatement* ElseStatement? rec?] = ‛\nif («Exp») {«StatementBlock»\n}«ElifStatement»«ElseStatement»«rec»’
 ElifStatement [ _37 Exp StatementBlock] = ‛\nelse if («Exp») {«StatementBlock»\n}’
 ElseStatement [ _39 StatementBlock] = ‛\n else {«StatementBlock»\n}’
