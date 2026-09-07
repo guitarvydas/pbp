@@ -43,7 +43,8 @@ semantics {
      | ident "≡" Exp Rec_Statement? -- legal
      | Lval "≡" Exp Rec_Statement? -- illegal
 
-   InitStatement = "•" ident "⇐" Exp (comment | line)*
+   InitStatement = "•" ident Type? "⇐" Exp (comment | line)*
+   Type = ":" ident
 
    IfStatement = kw<"if"> Exp StatementBlock ElifStatement* ElseStatement? Rec_Statement?
    ElifStatement = kw<"elif"> Exp StatementBlock

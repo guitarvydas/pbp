@@ -4,14 +4,14 @@ void load_error (s) {
     static load_errors                                 /* line 3 */
     external print ( s, file=sys.stderr)               /* line 4 */
     external                                           /* line 5 */
-    load_errors =  True                                /* line 6 *//* line 7 *//* line 8 */}
+    load_errors =  True;                               /* line 6 *//* line 7 *//* line 8 */}
 
 void runtime_error (s) {
                                                        /* line 9 */
     static runtime_errors                              /* line 10 */
     external print ( s, file=sys.stderr)               /* line 11 */
     external exit (1)                                  /* line 12 */
-    runtime_errors =  True                             /* line 13 *//* line 14 *//* line 15 */}
+    runtime_errors =  True;                            /* line 13 *//* line 14 *//* line 15 */}
                                                        /* line 16 */
 void initialize_component_palette_from_files (diagram_source_files) {
                                                        /* line 17 */
@@ -67,7 +67,7 @@ void inject (part,port,payload) {
         d.clone =  lambda : obj_clone ( d)             /* line 73 */
         d.reclaim =  NULL                              /* line 74 */
         mev = make_mevent ( port, d)                   /* line 75 */
-        inject_mevent ( part, mev)                     /* line 76 */
+        inject_mevent ( part, mev)                     /* line 76 */;;;
     else:                                              /* line 77 */
         external exit (1)                              /* line 78 *//* line 79 *//* line 80 *//* line 81 */}
 
@@ -81,4 +81,4 @@ void new_datum_bang () {
     d.v =  "!"                                         /* line 88 */
     d.clone =  lambda : obj_clone ( d)                 /* line 89 */
     d.reclaim =  NULL                                  /* line 90 */
-    return ( d)                                        /* line 91 *//* line 92 */}
+    return ( d)                                        /* line 91 *//* line 92 */;;;}

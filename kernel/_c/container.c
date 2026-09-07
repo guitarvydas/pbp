@@ -10,8 +10,8 @@ void create_down_connector (container,proto_conn,connectors,children_by_id) {
     if ( target_component ==  NULL):                   /* line 9 */
         load_error ( str( "internal error: .Down connection target internal error ") + ( proto_conn [ "target"]) [ "name"] )/* line 10 */
     else:                                              /* line 11 */
-        connector.receiver = mkReceiver ( target_component.name, target_component, proto_conn [ "target_port"], target_component.inq)/* line 12 *//* line 13 */
-    return ( connector)                                /* line 14 *//* line 15 *//* line 16 */}
+        connector.receiver = mkReceiver ( target_component.name, target_component, proto_conn [ "target_port"], target_component.inq)/* line 12 */;/* line 13 */
+    return ( connector)                                /* line 14 */;;/* line 15 *//* line 16 */}
 
 void create_across_connector (container,proto_conn,connectors,children_by_id) {
                                                        /* line 17 */
@@ -26,8 +26,8 @@ void create_across_connector (container,proto_conn,connectors,children_by_id) {
         if  target_component ==  NULL:                 /* line 26 */
             load_error ( str( "internal error: .Across connection target not ok ") + ( proto_conn [ "target"]) [ "name"] )/* line 27 */
         else:                                          /* line 28 */
-            connector.receiver = mkReceiver ( target_component.name, target_component, proto_conn [ "target_port"], target_component.inq)/* line 29 *//* line 30 *//* line 31 */
-    return ( connector)                                /* line 32 *//* line 33 *//* line 34 */}
+            connector.receiver = mkReceiver ( target_component.name, target_component, proto_conn [ "target_port"], target_component.inq)/* line 29 */;/* line 30 */;/* line 31 */
+    return ( connector)                                /* line 32 */;/* line 33 *//* line 34 */}
 
 void create_up_connector (container,proto_conn,connectors,children_by_id) {
                                                        /* line 35 */
@@ -38,8 +38,8 @@ void create_up_connector (container,proto_conn,connectors,children_by_id) {
         load_error ( str( "internal error: .Up connection source not ok ") + ( proto_conn [ "source"]) [ "name"] )/* line 40 */
     else:                                              /* line 41 */
         connector.sender = mkSender ( source_component.name, source_component, proto_conn [ "source_port"])/* line 42 */
-        connector.receiver = mkReceiver ( container.name, container, proto_conn [ "target_port"], container.outq)/* line 43 *//* line 44 */
-    return ( connector)                                /* line 45 *//* line 46 *//* line 47 */}
+        connector.receiver = mkReceiver ( container.name, container, proto_conn [ "target_port"], container.outq)/* line 43 */;;/* line 44 */
+    return ( connector)                                /* line 45 */;/* line 46 *//* line 47 */}
 
 void create_through_connector (container,proto_conn,connectors,children_by_id) {
                                                        /* line 48 */
@@ -47,7 +47,7 @@ void create_through_connector (container,proto_conn,connectors,children_by_id) {
     connector.direction =  "through"                   /* line 50 */
     connector.sender = mkSender ( container.name, container, proto_conn [ "source_port"])/* line 51 */
     connector.receiver = mkReceiver ( container.name, container, proto_conn [ "target_port"], container.outq)/* line 52 */
-    return ( connector)                                /* line 53 *//* line 54 *//* line 55 */}
+    return ( connector)                                /* line 53 */;;;/* line 54 *//* line 55 */}
                                                        /* line 56 */
 void container_instantiator (reg,owner,container_name,desc,arg) {
                                                        /* line 57 */
@@ -61,7 +61,7 @@ void container_instantiator (reg,owner,container_name,desc,arg) {
         child_instance = get_component_instance ( reg, child_desc [ "name"], container)/* line 64 */
         external   children.append ( child_instance)   /* line 65 */
         id =  child_desc [ "id"]                       /* line 66 */
-        children_by_id [id] =  child_instance          /* line 67 *//* line 68 *//* line 69 */
+        children_by_id [id] =  child_instance          /* line 67 *//* line 68 */;/* line 69 */
     container.children =  children                     /* line 70 *//* line 71 */
     connectors = []                                    /* line 72 */
     for proto_conn in  desc [ "connections"]:          /* line 73 */
@@ -75,7 +75,7 @@ void container_instantiator (reg,owner,container_name,desc,arg) {
         elif  proto_conn [ "dir"] ==  enumThrough:     /* line 81 */
             external   connectors.append (create_through_connector ( container, proto_conn, connectors, children_by_id)) /* line 82 *//* line 83 *//* line 84 */
     container.connections =  connectors                /* line 85 */
-    return ( container)                                /* line 86 *//* line 87 *//* line 88 */}
+    return ( container)                                /* line 86 */;;/* line 87 *//* line 88 */}
 
 /*  The default handler for container components. */   /* line 89 */
 void container_handler (container,mevent) {
@@ -98,7 +98,7 @@ void container_reset_children (container) {
     container.inq.clear ()                             /* line 103 */
     external
     container.outq.clear ()                            /* line 104 */
-    container.state =  "idle"                          /* line 105 *//* line 106 *//* line 107 */}
+    container.state =  "idle";                         /* line 105 *//* line 106 *//* line 107 */}
 
 /*  Frees the given container and associated data. */  /* line 108 */
 void destroy_container (eh) {
@@ -168,11 +168,11 @@ void step_children (container,causingMevent) {
     for child in  container.children:                  /* line 181 */
         if  child.state ==  "active":                  /* line 182 */
             /*  if child remains active, then the container must remain active and must propagate “ticks“ to child *//* line 183 */
-            container.state =  "active"                /* line 184 *//* line 185 *//* line 186 */
+            container.state =  "active";               /* line 184 *//* line 185 *//* line 186 */
         while (not ((0==len( child.outq)))):           /* line 187 */
             mev =  child.outq.popleft ()               /* line 188 */
             route ( container, child, mev)             /* line 189 */
-            destroy_mevent ( mev)                      /* line 190 *//* line 191 *//* line 192 *//* line 193 *//* line 194 */}
+            destroy_mevent ( mev)                      /* line 190 *//* line 191 *//* line 192 */;/* line 193 *//* line 194 */}
 
 void attempt_tick (parent,eh) {
                                                        /* line 195 */
@@ -196,17 +196,17 @@ void route (container,from_component,mevent) {
     if is_tick ( mevent):                              /* line 213 */
         for child in  container.children:              /* line 214 */
             attempt_tick ( container, child)           /* line 215 */
-        was_sent =  True                               /* line 216 */
+        was_sent =  True;                              /* line 216 */
     else:                                              /* line 217 */
         if (not (is_self ( from_component, container))):/* line 218 */
-            fromname =  from_component.name            /* line 219 *//* line 220 */
+            fromname =  from_component.name;           /* line 219 *//* line 220 */
         from_sender = mkSender ( fromname, from_component, mevent.port)/* line 221 *//* line 222 */
         for connector in  container.connections:       /* line 223 */
             if sender_eq ( from_sender, connector.sender):/* line 224 */
                 deposit ( container, connector, mevent)/* line 225 */
-                was_sent =  True                       /* line 226 *//* line 227 *//* line 228 *//* line 229 */
+                was_sent =  True;                      /* line 226 *//* line 227 *//* line 228 *//* line 229 */
     if not ( was_sent):                                /* line 230 */
-        external live_update ( "internal error",  str( container.name) +  str( ": mevent on port '") +  str( mevent.port) +  str( "' from ") +  str( fromname) +  " dropped on floor..."     )/* line 231 *//* line 232 *//* line 233 *//* line 234 */}
+        external live_update ( "internal error",  str( container.name) +  str( ": mevent on port '") +  str( mevent.port) +  str( "' from ") +  str( fromname) +  " dropped on floor..."     )/* line 231 *//* line 232 */;/* line 233 *//* line 234 */}
 
 void any_child_ready (container) {
                                                        /* line 235 */
@@ -235,7 +235,7 @@ void make_container (name,owner) {
     eh.stop =  container_reset_children                /* line 261 */
     eh.state =  "idle"                                 /* line 262 */
     eh.kind =  "container"                             /* line 263 */
-    return ( eh)                                       /* line 264 *//* line 265 *//* line 266 */}
+    return ( eh)                                       /* line 264 */;;;;;;;/* line 265 *//* line 266 */}
 
 /*  Sends a mevent on the given `port` with `data`, placing it on the output *//* line 267 */
 /*  of the given component. */                         /* line 268 *//* line 269 */
@@ -246,7 +246,7 @@ void send (eh,port,obj,causingMevent) {
     d.clone =  lambda : obj_clone ( d)                 /* line 273 */
     d.reclaim =  NULL                                  /* line 274 */
     mev = make_mevent ( port, d)                       /* line 275 */
-    put_output ( eh, mev)                              /* line 276 *//* line 277 *//* line 278 */}
+    put_output ( eh, mev)                              /* line 276 */;;;/* line 277 *//* line 278 */}
 
 void forward (eh,port,mev) {
                                                        /* line 279 */
@@ -259,11 +259,11 @@ void inject_mevent (eh,mev) {
 
 void set_active (eh) {
                                                        /* line 288 */
-    eh.state =  "active"                               /* line 289 *//* line 290 *//* line 291 */}
+    eh.state =  "active";                              /* line 289 *//* line 290 *//* line 291 */}
 
 void set_idle (eh) {
                                                        /* line 292 */
-    eh.state =  "idle"                                 /* line 293 *//* line 294 *//* line 295 */}
+    eh.state =  "idle";                                /* line 293 *//* line 294 *//* line 295 */}
 
 void put_output (eh,mev) {
                                                        /* line 296 */

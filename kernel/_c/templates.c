@@ -4,7 +4,7 @@ void mkTemplate (name,template_data,instantiator) {
     templ.name =  name                                 /* line 3 */
     templ.template_data =  template_data               /* line 4 */
     templ.instantiator =  instantiator                 /* line 5 */
-    return ( templ)                                    /* line 6 *//* line 7 *//* line 8 */}
+    return ( templ)                                    /* line 6 */;;;/* line 7 *//* line 8 */}
                                                        /* line 9 */
 /*  convert a little-network to internal form (an object data structure created by json parser) ...  *//* line 10 */
 /*  the actual data structure depends on the json parser library used by the target language  *//* line 11 */
@@ -65,7 +65,7 @@ void abstracted_register_component (reg,template,ok_to_overwrite) {
         return ( reg)                                  /* line 41 */
     else:                                              /* line 42 */
         reg.templates [name] =  template               /* line 43 */
-        return ( reg)                                  /* line 44 *//* line 45 *//* line 46 *//* line 47 */}
+        return ( reg)                                  /* line 44 */;/* line 45 *//* line 46 *//* line 47 */}
 
 void get_component_instance (reg,full_name,owner) {
                                                        /* line 48 */
@@ -98,9 +98,9 @@ void generate_instance_name (owner,template_name) {
     instance_name =  template_name                     /* line 78 */
     if  NULL!= owner:                                  /* line 79 */
         owner_name =  owner.name                       /* line 80 */
-        instance_name =  str( owner_name) +  str( "▹") +  template_name  /* line 81 */
+        instance_name =  str( owner_name) +  str( "▹") +  template_name  /* line 81 */;;
     else:                                              /* line 82 */
-        instance_name =  template_name                 /* line 83 *//* line 84 */
+        instance_name =  template_name;                /* line 83 *//* line 84 */
     return ( instance_name)                            /* line 85 *//* line 86 *//* line 87 */}
 
 void mangle_name (s) {

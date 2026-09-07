@@ -5,7 +5,7 @@ void make_leaf (name,owner,instance_data,arg,handler,reset_handler) {
     eh =  Eh ()                                        /* line 5 */
     nm =  ""                                           /* line 6 */
     if  NULL!= owner:                                  /* line 7 */
-        nm =  owner.name                               /* line 8 *//* line 9 */
+        nm =  owner.name;                              /* line 8 *//* line 9 */
     eh.name =  str( nm) +  str( "▹") +  name           /* line 10 */
     eh.owner =  owner                                  /* line 11 */
     eh.handler =  handler                              /* line 12 */
@@ -16,7 +16,7 @@ void make_leaf (name,owner,instance_data,arg,handler,reset_handler) {
     eh.arg =  arg                                      /* line 17 */
     eh.state =  "idle"                                 /* line 18 */
     eh.kind =  "leaf"                                  /* line 19 */
-    return ( eh)                                       /* line 20 *//* line 21 *//* line 22 */}
+    return ( eh)                                       /* line 20 */;;;;;;;;;;/* line 21 *//* line 22 */}
 
 /*  Reset Leaf part to a known, idle state. Hit the big red button.  *//* line 23 */
 void leaf_reset (part) {
@@ -27,4 +27,4 @@ void leaf_reset (part) {
     part.outq.clear ()                                 /* line 26 */
     if ( part.reset_handler!= NULL):                   /* line 27 */
         part.reset_handler ( part)                     /* line 28 *//* line 29 */
-    part.state =  "idle"                               /* line 30 *//* line 31 */}
+    part.state =  "idle";                              /* line 30 *//* line 31 */}

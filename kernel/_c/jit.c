@@ -6,7 +6,7 @@ void jit_instantiate (reg,owner,name,arg) {
     firstc =  name [ 1]                                /* line 6 */
     if ( firstc!= "$"):                                /* line 7 */
         /*  probes get to go to the front of the line  *//* line 8 */
-        inst.special =  True                           /* line 9 *//* line 10 */
+        inst.special =  True;                          /* line 9 *//* line 10 */
     return ( inst)                                     /* line 11 *//* line 12 *//* line 13 */}
 
 void handle_jit (eh,mev) {
@@ -36,7 +36,7 @@ void shell_out_handler (eh,cmd,mev) {
     command =  cmd                                     /* line 45 */
     pbpRoot = os.getenv('PBP', '<none>')               /* line 46 */
     if  pbpRoot!= "":                                  /* line 47 */
-        command = re.sub ( "_/",  str( pbpRoot) +  "/" ,  command)/* line 50 *//* line 51 */
+        command = re.sub ( "_/",  str( pbpRoot) +  "/" ,  command)/* line 50 */;/* line 51 */
     if ( ("PBPSHELLUT" in os.environ) ):               /* line 52 */
         external print ( str( "- --- shell-out: ") +  command , file=sys.stderr)/* line 53 */
         external                                       /* line 54 *//* line 55 */

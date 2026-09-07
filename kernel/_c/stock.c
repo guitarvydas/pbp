@@ -44,7 +44,7 @@ void deracer_reset_handler (eh) {
                                                        /* line 26 */
     inst =  eh.instance_data                           /* line 27 */
     inst.state =  "idle"                               /* line 28 */
-    inst.buffer =  TwoMevents ()                       /* line 29 *//* line 30 *//* line 31 */}
+    inst.buffer =  TwoMevents ()                       /* line 29 */;;/* line 30 *//* line 31 */}
 
 void deracer_instantiate (reg,owner,name,template_data,arg) {
                                                        /* line 32 */
@@ -53,7 +53,7 @@ void deracer_instantiate (reg,owner,name,template_data,arg) {
     inst.state =  "idle"                               /* line 35 */
     inst.buffer =  TwoMevents ()                       /* line 36 */
     eh = make_leaf ( name_with_id, owner, inst, "", deracer_handler, deracer_reset_handler)/* line 37 */
-    return ( eh)                                       /* line 38 *//* line 39 *//* line 40 */}
+    return ( eh)                                       /* line 38 */;;/* line 39 *//* line 40 */}
 
 void send_firstmev_then_secondmev (eh,inst) {
                                                        /* line 41 */
@@ -67,24 +67,24 @@ void deracer_handler (eh,mev) {
     if  inst.state ==  "idle":                         /* line 49 */
         if  "1" ==  mev.port:                          /* line 50 */
             inst.buffer.firstmev =  mev                /* line 51 */
-            inst.state =  "waitingForSecondmev"        /* line 52 */
+            inst.state =  "waitingForSecondmev";       /* line 52 */;
         elif  "2" ==  mev.port:                        /* line 53 */
             inst.buffer.secondmev =  mev               /* line 54 */
-            inst.state =  "waitingForFirstmev"         /* line 55 */
+            inst.state =  "waitingForFirstmev";        /* line 55 */;
         else:                                          /* line 56 */
             runtime_error ( str( "bad mev.port (case A) for deracer ") +  mev.port )/* line 57 *//* line 58 */
     elif  inst.state ==  "waitingForFirstmev":         /* line 59 */
         if  "1" ==  mev.port:                          /* line 60 */
             inst.buffer.firstmev =  mev                /* line 61 */
             send_firstmev_then_secondmev ( eh, inst)   /* line 62 */
-            inst.state =  "idle"                       /* line 63 */
+            inst.state =  "idle";                      /* line 63 */;
         else:                                          /* line 64 */
             runtime_error ( str( "deracer: waiting for 1 but got [") +  str( mev.port) +  "] (case B)"  )/* line 65 *//* line 66 */
     elif  inst.state ==  "waitingForSecondmev":        /* line 67 */
         if  "2" ==  mev.port:                          /* line 68 */
             inst.buffer.secondmev =  mev               /* line 69 */
             send_firstmev_then_secondmev ( eh, inst)   /* line 70 */
-            inst.state =  "idle"                       /* line 71 */
+            inst.state =  "idle";                      /* line 71 */;
         else:                                          /* line 72 */
             runtime_error ( str( "deracer: waiting for 2 but got [") +  str( mev.port) +  "] (case C)"  )/* line 73 *//* line 74 */
     else:                                              /* line 75 */
@@ -140,7 +140,7 @@ Syncfilewrite_Data fresh_Syncfilewrite_Data () {
                                                        /* line 107 */
 void syncfilewrite_reset_handler (eh) {
                                                        /* line 108 */
-    eh.instance_data =  Syncfilewrite_Data ()          /* line 109 *//* line 110 *//* line 111 */}
+    eh.instance_data =  Syncfilewrite_Data ()          /* line 109 */;/* line 110 *//* line 111 */}
 
 /*  temp copy for bootstrap, sends "done“ (error during bootstrap if not wired) *//* line 112 */
 void syncfilewrite_instantiate (reg,owner,name,template_data,arg) {
@@ -153,7 +153,7 @@ void syncfilewrite_handler (eh,mev) {
                                                        /* line 119 */
     inst =  eh.instance_data                           /* line 120 */
     if  "filename" ==  mev.port:                       /* line 121 */
-        inst.filename =  mev.payload.v                 /* line 122 */
+        inst.filename =  mev.payload.v;                /* line 122 */
     elif  "input" ==  mev.port:                        /* line 123 */
         contents =  mev.payload.v                      /* line 124 */
         f = open ( inst.filename, "w")                 /* line 125 */
@@ -181,7 +181,7 @@ void stringconcat_reset_handler (eh) {
                                                        /* line 141 */
     inst =  eh.instance_data                           /* line 142 */
     inst.buffer1 =  NULL                               /* line 143 */
-    inst.buffer2 =  NULL                               /* line 144 *//* line 145 *//* line 146 */}
+    inst.buffer2 =  NULL;                              /* line 144 */;/* line 145 *//* line 146 */}
 
 void stringconcat_instantiate (reg,owner,name,template_data,arg) {
                                                        /* line 147 */
@@ -194,13 +194,13 @@ void stringconcat_handler (eh,mev) {
     inst =  eh.instance_data                           /* line 154 */
     if  "1" ==  mev.port:                              /* line 155 */
         inst.buffer1 = clone_string ( mev.payload.v)   /* line 156 */
-        maybe_stringconcat ( eh, inst, mev)            /* line 157 */
+        maybe_stringconcat ( eh, inst, mev)            /* line 157 */;
     elif  "2" ==  mev.port:                            /* line 158 */
         inst.buffer2 = clone_string ( mev.payload.v)   /* line 159 */
-        maybe_stringconcat ( eh, inst, mev)            /* line 160 */
+        maybe_stringconcat ( eh, inst, mev)            /* line 160 */;
     elif  "reset" ==  mev.port:                        /* line 161 */
         inst.buffer1 =  NULL                           /* line 162 */
-        inst.buffer2 =  NULL                           /* line 163 */
+        inst.buffer2 =  NULL;                          /* line 163 */;
     else:                                              /* line 164 */
         runtime_error ( str( "bad mev.port for stringconcat: ") +  mev.port )/* line 165 *//* line 166 *//* line 167 *//* line 168 */}
 
@@ -209,14 +209,14 @@ void maybe_stringconcat (eh,inst,mev) {
     if  inst.buffer1!= NULL and  inst.buffer2!= NULL:  /* line 170 */
         concatenated_string =  ""                      /* line 171 */
         if  0 == len ( inst.buffer1):                  /* line 172 */
-            concatenated_string =  inst.buffer2        /* line 173 */
+            concatenated_string =  inst.buffer2;       /* line 173 */
         elif  0 == len ( inst.buffer2):                /* line 174 */
-            concatenated_string =  inst.buffer1        /* line 175 */
+            concatenated_string =  inst.buffer1;       /* line 175 */
         else:                                          /* line 176 */
-            concatenated_string =  inst.buffer1+ inst.buffer2/* line 177 *//* line 178 */
+            concatenated_string =  inst.buffer1+ inst.buffer2;/* line 177 *//* line 178 */
         send ( eh, "", concatenated_string, mev)       /* line 179 */
         inst.buffer1 =  NULL                           /* line 180 */
-        inst.buffer2 =  NULL                           /* line 181 *//* line 182 *//* line 183 *//* line 184 */}
+        inst.buffer2 =  NULL;                          /* line 181 */;/* line 182 *//* line 183 *//* line 184 */}
 
 /*  */                                                 /* line 185 *//* line 186 */
 void string_constant_instantiate (reg,owner,name,template_data,arg) {
@@ -225,7 +225,7 @@ void string_constant_instantiate (reg,owner,name,template_data,arg) {
     name_with_id = gensymbol ( "strconst")             /* line 189 */
     s =  template_data                                 /* line 190 */
     if  projectRoot!= "":                              /* line 191 */
-        s = re.sub ( "_00_",  projectRoot,  s)         /* line 192 *//* line 193 */
+        s = re.sub ( "_00_",  projectRoot,  s)         /* line 192 */;/* line 193 */
     return (make_leaf ( name_with_id, owner, s, "", string_constant_handler, NULL)/* line 194 */)/* line 195 *//* line 196 */}
 
 void string_constant_handler (eh,mev) {
@@ -244,7 +244,7 @@ void fakepipename_handler (eh,mev) {
     static rand                                        /* line 210 */
     rand =  rand+ 1
     /*  not very random, but good enough _ ;rand' must be unique within a single run *//* line 211 */
-    send ( eh, "", str( "/tmp/fakepipe") +  rand , mev)/* line 212 *//* line 213 *//* line 214 */}
+    send ( eh, "", str( "/tmp/fakepipe") +  rand , mev)/* line 212 */;/* line 213 *//* line 214 */}
                                                        /* line 215 */
 typedef struct _Switch1star_Instance_Data {
                                                        /* line 216 */
@@ -260,7 +260,7 @@ Switch1star_Instance_Data fresh_Switch1star_Instance_Data () {
 void switch1star_reset_handler (eh) {
                                                        /* line 220 */
     inst =  eh.instance_data                           /* line 221 */
-    inst =  Switch1star_Instance_Data ()               /* line 222 *//* line 223 *//* line 224 */}
+    inst =  Switch1star_Instance_Data ()               /* line 222 */;/* line 223 *//* line 224 */}
 
 void switch1star_instantiate (reg,owner,name,template_data,arg) {
                                                        /* line 225 */
@@ -275,13 +275,13 @@ void switch1star_handler (eh,mev) {
     if  "" ==  mev.port:                               /* line 234 */
         if  "1" ==  whichOutput:                       /* line 235 */
             forward ( eh, "1", mev)                    /* line 236 */
-            inst.state =  "*"                          /* line 237 */
+            inst.state =  "*";                         /* line 237 */
         elif  "*" ==  whichOutput:                     /* line 238 */
             forward ( eh, "*", mev)                    /* line 239 */
         else:                                          /* line 240 */
             send ( eh, "✗", "internal error bad state in switch1*", mev)/* line 241 *//* line 242 */
     elif  "reset" ==  mev.port:                        /* line 243 */
-        inst.state =  "1"                              /* line 244 */
+        inst.state =  "1";                             /* line 244 */
     else:                                              /* line 245 */
         send ( eh, "✗", "internal error bad mevent for switch1*", mev)/* line 246 *//* line 247 *//* line 248 *//* line 249 */}
 
@@ -298,7 +298,7 @@ StringAccumulator fresh_StringAccumulator () {
                                                        /* line 253 */
 void strcatstar_reset_handler (eh) {
                                                        /* line 254 */
-    eh.instance_data =  StringAccumulator ()           /* line 255 *//* line 256 *//* line 257 */}
+    eh.instance_data =  StringAccumulator ()           /* line 255 */;/* line 256 *//* line 257 */}
 
 void strcatstar_instantiate (reg,owner,name,template_data,arg) {
                                                        /* line 258 */
@@ -310,7 +310,7 @@ void strcatstar_handler (eh,mev) {
                                                        /* line 264 */
     accum =  eh.instance_data                          /* line 265 */
     if  "" ==  mev.port:                               /* line 266 */
-        accum.s =  str( accum.s) +  mev.payload.v      /* line 267 */
+        accum.s =  str( accum.s) +  mev.payload.v      /* line 267 */;
     elif  "fini" ==  mev.port:                         /* line 268 */
         send ( eh, "", accum.s, mev)                   /* line 269 */
     else:                                              /* line 270 */
