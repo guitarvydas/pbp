@@ -215,6 +215,8 @@
   },
   "active": "2aafda6bd4dc58d5",
   "lastOpenFiles": [
+    "kernel/defs.ty",
+    "kernel/#defs.ty#",
     "kernel/_/_backup/_20260908_024801_kernel0d.py",
     "kernel/out.js",
     "kernel/out.lisp",
@@ -224,8 +226,6 @@
     "kernel/temp.nanodsl.26897.mjs",
     "kernel/temp.nanodsl.6424.mjs",
     "kernel/temp.nanodsl.19628.mjs",
-    "kernel/temp.nanodsl.31923.mjs",
-    "kernel/temp.nanodsl.29197.mjs",
     "kernel/_/_notes/prompt.md",
     "kernel/misc/prompt.md",
     "kernel/out.md",

@@ -1,0 +1,41 @@
+defobj Datum () {
+      • v : STR
+      • clone : FGEN
+      • reclaim : FPROC
+      • other : FVOID
+}
+
+defobj Mevent () {
+        • port : STR
+        • payload : STR
+}
+
+defconst enumDown : BYTE
+defconst enumAcross : BYTE
+defconst enumUp : BYTE
+defconst enumThrough : BYTE
+
+defobj Component_Registry () {
+        • templates : DICT
+}
+
+defobj Connector () {
+        • direction :DIRENUM 
+        • sender : SENDERP
+        • receiver : RECEIVERP
+}
+
+defobj Sender () {
+        • name : STR
+        • component : PARTP
+        • port : STR
+}
+
+defobj Receiver () {
+        • name :STR
+        • queue :QP
+        • port :STR
+        • component :PARTP
+}
+
+

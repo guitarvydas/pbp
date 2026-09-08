@@ -103,10 +103,6 @@ defconst enumUp ≡ 2
 defconst enumThrough ≡ 3
 
 
-defobj Component_Registry () {
-        • templates : DICT ⇐ {}
-}
-
 ⌈ Routing connection for a container component. The `direction` field has⌉
 ⌈ no affect on the default mevent routing system _ it is there for debugging⌉
 ⌈ purposes, or for reading by other tools.⌉
