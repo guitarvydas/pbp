@@ -12,5 +12,7 @@ Goal: understand issues related to making a tiny version
 # Method
 Copy and alter `emitpython.rwr`
 
+`defs.rt` contains no type info, but C requires type info, so, created `tydefs.rt` by cloning `defs.rt` and annotating with types (this is not a satisfactory solution - what is? IMO it is not reasonable to clutter up `defs.rt` with types. Maybe [Projectional Viewer](https://programmingsimplicity.substack.com/p/experiment-projectional-viewer?r=1egdky) contains a hint?).
+
 # Observations
 # Conclusion

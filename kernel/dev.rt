@@ -1,4 +1,6 @@
-defobj Mevent () {
-        • port ⇐ ϕ
-        • payload ⇐ ϕ
+defobj Datum () {
+      • v : STR ⇐ ϕ
+      • clone : FGEN ⇐ ϕ
+      • reclaim : FPROC ⇐ ϕ
+      • other : FVOID ⇐ ϕ ⌈ reserved for use on per-project basis ⌉
 }

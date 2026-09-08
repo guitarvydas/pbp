@@ -1,4 +1,6 @@
-class Mevent:
+class Datum:
     def __init__ (self,):                              #line 1
-        self.port =  None                              #line 2
-        self.payload =  None                           #line 3#line 4
+        self.v =  None                                 #line 2
+        self.clone =  None                             #line 3
+        self.reclaim =  None                           #line 4
+        self.other =  None # reserved for use on per-project basis #line 5#line 6
