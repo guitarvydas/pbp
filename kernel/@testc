@@ -7,18 +7,24 @@ for i in $BASENAMES; do
     ./regression_test_tas.bash "$i"
 done
 
-: > regression_test/rtkernel0d.py
-: > regression_test/rtkernel0d.js
-: > regression_test/rtkernel0d.lisp
+: > _r_python/rtkernel0d.py
+: > _r_js/rtkernel0d.js
+: > _r_lisp/rtkernel0d.lisp
+: > _r_c/rtkernel0d.c
 
-for i in $BASENAMES; do
-    cat "_python/$i.py" >> regression_test/rtkernel0d.py
-    cat "_js/$i.js" >> regression_test/rtkernel0d.js
-    cat "_lisp/$i.lisp" >> regression_test/rtkernel0d.lisp
-    cat "_c/$i.c" >> regression_test/rtkernel0d.c
+for i in $NTYLIST; do
+    cat "_python/$i.py" >> _r_python/rtkernel0d.py
+    cat "_js/$i.js" >> _r_js/rtkernel0d.js
+    cat "_lisp/$i.lisp" >> _r_lisp/rtkernel0d.lisp
 done
 
-if diff -q new_kernel0d.py regression_test/rtkernel0d.py > /dev/null; then
+for i in $TYLIST; do
+    cat "_c/$i.c" >> _r_c/rtkernel0d.c
+done
+
+exit 1
+
+if diff -q new_kernel0d.py _r_python/rtkernel0d.py > /dev/null; then
     echo "OK, created: _backup/_$(date +%Y%m%d_%H%M%S)_kernel0d.py"
     cp kernel0d.py "_backup/_$(date +%Y%m%d_%H%M%S)_kernel0d.py"
     mv new_kernel0d.py kernel0d.py

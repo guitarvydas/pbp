@@ -19,10 +19,10 @@ void subscripted_digit (n) {
 
 typedef struct _Datum {
                                                        /* line 31 */
-    char* v;                                           /* line 32 */
-    char* clone;                                       /* line 33 */
-    char* reclaim;                                     /* line 34 */
-    char* other; /*  reserved for use on per-project basis  *//* line 35 *//* line 36 */
+    v;                                                 /* line 32 */
+    clone;                                             /* line 33 */
+    reclaim;                                           /* line 34 */
+    other; /*  reserved for use on per-project basis  *//* line 35 *//* line 36 */
 } Datum;
 Datum fresh_Datum () {
     Datum *self;
@@ -40,8 +40,8 @@ Datum fresh_Datum () {
 /*  `payload` is the data attached to this mevent. */  /* line 42 */
 typedef struct _Mevent {
                                                        /* line 43 */
-    char* port;                                        /* line 44 */
-    char* payload;                                     /* line 45 *//* line 46 */
+    port;                                              /* line 44 */
+    payload;                                           /* line 45 *//* line 46 */
 } Mevent;
 Mevent fresh_Mevent () {
     Mevent *self;
@@ -108,7 +108,7 @@ enumUp =  2                                            /* line 102 */;const int
 enumThrough =  3                                       /* line 103 */;/* line 104 *//* line 105 */
 typedef struct _Component_Registry {
                                                        /* line 106 */
-    char* templates;                                   /* line 107 *//* line 108 */
+    templates;                                         /* line 107 *//* line 108 */
 } Component_Registry;
 Component_Registry fresh_Component_Registry () {
     Component_Registry *self;
@@ -122,9 +122,9 @@ Component_Registry fresh_Component_Registry () {
 /*  purposes, or for reading by other tools. */        /* line 112 *//* line 113 */
 typedef struct _Connector {
                                                        /* line 114 */
-    char* direction; /*  down, across, up, through */  /* line 115 */
-    char* sender;                                      /* line 116 */
-    char* receiver;                                    /* line 117 *//* line 118 */
+    direction; /*  down, across, up, through */        /* line 115 */
+    sender;                                            /* line 116 */
+    receiver;                                          /* line 117 *//* line 118 */
 } Connector;
 Connector fresh_Connector () {
     Connector *self;
@@ -139,9 +139,9 @@ Connector fresh_Connector () {
 /*  based on component ID (pointer) and port name. */  /* line 121 *//* line 122 */
 typedef struct _Sender {
                                                        /* line 123 */
-    char* name;                                        /* line 124 */
-    char* component;                                   /* line 125 */
-    char* port;                                        /* line 126 *//* line 127 */
+    name;                                              /* line 124 */
+    component;                                         /* line 125 */
+    port;                                              /* line 126 *//* line 127 */
 } Sender;
 Sender fresh_Sender () {
     Sender *self;
@@ -156,10 +156,10 @@ Sender fresh_Sender () {
 /*  to incoming mevents to this queue. */              /* line 132 *//* line 133 */
 typedef struct _Receiver {
                                                        /* line 134 */
-    char* name;                                        /* line 135 */
-    char* queue;                                       /* line 136 */
-    char* port;                                        /* line 137 */
-    char* component;                                   /* line 138 *//* line 139 */
+    name;                                              /* line 135 */
+    queue;                                             /* line 136 */
+    port;                                              /* line 137 */
+    component;                                         /* line 138 *//* line 139 */
 } Receiver;
 Receiver fresh_Receiver () {
     Receiver *self;
@@ -191,7 +191,7 @@ void mkReceiver (name,component,port,q) {
                                                        /* line 159 */
 typedef struct _Component_Registry {
                                                        /* line 160 */
-    char* templates;                                   /* line 161 *//* line 162 */
+    templates;                                         /* line 161 *//* line 162 */
 } Component_Registry;
 Component_Registry fresh_Component_Registry () {
     Component_Registry *self;
@@ -202,9 +202,9 @@ Component_Registry fresh_Component_Registry () {
                                                        /* line 163 */
 typedef struct _Template {
                                                        /* line 164 */
-    char* name;                                        /* line 165 */
-    char* container;                                   /* line 166 */
-    char* instantiator;                                /* line 167 *//* line 168 */
+    name;                                              /* line 165 */
+    container;                                         /* line 166 */
+    instantiator;                                      /* line 167 *//* line 168 */
 } Template;
 Template fresh_Template () {
     Template *self;
@@ -244,23 +244,23 @@ void make_component_registry () {
 /*  Eh_States :: enum { idle, active } */              /* line 198 */
 typedef struct _Eh {
                                                        /* line 199 */
-    char* name;                                        /* line 200 */
-    char* inq;
-    char* outq;
-    char* owner;                                       /* line 203 */
-    char* children;                                    /* line 204 */
-    char* visit_ordering;
-    char* connections;                                 /* line 206 */
-    char* routings;
-    char* handler;                                     /* line 208 */
-    char* reset_instance_data;                         /* line 209 */
-    char* finject;                                     /* line 210 */
-    char* stop;                                        /* line 211 */
-    char* instance_data;                               /* line 212 *//*  arg needed for probe support  *//* line 213 */
-    char* arg;                                         /* line 214 */
-    char* state;                                       /* line 215 */
-    char* special;                                     /* line 216 *//*  bootstrap debugging *//* line 217 */
-    char* kind; /*  enum { container, leaf, } */       /* line 218 *//* line 219 */
+    name;                                              /* line 200 */
+    inq;
+    outq;
+    owner;                                             /* line 203 */
+    children;                                          /* line 204 */
+    visit_ordering;
+    connections;                                       /* line 206 */
+    routings;
+    handler;                                           /* line 208 */
+    reset_instance_data;                               /* line 209 */
+    finject;                                           /* line 210 */
+    stop;                                              /* line 211 */
+    instance_data;                                     /* line 212 *//*  arg needed for probe support  *//* line 213 */
+    arg;                                               /* line 214 */
+    state;                                             /* line 215 */
+    special;                                           /* line 216 *//*  bootstrap debugging *//* line 217 */
+    kind; /*  enum { container, leaf, } */             /* line 218 *//* line 219 */
 } Eh;
 Eh fresh_Eh () {
     Eh *self;

@@ -11,8 +11,8 @@ void trash_handler (eh,mev) {
 
 typedef struct _TwoMevents {
                                                        /* line 11 */
-    char* firstmev;                                    /* line 12 */
-    char* secondmev;                                   /* line 13 *//* line 14 */
+    firstmev;                                          /* line 12 */
+    secondmev;                                         /* line 13 *//* line 14 */
 } TwoMevents;
 TwoMevents fresh_TwoMevents () {
     TwoMevents *self;
@@ -25,8 +25,8 @@ TwoMevents fresh_TwoMevents () {
 /*  Deracer_States :: enum { idle, waitingForFirstmev, waitingForSecondmev } *//* line 16 */
 typedef struct _Deracer_Instance_Data {
                                                        /* line 17 */
-    char* state;                                       /* line 18 */
-    char* buffer;                                      /* line 19 *//* line 20 */
+    state;                                             /* line 18 */
+    buffer;                                            /* line 19 *//* line 20 */
 } Deracer_Instance_Data;
 Deracer_Instance_Data fresh_Deracer_Instance_Data () {
     Deracer_Instance_Data *self;
@@ -129,7 +129,7 @@ void ensure_string_datum_handler (eh,mev) {
 
 typedef struct _Syncfilewrite_Data {
                                                        /* line 104 */
-    char* filename;                                    /* line 105 *//* line 106 */
+    filename;                                          /* line 105 *//* line 106 */
 } Syncfilewrite_Data;
 Syncfilewrite_Data fresh_Syncfilewrite_Data () {
     Syncfilewrite_Data *self;
@@ -166,8 +166,8 @@ void syncfilewrite_handler (eh,mev) {
 
 typedef struct _StringConcat_Instance_Data {
                                                        /* line 136 */
-    char* buffer1;                                     /* line 137 */
-    char* buffer2;                                     /* line 138 *//* line 139 */
+    buffer1;                                           /* line 137 */
+    buffer2;                                           /* line 138 *//* line 139 */
 } StringConcat_Instance_Data;
 StringConcat_Instance_Data fresh_StringConcat_Instance_Data () {
     StringConcat_Instance_Data *self;
@@ -248,7 +248,7 @@ void fakepipename_handler (eh,mev) {
                                                        /* line 215 */
 typedef struct _Switch1star_Instance_Data {
                                                        /* line 216 */
-    char* state;                                       /* line 217 *//* line 218 */
+    state;                                             /* line 217 *//* line 218 */
 } Switch1star_Instance_Data;
 Switch1star_Instance_Data fresh_Switch1star_Instance_Data () {
     Switch1star_Instance_Data *self;
@@ -287,7 +287,7 @@ void switch1star_handler (eh,mev) {
 
 typedef struct _StringAccumulator {
                                                        /* line 250 */
-    char* s;                                           /* line 251 *//* line 252 */
+    s;                                                 /* line 251 *//* line 252 */
 } StringAccumulator;
 StringAccumulator fresh_StringAccumulator () {
     StringAccumulator *self;
