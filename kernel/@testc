@@ -22,8 +22,6 @@ for i in $TYLIST; do
     cat "_c/$i.c" >> _r_c/rtkernel0d.c
 done
 
-exit 1
-
 if diff -q new_kernel0d.py _r_python/rtkernel0d.py > /dev/null; then
     echo "OK, created: _backup/_$(date +%Y%m%d_%H%M%S)_kernel0d.py"
     cp kernel0d.py "_backup/_$(date +%Y%m%d_%H%M%S)_kernel0d.py"
