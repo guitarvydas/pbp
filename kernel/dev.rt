@@ -1,6 +1,6 @@
 defobj Datum () {
-      • v : STR ⇐ ϕ
-      • clone : FGEN ⇐ ϕ
-      • reclaim : FPROC ⇐ ϕ
-      • other : FVOID ⇐ ϕ ⌈ reserved for use on per-project basis ⌉
+      • v ⇐ ϕ
+      • clone ⇐ ϕ
+      • reclaim ⇐ ϕ
+      • other ⇐ ϕ ⌈ reserved for use on per-project basis ⌉
 }

@@ -1,0 +1,9 @@
+obj('Datum',1).
+field(1,'v').
+type(1,'STR').
+field(1,'clone').
+type(1,'FGEN').
+field(1,'reclaim').
+type(1,'FPROC').
+field(1,'other').
+type(1,'FVOID').

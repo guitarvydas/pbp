@@ -38,4 +38,34 @@ defobj Receiver () {
         • component :PARTP
 }
 
+defobj Component_Registry () {
+        • templates :DICTP
+}
+
+defobj Template () {
+        • name :STR
+        • container :CONTAINERP
+        • instantiator :FINST
+}
+
+defobj Eh () {
+        • name :STR
+        • inq :QP
+        • outq :QP
+        • owner :PARTP
+        • children :LISTP
+        • visit_ordering :QP
+        • connections :LISTP
+        • routings :QP
+        • handler :FHANDLER
+        • reset_instance_data :FPROC
+        • finject :FINJECT
+        • stop :FPROC
+        • instance_data :STR
+        • arg :STR
+        • state :STR
+        • special :FLAG
+        • kind :KINDENUM
+}
+
 
