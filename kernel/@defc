@@ -14,10 +14,12 @@ export T2TLIBD="${PBP}/t2td/lib"
 # For use at a sub-level (@makec is called with 3 args), @makec must override CALLERPATH and TARGET
 export CALLERPATH="${TOOLWD}"
 export TRANSMOGRIFIER="<not applicable>"
-export TARGET="<not applicabl>"
+export TARGET="<not applicable>"
 export SRC_EXTENSION="<not applicable>"
 export DEST_EXTENSION="<not applicable>"
 
 
 # names must not contain spaces, since space is the separator used in for loops in @makec and @testc
 export BASENAMES="gensym defs templates container leaf jit stock start"
+export NTYLIST="gensym defs templates container leaf jit stock start"
+export TYLIST="gensym tydefs templates container leaf jit stock start"

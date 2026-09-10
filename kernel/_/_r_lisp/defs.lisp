@@ -199,107 +199,102 @@ x))))
 (defparameter  enumDown  0)
 (defparameter  enumAcross  1)
 (defparameter  enumUp  2)
-(defparameter  enumThrough  3)                              #|line 104|# #|line 105|#
-(defclass Component_Registry ()                             #|line 106|#
+(defparameter  enumThrough  3)                              #|line 104|# #|line 105|# #|  Routing connection for a container component. The `direction` field has |# #|line 106|# #|  no affect on the default mevent routing system _ it is there for debugging |# #|line 107|# #|  purposes, or for reading by other tools. |# #|line 108|# #|line 109|#
+(defclass Connector ()                                      #|line 110|#
   (
-    (templates :accessor templates :initarg :templates :initform  (dict-fresh))  #|line 107|#)) #|line 108|#
+    (direction :accessor direction :initarg :direction :initform  nil)  #|  down, across, up, through |# #|line 111|#
+    (sender :accessor sender :initarg :sender :initform  nil)  #|line 112|#
+    (receiver :accessor receiver :initarg :receiver :initform  nil)  #|line 113|#)) #|line 114|#
 
-                                                            #|line 109|# #|  Routing connection for a container component. The `direction` field has |# #|line 110|# #|  no affect on the default mevent routing system _ it is there for debugging |# #|line 111|# #|  purposes, or for reading by other tools. |# #|line 112|# #|line 113|#
-(defclass Connector ()                                      #|line 114|#
+                                                            #|line 115|# #|  `Sender` is used to “pattern match“ which `Receiver` a mevent should go to, |# #|line 116|# #|  based on component ID (pointer) and port name. |# #|line 117|# #|line 118|#
+(defclass Sender ()                                         #|line 119|#
   (
-    (direction :accessor direction :initarg :direction :initform  nil)  #|  down, across, up, through |# #|line 115|#
-    (sender :accessor sender :initarg :sender :initform  nil)  #|line 116|#
-    (receiver :accessor receiver :initarg :receiver :initform  nil)  #|line 117|#)) #|line 118|#
+    (name :accessor name :initarg :name :initform  nil)     #|line 120|#
+    (component :accessor component :initarg :component :initform  nil)  #|line 121|#
+    (port :accessor port :initarg :port :initform  nil)     #|line 122|#)) #|line 123|#
 
-                                                            #|line 119|# #|  `Sender` is used to “pattern match“ which `Receiver` a mevent should go to, |# #|line 120|# #|  based on component ID (pointer) and port name. |# #|line 121|# #|line 122|#
-(defclass Sender ()                                         #|line 123|#
+                                                            #|line 124|# #|line 125|# #|line 126|# #|  `Receiver` is a handle to a destination queue, and a `port` name to assign |# #|line 127|# #|  to incoming mevents to this queue. |# #|line 128|# #|line 129|#
+(defclass Receiver ()                                       #|line 130|#
   (
-    (name :accessor name :initarg :name :initform  nil)     #|line 124|#
-    (component :accessor component :initarg :component :initform  nil)  #|line 125|#
-    (port :accessor port :initarg :port :initform  nil)     #|line 126|#)) #|line 127|#
+    (name :accessor name :initarg :name :initform  nil)     #|line 131|#
+    (queue :accessor queue :initarg :queue :initform  nil)  #|line 132|#
+    (port :accessor port :initarg :port :initform  nil)     #|line 133|#
+    (component :accessor component :initarg :component :initform  nil)  #|line 134|#)) #|line 135|#
 
-                                                            #|line 128|# #|line 129|# #|line 130|# #|  `Receiver` is a handle to a destination queue, and a `port` name to assign |# #|line 131|# #|  to incoming mevents to this queue. |# #|line 132|# #|line 133|#
-(defclass Receiver ()                                       #|line 134|#
-  (
-    (name :accessor name :initarg :name :initform  nil)     #|line 135|#
-    (queue :accessor queue :initarg :queue :initform  nil)  #|line 136|#
-    (port :accessor port :initarg :port :initform  nil)     #|line 137|#
-    (component :accessor component :initarg :component :initform  nil)  #|line 138|#)) #|line 139|#
-
-                                                            #|line 140|#
+                                                            #|line 136|#
 (defun mkSender (&optional  name  component  port)
-  (declare (ignorable  name  component  port))              #|line 141|#
-  (let (( s  (make-instance 'Sender)                        #|line 142|#))
+  (declare (ignorable  name  component  port))              #|line 137|#
+  (let (( s  (make-instance 'Sender)                        #|line 138|#))
     (declare (ignorable  s))
-    (setf (slot-value  s 'name)  name)                      #|line 143|#
-    (setf (slot-value  s 'component)  component)            #|line 144|#
-    (setf (slot-value  s 'port)  port)                      #|line 145|#
-    (return-from mkSender  s)                               #|line 146|#) #|line 147|#
+    (setf (slot-value  s 'name)  name)                      #|line 139|#
+    (setf (slot-value  s 'component)  component)            #|line 140|#
+    (setf (slot-value  s 'port)  port)                      #|line 141|#
+    (return-from mkSender  s)                               #|line 142|#) #|line 143|#
   )
 (defun mkReceiver (&optional  name  component  port  q)
-  (declare (ignorable  name  component  port  q))           #|line 149|#
-  (let (( r  (make-instance 'Receiver)                      #|line 150|#))
+  (declare (ignorable  name  component  port  q))           #|line 145|#
+  (let (( r  (make-instance 'Receiver)                      #|line 146|#))
     (declare (ignorable  r))
-    (setf (slot-value  r 'name)  name)                      #|line 151|#
-    (setf (slot-value  r 'component)  component)            #|line 152|#
-    (setf (slot-value  r 'port)  port)                      #|line 153|#
-    #|  We need a way to determine which queue to target. "Down" and "Across" go to inq, "Up" and "Through" go to outq. |# #|line 154|#
-    (setf (slot-value  r 'queue)  q)                        #|line 155|#
-    (return-from mkReceiver  r)                             #|line 156|#) #|line 157|#
-  )                                                         #|line 159|#
-(defclass Component_Registry ()                             #|line 160|#
+    (setf (slot-value  r 'name)  name)                      #|line 147|#
+    (setf (slot-value  r 'component)  component)            #|line 148|#
+    (setf (slot-value  r 'port)  port)                      #|line 149|#
+    #|  We need a way to determine which queue to target. "Down" and "Across" go to inq, "Up" and "Through" go to outq. |# #|line 150|#
+    (setf (slot-value  r 'queue)  q)                        #|line 151|#
+    (return-from mkReceiver  r)                             #|line 152|#) #|line 153|#
+  )                                                         #|line 155|#
+(defclass Component_Registry ()                             #|line 156|#
   (
-    (templates :accessor templates :initarg :templates :initform  (dict-fresh))  #|line 161|#)) #|line 162|#
+    (templates :accessor templates :initarg :templates :initform  (dict-fresh))  #|line 157|#)) #|line 158|#
 
-                                                            #|line 163|#
-(defclass Template ()                                       #|line 164|#
+                                                            #|line 159|#
+(defclass Template ()                                       #|line 160|#
   (
-    (name :accessor name :initarg :name :initform  nil)     #|line 165|#
-    (container :accessor container :initarg :container :initform  nil)  #|line 166|#
-    (instantiator :accessor instantiator :initarg :instantiator :initform  nil)  #|line 167|#)) #|line 168|#
+    (name :accessor name :initarg :name :initform  nil)     #|line 161|#
+    (container :accessor container :initarg :container :initform  nil)  #|line 162|#
+    (instantiator :accessor instantiator :initarg :instantiator :initform  nil)  #|line 163|#)) #|line 164|#
 
-                                                            #|line 169|#
+                                                            #|line 165|#
 (defun mkTemplate (&optional  name  template_data  instantiator)
-  (declare (ignorable  name  template_data  instantiator))  #|line 170|#
-  (let (( templ  (make-instance 'Template)                  #|line 171|#))
+  (declare (ignorable  name  template_data  instantiator))  #|line 166|#
+  (let (( templ  (make-instance 'Template)                  #|line 167|#))
     (declare (ignorable  templ))
-    (setf (slot-value  templ 'name)  name)                  #|line 172|#
-    (setf (slot-value  templ 'template_data)  template_data) #|line 173|#
-    (setf (slot-value  templ 'instantiator)  instantiator)  #|line 174|#
-    (return-from mkTemplate  templ)                         #|line 175|#) #|line 176|#
+    (setf (slot-value  templ 'name)  name)                  #|line 168|#
+    (setf (slot-value  templ 'template_data)  template_data) #|line 169|#
+    (setf (slot-value  templ 'instantiator)  instantiator)  #|line 170|#
+    (return-from mkTemplate  templ)                         #|line 171|#) #|line 172|#
   )
 (defun make_component_registry (&optional )
-  (declare (ignorable ))                                    #|line 178|#
-  (return-from make_component_registry  (make-instance 'Component_Registry) #|line 179|#) #|line 180|#
-  ) #|  Data for an asyncronous component _ effectively, a function with input |# #|line 182|# #|  and output queues of mevents. |# #|line 183|# #|  |# #|line 184|# #|  Components can either be a user_supplied function (“leaf“), or a “container“ |# #|line 185|# #|  that routes mevents to child components according to a list of connections |# #|line 186|# #|  that serve as a mevent routing table. |# #|line 187|# #|  |# #|line 188|# #|  Child components themselves can be leaves or other containers. |# #|line 189|# #|  |# #|line 190|# #|  `handler` invokes the code that is attached to this component. |# #|line 191|# #|  |# #|line 192|# #|  `instance_data` is a pointer to instance data that the `leaf_handler` |# #|line 193|# #|  function may want whenever it is invoked again. |# #|line 194|# #|line 195|# #|  TODO: what is .routings for? (is it a historical artefact that can be removed?)  |# #|line 196|# #|line 197|# #|  Eh_States :: enum { idle, active } |# #|line 198|#
-(defclass Eh ()                                             #|line 199|#
+  (declare (ignorable ))                                    #|line 174|#
+  (return-from make_component_registry  (make-instance 'Component_Registry) #|line 175|#) #|line 176|#
+  ) #|  Data for an asyncronous component _ effectively, a function with input |# #|line 178|# #|  and output queues of mevents. |# #|line 179|# #|  |# #|line 180|# #|  Components can either be a user_supplied function (“leaf“), or a “container“ |# #|line 181|# #|  that routes mevents to child components according to a list of connections |# #|line 182|# #|  that serve as a mevent routing table. |# #|line 183|# #|  |# #|line 184|# #|  Child components themselves can be leaves or other containers. |# #|line 185|# #|  |# #|line 186|# #|  `handler` invokes the code that is attached to this component. |# #|line 187|# #|  |# #|line 188|# #|  `instance_data` is a pointer to instance data that the `leaf_handler` |# #|line 189|# #|  function may want whenever it is invoked again. |# #|line 190|# #|line 191|# #|  TODO: what is .routings for? (is it a historical artefact that can be removed?)  |# #|line 192|# #|line 193|# #|  Eh_States :: enum { idle, active } |# #|line 194|#
+(defclass Eh ()                                             #|line 195|#
   (
-    (name :accessor name :initarg :name :initform  "")      #|line 200|#
-    (inq :accessor inq :initarg :inq :initform  (make-instance 'Queue) #|line 201|#)
-    (outq :accessor outq :initarg :outq :initform  (make-instance 'Queue) #|line 202|#)
-    (owner :accessor owner :initarg :owner :initform  nil)  #|line 203|#
-    (children :accessor children :initarg :children :initform  nil)  #|line 204|#
-    (visit_ordering :accessor visit_ordering :initarg :visit_ordering :initform  (make-instance 'Queue) #|line 205|#)
-    (connections :accessor connections :initarg :connections :initform  nil)  #|line 206|#
-    (routings :accessor routings :initarg :routings :initform  (make-instance 'Queue) #|line 207|#)
-    (handler :accessor handler :initarg :handler :initform  nil)  #|line 208|#
-    (reset_instance_data :accessor reset_instance_data :initarg :reset_instance_data :initform  nil)  #|line 209|#
-    (finject :accessor finject :initarg :finject :initform  nil)  #|line 210|#
-    (stop :accessor stop :initarg :stop :initform  nil)     #|line 211|#
-    (instance_data :accessor instance_data :initarg :instance_data :initform  nil)  #|line 212|# #|  arg needed for probe support  |# #|line 213|#
-    (arg :accessor arg :initarg :arg :initform  "")         #|line 214|#
-    (state :accessor state :initarg :state :initform  "idle")  #|line 215|#
-    (special :accessor special :initarg :special :initform  nil)  #|line 216|# #|  bootstrap debugging |# #|line 217|#
-    (kind :accessor kind :initarg :kind :initform  nil)  #|  enum { container, leaf, } |# #|line 218|#)) #|line 219|#
+    (name :accessor name :initarg :name :initform  "")      #|line 196|#
+    (inq :accessor inq :initarg :inq :initform  (make-instance 'Queue) #|line 197|#)
+    (outq :accessor outq :initarg :outq :initform  (make-instance 'Queue) #|line 198|#)
+    (owner :accessor owner :initarg :owner :initform  nil)  #|line 199|#
+    (children :accessor children :initarg :children :initform  nil)  #|line 200|#
+    (visit_ordering :accessor visit_ordering :initarg :visit_ordering :initform  (make-instance 'Queue) #|line 201|#)
+    (connections :accessor connections :initarg :connections :initform  nil)  #|line 202|#
+    (routings :accessor routings :initarg :routings :initform  (make-instance 'Queue) #|line 203|#)
+    (handler :accessor handler :initarg :handler :initform  nil)  #|line 204|#
+    (reset_instance_data :accessor reset_instance_data :initarg :reset_instance_data :initform  nil)  #|line 205|#
+    (finject :accessor finject :initarg :finject :initform  nil)  #|line 206|#
+    (stop :accessor stop :initarg :stop :initform  nil)     #|line 207|#
+    (instance_data :accessor instance_data :initarg :instance_data :initform  nil)  #|line 208|# #|  arg needed for probe support  |# #|line 209|#
+    (arg :accessor arg :initarg :arg :initform  "")         #|line 210|#
+    (state :accessor state :initarg :state :initform  "idle")  #|line 211|#
+    (special :accessor special :initarg :special :initform  nil)  #|line 212|# #|  bootstrap debugging |# #|line 213|#
+    (kind :accessor kind :initarg :kind :initform  nil)  #|  enum { container, leaf, } |# #|line 214|#)) #|line 215|#
 
-                                                            #|line 220|#
-(defparameter  load_errors  nil)                            #|line 221|#
-(defparameter  runtime_errors  nil)                         #|line 222|# #|line 223|#
+                                                            #|line 216|#
+(defparameter  load_errors  nil)                            #|line 217|#
+(defparameter  runtime_errors  nil)                         #|line 218|# #|line 219|#
 (defun clone_string (&optional  s)
-  (declare (ignorable  s))                                  #|line 224|#
-  (return-from clone_string  s)                             #|line 225|# #|line 226|#
+  (declare (ignorable  s))                                  #|line 220|#
+  (return-from clone_string  s)                             #|line 221|# #|line 222|#
   )
 (defun injector (&optional  eh  mevent)
-  (declare (ignorable  eh  mevent))                         #|line 228|#
-  (funcall (slot-value  eh 'handler)   eh  mevent           #|line 229|#) #|line 230|#
+  (declare (ignorable  eh  mevent))                         #|line 224|#
+  (funcall (slot-value  eh 'handler)   eh  mevent           #|line 225|#) #|line 226|#
   )
