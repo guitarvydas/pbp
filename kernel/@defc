@@ -20,6 +20,6 @@ export DEST_EXTENSION="<not applicable>"
 
 
 # names must not contain spaces, since space is the separator used in for loops in @makec and @testc
-export BASENAMES="gensym defs templates container leaf jit stock start"
-export NTYLIST="gensym defs templates container leaf jit stock start"
-export TYLIST="gensym tydefs templates container leaf jit stock start"
+export BASENAMES="gensym mevent defs tydefs templates container leaf jit stock start"
+export NTYLIST="gensym mevent defs templates container leaf jit stock start"
+export TYLIST="gensym mevent tydefs templates container leaf jit stock start"

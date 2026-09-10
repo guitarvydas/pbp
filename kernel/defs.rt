@@ -3,31 +3,6 @@
 defvar counter ⇐ 0
 defvar ticktime ⇐ 0
 
-defvar digits ⇐ [
-    “₀”, “₁”, “₂”, “₃”, “₄”, “₅”,
-    “₆”, “₇”, “₈”, “₉”,
-    “₁₀”, “₁₁”, “₁₂”, “₁₃”, “₁₄”,
-    “₁₅”, “₁₆”, “₁₇”, “₁₈”, “₁₉”,
-    “₂₀”, “₂₁”, “₂₂”, “₂₃”, “₂₄”,
-    “₂₅”, “₂₆”, “₂₇”, “₂₈”, “₂₉”
-]
-
-defn gensymbol (s) {
-    global counter
-    name_with_id ≡ #strcons (s, subscripted_digit (counter))
-    counter ⇐ counter + 1
-    return name_with_id
-}
-
-defn subscripted_digit (n) {
-  global digits
-  if (n >=  0 and n <=  29) {
-    return digits [n]
-  } else {
-    return #strcons (“₊”, #asstr (n))
-  }
-}
-
 defobj Datum () {
       • v ⇐ ϕ
       • clone ⇐ ϕ

@@ -3,91 +3,11 @@
 defvar counter ⇐ 0
 defvar ticktime ⇐ 0
 
-
-defobj Datum () {
-      • v ⇐ ϕ
-      • clone ⇐ ϕ
-      • reclaim ⇐ ϕ
-      • other ⇐ ϕ ⌈ reserved for use on per-project basis ⌉
-}
-
-
-⌈ Mevent passed to a leaf component.⌉
-⌈⌉
-⌈ `port` refers to the name of the incoming or outgoing port of this component.⌉
-⌈ `payload` is the data attached to this mevent.⌉
-defobj Mevent () {
-        • port ⇐ ϕ
-        • payload ⇐ ϕ
-}
-
-defn clone_port (s) {
-    return clone_string (s)
-}
-
-⌈ Utility for making a `Mevent`. Used to safely “seed“ mevents⌉
-⌈ entering the very top of a network.⌉
-defn make_mevent (port, datum) {
-    p ≡ clone_string (port)
-    deftemp m ⇐ #fresh (Mevent)
-    m.port ⇐ p
-    m.payload ⇐ datum.clone ()
-    return m
-}
-
-⌈ Clones a mevent. Primarily used internally for “fanning out“ a mevent to multiple destinations.⌉
-defn mevent_clone (mev) {
-    deftemp m ⇐ #fresh (Mevent)
-    m.port ⇐ clone_port (mev.port)
-    m.payload ⇐ mev.payload.clone ()
-    return m
-}
-
-⌈ Frees a mevent.⌉
-defn destroy_mevent (mev) {
-    ⌈ during debug, dont destroy any mevent, since we want to trace mevents, thus, we need to persist ancestor mevents⌉
-    pass
-}
-
-defn destroy_datum (mev) {
-    pass
-}
-
-defn destroy_port (mev) {
-    pass
-}
-
-⌈⌉
-defn format_mevent (m) {
-    if m = ϕ {
-        return “{}”
-    } else {
-        return #strcons (“{\"”, #strcons (m.port, #strcons (“\":\"”, #strcons (m.payload.v, “\"}”))))
-    }
-}
-defn format_mevent_raw (m) {
-    if m = ϕ {
-        return “”
-    } else {
-        return m.payload.v
-    }
-}
-
 defconst enumDown ≡ 0
 defconst enumAcross ≡ 1
 defconst enumUp ≡ 2
 defconst enumThrough ≡ 3
 
-
-defobj Component_Registry () {
-        • templates ⇐ {}
-}
-
-defobj Template () {
-        • name ⇐ ϕ
-        • container ⇐ ϕ
-        • instantiator ⇐ ϕ
-}
 
 ⌈ Routing connection for a container component. The `direction` field has⌉
 ⌈ no affect on the default mevent routing system _ it is there for debugging⌉
