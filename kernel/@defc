@@ -14,7 +14,7 @@ export T2TLIBD="${PBP}/t2td/lib"
 # For use at a sub-level (@makec is called with 3 args), @makec must override CALLERPATH and TARGET
 export CALLERPATH="${TOOLWD}"
 export TRANSMOGRIFIER="<not applicable>"
-export TARGET="<not applicable>"
+export TARGET="extractor"
 export SRC_EXTENSION="<not applicable>"
 export DEST_EXTENSION="<not applicable>"
 

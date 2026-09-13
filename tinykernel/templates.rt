@@ -1,0 +1,91 @@
+defn mkTemplate (name, template_data, instantiator) {
+     deftemp templ ⇐ #fresh (Template)
+     templ.name ⇐ name
+     templ.template_data ⇐ template_data
+     templ.instantiator ⇐ instantiator
+     return templ
+}
+
+
+⌈ convert a little-network to internal form (an object data structure created by json parser) ... ⌉
+⌈ the actual data structure depends on the json parser library used by the target language ⌉
+⌈ the form of the data structure doesn't matter here, as long as we use lookup operators "@" in this .rt code ⌉
+
+⌈ ... by reading the little-net from an external file ⌉
+defn lnet2internal_from_file (container_xml) {
+    pathname ≡ #get_wd ()
+    filename ≡ #basename (container_xml)
+    #read_and_convert_lnet_file (pathname, filename)
+}
+
+⌈ ... by reading the little-net from an embedded string (an aspect of creating t2t tool code) ⌉
+defn lnet2internal_from_string (lnet) {
+    #internalize_lnet_from_string ()
+}
+
+defn delete_decls (d) {
+    pass
+}
+
+defn make_component_registry () {
+    return #fresh (Component_Registry)
+}
+
+defn register_component (reg, template) { return abstracted_register_component (reg, template,  ⊥) }
+defn register_component_allow_overwriting (reg, template) { return abstracted_register_component (reg, template,  ⊤) }
+
+defn abstracted_register_component (reg, template, ok_to_overwrite) {
+    name ≡ mangle_name (template.name)
+    if reg != ϕ and name in reg.templates and not ok_to_overwrite {
+        load_error (#strcons (“Component /”, #strcons (template.name, “/ already declared”)))
+        return reg
+    } else {
+        reg.templates@name ⇐ template
+        return reg
+    }
+}
+
+defn get_component_instance (reg, full_name, owner) {
+⌈ If a part name begins with ":", it is treated as a JIT part and we let the runtime factory generate it on-the-fly (see kernel_external.rt and external.rt) else it is assumed to be a regular AOT part and assumed to have been registered before runtime, so we just pull its template out of the registry and instantiate it. ⌉
+⌈ ":?<string>" is a probe part that is tagged with <string> ⌉
+⌈ ":$ <command>" is a shell-out part that sends <command> to the operating system shell ⌉
+⌈ ":<string>" else, it's just treated as a string part that produces <string> on its output ⌉
+    template_name ≡ mangle_name (full_name)
+    if “:” = #stringcar (full_name) {
+        instance_name ≡ generate_instance_name (owner, template_name)
+        instance ≡ jit_instantiate (reg, owner, instance_name, full_name)
+        return instance
+    } else {
+        if template_name in reg.templates {
+            template ≡ reg.templates@template_name
+            if (template = ϕ) {
+                load_error (#strcons (“Registry Error (A): Can't find component /”, #strcons (template_name, “/”)))
+                return ϕ
+            } else {
+                instance_name ≡ generate_instance_name (owner, template_name)
+                instance ≡ template.instantiator (reg, owner, instance_name, template.template_data, “”)
+                return instance
+            }
+        } else {
+            load_error (#strcons (“Registry Error (B): Can't find component /”, #strcons (template_name, “/”)))
+            return ϕ
+        }
+    }
+}
+
+defn generate_instance_name (owner, template_name) {
+   owner_name ≡ “”
+   instance_name ≡ template_name
+   if ϕ != owner {
+       owner_name ⇐ owner.name
+       instance_name ⇐ #strcons (owner_name, #strcons (“▹”, template_name))
+   } else {
+       instance_name ⇐ template_name
+   }
+   return instance_name
+}
+
+defn mangle_name (s) {
+    ⌈ trim name to remove code from Container component names _ deferred until later (or never)⌉
+    return s
+}

@@ -1,71 +1,70 @@
-defobj Datum () {
-      • v : STR
-      • clone : FGEN
-      • reclaim : FPROC
-      • other : FVOID
-}
+#
+import sys
+import re
+import subprocess
+import tempfile
+import shlex
+import os
+import json
+from collections import deque
+import socket
+import struct
+import base64
+import hashlib
+import random
+from repl import live_update
 
-defobj Mevent () {
-        • port : STR
-        • payload : STR
-}
+def deque_to_json(d):
+    # """
+    # Convert a deque of Mevent objects to a JSON string, preserving order.
+    # Each Mevent object is converted to a dict with a single key (from Mevent.key)
+    # containing the payload as its value.
 
-defconst enumDown : BYTE
-defconst enumAcross : BYTE
-defconst enumUp : BYTE
-defconst enumThrough : BYTE
+    # Args:
+    #     d: The deque of Mevent objects to convert
 
-defobj Component_Registry () {
-        • templates : DICT
-}
+    # Returns:
+    #     A JSON string representation of the deque
+    # """
+    # # Convert deque to list of objects where each mevent's key contains its payload
+    ordered_list = [{mev.port: "" if mev.payload.v is None else mev.payload.v} for mev in d]
 
-defobj Connector () {
-        • direction :DIRENUM 
-        • sender : SENDERP
-        • receiver : RECEIVERP
-}
-
-defobj Sender () {
-        • name : STR
-        • component : PARTP
-        • port : STR
-}
-
-defobj Receiver () {
-        • name :STR
-        • queue :QP
-        • port :STR
-        • component :PARTP
-}
-
-defobj Component_Registry () {
-        • templates :DICTP
-}
-
-defobj Template () {
-        • name :STR
-        • container :CONTAINERP
-        • instantiator :FINST
-}
-
-defobj Eh () {
-        • name :STR
-        • inq :QP
-        • outq :QP
-        • owner :PARTP
-        • children :LISTP
-        • visit_ordering :QP
-        • connections :LISTP
-        • routings :QP
-        • handler :FHANDLER
-        • reset_instance_data :FPROC
-        • finject :FINJECT
-        • stop :FPROC
-        • instance_data :STR
-        • arg :STR
-        • state :STR
-        • special :FLAG
-        • kind :KINDENUM
-}
+    # # Convert to JSON with indentation for readability
+    return json.dumps(ordered_list, indent=2)
 
 
+                                                       #line 1#line 2
+counter =  0                                           #line 3
+ticktime =  0                                          #line 4#line 5#line 6#line 10#line 16
+def mkTemplate (name,template_data,instantiator):      #line 17
+    templ =  Template ()                               #line 18
+    templ.name =  name                                 #line 19
+    templ.template_data =  template_data               #line 20
+    templ.instantiator =  instantiator                 #line 21
+    return  templ                                      #line 22#line 23#line 24
+
+def make_component_registry ():                        #line 25
+    return  Component_Registry ()                      #line 26#line 27#line 28
+
+                                                       #line 29
+                                                       #line 30
+                                                       #line 31
+                                                       #line 32
+                                                       #line 33
+                                                       #line 34
+                                                       #line 35
+                                                       #line 36
+                                                       #line 37
+                                                       #line 38
+                                                       #line 39
+                                                       #line 40
+                                                       #line 41#line 42
+                                                       #line 43#line 44
+                                                       #line 45#line 67
+load_errors =  False                                   #line 68
+runtime_errors =  False                                #line 69#line 70
+def clone_string (s):                                  #line 71
+    return  s                                          #line 72#line 73#line 74
+
+def injector (eh,mevent):                              #line 75
+    eh.handler ( eh, mevent)                           #line 76#line 77#line 78

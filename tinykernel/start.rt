@@ -1,0 +1,93 @@
+
+defn load_error (s) {
+    global load_errors
+    #print_stderr (s)
+    #print_nl_stderr ()
+    load_errors ⇐ ⊤
+}
+
+defn runtime_error (s) {
+    global runtime_errors
+    #print_stderr (s)
+    #abort ()
+    runtime_errors ⇐ ⊤
+}
+
+
+defn initialize_component_palette_from_files (diagram_source_files) {
+    deftemp reg ⇐ make_component_registry ()
+    for diagram_source in diagram_source_files {
+        all_containers_within_single_file ≡ lnet2internal_from_file (diagram_source)
+        for container in all_containers_within_single_file {
+            register_component (reg, mkTemplate (container@“name” , ⌈container=⌉ container, ⌈instantiator=⌉ ↪︎container_instantiator))
+        }
+    }
+    initialize_stock_components (reg)
+    return reg
+}
+
+defn initialize_component_palette_from_string (lnet) {
+    deftemp reg ⇐ make_component_registry ()
+    all_containers ≡ lnet2internal_from_string (lnet)
+    for container in all_containers {
+            register_component (reg, mkTemplate (container@“name” , ⌈container=⌉ container, ⌈instantiator=⌉ ↪︎container_instantiator))
+        }
+    initialize_stock_components (reg)
+    return reg
+}
+defn initialize_from_files (diagram_names) {
+    arg ≡ ϕ
+    palette ≡ initialize_component_palette_from_files (diagram_names)
+    return [palette, [diagram_names, arg]]
+}
+
+defn initialize_from_string () {
+    arg ≡ ϕ
+    palette ≡ initialize_component_palette_from_string ()
+    return [palette, [ϕ, arg]]
+}
+
+defn start (arg, part_name, palette, env) {
+     part ≡ start_bare (part_name, palette, env)
+     inject (part, "", arg)
+     finalize (part)
+}
+     
+defn start_bare (part_name, palette, env) {
+    diagram_names ≡ env [0]
+    ⌈ get entrypoint container⌉
+    deftemp part ⇐ get_component_instance(palette, part_name, ϕ)
+    if ϕ = part {
+        load_error (#strcons (“Couldn't find container with page name /”,
+                      #strcons (part_name,
+                        #strcons (“/ in files ”,
+                          #strcons (#asstr (diagram_names), “ (check tab names, or disable compression?)”)))))
+    }
+    return part
+}
+
+defn inject (part, port, payload) {
+    if not load_errors {
+        deftemp d ⇐ #fresh (Datum)
+        d.v ⇐ payload
+        d.clone ⇐ λ: obj_clone (d)
+        d.reclaim ⇐ ϕ
+        deftemp mev ⇐ make_mevent(port, d)
+        inject_mevent (part, mev)
+     } else {
+         #abort ()
+     }  
+}
+
+defn finalize (part) {
+    #queue_as_json_to_stdout (part.outq)
+}
+
+defn new_datum_bang () {
+    deftemp d ⇐ #fresh (Datum)
+    d.v ⇐ “!”
+    d.clone ⇐ λ: obj_clone (d)
+    d.reclaim ⇐ ϕ
+    return d
+    
+}

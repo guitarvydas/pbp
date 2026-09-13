@@ -1,0 +1,5 @@
+defvar stringpool = {}
+defvar strindex = 0
+
+defn intern_string (s) {
+  

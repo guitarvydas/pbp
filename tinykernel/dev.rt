@@ -1,0 +1,6 @@
+defobj Datum () {
+      • v ⇐ ϕ
+      • clone ⇐ ϕ
+      • reclaim ⇐ ϕ
+      • other ⇐ ϕ ⌈ reserved for use on per-project basis ⌉
+}

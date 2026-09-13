@@ -1,0 +1,27 @@
+#line 1
+enumDown =  0                                          #line 2
+enumAcross =  1                                        #line 3
+enumUp =  2                                            #line 4
+enumThrough =  3                                       #line 5#line 6#line 7
+                                                       #line 8
+                                                       #line 9
+                                                       #line 10#line 11#line 17
+                                                       #line 18
+                                                       #line 19#line 20#line 26#line 27#line 28
+                                                       #line 29
+                                                       #line 30#line 31#line 38
+def mkSender (name,component,port):                    #line 39
+    s =  Sender ()                                     #line 40
+    s.name =  name                                     #line 41
+    s.component =  component                           #line 42
+    s.port =  port                                     #line 43
+    return  s                                          #line 44#line 45#line 46
+
+def mkReceiver (name,component,port,q):                #line 47
+    r =  Receiver ()                                   #line 48
+    r.name =  name                                     #line 49
+    r.component =  component                           #line 50
+    r.port =  port                                     #line 51
+                                                       #line 52
+    r.queue =  q                                       #line 53
+    return  r                                          #line 54#line 55

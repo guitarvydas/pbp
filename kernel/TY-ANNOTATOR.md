@@ -1,0 +1,40 @@
+# Purpose
+To explore the simplest, most straight forward way, of adding type annotations to `.rt` while keeping type annotations separate from the `.rt` code itself.
+
+I contend that expression of Design is obfuscated by too much detail expressed in the code. For example
+```
+var x : int16 = 42;
+```
+is more complicated to read than
+```
+var x = 42;
+```
+
+Type checking is but a tool for checking consistency during Production Engineering and just gets in the way during Design Engineering.
+
+Extra clutter and detail during Design slows down the Design phase and often stunts the actual Design by removing degrees of freedom for thought.
+
+In the past (e.g. 20th century) it was considered difficult to build languages, hence, we conflated type checking languages and annotations with programming languages.
+
+Today - in the 21st century - it is much easier to build languages. Can we build two different languages that achieve similar results, while keeping Design separate from Production Engineering? If we build different languages, can we automatically combine them to use existing compilers and type checkers, instead of building yet more type checkers and compilers?
+
+# Method
+## Step 1.
+Build and test `extractor.drawio`, hopefully with less syntactic detail than is needed for `emit.ohm` and friends.
+
+The goal of `extractor.drawio` is to read all of the existing, typeless, `.rt` files and produce a new file that contains only declarations awaiting type annotation. Let's call it `*.ty` for now.
+
+## Step 2.
+
+Manually annotate the declarations in the newly generated `*.ty`.
+
+## Step 3.
+
+Build a combiner pass that folds the annotations into the various `.rt` files.
+
+## Step 4.
+
+Build an enhanced version of `emit.*` that produces legal C code, with appropriate type annotations and run the result through a C compiler.
+
+# Observations
+# Conclusion
