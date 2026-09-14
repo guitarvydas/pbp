@@ -15,16 +15,6 @@ reset_handler ≡
         if  None!= owner {                             #line 7
                 nm ≡                                   #line 8#line 9
         }
-        eh.name ≡
-        eh.owner ≡                                     #line 11
-        eh.handler ≡                                   #line 12
-        eh.reset_handler ≡                             #line 13
-        eh.finject ≡                                   #line 14
-        eh.stop ≡                                      #line 15
-        eh.instance_data ≡                             #line 16
-        eh.arg ≡                                       #line 17
-        eh.state ≡                                     #line 18
-        eh.kind ≡                                      #line 19
         return  eh                                     #line 20#line 21#line 22
 }
 
@@ -36,5 +26,4 @@ part ≡
                                                        #line 24
         if ( part.reset_handler!= None) {              #line 27#line 29
         }
-        part.state ≡                                   #line 30#line 31
-}
+        }

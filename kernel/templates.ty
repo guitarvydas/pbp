@@ -6,9 +6,6 @@ instantiator ≡
 ) {
                                                        #line 1
         templ ≡
-        templ.name ≡                                   #line 3
-        templ.template_data ≡                          #line 4
-        templ.instantiator ≡                           #line 5
         return  templ                                  #line 6#line 7#line 8
 }
                                                        #line 9
@@ -74,7 +71,6 @@ ok_to_overwrite ≡
         name ≡
         if  reg!= None and  name in  reg.templates and not  ok_to_overwrite {#line 39
             else {                                     #line 42
-                    reg.templates [name] ≡             #line 43
                     return  reg                        #line 44#line 45
             }
         }                                              #line 46#line 47

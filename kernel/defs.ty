@@ -9,9 +9,6 @@ instantiator ≡
 ) {
                                                        #line 17
         templ ≡
-        templ.name ≡                                   #line 19
-        templ.template_data ≡                          #line 20
-        templ.instantiator ≡                           #line 21
         return  templ                                  #line 22#line 23#line 24
 }
 

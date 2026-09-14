@@ -89,9 +89,6 @@ payload ≡
                                                        #line 69
         if not  load_errors {                          #line 70
                 d ≡
-                d.v ≡                                  #line 72
-                d.clone ≡
-                d.reclaim ≡                            #line 74
                 mev ≡
             else {                                     #line 77#line 79
             }
@@ -109,8 +106,5 @@ defn new_datum_bang ≡
 () {
                                                        #line 86
         d ≡
-        d.v ≡                                          #line 88
-        d.clone ≡
-        d.reclaim ≡                                    #line 90
         return  d                                      #line 91#line 92
 }

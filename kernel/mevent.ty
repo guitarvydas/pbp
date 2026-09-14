@@ -21,8 +21,6 @@ datum ≡
                                                        #line 25
         p ≡
         m ≡
-        m.port ≡                                       #line 28
-        m.payload ≡                                    #line 29
         return  m                                      #line 30#line 31#line 32
 }
 
@@ -33,8 +31,6 @@ mev ≡
 ) {
                                                        #line 34
         m ≡
-        m.port ≡
-        m.payload ≡                                    #line 37
         return  m                                      #line 38#line 39#line 40
 }
 
