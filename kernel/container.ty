@@ -4,15 +4,16 @@ container ≡ ,
 proto_conn ≡ ,
 connectors ≡ ,
 children_by_id ≡
-) {
+)
+{
                                                        #line 1#line 2
         connector ≡
         target_proto ≡                                 #line 6
         id_proto ≡                                     #line 7
         target_component ≡                             #line 8
         if ( target_component ==  None) {              #line 9#line 10
-            else {                                     #line 11
-                    }
+        }
+        else {                                         #line 11
                 }
                 return  connector                      #line 14#line 15#line 16
         }
@@ -23,18 +24,19 @@ children_by_id ≡
         proto_conn ≡ ,
         connectors ≡ ,
         children_by_id ≡
-        ) {
+        )
+        {
                                                        #line 17
                 connector ≡
                 source_component ≡                     #line 20
                 target_component ≡                     #line 21
                 if  source_component ==  None {        #line 22
-                    else {                             #line 24
-                            if  target_component ==  None {#line 26
-                                else {                 #line 28
-                                        }
-                                    }                  #line 31
-                            }
+                }
+                else {                                 #line 24
+                        if  target_component ==  None {#line 26
+                        }
+                        else {                         #line 28
+                                }                      #line 31
                         }
                         return  connector              #line 32#line 33#line 34
                 }
@@ -45,13 +47,14 @@ children_by_id ≡
                 proto_conn ≡ ,
                 connectors ≡ ,
                 children_by_id ≡
-                ) {
+                )
+                {
                                                        #line 35
                         connector ≡
                         source_component ≡             #line 38
                         if  source_component ==  None {#line 39#line 40
-                            else {                     #line 41
-                                    }
+                        }
+                        else {                         #line 41
                                 }
                                 return  connector      #line 45#line 46#line 47
                         }
@@ -62,7 +65,8 @@ children_by_id ≡
                         proto_conn ≡ ,
                         connectors ≡ ,
                         children_by_id ≡
-                        ) {
+                        )
+                        {
                                                        #line 48
                                 connector ≡
                                 return  connector      #line 53#line 54#line 55
@@ -75,7 +79,8 @@ children_by_id ≡
                         container_name ≡ ,
                         desc ≡ ,
                         arg ≡
-                        ) {
+                        )
+                        {
                                                        #line 57#line 87#line 88
                         }
 
@@ -84,7 +89,8 @@ children_by_id ≡
                         (
                         container ≡ ,
                         mevent ≡
-                        ) {
+                        )
+                        {
                                                        #line 90#line 94#line 95
                         }
 
@@ -92,7 +98,8 @@ children_by_id ≡
                         defn container_reset_children ≡
                         (
                         container ≡
-                        ) {
+                        )
+                        {
                                                        #line 97
                                 for child in  container.children {#line 98#line 100
                                     }                  #line 106#line 107
@@ -102,7 +109,8 @@ children_by_id ≡
                             defn destroy_container ≡
                             (
                             eh ≡
-                            ) {
+                            )
+                            {
                                                        #line 109#line 110#line 111
                             }
 
@@ -111,7 +119,8 @@ children_by_id ≡
                             (
                             s1 ≡ ,
                             s2 ≡
-                            ) {
+                            )
+                            {
                                                        #line 113
                                     same_components ≡  #line 114
                                     same_ports ≡       #line 115
@@ -124,7 +133,8 @@ children_by_id ≡
                             parent ≡ ,
                             conn ≡ ,
                             mevent ≡
-                            ) {
+                            )
+                            {
                                                        #line 121
                                     new_mevent ≡       #line 124#line 125
                             }
@@ -133,7 +143,8 @@ children_by_id ≡
                             (
                             parent ≡ ,
                             eh ≡
-                            ) {
+                            )
+                            {
                                                        #line 126
                                     tick_mev ≡         #line 130#line 131
                             }
@@ -144,11 +155,12 @@ children_by_id ≡
                             receiver ≡ ,
                             inq ≡ ,
                             m ≡
-                            ) {
+                            )
+                            {
                                                        #line 132
                                     if ( receiver.special) {#line 134
-                                        else {         #line 136#line 138
-                                        }
+                                    }
+                                    else {             #line 136#line 138
                                     }                  #line 139#line 140#line 141
                             }
 
@@ -156,7 +168,8 @@ children_by_id ≡
                             (
                             child ≡ ,
                             container ≡
-                            ) {
+                            )
+                            {
                                                        #line 142#line 143
                                     return  child ==  container#line 144#line 145#line 146
                             }
@@ -165,7 +178,8 @@ children_by_id ≡
                             (
                             child ≡ ,
                             mev ≡
-                            ) {
+                            )
+                            {
                                                        #line 147
                                     if ( ("PBPSTEPPING" in os.environ) ) {#line 148#line 151
                                     }                  #line 153#line 154
@@ -175,19 +189,20 @@ children_by_id ≡
                             (
                             container ≡ ,
                             causingMevent ≡
-                            ) {
+                            )
+                            {
                                                        #line 155
                                     for child in  list ( container.visit_ordering) {#line 159#line 160
                                             if (not (is_self ( child, container))) {#line 161
                                                     if (not ((0==len( child.inq)))) {#line 162
                                                             mev ≡
-                                                        else {#line 167
-                                                                if  child.state ==  "idle" {#line 168#line 169
-                                                                    else {#line 170
-                                                                            mev ≡ #line 174
-                                                                    }
-                                                                }#line 175
-                                                        }
+                                                    }
+                                                    else {#line 167
+                                                            if  child.state ==  "idle" {#line 168#line 169
+                                                            }
+                                                            else {#line 170
+                                                                    mev ≡ #line 174
+                                                            }#line 175
                                                     }  #line 176
                                             }          #line 177#line 179#line 180
                                         for child in  container.children {#line 181
@@ -204,7 +219,8 @@ children_by_id ≡
                                     (
                                     parent ≡ ,
                                     eh ≡
-                                    ) {
+                                    )
+                                    {
                                                        #line 195
                                             if  eh.state!= "idle" {#line 196#line 198
                                             }          #line 199#line 200
@@ -213,7 +229,8 @@ children_by_id ≡
                                     defn is_tick ≡
                                     (
                                     mev ≡
-                                    ) {
+                                    )
+                                    {
                                                        #line 201
                                             return  "." ==  mev.port#line 202#line 203#line 204
                                     }
@@ -225,7 +242,8 @@ children_by_id ≡
                                     container ≡ ,
                                     from_component ≡ ,
                                     mevent ≡
-                                    ) {
+                                    )
+                                    {
                                                        #line 208
                                             was_sent ≡ #line 209
                                             fromname ≡ #line 210#line 233#line 234
@@ -234,7 +252,8 @@ children_by_id ≡
                                     defn any_child_ready ≡
                                     (
                                     container ≡
-                                    ) {
+                                    )
+                                    {
                                                        #line 235
                                             for child in  container.children {#line 236
                                                     if child_is_ready ( child) {#line 237
@@ -247,7 +266,8 @@ children_by_id ≡
                                     defn child_is_ready ≡
                                     (
                                     eh ≡
-                                    ) {
+                                    )
+                                    {
                                                        #line 244
                                             return (not ((0==len( eh.outq)))) or (not ((0==len( eh.inq)))) or ( eh.state!= "idle") or (any_child_ready ( eh))#line 245#line 246#line 247
                                     }
@@ -256,7 +276,8 @@ children_by_id ≡
                                     (
                                     container ≡ ,
                                     desc ≡
-                                    ) {
+                                    )
+                                    {
                                                        #line 248#line 250#line 251
                                     }
                                                        #line 252
@@ -266,7 +287,8 @@ children_by_id ≡
                                     (
                                     name ≡ ,
                                     owner ≡
-                                    ) {
+                                    )
+                                    {
                                                        #line 255
                                             eh ≡
                                             return  eh #line 264#line 265#line 266
@@ -280,7 +302,8 @@ children_by_id ≡
                                     port ≡ ,
                                     obj ≡ ,
                                     causingMevent ≡
-                                    ) {
+                                    )
+                                    {
                                                        #line 270
                                             d ≡
                                             mev ≡      #line 277#line 278
@@ -291,7 +314,8 @@ children_by_id ≡
                                     eh ≡ ,
                                     port ≡ ,
                                     mev ≡
-                                    ) {
+                                    )
+                                    {
                                                        #line 279
                                             fwdmev ≡   #line 282#line 283
                                     }
@@ -300,21 +324,24 @@ children_by_id ≡
                                     (
                                     eh ≡ ,
                                     mev ≡
-                                    ) {
+                                    )
+                                    {
                                                        #line 284#line 286#line 287
                                     }
 
                                     defn set_active ≡
                                     (
                                     eh ≡
-                                    ) {
+                                    )
+                                    {
                                                        #line 288
                                             }
 
                                             defn set_idle ≡
                                             (
                                             eh ≡
-                                            ) {
+                                            )
+                                            {
                                                        #line 292
                                                     }
 
@@ -322,14 +349,16 @@ children_by_id ≡
                                                     (
                                                     eh ≡ ,
                                                     mev ≡
-                                                    ) {
+                                                    )
+                                                    {
                                                         #line 296#line 298#line 299
                                                     }
 
                                                     defn obj_clone ≡
                                                     (
                                                     obj ≡
-                                                    ) {
+                                                    )
+                                                    {
                                                         #line 300
                                                             return  obj#line 301#line 302
                                                     }

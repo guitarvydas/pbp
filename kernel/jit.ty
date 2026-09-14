@@ -5,7 +5,8 @@ reg ≡ ,
 owner ≡ ,
 name ≡ ,
 arg ≡
-) {
+)
+{
                                                        #line 3
         name_with_id ≡
         inst ≡
@@ -19,15 +20,16 @@ arg ≡
         (
         eh ≡ ,
         mev ≡
-        ) {
+        )
+        {
                                                        #line 14
                 s ≡                                    #line 15
                 firstc ≡                               #line 16
                 if  firstc ==  "$" {                   #line 17
-                    elif  firstc ==  "?" {             #line 19
-                    }
-                    else {                             #line 21#line 22#line 24
-                    }
+                }
+                elif  firstc ==  "?" {                 #line 19
+                }
+                else {                                 #line 21#line 22#line 24
                 }                                      #line 25#line 26
         }
 
@@ -36,7 +38,8 @@ arg ≡
         eh ≡ ,
         tag ≡ ,
         mev ≡
-        ) {
+        )
+        {
                                                        #line 27
                 s ≡                                    #line 28#line 37#line 38
         }
@@ -46,7 +49,8 @@ arg ≡
         eh ≡ ,
         cmd ≡ ,
         mev ≡
-        ) {
+        )
+        {
                                                        #line 39
                 s ≡                                    #line 40
                 ret ≡                                  #line 41
@@ -61,7 +65,7 @@ arg ≡
                 if ( ("PBPSHELLUT" in os.environ) ) {  #line 52#line 55
                 }
                 if  rc ==  0 {                         #line 57
-                    else {                             #line 59#line 61
-                    }
+                }
+                else {                                 #line 59#line 61
                 }                                      #line 62#line 63
         }

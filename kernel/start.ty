@@ -2,21 +2,24 @@
 defn load_error ≡
 (
 s ≡
-) {
+)
+{
                                                        #line 2#line 7#line 8
 }
 
 defn runtime_error ≡
 (
 s ≡
-) {
+)
+{
                                                        #line 9#line 14#line 15
 }
                                                        #line 16
 defn initialize_component_palette_from_files ≡
 (
 diagram_source_files ≡
-) {
+)
+{
                                                        #line 17
         reg ≡                                          #line 18
         for diagram_source in  diagram_source_files {  #line 19
@@ -29,7 +32,8 @@ diagram_source_files ≡
 defn initialize_component_palette_from_string ≡
 (
 lnet ≡
-) {
+)
+{
                                                        #line 29
         reg ≡                                          #line 30
         all_containers ≡
@@ -40,7 +44,8 @@ lnet ≡
 defn initialize_from_files ≡
 (
 diagram_names ≡
-) {
+)
+{
                                                        #line 38
         arg ≡                                          #line 39
         palette ≡
@@ -48,7 +53,8 @@ diagram_names ≡
 }
 
 defn initialize_from_string ≡
-() {
+()
+{
                                                        #line 44
         arg ≡                                          #line 45
         palette ≡                                      #line 46
@@ -61,7 +67,8 @@ arg ≡ ,
 part_name ≡ ,
 palette ≡ ,
 env ≡
-) {
+)
+{
                                                        #line 50
         part ≡                                         #line 54#line 55
 }
@@ -71,7 +78,8 @@ defn start_bare ≡
 part_name ≡ ,
 palette ≡ ,
 env ≡
-) {
+)
+{
                                                        #line 56
         diagram_names ≡                                #line 57#line 58
         part ≡
@@ -85,25 +93,28 @@ defn inject ≡
 part ≡ ,
 port ≡ ,
 payload ≡
-) {
+)
+{
                                                        #line 69
         if not  load_errors {                          #line 70
                 d ≡
                 mev ≡
-            else {                                     #line 77#line 79
-            }
+        }
+        else {                                         #line 77#line 79
         }                                              #line 80#line 81
 }
 
 defn finalize ≡
 (
 part ≡
-) {
+)
+{
                                                        #line 82#line 84#line 85
 }
 
 defn new_datum_bang ≡
-() {
+()
+{
                                                        #line 86
         d ≡
         return  d                                      #line 91#line 92

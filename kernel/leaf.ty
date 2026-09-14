@@ -8,7 +8,8 @@ instance_data ≡ ,
 arg ≡ ,
 handler ≡ ,
 reset_handler ≡
-) {
+)
+{
                                                        #line 4
         eh ≡
         nm ≡                                           #line 6
@@ -22,7 +23,8 @@ reset_handler ≡
 defn leaf_reset ≡
 (
 part ≡
-) {
+)
+{
                                                        #line 24
         if ( part.reset_handler!= None) {              #line 27#line 29
         }

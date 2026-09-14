@@ -2,13 +2,15 @@ var  digits ≡                                          #line 8#line 9
 defn subscripted_digit ≡
 (
 n ≡
-) {
+)
+{
                                                        #line 10#line 17#line 18
 }
 
 defn gensymbol ≡
 (
 s ≡
-) {
+)
+{
                                                        #line 19#line 24#line 25
 }

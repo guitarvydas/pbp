@@ -14,7 +14,7 @@ TopLevel_line [line] =‛«line»’
 kw [ s] = ‛«s»’
 Defvar [ __ lval _eq e line?] = ‛\nvar «lval» ≡ «line»’
 Defconst [ __ lval _eq e line?] = ‛\nconst «lval» ≡ «line»’
-Defn [ _4 ident Formals StatementBlock line?] = ‛\ndefn «ident» ≡  \n«Formals» {⤷\n«StatementBlock»«line»⤶\n}\n’
+Defn [ _4 ident Formals StatementBlock line?] = ‛\ndefn «ident» ≡  \n«Formals» \n{⤷\n«StatementBlock»«line»⤶\n}\n’
 Defobj [ _defobj ident Formals line1? lb line2? init+ rb line3?] = ‛\nclass «ident» {⤷\ndef __init__ (\nself ≡ ,«Formals») {⤷«line1»⤷«line2»«init»«line3»⤶\n}⤶}\n’
 Import [ _10 ident line?] = ‛\nimport «ident»«line»’
 StatementBlock [ line1? lb line2? Statement     line3? rb  line4?] = ‛«line1»«line2»⤷«Statement»«line3»«line4»⤶’
@@ -89,7 +89,7 @@ Defsynonym_legal [id _eqv e rec?] = ‛\n«id» ≡ «rec»’
 InitStatement [ _mark ident ty? _33 Exp fluff*] = ‛\nself.«ident» ≡  «fluff»’
 Type [_colon id] = ‛«id»’
 
-IfStatement [ _35 Exp StatementBlock ElifStatement* ElseStatement? rec?] = ‛\nif «Exp» {⤷«StatementBlock»«ElifStatement»«ElseStatement»⤶\n}«rec»’
+IfStatement [ _35 Exp StatementBlock ElifStatement* ElseStatement? rec?] = ‛\nif «Exp» {⤷«StatementBlock»⤶\n}«ElifStatement»«ElseStatement»«rec»’
 ElifStatement [ _37 Exp StatementBlock] = ‛\nelif «Exp» {⤷«StatementBlock»⤶\n}’
 ElseStatement [ _39 StatementBlock] = ‛\nelse {⤷«StatementBlock»⤶\n}’
 ForStatement [ _41 ident _43 Exp StatementBlock rec?] = ‛\nfor «ident» in «Exp» {⤷«StatementBlock»«rec»⤶\n}’

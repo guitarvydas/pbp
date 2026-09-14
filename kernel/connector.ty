@@ -15,7 +15,8 @@ defn mkSender ≡
 name ≡ ,
 component ≡ ,
 port ≡
-) {
+)
+{
                                                        #line 39
         s ≡
         return  s                                      #line 44#line 45#line 46
@@ -27,7 +28,8 @@ name ≡ ,
 component ≡ ,
 port ≡ ,
 q ≡
-) {
+)
+{
                                                        #line 47
         r ≡
         return  r                                      #line 54#line 55
