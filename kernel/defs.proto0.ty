@@ -1,0 +1,41 @@
+defobj Datum () {
+      • v : 
+      • clone : 
+      • reclaim : 
+      • other : 
+}
+
+defobj Mevent () {
+        • port : 
+        • payload : 
+}
+
+defconst enumDown : 
+defconst enumAcross : 
+defconst enumUp : 
+defconst enumThrough : 
+
+defobj Component_Registry () {
+        • templates : 
+}
+
+defobj Connector () {
+        • direction : 
+        • sender : 
+        • receiver : 
+}
+
+defobj Sender () {
+        • name : 
+        • component : 
+        • port : 
+}
+
+defobj Receiver () {
+        • name : 
+        • queue : 
+        • port : 
+        • component : 
+}
+
+

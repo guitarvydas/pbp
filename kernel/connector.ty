@@ -10,18 +10,29 @@ enumThrough =  3                                       #line 5#line 6#line 7
                                                        #line 19#line 20#line 26#line 27#line 28
                                                        #line 29
                                                        #line 30#line 31#line 38
-def mkSender (name,component,port):                    #line 39
-    s =  Sender ()                                     #line 40
-    s.name =  name                                     #line 41
-    s.component =  component                           #line 42
-    s.port =  port                                     #line 43
+defn mkSender ≡
+(
+name ≡ ,
+component ≡ ,
+port ≡
+):                                                     #line 39
+    s ≡
+    s.name ≡                                           #line 41
+    s.component ≡                                      #line 42
+    s.port ≡                                           #line 43
     return  s                                          #line 44#line 45#line 46
 
-def mkReceiver (name,component,port,q):                #line 47
-    r =  Receiver ()                                   #line 48
-    r.name =  name                                     #line 49
-    r.component =  component                           #line 50
-    r.port =  port                                     #line 51
+defn mkReceiver ≡
+(
+name ≡ ,
+component ≡ ,
+port ≡ ,
+q ≡
+):                                                     #line 47
+    r ≡
+    r.name ≡                                           #line 49
+    r.component ≡                                      #line 50
+    r.port ≡                                           #line 51
                                                        #line 52
-    r.queue =  q                                       #line 53
+    r.queue ≡                                          #line 53
     return  r                                          #line 54#line 55

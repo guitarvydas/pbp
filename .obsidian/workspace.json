@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "kernel/README.md",
+                "file": "kernel/TY-ANNOTATOR.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "README"
+              "title": "TY-ANNOTATOR"
             }
           },
           {
@@ -108,7 +108,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "right": {
     "id": "f5c1ed2dde6a7022",
@@ -186,7 +187,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "kernel/README.md",
+                "file": "kernel/TY-ANNOTATOR.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
@@ -215,17 +216,18 @@
   },
   "active": "2aafda6bd4dc58d5",
   "lastOpenFiles": [
-    "kernel/temp.nanodsl.22014.mjs",
-    "kernel/temp.nanodsl.3358.mjs",
-    "kernel/temp.nanodsl.17471.mjs",
-    "kernel/temp.nanodsl.15228.mjs",
-    "kernel/temp.nanodsl.11594.mjs",
-    "kernel/temp.nanodsl.25706.mjs",
-    "kernel/out.ty",
-    "kernel/temp.nanodsl.23464.mjs",
-    "kernel/temp.nanodsl.20738.mjs",
-    "kernel/temp.nanodsl.2082.mjs",
-    "kernel/temp.nanodsl.32608.mjs",
+    "kernel/temp.nanodsl.18505.mjs",
+    "kernel/temp.nanodsl.15779.mjs",
+    "kernel/temp.nanodsl.29891.mjs",
+    "kernel/temp.nanodsl.10811.mjs",
+    "kernel/temp.nanodsl.7176.mjs",
+    "kernel/temp.nanodsl.4450.mjs",
+    "kernel/temp.nanodsl.17229.mjs",
+    "kernel/temp.nanodsl.30433.mjs",
+    "kernel/temp.nanodsl.11777.mjs",
+    "kernel/temp.nanodsl.25464.mjs",
+    "kernel/temp.nanodsl.22738.mjs",
+    "kernel/README.md",
     "kernel/TY-ANNOTATOR.md",
     "tinykernel/doc/character_pool.png",
     "tinykernel/prompt.md",
@@ -256,7 +258,6 @@
     "tinykernel/node_modules/ansi-regex/readme.md",
     "tinykernel/node_modules/wrap-ansi/node_modules/strip-ansi/readme.md",
     "tinykernel/node_modules/wrap-ansi/node_modules/string-width/readme.md",
-    "tinykernel/node_modules/wrap-ansi/node_modules/ansi-regex/readme.md",
     "kernel/video/probe.png",
     "kernel-self/kernel-Back-End.drawio.png",
     "doc/pbp-lifecycle.drawio.png",

@@ -1,0 +1,13 @@
+
+defobj Datum () {
+      • v ≡ STR
+      • clone ≡ FGEN
+      • reclaim ≡ FPROC
+      • other ≡ FVOID
+}
+
+defobj Mevent () {
+        • port ≡ STR
+        • payload ≡ STR
+}
+

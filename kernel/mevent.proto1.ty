@@ -1,0 +1,13 @@
+
+defobj Datum () {
+      • v ≡ 
+      • clone ≡ 
+      • reclaim ≡ 
+      • other ≡ 
+}
+
+defobj Mevent () {
+        • port ≡ 
+        • payload ≡ 
+}
+

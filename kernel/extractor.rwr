@@ -14,8 +14,8 @@ TopLevel_line [line] =‛«line»’
 kw [ s] = ‛«s»’
 Defvar [ __ lval _eq e line?] = ‛\n«lval» = «e»«line»’
 Defconst [ __ lval _eq e line?] = ‛\n«lval» = «e»«line»’
-Defn [ _4 ident Formals StatementBlock line?] = ‛\ndef «ident» «Formals»:«StatementBlock»«line»\n’
-Defobj [ _defobj ident Formals line1? lb line2? init+ rb line3?] = ‛\nclass «ident»:⤷\ndef __init__ (self,«Formals»):«line1»⤷«line2»«init»«line3»⤶⤶\n’
+Defn [ _4 ident Formals StatementBlock line?] = ‛\ndefn «ident» ≡  \n«Formals»:«StatementBlock»«line»\n’
+Defobj [ _defobj ident Formals line1? lb line2? init+ rb line3?] = ‛\nclass «ident»:⤷\ndef __init__ (\nself ≡ ,«Formals»):«line1»⤷«line2»«init»«line3»⤶⤶\n’
 Import [ _10 ident line?] = ‛\nimport «ident»«line»’
 StatementBlock [ line1? lb line2? Statement     line3? rb  line4?] = ‛«line1»«line2»⤷«Statement»«line3»«line4»⤶’
 
@@ -34,45 +34,9 @@ R_Statement_line [line rec?] = ‛«line»«rec»’
 CommaIdent [_comma ident] = ‛, «ident»’
 
 External [x line?] = ‛«x»«line»’
-ExternalPhrase_read [_octothorpe _read lp eh _comma1 msg _comma2 fname _comma3 ok _comma4 err rp] = ‛
-    try:⤷
-        f = open («fname»)⤶
-    except Exception as e:⤷
-        f = None⤶
-    if f != None:⤷
-        data = f.read ()
-        if data!= None:⤷
-            send (eh, «ok», data, «msg»)⤶
-        else:⤷
-            send (eh, «err», f"read error on file '{«fname»}'", «msg»)⤶
-        f.close ()⤶
-    else:⤷
-        send (eh, «err», f"open error on file '{«fname»}'", «msg»)⤶
-’
-
-ExternalPhrase_raclnetf [_octothorpe _ lp pathname _comma fname rp] = ‛
-    try:⤷
-        fil = open(«fname», “r”)
-        json_data = fil.read()
-        routings = json.loads(json_data)
-	fil.close ()
-        return routings ⤶
-    except FileNotFoundError:⤷
-        print (f"File not found: '{«fname»}'", file=sys.stderr)
-        return None⤶
-    except json.JSONDecodeError as e:⤷
-        print (f"Error decoding JSON in path /{pathname}/: '{e}'", file=sys.stderr)
-        return None⤶
-’
-
-ExternalPhrase_internalizeLnetFromString [_octothorpe _ lp rp] = ‛
-    try:⤷
-        routings = json.loads(lnet)
-        return routings ⤶
-    except json.JSONDecodeError as e:⤷
-        print ("Error decoding JSON from string 'lnet': '{e}'")
-        return None⤶
-’
+ExternalPhrase_read [_octothorpe _read lp eh _comma1 msg _comma2 fname _comma3 ok _comma4 err rp] = ‛’
+ExternalPhrase_raclnetf [_octothorpe _ lp pathname _comma fname rp] = ‛’
+ExternalPhrase_internalizeLnetFromString [_octothorpe _ lp rp] = ‛’
 ExternalPhrase_freshQueue [_octothorpe _ lp rp] = ‛ deque ([])’
 ExternalPhrase_resetQueue [_octothorpe _ lp e rp] = ‛\n«e».clear ()’
 ExternalPhrase_freshStack [_octothorpe _ lp rp] = ‛ []’
@@ -83,74 +47,14 @@ ExternalPhrase_stringcdr [_octothorpe _83 _84 e _85 ] =‛ «e»[1:] ’
 ExternalPhrase_strcons [_octothorpe _strcons lp e1 _comma e2 rp] =‛ str(«e1») + «e2» ’
 ExternalPhrase_append [_octothorpe _ lp e1 _comma e2 rp] =‛ «e1».append («e2») ’
 ExternalPhrase_basename [_octothorpe _basename lp s rp] = ‛ os.path.basename («s»)’
-ExternalPhrase_preamble [_octothorpe _preamble lb rp] = ‛
-
-
-#
-import sys
-import re
-import subprocess
-import tempfile
-import shlex
-import os
-import json
-from collections import deque
-import socket
-import struct
-import base64
-import hashlib
-import random
-from repl import live_update
-
-def deque_to_json(d):⤷
-    # """
-    # Convert a deque of Mevent objects to a JSON string, preserving order.
-    # Each Mevent object is converted to a dict with a single key (from Mevent.key)
-    # containing the payload as its value.
-    
-    # Args:
-    #     d: The deque of Mevent objects to convert
-        
-    # Returns:
-    #     A JSON string representation of the deque
-    # """
-    # # Convert deque to list of objects where each mevent's key contains its payload
-    ordered_list = [{mev.port: "" if mev.payload.v is None else mev.payload.v} for mev in d]
-    
-    # # Convert to JSON with indentation for readability
-    return json.dumps(ordered_list, indent=2)
-⤶
-
-’
+ExternalPhrase_preamble [_octothorpe _preamble lb rp] = ‛’
 ExternalPhrase_print_stdout [_octothorpe _ lp e rp] = ‛print («e»)’
 ExternalPhrase_print_stderr [_octothorpe _ lp e rp] = ‛print («e», file=sys.stderr)’
 ExternalPhrase_print_nl [_octothorpe _ lp rp] = ‛print ()’
 ExternalPhrase_print_nl_stderr [_octothorpe _ lp rp] = ‛’
 ExternalPhrase_display_queue_as_json [_octothorpe _ lp e rp] = ‛print (deque_to_json («e»), file=sys.stderr)’
 ExternalPhrase_substitute [_octothorpe _ lp find _comma1 replace _comma2 s rp] = ‛re.sub («find», «replace», «s»)’
-ExternalPhrase_run_command [_octothorpe _ lp cmd _comma1 args _comma2 ret _comma3 rc _comma4 out _comma5 errout rp] = ‛
-    try:⤷
-        with tempfile.NamedTemporaryFile(mode='w', suffix='.txt', delete=False) as tmp:⤷
-            tmp.write(«args»)
-            tmp_path = tmp.name⤶
-        try:⤷
-            with open(tmp_path, 'r') as stdin_file:⤷
-                «ret» = subprocess.run(
-                    shlex.split(«cmd»),
-                    stdin=stdin_file,
-                    text=True,
-                    capture_output=True
-                )⤶⤶
-        finally:⤷
-            os.unlink(tmp_path)⤶
-        «rc» = ret.returncode
-        «out» = ret.stdout.strip()
-        «errout» = ret.stderr.strip()⤶
-    except Exception as e:⤷
-        «rc» = 1
-        «out» = ''
-        «errout» = str(e)⤶
-’
+ExternalPhrase_run_command [_octothorpe _ lp cmd _comma1 args _comma2 ret _comma3 rc _comma4 out _comma5 errout rp] = ‛’
 ExternalPhrase_abort [_octothorpe _ lp rp] = ‛exit (1)’
 ExternalPhrase_asstr [_octothorpe _ lp e rp] = ‛str («e»)’
 ExternalPhrase_len [_octothorpe _ lp e rp] = ‛len («e»)’
@@ -177,12 +81,12 @@ ExternalPhrase_showCommand [_octothorpe _ lp rp] = ‛ ("PBPSHELLUT" in os.envir
 
 ExternalPhrase_unrecognized [_octothorpe ident lp stuff* rp] = ‛«_octothorpe» «ident» ⎝ error - unrecognized external (with given arguments) ⎠ «lp»«stuff»«rp» ’
 
-Deftemp [_deftemp lval _mutate e rec?] = ‛\n«lval» = «e»«rec»’
-Defsynonym_illegal [ lval err _eqv e rec?] = ‛\n«lval» «err» = «e»«rec»’
-Defsynonym_legal [id _eqv e rec?] = ‛\n«id» = «e»«rec»’
+Deftemp [_deftemp lval _mutate e rec?] = ‛\n«lval» ≡ «rec»’
+Defsynonym_illegal [ lval err _eqv e rec?] = ‛\n«lval» «err» ≡ «e»«rec»’
+Defsynonym_legal [id _eqv e rec?] = ‛\n«id» ≡ «rec»’
 
 
-InitStatement [ _mark ident ty? _33 Exp fluff*] = ‛\nself.«ident» = «Exp» «fluff»’
+InitStatement [ _mark ident ty? _33 Exp fluff*] = ‛\nself.«ident» ≡  «fluff»’
 Type [_colon id] = ‛«id»’
 
 IfStatement [ _35 Exp StatementBlock ElifStatement* ElseStatement? rec?] = ‛\nif «Exp»:«StatementBlock»«ElifStatement»«ElseStatement»«rec»’
@@ -192,7 +96,7 @@ ForStatement [ _41 ident _43 Exp StatementBlock rec?] = ‛\nfor «ident» in «
 WhileStatement [ _45 Exp StatementBlock rec?] = ‛\nwhile «Exp»:«StatementBlock»«rec»’
 
 Assignment_multiple [ _55 Lvals+ _57 _58 Exp rec?] =‛\n[«Lvals»] = «Exp»«rec»’
-Assignment_single [ Lval _59 Exp rec?] =‛\n«Lval» = «Exp»«rec»’
+Assignment_single [ Lval _59 Exp rec?] =‛\n«Lval» ≡ «rec»’
 LvalComma [Lval Comma?] = ‛«Lval»«Comma»’
 
 ReturnExp_multiple [ _60 Exps+ _62 rec?] =‛[«Exps»]«rec»’
@@ -257,12 +161,12 @@ StuffInsideParentheses_default [x] = ‛«x»’
 Lval [ Exp ] = ‛«Exp»’
 keyword [ _144] = ‛«_144»’
 Formals_noformals [ _148 _149] =‛«_148»«_149»’
-Formals_withformals [ _150 FormalComma* _151] =‛«_150»«FormalComma»«_151»’
+Formals_withformals [ _150 FormalComma* _151] =‛«_150»«FormalComma»\n«_151»’
 ObjFormals_noformals [ _148 _149] =‛’
 ObjFormals_withformals [ _150 FormalComma* _151] =‛«FormalComma»’
 LambdaFormals_noformals [ _148 _149] =‛’
 LambdaFormals_withformals [ _150 FormalComma* _151] =‛«FormalComma»’
-Formal [ ident] = ‛«ident»’
+Formal [ ident] = ‛\n«ident» ≡ ’
 FormalComma [Formal comma?] =‛«Formal»«comma»’
 
 Actuals_noactuals [ _154 _155] =‛«_154»«_155»’

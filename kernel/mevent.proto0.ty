@@ -1,0 +1,18 @@
+
+defobj Datum () {
+      • v ⇐ ϕ
+      • clone ⇐ ϕ
+      • reclaim ⇐ ϕ
+      • other ⇐ ϕ ⌈ reserved for use on per-project basis ⌉
+}
+
+
+⌈ Mevent passed to a leaf component.⌉
+⌈⌉
+⌈ `port` refers to the name of the incoming or outgoing port of this component.⌉
+⌈ `payload` is the data attached to this mevent.⌉
+defobj Mevent () {
+        • port ⇐ ϕ
+        • payload ⇐ ϕ
+}
+

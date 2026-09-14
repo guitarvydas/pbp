@@ -410,7 +410,7 @@
         <mxCell id="Dv_crfGrHvaOy8bDrwXG-3" parent="1" style="rhombus;whiteSpace=wrap;html=1;rounded=1;fillColor=#0050ef;fontColor=#ffffff;strokeColor=#001DBC;fontStyle=1;glass=0;sketch=0;fontSize=12;points=[[0,0.5,0,0,0],[0.5,0,0,0,0],[0.5,1,0,0,0],[1,0.5,0,0,0]];shadow=1;textOpacity=30;" value="✗" vertex="1">
           <mxGeometry height="40" width="40" x="530" y="220" as="geometry" />
         </mxCell>
-        <mxCell id="Dv_crfGrHvaOy8bDrwXG-4" parent="1" style="rounded=1;sketch=0;container=1;recursiveResize=0;verticalAlign=top;arcSize=6;fontStyle=1;autosize=0;points=[];absoluteArcSize=1;shadow=1;strokeColor=#001DBC;fillColor=#0050ef;fontColor=#ffffff;fontFamily=Helvetica;fontSize=11;" value=":$ _/t2t pydecode" vertex="1">
+        <mxCell id="Dv_crfGrHvaOy8bDrwXG-4" parent="1" style="rounded=1;sketch=0;container=1;recursiveResize=0;verticalAlign=top;arcSize=6;fontStyle=1;autosize=0;points=[];absoluteArcSize=1;shadow=1;strokeColor=#001DBC;fillColor=#0050ef;fontColor=#ffffff;fontFamily=Helvetica;fontSize=11;" value=":$ _/t2t pydecode extractordecode" vertex="1">
           <mxGeometry height="110" width="250" x="160" y="80" as="geometry">
             <mxRectangle height="26" width="99" x="-98" y="-1230" as="alternateBounds" />
           </mxGeometry>
@@ -439,20 +439,6 @@
               <mxPoint x="450" y="240" />
             </Array>
           </mxGeometry>
-        </mxCell>
-        <mxCell id="Q2o6vWeT38Se2bkbZm8O-1" parent="1" style="rounded=1;sketch=0;container=1;recursiveResize=0;verticalAlign=top;arcSize=6;fontStyle=1;autosize=0;points=[];absoluteArcSize=1;shadow=1;strokeColor=#001DBC;fillColor=#0050ef;fontColor=#ffffff;fontFamily=Helvetica;fontSize=11;labelBackgroundColor=none;" value=":$ python3 pyrelocate.py 55" vertex="1">
-          <mxGeometry height="110" width="180" x="570" y="470" as="geometry">
-            <mxRectangle height="26" width="99" x="-98" y="-1230" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="Q2o6vWeT38Se2bkbZm8O-2" parent="Q2o6vWeT38Se2bkbZm8O-1" style="rounded=1;whiteSpace=wrap;sketch=0;points=[[0,0.5,0,0,0],[1,0.5,0,0,0]];arcSize=50;fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=none;" value="" vertex="1">
-          <mxGeometry height="25" width="39.25" x="-10" y="27.5" as="geometry" />
-        </mxCell>
-        <mxCell id="Q2o6vWeT38Se2bkbZm8O-3" parent="Q2o6vWeT38Se2bkbZm8O-1" style="rounded=1;whiteSpace=wrap;sketch=0;points=[[0,0.5,0,0,0],[1,0.5,0,0,0]];fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;arcSize=50;fontFamily=Helvetica;fontSize=11;labelBackgroundColor=none;" value="" vertex="1">
-          <mxGeometry height="25" width="35.25" x="160" y="27.5" as="geometry" />
-        </mxCell>
-        <mxCell id="Q2o6vWeT38Se2bkbZm8O-4" parent="Q2o6vWeT38Se2bkbZm8O-1" style="rounded=1;whiteSpace=wrap;sketch=0;points=[[0,0.5,0,0,0],[1,0.5,0,0,0]];fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;arcSize=50;fontFamily=Helvetica;fontSize=11;textOpacity=30;labelBackgroundColor=none;" value="✗" vertex="1">
-          <mxGeometry height="25" width="35.25" x="160" y="67.5" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
