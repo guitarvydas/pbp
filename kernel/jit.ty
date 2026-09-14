@@ -5,59 +5,64 @@ reg ≡ ,
 owner ≡ ,
 name ≡ ,
 arg ≡
-):                                                     #line 3
-    name_with_id ≡
-    inst ≡
-    firstc ≡                                           #line 6
-    if ( firstc!= "$"):                                #line 7
-                                                       #line 8
-        inst.special ≡                                 #line 9#line 10
-    return  inst                                       #line 11#line 12#line 13
+) {
+                                                       #line 3
+        name_with_id ≡
+        inst ≡
+        firstc ≡                                       #line 6
+        if ( firstc!= "$") {                           #line 7#line 8
+                inst.special ≡                         #line 9#line 10
+        }
+        return  inst                                   #line 11#line 12#line 13
+}
 
 defn handle_jit ≡
 (
 eh ≡ ,
 mev ≡
-):                                                     #line 14
-    s ≡                                                #line 15
-    firstc ≡                                           #line 16
-    if  firstc ==  "$":                                #line 17
-        shell_out_handler ( eh,    s[1:] [1:] [1:] , mev)#line 18
-    elif  firstc ==  "?":                              #line 19
-        probe_handler ( eh,  s[1:] , mev)              #line 20
-    else:                                              #line 21
-                                                       #line 22
-        send ( eh, "",  s[1:] , mev)                   #line 23#line 24#line 25#line 26
+) {
+                                                       #line 14
+        s ≡                                            #line 15
+        firstc ≡                                       #line 16
+        if  firstc ==  "$" {                           #line 17
+            elif  firstc ==  "?" {                     #line 19
+            }
+            else {                                     #line 21#line 22#line 24
+            }
+        }                                              #line 25#line 26
+}
 
 defn probe_handler ≡
 (
 eh ≡ ,
 tag ≡ ,
 mev ≡
-):                                                     #line 27
-    s ≡                                                #line 28
-    live_update ( "Info",  str( "  @") +  str(str ( ticktime)) +  str( "  ") +  str( "probe ") +  str( eh.name) +  str( ": ") + str ( s)      )#line 36#line 37#line 38
+) {
+                                                       #line 27
+        s ≡                                            #line 28#line 37#line 38
+}
 
 defn shell_out_handler ≡
 (
 eh ≡ ,
 cmd ≡ ,
 mev ≡
-):                                                     #line 39
-    s ≡                                                #line 40
-    ret ≡                                              #line 41
-    rc ≡                                               #line 42
-    stdout ≡                                           #line 43
-    stderr ≡                                           #line 44
-    command ≡                                          #line 45
-    pbpRoot ≡
-    if  pbpRoot!= "":                                  #line 47
-        command ≡                                      #line 51
-    if ( ("PBPSHELLUT" in os.environ) ):               #line 52
-        print ( str( "- --- shell-out: ") +  command , file=sys.stderr)#line 53
-                                                       #line 54#line 55
-                                                       #line 56
-    if  rc ==  0:                                      #line 57
-        send ( eh, "", str( stdout) +  stderr , mev)   #line 58
-    else:                                              #line 59
-        send ( eh, "✗", str( stdout) +  stderr , mev)  #line 60#line 61#line 62#line 63
+) {
+                                                       #line 39
+        s ≡                                            #line 40
+        ret ≡                                          #line 41
+        rc ≡                                           #line 42
+        stdout ≡                                       #line 43
+        stderr ≡                                       #line 44
+        command ≡                                      #line 45
+        pbpRoot ≡
+        if  pbpRoot!= "" {                             #line 47
+                command ≡                              #line 51
+        }
+        if ( ("PBPSHELLUT" in os.environ) ) {          #line 52#line 55
+        }
+        if  rc ==  0 {                                 #line 57
+            else {                                     #line 59#line 61
+            }
+        }                                              #line 62#line 63
+}

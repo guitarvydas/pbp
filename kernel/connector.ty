@@ -1,8 +1,8 @@
 #line 1
-enumDown =  0                                          #line 2
-enumAcross =  1                                        #line 3
-enumUp =  2                                            #line 4
-enumThrough =  3                                       #line 5#line 6#line 7
+const  enumDown ≡                                      #line 2
+const  enumAcross ≡                                    #line 3
+const  enumUp ≡                                        #line 4
+const  enumThrough ≡                                   #line 5#line 6#line 7
                                                        #line 8
                                                        #line 9
                                                        #line 10#line 11#line 17
@@ -15,12 +15,14 @@ defn mkSender ≡
 name ≡ ,
 component ≡ ,
 port ≡
-):                                                     #line 39
-    s ≡
-    s.name ≡                                           #line 41
-    s.component ≡                                      #line 42
-    s.port ≡                                           #line 43
-    return  s                                          #line 44#line 45#line 46
+) {
+                                                       #line 39
+        s ≡
+        s.name ≡                                       #line 41
+        s.component ≡                                  #line 42
+        s.port ≡                                       #line 43
+        return  s                                      #line 44#line 45#line 46
+}
 
 defn mkReceiver ≡
 (
@@ -28,11 +30,12 @@ name ≡ ,
 component ≡ ,
 port ≡ ,
 q ≡
-):                                                     #line 47
-    r ≡
-    r.name ≡                                           #line 49
-    r.component ≡                                      #line 50
-    r.port ≡                                           #line 51
-                                                       #line 52
-    r.queue ≡                                          #line 53
-    return  r                                          #line 54#line 55
+) {
+                                                       #line 47
+        r ≡
+        r.name ≡                                       #line 49
+        r.component ≡                                  #line 50
+        r.port ≡                                       #line 51#line 52
+        r.queue ≡                                      #line 53
+        return  r                                      #line 54#line 55
+}

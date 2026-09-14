@@ -12,24 +12,24 @@ TopLevel_comment [s line?] =‛\n«s»«line»’
 TopLevel_line [line] =‛«line»’
 
 kw [ s] = ‛«s»’
-Defvar [ __ lval _eq e line?] = ‛\n«lval» = «e»«line»’
-Defconst [ __ lval _eq e line?] = ‛\n«lval» = «e»«line»’
-Defn [ _4 ident Formals StatementBlock line?] = ‛\ndefn «ident» ≡  \n«Formals»:«StatementBlock»«line»\n’
-Defobj [ _defobj ident Formals line1? lb line2? init+ rb line3?] = ‛\nclass «ident»:⤷\ndef __init__ (\nself ≡ ,«Formals»):«line1»⤷«line2»«init»«line3»⤶⤶\n’
+Defvar [ __ lval _eq e line?] = ‛\nvar «lval» ≡ «line»’
+Defconst [ __ lval _eq e line?] = ‛\nconst «lval» ≡ «line»’
+Defn [ _4 ident Formals StatementBlock line?] = ‛\ndefn «ident» ≡  \n«Formals» {⤷\n«StatementBlock»«line»⤶\n}\n’
+Defobj [ _defobj ident Formals line1? lb line2? init+ rb line3?] = ‛\nclass «ident» {⤷\ndef __init__ (\nself ≡ ,«Formals») {⤷«line1»⤷«line2»«init»«line3»⤶\n}⤶}\n’
 Import [ _10 ident line?] = ‛\nimport «ident»«line»’
 StatementBlock [ line1? lb line2? Statement     line3? rb  line4?] = ‛«line1»«line2»⤷«Statement»«line3»«line4»⤶’
 
 Rec_Statement [line1? R_Statement line2?] = ‛«line1»«R_Statement»«line2»’
-R_Statement_globals [ _24 ident1  cidents* scope?] =‛\nglobal «ident1»«cidents»«scope»’
-R_Statement_comment [s rec?] =‛\n«s»«rec»’
-R_Statement_external [x rec?] = ‛\n«x»«rec»’
+R_Statement_globals [ _24 ident1  cidents* scope?] =‛’
+R_Statement_comment [s rec?] =‛«rec»’
+R_Statement_external [x rec?] = ‛«rec»’
 R_Statement_if [ IfStatement] =‛«IfStatement»’
-R_Statement_pass [ _27 scope?] =‛\npass«scope»’
+R_Statement_pass [ _27 scope?] =‛«scope»’
 R_Statement_return [ _29 ReturnExp] =‛\nreturn «ReturnExp»’
 R_Statement_for [ ForStatement] =‛«ForStatement»’
 R_Statement_while [ WhileStatement] =‛«WhileStatement»’
 R_Statement_assignment [ Assignment] =‛«Assignment»’
-R_Statement_call [ Lval scope?] =‛\n«Lval»«scope»’
+R_Statement_call [ Lval scope?] =‛’
 R_Statement_line [line rec?] = ‛«line»«rec»’
 CommaIdent [_comma ident] = ‛, «ident»’
 
@@ -89,11 +89,11 @@ Defsynonym_legal [id _eqv e rec?] = ‛\n«id» ≡ «rec»’
 InitStatement [ _mark ident ty? _33 Exp fluff*] = ‛\nself.«ident» ≡  «fluff»’
 Type [_colon id] = ‛«id»’
 
-IfStatement [ _35 Exp StatementBlock ElifStatement* ElseStatement? rec?] = ‛\nif «Exp»:«StatementBlock»«ElifStatement»«ElseStatement»«rec»’
-ElifStatement [ _37 Exp StatementBlock] = ‛\nelif «Exp»:«StatementBlock»’
-ElseStatement [ _39 StatementBlock] = ‛\nelse:«StatementBlock»’
-ForStatement [ _41 ident _43 Exp StatementBlock rec?] = ‛\nfor «ident» in «Exp»:«StatementBlock»«rec»’
-WhileStatement [ _45 Exp StatementBlock rec?] = ‛\nwhile «Exp»:«StatementBlock»«rec»’
+IfStatement [ _35 Exp StatementBlock ElifStatement* ElseStatement? rec?] = ‛\nif «Exp» {⤷«StatementBlock»«ElifStatement»«ElseStatement»⤶\n}«rec»’
+ElifStatement [ _37 Exp StatementBlock] = ‛\nelif «Exp» {⤷«StatementBlock»⤶\n}’
+ElseStatement [ _39 StatementBlock] = ‛\nelse {⤷«StatementBlock»⤶\n}’
+ForStatement [ _41 ident _43 Exp StatementBlock rec?] = ‛\nfor «ident» in «Exp» {⤷«StatementBlock»«rec»⤶\n}’
+WhileStatement [ _45 Exp StatementBlock rec?] = ‛\nwhile «Exp» {⤷«StatementBlock»«rec»⤶\n}’
 
 Assignment_multiple [ _55 Lvals+ _57 _58 Exp rec?] =‛\n[«Lvals»] = «Exp»«rec»’
 Assignment_single [ Lval _59 Exp rec?] =‛\n«Lval» ≡ «rec»’
@@ -141,7 +141,7 @@ Atom_emptydict [ _76 _77] =‛«_76»«_77»’
 Atom_paren [ _70 Exp _71] =‛«_70»«Exp»«_71»’
 Atom_listconst [ lb line1? PrimaryComma+ line2? rb] =‛«lb»«PrimaryComma»«rb»«line2»’
 Atom_dict [ _78 line1? PairComma+ line2? _79] =‛«_78»«line1»«PairComma»«line2»«_79»’
-Atom_lambda [ _80 Formals? _81 Exp] =‛ lambda «Formals»: «Exp»’
+Atom_lambda [ _80 Formals? _81 Exp] =‛ lambda «Formals»{⤷«Exp»⤶\n}’
 Atom_phi [ phi] =‛ None’
 Atom_true [ _88] =‛ True’
 Atom_false [ _89] =‛ False’

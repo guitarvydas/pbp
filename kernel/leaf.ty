@@ -8,32 +8,33 @@ instance_data ≡ ,
 arg ≡ ,
 handler ≡ ,
 reset_handler ≡
-):                                                     #line 4
-    eh ≡
-    nm ≡                                               #line 6
-    if  None!= owner:                                  #line 7
-        nm ≡                                           #line 8#line 9
-    eh.name ≡
-    eh.owner ≡                                         #line 11
-    eh.handler ≡                                       #line 12
-    eh.reset_handler ≡                                 #line 13
-    eh.finject ≡                                       #line 14
-    eh.stop ≡                                          #line 15
-    eh.instance_data ≡                                 #line 16
-    eh.arg ≡                                           #line 17
-    eh.state ≡                                         #line 18
-    eh.kind ≡                                          #line 19
-    return  eh                                         #line 20#line 21#line 22
+) {
+                                                       #line 4
+        eh ≡
+        nm ≡                                           #line 6
+        if  None!= owner {                             #line 7
+                nm ≡                                   #line 8#line 9
+        }
+        eh.name ≡
+        eh.owner ≡                                     #line 11
+        eh.handler ≡                                   #line 12
+        eh.reset_handler ≡                             #line 13
+        eh.finject ≡                                   #line 14
+        eh.stop ≡                                      #line 15
+        eh.instance_data ≡                             #line 16
+        eh.arg ≡                                       #line 17
+        eh.state ≡                                     #line 18
+        eh.kind ≡                                      #line 19
+        return  eh                                     #line 20#line 21#line 22
+}
 
                                                        #line 23
 defn leaf_reset ≡
 (
 part ≡
-):                                                     #line 24
-
-    part.inq.clear ()                                  #line 25
-
-    part.outq.clear ()                                 #line 26
-    if ( part.reset_handler!= None):                   #line 27
-        part.reset_handler ( part)                     #line 28#line 29
-    part.state ≡                                       #line 30#line 31
+) {
+                                                       #line 24
+        if ( part.reset_handler!= None) {              #line 27#line 29
+        }
+        part.state ≡                                   #line 30#line 31
+}
