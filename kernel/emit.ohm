@@ -194,7 +194,6 @@ emit {
       | "(" FormalComma* ")" -- withformals
     ObjFormals =
       | "(" ")" -- noformals
-      | "(" FormalComma* ")" -- withformals
     LambdaFormals =
       | "(" ")" -- noformals
       | "(" FormalComma* ")" -- withformals

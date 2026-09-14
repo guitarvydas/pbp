@@ -5,7 +5,7 @@ Main [ Para TopLevel+] = ‛«Para»«TopLevel»’
 TopLevel_defvar [ Defvar] =‛«Defvar»’
 TopLevel_defconst [ Defconst] =‛«Defconst»’
 TopLevel_defn [ Defn] =‛«Defn»’
-TopLevel_defobj [ Defobj] =‛’
+TopLevel_defobj [ Defobj] =‛«Defobj»’
 TopLevel_import [ Import] =‛«Import»’
 TopLevel_external [x] =‛«x»’
 TopLevel_comment [s line?] =‛\n«s»«line»’
@@ -86,14 +86,14 @@ Defsynonym_illegal [ lval err _eqv e rec?] = ‛\n«lval» «err» ≡ «e»«re
 Defsynonym_legal [id _eqv e rec?] = ‛\n«id» ≡ «rec»’
 
 
-InitStatement [ _mark ident ty? _33 Exp fluff*] = ‛\nself.«ident» ≡  «fluff»’
+InitStatement [ _mark ident ty? _33 Exp fluff*] = ‛\n«ident» ≡  «fluff»’
 Type [_colon id] = ‛«id»’
 
-IfStatement [ _35 Exp StatementBlock ElifStatement* ElseStatement? rec?] = ‛\nif «Exp» {⤷«StatementBlock»⤶\n}«ElifStatement»«ElseStatement»«rec»’
-ElifStatement [ _37 Exp StatementBlock] = ‛\nelif «Exp» {⤷«StatementBlock»⤶\n}’
-ElseStatement [ _39 StatementBlock] = ‛\nelse {⤷«StatementBlock»⤶\n}’
-ForStatement [ _41 ident _43 Exp StatementBlock rec?] = ‛\nfor «ident» in «Exp» {⤷«StatementBlock»«rec»⤶\n}’
-WhileStatement [ _45 Exp StatementBlock rec?] = ‛\nwhile «Exp» {⤷«StatementBlock»«rec»⤶\n}’
+IfStatement [ _35 Exp StatementBlock ElifStatement* ElseStatement? rec?] = ‛\nif «Exp» {\n«StatementBlock»\n}«ElifStatement»«ElseStatement»«rec»’
+ElifStatement [ _37 Exp StatementBlock] = ‛\nelif «Exp» \n{«StatementBlock»\n}’
+ElseStatement [ _39 StatementBlock] = ‛\nelse \n{«StatementBlock»\n}’
+ForStatement [ _41 ident _43 Exp StatementBlock rec?] = ‛\nfor «ident» in «Exp» {\n«StatementBlock»«rec»\n}’
+WhileStatement [ _45 Exp StatementBlock rec?] = ‛\nwhile «Exp» {\n«StatementBlock»«rec»\n}’
 
 Assignment_multiple [ _55 Lvals+ _57 _58 Exp rec?] =‛\n[«Lvals»] = «Exp»«rec»’
 Assignment_single [ Lval _59 Exp rec?] =‛\n«Lval» ≡ «rec»’
@@ -166,7 +166,7 @@ ObjFormals_noformals [ _148 _149] =‛’
 ObjFormals_withformals [ _150 FormalComma* _151] =‛«FormalComma»’
 LambdaFormals_noformals [ _148 _149] =‛’
 LambdaFormals_withformals [ _150 FormalComma* _151] =‛«FormalComma»’
-Formal [ ident] = ‛\n«ident» ≡ ’
+Formal [ ident] = ‛⤷\n«ident» ≡ ⤶’
 FormalComma [Formal comma?] =‛«Formal»«comma»’
 
 Actuals_noactuals [ _154 _155] =‛«_154»«_155»’

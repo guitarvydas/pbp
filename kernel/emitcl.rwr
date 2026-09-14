@@ -308,7 +308,6 @@ keyword [ _144] = ‛«_144»’
 Formals_noformals [ _148 _149] =‛’
 Formals_withformals [ _150 FormalComma* _151] =‛«FormalComma»’
 ObjFormals_noformals [ _148 _149] =‛’
-ObjFormals_withformals [ _150 FormalComma* _151] =‛«FormalComma»’
 LambdaFormals_noformals [ _148 _149] =‛’
 LambdaFormals_withformals [ _150 FormalComma* _151] =‛«FormalComma»’
 Formal [ ident] = ‛«ident»’

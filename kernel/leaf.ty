@@ -2,19 +2,20 @@
                                                        #line 2#line 3
 defn make_leaf ≡
 (
-name ≡ ,
-owner ≡ ,
-instance_data ≡ ,
-arg ≡ ,
-handler ≡ ,
-reset_handler ≡
+    name ≡ ,
+    owner ≡ ,
+    instance_data ≡ ,
+    arg ≡ ,
+    handler ≡ ,
+    reset_handler ≡
 )
 {
                                                        #line 4
         eh ≡
         nm ≡                                           #line 6
-        if  None!= owner {                             #line 7
-                nm ≡                                   #line 8#line 9
+        if  None!= owner {
+                                                       #line 7
+            nm ≡                                       #line 8#line 9
         }
         return  eh                                     #line 20#line 21#line 22
 }
@@ -22,10 +23,12 @@ reset_handler ≡
                                                        #line 23
 defn leaf_reset ≡
 (
-part ≡
+    part ≡
 )
 {
                                                        #line 24
-        if ( part.reset_handler!= None) {              #line 27#line 29
+        if ( part.reset_handler!= None) {
+                                                       #line 27#line 29
         }
-        }
+
+}

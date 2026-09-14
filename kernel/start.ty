@@ -1,7 +1,7 @@
 #line 1
 defn load_error ≡
 (
-s ≡
+    s ≡
 )
 {
                                                        #line 2#line 7#line 8
@@ -9,7 +9,7 @@ s ≡
 
 defn runtime_error ≡
 (
-s ≡
+    s ≡
 )
 {
                                                        #line 9#line 14#line 15
@@ -17,33 +17,36 @@ s ≡
                                                        #line 16
 defn initialize_component_palette_from_files ≡
 (
-diagram_source_files ≡
+    diagram_source_files ≡
 )
 {
                                                        #line 17
         reg ≡                                          #line 18
-        for diagram_source in  diagram_source_files {  #line 19
-                all_containers_within_single_file ≡
-                for container in  all_containers_within_single_file {#line 21#line 23
-                }                                      #line 24
+        for diagram_source in  diagram_source_files {
+                                                       #line 19
+            all_containers_within_single_file ≡
+            for container in  all_containers_within_single_file {
+                                                       #line 21#line 23
+            }                                          #line 24
         }                                              #line 27#line 28
 }
 
 defn initialize_component_palette_from_string ≡
 (
-lnet ≡
+    lnet ≡
 )
 {
                                                        #line 29
         reg ≡                                          #line 30
         all_containers ≡
-        for container in  all_containers {             #line 32#line 34
+        for container in  all_containers {
+                                                       #line 32#line 34
         }                                              #line 37
 }
 
 defn initialize_from_files ≡
 (
-diagram_names ≡
+    diagram_names ≡
 )
 {
                                                        #line 38
@@ -63,10 +66,10 @@ defn initialize_from_string ≡
 
 defn start ≡
 (
-arg ≡ ,
-part_name ≡ ,
-palette ≡ ,
-env ≡
+    arg ≡ ,
+    part_name ≡ ,
+    palette ≡ ,
+    env ≡
 )
 {
                                                        #line 50
@@ -75,38 +78,41 @@ env ≡
 
 defn start_bare ≡
 (
-part_name ≡ ,
-palette ≡ ,
-env ≡
+    part_name ≡ ,
+    palette ≡ ,
+    env ≡
 )
 {
                                                        #line 56
         diagram_names ≡                                #line 57#line 58
         part ≡
-        if  None ==  part {                            #line 60#line 65
+        if  None ==  part {
+                                                       #line 60#line 65
         }
         return  part                                   #line 66#line 67#line 68
 }
 
 defn inject ≡
 (
-part ≡ ,
-port ≡ ,
-payload ≡
+    part ≡ ,
+    port ≡ ,
+    payload ≡
 )
 {
                                                        #line 69
-        if not  load_errors {                          #line 70
-                d ≡
-                mev ≡
+        if not  load_errors {
+                                                       #line 70
+            d ≡
+            mev ≡
         }
-        else {                                         #line 77#line 79
+        else
+        {                                              #line 77#line 79
         }                                              #line 80#line 81
 }
 
 defn finalize ≡
 (
-part ≡
+    part ≡
 )
 {
                                                        #line 82#line 84#line 85
