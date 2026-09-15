@@ -7,55 +7,52 @@ const  enumThrough ≡                                   #line 5#line 6#line 7
                                                        #line 9
                                                        #line 10#line 11
 class Connector {
-    def __init__ (
-    self ≡ ,) {                                        #line 12
-            direction ≡                                #line 13
-            sender ≡                                   #line 14
-            receiver ≡                                 #line 15#line 16
-        }}
+                                                       #line 12
+    direction ≡                                        #line 13
+    sender ≡                                           #line 14
+    receiver ≡                                         #line 15#line 16
+}
                                                        #line 17
                                                        #line 18
                                                        #line 19#line 20
-    class Sender {
-        def __init__ (
-        self ≡ ,) {                                    #line 21
-                name ≡                                 #line 22
-                component ≡                            #line 23
-                port ≡                                 #line 24#line 25
-            }}
+class Sender {
+                                                       #line 21
+    name ≡                                             #line 22
+    component ≡                                        #line 23
+    port ≡                                             #line 24#line 25
+}
                                                        #line 26#line 27#line 28
                                                        #line 29
                                                        #line 30#line 31
-        class Receiver {
-            def __init__ (
-            self ≡ ,) {                                #line 32
-                    name ≡                             #line 33
-                    queue ≡                            #line 34
-                    port ≡                             #line 35
-                    component ≡                        #line 36#line 37
-                }}
+class Receiver {
+                                                       #line 32
+    name ≡                                             #line 33
+    queue ≡                                            #line 34
+    port ≡                                             #line 35
+    component ≡                                        #line 36#line 37
+}
                                                        #line 38
-            defn mkSender ≡
-            (
-                name ≡ ,
-                component ≡ ,
-                port ≡
-            )
-            {
+defn mkSender ≡
+(
+    name ≡ ,
+    component ≡ ,
+    port ≡
+)
+{
                                                        #line 39
-                    s ≡
-                    return  s                          #line 44#line 45#line 46
-            }
+        s ≡
+        return  s                                      #line 44#line 45#line 46
+}
 
-            defn mkReceiver ≡
-            (
-                name ≡ ,
-                component ≡ ,
-                port ≡ ,
-                q ≡
-            )
-            {
+defn mkReceiver ≡
+(
+    name ≡ ,
+    component ≡ ,
+    port ≡ ,
+    q ≡
+)
+{
                                                        #line 47
-                    r ≡
-                    return  r                          #line 54#line 55
-            }
+        r ≡
+        return  r                                      #line 54#line 55
+}

@@ -1,112 +1,110 @@
 #line 1
 class Datum {
-    def __init__ (
-    self ≡ ,) {                                        #line 2
-            v ≡                                        #line 3
-            clone ≡                                    #line 4
-            reclaim ≡                                  #line 5
-            other ≡                                    #line 6#line 7
-        }}
+                                                       #line 2
+    v ≡                                                #line 3
+    clone ≡                                            #line 4
+    reclaim ≡                                          #line 5
+    other ≡                                            #line 6#line 7
+}
                                                        #line 8#line 9
                                                        #line 10
                                                        #line 11
                                                        #line 12
                                                        #line 13
-    class Mevent {
-        def __init__ (
-        self ≡ ,) {                                    #line 14
-                port ≡                                 #line 15
-                payload ≡                              #line 16#line 17
-            }}
+class Mevent {
+                                                       #line 14
+    port ≡                                             #line 15
+    payload ≡                                          #line 16#line 17
+}
                                                        #line 18
-        defn clone_port ≡
-        (
-            s ≡
-        )
-        {
+defn clone_port ≡
+(
+    s ≡
+)
+{
                                                        #line 19
-                return clone_string ( s)               #line 20#line 21#line 22
-        }
+        return clone_string ( s)                       #line 20#line 21#line 22
+}
 
                                                        #line 23
                                                        #line 24
-        defn make_mevent ≡
-        (
-            port ≡ ,
-            datum ≡
-        )
-        {
+defn make_mevent ≡
+(
+    port ≡ ,
+    datum ≡
+)
+{
                                                        #line 25
-                p ≡
-                m ≡
-                return  m                              #line 30#line 31#line 32
-        }
+        p ≡
+        m ≡
+        return  m                                      #line 30#line 31#line 32
+}
 
                                                        #line 33
-        defn mevent_clone ≡
-        (
-            mev ≡
-        )
-        {
+defn mevent_clone ≡
+(
+    mev ≡
+)
+{
                                                        #line 34
-                m ≡
-                return  m                              #line 38#line 39#line 40
-        }
+        m ≡
+        return  m                                      #line 38#line 39#line 40
+}
 
                                                        #line 41
-        defn destroy_mevent ≡
-        (
-            mev ≡
-        )
-        {
+defn destroy_mevent ≡
+(
+    mev ≡
+)
+{
                                                        #line 42#line 43#line 44#line 45#line 46
-        }
+}
 
-        defn destroy_datum ≡
-        (
-            mev ≡
-        )
-        {
+defn destroy_datum ≡
+(
+    mev ≡
+)
+{
                                                        #line 47#line 48#line 49#line 50
-        }
+}
 
-        defn destroy_port ≡
-        (
-            mev ≡
-        )
-        {
+defn destroy_port ≡
+(
+    mev ≡
+)
+{
                                                        #line 51#line 52#line 53#line 54
-        }
+}
 
                                                        #line 55
-        defn format_mevent ≡
-        (
-            m ≡
-        )
-        {
+defn format_mevent ≡
+(
+    m ≡
+)
+{
                                                        #line 56
-                if  m ==  None {
+        if  m ==  None {
                                                        #line 57
-                    return  "{}"                       #line 58
-                }
-                else
-                {                                      #line 59
-                    return  str( "{%5C”") +  str( m.port) +  str( "%5C”:%5C”") +  str( m.payload.v) +  "%5C”}"    #line 60#line 61
-                }                                      #line 62
+            return  "{}"                               #line 58
         }
+        else
+        {                                              #line 59
+            return  str( "{%5C”") +  str( m.port) +  str( "%5C”:%5C”") +  str( m.payload.v) +  "%5C”}"    #line 60#line 61
+        }                                              #line 62
+}
 
-        defn format_mevent_raw ≡
-        (
-            m ≡
-        )
-        {
+defn format_mevent_raw ≡
+(
+    m ≡
+)
+{
                                                        #line 63
-                if  m ==  None {
+        if  m ==  None {
                                                        #line 64
-                    return  ""                         #line 65
-                }
-                else
-                {                                      #line 66
-                    return  m.payload.v                #line 67#line 68
-                }                                      #line 69
+            return  ""                                 #line 65
         }
+        else
+        {                                              #line 66
+            return  m.payload.v                        #line 67#line 68
+        }                                              #line 69
+}

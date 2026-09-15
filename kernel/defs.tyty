@@ -1,0 +1,70 @@
+#line 1#line 2
+var  counter ≡ INT                                         #line 3
+var  ticktime ≡ INT                                     #line 4#line 5#line 6
+class Component_Registry {
+                                                       #line 7
+    templates ≡ DICT_OF_Template                                       #line 8#line 9
+}
+                                                       #line 10
+class Template {
+                                                       #line 11
+    name ≡ STR                                            #line 12
+    container ≡ Container_OR_NULL                                       #line 13
+    instantiator ≡ FCONTAINER                                    #line 14#line 15
+}
+                                                       #line 16
+defn mkTemplate ≡ Template
+(
+    name ≡ STR,
+    template_data ≡ Container_OR_NULL,
+    instantiator ≡ FTemplate
+)
+{
+                                                       #line 17
+        templ ≡ Template
+}
+
+defn make_component_registry ≡ Component_Registry
+()
+{
+                                                       #line 25
+}
+                                                       #line 45
+class Eh {
+                                                       #line 46
+    name ≡ STR                                            #line 47
+    inq ≡ QUEUE
+    outq ≡ QUEUE
+    owner ≡ Container_OR_NULL                                           #line 50
+    children ≡ COLLECTION_OF_Eh                                        #line 51
+    visit_ordering ≡ QUEUE
+    connections ≡ COLLECTION_OF_Connection                                     #line 53
+    routings ≡ QUEUE
+    handler ≡ PROC                                         #line 55
+    reset_instance_data ≡ PROC                             #line 56
+    finject ≡ PROC                                         #line 57
+    stop ≡ PROC                                            #line 58
+    instance_data ≡ ANY                                   #line 59#line 60
+    arg ≡ STR                                             #line 61
+    state ≡ SYMBOL                                           #line 62
+    special ≡ BOOL                                         #line 63#line 64
+    kind ≡ STR                                            #line 65#line 66
+}
+                                                       #line 67
+var  load_errors ≡ BOOL                                    #line 68
+var  runtime_errors ≡ BOOL                                 #line 69#line 70
+defn clone_string ≡ STR
+(
+    s ≡ STR
+)
+{
+}
+
+defn injector ≡ PROC
+(
+    eh ≡ Eh,
+    mevent ≡ Mevent
+)
+{
+                                                       #line 75#line 77#line 78
+}

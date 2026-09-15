@@ -2,37 +2,35 @@
 var  counter ≡                                         #line 3
 var  ticktime ≡                                        #line 4#line 5#line 6
 class Component_Registry {
-    def __init__ (
-    self ≡ ,) {                                        #line 7
-            templates ≡                                #line 8#line 9
-        }}
+                                                       #line 7
+    templates ≡                                        #line 8#line 9
+}
                                                        #line 10
-    class Template {
-        def __init__ (
-        self ≡ ,) {                                    #line 11
-                name ≡                                 #line 12
-                container ≡                            #line 13
-                instantiator ≡                         #line 14#line 15
-            }}
+class Template {
+                                                       #line 11
+    name ≡                                             #line 12
+    container ≡                                        #line 13
+    instantiator ≡                                     #line 14#line 15
+}
                                                        #line 16
-        defn mkTemplate ≡
-        (
-            name ≡ ,
-            template_data ≡ ,
-            instantiator ≡
-        )
-        {
+defn mkTemplate ≡
+(
+    name ≡ ,
+    template_data ≡ ,
+    instantiator ≡
+)
+{
                                                        #line 17
-                templ ≡
-                return  templ                          #line 22#line 23#line 24
-        }
+        templ ≡
+        return  templ                                  #line 22#line 23#line 24
+}
 
-        defn make_component_registry ≡
-        ()
-        {
+defn make_component_registry ≡
+()
+{
                                                        #line 25
-                return  Component_Registry ()          #line 26#line 27#line 28
-        }
+        return  Component_Registry ()                  #line 26#line 27#line 28
+}
 
                                                        #line 29
                                                        #line 30
@@ -49,44 +47,43 @@ class Component_Registry {
                                                        #line 41#line 42
                                                        #line 43#line 44
                                                        #line 45
-        class Eh {
-            def __init__ (
-            self ≡ ,) {                                #line 46
-                    name ≡                             #line 47
-                    inq ≡
-                    outq ≡
-                    owner ≡                            #line 50
-                    children ≡                         #line 51
-                    visit_ordering ≡
-                    connections ≡                      #line 53
-                    routings ≡
-                    handler ≡                          #line 55
-                    reset_instance_data ≡              #line 56
-                    finject ≡                          #line 57
-                    stop ≡                             #line 58
-                    instance_data ≡                    #line 59#line 60
-                    arg ≡                              #line 61
-                    state ≡                            #line 62
-                    special ≡                          #line 63#line 64
-                    kind ≡                             #line 65#line 66
-                }}
+class Eh {
+                                                       #line 46
+    name ≡                                             #line 47
+    inq ≡
+    outq ≡
+    owner ≡                                            #line 50
+    children ≡                                         #line 51
+    visit_ordering ≡
+    connections ≡                                      #line 53
+    routings ≡
+    handler ≡                                          #line 55
+    reset_instance_data ≡                              #line 56
+    finject ≡                                          #line 57
+    stop ≡                                             #line 58
+    instance_data ≡                                    #line 59#line 60
+    arg ≡                                              #line 61
+    state ≡                                            #line 62
+    special ≡                                          #line 63#line 64
+    kind ≡                                             #line 65#line 66
+}
                                                        #line 67
-            var  load_errors ≡                         #line 68
-            var  runtime_errors ≡                      #line 69#line 70
-            defn clone_string ≡
-            (
-                s ≡
-            )
-            {
+var  load_errors ≡                                     #line 68
+var  runtime_errors ≡                                  #line 69#line 70
+defn clone_string ≡
+(
+    s ≡
+)
+{
                                                        #line 71
-                    return  s                          #line 72#line 73#line 74
-            }
+        return  s                                      #line 72#line 73#line 74
+}
 
-            defn injector ≡
-            (
-                eh ≡ ,
-                mevent ≡
-            )
-            {
+defn injector ≡
+(
+    eh ≡ ,
+    mevent ≡
+)
+{
                                                        #line 75#line 77#line 78
-            }
+}

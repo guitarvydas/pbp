@@ -23,494 +23,488 @@ defn trash_handler ≡
 }
 
 class TwoMevents {
-    def __init__ (
-    self ≡ ,) {                                        #line 11
-            firstmev ≡                                 #line 12
-            secondmev ≡                                #line 13#line 14
-        }}
+                                                       #line 11
+    firstmev ≡                                         #line 12
+    secondmev ≡                                        #line 13#line 14
+}
                                                        #line 15
                                                        #line 16
-    class Deracer_Instance_Data {
-        def __init__ (
-        self ≡ ,) {                                    #line 17
-                state ≡                                #line 18
-                buffer ≡                               #line 19#line 20
-            }}
+class Deracer_Instance_Data {
+                                                       #line 17
+    state ≡                                            #line 18
+    buffer ≡                                           #line 19#line 20
+}
                                                        #line 21
-        defn reclaim_Buffers_from_heap ≡
-        (
-            inst ≡
-        )
-        {
+defn reclaim_Buffers_from_heap ≡
+(
+    inst ≡
+)
+{
                                                        #line 22#line 23#line 24#line 25
-        }
+}
 
-        defn deracer_reset_handler ≡
-        (
-            eh ≡
-        )
-        {
+defn deracer_reset_handler ≡
+(
+    eh ≡
+)
+{
                                                        #line 26
-                inst ≡                                 #line 27
+        inst ≡                                         #line 27
                                                        #line 31
-        }
+}
 
-        defn deracer_instantiate ≡
-        (
-            reg ≡ ,
-            owner ≡ ,
-            name ≡ ,
-            template_data ≡ ,
-            arg ≡
-        )
-        {
+defn deracer_instantiate ≡
+(
+    reg ≡ ,
+    owner ≡ ,
+    name ≡ ,
+    template_data ≡ ,
+    arg ≡
+)
+{
                                                        #line 32
-                name_with_id ≡
-                inst ≡
-                eh ≡
-                return  eh                             #line 38#line 39#line 40
-        }
+        name_with_id ≡
+        inst ≡
+        eh ≡
+        return  eh                                     #line 38#line 39#line 40
+}
 
-        defn send_firstmev_then_secondmev ≡
-        (
-            eh ≡ ,
-            inst ≡
-        )
-        {
+defn send_firstmev_then_secondmev ≡
+(
+    eh ≡ ,
+    inst ≡
+)
+{
                                                        #line 41#line 45#line 46
-        }
+}
 
-        defn deracer_handler ≡
-        (
-            eh ≡ ,
-            mev ≡
-        )
-        {
+defn deracer_handler ≡
+(
+    eh ≡ ,
+    mev ≡
+)
+{
                                                        #line 47
-                inst ≡                                 #line 48
-                if  inst.state ==  "idle" {
+        inst ≡                                         #line 48
+        if  inst.state ==  "idle" {
                                                        #line 49
-                    if  "1" ==  mev.port {
+            if  "1" ==  mev.port {
                                                        #line 50
 
-                    }
-                    elif  "2" ==  mev.port
-                    {                                  #line 53
+            }
+            elif  "2" ==  mev.port
+            {                                          #line 53
 
-                    }
-                    else
-                    {                                  #line 56#line 58
-                    }
-                }
-                elif  inst.state ==  "waitingForFirstmev"
-                {                                      #line 59
-                    if  "1" ==  mev.port {
+            }
+            else
+            {                                          #line 56#line 58
+            }
+        }
+        elif  inst.state ==  "waitingForFirstmev"
+        {                                              #line 59
+            if  "1" ==  mev.port {
                                                        #line 60
 
-                    }
-                    else
-                    {                                  #line 64#line 66
-                    }
-                }
-                elif  inst.state ==  "waitingForSecondmev"
-                {                                      #line 67
-                    if  "2" ==  mev.port {
+            }
+            else
+            {                                          #line 64#line 66
+            }
+        }
+        elif  inst.state ==  "waitingForSecondmev"
+        {                                              #line 67
+            if  "2" ==  mev.port {
                                                        #line 68
 
-                    }
-                    else
-                    {                                  #line 72#line 74
-                    }
-                }
-                else
-                {                                      #line 75#line 77
-                }                                      #line 78#line 79
+            }
+            else
+            {                                          #line 72#line 74
+            }
         }
+        else
+        {                                              #line 75#line 77
+        }                                              #line 78#line 79
+}
 
-        defn low_level_read_text_file_instantiate ≡
-        (
-            reg ≡ ,
-            owner ≡ ,
-            name ≡ ,
-            template_data ≡ ,
-            arg ≡
-        )
-        {
+defn low_level_read_text_file_instantiate ≡
+(
+    reg ≡ ,
+    owner ≡ ,
+    name ≡ ,
+    template_data ≡ ,
+    arg ≡
+)
+{
                                                        #line 80
-                name_with_id ≡
-                return make_leaf ( name_with_id, owner, None, "", low_level_read_text_file_handler, None)#line 82#line 83#line 84
-        }
+        name_with_id ≡
+        return make_leaf ( name_with_id, owner, None, "", low_level_read_text_file_handler, None)#line 82#line 83#line 84
+}
 
-        defn low_level_read_text_file_handler ≡
-        (
-            eh ≡ ,
-            mev ≡
-        )
-        {
+defn low_level_read_text_file_handler ≡
+(
+    eh ≡ ,
+    mev ≡
+)
+{
                                                        #line 85
-                fname ≡                                #line 86#line 88#line 89
-        }
+        fname ≡                                        #line 86#line 88#line 89
+}
 
-        defn ensure_string_datum_instantiate ≡
-        (
-            reg ≡ ,
-            owner ≡ ,
-            name ≡ ,
-            template_data ≡ ,
-            arg ≡
-        )
-        {
+defn ensure_string_datum_instantiate ≡
+(
+    reg ≡ ,
+    owner ≡ ,
+    name ≡ ,
+    template_data ≡ ,
+    arg ≡
+)
+{
                                                        #line 90
-                name_with_id ≡
-                return make_leaf ( name_with_id, owner, None, "", ensure_string_datum_handler, None)#line 92#line 93#line 94
-        }
+        name_with_id ≡
+        return make_leaf ( name_with_id, owner, None, "", ensure_string_datum_handler, None)#line 92#line 93#line 94
+}
 
-        defn ensure_string_datum_handler ≡
-        (
-            eh ≡ ,
-            mev ≡
-        )
-        {
+defn ensure_string_datum_handler ≡
+(
+    eh ≡ ,
+    mev ≡
+)
+{
                                                        #line 95
-                if  "string" ==  mev.payload.kind () {
+        if  "string" ==  mev.payload.kind () {
                                                        #line 96
-                }
-                else
-                {                                      #line 98
-                    emev ≡                             #line 101
-                }                                      #line 102#line 103
         }
+        else
+        {                                              #line 98
+            emev ≡                                     #line 101
+        }                                              #line 102#line 103
+}
 
-        class Syncfilewrite_Data {
-            def __init__ (
-            self ≡ ,) {                                #line 104
-                    filename ≡                         #line 105#line 106
-                }}
+class Syncfilewrite_Data {
+                                                       #line 104
+    filename ≡                                         #line 105#line 106
+}
                                                        #line 107
-            defn syncfilewrite_reset_handler ≡
-            (
-                eh ≡
-            )
-            {
+defn syncfilewrite_reset_handler ≡
+(
+    eh ≡
+)
+{
                                                        #line 108
                                                        #line 111
-            }
+}
 
                                                        #line 112
-            defn syncfilewrite_instantiate ≡
-            (
-                reg ≡ ,
-                owner ≡ ,
-                name ≡ ,
-                template_data ≡ ,
-                arg ≡
-            )
-            {
+defn syncfilewrite_instantiate ≡
+(
+    reg ≡ ,
+    owner ≡ ,
+    name ≡ ,
+    template_data ≡ ,
+    arg ≡
+)
+{
                                                        #line 113
-                    name_with_id ≡
-                    inst ≡
-                    return make_leaf ( name_with_id, owner, inst, "", syncfilewrite_handler, syncfilewrite_reset_handler)#line 116#line 117#line 118
-            }
+        name_with_id ≡
+        inst ≡
+        return make_leaf ( name_with_id, owner, inst, "", syncfilewrite_handler, syncfilewrite_reset_handler)#line 116#line 117#line 118
+}
 
-            defn syncfilewrite_handler ≡
-            (
-                eh ≡ ,
-                mev ≡
-            )
-            {
+defn syncfilewrite_handler ≡
+(
+    eh ≡ ,
+    mev ≡
+)
+{
                                                        #line 119
-                    inst ≡                             #line 120
-                    if  "filename" ==  mev.port {
+        inst ≡                                         #line 120
+        if  "filename" ==  mev.port {
                                                        #line 121
 
-                    }
-                    elif  "input" ==  mev.port
-                    {                                  #line 123
-                        contents ≡                     #line 124
-                        f ≡
-                        if  f!= None {
+        }
+        elif  "input" ==  mev.port
+        {                                              #line 123
+            contents ≡                                 #line 124
+            f ≡
+            if  f!= None {
                                                        #line 126
-                        }
-                        else
-                        {                              #line 130#line 132
-                        }                              #line 133
-                    }                                  #line 134#line 135
             }
+            else
+            {                                          #line 130#line 132
+            }                                          #line 133
+        }                                              #line 134#line 135
+}
 
-            class StringConcat_Instance_Data {
-                def __init__ (
-                self ≡ ,) {                            #line 136
-                        buffer1 ≡                      #line 137
-                        buffer2 ≡                      #line 138#line 139
-                    }}
+class StringConcat_Instance_Data {
+                                                       #line 136
+    buffer1 ≡                                          #line 137
+    buffer2 ≡                                          #line 138#line 139
+}
                                                        #line 140
-                defn stringconcat_reset_handler ≡
-                (
-                    eh ≡
-                )
-                {
+defn stringconcat_reset_handler ≡
+(
+    eh ≡
+)
+{
                                                        #line 141
-                        inst ≡                         #line 142
+        inst ≡                                         #line 142
                                                        #line 146
-                }
+}
 
-                defn stringconcat_instantiate ≡
-                (
-                    reg ≡ ,
-                    owner ≡ ,
-                    name ≡ ,
-                    template_data ≡ ,
-                    arg ≡
-                )
-                {
+defn stringconcat_instantiate ≡
+(
+    reg ≡ ,
+    owner ≡ ,
+    name ≡ ,
+    template_data ≡ ,
+    arg ≡
+)
+{
                                                        #line 147
-                        name_with_id ≡
-                        instp ≡
-                        return make_leaf ( name_with_id, owner, instp, "", stringconcat_handler, stringconcat_reset_handler)#line 150#line 151#line 152
-                }
+        name_with_id ≡
+        instp ≡
+        return make_leaf ( name_with_id, owner, instp, "", stringconcat_handler, stringconcat_reset_handler)#line 150#line 151#line 152
+}
 
-                defn stringconcat_handler ≡
-                (
-                    eh ≡ ,
-                    mev ≡
-                )
-                {
+defn stringconcat_handler ≡
+(
+    eh ≡ ,
+    mev ≡
+)
+{
                                                        #line 153
-                        inst ≡                         #line 154
-                        if  "1" ==  mev.port {
+        inst ≡                                         #line 154
+        if  "1" ==  mev.port {
                                                        #line 155
 
-                        }
-                        elif  "2" ==  mev.port
-                        {                              #line 158
+        }
+        elif  "2" ==  mev.port
+        {                                              #line 158
 
-                        }
-                        elif  "reset" ==  mev.port
-                        {                              #line 161
+        }
+        elif  "reset" ==  mev.port
+        {                                              #line 161
 
-                        }
-                        else
-                        {                              #line 164#line 166
-                        }                              #line 167#line 168
-                }
+        }
+        else
+        {                                              #line 164#line 166
+        }                                              #line 167#line 168
+}
 
-                defn maybe_stringconcat ≡
-                (
-                    eh ≡ ,
-                    inst ≡ ,
-                    mev ≡
-                )
-                {
+defn maybe_stringconcat ≡
+(
+    eh ≡ ,
+    inst ≡ ,
+    mev ≡
+)
+{
                                                        #line 169
-                        if  inst.buffer1!= None and  inst.buffer2!= None {
+        if  inst.buffer1!= None and  inst.buffer2!= None {
                                                        #line 170
-                            concatenated_string ≡      #line 171
-                            if  0 == len ( inst.buffer1) {
+            concatenated_string ≡                      #line 171
+            if  0 == len ( inst.buffer1) {
                                                        #line 172
-                                concatenated_string ≡  #line 173
-                            }
-                            elif  0 == len ( inst.buffer2)
-                            {                          #line 174
-                                concatenated_string ≡  #line 175
-                            }
-                            else
-                            {                          #line 176
-                                concatenated_string ≡  #line 177#line 178
-                            }                          #line 182
-                        }                              #line 183#line 184
-                }
+                concatenated_string ≡                  #line 173
+            }
+            elif  0 == len ( inst.buffer2)
+            {                                          #line 174
+                concatenated_string ≡                  #line 175
+            }
+            else
+            {                                          #line 176
+                concatenated_string ≡                  #line 177#line 178
+            }                                          #line 182
+        }                                              #line 183#line 184
+}
 
                                                        #line 185#line 186
-                defn string_constant_instantiate ≡
-                (
-                    reg ≡ ,
-                    owner ≡ ,
-                    name ≡ ,
-                    template_data ≡ ,
-                    arg ≡
-                )
-                {
+defn string_constant_instantiate ≡
+(
+    reg ≡ ,
+    owner ≡ ,
+    name ≡ ,
+    template_data ≡ ,
+    arg ≡
+)
+{
                                                        #line 187#line 195#line 196
-                }
+}
 
-                defn string_constant_handler ≡
-                (
-                    eh ≡ ,
-                    mev ≡
-                )
-                {
+defn string_constant_handler ≡
+(
+    eh ≡ ,
+    mev ≡
+)
+{
                                                        #line 197
-                        s ≡                            #line 198#line 200#line 201
-                }
+        s ≡                                            #line 198#line 200#line 201
+}
 
-                defn fakepipename_instantiate ≡
-                (
-                    reg ≡ ,
-                    owner ≡ ,
-                    name ≡ ,
-                    template_data ≡ ,
-                    arg ≡
-                )
-                {
+defn fakepipename_instantiate ≡
+(
+    reg ≡ ,
+    owner ≡ ,
+    name ≡ ,
+    template_data ≡ ,
+    arg ≡
+)
+{
                                                        #line 202
-                        instance_name ≡
-                        return make_leaf ( instance_name, owner, None, "", fakepipename_handler, None)#line 204#line 205#line 206
-                }
+        instance_name ≡
+        return make_leaf ( instance_name, owner, None, "", fakepipename_handler, None)#line 204#line 205#line 206
+}
 
-                var  rand ≡                            #line 207#line 208
-                defn fakepipename_handler ≡
-                (
-                    eh ≡ ,
-                    mev ≡
-                )
-                {
+var  rand ≡                                            #line 207#line 208
+defn fakepipename_handler ≡
+(
+    eh ≡ ,
+    mev ≡
+)
+{
                                                        #line 209#line 213#line 214
-                }
+}
                                                        #line 215
-                class Switch1star_Instance_Data {
-                    def __init__ (
-                    self ≡ ,) {                        #line 216
-                            state ≡                    #line 217#line 218
-                        }}
+class Switch1star_Instance_Data {
+                                                       #line 216
+    state ≡                                            #line 217#line 218
+}
                                                        #line 219
-                    defn switch1star_reset_handler ≡
-                    (
-                        eh ≡
-                    )
-                    {
+defn switch1star_reset_handler ≡
+(
+    eh ≡
+)
+{
                                                        #line 220
-                            inst ≡                     #line 221
-                            inst ≡                     #line 223#line 224
-                    }
+        inst ≡                                         #line 221
+        inst ≡                                         #line 223#line 224
+}
 
-                    defn switch1star_instantiate ≡
-                    (
-                        reg ≡ ,
-                        owner ≡ ,
-                        name ≡ ,
-                        template_data ≡ ,
-                        arg ≡
-                    )
-                    {
+defn switch1star_instantiate ≡
+(
+    reg ≡ ,
+    owner ≡ ,
+    name ≡ ,
+    template_data ≡ ,
+    arg ≡
+)
+{
                                                        #line 225
-                            name_with_id ≡
-                            instp ≡
-                            return make_leaf ( name_with_id, owner, instp, "", switch1star_handler, switch1star_reset_handler)#line 228#line 229#line 230
-                    }
+        name_with_id ≡
+        instp ≡
+        return make_leaf ( name_with_id, owner, instp, "", switch1star_handler, switch1star_reset_handler)#line 228#line 229#line 230
+}
 
-                    defn switch1star_handler ≡
-                    (
-                        eh ≡ ,
-                        mev ≡
-                    )
-                    {
+defn switch1star_handler ≡
+(
+    eh ≡ ,
+    mev ≡
+)
+{
                                                        #line 231
-                            inst ≡                     #line 232
-                            whichOutput ≡              #line 233
-                            if  "" ==  mev.port {
+        inst ≡                                         #line 232
+        whichOutput ≡                                  #line 233
+        if  "" ==  mev.port {
                                                        #line 234
-                                if  "1" ==  whichOutput {
+            if  "1" ==  whichOutput {
                                                        #line 235
-                                }
-                                elif  "*" ==  whichOutput
-                                {                      #line 238
-                                }
-                                else
-                                {                      #line 240#line 242
-                                }
-                            }
-                            elif  "reset" ==  mev.port
-                            {                          #line 243
+            }
+            elif  "*" ==  whichOutput
+            {                                          #line 238
+            }
+            else
+            {                                          #line 240#line 242
+            }
+        }
+        elif  "reset" ==  mev.port
+        {                                              #line 243
 
-                            }
-                            else
-                            {                          #line 245#line 247
-                            }                          #line 248#line 249
-                    }
+        }
+        else
+        {                                              #line 245#line 247
+        }                                              #line 248#line 249
+}
 
-                    class StringAccumulator {
-                        def __init__ (
-                        self ≡ ,) {                    #line 250
-                                s ≡                    #line 251#line 252
-                            }}
+class StringAccumulator {
+                                                       #line 250
+    s ≡                                                #line 251#line 252
+}
                                                        #line 253
-                        defn strcatstar_reset_handler ≡
-                        (
-                            eh ≡
-                        )
-                        {
+defn strcatstar_reset_handler ≡
+(
+    eh ≡
+)
+{
                                                        #line 254
                                                        #line 257
-                        }
+}
 
-                        defn strcatstar_instantiate ≡
-                        (
-                            reg ≡ ,
-                            owner ≡ ,
-                            name ≡ ,
-                            template_data ≡ ,
-                            arg ≡
-                        )
-                        {
+defn strcatstar_instantiate ≡
+(
+    reg ≡ ,
+    owner ≡ ,
+    name ≡ ,
+    template_data ≡ ,
+    arg ≡
+)
+{
                                                        #line 258
-                                name_with_id ≡
-                                instp ≡
-                                return make_leaf ( name_with_id, owner, instp, "", strcatstar_handler, strcatstar_reset_handler)#line 261#line 262#line 263
-                        }
+        name_with_id ≡
+        instp ≡
+        return make_leaf ( name_with_id, owner, instp, "", strcatstar_handler, strcatstar_reset_handler)#line 261#line 262#line 263
+}
 
-                        defn strcatstar_handler ≡
-                        (
-                            eh ≡ ,
-                            mev ≡
-                        )
-                        {
+defn strcatstar_handler ≡
+(
+    eh ≡ ,
+    mev ≡
+)
+{
                                                        #line 264
-                                accum ≡                #line 265
-                                if  "" ==  mev.port {
+        accum ≡                                        #line 265
+        if  "" ==  mev.port {
                                                        #line 266
 
-                                }
-                                elif  "fini" ==  mev.port
-                                {                      #line 268
-                                }
-                                else
-                                {                      #line 270#line 272
-                                }                      #line 273#line 274
-                        }
+        }
+        elif  "fini" ==  mev.port
+        {                                              #line 268
+        }
+        else
+        {                                              #line 270#line 272
+        }                                              #line 273#line 274
+}
 
-                        defn stop_instantiate ≡
-                        (
-                            reg ≡ ,
-                            owner ≡ ,
-                            name ≡ ,
-                            template_data ≡ ,
-                            arg ≡
-                        )
-                        {
+defn stop_instantiate ≡
+(
+    reg ≡ ,
+    owner ≡ ,
+    name ≡ ,
+    template_data ≡ ,
+    arg ≡
+)
+{
                                                        #line 275
-                                name_with_id ≡
-                                inst ≡                 #line 277
-                                return make_leaf ( name_with_id, owner, inst, "", stop_handler, None)#line 278#line 279#line 280
-                        }
+        name_with_id ≡
+        inst ≡                                         #line 277
+        return make_leaf ( name_with_id, owner, inst, "", stop_handler, None)#line 278#line 279#line 280
+}
 
-                        defn stop_handler ≡
-                        (
-                            eh ≡ ,
-                            mev ≡
-                        )
-                        {
+defn stop_handler ≡
+(
+    eh ≡ ,
+    mev ≡
+)
+{
                                                        #line 281
-                                inst ≡                 #line 282
-                                parent ≡               #line 283
-                                s ≡                    #line 289#line 290
-                        }
+        inst ≡                                         #line 282
+        parent ≡                                       #line 283
+        s ≡                                            #line 289#line 290
+}
 
                                                        #line 291
                                                        #line 292#line 293
-                        defn initialize_stock_components ≡
-                        (
-                            reg ≡
-                        )
-                        {
+defn initialize_stock_components ≡
+(
+    reg ≡
+)
+{
                                                        #line 294#line 311#line 312
-                        }
+}

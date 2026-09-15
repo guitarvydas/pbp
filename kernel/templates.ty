@@ -1,3 +1,15 @@
+class Component_Registry {
+                                                       #line 1
+    templates ≡                                        #line 2#line 3
+}
+                                                       #line 4
+class Template {
+                                                       #line 5
+    name ≡                                             #line 6
+    container ≡                                        #line 7
+    instantiator ≡                                     #line 8#line 9
+}
+                                                       #line 10
 defn mkTemplate ≡
 (
     name ≡ ,
@@ -5,32 +17,32 @@ defn mkTemplate ≡
     instantiator ≡
 )
 {
-                                                       #line 1
-        templ ≡
-        return  templ                                  #line 6#line 7#line 8
-}
-                                                       #line 9
-                                                       #line 10
                                                        #line 11
-                                                       #line 12#line 13
-                                                       #line 14
+        templ ≡
+        return  templ                                  #line 16#line 17#line 18
+}
+                                                       #line 19
+                                                       #line 20
+                                                       #line 21
+                                                       #line 22#line 23
+                                                       #line 24
 defn lnet2internal_from_file ≡
 (
     container_xml ≡
 )
 {
-                                                       #line 15
+                                                       #line 25
         pathname ≡
-        filename ≡                                     #line 19#line 20
+        filename ≡                                     #line 29#line 30
 }
 
-                                                       #line 21
+                                                       #line 31
 defn lnet2internal_from_string ≡
 (
     lnet ≡
 )
 {
-                                                       #line 22#line 24#line 25
+                                                       #line 32#line 34#line 35
 }
 
 defn delete_decls ≡
@@ -38,14 +50,14 @@ defn delete_decls ≡
     d ≡
 )
 {
-                                                       #line 26#line 27#line 28#line 29
+                                                       #line 36#line 37#line 38#line 39
 }
 
 defn make_component_registry ≡
 ()
 {
-                                                       #line 30
-        return  Component_Registry ()                  #line 31#line 32#line 33
+                                                       #line 40
+        return  Component_Registry ()                  #line 41#line 42#line 43
 }
 
 defn register_component ≡
@@ -55,7 +67,7 @@ defn register_component ≡
 )
 {
 
-        return abstracted_register_component ( reg, template, False)#line 34
+        return abstracted_register_component ( reg, template, False)#line 44
 }
 
 defn register_component_allow_overwriting ≡
@@ -65,7 +77,7 @@ defn register_component_allow_overwriting ≡
 )
 {
 
-        return abstracted_register_component ( reg, template, True)#line 35#line 36
+        return abstracted_register_component ( reg, template, True)#line 45#line 46
 }
 
 defn abstracted_register_component ≡
@@ -75,15 +87,15 @@ defn abstracted_register_component ≡
     ok_to_overwrite ≡
 )
 {
-                                                       #line 37
+                                                       #line 47
         name ≡
         if  reg!= None and  name in  reg.templates and not  ok_to_overwrite {
-                                                       #line 39
+                                                       #line 49
         }
         else
-        {                                              #line 42
-            return  reg                                #line 44#line 45
-        }                                              #line 46#line 47
+        {                                              #line 52
+            return  reg                                #line 54#line 55
+        }                                              #line 56#line 57
 }
 
 defn get_component_instance ≡
@@ -93,33 +105,33 @@ defn get_component_instance ≡
     owner ≡
 )
 {
-                                                       #line 48#line 49#line 50#line 51#line 52
+                                                       #line 58#line 59#line 60#line 61#line 62
         template_name ≡
         if  ":" ==   full_name[0]  {
-                                                       #line 54
+                                                       #line 64
             instance_name ≡
             instance ≡
-            return  instance                           #line 57
+            return  instance                           #line 67
         }
         else
-        {                                              #line 58
+        {                                              #line 68
             if  template_name in  reg.templates {
-                                                       #line 59
-                template ≡                             #line 60
+                                                       #line 69
+                template ≡                             #line 70
                 if ( template ==  None) {
-                                                       #line 61
+                                                       #line 71
                 }
                 else
-                {                                      #line 64
+                {                                      #line 74
                     instance_name ≡
                     instance ≡
-                    return  instance                   #line 67#line 68
+                    return  instance                   #line 77#line 78
                 }
             }
             else
-            {                                          #line 69#line 72
-            }                                          #line 73
-        }                                              #line 74#line 75
+            {                                          #line 79#line 82
+            }                                          #line 83
+        }                                              #line 84#line 85
 }
 
 defn generate_instance_name ≡
@@ -128,19 +140,19 @@ defn generate_instance_name ≡
     template_name ≡
 )
 {
-                                                       #line 76
-        owner_name ≡                                   #line 77
-        instance_name ≡                                #line 78
+                                                       #line 86
+        owner_name ≡                                   #line 87
+        instance_name ≡                                #line 88
         if  None!= owner {
-                                                       #line 79
-            owner_name ≡                               #line 80
+                                                       #line 89
+            owner_name ≡                               #line 90
             instance_name ≡
         }
         else
-        {                                              #line 82
-            instance_name ≡                            #line 83#line 84
+        {                                              #line 92
+            instance_name ≡                            #line 93#line 94
         }
-        return  instance_name                          #line 85#line 86#line 87
+        return  instance_name                          #line 95#line 96#line 97
 }
 
 defn mangle_name ≡
@@ -148,6 +160,6 @@ defn mangle_name ≡
     s ≡
 )
 {
-                                                       #line 88#line 89
-        return  s                                      #line 90#line 91
+                                                       #line 98#line 99
+        return  s                                      #line 100#line 101
 }
