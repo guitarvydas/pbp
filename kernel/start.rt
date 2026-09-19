@@ -70,7 +70,7 @@ defn inject (part, port, payload) {
     if not load_errors {
         deftemp d ⇐ #fresh (Datum)
         d.v ⇐ payload
-        d.clone ⇐ λ: obj_clone (d)
+        d.clone ⇐ λ: clone_payload (d)
         d.reclaim ⇐ ϕ
         deftemp mev ⇐ make_mevent(port, d)
         inject_mevent (part, mev)
@@ -86,7 +86,7 @@ defn finalize (part) {
 defn new_datum_bang () {
     deftemp d ⇐ #fresh (Datum)
     d.v ⇐ “!”
-    d.clone ⇐ λ: obj_clone (d)
+    d.clone ⇐ λ: clone_payload (d)
     d.reclaim ⇐ ϕ
     return d
     

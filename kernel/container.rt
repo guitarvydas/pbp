@@ -270,7 +270,7 @@ defn make_container (name, owner) {
 defn send (eh,port,obj,causingMevent) {
     deftemp d ⇐ #fresh (Datum)
     d.v ⇐ obj
-    d.clone ⇐ λ: obj_clone (d)
+    d.clone ⇐ λ: clone_payload (d)
     d.reclaim ⇐ ϕ
     mev ≡ make_mevent(port, d)
     put_output (eh, mev)
@@ -297,6 +297,6 @@ defn put_output (eh, mev) {
     #enqueue (eh.outq, mev)
 }
 
-defn obj_clone (obj) {
+defn clone_payload (obj) {
     return obj
 }
