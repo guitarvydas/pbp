@@ -21,14 +21,9 @@ defn make_leaf ≡ @Leaf
 }
 
                                                        #line 23
-defn leaf_reset ≡
+defn leaf_reset ≡ ~
 (
-    part ≡
+    part ≡ @Leaf
 )
 {
-                                                       #line 24
-        if ( part.reset_handler!= None) {
-                                                       #line 27#line 29
-        }
-
 }
