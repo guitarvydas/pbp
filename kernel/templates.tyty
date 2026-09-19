@@ -1,20 +1,20 @@
 class Component_Registry {
                                                        #line 1
-    templates ≡  @DICT_OF_Template                                         #line 2#line 3
+    templates ≡  @Dict_of_Template                                         #line 2#line 3
 }
                                                        #line 4
 class Template {
                                                        #line 5
-    name ≡ @STR                                            #line 6
+    name ≡ @Str                                            #line 6
     container ≡ @Container                                       #line 7
-    instantiator ≡ @FPART                                    #line 8#line 9
+    instantiator ≡ λ@Part                                    #line 8#line 9
 }
                                                        #line 10
 defn mkTemplate ≡ @Template
 (
-    name ≡ @STR,
+    name ≡ @Str,
     template_data ≡ @Container,
-    instantiator ≡ @FPART
+    instantiator ≡ λ@Part
 )
 {
                                                        #line 11
@@ -25,20 +25,20 @@ defn mkTemplate ≡ @Template
                                                        #line 21
                                                        #line 22#line 23
                                                        #line 24
-defn lnet2internal_from_file ≡ Collection_OF_WIRE
+defn lnet2internal_from_file ≡ @Collection_of_Wire
 (
-    json_filename ≡ @PATHNAME
+    json_filename ≡ @Pathname
 )
 {
                                                        #line 25
-        pathname ≡ @PATHNAME
-        filename ≡ @STR                                    #line 29#line 30
+        pathname ≡ @Pathname
+        filename ≡ @Str                                    #line 29#line 30
 }
 
                                                        #line 31
-defn lnet2internal_from_string ≡
+defn lnet2internal_from_string ≡ @Collection_of_Wire
 (
-    lnet ≡ @STR
+    lnet ≡ @Str
 )
 {
                                                        #line 32#line 34#line 35
@@ -66,30 +66,30 @@ defn register_component_allow_overwriting ≡ @Component_Registry
 {
 }
 
-defn abstracted_register_component ≡
+defn abstracted_register_component ≡ ~
 (
     reg ≡ @Component_Registry,
     template ≡ @Template,
-    ok_to_overwrite ≡ BOOL
+    ok_to_overwrite ≡ Bool
 )
 {
                                                        #line 47
-        name ≡ @STR
+        name ≡ @Str
 }
 
-defn get_component_instance ≡ @PART
+defn get_component_instance ≡ @Part
 (
     reg ≡ @Component_Registry,
-    full_name ≡ @STR,
+    full_name ≡ @Str,
     owner ≡ @Container
 )
 {
                                                        #line 58#line 59#line 60#line 61#line 62
-        template_name ≡ @STR
+        template_name ≡ @Str
         if  ":" ==   full_name[0]  {
                                                        #line 64
-            instance_name ≡ @STR
-            instance ≡ @PART
+            instance_name ≡ @Str
+            instance ≡ @Part
             return  instance                           #line 67
         }
         else
@@ -102,7 +102,7 @@ defn get_component_instance ≡ @PART
                 }
                 else
                 {                                      #line 74
-#                    instance_name ≡ @STR
+#                    instance_name ≡ @Str
 #                    instance ≡ @PART
                 }
             }
@@ -112,30 +112,30 @@ defn get_component_instance ≡ @PART
         }                                              #line 84#line 85
 }
 
-defn generate_instance_name ≡ @STR
+defn generate_instance_name ≡ @Str
 (
     owner ≡ @Container,
-    template_name ≡ @STR
+    template_name ≡ @Str
 )
 {
                                                        #line 86
-        owner_name ≡ @STR                                  #line 87
-        instance_name ≡ @STR                               #line 88
+        owner_name ≡ @Str                                  #line 87
+        instance_name ≡ @Str                               #line 88
         if  None!= owner {
                                                        #line 89
-            owner_name ≡ @STR                              #line 90
-            instance_name ≡ @STR
+            owner_name ≡ @Str                              #line 90
+            instance_name ≡ @Str
         }
         else
         {                                              #line 92
-            instance_name ≡ @STR                           #line 93#line 94
+            instance_name ≡ @Str                           #line 93#line 94
         }
         return  instance_name                          #line 95#line 96#line 97
 }
 
-defn mangle_name ≡ @STR
+defn mangle_name ≡ @Str
 (
-    s ≡ @STR
+    s ≡ @Str
 )
 {
                                                        #line 98#line 99

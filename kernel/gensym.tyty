@@ -1,15 +1,15 @@
-var  digits ≡ INTARRAY                                          #line 8#line 9
-defn subscripted_digit ≡ INT
+var  digits ≡ IntArray                                          #line 8#line 9
+defn subscripted_digit ≡ Int
 (
-    n ≡ INT
+    n ≡ Int
 )
 {
                                                        #line 10#line 17#line 18
 }
 
-defn gensymbol ≡ STR
+defn gensymbol ≡ @Str
 (
-    s ≡ STR
+    s ≡ @Str
 )
 {
                                                        #line 19#line 24#line 25

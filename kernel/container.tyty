@@ -65,9 +65,9 @@ defn container_instantiator ≡ @Container
 }
 
                                                        #line 89
-defn container_handler ≡ @FHandler
+defn container_handler ≡ ρHandler
 (
-    container ≡ @Conainer,
+    container ≡ @Container,
     mevent ≡ @Mevent
 )
 {

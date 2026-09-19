@@ -1,10 +1,10 @@
 #line 1
 class Datum {
                                                        #line 2
-    v ≡ PAYLOAD                                               #line 3
-    clone ≡ FDATUM                                           #line 4
-    reclaim ≡ PROC                                         #line 5
-    other ≡ VOID                                           #line 6#line 7
+    v ≡ @Payload                                               #line 3
+    clone ≡ λ@Payload                                           #line 4
+    reclaim ≡ ~                                         #line 5
+    other ≡ @                                           #line 6#line 7
 }
 
                                                        #line 8#line 9
@@ -12,15 +12,15 @@ class Datum {
                                                        #line 11
                                                        #line 12
                                                        #line 13
-class Mevent {
+class @Mevent {
                                                        #line 14
-    port ≡ PORT                                            #line 15
-    payload ≡ PAYLOAD                                         #line 16#line 17
+    port ≡ Port                                            #line 15
+    payload ≡ @Payload                                         #line 16#line 17
 }
                                                        #line 18
-defn clone_port ≡ FPORT
+defn clone_port ≡ Port
 (
-    s ≡ PORT
+    s ≡ Port
 )
 {
                                                        #line 19
@@ -28,63 +28,63 @@ defn clone_port ≡ FPORT
 
                                                        #line 23
                                                        #line 24
-defn make_mevent ≡ Mevent
+defn make_mevent ≡ @Mevent
 (
-    port ≡ PORT,
-    datum ≡ DATUM
+    port ≡ Port,
+    datum ≡ @Payload
 )
 {
                                                        #line 25
-        p ≡ PORT
-        m ≡ Mevent
+        p ≡ Port
+        m ≡ @Mevent
 }
 
                                                        #line 33
-defn mevent_clone ≡ Mevent
+defn mevent_clone ≡ @Mevent
 (
-    mev ≡ Mevent
+    mev ≡ @Mevent
 )
 {
                                                        #line 34
-        m ≡ Mevent
+        m ≡ @Mevent
 }
 
                                                        #line 41
-defn destroy_mevent ≡ PROC
+defn destroy_mevent ≡ ~
 (
-    mev ≡ Mevent
+    mev ≡ @Mevent
 )
 {
                                                        #line 42#line 43#line 44#line 45#line 46
 }
 
-defn destroy_datum ≡ PROC
+defn destroy_datum ≡ ~
 (
-    mev ≡ Mevent
+    mev ≡ @Mevent
 )
 {
                                                        #line 47#line 48#line 49#line 50
 }
 
-defn destroy_port ≡ PROC
+defn destroy_port ≡ ~
 (
-    mev ≡ Mevent
+    mev ≡ @Mevent
 )
 {
                                                        #line 51#line 52#line 53#line 54
 }
 
                                                        #line 55
-defn format_mevent ≡ STR
+defn format_mevent ≡ @Str
 (
-    m ≡ Mevent
+    m ≡ @Mevent
 )
 {
 }
 
-defn format_mevent_raw ≡ STR
+defn format_mevent_raw ≡ @Str
 (
-    m ≡ Mevent
+    m ≡ @Mevent
 )
 {
 }
