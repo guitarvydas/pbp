@@ -42,6 +42,7 @@ Build a combiner pass that folds the annotations into the various `.rt` files.
 container_reset_children == ~ does not declare a type for the 'for' loop variable
 ~ means procedure or Side_Effect (no return value, just a subroutine)
 λ means function
+Char means single character (unicode code point?)
 
 Build an enhanced version of `emit.*` that produces legal C code, with appropriate type annotations and run the result through a C compiler.
 
