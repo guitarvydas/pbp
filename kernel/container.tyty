@@ -1,73 +1,43 @@
-defn create_down_connector ≡
+defn create_down_connector ≡ @Wire
 (
-    container ≡ ,
-    proto_conn ≡ ,
-    connectors ≡ ,
-    children_by_id ≡
+    container ≡ @Container,
+    proto_conn ≡ @Wire,
+    connectors ≡ @Collection_of_Wire,
+    children_by_id ≡ @Table_by_ID_of_Part
 )
 {
                                                        #line 1#line 2
-        connector ≡
-        target_proto ≡                                 #line 6
-        id_proto ≡                                     #line 7
-        target_component ≡                             #line 8
-        if ( target_component ==  None) {
-                                                       #line 9#line 10
-        }
-        else
-        {                                              #line 11
-
-        }
-        return  connector                              #line 14#line 15#line 16
+        connector ≡ @Wire
+        target_proto ≡ @@Part                                #line 6
+        id_proto ≡ ID                                    #line 7
+        target_component ≡ @@Part                            #line 8
 }
 
-defn create_across_connector ≡
+defn create_across_connector ≡ @Wire
 (
-    container ≡ ,
-    proto_conn ≡ ,
-    connectors ≡ ,
-    children_by_id ≡
+    container ≡ @Container,
+    proto_conn ≡ @Wire_Proto,
+    connectors ≡ @Collection_of_Wire,
+    children_by_id ≡ @Table_by_ID_of_Part
 )
 {
                                                        #line 17
-        connector ≡
-        source_component ≡                             #line 20
-        target_component ≡                             #line 21
-        if  source_component ==  None {
-                                                       #line 22
-        }
-        else
-        {                                              #line 24
-            if  target_component ==  None {
-                                                       #line 26
-            }
-            else
-            {                                          #line 28
-
-            }                                          #line 31
-        }
-        return  connector                              #line 32#line 33#line 34
+        connector ≡ @Wire
+        source_component ≡ @Part                            #line 20
+        target_component ≡ @Part                            #line 21
 }
 
 defn create_up_connector ≡
 (
-    container ≡ ,
-    proto_conn ≡ ,
-    connectors ≡ ,
-    children_by_id ≡
+    container ≡ @Container,
+    proto_conn ≡ @Wire_Proto,
+    connectors ≡ @Collection_of_Wire,
+    children_by_id ≡ @Table_by_ID_of_Part
 )
 {
                                                        #line 35
-        connector ≡
-        source_component ≡                             #line 38
-        if  source_component ==  None {
-                                                       #line 39#line 40
-        }
-        else
-        {                                              #line 41
-
-        }
-        return  connector                              #line 45#line 46#line 47
+        connector ≡ @Wire
+        source_component ≡ @Part                            #line 38
 }
 
 defn create_through_connector ≡
@@ -79,143 +49,125 @@ defn create_through_connector ≡
 )
 {
                                                        #line 48
-        connector ≡
-        return  connector                              #line 53#line 54#line 55
+        connector ≡ @Wire
 }
                                                        #line 56
-defn container_instantiator ≡
+defn container_instantiator ≡ @Container
 (
-    reg ≡ ,
-    owner ≡ ,
-    container_name ≡ ,
-    desc ≡ ,
-    arg ≡
+    reg ≡ @Component_Registry,
+    owner ≡ @Container,
+    container_name ≡ @Str,
+    desc ≡ @Container_Template,
+    arg ≡ @Str
 )
 {
                                                        #line 57#line 87#line 88
 }
 
                                                        #line 89
-defn container_handler ≡
+defn container_handler ≡ @FHandler
 (
-    container ≡ ,
-    mevent ≡
+    container ≡ @Conainer,
+    mevent ≡ @Mevent
 )
 {
                                                        #line 90#line 94#line 95
 }
 
                                                        #line 96
-defn container_reset_children ≡
+defn container_reset_children ≡ ~
 (
-    container ≡
+    container ≡ @Container
 )
 {
                                                        #line 97
-        child ≡
-        for child in  container.children {
-                                                       #line 98#line 100
-        }                                              #line 106#line 107
+        child  ≡ @Part
 }
 
                                                        #line 108
-defn destroy_container ≡
+defn destroy_container ≡ ~
 (
-    eh ≡
+    eh ≡ @Part
 )
 {
                                                        #line 109#line 110#line 111
 }
 
                                                        #line 112
-defn sender_eq ≡
+defn sender_eq ≡ BOOL
 (
-    s1 ≡ ,
-    s2 ≡
+    s1 ≡ @Part,
+    s2 ≡ @Part
 )
 {
                                                        #line 113
-        same_components ≡                              #line 114
-        same_ports ≡                                   #line 115
-        return  same_components and  same_ports        #line 116#line 117#line 118
+        same_components ≡ BOOL                              #line 114
+        same_ports ≡ BOOL                                  #line 115
 }
 
                                                        #line 119#line 120
-defn deposit ≡
+defn deposit ≡ ~
 (
-    parent ≡ ,
-    conn ≡ ,
-    mevent ≡
+    parent ≡ @Container,
+    conn ≡ @Wire,
+    mevent ≡ @Mevent
 )
 {
                                                        #line 121
-        new_mevent ≡                                   #line 124#line 125
+        new_mevent ≡ @Mevent                                   #line 124#line 125
 }
 
-defn force_tick ≡
+defn force_tick ≡ ~
 (
-    parent ≡ ,
-    eh ≡
+    parent ≡ @Container,
+    eh ≡ @Part
 )
 {
                                                        #line 126
-        tick_mev ≡                                     #line 130#line 131
+        tick_mev ≡ @Mevent                                     #line 130#line 131
 }
 
-defn push_mevent ≡
+defn push_mevent ≡ ~
 (
-    parent ≡ ,
-    receiver ≡ ,
-    inq ≡ ,
-    m ≡
+    parent ≡ @Container,
+    receiver ≡ @Part,
+    inq ≡ @Queue,
+    m ≡ @Mevent
 )
 {
-                                                       #line 132
-        if ( receiver.special) {
-                                                       #line 134
-        }
-        else
-        {                                              #line 136#line 138
-        }                                              #line 139#line 140#line 141
 }
 
-defn is_self ≡
+defn is_self ≡ Bool
 (
-    child ≡ ,
-    container ≡
+    child ≡ @Part,
+    container ≡ @Container
 )
 {
-                                                       #line 142#line 143
-        return  child ==  container                    #line 144#line 145#line 146
 }
 
-defn step_child_once ≡
+defn step_child_once ≡ ~
 (
-    child ≡ ,
-    mev ≡
+    child ≡ @Part,
+    mev ≡ @Mevent
 )
 {
-                                                       #line 147
-        if ( ("PBPSTEPPING" in os.environ) ) {
-                                                       #line 148#line 151
-        }                                              #line 153#line 154
 }
 
-defn step_children ≡
+defn step_children ≡ ~
 (
-    container ≡ ,
-    causingMevent ≡
+    container ≡ @Container,
+    causingMevent ≡ @Mevent
 )
 {
                                                        #line 155
-        child ≡
+        child ≡ @Part
         for child in  list ( container.visit_ordering) {
                                                        #line 159#line 160
             if (not (is_self ( child, container))) {
                                                        #line 161
                 if (not ((0==len( child.inq)))) {
                                                        #line 162
-                    mev ≡
+                    mev ≡ @Mevent
                 }
                 else
                 {                                      #line 167
@@ -224,11 +176,11 @@ defn step_children ≡
                     }
                     else
                     {                                  #line 170
+                        mev ≡ @Mevent
                         mev ≡                          #line 174
                     }                                  #line 175
                 }                                      #line 176
             }                                          #line 177#line 179#line 180
-        child ≡
         for child in  container.children {
                                                        #line 181
             if  child.state ==  "active" {
@@ -284,7 +236,6 @@ defn any_child_ready ≡
 )
 {
                                                        #line 235
-        child ≡
         for child in  container.children {
                                                        #line 236
             if child_is_ready ( child) {

@@ -37,6 +37,9 @@ Build a combiner pass that folds the annotations into the various `.rt` files.
 ## Notes
 @ means pointer to
 @PART means pointer to runtime part (Container or Leaf)
+@STR means pointer to string
+container_reset_children == ~ does not declare a type for the 'for' loop variable
+~ means Side_Effect (no return value, just a subroutine)
 
 Build an enhanced version of `emit.*` that produces legal C code, with appropriate type annotations and run the result through a C compiler.
 

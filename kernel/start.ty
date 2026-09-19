@@ -22,9 +22,11 @@ defn initialize_component_palette_from_files ≡
 {
                                                        #line 17
         reg ≡                                          #line 18
+        diagram_source ≡
         for diagram_source in  diagram_source_files {
                                                        #line 19
             all_containers_within_single_file ≡
+            container ≡
             for container in  all_containers_within_single_file {
                                                        #line 21#line 23
             }                                          #line 24
@@ -39,6 +41,7 @@ defn initialize_component_palette_from_string ≡
                                                        #line 29
         reg ≡                                          #line 30
         all_containers ≡
+        container ≡
         for container in  all_containers {
                                                        #line 32#line 34
         }                                              #line 37

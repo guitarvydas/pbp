@@ -92,7 +92,7 @@ Type [_colon id] = ‛«id»’
 IfStatement [ _35 Exp StatementBlock ElifStatement* ElseStatement? rec?] = ‛\nif «Exp» {\n«StatementBlock»\n}«ElifStatement»«ElseStatement»«rec»’
 ElifStatement [ _37 Exp StatementBlock] = ‛\nelif «Exp» \n{«StatementBlock»\n}’
 ElseStatement [ _39 StatementBlock] = ‛\nelse \n{«StatementBlock»\n}’
-ForStatement [ _41 ident _43 Exp StatementBlock rec?] = ‛\nfor «ident» in «Exp» {\n«StatementBlock»«rec»\n}’
+ForStatement [ _41 ident _43 Exp StatementBlock rec?] = ‛\n«ident» ≡ \nfor «ident» in «Exp» {\n«StatementBlock»«rec»\n}’
 WhileStatement [ _45 Exp StatementBlock rec?] = ‛\nwhile «Exp» {\n«StatementBlock»«rec»\n}’
 
 Assignment_multiple [ _55 Lvals+ _57 _58 Exp rec?] =‛\n[«Lvals»] = «Exp»«rec»’
