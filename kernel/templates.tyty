@@ -1,0 +1,143 @@
+class Component_Registry {
+                                                       #line 1
+    templates ≡  @DICT_OF_Template                                         #line 2#line 3
+}
+                                                       #line 4
+class Template {
+                                                       #line 5
+    name ≡ @STR                                            #line 6
+    container ≡ @Container                                       #line 7
+    instantiator ≡ @FPART                                    #line 8#line 9
+}
+                                                       #line 10
+defn mkTemplate ≡ @Template
+(
+    name ≡ @STR,
+    template_data ≡ @Container,
+    instantiator ≡ @FPART
+)
+{
+                                                       #line 11
+        templ ≡ @Template
+}
+                                                       #line 19
+                                                       #line 20
+                                                       #line 21
+                                                       #line 22#line 23
+                                                       #line 24
+defn lnet2internal_from_file ≡ Collection_OF_WIRE
+(
+    json_filename ≡ @PATHNAME
+)
+{
+                                                       #line 25
+        pathname ≡ @PATHNAME
+        filename ≡ @STR                                    #line 29#line 30
+}
+
+                                                       #line 31
+defn lnet2internal_from_string ≡
+(
+    lnet ≡ @STR
+)
+{
+                                                       #line 32#line 34#line 35
+}
+
+
+defn make_component_registry ≡ @Component_Registry
+()
+{
+}
+
+defn register_component ≡ @Component_Registry
+(
+    reg ≡ @Component_Registry,
+    template ≡ @Template
+)
+{
+}
+
+defn register_component_allow_overwriting ≡ @Component_Registry
+(
+    reg ≡ @Component_Registry,
+    template ≡ @Template
+)
+{
+}
+
+defn abstracted_register_component ≡
+(
+    reg ≡ @Component_Registry,
+    template ≡ @Template,
+    ok_to_overwrite ≡ BOOL
+)
+{
+                                                       #line 47
+        name ≡ @STR
+}
+
+defn get_component_instance ≡ @PART
+(
+    reg ≡ @Component_Registry,
+    full_name ≡ @STR,
+    owner ≡ @Container
+)
+{
+                                                       #line 58#line 59#line 60#line 61#line 62
+        template_name ≡ @STR
+        if  ":" ==   full_name[0]  {
+                                                       #line 64
+            instance_name ≡ @STR
+            instance ≡ @PART
+            return  instance                           #line 67
+        }
+        else
+        {                                              #line 68
+            if  template_name in  reg.templates {
+                                                       #line 69
+                template ≡  @Template                           #line 70
+                if ( template ==  None) {
+                                                       #line 71
+                }
+                else
+                {                                      #line 74
+#                    instance_name ≡ @STR
+#                    instance ≡ @PART
+                }
+            }
+            else
+            {                                          #line 79#line 82
+            }                                          #line 83
+        }                                              #line 84#line 85
+}
+
+defn generate_instance_name ≡ @STR
+(
+    owner ≡ @Container,
+    template_name ≡ @STR
+)
+{
+                                                       #line 86
+        owner_name ≡ @STR                                  #line 87
+        instance_name ≡ @STR                               #line 88
+        if  None!= owner {
+                                                       #line 89
+            owner_name ≡ @STR                              #line 90
+            instance_name ≡ @STR
+        }
+        else
+        {                                              #line 92
+            instance_name ≡ @STR                           #line 93#line 94
+        }
+        return  instance_name                          #line 95#line 96#line 97
+}
+
+defn mangle_name ≡ @STR
+(
+    s ≡ @STR
+)
+{
+                                                       #line 98#line 99
+        return  s                                      #line 100#line 101
+}
