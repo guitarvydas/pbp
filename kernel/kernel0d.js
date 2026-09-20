@@ -29,19 +29,18 @@ class Eh {
     this.visit_ordering =  []                          /* line 24 */;
     this.connections = [];                             /* line 25 */
     this.handler =  null;                              /* line 26 */
-    this.reset_instance_data =  null;                  /* line 27 */
-    this.finject =  null;                              /* line 28 */
-    this.stop =  null;                                 /* line 29 */
-    this.instance_data =  null;                        /* line 30 *//*  arg needed for probe support  *//* line 31 */
-    this.arg =  "";                                    /* line 32 */
-    this.state =  "idle";                              /* line 33 */
-    this.special =  false;                             /* line 34 *//*  bootstrap debugging *//* line 35 */
-    this.kind =  null;/*  enum { container, leaf, } */ /* line 36 *//* line 37 */
+    this.finject =  null;                              /* line 27 */
+    this.stop =  null;                                 /* line 28 */
+    this.instance_data =  null;                        /* line 29 *//*  arg needed for probe support  *//* line 30 */
+    this.arg =  "";                                    /* line 31 */
+    this.state =  "idle";                              /* line 32 */
+    this.special =  false;                             /* line 33 *//*  bootstrap debugging *//* line 34 */
+    this.kind =  null;/*  enum { container, leaf, } */ /* line 35 *//* line 36 */
   }
 }
-                                                       /* line 38 */
-function injector (eh,mevent) {                        /* line 39 */
-    eh.handler ( eh, mevent)                           /* line 40 *//* line 41 *//* line 42 */
+                                                       /* line 37 */
+function injector (eh,mevent) {                        /* line 38 */
+    eh.handler ( eh, mevent)                           /* line 39 *//* line 40 *//* line 41 */
 }
 let  digits = [ "₀", "₁", "₂", "₃", "₄", "₅", "₆", "₇", "₈", "₉", "₁₀", "₁₁", "₁₂", "₁₃", "₁₄", "₁₅", "₁₆", "₁₇", "₁₈", "₁₉", "₂₀", "₂₁", "₂₂", "₂₃", "₂₄", "₂₅", "₂₆", "₂₇", "₂₈", "₂₉"];/* line 7 *//* line 8 *//* line 9 */
 function subscripted_digit (n) {                       /* line 10 *//* line 11 */

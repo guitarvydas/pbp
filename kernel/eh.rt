@@ -24,7 +24,6 @@ defobj Eh () {
         • visit_ordering ⇐ # freshQueue ()
         • connections ⇐ []
         • handler ⇐ ϕ
-        • reset_instance_data ⇐ ϕ
         • finject ⇐ ϕ
         • stop ⇐ ϕ
         • instance_data ⇐ ϕ

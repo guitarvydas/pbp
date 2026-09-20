@@ -59,17 +59,16 @@ class Eh:
         self.visit_ordering =  deque ([])              #line 24
         self.connections = []                          #line 25
         self.handler =  None                           #line 26
-        self.reset_instance_data =  None               #line 27
-        self.finject =  None                           #line 28
-        self.stop =  None                              #line 29
-        self.instance_data =  None                     #line 30# arg needed for probe support #line 31
-        self.arg =  ""                                 #line 32
-        self.state =  "idle"                           #line 33
-        self.special =  False                          #line 34# bootstrap debugging#line 35
-        self.kind =  None # enum { container, leaf, }  #line 36#line 37
-                                                       #line 38
-def injector (eh,mevent):                              #line 39
-    eh.handler ( eh, mevent)                           #line 40#line 41#line 42
+        self.finject =  None                           #line 27
+        self.stop =  None                              #line 28
+        self.instance_data =  None                     #line 29# arg needed for probe support #line 30
+        self.arg =  ""                                 #line 31
+        self.state =  "idle"                           #line 32
+        self.special =  False                          #line 33# bootstrap debugging#line 34
+        self.kind =  None # enum { container, leaf, }  #line 35#line 36
+                                                       #line 37
+def injector (eh,mevent):                              #line 38
+    eh.handler ( eh, mevent)                           #line 39#line 40#line 41
 digits = [ "₀", "₁", "₂", "₃", "₄", "₅", "₆", "₇", "₈", "₉", "₁₀", "₁₁", "₁₂", "₁₃", "₁₄", "₁₅", "₁₆", "₁₇", "₁₈", "₁₉", "₂₀", "₂₁", "₂₂", "₂₃", "₂₄", "₂₅", "₂₆", "₂₇", "₂₈", "₂₉"]#line 7#line 8#line 9
 def subscripted_digit (n):                             #line 10
     global digits                                      #line 11

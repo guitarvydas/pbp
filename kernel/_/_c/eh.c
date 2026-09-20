@@ -23,14 +23,13 @@ typedef struct _Eh {
     visit_ordering;
     connections;                                       /* line 25 */
     handler;                                           /* line 26 */
-    reset_instance_data;                               /* line 27 */
-    finject;                                           /* line 28 */
-    stop;                                              /* line 29 */
-    instance_data;                                     /* line 30 *//*  arg needed for probe support  *//* line 31 */
-    arg;                                               /* line 32 */
-    state;                                             /* line 33 */
-    special;                                           /* line 34 *//*  bootstrap debugging *//* line 35 */
-    kind; /*  enum { container, leaf, } */             /* line 36 *//* line 37 */
+    finject;                                           /* line 27 */
+    stop;                                              /* line 28 */
+    instance_data;                                     /* line 29 *//*  arg needed for probe support  *//* line 30 */
+    arg;                                               /* line 31 */
+    state;                                             /* line 32 */
+    special;                                           /* line 33 *//*  bootstrap debugging *//* line 34 */
+    kind; /*  enum { container, leaf, } */             /* line 35 *//* line 36 */
 } Eh;
 Eh fresh_Eh () {
     Eh *self;
@@ -43,17 +42,16 @@ Eh fresh_Eh () {
     self->visit_ordering =  deque ([])                 /* line 24 */;
     self->connections = [];                            /* line 25 */
     self->handler =  NULL;                             /* line 26 */
-    self->reset_instance_data =  NULL;                 /* line 27 */
-    self->finject =  NULL;                             /* line 28 */
-    self->stop =  NULL;                                /* line 29 */
-    self->instance_data =  NULL;                       /* line 30 *//*  arg needed for probe support  *//* line 31 */
-    self->arg =  "";                                   /* line 32 */
-    self->state =  "idle";                             /* line 33 */
-    self->special =  False;                            /* line 34 *//*  bootstrap debugging *//* line 35 */
-    self->kind =  NULL; /*  enum { container, leaf, } *//* line 36 *//* line 37 */
+    self->finject =  NULL;                             /* line 27 */
+    self->stop =  NULL;                                /* line 28 */
+    self->instance_data =  NULL;                       /* line 29 *//*  arg needed for probe support  *//* line 30 */
+    self->arg =  "";                                   /* line 31 */
+    self->state =  "idle";                             /* line 32 */
+    self->special =  False;                            /* line 33 *//*  bootstrap debugging *//* line 34 */
+    self->kind =  NULL; /*  enum { container, leaf, } *//* line 35 *//* line 36 */
     return self;
 }
-                                                       /* line 38 */
+                                                       /* line 37 */
 void injector (eh,mevent) {
-                                                       /* line 39 */
-    eh.handler ( eh, mevent)                           /* line 40 *//* line 41 *//* line 42 */}
+                                                       /* line 38 */
+    eh.handler ( eh, mevent)                           /* line 39 *//* line 40 *//* line 41 */}
