@@ -3,6 +3,43 @@ import path from 'path';
 import execSync from 'child_process';
 import 'dotenv/config';
                                                        /* line 1 */
+/*  Data for an asyncronous component _ effectively, a function with input *//* line 1 */
+/*  and output queues of mevents. */                   /* line 2 */
+/*  */                                                 /* line 3 */
+/*  Components can either be a user_supplied function ("leaf“), or a “container“ *//* line 4 */
+/*  that routes mevents to child components according to a list of connections *//* line 5 */
+/*  that serve as a mevent routing table. */           /* line 6 */
+/*  */                                                 /* line 7 */
+/*  Child components themselves can be leaves or other containers. *//* line 8 */
+/*  */                                                 /* line 9 */
+/*  `handler` invokes the code that is attached to this component. *//* line 10 */
+/*  */                                                 /* line 11 */
+/*  `instance_data` is a pointer to instance data that the `leaf_handler` *//* line 12 */
+/*  function may want whenever it is invoked again. */ /* line 13 *//* line 14 */
+/*  TODO: what is .routings for? (is it a historical artefact that can be removed?)  *//* line 15 *//* line 16 */
+/*  Eh_States :: enum { idle, active } */              /* line 17 */
+class Eh {
+  constructor () {                                     /* line 18 */
+
+    this.name =  "";                                   /* line 19 */
+    this.inq =  []                                     /* line 20 */;
+    this.outq =  []                                    /* line 21 */;
+    this.owner =  null;                                /* line 22 */
+    this.children = [];                                /* line 23 */
+    this.visit_ordering =  []                          /* line 24 */;
+    this.connections = [];                             /* line 25 */
+    this.routings =  []                                /* line 26 */;
+    this.handler =  null;                              /* line 27 */
+    this.reset_instance_data =  null;                  /* line 28 */
+    this.finject =  null;                              /* line 29 */
+    this.stop =  null;                                 /* line 30 */
+    this.instance_data =  null;                        /* line 31 *//*  arg needed for probe support  *//* line 32 */
+    this.arg =  "";                                    /* line 33 */
+    this.state =  "idle";                              /* line 34 */
+    this.special =  false;                             /* line 35 *//*  bootstrap debugging *//* line 36 */
+    this.kind =  null;/*  enum { container, leaf, } */ /* line 37 *//* line 38 */
+  }
+}
 let  digits = [ "₀", "₁", "₂", "₃", "₄", "₅", "₆", "₇", "₈", "₉", "₁₀", "₁₁", "₁₂", "₁₃", "₁₄", "₁₅", "₁₆", "₁₇", "₁₈", "₁₉", "₂₀", "₂₁", "₂₂", "₂₃", "₂₄", "₂₅", "₂₆", "₂₇", "₂₈", "₂₉"];/* line 7 *//* line 8 *//* line 9 */
 function subscripted_digit (n) {                       /* line 10 *//* line 11 */
     if (((( n >=  0) && ( n <=  29)))) {               /* line 12 */
@@ -156,21 +193,30 @@ class Component_Registry {
   }
 }
                                                        /* line 4 */
-function mkTemplate (name,template_data,instantiator) {/* line 5 */
-    let  templ =  new Template ();                     /* line 6 */;
-    templ.name =  name;                                /* line 7 */
-    templ.template_data =  template_data;              /* line 8 */
-    templ.instantiator =  instantiator;                /* line 9 */
-    return  templ;                                     /* line 10 *//* line 11 *//* line 12 */
+class Template {
+  constructor () {                                     /* line 5 */
+
+    this.name =  null;                                 /* line 6 */
+    this.container =  null;                            /* line 7 */
+    this.instantiator =  null;                         /* line 8 *//* line 9 */
+  }
 }
-                                                       /* line 13 */
-/*  convert a little-network to internal form (an object data structure created by json parser) ...  *//* line 14 */
-/*  the actual data structure depends on the json parser library used by the target language  *//* line 15 */
-/*  the form of the data structure doesn;t matter here, as long as we use lookup operators "@" in this .rt code  *//* line 16 *//* line 17 */
-/*  ... by reading the little-net from an external file  *//* line 18 */
-function lnet2internal_from_file (container_xml) {     /* line 19 */
-    let pathname = process.env.PBPWD                   /* line 20 */;
-    let filename =   container_xml                     /* line 21 */;
+                                                       /* line 10 */
+function mkTemplate (name,template_data,instantiator) {/* line 11 */
+    let  templ =  new Template ();                     /* line 12 */;
+    templ.name =  name;                                /* line 13 */
+    templ.template_data =  template_data;              /* line 14 */
+    templ.instantiator =  instantiator;                /* line 15 */
+    return  templ;                                     /* line 16 *//* line 17 *//* line 18 */
+}
+                                                       /* line 19 */
+/*  convert a little-network to internal form (an object data structure created by json parser) ...  *//* line 20 */
+/*  the actual data structure depends on the json parser library used by the target language  *//* line 21 */
+/*  the form of the data structure doesn;t matter here, as long as we use lookup operators "@" in this .rt code  *//* line 22 *//* line 23 */
+/*  ... by reading the little-net from an external file  *//* line 24 */
+function lnet2internal_from_file (container_xml) {     /* line 25 */
+    let pathname = process.env.PBPWD                   /* line 26 */;
+    let filename =   container_xml                     /* line 27 */;
 
     let jstr = undefined;
     if (filename == "0") {
@@ -185,90 +231,90 @@ function lnet2internal_from_file (container_xml) {     /* line 19 */
     } else {
     return undefined;
     }
-                                                       /* line 22 *//* line 23 *//* line 24 */
+                                                       /* line 28 *//* line 29 *//* line 30 */
 }
 
-/*  ... by reading the little-net from an embedded string (an aspect of creating t2t tool code)  *//* line 25 */
-function lnet2internal_from_string (lnet) {            /* line 26 */
+/*  ... by reading the little-net from an embedded string (an aspect of creating t2t tool code)  *//* line 31 */
+function lnet2internal_from_string (lnet) {            /* line 32 */
 
     return JSON.parse (lnet);
-                                                       /* line 27 *//* line 28 *//* line 29 */
+                                                       /* line 33 *//* line 34 *//* line 35 */
 }
 
-function delete_decls (d) {                            /* line 30 *//* line 31 *//* line 32 *//* line 33 */
+function delete_decls (d) {                            /* line 36 *//* line 37 *//* line 38 *//* line 39 */
 }
 
-function make_component_registry () {                  /* line 34 */
-    return  new Component_Registry ();                 /* line 35 */;/* line 36 *//* line 37 */
+function make_component_registry () {                  /* line 40 */
+    return  new Component_Registry ();                 /* line 41 */;/* line 42 *//* line 43 */
 }
 
 function register_component (reg,template) {
-    return abstracted_register_component ( reg, template, false);/* line 38 */
+    return abstracted_register_component ( reg, template, false);/* line 44 */
 }
 
 function register_component_allow_overwriting (reg,template) {
-    return abstracted_register_component ( reg, template, true);/* line 39 *//* line 40 */
+    return abstracted_register_component ( reg, template, true);/* line 45 *//* line 46 */
 }
 
-function abstracted_register_component (reg,template,ok_to_overwrite) {/* line 41 */
-    let name = mangle_name ( template.name)            /* line 42 */;
-    if ((((((( reg!= null) && ( name))) in ( reg.templates))) && ((!  ok_to_overwrite)))) {/* line 43 */
-      load_error ( ( "Component /".toString ()+  ( template.name.toString ()+  "/ already declared".toString ()) .toString ()) )/* line 44 */
-      return  reg;                                     /* line 45 */
+function abstracted_register_component (reg,template,ok_to_overwrite) {/* line 47 */
+    let name = mangle_name ( template.name)            /* line 48 */;
+    if ((((((( reg!= null) && ( name))) in ( reg.templates))) && ((!  ok_to_overwrite)))) {/* line 49 */
+      load_error ( ( "Component /".toString ()+  ( template.name.toString ()+  "/ already declared".toString ()) .toString ()) )/* line 50 */
+      return  reg;                                     /* line 51 */
     }
-    else {                                             /* line 46 */
-      reg.templates [name] =  template;                /* line 47 */
-      return  reg;                                     /* line 48 *//* line 49 */
-    }                                                  /* line 50 *//* line 51 */
+    else {                                             /* line 52 */
+      reg.templates [name] =  template;                /* line 53 */
+      return  reg;                                     /* line 54 *//* line 55 */
+    }                                                  /* line 56 *//* line 57 */
 }
 
-function get_component_instance (reg,full_name,owner) {/* line 52 */
-    /*  If a part name begins with ":", it is treated as a JIT part and we let the runtime factory generate it on-the-fly (see kernel_external.rt and external.rt) else it is assumed to be a regular AOT part and assumed to have been registered before runtime, so we just pull its template out of the registry and instantiate it.  *//* line 53 */
-    /*  ":?<string>" is a probe part that is tagged with <string>  *//* line 54 */
-    /*  ":$ <command>" is a shell-out part that sends <command> to the operating system shell  *//* line 55 */
-    /*  ":<string>" else, it's just treated as a string part that produces <string> on its output  *//* line 56 */
-    let template_name = mangle_name ( full_name)       /* line 57 */;
-    if ( ":" ==   full_name[0] ) {                     /* line 58 */
-      let instance_name = generate_instance_name ( owner, template_name)/* line 59 */;
-      let instance = jit_instantiate ( reg, owner, instance_name, full_name)/* line 60 */;
-      return  instance;                                /* line 61 */
+function get_component_instance (reg,full_name,owner) {/* line 58 */
+    /*  If a part name begins with ":", it is treated as a JIT part and we let the runtime factory generate it on-the-fly (see kernel_external.rt and external.rt) else it is assumed to be a regular AOT part and assumed to have been registered before runtime, so we just pull its template out of the registry and instantiate it.  *//* line 59 */
+    /*  ":?<string>" is a probe part that is tagged with <string>  *//* line 60 */
+    /*  ":$ <command>" is a shell-out part that sends <command> to the operating system shell  *//* line 61 */
+    /*  ":<string>" else, it's just treated as a string part that produces <string> on its output  *//* line 62 */
+    let template_name = mangle_name ( full_name)       /* line 63 */;
+    if ( ":" ==   full_name[0] ) {                     /* line 64 */
+      let instance_name = generate_instance_name ( owner, template_name)/* line 65 */;
+      let instance = jit_instantiate ( reg, owner, instance_name, full_name)/* line 66 */;
+      return  instance;                                /* line 67 */
     }
-    else {                                             /* line 62 */
-      if ((( template_name) in ( reg.templates))) {    /* line 63 */
-        let template =  reg.templates [template_name]; /* line 64 */
-        if (( template ==  null)) {                    /* line 65 */
-          load_error ( ( "Registry Error (A): Can't find component /".toString ()+  ( template_name.toString ()+  "/".toString ()) .toString ()) )/* line 66 */
-          return  null;                                /* line 67 */
+    else {                                             /* line 68 */
+      if ((( template_name) in ( reg.templates))) {    /* line 69 */
+        let template =  reg.templates [template_name]; /* line 70 */
+        if (( template ==  null)) {                    /* line 71 */
+          load_error ( ( "Registry Error (A): Can't find component /".toString ()+  ( template_name.toString ()+  "/".toString ()) .toString ()) )/* line 72 */
+          return  null;                                /* line 73 */
         }
-        else {                                         /* line 68 */
-          let instance_name = generate_instance_name ( owner, template_name)/* line 69 */;
-          let instance =  template.instantiator ( reg, owner, instance_name, template.template_data, "")/* line 70 */;
-          return  instance;                            /* line 71 *//* line 72 */
+        else {                                         /* line 74 */
+          let instance_name = generate_instance_name ( owner, template_name)/* line 75 */;
+          let instance =  template.instantiator ( reg, owner, instance_name, template.template_data, "")/* line 76 */;
+          return  instance;                            /* line 77 *//* line 78 */
         }
       }
-      else {                                           /* line 73 */
-        load_error ( ( "Registry Error (B): Can't find component /".toString ()+  ( template_name.toString ()+  "/".toString ()) .toString ()) )/* line 74 */
-        return  null;                                  /* line 75 *//* line 76 */
-      }                                                /* line 77 */
-    }                                                  /* line 78 *//* line 79 */
+      else {                                           /* line 79 */
+        load_error ( ( "Registry Error (B): Can't find component /".toString ()+  ( template_name.toString ()+  "/".toString ()) .toString ()) )/* line 80 */
+        return  null;                                  /* line 81 *//* line 82 */
+      }                                                /* line 83 */
+    }                                                  /* line 84 *//* line 85 */
 }
 
-function generate_instance_name (owner,template_name) {/* line 80 */
-    let owner_name =  "";                              /* line 81 */
-    let instance_name =  template_name;                /* line 82 */
-    if ( null!= owner) {                               /* line 83 */
-      owner_name =  owner.name;                        /* line 84 */
-      instance_name =  ( owner_name.toString ()+  ( "▹".toString ()+  template_name.toString ()) .toString ()) /* line 85 */;
+function generate_instance_name (owner,template_name) {/* line 86 */
+    let owner_name =  "";                              /* line 87 */
+    let instance_name =  template_name;                /* line 88 */
+    if ( null!= owner) {                               /* line 89 */
+      owner_name =  owner.name;                        /* line 90 */
+      instance_name =  ( owner_name.toString ()+  ( "▹".toString ()+  template_name.toString ()) .toString ()) /* line 91 */;
     }
-    else {                                             /* line 86 */
-      instance_name =  template_name;                  /* line 87 *//* line 88 */
+    else {                                             /* line 92 */
+      instance_name =  template_name;                  /* line 93 *//* line 94 */
     }
-    return  instance_name;                             /* line 89 *//* line 90 *//* line 91 */
+    return  instance_name;                             /* line 95 *//* line 96 *//* line 97 */
 }
 
-function mangle_name (s) {                             /* line 92 */
-    /*  trim name to remove code from Container component names _ deferred until later (or never) *//* line 93 */
-    return  s;                                         /* line 94 *//* line 95 */
+function mangle_name (s) {                             /* line 98 */
+    /*  trim name to remove code from Container component names _ deferred until later (or never) *//* line 99 */
+    return  s;                                         /* line 100 *//* line 101 */
 }
 function create_down_connector (container,proto_conn,connectors,children_by_id) {/* line 1 */
     /*  JSON: {;dir': 0, 'source': {'name': '', 'id': 0}, 'source_port': '', 'target': {'name': 'Echo', 'id': 12}, 'target_port': ''}, *//* line 2 */
@@ -536,7 +582,7 @@ function make_container (name,owner) {                 /* line 255 */
     eh.name =  name;                                   /* line 257 */
     eh.owner =  owner;                                 /* line 258 */
     eh.handler =  container_handler;                   /* line 259 */
-    eh.finject =  injector;                            /* line 260 */
+    eh.finject =  inject_mevent;                       /* line 260 */
     eh.stop =  container_reset_children;               /* line 261 */
     eh.state =  "idle";                                /* line 262 */
     eh.kind =  "container";                            /* line 263 */
@@ -590,7 +636,7 @@ function make_leaf (name,owner,instance_data,arg,handler,reset_handler) {/* line
     eh.owner =  owner;                                 /* line 11 */
     eh.handler =  handler;                             /* line 12 */
     eh.reset_handler =  reset_handler;                 /* line 13 */
-    eh.finject =  injector;                            /* line 14 */
+    eh.finject =  inject_mevent;                       /* line 14 */
     eh.stop =  leaf_reset;                             /* line 15 */
     eh.instance_data =  instance_data;                 /* line 16 */
     eh.arg =  arg;                                     /* line 17 */

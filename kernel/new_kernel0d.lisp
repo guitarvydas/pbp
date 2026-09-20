@@ -107,6 +107,26 @@ x))))
 (defmethod queue2list ((self Queue))
 (contents self))
                                                             #|line 1|#
+#|  Data for an asyncronous component _ effectively, a function with input |# #|line 1|# #|  and output queues of mevents. |# #|line 2|# #|  |# #|line 3|# #|  Components can either be a user_supplied function ("leaf“), or a “container“ |# #|line 4|# #|  that routes mevents to child components according to a list of connections |# #|line 5|# #|  that serve as a mevent routing table. |# #|line 6|# #|  |# #|line 7|# #|  Child components themselves can be leaves or other containers. |# #|line 8|# #|  |# #|line 9|# #|  `handler` invokes the code that is attached to this component. |# #|line 10|# #|  |# #|line 11|# #|  `instance_data` is a pointer to instance data that the `leaf_handler` |# #|line 12|# #|  function may want whenever it is invoked again. |# #|line 13|# #|line 14|# #|  TODO: what is .routings for? (is it a historical artefact that can be removed?)  |# #|line 15|# #|line 16|# #|  Eh_States :: enum { idle, active } |# #|line 17|#
+(defclass Eh ()                                             #|line 18|#
+  (
+    (name :accessor name :initarg :name :initform  "")      #|line 19|#
+    (inq :accessor inq :initarg :inq :initform  (make-instance 'Queue) #|line 20|#)
+    (outq :accessor outq :initarg :outq :initform  (make-instance 'Queue) #|line 21|#)
+    (owner :accessor owner :initarg :owner :initform  nil)  #|line 22|#
+    (children :accessor children :initarg :children :initform  nil)  #|line 23|#
+    (visit_ordering :accessor visit_ordering :initarg :visit_ordering :initform  (make-instance 'Queue) #|line 24|#)
+    (connections :accessor connections :initarg :connections :initform  nil)  #|line 25|#
+    (routings :accessor routings :initarg :routings :initform  (make-instance 'Queue) #|line 26|#)
+    (handler :accessor handler :initarg :handler :initform  nil)  #|line 27|#
+    (reset_instance_data :accessor reset_instance_data :initarg :reset_instance_data :initform  nil)  #|line 28|#
+    (finject :accessor finject :initarg :finject :initform  nil)  #|line 29|#
+    (stop :accessor stop :initarg :stop :initform  nil)     #|line 30|#
+    (instance_data :accessor instance_data :initarg :instance_data :initform  nil)  #|line 31|# #|  arg needed for probe support  |# #|line 32|#
+    (arg :accessor arg :initarg :arg :initform  "")         #|line 33|#
+    (state :accessor state :initarg :state :initform  "idle")  #|line 34|#
+    (special :accessor special :initarg :special :initform  nil)  #|line 35|# #|  bootstrap debugging |# #|line 36|#
+    (kind :accessor kind :initarg :kind :initform  nil)  #|  enum { container, leaf, } |# #|line 37|#)) #|line 38|#
 (defparameter  digits (list                                 #|line 1|#  "₀"  "₁"  "₂"  "₃"  "₄"  "₅"  "₆"  "₇"  "₈"  "₉"  "₁₀"  "₁₁"  "₁₂"  "₁₃"  "₁₄"  "₁₅"  "₁₆"  "₁₇"  "₁₈"  "₁₉"  "₂₀"  "₂₁"  "₂₂"  "₂₃"  "₂₄"  "₂₅"  "₂₆"  "₂₇"  "₂₈"  "₂₉" )) #|line 7|# #|line 8|# #|line 9|#
 (defun subscripted_digit (&optional  n)
   (declare (ignorable  n))                                  #|line 10|# #|line 11|#
@@ -247,122 +267,129 @@ x))))
     (templates :accessor templates :initarg :templates :initform  (dict-fresh))  #|line 2|#)) #|line 3|#
 
                                                             #|line 4|#
+(defclass Template ()                                       #|line 5|#
+  (
+    (name :accessor name :initarg :name :initform  nil)     #|line 6|#
+    (container :accessor container :initarg :container :initform  nil)  #|line 7|#
+    (instantiator :accessor instantiator :initarg :instantiator :initform  nil)  #|line 8|#)) #|line 9|#
+
+                                                            #|line 10|#
 (defun mkTemplate (&optional  name  template_data  instantiator)
-  (declare (ignorable  name  template_data  instantiator))  #|line 5|#
-  (let (( templ  (make-instance 'Template)                  #|line 6|#))
+  (declare (ignorable  name  template_data  instantiator))  #|line 11|#
+  (let (( templ  (make-instance 'Template)                  #|line 12|#))
     (declare (ignorable  templ))
-    (setf (slot-value  templ 'name)  name)                  #|line 7|#
-    (setf (slot-value  templ 'template_data)  template_data) #|line 8|#
-    (setf (slot-value  templ 'instantiator)  instantiator)  #|line 9|#
-    (return-from mkTemplate  templ)                         #|line 10|#) #|line 11|#
-  )                                                         #|line 13|# #|  convert a little-network to internal form (an object data structure created by json parser) ...  |# #|line 14|# #|  the actual data structure depends on the json parser library used by the target language  |# #|line 15|# #|  the form of the data structure doesn;t matter here, as long as we use lookup operators "@" in this .rt code  |# #|line 16|# #|line 17|# #|  ... by reading the little-net from an external file  |# #|line 18|#
+    (setf (slot-value  templ 'name)  name)                  #|line 13|#
+    (setf (slot-value  templ 'template_data)  template_data) #|line 14|#
+    (setf (slot-value  templ 'instantiator)  instantiator)  #|line 15|#
+    (return-from mkTemplate  templ)                         #|line 16|#) #|line 17|#
+  )                                                         #|line 19|# #|  convert a little-network to internal form (an object data structure created by json parser) ...  |# #|line 20|# #|  the actual data structure depends on the json parser library used by the target language  |# #|line 21|# #|  the form of the data structure doesn;t matter here, as long as we use lookup operators "@" in this .rt code  |# #|line 22|# #|line 23|# #|  ... by reading the little-net from an external file  |# #|line 24|#
 (defun lnet2internal_from_file (&optional  container_xml)
-  (declare (ignorable  container_xml))                      #|line 19|#
-  (let ((pathname (uiop:getenv "PBPWD")                     #|line 20|#))
+  (declare (ignorable  container_xml))                      #|line 25|#
+  (let ((pathname (uiop:getenv "PBPWD")                     #|line 26|#))
     (declare (ignorable pathname))
-    (let ((filename  container_xml                          #|line 21|#))
+    (let ((filename  container_xml                          #|line 27|#))
       (declare (ignorable filename))
 
       ;; read json from a named file and convert it into internal form (a list of Container alists)
       (json2dict (merge-pathnames pathname filename))
-                                                            #|line 22|#)) #|line 23|#
-  ) #|  ... by reading the little-net from an embedded string (an aspect of creating t2t tool code)  |# #|line 25|#
+                                                            #|line 28|#)) #|line 29|#
+  ) #|  ... by reading the little-net from an embedded string (an aspect of creating t2t tool code)  |# #|line 31|#
 (defun lnet2internal_from_string (&optional  lnet)
-  (declare (ignorable  lnet))                               #|line 26|#
+  (declare (ignorable  lnet))                               #|line 32|#
 
   (internalize-lnet-from-JSON *lnet*)
-                                                            #|line 27|# #|line 28|#
+                                                            #|line 33|# #|line 34|#
   )
 (defun delete_decls (&optional  d)
-  (declare (ignorable  d))                                  #|line 30|#
-  #| pass |#                                                #|line 31|# #|line 32|#
+  (declare (ignorable  d))                                  #|line 36|#
+  #| pass |#                                                #|line 37|# #|line 38|#
   )
 (defun make_component_registry (&optional )
-  (declare (ignorable ))                                    #|line 34|#
-  (return-from make_component_registry  (make-instance 'Component_Registry) #|line 35|#) #|line 36|#
+  (declare (ignorable ))                                    #|line 40|#
+  (return-from make_component_registry  (make-instance 'Component_Registry) #|line 41|#) #|line 42|#
   )
 (defun register_component (&optional  reg  template)
   (declare (ignorable  reg  template))
-  (return-from register_component (funcall (quote abstracted_register_component)   reg  template  nil )) #|line 38|#
+  (return-from register_component (funcall (quote abstracted_register_component)   reg  template  nil )) #|line 44|#
   )
 (defun register_component_allow_overwriting (&optional  reg  template)
   (declare (ignorable  reg  template))
-  (return-from register_component_allow_overwriting (funcall (quote abstracted_register_component)   reg  template  t )) #|line 39|#
+  (return-from register_component_allow_overwriting (funcall (quote abstracted_register_component)   reg  template  t )) #|line 45|#
   )
 (defun abstracted_register_component (&optional  reg  template  ok_to_overwrite)
-  (declare (ignorable  reg  template  ok_to_overwrite))     #|line 41|#
-  (let ((name (funcall (quote mangle_name)  (slot-value  template 'name)  #|line 42|#)))
+  (declare (ignorable  reg  template  ok_to_overwrite))     #|line 47|#
+  (let ((name (funcall (quote mangle_name)  (slot-value  template 'name)  #|line 48|#)))
     (declare (ignorable name))
     (cond
-      (( and  ( dict-in?  ( and  (not (equal   reg  nil))  name) (slot-value  reg 'templates)) (not  ok_to_overwrite)) #|line 43|#
-        (funcall (quote load_error)   (concatenate 'string  "Component /"  (concatenate 'string (slot-value  template 'name)  "/ already declared"))  #|line 44|#)
-        (return-from abstracted_register_component  reg)    #|line 45|#
+      (( and  ( dict-in?  ( and  (not (equal   reg  nil))  name) (slot-value  reg 'templates)) (not  ok_to_overwrite)) #|line 49|#
+        (funcall (quote load_error)   (concatenate 'string  "Component /"  (concatenate 'string (slot-value  template 'name)  "/ already declared"))  #|line 50|#)
+        (return-from abstracted_register_component  reg)    #|line 51|#
         )
-      (t                                                    #|line 46|#
-        (setf (gethash name (slot-value  reg 'templates))  template) #|line 47|#
-        (return-from abstracted_register_component  reg)    #|line 48|# #|line 49|#
-        )))                                                 #|line 50|#
+      (t                                                    #|line 52|#
+        (setf (gethash name (slot-value  reg 'templates))  template) #|line 53|#
+        (return-from abstracted_register_component  reg)    #|line 54|# #|line 55|#
+        )))                                                 #|line 56|#
   )
 (defun get_component_instance (&optional  reg  full_name  owner)
-  (declare (ignorable  reg  full_name  owner))              #|line 52|#
-  #|  If a part name begins with ":", it is treated as a JIT part and we let the runtime factory generate it on-the-fly (see kernel_external.rt and external.rt) else it is assumed to be a regular AOT part and assumed to have been registered before runtime, so we just pull its template out of the registry and instantiate it.  |# #|line 53|#
-  #|  ":?<string>" is a probe part that is tagged with <string>  |# #|line 54|#
-  #|  ":$ <command>" is a shell-out part that sends <command> to the operating system shell  |# #|line 55|#
-  #|  ":<string>" else, it's just treated as a string part that produces <string> on its output  |# #|line 56|#
-  (let ((template_name (funcall (quote mangle_name)   full_name  #|line 57|#)))
+  (declare (ignorable  reg  full_name  owner))              #|line 58|#
+  #|  If a part name begins with ":", it is treated as a JIT part and we let the runtime factory generate it on-the-fly (see kernel_external.rt and external.rt) else it is assumed to be a regular AOT part and assumed to have been registered before runtime, so we just pull its template out of the registry and instantiate it.  |# #|line 59|#
+  #|  ":?<string>" is a probe part that is tagged with <string>  |# #|line 60|#
+  #|  ":$ <command>" is a shell-out part that sends <command> to the operating system shell  |# #|line 61|#
+  #|  ":<string>" else, it's just treated as a string part that produces <string> on its output  |# #|line 62|#
+  (let ((template_name (funcall (quote mangle_name)   full_name  #|line 63|#)))
     (declare (ignorable template_name))
     (cond
-      (( equal    ":"  (string (char  full_name 0)))        #|line 58|#
-        (let ((instance_name (funcall (quote generate_instance_name)   owner  template_name  #|line 59|#)))
+      (( equal    ":"  (string (char  full_name 0)))        #|line 64|#
+        (let ((instance_name (funcall (quote generate_instance_name)   owner  template_name  #|line 65|#)))
           (declare (ignorable instance_name))
-          (let ((instance (funcall (quote jit_instantiate)   reg  owner  instance_name  full_name  #|line 60|#)))
+          (let ((instance (funcall (quote jit_instantiate)   reg  owner  instance_name  full_name  #|line 66|#)))
             (declare (ignorable instance))
-            (return-from get_component_instance  instance)  #|line 61|#))
+            (return-from get_component_instance  instance)  #|line 67|#))
         )
-      (t                                                    #|line 62|#
+      (t                                                    #|line 68|#
         (cond
-          (( dict-in?   template_name (slot-value  reg 'templates)) #|line 63|#
+          (( dict-in?   template_name (slot-value  reg 'templates)) #|line 69|#
             (let ((template (gethash template_name (slot-value  reg 'templates))))
-              (declare (ignorable template))                #|line 64|#
+              (declare (ignorable template))                #|line 70|#
               (cond
-                (( equal    template  nil)                  #|line 65|#
-                  (funcall (quote load_error)   (concatenate 'string  "Registry Error (A): Can't find component /"  (concatenate 'string  template_name  "/"))  #|line 66|#)
-                  (return-from get_component_instance  nil) #|line 67|#
+                (( equal    template  nil)                  #|line 71|#
+                  (funcall (quote load_error)   (concatenate 'string  "Registry Error (A): Can't find component /"  (concatenate 'string  template_name  "/"))  #|line 72|#)
+                  (return-from get_component_instance  nil) #|line 73|#
                   )
-                (t                                          #|line 68|#
-                  (let ((instance_name (funcall (quote generate_instance_name)   owner  template_name  #|line 69|#)))
+                (t                                          #|line 74|#
+                  (let ((instance_name (funcall (quote generate_instance_name)   owner  template_name  #|line 75|#)))
                     (declare (ignorable instance_name))
-                    (let ((instance (funcall (slot-value  template 'instantiator)   reg  owner  instance_name (slot-value  template 'template_data)  ""  #|line 70|#)))
+                    (let ((instance (funcall (slot-value  template 'instantiator)   reg  owner  instance_name (slot-value  template 'template_data)  ""  #|line 76|#)))
                       (declare (ignorable instance))
-                      (return-from get_component_instance  instance) #|line 71|#)) #|line 72|#
+                      (return-from get_component_instance  instance) #|line 77|#)) #|line 78|#
                   )))
             )
-          (t                                                #|line 73|#
-            (funcall (quote load_error)   (concatenate 'string  "Registry Error (B): Can't find component /"  (concatenate 'string  template_name  "/"))  #|line 74|#)
-            (return-from get_component_instance  nil)       #|line 75|# #|line 76|#
-            ))                                              #|line 77|#
-        )))                                                 #|line 78|#
+          (t                                                #|line 79|#
+            (funcall (quote load_error)   (concatenate 'string  "Registry Error (B): Can't find component /"  (concatenate 'string  template_name  "/"))  #|line 80|#)
+            (return-from get_component_instance  nil)       #|line 81|# #|line 82|#
+            ))                                              #|line 83|#
+        )))                                                 #|line 84|#
   )
 (defun generate_instance_name (&optional  owner  template_name)
-  (declare (ignorable  owner  template_name))               #|line 80|#
+  (declare (ignorable  owner  template_name))               #|line 86|#
   (let ((owner_name  ""))
-    (declare (ignorable owner_name))                        #|line 81|#
+    (declare (ignorable owner_name))                        #|line 87|#
     (let ((instance_name  template_name))
-      (declare (ignorable instance_name))                   #|line 82|#
+      (declare (ignorable instance_name))                   #|line 88|#
       (cond
-        ((not (equal   nil  owner))                         #|line 83|#
-          (setf  owner_name (slot-value  owner 'name))      #|line 84|#
-          (setf  instance_name  (concatenate 'string  owner_name  (concatenate 'string  "▹"  template_name)) #|line 85|#)
+        ((not (equal   nil  owner))                         #|line 89|#
+          (setf  owner_name (slot-value  owner 'name))      #|line 90|#
+          (setf  instance_name  (concatenate 'string  owner_name  (concatenate 'string  "▹"  template_name)) #|line 91|#)
           )
-        (t                                                  #|line 86|#
-          (setf  instance_name  template_name)              #|line 87|# #|line 88|#
+        (t                                                  #|line 92|#
+          (setf  instance_name  template_name)              #|line 93|# #|line 94|#
           ))
-      (return-from generate_instance_name  instance_name)   #|line 89|#)) #|line 90|#
+      (return-from generate_instance_name  instance_name)   #|line 95|#)) #|line 96|#
   )
 (defun mangle_name (&optional  s)
-  (declare (ignorable  s))                                  #|line 92|#
-  #|  trim name to remove code from Container component names _ deferred until later (or never) |# #|line 93|#
-  (return-from mangle_name  s)                              #|line 94|# #|line 95|#
+  (declare (ignorable  s))                                  #|line 98|#
+  #|  trim name to remove code from Container component names _ deferred until later (or never) |# #|line 99|#
+  (return-from mangle_name  s)                              #|line 100|# #|line 101|#
   )
 (defun create_down_connector (&optional  container  proto_conn  connectors  children_by_id)
   (declare (ignorable  container  proto_conn  connectors  children_by_id)) #|line 1|#
@@ -698,7 +725,7 @@ x))))
     (setf (slot-value  eh 'name)  name)                     #|line 257|#
     (setf (slot-value  eh 'owner)  owner)                   #|line 258|#
     (setf (slot-value  eh 'handler)  #'container_handler)   #|line 259|#
-    (setf (slot-value  eh 'finject)  #'injector)            #|line 260|#
+    (setf (slot-value  eh 'finject)  #'inject_mevent)       #|line 260|#
     (setf (slot-value  eh 'stop)  #'container_reset_children) #|line 261|#
     (setf (slot-value  eh 'state)  "idle")                  #|line 262|#
     (setf (slot-value  eh 'kind)  "container")              #|line 263|#
@@ -756,7 +783,7 @@ x))))
       (setf (slot-value  eh 'owner)  owner)                 #|line 11|#
       (setf (slot-value  eh 'handler)  handler)             #|line 12|#
       (setf (slot-value  eh 'reset_handler)  reset_handler) #|line 13|#
-      (setf (slot-value  eh 'finject)  #'injector)          #|line 14|#
+      (setf (slot-value  eh 'finject)  #'inject_mevent)     #|line 14|#
       (setf (slot-value  eh 'stop)  #'leaf_reset)           #|line 15|#
       (setf (slot-value  eh 'instance_data)  instance_data) #|line 16|#
       (setf (slot-value  eh 'arg)  arg)                     #|line 17|#
