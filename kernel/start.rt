@@ -1,5 +1,6 @@
 defvar load_errors ⇐ ⊥
 defvar runtime_errors ⇐ ⊥
+defvar ticktime ⇐ 0
 
 defn load_error (s) {
     global load_errors

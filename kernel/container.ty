@@ -388,7 +388,7 @@ defn put_output ≡
                                                        #line 296#line 298#line 299
 }
 
-defn obj_clone ≡
+defn clone_payload ≡
 (
     obj ≡
 )

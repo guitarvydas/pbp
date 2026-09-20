@@ -1,0 +1,35 @@
+#line 1
+                                                       #line 2
+                                                       #line 3
+                                                       #line 4
+                                                       #line 5
+                                                       #line 6
+                                                       #line 7
+                                                       #line 8
+                                                       #line 9
+                                                       #line 10
+                                                       #line 11
+                                                       #line 12
+                                                       #line 13#line 14
+                                                       #line 15#line 16
+                                                       #line 17
+class Eh {
+                                                       #line 18
+    name ≡                                             #line 19
+    inq ≡
+    outq ≡
+    owner ≡                                            #line 22
+    children ≡                                         #line 23
+    visit_ordering ≡
+    connections ≡                                      #line 25
+    routings ≡
+    handler ≡                                          #line 27
+    reset_instance_data ≡                              #line 28
+    finject ≡                                          #line 29
+    stop ≡                                             #line 30
+    instance_data ≡                                    #line 31#line 32
+    arg ≡                                              #line 33
+    state ≡                                            #line 34
+    special ≡                                          #line 35#line 36
+    kind ≡                                             #line 37#line 38
+}

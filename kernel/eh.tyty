@@ -1,0 +1,35 @@
+#line 1
+                                                       #line 2
+                                                       #line 3
+                                                       #line 4
+                                                       #line 5
+                                                       #line 6
+                                                       #line 7
+                                                       #line 8
+                                                       #line 9
+                                                       #line 10
+                                                       #line 11
+                                                       #line 12
+                                                       #line 13#line 14
+                                                       #line 15#line 16
+                                                       #line 17
+class Eh {
+                                                       #line 18
+    name ≡ @Str                                             #line 19
+    inq ≡ @Queue
+    outq ≡ @Queue
+    owner ≡ @Container                                           #line 22
+    children ≡ @Collection_of_Part                                        #line 23
+    visit_ordering ≡ @Queue_of_Part
+    connections ≡ @Collection_of_Wire                                     #line 25
+    routings ≡ @%Ignored
+    handler ≡ ~Handler                                         #line 27
+    reset_instance_data ≡                              #line 28
+    finject ≡                                          #line 29
+    stop ≡                                             #line 30
+    instance_data ≡                                    #line 31#line 32
+    arg ≡ @Str                                             #line 33
+    state ≡ @Str                                           #line 34
+    special ≡ Bool                                          #line 35#line 36
+    kind ≡ @Str                                            #line 37#line 38
+}

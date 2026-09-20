@@ -1,3 +1,7 @@
+defn clone_string (s) {
+    return s
+}
+
 
 defn trash_instantiate (reg, owner, name, template_data, arg) {
     name_with_id ≡ gensymbol (“trash”)

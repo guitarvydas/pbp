@@ -1,10 +1,12 @@
-#line 1
+var  load_errors ≡                                     #line 1
+var  runtime_errors ≡                                  #line 2
+var  ticktime ≡                                        #line 3#line 4
 defn load_error ≡
 (
     s ≡
 )
 {
-                                                       #line 2#line 7#line 8
+                                                       #line 5#line 10#line 11
 }
 
 defn runtime_error ≡
@@ -12,25 +14,25 @@ defn runtime_error ≡
     s ≡
 )
 {
-                                                       #line 9#line 14#line 15
+                                                       #line 12#line 17#line 18
 }
-                                                       #line 16
+                                                       #line 19
 defn initialize_component_palette_from_files ≡
 (
     diagram_source_files ≡
 )
 {
-                                                       #line 17
-        reg ≡                                          #line 18
+                                                       #line 20
+        reg ≡                                          #line 21
         diagram_source ≡
         for diagram_source in  diagram_source_files {
-                                                       #line 19
+                                                       #line 22
             all_containers_within_single_file ≡
             container ≡
             for container in  all_containers_within_single_file {
-                                                       #line 21#line 23
-            }                                          #line 24
-        }                                              #line 27#line 28
+                                                       #line 24#line 26
+            }                                          #line 27
+        }                                              #line 30#line 31
 }
 
 defn initialize_component_palette_from_string ≡
@@ -38,13 +40,13 @@ defn initialize_component_palette_from_string ≡
     lnet ≡
 )
 {
-                                                       #line 29
-        reg ≡                                          #line 30
+                                                       #line 32
+        reg ≡                                          #line 33
         all_containers ≡
         container ≡
         for container in  all_containers {
-                                                       #line 32#line 34
-        }                                              #line 37
+                                                       #line 35#line 37
+        }                                              #line 40
 }
 
 defn initialize_from_files ≡
@@ -52,19 +54,19 @@ defn initialize_from_files ≡
     diagram_names ≡
 )
 {
-                                                       #line 38
-        arg ≡                                          #line 39
+                                                       #line 41
+        arg ≡                                          #line 42
         palette ≡
-        return [ palette,[ diagram_names, arg]]        #line 41#line 42#line 43
+        return [ palette,[ diagram_names, arg]]        #line 44#line 45#line 46
 }
 
 defn initialize_from_string ≡
 ()
 {
-                                                       #line 44
-        arg ≡                                          #line 45
-        palette ≡                                      #line 46
-        return [ palette,[ None, arg]]                 #line 47#line 48#line 49
+                                                       #line 47
+        arg ≡                                          #line 48
+        palette ≡                                      #line 49
+        return [ palette,[ None, arg]]                 #line 50#line 51#line 52
 }
 
 defn start ≡
@@ -75,8 +77,8 @@ defn start ≡
     env ≡
 )
 {
-                                                       #line 50
-        part ≡                                         #line 54#line 55
+                                                       #line 53
+        part ≡                                         #line 57#line 58
 }
 
 defn start_bare ≡
@@ -86,13 +88,13 @@ defn start_bare ≡
     env ≡
 )
 {
-                                                       #line 56
-        diagram_names ≡                                #line 57#line 58
+                                                       #line 59
+        diagram_names ≡                                #line 60#line 61
         part ≡
         if  None ==  part {
-                                                       #line 60#line 65
+                                                       #line 63#line 68
         }
-        return  part                                   #line 66#line 67#line 68
+        return  part                                   #line 69#line 70#line 71
 }
 
 defn inject ≡
@@ -102,15 +104,15 @@ defn inject ≡
     payload ≡
 )
 {
-                                                       #line 69
+                                                       #line 72
         if not  load_errors {
-                                                       #line 70
+                                                       #line 73
             d ≡
             mev ≡
         }
         else
-        {                                              #line 77#line 79
-        }                                              #line 80#line 81
+        {                                              #line 80#line 82
+        }                                              #line 83#line 84
 }
 
 defn finalize ≡
@@ -118,13 +120,13 @@ defn finalize ≡
     part ≡
 )
 {
-                                                       #line 82#line 84#line 85
+                                                       #line 85#line 87#line 88
 }
 
 defn new_datum_bang ≡
 ()
 {
-                                                       #line 86
+                                                       #line 89
         d ≡
-        return  d                                      #line 91#line 92
+        return  d                                      #line 94#line 95
 }
