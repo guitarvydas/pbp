@@ -8,31 +8,13 @@
         "type": "tabs",
         "children": [
           {
-            "id": "2aafda6bd4dc58d5",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "kernel/README.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "README"
-            }
-          },
-          {
             "id": "c769a219810c4f52",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "documenting.md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "documenting"
+              "title": "New tab"
             }
           },
           {
@@ -108,7 +90,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "right": {
     "id": "f5c1ed2dde6a7022",
@@ -186,7 +169,6 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "kernel/README.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
@@ -213,53 +195,52 @@
       "bases:Create new base": false
     }
   },
-  "active": "2aafda6bd4dc58d5",
+  "active": "c769a219810c4f52",
   "lastOpenFiles": [
-    "kernel/_/_backup/_20260910_182659_kernel0d.py",
-    "kernel/out.lisp",
-    "kernel/out.py",
-    "kernel/out.c",
-    "kernel/out.js",
-    "kernel/temp.nanodsl.22245.mjs",
-    "kernel/temp.nanodsl.19519.mjs",
-    "kernel/temp.nanodsl.31814.mjs",
-    "kernel/temp.nanodsl.13158.mjs",
-    "kernel/temp.nanodsl.25454.mjs",
-    "kernel/temp.nanodsl.21819.mjs",
-    "kernel/typetable.md",
-    "kernel/misc/prompt.md",
-    "kernel/_/_notes/prompt.md",
-    "kernel/C-PORT.md",
-    "kernel/out.md",
-    "kernel/_notes/prompt.md",
-    "kernel/video/probe.png",
-    "README.md",
+    "kernel/TY-ANNOTATOR.md",
+    "kernel/tydefs.rt",
+    "kernel/empty.rt",
+    "kernel/dev.rt",
+    "kernel/defs.rt",
+    "kernel/#defs.rt#",
+    "kernel/@orig_makec",
+    "kernel/@dev-testc",
+    "kernel/@dev-makec",
+    "kernel/@dev-make",
+    "kernel/@dev-defc",
+    "kernel/PROMPT.md",
+    "kernel/PONDER.md",
     "kernel/README.md",
-    "kernel/plwb.md",
-    "kernel/NOTES.md",
-    "kernel-self/prompt.md",
-    "kernel-self/plwb.md",
-    "kernel-self/out.md",
+    "tinykernel/doc/character_pool.png",
+    "tinykernel/prompt.md",
+    "tinykernel/doc/string_pool.png",
+    "tinykernel/doc/Untitled_Artwork.png",
+    "tinykernel/doc/stirng_pool.png",
+    "tinykernel/doc/mevent.png",
+    "tinykernel/C-PORT.md",
+    "tinykernel/README.md",
+    "tinykernel/_/_notes/prompt.md",
+    "tinykernel/typetable.md",
+    "tinykernel/kernel-Back-End.drawio.png",
+    "tinykernel/node_modules/emoji-regex/README.md",
+    "tinykernel/node_modules/string-width/node_modules/strip-ansi/readme.md",
+    "tinykernel/node_modules/string-width/node_modules/ansi-regex/readme.md",
+    "tinykernel/node_modules/string-width/readme.md",
+    "tinykernel/node_modules/yargs/README.md",
+    "tinykernel/node_modules/cliui/node_modules/ansi-regex/readme.md",
+    "tinykernel/node_modules/cliui/node_modules/strip-ansi/readme.md",
+    "tinykernel/node_modules/cliui/node_modules/string-width/readme.md",
+    "tinykernel/node_modules/cliui/README.md",
+    "tinykernel/node_modules/cliui/CHANGELOG.md",
+    "tinykernel/node_modules/ohm-js/README.md",
+    "tinykernel/node_modules/get-east-asian-width/readme.md",
+    "tinykernel/node_modules/ansi-styles/readme.md",
+    "tinykernel/node_modules/get-caller-file/README.md",
+    "tinykernel/node_modules/get-caller-file/LICENSE.md",
+    "tinykernel/node_modules/ansi-regex/readme.md",
+    "kernel/video/probe.png",
     "kernel-self/kernel-Back-End.drawio.png",
-    "kernel-self/README.md",
-    "kernel-self/NOTES.md",
-    "TOOLS.md",
     "doc/pbp-lifecycle.drawio.png",
-    "doc/Semantics.md",
-    "api.md",
-    "@make-proto/prompt.md",
-    "TAS_README_WIP.md",
-    "@make-proto/NOTES.md",
-    "temp.md",
-    "@make-proto/doc/seed/Outline.md",
-    "@make-proto/doc/seed/Towards Multi-Language Programming.md",
-    "@make-proto/doc/Take 1.md",
-    "pbp/sm/pbp/pbp-lifecycle.drawio.png",
-    "pbp/dtree/pbp/pbp-lifecycle.drawio.png",
-    "t2t-d/doc-d/rwr/rwr-overview.drawio.png",
-    "t2t-d/doc-d/rwr/rwr-overview-t2t c.drawio.png",
-    "t2t-d/doc-d/rwr/rwr-overview-t2t c-t2t c.jpg",
-    "t2t-d/doc-d/rwr/rwr-overview-t2t b.drawio.png",
-    "t2t-d/doc-d/rwr/rwr-overview-t2t c-t2t c.drawio.png"
+    "pbp/sm/pbp/pbp-lifecycle.drawio.png"
   ]
 }
