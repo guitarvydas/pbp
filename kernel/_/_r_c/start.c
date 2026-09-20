@@ -1,84 +1,86 @@
-/* line 1 */
+int  load_errors =  False                              /* line 1 */;
+int  runtime_errors =  False                           /* line 2 */;
+int  ticktime =  0                                     /* line 3 */;/* line 4 */
 void load_error (s) {
-                                                       /* line 2 */
-    static load_errors                                 /* line 3 */
-    external print ( s, file=sys.stderr)               /* line 4 */
-    external                                           /* line 5 */
-    load_errors =  True;                               /* line 6 *//* line 7 *//* line 8 */}
+                                                       /* line 5 */
+    static load_errors                                 /* line 6 */
+    external print ( s, file=sys.stderr)               /* line 7 */
+    external                                           /* line 8 */
+    load_errors =  True;                               /* line 9 *//* line 10 *//* line 11 */}
 
 void runtime_error (s) {
-                                                       /* line 9 */
-    static runtime_errors                              /* line 10 */
-    external print ( s, file=sys.stderr)               /* line 11 */
-    external exit (1)                                  /* line 12 */
-    runtime_errors =  True;                            /* line 13 *//* line 14 *//* line 15 */}
-                                                       /* line 16 */
+                                                       /* line 12 */
+    static runtime_errors                              /* line 13 */
+    external print ( s, file=sys.stderr)               /* line 14 */
+    external exit (1)                                  /* line 15 */
+    runtime_errors =  True;                            /* line 16 *//* line 17 *//* line 18 */}
+                                                       /* line 19 */
 void initialize_component_palette_from_files (diagram_source_files) {
-                                                       /* line 17 */
-    reg = make_component_registry ()                   /* line 18 */
-    for diagram_source in  diagram_source_files:       /* line 19 */
-        all_containers_within_single_file = lnet2internal_from_file ( diagram_source)/* line 20 */
-        for container in  all_containers_within_single_file:/* line 21 */
-            register_component ( reg,mkTemplate ( container [ "name"], container, container_instantiator))/* line 22 *//* line 23 *//* line 24 */
-    initialize_stock_components ( reg)                 /* line 25 */
-    return ( reg)                                      /* line 26 *//* line 27 *//* line 28 */}
+                                                       /* line 20 */
+    reg = make_component_registry ()                   /* line 21 */
+    for diagram_source in  diagram_source_files:       /* line 22 */
+        all_containers_within_single_file = lnet2internal_from_file ( diagram_source)/* line 23 */
+        for container in  all_containers_within_single_file:/* line 24 */
+            register_component ( reg,mkTemplate ( container [ "name"], container, container_instantiator))/* line 25 *//* line 26 *//* line 27 */
+    initialize_stock_components ( reg)                 /* line 28 */
+    return ( reg)                                      /* line 29 *//* line 30 *//* line 31 */}
 
 void initialize_component_palette_from_string (lnet) {
-                                                       /* line 29 */
-    reg = make_component_registry ()                   /* line 30 */
-    all_containers = lnet2internal_from_string ( lnet) /* line 31 */
-    for container in  all_containers:                  /* line 32 */
-        register_component ( reg,mkTemplate ( container [ "name"], container, container_instantiator))/* line 33 *//* line 34 */
-    initialize_stock_components ( reg)                 /* line 35 */
-    return ( reg)                                      /* line 36 *//* line 37 */}
+                                                       /* line 32 */
+    reg = make_component_registry ()                   /* line 33 */
+    all_containers = lnet2internal_from_string ( lnet) /* line 34 */
+    for container in  all_containers:                  /* line 35 */
+        register_component ( reg,mkTemplate ( container [ "name"], container, container_instantiator))/* line 36 *//* line 37 */
+    initialize_stock_components ( reg)                 /* line 38 */
+    return ( reg)                                      /* line 39 *//* line 40 */}
 
 void initialize_from_files (diagram_names) {
-                                                       /* line 38 */
-    arg =  NULL                                        /* line 39 */
-    palette = initialize_component_palette_from_files ( diagram_names)/* line 40 */
-    return [ palette,[ diagram_names, arg]]            /* line 41 *//* line 42 *//* line 43 */}
+                                                       /* line 41 */
+    arg =  NULL                                        /* line 42 */
+    palette = initialize_component_palette_from_files ( diagram_names)/* line 43 */
+    return [ palette,[ diagram_names, arg]]            /* line 44 *//* line 45 *//* line 46 */}
 
 void initialize_from_string () {
-                                                       /* line 44 */
-    arg =  NULL                                        /* line 45 */
-    palette = initialize_component_palette_from_string ()/* line 46 */
-    return [ palette,[ NULL, arg]]                     /* line 47 *//* line 48 *//* line 49 */}
+                                                       /* line 47 */
+    arg =  NULL                                        /* line 48 */
+    palette = initialize_component_palette_from_string ()/* line 49 */
+    return [ palette,[ NULL, arg]]                     /* line 50 *//* line 51 *//* line 52 */}
 
 void start (arg,part_name,palette,env) {
-                                                       /* line 50 */
-    part = start_bare ( part_name, palette, env)       /* line 51 */
-    inject ( part, "", arg)                            /* line 52 */
-    finalize ( part)                                   /* line 53 *//* line 54 *//* line 55 */}
+                                                       /* line 53 */
+    part = start_bare ( part_name, palette, env)       /* line 54 */
+    inject ( part, "", arg)                            /* line 55 */
+    finalize ( part)                                   /* line 56 *//* line 57 *//* line 58 */}
 
 void start_bare (part_name,palette,env) {
-                                                       /* line 56 */
-    diagram_names =  env [ 0]                          /* line 57 */
-    /*  get entrypoint container */                    /* line 58 */
-    part = get_component_instance ( palette, part_name, NULL)/* line 59 */
-    if  NULL ==  part:                                 /* line 60 */
-        load_error ( str( "Couldn;t find container with page name /") +  str( part_name) +  str( "/ in files ") +  str(str ( diagram_names)) +  " (check tab names, or disable compression?)"    )/* line 64 *//* line 65 */
-    return ( part)                                     /* line 66 *//* line 67 *//* line 68 */}
+                                                       /* line 59 */
+    diagram_names =  env [ 0]                          /* line 60 */
+    /*  get entrypoint container */                    /* line 61 */
+    part = get_component_instance ( palette, part_name, NULL)/* line 62 */
+    if  NULL ==  part:                                 /* line 63 */
+        load_error ( str( "Couldn;t find container with page name /") +  str( part_name) +  str( "/ in files ") +  str(str ( diagram_names)) +  " (check tab names, or disable compression?)"    )/* line 67 *//* line 68 */
+    return ( part)                                     /* line 69 *//* line 70 *//* line 71 */}
 
 void inject (part,port,payload) {
-                                                       /* line 69 */
-    if not  load_errors:                               /* line 70 */
-        d =  Datum ()                                  /* line 71 */
-        d.v =  payload                                 /* line 72 */
-        d.clone =  lambda : obj_clone ( d)             /* line 73 */
-        d.reclaim =  NULL                              /* line 74 */
-        mev = make_mevent ( port, d)                   /* line 75 */
-        inject_mevent ( part, mev)                     /* line 76 */;;;
-    else:                                              /* line 77 */
-        external exit (1)                              /* line 78 *//* line 79 *//* line 80 *//* line 81 */}
+                                                       /* line 72 */
+    if not  load_errors:                               /* line 73 */
+        d =  Datum ()                                  /* line 74 */
+        d.v =  payload                                 /* line 75 */
+        d.clone =  lambda : obj_clone ( d)             /* line 76 */
+        d.reclaim =  NULL                              /* line 77 */
+        mev = make_mevent ( port, d)                   /* line 78 */
+        inject_mevent ( part, mev)                     /* line 79 */;;;
+    else:                                              /* line 80 */
+        external exit (1)                              /* line 81 *//* line 82 *//* line 83 *//* line 84 */}
 
 void finalize (part) {
-                                                       /* line 82 */
-    external print (deque_to_json ( part.outq))        /* line 83 *//* line 84 *//* line 85 */}
+                                                       /* line 85 */
+    external print (deque_to_json ( part.outq))        /* line 86 *//* line 87 *//* line 88 */}
 
 void new_datum_bang () {
-                                                       /* line 86 */
-    d =  Datum ()                                      /* line 87 */
-    d.v =  "!"                                         /* line 88 */
-    d.clone =  lambda : obj_clone ( d)                 /* line 89 */
-    d.reclaim =  NULL                                  /* line 90 */
-    return ( d)                                        /* line 91 *//* line 92 */;;;}
+                                                       /* line 89 */
+    d =  Datum ()                                      /* line 90 */
+    d.v =  "!"                                         /* line 91 */
+    d.clone =  lambda : obj_clone ( d)                 /* line 92 */
+    d.reclaim =  NULL                                  /* line 93 */
+    return ( d)                                        /* line 94 *//* line 95 */;;;}

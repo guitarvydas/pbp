@@ -6,8 +6,9 @@ def subscripted_digit (n):                             #line 10
     else:                                              #line 14
         return  str( "₊") + str ( n)                   #line 15#line 16#line 17#line 18
 
-def gensymbol (s):                                     #line 19
-    global counter                                     #line 20
-    name_with_id =  str( s) + subscripted_digit ( counter) #line 21
-    counter =  counter+ 1                              #line 22
-    return  name_with_id                               #line 23#line 24#line 25
+counter =  0                                           #line 19#line 20
+def gensymbol (s):                                     #line 21
+    global counter                                     #line 22
+    name_with_id =  str( s) + subscripted_digit ( counter) #line 23
+    counter =  counter+ 1                              #line 24
+    return  name_with_id                               #line 25#line 26#line 27

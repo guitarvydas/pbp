@@ -1,12 +1,9 @@
 #!/bin/bash
 set -e
 # npm install
-echo "a"
 node das2json.mjs kernel.drawio
 
-echo "b"
 for i in $BASENAMES; do
-    echo "$i"
     ./regression_test_tas.bash "$i"
 done
 
