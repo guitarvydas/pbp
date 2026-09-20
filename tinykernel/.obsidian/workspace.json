@@ -11,12 +11,10 @@
             "id": "0d80f7d76af892b7",
             "type": "leaf",
             "state": {
-              "type": "image",
-              "state": {
-                "file": "doc/string_pool.png"
-              },
-              "icon": "lucide-image",
-              "title": "string_pool"
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "New tab"
             }
           }
         ]
@@ -188,17 +186,28 @@
   },
   "active": "0d80f7d76af892b7",
   "lastOpenFiles": [
-    "doc/character_pool.png",
-    "doc/string_pool.png",
-    "strblock.py",
-    "prompt.md",
-    "#prompt.md#",
-    "#stringpool.rt#",
-    "stringpool.rt~",
+    "unencode.mjs",
+    "typetable.pl",
+    "typetable.md",
+    "typetable.json",
+    "tydefs.rt",
+    "tydecl.ohm",
+    "templates.rt",
+    "tas.bash",
+    "support.mjs",
     "stringpool.rt",
+    "strblock.py",
+    "stock.rt",
+    "prompt.md",
+    "misc/prompt.md",
+    "kernel-Back-End.drawio.png",
+    "doc/string_pool.png",
     "doc/mevent.png",
+    "doc/character_pool.png",
+    "_/_notes/prompt.md",
+    "README.md",
+    "C-PORT.md",
     "doc/Untitled_Artwork.png",
-    "doc/stirng_pool.png",
-    "doc"
+    "doc/stirng_pool.png"
   ]
 }
