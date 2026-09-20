@@ -22,16 +22,15 @@ class Eh:
         self.children = []                             #line 23
         self.visit_ordering =  deque ([])              #line 24
         self.connections = []                          #line 25
-        self.routings =  deque ([])                    #line 26
-        self.handler =  None                           #line 27
-        self.reset_instance_data =  None               #line 28
-        self.finject =  None                           #line 29
-        self.stop =  None                              #line 30
-        self.instance_data =  None                     #line 31# arg needed for probe support #line 32
-        self.arg =  ""                                 #line 33
-        self.state =  "idle"                           #line 34
-        self.special =  False                          #line 35# bootstrap debugging#line 36
-        self.kind =  None # enum { container, leaf, }  #line 37#line 38
-                                                       #line 39
-def injector (eh,mevent):                              #line 40
-    eh.handler ( eh, mevent)                           #line 41#line 42#line 43
+        self.handler =  None                           #line 26
+        self.reset_instance_data =  None               #line 27
+        self.finject =  None                           #line 28
+        self.stop =  None                              #line 29
+        self.instance_data =  None                     #line 30# arg needed for probe support #line 31
+        self.arg =  ""                                 #line 32
+        self.state =  "idle"                           #line 33
+        self.special =  False                          #line 34# bootstrap debugging#line 35
+        self.kind =  None # enum { container, leaf, }  #line 36#line 37
+                                                       #line 38
+def injector (eh,mevent):                              #line 39
+    eh.handler ( eh, mevent)                           #line 40#line 41#line 42

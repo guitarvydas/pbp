@@ -23,7 +23,6 @@ defobj Eh () {
         • children ⇐ []
         • visit_ordering ⇐ # freshQueue ()
         • connections ⇐ []
-        • routings ⇐ #freshQueue ()
         • handler ⇐ ϕ
         • reset_instance_data ⇐ ϕ
         • finject ⇐ ϕ

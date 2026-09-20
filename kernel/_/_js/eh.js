@@ -23,19 +23,18 @@ class Eh {
     this.children = [];                                /* line 23 */
     this.visit_ordering =  []                          /* line 24 */;
     this.connections = [];                             /* line 25 */
-    this.routings =  []                                /* line 26 */;
-    this.handler =  null;                              /* line 27 */
-    this.reset_instance_data =  null;                  /* line 28 */
-    this.finject =  null;                              /* line 29 */
-    this.stop =  null;                                 /* line 30 */
-    this.instance_data =  null;                        /* line 31 *//*  arg needed for probe support  *//* line 32 */
-    this.arg =  "";                                    /* line 33 */
-    this.state =  "idle";                              /* line 34 */
-    this.special =  false;                             /* line 35 *//*  bootstrap debugging *//* line 36 */
-    this.kind =  null;/*  enum { container, leaf, } */ /* line 37 *//* line 38 */
+    this.handler =  null;                              /* line 26 */
+    this.reset_instance_data =  null;                  /* line 27 */
+    this.finject =  null;                              /* line 28 */
+    this.stop =  null;                                 /* line 29 */
+    this.instance_data =  null;                        /* line 30 *//*  arg needed for probe support  *//* line 31 */
+    this.arg =  "";                                    /* line 32 */
+    this.state =  "idle";                              /* line 33 */
+    this.special =  false;                             /* line 34 *//*  bootstrap debugging *//* line 35 */
+    this.kind =  null;/*  enum { container, leaf, } */ /* line 36 *//* line 37 */
   }
 }
-                                                       /* line 39 */
-function injector (eh,mevent) {                        /* line 40 */
-    eh.handler ( eh, mevent)                           /* line 41 *//* line 42 *//* line 43 */
+                                                       /* line 38 */
+function injector (eh,mevent) {                        /* line 39 */
+    eh.handler ( eh, mevent)                           /* line 40 *//* line 41 *//* line 42 */
 }

@@ -8,19 +8,18 @@
     (children :accessor children :initarg :children :initform  nil)  #|line 23|#
     (visit_ordering :accessor visit_ordering :initarg :visit_ordering :initform  (make-instance 'Queue) #|line 24|#)
     (connections :accessor connections :initarg :connections :initform  nil)  #|line 25|#
-    (routings :accessor routings :initarg :routings :initform  (make-instance 'Queue) #|line 26|#)
-    (handler :accessor handler :initarg :handler :initform  nil)  #|line 27|#
-    (reset_instance_data :accessor reset_instance_data :initarg :reset_instance_data :initform  nil)  #|line 28|#
-    (finject :accessor finject :initarg :finject :initform  nil)  #|line 29|#
-    (stop :accessor stop :initarg :stop :initform  nil)     #|line 30|#
-    (instance_data :accessor instance_data :initarg :instance_data :initform  nil)  #|line 31|# #|  arg needed for probe support  |# #|line 32|#
-    (arg :accessor arg :initarg :arg :initform  "")         #|line 33|#
-    (state :accessor state :initarg :state :initform  "idle")  #|line 34|#
-    (special :accessor special :initarg :special :initform  nil)  #|line 35|# #|  bootstrap debugging |# #|line 36|#
-    (kind :accessor kind :initarg :kind :initform  nil)  #|  enum { container, leaf, } |# #|line 37|#)) #|line 38|#
+    (handler :accessor handler :initarg :handler :initform  nil)  #|line 26|#
+    (reset_instance_data :accessor reset_instance_data :initarg :reset_instance_data :initform  nil)  #|line 27|#
+    (finject :accessor finject :initarg :finject :initform  nil)  #|line 28|#
+    (stop :accessor stop :initarg :stop :initform  nil)     #|line 29|#
+    (instance_data :accessor instance_data :initarg :instance_data :initform  nil)  #|line 30|# #|  arg needed for probe support  |# #|line 31|#
+    (arg :accessor arg :initarg :arg :initform  "")         #|line 32|#
+    (state :accessor state :initarg :state :initform  "idle")  #|line 33|#
+    (special :accessor special :initarg :special :initform  nil)  #|line 34|# #|  bootstrap debugging |# #|line 35|#
+    (kind :accessor kind :initarg :kind :initform  nil)  #|  enum { container, leaf, } |# #|line 36|#)) #|line 37|#
 
-                                                            #|line 39|#
+                                                            #|line 38|#
 (defun injector (&optional  eh  mevent)
-  (declare (ignorable  eh  mevent))                         #|line 40|#
-  (funcall (slot-value  eh 'handler)   eh  mevent           #|line 41|#) #|line 42|#
+  (declare (ignorable  eh  mevent))                         #|line 39|#
+  (funcall (slot-value  eh 'handler)   eh  mevent           #|line 40|#) #|line 41|#
   )
