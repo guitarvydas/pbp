@@ -1,4 +1,7 @@
 #line 1
+var load_errors ≡ Bool
+var runtime_errors ≡ Bool
+
 defn load_error ≡ ~
 (
     s ≡ @Str
