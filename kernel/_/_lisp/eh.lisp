@@ -14,11 +14,10 @@
     (instance_data :accessor instance_data :initarg :instance_data :initform  nil)  #|line 29|# #|  arg needed for probe support  |# #|line 30|#
     (arg :accessor arg :initarg :arg :initform  "")         #|line 31|#
     (state :accessor state :initarg :state :initform  "idle")  #|line 32|#
-    (special :accessor special :initarg :special :initform  nil)  #|line 33|# #|  bootstrap debugging |# #|line 34|#
-    (kind :accessor kind :initarg :kind :initform  nil)  #|  enum { container, leaf, } |# #|line 35|#)) #|line 36|#
+    (special :accessor special :initarg :special :initform  nil)  #|line 33|#)) #|line 34|#
 
-                                                            #|line 37|#
+                                                            #|line 35|#
 (defun injector (&optional  eh  mevent)
-  (declare (ignorable  eh  mevent))                         #|line 38|#
-  (funcall (slot-value  eh 'handler)   eh  mevent           #|line 39|#) #|line 40|#
+  (declare (ignorable  eh  mevent))                         #|line 36|#
+  (funcall (slot-value  eh 'handler)   eh  mevent           #|line 37|#) #|line 38|#
   )

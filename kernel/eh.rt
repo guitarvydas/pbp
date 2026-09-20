@@ -31,8 +31,6 @@ defobj Eh () {
         • arg ⇐ “”
         • state ⇐ “idle”
         • special ⇐ ⊥
-        ⌈ bootstrap debugging⌉
-        • kind ⇐ ϕ ⌈ enum { container, leaf, }⌉
 }
 
 defn injector (eh, mevent) {

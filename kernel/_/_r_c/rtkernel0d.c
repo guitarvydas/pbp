@@ -29,8 +29,7 @@ typedef struct _Eh {
     instance_data;                                     /* line 29 *//*  arg needed for probe support  *//* line 30 */
     arg;                                               /* line 31 */
     state;                                             /* line 32 */
-    special;                                           /* line 33 *//*  bootstrap debugging *//* line 34 */
-    kind; /*  enum { container, leaf, } */             /* line 35 *//* line 36 */
+    special;                                           /* line 33 *//* line 34 */
 } Eh;
 Eh fresh_Eh () {
     Eh *self;
@@ -48,14 +47,13 @@ Eh fresh_Eh () {
     self->instance_data =  NULL;                       /* line 29 *//*  arg needed for probe support  *//* line 30 */
     self->arg =  "";                                   /* line 31 */
     self->state =  "idle";                             /* line 32 */
-    self->special =  False;                            /* line 33 *//*  bootstrap debugging *//* line 34 */
-    self->kind =  NULL; /*  enum { container, leaf, } *//* line 35 *//* line 36 */
+    self->special =  False;                            /* line 33 *//* line 34 */
     return self;
 }
-                                                       /* line 37 */
+                                                       /* line 35 */
 void injector (eh,mevent) {
-                                                       /* line 38 */
-    eh.handler ( eh, mevent)                           /* line 39 *//* line 40 *//* line 41 */}
+                                                       /* line 36 */
+    eh.handler ( eh, mevent)                           /* line 37 *//* line 38 *//* line 39 */}
 int  digits = [ "₀", "₁", "₂", "₃", "₄", "₅", "₆", "₇", "₈", "₉", "₁₀", "₁₁", "₁₂", "₁₃", "₁₄", "₁₅", "₁₆", "₁₇", "₁₈", "₁₉", "₂₀", "₂₁", "₂₂", "₂₃", "₂₄", "₂₅", "₂₆", "₂₇", "₂₈", "₂₉"]/* line 7 */;/* line 8 *//* line 9 */
 void subscripted_digit (n) {
                                                        /* line 10 */
@@ -653,19 +651,18 @@ void make_leaf (name,owner,instance_data,arg,handler,reset_handler) {
     eh.instance_data =  instance_data                  /* line 16 */
     eh.arg =  arg                                      /* line 17 */
     eh.state =  "idle"                                 /* line 18 */
-    eh.kind =  "leaf"                                  /* line 19 */
-    return ( eh)                                       /* line 20 */;;;;;;;;;;/* line 21 *//* line 22 */}
+    return ( eh)                                       /* line 19 */;;;;;;;;;/* line 20 *//* line 21 */}
 
-/*  Reset Leaf part to a known, idle state. Hit the big red button.  *//* line 23 */
+/*  Reset Leaf part to a known, idle state. Hit the big red button.  *//* line 22 */
 void leaf_reset (part) {
-                                                       /* line 24 */
+                                                       /* line 23 */
     external
-    part.inq.clear ()                                  /* line 25 */
+    part.inq.clear ()                                  /* line 24 */
     external
-    part.outq.clear ()                                 /* line 26 */
-    if ( part.reset_handler!= NULL):                   /* line 27 */
-        part.reset_handler ( part)                     /* line 28 *//* line 29 */
-    part.state =  "idle";                              /* line 30 *//* line 31 */}
+    part.outq.clear ()                                 /* line 25 */
+    if ( part.reset_handler!= NULL):                   /* line 26 */
+        part.reset_handler ( part)                     /* line 27 *//* line 28 */
+    part.state =  "idle";                              /* line 29 *//* line 30 */}
 /*  (This used to be called `external` due to historical reasons). This has evolved into 2 kinds of Leaf parts: AOT and JIT (statically generated before runtime, vs. dynamically generated at runtime). If a part name begins with ;:', it is treated specially as a JIT part, else the part is assumed to have been pre-loaded into the register in the regular way.  *//* line 1 *//* line 2 */
 void jit_instantiate (reg,owner,name,arg) {
                                                        /* line 3 */

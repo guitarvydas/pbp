@@ -28,8 +28,7 @@ typedef struct _Eh {
     instance_data;                                     /* line 29 *//*  arg needed for probe support  *//* line 30 */
     arg;                                               /* line 31 */
     state;                                             /* line 32 */
-    special;                                           /* line 33 *//*  bootstrap debugging *//* line 34 */
-    kind; /*  enum { container, leaf, } */             /* line 35 *//* line 36 */
+    special;                                           /* line 33 *//* line 34 */
 } Eh;
 Eh fresh_Eh () {
     Eh *self;
@@ -47,11 +46,10 @@ Eh fresh_Eh () {
     self->instance_data =  NULL;                       /* line 29 *//*  arg needed for probe support  *//* line 30 */
     self->arg =  "";                                   /* line 31 */
     self->state =  "idle";                             /* line 32 */
-    self->special =  False;                            /* line 33 *//*  bootstrap debugging *//* line 34 */
-    self->kind =  NULL; /*  enum { container, leaf, } *//* line 35 *//* line 36 */
+    self->special =  False;                            /* line 33 *//* line 34 */
     return self;
 }
-                                                       /* line 37 */
+                                                       /* line 35 */
 void injector (eh,mevent) {
-                                                       /* line 38 */
-    eh.handler ( eh, mevent)                           /* line 39 *//* line 40 *//* line 41 */}
+                                                       /* line 36 */
+    eh.handler ( eh, mevent)                           /* line 37 *//* line 38 *//* line 39 */}

@@ -64,11 +64,10 @@ class Eh:
         self.instance_data =  None                     #line 29# arg needed for probe support #line 30
         self.arg =  ""                                 #line 31
         self.state =  "idle"                           #line 32
-        self.special =  False                          #line 33# bootstrap debugging#line 34
-        self.kind =  None # enum { container, leaf, }  #line 35#line 36
-                                                       #line 37
-def injector (eh,mevent):                              #line 38
-    eh.handler ( eh, mevent)                           #line 39#line 40#line 41
+        self.special =  False                          #line 33#line 34
+                                                       #line 35
+def injector (eh,mevent):                              #line 36
+    eh.handler ( eh, mevent)                           #line 37#line 38#line 39
 digits = [ "₀", "₁", "₂", "₃", "₄", "₅", "₆", "₇", "₈", "₉", "₁₀", "₁₁", "₁₂", "₁₃", "₁₄", "₁₅", "₁₆", "₁₇", "₁₈", "₁₉", "₂₀", "₂₁", "₂₂", "₂₃", "₂₄", "₂₅", "₂₆", "₂₇", "₂₈", "₂₉"]#line 7#line 8#line 9
 def subscripted_digit (n):                             #line 10
     global digits                                      #line 11
@@ -552,18 +551,17 @@ def make_leaf (name,owner,instance_data,arg,handler,reset_handler):#line 4
     eh.instance_data =  instance_data                  #line 16
     eh.arg =  arg                                      #line 17
     eh.state =  "idle"                                 #line 18
-    eh.kind =  "leaf"                                  #line 19
-    return  eh                                         #line 20#line 21#line 22
+    return  eh                                         #line 19#line 20#line 21
 
-# Reset Leaf part to a known, idle state. Hit the big red button. #line 23
-def leaf_reset (part):                                 #line 24
+# Reset Leaf part to a known, idle state. Hit the big red button. #line 22
+def leaf_reset (part):                                 #line 23
 
-    part.inq.clear ()                                  #line 25
+    part.inq.clear ()                                  #line 24
 
-    part.outq.clear ()                                 #line 26
-    if ( part.reset_handler!= None):                   #line 27
-        part.reset_handler ( part)                     #line 28#line 29
-    part.state =  "idle"                               #line 30#line 31
+    part.outq.clear ()                                 #line 25
+    if ( part.reset_handler!= None):                   #line 26
+        part.reset_handler ( part)                     #line 27#line 28
+    part.state =  "idle"                               #line 29#line 30
 # (This used to be called `external` due to historical reasons). This has evolved into 2 kinds of Leaf parts: AOT and JIT (statically generated before runtime, vs. dynamically generated at runtime). If a part name begins with ;:', it is treated specially as a JIT part, else the part is assumed to have been pre-loaded into the register in the regular way. #line 1#line 2
 def jit_instantiate (reg,owner,name,arg):              #line 3
     name_with_id = gensymbol ( name)                   #line 4

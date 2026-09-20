@@ -16,7 +16,6 @@ defn make_leaf (name, owner, instance_data, arg, handler, reset_handler) {
     eh.instance_data ⇐ instance_data
     eh.arg ⇐ arg
     eh.state ⇐ “idle”
-    eh.kind ⇐ “leaf”
     return eh
 }
 

@@ -123,13 +123,12 @@ x))))
     (instance_data :accessor instance_data :initarg :instance_data :initform  nil)  #|line 29|# #|  arg needed for probe support  |# #|line 30|#
     (arg :accessor arg :initarg :arg :initform  "")         #|line 31|#
     (state :accessor state :initarg :state :initform  "idle")  #|line 32|#
-    (special :accessor special :initarg :special :initform  nil)  #|line 33|# #|  bootstrap debugging |# #|line 34|#
-    (kind :accessor kind :initarg :kind :initform  nil)  #|  enum { container, leaf, } |# #|line 35|#)) #|line 36|#
+    (special :accessor special :initarg :special :initform  nil)  #|line 33|#)) #|line 34|#
 
-                                                            #|line 37|#
+                                                            #|line 35|#
 (defun injector (&optional  eh  mevent)
-  (declare (ignorable  eh  mevent))                         #|line 38|#
-  (funcall (slot-value  eh 'handler)   eh  mevent           #|line 39|#) #|line 40|#
+  (declare (ignorable  eh  mevent))                         #|line 36|#
+  (funcall (slot-value  eh 'handler)   eh  mevent           #|line 37|#) #|line 38|#
   )
 (defparameter  digits (list                                 #|line 1|#  "₀"  "₁"  "₂"  "₃"  "₄"  "₅"  "₆"  "₇"  "₈"  "₉"  "₁₀"  "₁₁"  "₁₂"  "₁₃"  "₁₄"  "₁₅"  "₁₆"  "₁₇"  "₁₈"  "₁₉"  "₂₀"  "₂₁"  "₂₂"  "₂₃"  "₂₄"  "₂₅"  "₂₆"  "₂₇"  "₂₈"  "₂₉" )) #|line 7|# #|line 8|# #|line 9|#
 (defun subscripted_digit (&optional  n)
@@ -787,20 +786,19 @@ x))))
       (setf (slot-value  eh 'instance_data)  instance_data) #|line 16|#
       (setf (slot-value  eh 'arg)  arg)                     #|line 17|#
       (setf (slot-value  eh 'state)  "idle")                #|line 18|#
-      (setf (slot-value  eh 'kind)  "leaf")                 #|line 19|#
-      (return-from make_leaf  eh)                           #|line 20|#)) #|line 21|#
-  ) #|  Reset Leaf part to a known, idle state. Hit the big red button.  |# #|line 23|#
+      (return-from make_leaf  eh)                           #|line 19|#)) #|line 20|#
+  ) #|  Reset Leaf part to a known, idle state. Hit the big red button.  |# #|line 22|#
 (defun leaf_reset (&optional  part)
-  (declare (ignorable  part))                               #|line 24|#
+  (declare (ignorable  part))                               #|line 23|#
 
-  (setf (slot-value  part 'inq) (make-instance 'Queue))     #|line 25|#
+  (setf (slot-value  part 'inq) (make-instance 'Queue))     #|line 24|#
 
-  (setf (slot-value  part 'outq) (make-instance 'Queue))    #|line 26|#
+  (setf (slot-value  part 'outq) (make-instance 'Queue))    #|line 25|#
   (cond
-    ((not (equal  (slot-value  part 'reset_handler)  nil))  #|line 27|#
-      (funcall (slot-value  part 'reset_handler)   part     #|line 28|#) #|line 29|#
+    ((not (equal  (slot-value  part 'reset_handler)  nil))  #|line 26|#
+      (funcall (slot-value  part 'reset_handler)   part     #|line 27|#) #|line 28|#
       ))
-  (setf (slot-value  part 'state)  "idle")                  #|line 30|# #|line 31|#
+  (setf (slot-value  part 'state)  "idle")                  #|line 29|# #|line 30|#
   )
 #|  (This used to be called `external` due to historical reasons). This has evolved into 2 kinds of Leaf parts: AOT and JIT (statically generated before runtime, vs. dynamically generated at runtime). If a part name begins with ;:', it is treated specially as a JIT part, else the part is assumed to have been pre-loaded into the register in the regular way.  |# #|line 1|# #|line 2|#
 (defun jit_instantiate (&optional  reg  owner  name  arg)

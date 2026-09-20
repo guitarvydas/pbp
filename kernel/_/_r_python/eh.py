@@ -28,8 +28,7 @@ class Eh:
         self.instance_data =  None                     #line 29# arg needed for probe support #line 30
         self.arg =  ""                                 #line 31
         self.state =  "idle"                           #line 32
-        self.special =  False                          #line 33# bootstrap debugging#line 34
-        self.kind =  None # enum { container, leaf, }  #line 35#line 36
-                                                       #line 37
-def injector (eh,mevent):                              #line 38
-    eh.handler ( eh, mevent)                           #line 39#line 40#line 41
+        self.special =  False                          #line 33#line 34
+                                                       #line 35
+def injector (eh,mevent):                              #line 36
+    eh.handler ( eh, mevent)                           #line 37#line 38#line 39

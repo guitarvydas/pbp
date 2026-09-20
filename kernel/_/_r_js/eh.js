@@ -29,11 +29,10 @@ class Eh {
     this.instance_data =  null;                        /* line 29 *//*  arg needed for probe support  *//* line 30 */
     this.arg =  "";                                    /* line 31 */
     this.state =  "idle";                              /* line 32 */
-    this.special =  false;                             /* line 33 *//*  bootstrap debugging *//* line 34 */
-    this.kind =  null;/*  enum { container, leaf, } */ /* line 35 *//* line 36 */
+    this.special =  false;                             /* line 33 *//* line 34 */
   }
 }
-                                                       /* line 37 */
-function injector (eh,mevent) {                        /* line 38 */
-    eh.handler ( eh, mevent)                           /* line 39 *//* line 40 *//* line 41 */
+                                                       /* line 35 */
+function injector (eh,mevent) {                        /* line 36 */
+    eh.handler ( eh, mevent)                           /* line 37 *//* line 38 *//* line 39 */
 }
