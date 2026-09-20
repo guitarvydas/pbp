@@ -7,9 +7,10 @@ void subscripted_digit (n) {
     else:                                              /* line 14 */
         return ( str( "₊") + str ( n)                  /* line 15 */)/* line 16 *//* line 17 *//* line 18 */}
 
+int  counter =  0                                      /* line 19 */;/* line 20 */
 void gensymbol (s) {
-                                                       /* line 19 */
-    static counter                                     /* line 20 */
-    name_with_id =  str( s) + subscripted_digit ( counter) /* line 21 */
-    counter =  counter+ 1                              /* line 22 */
-    return ( name_with_id)                             /* line 23 */;/* line 24 *//* line 25 */}
+                                                       /* line 21 */
+    static counter                                     /* line 22 */
+    name_with_id =  str( s) + subscripted_digit ( counter) /* line 23 */
+    counter =  counter+ 1                              /* line 24 */
+    return ( name_with_id)                             /* line 25 */;/* line 26 *//* line 27 */}

@@ -9,10 +9,11 @@
       (return-from subscripted_digit  (concatenate 'string  "₊" (format nil "~a"  n)) #|line 15|#) #|line 16|#
       ))                                                    #|line 17|#
   )
+(defparameter  counter  0)                                  #|line 19|# #|line 20|#
 (defun gensymbol (&optional  s)
-  (declare (ignorable  s))                                  #|line 19|# #|line 20|#
-  (let ((name_with_id  (concatenate 'string  s (funcall (quote subscripted_digit)   counter )) #|line 21|#))
+  (declare (ignorable  s))                                  #|line 21|# #|line 22|#
+  (let ((name_with_id  (concatenate 'string  s (funcall (quote subscripted_digit)   counter )) #|line 23|#))
     (declare (ignorable name_with_id))
-    (setf  counter (+  counter  1))                         #|line 22|#
-    (return-from gensymbol  name_with_id)                   #|line 23|#) #|line 24|#
+    (setf  counter (+  counter  1))                         #|line 24|#
+    (return-from gensymbol  name_with_id)                   #|line 25|#) #|line 26|#
   )

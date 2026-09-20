@@ -8,8 +8,9 @@ function subscripted_digit (n) {                       /* line 10 *//* line 11 *
     }                                                  /* line 17 *//* line 18 */
 }
 
-function gensymbol (s) {                               /* line 19 *//* line 20 */
-    let name_with_id =  ( s.toString ()+ subscripted_digit ( counter).toString ()) /* line 21 */;
-    counter =  counter+ 1;                             /* line 22 */
-    return  name_with_id;                              /* line 23 *//* line 24 *//* line 25 */
+let  counter =  0;                                     /* line 19 *//* line 20 */
+function gensymbol (s) {                               /* line 21 *//* line 22 */
+    let name_with_id =  ( s.toString ()+ subscripted_digit ( counter).toString ()) /* line 23 */;
+    counter =  counter+ 1;                             /* line 24 */
+    return  name_with_id;                              /* line 25 *//* line 26 *//* line 27 */
 }
