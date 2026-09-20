@@ -20,7 +20,7 @@ export DEST_EXTENSION="<not applicable>"
 
 
 # names must not contain spaces, since space is the separator used in for loops in @makec and @testc
-export BASENAMES="gensym mevent defs connector templates container leaf jit stock start"
+export BASENAMES="gensym mevent connector templates container leaf jit stock start"
 # NTYLIST is meant for building dynamic typed versions, where TYLIST is meant for appeasing type checkers
-export NTYLIST="gensym mevent defs connector templates container leaf jit stock start"
-export TYLIST="gensym mevent defs connector templates container leaf jit stock start"
+export NTYLIST="gensym mevent connector templates container leaf jit stock start"
+export TYLIST="gensym mevent connector templates container leaf jit stock start"
