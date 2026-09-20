@@ -1,5 +1,15 @@
 #!/bin/bash
 set -e
+
+if [ -n "$PBPDEV" ]; then
+    # do something
+    echo
+    echo "Dev: skipping build in @testc"
+    echo
+    ./do_extractor.bash
+    exit 0
+fi
+
 # npm install
 node das2json.mjs kernel.drawio
 
@@ -29,6 +39,7 @@ if diff -q new_kernel0d.py _/_r_python/rtkernel0d.py > /dev/null; then
     mv new_kernel0d.js kernel0d.js
     mv new_kernel0d.lisp kernel0d.lisp
     mv new_kernel0d.c kernel0d.c
+    ./do_extractor.bash
 else
     echo "Regression error: new_kernel0d.py and _/_r_python/rtkernel0d.py differ"
     echo "use diff new_kernel0d.py _/_r_python/rtkernel0d.py"

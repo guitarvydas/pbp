@@ -1,0 +1,17 @@
+var  digits ≡                                          #line 8#line 9
+defn subscripted_digit ≡
+(
+    n ≡
+)
+{
+                                                       #line 10#line 17#line 18
+}
+
+var  counter ≡                                         #line 19#line 20
+defn gensymbol ≡
+(
+    s ≡
+)
+{
+                                                       #line 21#line 26#line 27
+}

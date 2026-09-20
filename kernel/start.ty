@@ -1,0 +1,132 @@
+var  load_errors ≡                                     #line 1
+var  runtime_errors ≡                                  #line 2
+var  ticktime ≡                                        #line 3#line 4
+defn load_error ≡
+(
+    s ≡
+)
+{
+                                                       #line 5#line 10#line 11
+}
+
+defn runtime_error ≡
+(
+    s ≡
+)
+{
+                                                       #line 12#line 17#line 18
+}
+                                                       #line 19
+defn initialize_component_palette_from_files ≡
+(
+    diagram_source_files ≡
+)
+{
+                                                       #line 20
+        reg ≡                                          #line 21
+        diagram_source ≡
+        for diagram_source in  diagram_source_files {
+                                                       #line 22
+            all_containers_within_single_file ≡
+            container ≡
+            for container in  all_containers_within_single_file {
+                                                       #line 24#line 26
+            }                                          #line 27
+        }                                              #line 30#line 31
+}
+
+defn initialize_component_palette_from_string ≡
+(
+    lnet ≡
+)
+{
+                                                       #line 32
+        reg ≡                                          #line 33
+        all_containers ≡
+        container ≡
+        for container in  all_containers {
+                                                       #line 35#line 37
+        }                                              #line 40
+}
+
+defn initialize_from_files ≡
+(
+    diagram_names ≡
+)
+{
+                                                       #line 41
+        arg ≡                                          #line 42
+        palette ≡
+        return [ palette,[ diagram_names, arg]]        #line 44#line 45#line 46
+}
+
+defn initialize_from_string ≡
+()
+{
+                                                       #line 47
+        arg ≡                                          #line 48
+        palette ≡                                      #line 49
+        return [ palette,[ None, arg]]                 #line 50#line 51#line 52
+}
+
+defn start ≡
+(
+    arg ≡ ,
+    part_name ≡ ,
+    palette ≡ ,
+    env ≡
+)
+{
+                                                       #line 53
+        part ≡                                         #line 57#line 58
+}
+
+defn start_bare ≡
+(
+    part_name ≡ ,
+    palette ≡ ,
+    env ≡
+)
+{
+                                                       #line 59
+        diagram_names ≡                                #line 60#line 61
+        part ≡
+        if  None ==  part {
+                                                       #line 63#line 68
+        }
+        return  part                                   #line 69#line 70#line 71
+}
+
+defn inject ≡
+(
+    part ≡ ,
+    port ≡ ,
+    payload ≡
+)
+{
+                                                       #line 72
+        if not  load_errors {
+                                                       #line 73
+            d ≡
+            mev ≡
+        }
+        else
+        {                                              #line 80#line 82
+        }                                              #line 83#line 84
+}
+
+defn finalize ≡
+(
+    part ≡
+)
+{
+                                                       #line 85#line 87#line 88
+}
+
+defn new_datum_bang ≡
+()
+{
+                                                       #line 89
+        d ≡
+        return  d                                      #line 94#line 95
+}

@@ -1,0 +1,412 @@
+#line 1
+defn trash_instantiate ≡ @Leaf
+(
+    reg ≡ @Component_Registry,
+    owner ≡ @Container,
+    name ≡ @Str,
+    template_data ≡ @Template,
+    arg ≡ @Str
+)
+{
+                                                       #line 2
+        name_with_id ≡ @Str
+}
+
+defn trash_handler ≡ ~
+(
+    eh ≡ @Part,
+    mev ≡ @Mevent
+)
+{
+                                                       #line 7#line 8#line 9#line 10
+}
+
+class TwoMevents {
+                                                       #line 11
+    firstmev ≡ @Mevent                                        #line 12
+    secondmev ≡ @Mevent                                       #line 13#line 14
+}
+                                                       #line 15
+                                                       #line 16
+class Deracer_Instance_Data {
+                                                       #line 17
+    state ≡ State                                            #line 18
+    buffer ≡ @TwoMevents                                          #line 19#line 20
+}
+                                                       #line 21
+defn reclaim_Buffers_from_heap ≡ ~
+(
+    inst ≡ @Leaf
+)
+{
+                                                       #line 22#line 23#line 24#line 25
+}
+
+defn deracer_reset_handler ≡ ~
+(
+    eh ≡ @Leaf
+)
+{
+                                                       #line 26
+        inst ≡ @Deracer_Instance_Data                                        #line 27
+                                                       #line 31
+}
+
+defn deracer_instantiate ≡ @Leaf
+(
+    reg ≡ @Component_Registry,
+    owner ≡ @Container,
+    name ≡ @Str,
+    template_data ≡ @%Ignored,
+    arg ≡ @%Ignored
+)
+{
+                                                       #line 32
+        name_with_id ≡ @Str
+        inst ≡ @Deracer_Instance_Data
+        eh ≡ @Leaf
+}
+
+defn send_firstmev_then_secondmev ≡ ~
+(
+    eh ≡ @Leaf,
+    inst ≡ @Deracer_Instance_Data
+)
+{
+                                                       #line 41#line 45#line 46
+}
+
+defn deracer_handler ≡
+(
+    eh ≡ @Leaf,
+    mev ≡ @Mevent
+)
+{
+                                                       #line 47
+        inst ≡ @Deracer_Instance_Data                                        #line 48
+}
+
+defn low_level_read_text_file_instantiate ≡ @Leaf
+(
+    reg ≡ @Component_Registry,
+    owner ≡ @Container,
+    name ≡ @Str,
+    template_data ≡ @Template,
+    arg ≡ @Str
+)
+{
+                                                       #line 80
+        name_with_id ≡ @Str
+}
+
+defn low_level_read_text_file_handler ≡
+(
+    eh ≡ @Leaf,
+    mev ≡ @Mevent
+)
+{
+                                                       #line 85
+        fname ≡ @Payload                                        #line 86#line 88#line 89
+}
+
+defn ensure_string_datum_instantiate ≡ @Leaf
+(
+    reg ≡ @Component_Registry,
+    owner ≡ @Container,
+    name ≡ @Str,
+    template_data ≡ @%Ignored,
+    arg ≡ @%Ignored
+)
+{
+                                                       #line 90
+        name_with_id ≡ @Str
+}
+
+defn ensure_string_datum_handler ≡ ~
+(
+    eh ≡ @Leaf,
+    mev ≡ @Mevent
+)
+{
+                                                       #line 95
+        if  "string" ==  mev.payload.kind () {
+                                                       #line 96
+        }
+        else
+        {                                              #line 98
+            emev ≡ @Str                                    #line 101
+        }                                              #line 102#line 103
+}
+
+class Syncfilewrite_Data {
+                                                       #line 104
+    filename ≡ @Str                                        #line 105#line 106
+}
+                                                       #line 107
+defn syncfilewrite_reset_handler ≡ ~
+(
+    eh ≡ @Leaf
+)
+{
+                                                       #line 108
+                                                       #line 111
+}
+
+                                                       #line 112
+defn syncfilewrite_instantiate ≡ @Leaf
+(
+    reg ≡ @Component_Registry,
+    owner ≡ @Container,
+    name ≡ @Str,
+    template_data ≡ @%Ignored,
+    arg ≡ @%Ignored
+)
+{
+                                                       #line 113
+        name_with_id ≡ @Str
+        inst ≡ @SyncFilewrite_Data
+}
+
+defn syncfilewrite_handler ≡ ~
+(
+    eh ≡ @Leaf,
+    mev ≡ @Mevent
+)
+{
+                                                       #line 119
+        inst ≡ @Synfilewrite_Data                                         #line 120
+        if  "filename" ==  mev.port {
+                                                       #line 121
+
+        }
+        elif  "input" ==  mev.port
+        {                                              #line 123
+            contents ≡ @Payload                                #line 124
+            f ≡ @FileDescriptor
+        }
+}
+
+class StringConcat_Instance_Data {
+                                                       #line 136
+    buffer1 ≡ @Str                                         #line 137
+    buffer2 ≡ @Str                                         #line 138#line 139
+}
+                                                       #line 140
+defn stringconcat_reset_handler ≡ ~
+(
+    eh ≡ @Leaf
+)
+{
+                                                       #line 141
+        inst ≡ @StringConcat_Instance_Data                                        #line 142
+                                                       #line 146
+}
+
+defn stringconcat_instantiate ≡ @Leaf
+(
+    reg ≡ @Component_Registry,
+    owner ≡ @Container,
+    name ≡ @Str,
+    template_data ≡ @%Ignored,
+    arg ≡ @%Ignored
+)
+{
+                                                       #line 147
+        name_with_id ≡ @Str
+        instp ≡ @StringConcat_Instance_Data
+}
+
+defn stringconcat_handler ≡ ~
+(
+    eh ≡ @Leaf,
+    mev ≡ @Mevent
+)
+{
+                                                       #line 153
+        inst ≡ @StringConcat_Instance_Data                                        #line 154
+}
+
+defn maybe_stringconcat ≡ ~
+(
+    eh ≡ @Leaf,
+    inst ≡ @StringConcat_Instance_Dat,
+    mev ≡ @Mevent
+)
+{
+                                                       #line 169
+        if  inst.buffer1!= None and  inst.buffer2!= None {
+                                                       #line 170
+            concatenated_string ≡                      #line 171
+            if  0 == len ( inst.buffer1) {
+                                                       #line 172
+                concatenated_string ≡                  #line 173
+            }
+            elif  0 == len ( inst.buffer2)
+            {                                          #line 174
+                concatenated_string ≡ @Str                 #line 175
+            }
+            else
+            {                                          #line 176
+                concatenated_string ≡ @Str                 #line 177#line 178
+            }                                          #line 182
+        }                                              #line 183#line 184
+}
+
+                                                       #line 185#line 186
+defn string_constant_instantiate ≡ @Leaf
+(
+    reg ≡ @Component_Registry,
+    owner ≡ @Container,
+    name ≡ @Str,
+    template_data ≡ @%Ignored,
+    arg ≡ @%Ignored
+)
+{
+                                                       #line 187#line 195#line 196
+}
+
+defn string_constant_handler ≡ ~
+(
+    eh ≡ @Leaf,
+    mev ≡ @Mevent
+)
+{
+                                                       #line 197
+        s ≡ @Str                                           #line 198#line 200#line 201
+}
+
+defn fakepipename_instantiate ≡ @Leaf
+(
+    reg ≡ @Component_Registry,
+    owner ≡ @Container,
+    name ≡ @Str,
+    template_data ≡ @%Ignored,
+    arg ≡ @%Ignored
+)
+{
+                                                       #line 202
+        instance_name ≡ @Str
+
+}
+
+var  rand ≡ Number                                           #line 207#line 208
+defn fakepipename_handler ≡ ~
+(
+    eh ≡ @Leaf,
+    mev ≡ @Mevent
+)
+{
+                                                       #line 209#line 213#line 214
+}
+                                                       #line 215
+class Switch1star_Instance_Data {
+                                                       #line 216
+    state ≡ @Str                                           #line 217#line 218
+}
+                                                       #line 219
+defn switch1star_reset_handler ≡ ~
+(
+    eh ≡ @Leaf
+)
+{
+                                                       #line 220
+        inst ≡ @Switch1star_Instance_Data                                         #line 221
+        inst ≡ @Switch1star_Instance_Data                                        #line 223#line 224
+}
+
+defn switch1star_instantiate ≡ @Leaf
+(
+    reg ≡ @Component_Registry,
+    owner ≡ @Container,
+    name ≡ @Str,
+    template_data ≡ @%Ignored,
+    arg ≡ @%Ignored
+)
+{
+                                                       #line 225
+        name_with_id ≡ @Str
+        instp ≡ @Switch1star_Instance_Data
+}
+
+defn switch1star_handler ≡ ~
+(
+    eh ≡ @Leaf,
+    mev ≡ @Mevent
+)
+{
+                                                       #line 231
+        inst ≡ @Switch1star_Instance_Data                                         #line 232
+        whichOutput ≡ @Str                                 #line 233
+}
+
+class StringAccumulator {
+                                                       #line 250
+    s ≡ @Str                                               #line 251#line 252
+}
+                                                       #line 253
+defn strcatstar_reset_handler ≡ ~
+(
+    eh ≡ @Leaf
+)
+{
+}
+
+defn strcatstar_instantiate ≡ @Leaf
+(
+    reg ≡ @Component_Registry,
+    owner ≡ @Container,
+    name ≡ @Str,
+    template_data ≡ @%Ignored,
+    arg ≡ @%Ignored
+)
+{
+                                                       #line 258
+        name_with_id ≡ @Str
+        instp ≡ @Switch1star_Instance_Data
+}
+
+defn strcatstar_handler ≡ ~
+(
+    eh ≡ @Leaf,
+    mev ≡ @Mevent
+)
+{
+                                                       #line 264
+        accum ≡ @Switch1star_Instance_Data                                       #line 265
+}
+
+defn stop_instantiate ≡ @Leaf
+(
+    reg ≡ @Component_Registry,
+    owner ≡ @Container,
+    name ≡ @Str,
+    template_data ≡ @%Ignored,
+    arg ≡ @%Ignored
+)
+{
+                                                       #line 275
+        name_with_id ≡ @Str
+        inst ≡ @Switch1star_Instance_Data                                        #line 277
+}
+
+defn stop_handler ≡ ~
+(
+    eh ≡ @Leaf,
+    mev ≡ @Mevent
+)
+{
+                                                       #line 281
+        inst ≡ @                                        #line 282
+        parent ≡ @Container                                      #line 283
+        s ≡ @Str                                            #line 289#line 290
+}
+
+                                                       #line 291
+                                                       #line 292#line 293
+defn initialize_stock_components ≡ ~
+(
+    reg ≡ @Component_Registry
+)
+{
+                                                       #line 294#line 311#line 312
+}

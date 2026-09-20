@@ -15,6 +15,7 @@ export T2TLIBD="${PBP}/t2td/lib"
 export CALLERPATH="${TOOLWD}"
 export TRANSMOGRIFIER="<not applicable>"
 export TARGET="<not applicable>"
+export EXTRACTOR_TARGET="extractor"
 export SRC_EXTENSION="<not applicable>"
 export DEST_EXTENSION="<not applicable>"
 

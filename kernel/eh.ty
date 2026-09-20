@@ -1,0 +1,41 @@
+#line 1
+                                                       #line 2
+                                                       #line 3
+                                                       #line 4
+                                                       #line 5
+                                                       #line 6
+                                                       #line 7
+                                                       #line 8
+                                                       #line 9
+                                                       #line 10
+                                                       #line 11
+                                                       #line 12
+                                                       #line 13#line 14
+                                                       #line 15#line 16
+                                                       #line 17
+class Eh {
+                                                       #line 18
+    name ≡                                             #line 19
+    inq ≡
+    outq ≡
+    owner ≡                                            #line 22
+    children ≡                                         #line 23
+    visit_ordering ≡
+    connections ≡                                      #line 25
+    handler ≡                                          #line 26
+    finject ≡                                          #line 27
+    stop ≡                                             #line 28
+    instance_data ≡                                    #line 29#line 30
+    arg ≡                                              #line 31
+    state ≡                                            #line 32
+    special ≡                                          #line 33#line 34
+}
+                                                       #line 35
+defn injector ≡
+(
+    eh ≡ ,
+    mevent ≡
+)
+{
+                                                       #line 36#line 38#line 39
+}

@@ -1,0 +1,389 @@
+defn create_down_connector ≡
+(
+    container ≡ ,
+    proto_conn ≡ ,
+    connectors ≡ ,
+    children_by_id ≡
+)
+{
+                                                       #line 1#line 2
+        connector ≡
+        target_proto ≡                                 #line 6
+        id_proto ≡                                     #line 7
+        target_component ≡                             #line 8
+        if ( target_component ==  None) {
+                                                       #line 9#line 10
+        }
+        else
+        {                                              #line 11
+
+        }
+        return  connector                              #line 14#line 15#line 16
+}
+
+defn create_across_connector ≡
+(
+    container ≡ ,
+    proto_conn ≡ ,
+    connectors ≡ ,
+    children_by_id ≡
+)
+{
+                                                       #line 17
+        connector ≡
+        source_component ≡                             #line 20
+        target_component ≡                             #line 21
+        if  source_component ==  None {
+                                                       #line 22
+        }
+        else
+        {                                              #line 24
+            if  target_component ==  None {
+                                                       #line 26
+            }
+            else
+            {                                          #line 28
+
+            }                                          #line 31
+        }
+        return  connector                              #line 32#line 33#line 34
+}
+
+defn create_up_connector ≡
+(
+    container ≡ ,
+    proto_conn ≡ ,
+    connectors ≡ ,
+    children_by_id ≡
+)
+{
+                                                       #line 35
+        connector ≡
+        source_component ≡                             #line 38
+        if  source_component ==  None {
+                                                       #line 39#line 40
+        }
+        else
+        {                                              #line 41
+
+        }
+        return  connector                              #line 45#line 46#line 47
+}
+
+defn create_through_connector ≡
+(
+    container ≡ ,
+    proto_conn ≡ ,
+    connectors ≡ ,
+    children_by_id ≡
+)
+{
+                                                       #line 48
+        connector ≡
+        return  connector                              #line 53#line 54#line 55
+}
+                                                       #line 56
+defn container_instantiator ≡
+(
+    reg ≡ ,
+    owner ≡ ,
+    container_name ≡ ,
+    desc ≡ ,
+    arg ≡
+)
+{
+                                                       #line 57#line 87#line 88
+}
+
+                                                       #line 89
+defn container_handler ≡
+(
+    container ≡ ,
+    mevent ≡
+)
+{
+                                                       #line 90#line 94#line 95
+}
+
+                                                       #line 96
+defn container_reset_children ≡
+(
+    container ≡
+)
+{
+                                                       #line 97
+        child ≡
+        for child in  container.children {
+                                                       #line 98#line 100
+        }                                              #line 105#line 106
+}
+
+                                                       #line 107
+defn destroy_container ≡
+(
+    eh ≡
+)
+{
+                                                       #line 108#line 109#line 110
+}
+
+                                                       #line 111
+defn sender_eq ≡
+(
+    s1 ≡ ,
+    s2 ≡
+)
+{
+                                                       #line 112
+        same_components ≡                              #line 113
+        same_ports ≡                                   #line 114
+        return  same_components and  same_ports        #line 115#line 116#line 117
+}
+
+                                                       #line 118#line 119
+defn deposit ≡
+(
+    parent ≡ ,
+    conn ≡ ,
+    mevent ≡
+)
+{
+                                                       #line 120
+        new_mevent ≡                                   #line 123#line 124
+}
+
+defn force_tick ≡
+(
+    parent ≡ ,
+    eh ≡
+)
+{
+                                                       #line 125
+        tick_mev ≡                                     #line 129#line 130
+}
+
+defn push_mevent ≡
+(
+    parent ≡ ,
+    receiver ≡ ,
+    inq ≡ ,
+    m ≡
+)
+{
+                                                       #line 131
+        if ( receiver.special) {
+                                                       #line 133
+        }
+        else
+        {                                              #line 135#line 137
+        }                                              #line 138#line 139#line 140
+}
+
+defn is_self ≡
+(
+    child ≡ ,
+    container ≡
+)
+{
+                                                       #line 141#line 142
+        return  child ==  container                    #line 143#line 144#line 145
+}
+
+defn step_child_once ≡
+(
+    child ≡ ,
+    mev ≡
+)
+{
+                                                       #line 146
+        if ( ("PBPSTEPPING" in os.environ) ) {
+                                                       #line 147#line 150
+        }                                              #line 152#line 153
+}
+
+defn step_children ≡
+(
+    container ≡ ,
+    causingMevent ≡
+)
+{
+                                                       #line 154
+        child ≡
+        for child in  list ( container.visit_ordering) {
+                                                       #line 158#line 159
+            if (not (is_self ( child, container))) {
+                                                       #line 160
+                if (not ((0==len( child.inq)))) {
+                                                       #line 161
+                    mev ≡
+                }
+                else
+                {                                      #line 166
+                    if  child.state ==  "idle" {
+                                                       #line 167#line 168
+                    }
+                    else
+                    {                                  #line 169
+                        mev ≡                          #line 173
+                    }                                  #line 174
+                }                                      #line 175
+            }                                          #line 176#line 178#line 179
+        child ≡
+        for child in  container.children {
+                                                       #line 180
+            if  child.state ==  "active" {
+                                                       #line 181#line 182
+
+            }                                          #line 185
+            while (not ((0==len( child.outq)))) {
+                                                       #line 186
+                mev ≡                                  #line 190
+            }                                          #line 191
+        }
+        }                                              #line 192#line 193
+}
+
+defn attempt_tick ≡
+(
+    parent ≡ ,
+    eh ≡
+)
+{
+                                                       #line 194
+        if  eh.state!= "idle" {
+                                                       #line 195#line 197
+        }                                              #line 198#line 199
+}
+
+defn is_tick ≡
+(
+    mev ≡
+)
+{
+                                                       #line 200
+        return  "." ==  mev.port                       #line 201#line 202#line 203
+}
+
+                                                       #line 204
+                                                       #line 205#line 206
+defn route ≡
+(
+    container ≡ ,
+    from_component ≡ ,
+    mevent ≡
+)
+{
+                                                       #line 207
+        was_sent ≡                                     #line 208
+        fromname ≡                                     #line 209#line 232#line 233
+}
+
+defn any_child_ready ≡
+(
+    container ≡
+)
+{
+                                                       #line 234
+        child ≡
+        for child in  container.children {
+                                                       #line 235
+            if child_is_ready ( child) {
+                                                       #line 236
+                return  True                           #line 237#line 238
+            }                                          #line 239
+        return  False                                  #line 240
+        }                                              #line 241#line 242
+}
+
+defn child_is_ready ≡
+(
+    eh ≡
+)
+{
+                                                       #line 243
+        return (not ((0==len( eh.outq)))) or (not ((0==len( eh.inq)))) or ( eh.state!= "idle") or (any_child_ready ( eh))#line 244#line 245#line 246
+}
+                                                       #line 247
+                                                       #line 248
+                                                       #line 249
+defn make_container ≡
+(
+    name ≡ ,
+    owner ≡
+)
+{
+                                                       #line 250
+        eh ≡
+        return  eh                                     #line 259#line 260#line 261
+}
+
+                                                       #line 262
+                                                       #line 263#line 264
+defn send ≡
+(
+    eh ≡ ,
+    port ≡ ,
+    obj ≡ ,
+    causingMevent ≡
+)
+{
+                                                       #line 265
+        d ≡
+        mev ≡                                          #line 272#line 273
+}
+
+defn forward ≡
+(
+    eh ≡ ,
+    port ≡ ,
+    mev ≡
+)
+{
+                                                       #line 274
+        fwdmev ≡                                       #line 277#line 278
+}
+
+defn inject_mevent ≡
+(
+    eh ≡ ,
+    mev ≡
+)
+{
+                                                       #line 279#line 281#line 282
+}
+
+defn set_active ≡
+(
+    eh ≡
+)
+{
+                                                       #line 283
+                                                       #line 286
+}
+
+defn set_idle ≡
+(
+    eh ≡
+)
+{
+                                                       #line 287
+                                                       #line 290
+}
+
+defn put_output ≡
+(
+    eh ≡ ,
+    mev ≡
+)
+{
+                                                       #line 291#line 293#line 294
+}
+
+defn obj_clone ≡
+(
+    obj ≡
+)
+{
+                                                       #line 295
+        return  obj                                    #line 296#line 297
+}
