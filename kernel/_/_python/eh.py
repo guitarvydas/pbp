@@ -32,3 +32,6 @@ class Eh:
         self.state =  "idle"                           #line 34
         self.special =  False                          #line 35# bootstrap debugging#line 36
         self.kind =  None # enum { container, leaf, }  #line 37#line 38
+                                                       #line 39
+def injector (eh,mevent):                              #line 40
+    eh.handler ( eh, mevent)                           #line 41#line 42#line 43

@@ -2,8 +2,11 @@ import sys
 import new_kernel0d as zd
 
 try:
+    print ("~", file=sys.stderr)
     [palette, env] = zd.initialize_from_files (["kernel.drawio.json"])
+    print ("!", file=sys.stderr)
     zd.start (arg=sys.argv[3], part_name="main", palette=palette, env=env)
+    print ("@", file=sys.stderr)
 except Exception as e:
     _, _, tb = sys.exc_info()
     while tb.tb_next:

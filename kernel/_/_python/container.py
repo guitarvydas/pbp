@@ -209,7 +209,7 @@ def make_container (name,owner):                       #line 255
     eh.name =  name                                    #line 257
     eh.owner =  owner                                  #line 258
     eh.handler =  container_handler                    #line 259
-    eh.finject =  inject_mevent                        #line 260
+    eh.finject =  injector                             #line 260
     eh.stop =  container_reset_children                #line 261
     eh.state =  "idle"                                 #line 262
     eh.kind =  "container"                             #line 263

@@ -13,7 +13,7 @@
       (setf (slot-value  eh 'owner)  owner)                 #|line 11|#
       (setf (slot-value  eh 'handler)  handler)             #|line 12|#
       (setf (slot-value  eh 'reset_handler)  reset_handler) #|line 13|#
-      (setf (slot-value  eh 'finject)  #'inject_mevent)     #|line 14|#
+      (setf (slot-value  eh 'finject)  #'injector)          #|line 14|#
       (setf (slot-value  eh 'stop)  #'leaf_reset)           #|line 15|#
       (setf (slot-value  eh 'instance_data)  instance_data) #|line 16|#
       (setf (slot-value  eh 'arg)  arg)                     #|line 17|#

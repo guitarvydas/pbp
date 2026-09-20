@@ -332,7 +332,7 @@
     (setf (slot-value  eh 'name)  name)                     #|line 257|#
     (setf (slot-value  eh 'owner)  owner)                   #|line 258|#
     (setf (slot-value  eh 'handler)  #'container_handler)   #|line 259|#
-    (setf (slot-value  eh 'finject)  #'inject_mevent)       #|line 260|#
+    (setf (slot-value  eh 'finject)  #'injector)            #|line 260|#
     (setf (slot-value  eh 'stop)  #'container_reset_children) #|line 261|#
     (setf (slot-value  eh 'state)  "idle")                  #|line 262|#
     (setf (slot-value  eh 'kind)  "container")              #|line 263|#

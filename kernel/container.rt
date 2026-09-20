@@ -257,7 +257,7 @@ defn make_container (name, owner) {
     eh.name ⇐ name
     eh.owner ⇐ owner
     eh.handler ⇐ ↪︎container_handler
-    eh.finject ⇐ ↪︎inject_mevent
+    eh.finject ⇐ ↪︎injector
     eh.stop ⇐ ↪︎container_reset_children
     eh.state ⇐ “idle”
     eh.kind ⇐ “container”

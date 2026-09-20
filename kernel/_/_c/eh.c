@@ -55,3 +55,7 @@ Eh fresh_Eh () {
     self->kind =  NULL; /*  enum { container, leaf, } *//* line 37 *//* line 38 */
     return self;
 }
+                                                       /* line 39 */
+void injector (eh,mevent) {
+                                                       /* line 40 */
+    eh.handler ( eh, mevent)                           /* line 41 *//* line 42 *//* line 43 */}

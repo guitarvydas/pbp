@@ -68,6 +68,9 @@ class Eh:
         self.state =  "idle"                           #line 34
         self.special =  False                          #line 35# bootstrap debugging#line 36
         self.kind =  None # enum { container, leaf, }  #line 37#line 38
+                                                       #line 39
+def injector (eh,mevent):                              #line 40
+    eh.handler ( eh, mevent)                           #line 41#line 42#line 43
 digits = [ "₀", "₁", "₂", "₃", "₄", "₅", "₆", "₇", "₈", "₉", "₁₀", "₁₁", "₁₂", "₁₃", "₁₄", "₁₅", "₁₆", "₁₇", "₁₈", "₁₉", "₂₀", "₂₁", "₂₂", "₂₃", "₂₄", "₂₅", "₂₆", "₂₇", "₂₈", "₂₉"]#line 7#line 8#line 9
 def subscripted_digit (n):                             #line 10
     global digits                                      #line 11
@@ -506,7 +509,7 @@ def make_container (name,owner):                       #line 255
     eh.name =  name                                    #line 257
     eh.owner =  owner                                  #line 258
     eh.handler =  container_handler                    #line 259
-    eh.finject =  inject_mevent                        #line 260
+    eh.finject =  injector                             #line 260
     eh.stop =  container_reset_children                #line 261
     eh.state =  "idle"                                 #line 262
     eh.kind =  "container"                             #line 263
@@ -551,7 +554,7 @@ def make_leaf (name,owner,instance_data,arg,handler,reset_handler):#line 4
     eh.owner =  owner                                  #line 11
     eh.handler =  handler                              #line 12
     eh.reset_handler =  reset_handler                  #line 13
-    eh.finject =  inject_mevent                        #line 14
+    eh.finject =  injector                             #line 14
     eh.stop =  leaf_reset                              #line 15
     eh.instance_data =  instance_data                  #line 16
     eh.arg =  arg                                      #line 17
@@ -950,9 +953,13 @@ def initialize_from_string ():                         #line 46
     return [ palette,[ None, arg]]                     #line 49#line 50#line 51
 
 def start (arg,part_name,palette,env):                 #line 52
+    print ("$a", file=sys.stderr)
     part = start_bare ( part_name, palette, env)       #line 53
+    print ("$b", file=sys.stderr)
     inject ( part, "", arg)                            #line 54
+    print ("$c", file=sys.stderr)
     finalize ( part)                                   #line 55#line 56#line 57
+    print ("$d", file=sys.stderr)
 
 def start_bare (part_name,palette,env):                #line 58
     diagram_names =  env [ 0]                          #line 59
@@ -971,6 +978,7 @@ def inject (part,port,payload):                        #line 71
         mev = make_mevent ( port, d)                   #line 77
         inject_mevent ( part, mev)                     #line 78
     else:                                              #line 79
+        print (f"load_errors={load_errors}", file=sys.stderr)
         exit (1)                                       #line 80#line 81#line 82#line 83
 
 def finalize (part):                                   #line 84

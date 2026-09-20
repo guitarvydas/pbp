@@ -9,7 +9,7 @@ def make_leaf (name,owner,instance_data,arg,handler,reset_handler):#line 4
     eh.owner =  owner                                  #line 11
     eh.handler =  handler                              #line 12
     eh.reset_handler =  reset_handler                  #line 13
-    eh.finject =  inject_mevent                        #line 14
+    eh.finject =  injector                             #line 14
     eh.stop =  leaf_reset                              #line 15
     eh.instance_data =  instance_data                  #line 16
     eh.arg =  arg                                      #line 17

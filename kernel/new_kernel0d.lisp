@@ -127,6 +127,12 @@ x))))
     (state :accessor state :initarg :state :initform  "idle")  #|line 34|#
     (special :accessor special :initarg :special :initform  nil)  #|line 35|# #|  bootstrap debugging |# #|line 36|#
     (kind :accessor kind :initarg :kind :initform  nil)  #|  enum { container, leaf, } |# #|line 37|#)) #|line 38|#
+
+                                                            #|line 39|#
+(defun injector (&optional  eh  mevent)
+  (declare (ignorable  eh  mevent))                         #|line 40|#
+  (funcall (slot-value  eh 'handler)   eh  mevent           #|line 41|#) #|line 42|#
+  )
 (defparameter  digits (list                                 #|line 1|#  "₀"  "₁"  "₂"  "₃"  "₄"  "₅"  "₆"  "₇"  "₈"  "₉"  "₁₀"  "₁₁"  "₁₂"  "₁₃"  "₁₄"  "₁₅"  "₁₆"  "₁₇"  "₁₈"  "₁₉"  "₂₀"  "₂₁"  "₂₂"  "₂₃"  "₂₄"  "₂₅"  "₂₆"  "₂₇"  "₂₈"  "₂₉" )) #|line 7|# #|line 8|# #|line 9|#
 (defun subscripted_digit (&optional  n)
   (declare (ignorable  n))                                  #|line 10|# #|line 11|#
@@ -726,7 +732,7 @@ x))))
     (setf (slot-value  eh 'name)  name)                     #|line 257|#
     (setf (slot-value  eh 'owner)  owner)                   #|line 258|#
     (setf (slot-value  eh 'handler)  #'container_handler)   #|line 259|#
-    (setf (slot-value  eh 'finject)  #'inject_mevent)       #|line 260|#
+    (setf (slot-value  eh 'finject)  #'injector)            #|line 260|#
     (setf (slot-value  eh 'stop)  #'container_reset_children) #|line 261|#
     (setf (slot-value  eh 'state)  "idle")                  #|line 262|#
     (setf (slot-value  eh 'kind)  "container")              #|line 263|#
@@ -784,7 +790,7 @@ x))))
       (setf (slot-value  eh 'owner)  owner)                 #|line 11|#
       (setf (slot-value  eh 'handler)  handler)             #|line 12|#
       (setf (slot-value  eh 'reset_handler)  reset_handler) #|line 13|#
-      (setf (slot-value  eh 'finject)  #'inject_mevent)     #|line 14|#
+      (setf (slot-value  eh 'finject)  #'injector)          #|line 14|#
       (setf (slot-value  eh 'stop)  #'leaf_reset)           #|line 15|#
       (setf (slot-value  eh 'instance_data)  instance_data) #|line 16|#
       (setf (slot-value  eh 'arg)  arg)                     #|line 17|#

@@ -36,3 +36,8 @@ defobj Eh () {
         ⌈ bootstrap debugging⌉
         • kind ⇐ ϕ ⌈ enum { container, leaf, }⌉
 }
+
+defn injector (eh, mevent) {
+    eh.handler (eh, mevent)
+}
+

@@ -56,6 +56,10 @@ Eh fresh_Eh () {
     self->kind =  NULL; /*  enum { container, leaf, } *//* line 37 *//* line 38 */
     return self;
 }
+                                                       /* line 39 */
+void injector (eh,mevent) {
+                                                       /* line 40 */
+    eh.handler ( eh, mevent)                           /* line 41 *//* line 42 *//* line 43 */}
 int  digits = [ "₀", "₁", "₂", "₃", "₄", "₅", "₆", "₇", "₈", "₉", "₁₀", "₁₁", "₁₂", "₁₃", "₁₄", "₁₅", "₁₆", "₁₇", "₁₈", "₁₉", "₂₀", "₂₁", "₂₂", "₂₃", "₂₄", "₂₅", "₂₆", "₂₇", "₂₈", "₂₉"]/* line 7 */;/* line 8 *//* line 9 */
 void subscripted_digit (n) {
                                                        /* line 10 */
@@ -601,7 +605,7 @@ void make_container (name,owner) {
     eh.name =  name                                    /* line 257 */
     eh.owner =  owner                                  /* line 258 */
     eh.handler =  container_handler                    /* line 259 */
-    eh.finject =  inject_mevent                        /* line 260 */
+    eh.finject =  injector                             /* line 260 */
     eh.stop =  container_reset_children                /* line 261 */
     eh.state =  "idle"                                 /* line 262 */
     eh.kind =  "container"                             /* line 263 */
@@ -654,7 +658,7 @@ void make_leaf (name,owner,instance_data,arg,handler,reset_handler) {
     eh.owner =  owner                                  /* line 11 */
     eh.handler =  handler                              /* line 12 */
     eh.reset_handler =  reset_handler                  /* line 13 */
-    eh.finject =  inject_mevent                        /* line 14 */
+    eh.finject =  injector                             /* line 14 */
     eh.stop =  leaf_reset                              /* line 15 */
     eh.instance_data =  instance_data                  /* line 16 */
     eh.arg =  arg                                      /* line 17 */
