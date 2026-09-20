@@ -2,7 +2,7 @@
 class Datum {
                                                        #line 2
     v ≡ @Payload                                               #line 3
-    clone ≡ λ@Payload                                           #line 4
+    clone ≡ λ@Datum                                           #line 4
     reclaim ≡ ~                                         #line 5
     other ≡ @                                           #line 6#line 7
 }
@@ -31,7 +31,7 @@ defn clone_port ≡ Port
 defn make_mevent ≡ @Mevent
 (
     port ≡ Port,
-    datum ≡ @Payload
+    datum ≡ @Datum
 )
 {
                                                        #line 25

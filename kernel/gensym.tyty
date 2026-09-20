@@ -1,5 +1,5 @@
-var  digits ≡ IntArray                                          #line 8#line 9
-defn subscripted_digit ≡ Int
+var  digits ≡ Array_of_Str                                          #line 8#line 9
+defn subscripted_digit ≡ @Str
 (
     n ≡ Int
 )
