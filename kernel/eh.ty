@@ -22,14 +22,13 @@ class Eh {
     children ≡                                         #line 23
     visit_ordering ≡
     connections ≡                                      #line 25
-    routings ≡
-    handler ≡                                          #line 27
-    reset_instance_data ≡                              #line 28
-    finject ≡                                          #line 29
-    stop ≡                                             #line 30
-    instance_data ≡                                    #line 31#line 32
-    arg ≡                                              #line 33
-    state ≡                                            #line 34
-    special ≡                                          #line 35#line 36
-    kind ≡                                             #line 37#line 38
+    handler ≡                                          #line 26
+    reset_instance_data ≡                              #line 27
+    finject ≡                                          #line 28
+    stop ≡                                             #line 29
+    instance_data ≡                                    #line 30#line 31
+    arg ≡                                              #line 32
+    state ≡                                            #line 33
+    special ≡                                          #line 34#line 35
+    kind ≡                                             #line 36#line 37
 }
