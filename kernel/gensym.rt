@@ -16,6 +16,8 @@ defn subscripted_digit (n) {
   }
 }
 
+defvar counter ⇐ 0
+
 defn gensymbol (s) {
     global counter
     name_with_id ≡ #strcons (s, subscripted_digit (counter))
