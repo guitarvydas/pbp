@@ -1,34 +1,20 @@
 {
   "main": {
-    "id": "970e7f5d7d5f9131",
+    "id": "8dbf5903ebdebb8b",
     "type": "split",
     "children": [
       {
-        "id": "969c8273f9fa81e8",
+        "id": "938d53fd3fb839ba",
         "type": "tabs",
         "children": [
           {
-            "id": "c769a219810c4f52",
+            "id": "ab00429755f2cf2b",
             "type": "leaf",
             "state": {
               "type": "empty",
               "state": {},
               "icon": "lucide-file",
               "title": "New tab"
-            }
-          },
-          {
-            "id": "41d167e8751f3e58",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "attic/deltas.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "deltas"
             }
           }
         ]
@@ -37,15 +23,15 @@
     "direction": "vertical"
   },
   "left": {
-    "id": "ca68872c684dab1e",
+    "id": "aa1271b37f4d7e76",
     "type": "split",
     "children": [
       {
-        "id": "736e37eb6b888459",
+        "id": "54da914e417bf4b8",
         "type": "tabs",
         "children": [
           {
-            "id": "27e86f68be0228ad",
+            "id": "faad7d0feebc0769",
             "type": "leaf",
             "state": {
               "type": "file-explorer",
@@ -60,7 +46,7 @@
             }
           },
           {
-            "id": "2695f1e24edb9fd5",
+            "id": "548be82e9eda1f66",
             "type": "leaf",
             "state": {
               "type": "search",
@@ -77,11 +63,14 @@
             }
           },
           {
-            "id": "e628cc41e8dc5b29",
+            "id": "e9a4c5bdd1cff276",
             "type": "leaf",
             "state": {
               "type": "bookmarks",
-              "state": {},
+              "state": {
+                "showSearch": false,
+                "searchQuery": ""
+              },
               "icon": "lucide-bookmark",
               "title": "Bookmarks"
             }
@@ -90,24 +79,22 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
-    "id": "f5c1ed2dde6a7022",
+    "id": "82a8cb7561562ddb",
     "type": "split",
     "children": [
       {
-        "id": "338d2d38f104a705",
+        "id": "aa210ee8728f9cec",
         "type": "tabs",
         "children": [
           {
-            "id": "75aaedd95c9df48e",
+            "id": "5c40f613e6536b51",
             "type": "leaf",
             "state": {
               "type": "backlink",
               "state": {
-                "file": "README.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -117,25 +104,24 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for README"
+              "title": "Backlinks"
             }
           },
           {
-            "id": "8fe3d1dc51b04df8",
+            "id": "4496fb242559e7de",
             "type": "leaf",
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "t2t/doc/how-to-create-Makefile.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from how-to-create-Makefile"
+              "title": "Outgoing links"
             }
           },
           {
-            "id": "847603cea951275f",
+            "id": "1f97b13fcedf5d9d",
             "type": "leaf",
             "state": {
               "type": "tag",
@@ -150,7 +136,7 @@
             }
           },
           {
-            "id": "576644763572c080",
+            "id": "dcf4c70f61d6d9ca",
             "type": "leaf",
             "state": {
               "type": "all-properties",
@@ -164,7 +150,7 @@
             }
           },
           {
-            "id": "933134bcb38f6582",
+            "id": "be7d9dd8d956a8ee",
             "type": "leaf",
             "state": {
               "type": "outline",
@@ -177,12 +163,12 @@
               "title": "Outline"
             }
           }
-        ],
-        "currentTab": 4
+        ]
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -195,53 +181,6 @@
       "bases:Create new base": false
     }
   },
-  "active": "c769a219810c4f52",
-  "lastOpenFiles": [
-    "kernel/temp.nanodsl.15976.mjs",
-    "kernel/temp.nanodsl.30088.mjs",
-    "kernel/temp.nanodsl.11432.mjs",
-    "kernel/temp.nanodsl.8281.mjs",
-    "kernel/temp.nanodsl.22394.mjs",
-    "kernel/temp.nanodsl.3738.mjs",
-    "kernel/temp.nanodsl.17425.mjs",
-    "kernel/temp.nanodsl.14700.mjs",
-    "kernel/temp.nanodsl.28812.mjs",
-    "kernel/temp.nanodsl.9731.mjs",
-    "kernel/temp.nanodsl.23844.mjs",
-    "tinykernel/typetable.md",
-    "tinykernel/prompt.md",
-    "tinykernel/misc/prompt.md",
-    "tinykernel/kernel-Back-End.drawio.png",
-    "tinykernel/doc/string_pool.png",
-    "tinykernel/doc/mevent.png",
-    "tinykernel/doc/character_pool.png",
-    "tinykernel/_/_notes/prompt.md",
-    "tinykernel/README.md",
-    "tinykernel/C-PORT.md",
-    "kernel/TY-ANNOTATOR.md",
-    "kernel/PROMPT.md",
-    "kernel/PONDER.md",
-    "kernel/README.md",
-    "tinykernel/doc/Untitled_Artwork.png",
-    "tinykernel/doc/stirng_pool.png",
-    "tinykernel/node_modules/emoji-regex/README.md",
-    "tinykernel/node_modules/string-width/node_modules/strip-ansi/readme.md",
-    "tinykernel/node_modules/string-width/node_modules/ansi-regex/readme.md",
-    "tinykernel/node_modules/string-width/readme.md",
-    "tinykernel/node_modules/yargs/README.md",
-    "tinykernel/node_modules/cliui/node_modules/ansi-regex/readme.md",
-    "tinykernel/node_modules/cliui/node_modules/strip-ansi/readme.md",
-    "tinykernel/node_modules/cliui/node_modules/string-width/readme.md",
-    "tinykernel/node_modules/cliui/README.md",
-    "tinykernel/node_modules/cliui/CHANGELOG.md",
-    "tinykernel/node_modules/ohm-js/README.md",
-    "tinykernel/node_modules/get-east-asian-width/readme.md",
-    "tinykernel/node_modules/ansi-styles/readme.md",
-    "tinykernel/node_modules/get-caller-file/README.md",
-    "tinykernel/node_modules/get-caller-file/LICENSE.md",
-    "kernel/video/probe.png",
-    "kernel-self/kernel-Back-End.drawio.png",
-    "doc/pbp-lifecycle.drawio.png",
-    "pbp/sm/pbp/pbp-lifecycle.drawio.png"
-  ]
+  "active": "ab00429755f2cf2b",
+  "lastOpenFiles": []
 }

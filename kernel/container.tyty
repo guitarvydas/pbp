@@ -1,16 +1,16 @@
 defn create_down_connector ≡ @Wire
 (
     container ≡ @Container,
-    proto_conn ≡ @Wire,
+    proto_conn ≡ @Wire_Proto,
     connectors ≡ @Collection_of_Wire,
     children_by_id ≡ @Table_by_ID_of_Part
 )
 {
                                                        #line 1#line 2
         connector ≡ @Wire
-        target_proto ≡ @@Part                                #line 6
+        target_proto ≡ @Part                                #line 6
         id_proto ≡ ID                                    #line 7
-        target_component ≡ @@Part                            #line 8
+        target_component ≡ @Part                            #line 8
 }
 
 defn create_across_connector ≡ @Wire
@@ -42,10 +42,10 @@ defn create_up_connector ≡
 
 defn create_through_connector ≡
 (
-    container ≡ ,
-    proto_conn ≡ ,
-    connectors ≡ ,
-    children_by_id ≡
+    container ≡ @Container,
+    proto_conn ≡ @Wire_Proto,
+    connectors ≡ @Collection_of_Wire,
+    children_by_id ≡ @Table_by_ID_of_Part
 )
 {
                                                        #line 48

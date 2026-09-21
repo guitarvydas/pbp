@@ -3,9 +3,7 @@ set -e
 
 if [ -n "$PBPDEV" ]; then
     # do something
-    echo
-    echo "Dev: skipping build in @testc"
-    echo
+    echo "*** Dev: skipping build in @testc"
     ./do_extractor.bash
     exit 0
 fi
