@@ -180,6 +180,7 @@ defn step_children ≡ ~
                     }                                  #line 175
                 }                                      #line 176
             }                                          #line 177#line 179#line 180
+	}
         child ≡ @Part
         for child in  container.children {
                                                        #line 181
@@ -191,7 +192,6 @@ defn step_children ≡ ~
                                                        #line 187
                 mev ≡ @Mevent                                 #line 191
             }                                          #line 192
-        }
         }                                              #line 193#line 194
 }
 
