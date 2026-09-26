@@ -1,0 +1,18 @@
+var  digits ≡ Array_of_Str                                          #line 8#line 9
+defn subscripted_digit ≡ @Str
+(
+    n ≡ Int
+)
+{
+                                                       #line 10#line 17#line 18
+}
+
+var counter ≡ Int
+
+defn gensymbol ≡ @Str
+(
+    s ≡ @Str
+)
+{
+                                                       #line 19#line 24#line 25
+}

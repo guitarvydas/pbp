@@ -1,13 +1,8 @@
 #!/usr/bin/env node
-
 import fs from 'fs';
 
-// Initialize empty files
-fs.writeFileSync('out.lisp', '');
-fs.writeFileSync('out.py', '');
-fs.writeFileSync('out.js', '');
-fs.writeFileSync('out.wasm', '');
-fs.writeFileSync('out.md', '');
+// Track files we've initialized (so we start each one fresh)
+const initializedFiles = new Set();
 
 // Buffer to store stdin data
 let inputData = '';
@@ -22,13 +17,13 @@ process.stdin.on('end', () => {
   try {
     // Parse the JSON input
     const jsonArray = JSON.parse(inputData);
-    
+
     // Validate that the input is an array
     if (!Array.isArray(jsonArray)) {
       console.error('Error: Input is not a JSON array');
       process.exit(1);
     }
-    
+
     // Process each object in the array
     jsonArray.forEach((obj) => {
       // Process each key/value pair
@@ -38,42 +33,25 @@ process.stdin.on('end', () => {
           console.error('Error: Keys and values must be strings');
           continue;
         }
-        
-        // Determine which file to write to based on the key
-        let outputFile;
-        let outputContent = value;
-        
-        switch (key) {
-          case 'CommonLisp':
-            outputFile = 'out.lisp';
-            break;
-          case 'Python':
-            outputFile = 'out.py';
-            break;
-          case 'Javascript':
-            outputFile = 'out.js';
-            break;
-          case 'WASM':
-            outputFile = 'out.wasm';
-            break;
-          default:
-            // For any other key, write to out.md with a header
-            outputFile = 'out.md';
-            outputContent = `# ${key}\n\n${value}\n\n`;
-            break;
+
+        // Output file is derived directly from the key
+        const outputFile = `out.${key}`;
+
+        // Initialize (truncate) the file the first time we see this key
+        if (!initializedFiles.has(outputFile)) {
+          fs.writeFileSync(outputFile, '');
+          initializedFiles.add(outputFile);
         }
-        
+
         // Append the content to the appropriate file
-        fs.appendFileSync(outputFile, outputContent);
+        fs.appendFileSync(outputFile, value);
       }
     });
-    
-      fs.appendFileSync('out.lisp', '\n');
-      fs.appendFileSync('out.py', '\n');
-      fs.appendFileSync('out.js', '\n');
-      fs.appendFileSync('out.wasm', '\n');
-      fs.appendFileSync('out.md', '\n');
 
+    // Add a trailing newline to every file that was written
+    for (const outputFile of initializedFiles) {
+      fs.appendFileSync(outputFile, '\n');
+    }
   } catch (error) {
     console.error('Error processing input:', error.message);
     process.exit(1);

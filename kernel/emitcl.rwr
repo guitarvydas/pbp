@@ -20,7 +20,7 @@ Defn [ _4 ident Formals StatementBlock line?] =
 
 Defobj [ _defobj ident Formals line1? lb line2? init+ rb line3?] = ‛
 (defclass «ident» ()«line1»⤷«line2»
-  (⤷⎨part ‛«init»’ ‛0’⎬⤶⤶))«line3»\n
+  (⤷«init»⤶⤶))«line3»\n
 ’
 
 Import [ _10 ident line?] = ‛’
@@ -222,7 +222,8 @@ Deftemp [_deftemp lval _mutate e rec?] = ‛\n(let ((«lval» «e»))⤷\n(decla
 Defsynonym_illegal [ lval err _eqv e rec?] = ‛\n«lval» «err» = «e»«rec»’
 Defsynonym_legal [id _eqv e rec?] = ‛\n(let ((«id» «e»))⤷\n(declare (ignorable «id»))«rec»⤶)’
 
-InitStatement [ _mark ident _33 Exp fluff*] = ‛\n(«ident» :accessor «ident» :initarg :«ident» :initform «Exp») «fluff»⫶ «ident» ⫶ :«ident» «ident» ⫶’
+InitStatement [ _mark ident ty? _33 Exp fluff*] = ‛\n(«ident» :accessor «ident» :initarg :«ident» :initform «Exp») «fluff»’
+Type [_colon id] = ‛«id»’
 
 IfStatement [ _35 Exp StatementBlock ElifStatement* ElseStatement? rec?] = ‛\n(cond ⤷\n(«Exp»⤷«StatementBlock»⤶)«ElifStatement»«ElseStatement»⤶)«rec»’
 ElifStatement [ _37 Exp StatementBlock] = ‛\n(«Exp»⤷«StatementBlock»⤶)’
@@ -307,7 +308,6 @@ keyword [ _144] = ‛«_144»’
 Formals_noformals [ _148 _149] =‛’
 Formals_withformals [ _150 FormalComma* _151] =‛«FormalComma»’
 ObjFormals_noformals [ _148 _149] =‛’
-ObjFormals_withformals [ _150 FormalComma* _151] =‛«FormalComma»’
 LambdaFormals_noformals [ _148 _149] =‛’
 LambdaFormals_withformals [ _150 FormalComma* _151] =‛«FormalComma»’
 Formal [ ident] = ‛«ident»’

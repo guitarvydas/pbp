@@ -1,5 +1,13 @@
 #!/bin/bash
 set -e
+
+if [ -n "$PBPDEV" ]; then
+    # do something
+    echo "*** Dev: skipping build in @testc"
+    ./do_extractor.bash
+    exit 0
+fi
+
 # npm install
 node das2json.mjs kernel.drawio
 
@@ -7,25 +15,32 @@ for i in $BASENAMES; do
     ./regression_test_tas.bash "$i"
 done
 
-: > regression_test/rtkernel0d.py
-: > regression_test/rtkernel0d.js
-: > regression_test/rtkernel0d.lisp
+: > _/_r_python/rtkernel0d.py
+: > _/_r_js/rtkernel0d.js
+: > _/_r_lisp/rtkernel0d.lisp
+: > _/_r_c/rtkernel0d.c
 
-for i in $BASENAMES; do
-    cat "_python/$i.py" >> regression_test/rtkernel0d.py
-    cat "_js/$i.js" >> regression_test/rtkernel0d.js
-    cat "_lisp/$i.lisp" >> regression_test/rtkernel0d.lisp
+for i in $NTYLIST; do
+    cat "_/_python/$i.py" >> _/_r_python/rtkernel0d.py
+    cat "_/_js/$i.js" >> _/_r_js/rtkernel0d.js
+    cat "_/_lisp/$i.lisp" >> _/_r_lisp/rtkernel0d.lisp
 done
 
-if diff -q new_kernel0d.py regression_test/rtkernel0d.py > /dev/null; then
-    echo "OK, created: _backup/_$(date +%Y%m%d_%H%M%S)_kernel0d.py"
-    cp kernel0d.py "_backup/_$(date +%Y%m%d_%H%M%S)_kernel0d.py"
+for i in $TYLIST; do
+    cat "_/_r_c/$i.c" >> _/_r_c/rtkernel0d.c
+done
+
+if diff -q new_kernel0d.py _/_r_python/rtkernel0d.py > /dev/null; then
+    echo "OK, created: _/_backup/_$(date +%Y%m%d_%H%M%S)_kernel0d.py"
+    cp kernel0d.py "_/_backup/_$(date +%Y%m%d_%H%M%S)_kernel0d.py"
     mv new_kernel0d.py kernel0d.py
     mv new_kernel0d.js kernel0d.js
     mv new_kernel0d.lisp kernel0d.lisp
+    mv new_kernel0d.c kernel0d.c
+    ./do_extractor.bash
 else
-    echo "Regression error: new_kernel0d.py and regression_test/rtkernel0d.py differ"
-    echo "use diff new_kernel0d.py regression_test/rtkernel0d.py"
+    echo "Regression error: new_kernel0d.py and _/_r_python/rtkernel0d.py differ"
+    echo "use diff new_kernel0d.py _/_r_python/rtkernel0d.py"
 fi
 
 rm -f out.*

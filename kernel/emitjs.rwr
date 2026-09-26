@@ -137,7 +137,9 @@ Defsynonym_illegal [ lval err _eqv e rec?] = ‛\nlet «lval» «err» = «e»;�
 Defsynonym_legal [id _eqv e rec?] = ‛\nlet «id» = «e»;«rec»’
 
 
-InitStatement [ _mark ident _33 Exp fluff*] = ‛\nthis.«ident» = «Exp»;«fluff»’
+InitStatement [ _mark ident ty? _33 Exp fluff*] = ‛\nthis.«ident» = «Exp»;«fluff»’
+Type [_colon id] = ‛«id»’
+
 IfStatement [ _35 Exp StatementBlock ElifStatement* ElseStatement? rec?] = ‛\nif («Exp») {«StatementBlock»\n}«ElifStatement»«ElseStatement»«rec»’
 ElifStatement [ _37 Exp StatementBlock] = ‛\nelse if («Exp») {«StatementBlock»\n}’
 ElseStatement [ _39 StatementBlock] = ‛\n else {«StatementBlock»\n}’
@@ -212,7 +214,6 @@ keyword [ _144] = ‛«_144»’
 Formals_noformals [ _148 _149] =‛«_148»«_149»’
 Formals_withformals [ _150 FormalComma* _151] =‛«_150»«FormalComma»«_151»’
 ObjFormals_noformals [ _148 _149] =‛’
-ObjFormals_withformals [ _150 FormalComma* _151] =‛«FormalComma»’
 LambdaFormals_noformals [ _148 _149] =‛’
 LambdaFormals_withformals [ _150 FormalComma* _151] =‛«FormalComma»’
 Formal [ ident] = ‛«ident»’

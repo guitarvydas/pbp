@@ -1,0 +1,127 @@
+#line 1
+var load_errors ≡ Bool
+var runtime_errors ≡ Bool
+
+defn load_error ≡ ~
+(
+    s ≡ @Str
+)
+{
+                                                       #line 2#line 7#line 8
+}
+
+defn runtime_error ≡ ~
+(
+    s ≡ @Str
+)
+{
+                                                       #line 9#line 14#line 15
+}
+                                                       #line 16
+defn initialize_component_palette_from_files ≡ @Component_Registry
+(
+    diagram_source_files ≡ @Collection_of_Pathname
+)
+{
+                                                       #line 17
+        reg ≡ @Component_Registry                                         #line 18
+        diagram_source ≡ @Pathname
+        for diagram_source in  diagram_source_files {
+                                                       #line 19
+            all_containers_within_single_file ≡ @Collection_of_Container
+            container ≡ @Container
+            for container in  all_containers_within_single_file {
+                                                       #line 21#line 23
+            }                                          #line 24
+        }                                              #line 27#line 28
+}
+
+defn initialize_component_palette_from_string ≡
+(
+    lnet ≡ @JSONStr
+)
+{
+                                                       #line 29
+        reg ≡ @Component_Registry                                         #line 30
+        all_containers ≡ @Collection_of_Container
+        container ≡ @Container
+        for container in  all_containers {
+                                                       #line 32#line 34
+        }                                              #line 37
+}
+
+defn initialize_from_files ≡ @Tuple_Palette_DiagramNames_ArgStr
+(
+    diagram_names ≡ @Collection_of_DiagramsName
+)
+{
+                                                       #line 38
+        arg ≡ @Str                                         #line 39
+        palette ≡ @Component_Registry
+}
+
+defn initialize_from_string ≡ @Tuple_Palette_DiagramNames_ArgStr
+()
+{
+                                                       #line 44
+        arg ≡ @Str                                         #line 45
+        palette ≡ @Component_Registry                                     #line 46
+        return [ palette,[ None, arg]]                 #line 47#line 48#line 49
+}
+
+defn start ≡
+(
+    arg ≡ @Str ,
+    part_name ≡ @Str,
+    palette ≡  @Component_Registry,
+    env ≡  @Tuple_Palette_DiagramNames_ArgStr
+)
+{
+                                                       #line 50
+        part ≡                                         #line 54#line 55
+}
+
+defn start_bare ≡ @Part
+(
+    part_name ≡ @Str,
+    palette ≡ @Component_Registry,
+    env ≡  @Tuple_Palette_DiagramNames_ArgStr
+)
+{
+                                                       #line 56
+        diagram_names ≡ @Collection_of_DiagramsName                                #line 57#line 58
+        part ≡ @Part
+}
+
+defn inject ≡ ~
+(
+    part ≡ @Part,
+    port ≡ Port,
+    payload ≡ @Payload
+)
+{
+                                                       #line 69
+        if not  load_errors {
+                                                       #line 70
+            d ≡ @Datum
+            mev ≡ @Mevent
+        }
+        else
+        {                                              #line 77#line 79
+        }                                              #line 80#line 81
+}
+
+defn finalize ≡ ~
+(
+    part ≡ @Part
+)
+{
+                                                       #line 82#line 84#line 85
+}
+
+defn new_datum_bang ≡ @Datum
+()
+{
+                                                       #line 86
+        d ≡ @Datum
+}

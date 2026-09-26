@@ -1,5 +1,12 @@
 #!/bin/bash
 set -e
+
+if [ -n "$PBPDEV" ]; then
+    # do something
+    echo "*** Dev: skipping build"
+    exit 0
+fi
+
 # npm install
 node das2json.mjs kernel.drawio
 
@@ -10,11 +17,17 @@ done
 : > new_kernel0d.py
 : > new_kernel0d.js
 : > new_kernel0d.lisp
+: > new_kernel0d.c
 
-for i in $BASENAMES; do
-    cat "_python/$i.py" >> new_kernel0d.py
-    cat "_js/$i.js" >> new_kernel0d.js
-    cat "_lisp/$i.lisp" >> new_kernel0d.lisp
+for i in $NTYLIST; do
+    cat "_/_python/$i.py" >> new_kernel0d.py
+    cat "_/_js/$i.js" >> new_kernel0d.js
+    cat "_/_lisp/$i.lisp" >> new_kernel0d.lisp
+done
+
+for i in $TYLIST; do
+    cat "_/_c/$i.c" >> new_kernel0d.c
 done
 
 rm -f out.*
+

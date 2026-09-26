@@ -1,0 +1,55 @@
+
+defconst enumDown ≡ 0
+defconst enumAcross ≡ 1
+defconst enumUp ≡ 2
+defconst enumThrough ≡ 3
+
+
+⌈ Routing connection for a container component. The `direction` field has⌉
+⌈ no affect on the default mevent routing system _ it is there for debugging⌉
+⌈ purposes, or for reading by other tools.⌉
+
+defobj Connector () {
+        • direction ⇐ ϕ ⌈ down, across, up, through⌉
+        • sender ⇐ ϕ
+        • receiver ⇐ ϕ
+}
+
+⌈ `Sender` is used to “pattern match“ which `Receiver` a mevent should go to,⌉
+⌈ based on component ID (pointer) and port name.⌉
+
+defobj Sender () {
+        • name ⇐ ϕ
+        • component ⇐ ϕ
+        • port ⇐ ϕ
+}
+
+
+
+⌈ `Receiver` is a handle to a destination queue, and a `port` name to assign⌉
+⌈ to incoming mevents to this queue.⌉
+
+defobj Receiver () {
+        • name ⇐ ϕ
+        • queue ⇐ ϕ
+        • port ⇐ ϕ
+        • component ⇐ ϕ
+}
+
+defn mkSender (name, component, port) {
+    deftemp s ⇐ #fresh (Sender)
+    s.name ⇐ name
+    s.component ⇐ component
+    s.port ⇐ port
+    return s
+}
+
+defn mkReceiver (name, component, port, q) {
+    deftemp r ⇐ #fresh (Receiver)
+    r.name ⇐ name
+    r.component ⇐ component
+    r.port ⇐ port
+    ⌈ We need a way to determine which queue to target. "Down" and "Across" go to inq, "Up" and "Through" go to outq.⌉
+    r.queue ⇐ q
+    return r
+}

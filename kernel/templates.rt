@@ -1,3 +1,13 @@
+defobj Component_Registry () {
+        • templates ⇐ {}
+}
+
+defobj Template () {
+        • name ⇐ ϕ
+        • container ⇐ ϕ
+        • instantiator ⇐ ϕ
+}
+
 defn mkTemplate (name, template_data, instantiator) {
      deftemp templ ⇐ #fresh (Template)
      templ.name ⇐ name

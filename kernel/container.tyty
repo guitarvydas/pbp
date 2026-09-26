@@ -1,0 +1,331 @@
+defn create_down_connector ≡ @Wire
+(
+    container ≡ @Container,
+    proto_conn ≡ @Wire_Proto,
+    connectors ≡ @Collection_of_Wire,
+    children_by_id ≡ @Table_by_ID_of_Part
+)
+{
+                                                       #line 1#line 2
+        connector ≡ @Wire
+        target_proto ≡ @Part                                #line 6
+        id_proto ≡ ID                                    #line 7
+        target_component ≡ @Part                            #line 8
+}
+
+defn create_across_connector ≡ @Wire
+(
+    container ≡ @Container,
+    proto_conn ≡ @Wire_Proto,
+    connectors ≡ @Collection_of_Wire,
+    children_by_id ≡ @Table_by_ID_of_Part
+)
+{
+                                                       #line 17
+        connector ≡ @Wire
+        source_component ≡ @Part                            #line 20
+        target_component ≡ @Part                            #line 21
+}
+
+defn create_up_connector ≡
+(
+    container ≡ @Container,
+    proto_conn ≡ @Wire_Proto,
+    connectors ≡ @Collection_of_Wire,
+    children_by_id ≡ @Table_by_ID_of_Part
+)
+{
+                                                       #line 35
+        connector ≡ @Wire
+        source_component ≡ @Part                            #line 38
+}
+
+defn create_through_connector ≡
+(
+    container ≡ @Container,
+    proto_conn ≡ @Wire_Proto,
+    connectors ≡ @Collection_of_Wire,
+    children_by_id ≡ @Table_by_ID_of_Part
+)
+{
+                                                       #line 48
+        connector ≡ @Wire
+}
+                                                       #line 56
+defn container_instantiator ≡ @Container
+(
+    reg ≡ @Component_Registry,
+    owner ≡ @Container,
+    container_name ≡ @Str,
+    desc ≡ @Container_Template,
+    arg ≡ @Str
+)
+{
+                                                       #line 57#line 87#line 88
+}
+
+                                                       #line 89
+defn container_handler ≡ ρHandler
+(
+    container ≡ @Container,
+    mevent ≡ @Mevent
+)
+{
+                                                       #line 90#line 94#line 95
+}
+
+                                                       #line 96
+defn container_reset_children ≡ ~
+(
+    container ≡ @Container
+)
+{
+                                                       #line 97
+        child  ≡ @Part
+}
+
+                                                       #line 108
+defn destroy_container ≡ ~
+(
+    eh ≡ @Part
+)
+{
+                                                       #line 109#line 110#line 111
+}
+
+                                                       #line 112
+defn sender_eq ≡ BOOL
+(
+    s1 ≡ @Part,
+    s2 ≡ @Part
+)
+{
+                                                       #line 113
+        same_components ≡ BOOL                              #line 114
+        same_ports ≡ BOOL                                  #line 115
+}
+
+                                                       #line 119#line 120
+defn deposit ≡ ~
+(
+    parent ≡ @Container,
+    conn ≡ @Wire,
+    mevent ≡ @Mevent
+)
+{
+                                                       #line 121
+        new_mevent ≡ @Mevent                                   #line 124#line 125
+}
+
+defn force_tick ≡ ~
+(
+    parent ≡ @Container,
+    eh ≡ @Part
+)
+{
+                                                       #line 126
+        tick_mev ≡ @Mevent                                     #line 130#line 131
+}
+
+defn push_mevent ≡ ~
+(
+    parent ≡ @Container,
+    receiver ≡ @Part,
+    inq ≡ @Queue,
+    m ≡ @Mevent
+)
+{
+}
+
+defn is_self ≡ Bool
+(
+    child ≡ @Part,
+    container ≡ @Container
+)
+{
+}
+
+defn step_child_once ≡ ~
+(
+    child ≡ @Part,
+    mev ≡ @Mevent
+)
+{
+}
+
+defn step_children ≡ ~
+(
+    container ≡ @Container,
+    causingMevent ≡ @Mevent
+)
+{
+                                                       #line 155
+        child ≡ @Part
+        for child in  list ( container.visit_ordering) {
+                                                       #line 159#line 160
+            if (not (is_self ( child, container))) {
+                                                       #line 161
+                if (not ((0==len( child.inq)))) {
+                                                       #line 162
+                    mev ≡ @Mevent
+                }
+                else
+                {                                      #line 167
+                    if  child.state ==  "idle" {
+                                                       #line 168#line 169
+                    }
+                    else
+                    {                                  #line 170
+                        mev ≡ @Mevent                         #line 174
+                    }                                  #line 175
+                }                                      #line 176
+            }                                          #line 177#line 179#line 180
+	}
+        child ≡ @Part
+        for child in  container.children {
+                                                       #line 181
+            if  child.state ==  "active" {
+                                                       #line 182#line 183
+
+            }                                          #line 186
+            while (not ((0==len( child.outq)))) {
+                                                       #line 187
+                mev ≡ @Mevent                                 #line 191
+            }                                          #line 192
+        }                                              #line 193#line 194
+}
+
+defn attempt_tick ≡ ~
+(
+    parent ≡ @Container,
+    eh ≡ @Part
+)
+{
+}
+
+defn is_tick ≡ Bool
+(
+    mev ≡ @Mevent
+)
+{
+}
+
+                                                       #line 205
+                                                       #line 206#line 207
+defn route ≡ ~
+(
+    container ≡ @Container,
+    from_component ≡ @Part,
+    mevent ≡ @Mevent
+)
+{
+                                                       #line 208
+        was_sent ≡ Bool                                    #line 209
+        fromname ≡ @Str                                    #line 210#line 233#line 234
+}
+
+defn any_child_ready ≡ Bool
+(
+    container ≡ @Container
+)
+{
+                                                       #line 235
+        child ≡ @Part
+}
+
+defn child_is_ready ≡ Bool
+(
+    eh ≡ @Part
+)
+{
+}
+
+defn append_routing_descriptor ≡ ~
+(
+    container ≡ @Container,
+    desc ≡ @Wire
+)
+{
+                                                       #line 248#line 250#line 251
+}
+                                                       #line 252
+                                                       #line 253
+                                                       #line 254
+defn make_container ≡ @Container
+(
+    name ≡ @Str,
+    owner ≡ @Container
+)
+{
+                                                       #line 255
+        eh ≡ @Container
+}
+
+                                                       #line 267
+                                                       #line 268#line 269
+defn send ≡ ~
+(
+    eh ≡ @Part,
+    port ≡ Port,
+    obj ≡ @Part,
+    causingMevent ≡ @Mevent
+)
+{
+                                                       #line 270
+        d ≡ @Payload
+        mev ≡ @Mevent                                         #line 277#line 278
+}
+
+defn forward ≡ ~
+(
+    eh ≡ @Part,
+    port ≡ Port,
+    mev ≡ @Mevent
+)
+{
+                                                       #line 279
+        fwdmev ≡ @Mevent                                      #line 282#line 283
+}
+
+defn inject_mevent ≡ @Mevent
+(
+    eh ≡ @Part,
+    mev ≡ @Mevent
+)
+{
+                                                       #line 284#line 286#line 287
+}
+
+defn set_active ≡ ~
+(
+    eh ≡ @Part
+)
+{
+                                                       #line 288
+                                                       #line 291
+}
+
+defn set_idle ≡ ~
+(
+    eh ≡ @Part
+)
+{
+                                                       #line 292
+                                                       #line 295
+}
+
+defn put_output ≡ ~
+(
+    eh ≡ @Part,
+    mev ≡ @Mevent
+)
+{
+                                                       #line 296#line 298#line 299
+}
+
+defn clone_payload ≡ @Payload
+(
+    clone_payload ≡ @Payload
+)
+{
+}

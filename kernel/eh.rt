@@ -1,0 +1,39 @@
+⌈ Data for an asyncronous component _ effectively, a function with input⌉
+⌈ and output queues of mevents.⌉
+⌈⌉
+⌈ Components can either be a user_supplied function (“leaf“), or a “container“⌉
+⌈ that routes mevents to child components according to a list of connections⌉
+⌈ that serve as a mevent routing table.⌉
+⌈⌉
+⌈ Child components themselves can be leaves or other containers.⌉
+⌈⌉
+⌈ `handler` invokes the code that is attached to this component.⌉
+⌈⌉
+⌈ `instance_data` is a pointer to instance data that the `leaf_handler`⌉
+⌈ function may want whenever it is invoked again.⌉
+
+⌈ TODO: what is .routings for? (is it a historical artefact that can be removed?) ⌉
+
+⌈ Eh_States :: enum { idle, active }⌉
+defobj Eh () {
+        • name ⇐ “”
+        • inq ⇐ #freshQueue ()
+        • outq ⇐ #freshQueue ()
+        • owner ⇐ ϕ
+        • children ⇐ []
+        • visit_ordering ⇐ # freshQueue ()
+        • connections ⇐ []
+        • handler ⇐ ϕ
+        • finject ⇐ ϕ
+        • stop ⇐ ϕ
+        • instance_data ⇐ ϕ
+        ⌈ arg needed for probe support ⌉
+        • arg ⇐ “”
+        • state ⇐ “idle”
+        • special ⇐ ⊥
+}
+
+defn injector (eh, mevent) {
+    eh.handler (eh, mevent)
+}
+

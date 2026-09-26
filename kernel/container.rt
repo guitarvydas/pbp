@@ -99,7 +99,6 @@ defn container_reset_children (container) {
         child.stop (child)
     }
     #resetQueue (container.visit_ordering)
-    #resetQueue (container.routings)
     #resetQueue (container.inq)
     #resetQueue (container.outq)
     container.state  ⇐ "idle"
@@ -243,10 +242,6 @@ defn any_child_ready (container) {
 
 defn child_is_ready (eh) {
     return (not (#empty (eh.outq))) or (not (#empty (eh.inq))) or ( eh.state != “idle”) or (any_child_ready (eh))
-}
-
-defn append_routing_descriptor (container, desc) {
-    #enqueue (container.routings, desc)
 }
 
 

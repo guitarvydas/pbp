@@ -38,7 +38,8 @@ External [_octothorpe id lpar expcomma* rpar line?] = ‛«_octothorpe»«id»«
 Deftemp [ _37 Lval _38 Exp Rec_Statement?] = ‛«_37»«Lval»«_38»«Exp»«Rec_Statement»’
 Defsynonym_legal [ id _39 Exp Rec_Statement?] = ‛«id»«_39»«Exp»«Rec_Statement»’
 Defsynonym_illegal [ e _39 Exp Rec_Statement?] = ‛«e» ⎝ error - LHS must be a single identifier for defsynonym ⎠ «_39»«Exp»«Rec_Statement» ’
-InitStatement [ _40 ident _41 Exp fluff*] = ‛«_40»«ident»«_41»«Exp»«fluff»’
+InitStatement [ _40 ident ty?_41 Exp fluff*] = ‛«_40»«ident»«ty»«_41»«Exp»«fluff»’
+Type [_colon ident] = ‛«_colon» «ident»’
 IfStatement [ _43 Exp StatementBlock ElifStatement* ElseStatement? Rec_Statement?] = ‛«_43»«Exp»«StatementBlock»«ElifStatement»«ElseStatement»«Rec_Statement»’
 ElifStatement [ _45 Exp StatementBlock] = ‛«_45»«Exp»«StatementBlock»’
 ElseStatement [ _47 StatementBlock] = ‛«_47»«StatementBlock»’
@@ -109,7 +110,6 @@ Formals_noformals [ _127 _128] =‛«_127»«_128»’
 Formals_withformals [ _129 FormalComma* _130] =‛«_129»«FormalComma»«_130»’
 
 ObjFormals_noformals [ _131 _132] =‛«_131»«_132»’
-ObjFormals_withformals [ _133 FormalComma* _134] =‛«_133»«FormalComma»«_134»’
 
 LambdaFormals_noformals [ _135 _136] =‛«_135»«_136»’
 LambdaFormals_withformals [ _137 FormalComma* _138] =‛«_137»«FormalComma»«_138»’

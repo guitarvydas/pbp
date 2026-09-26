@@ -1,0 +1,57 @@
+#line 1#line 2
+defn jit_instantiate ≡ @Part
+(
+    reg ≡ @Component_Registry,
+    owner ≡ @Container,
+    name ≡ @Str,
+    arg ≡ @Str
+)
+{
+                                                       #line 3
+        name_with_id ≡ @Str
+        inst ≡ @Part
+        firstc ≡ Char                                   #line 6
+}
+
+defn handle_jit ≡ ~
+(
+    eh ≡ @Part,
+    mev ≡ @Mevent
+)
+{
+                                                       #line 14
+        s ≡ @Str                                           #line 15
+        firstc ≡ Char                                      #line 16
+}
+
+defn probe_handler ≡ ~
+(
+    eh ≡ @Part,
+    tag ≡ Port,
+    mev ≡ @Mevent
+)
+{
+                                                       #line 27
+        s ≡ @Str                                           #line 28#line 37#line 38
+}
+
+defn shell_out_handler ≡ ~
+(
+    eh ≡ @Part,
+    tag ≡ Port,
+    mev ≡ @Mevent
+)
+{
+                                                       #line 39
+        s ≡ @Str                                            #line 40
+        ret ≡ Int                                         #line 41
+        rc ≡ Int                                          #line 42
+        stdout ≡ @Str                                      #line 43
+        stderr ≡ @Str                                      #line 44
+        command ≡ @Str                                     #line 45
+        pbpRoot ≡ @Pathname
+        if  pbpRoot!= "" {
+                                                       #line 47
+            command ≡ @Str                                 #line 51
+        }
+}

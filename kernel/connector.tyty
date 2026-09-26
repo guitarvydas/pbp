@@ -1,0 +1,56 @@
+#line 1
+const  enumDown ≡  Dir                                    #line 2
+const  enumAcross ≡   Dir                                 #line 3
+const  enumUp ≡ Dir                                       #line 4
+const  enumThrough ≡ Dir                                  #line 5#line 6#line 7
+                                                       #line 8
+                                                       #line 9
+                                                       #line 10#line 11
+class Connector {
+                                                       #line 12
+    direction ≡ Dir                                       #line 13
+    sender ≡ @Sender                                          #line 14
+    receiver ≡ @Receiver                                        #line 15#line 16
+}
+                                                       #line 17
+                                                       #line 18
+                                                       #line 19#line 20
+class Sender {
+                                                       #line 21
+    name ≡ @Str                                            #line 22
+    component ≡ @Eh                                       #line 23
+    port ≡ Port                                            #line 24#line 25
+}
+                                                       #line 26#line 27#line 28
+                                                       #line 29
+                                                       #line 30#line 31
+class Receiver {
+                                                       #line 32
+    name ≡ @Str                                            #line 33
+    queue ≡ @Queue                                           #line 34
+    port ≡ Port                                            #line 35
+    component ≡ @Eh                                       #line 36#line 37
+}
+                                                       #line 38
+defn mkSender ≡ @Sender
+(
+    name ≡ @Str,
+    component ≡ @Eh,
+    port ≡ Port
+)
+{
+                                                       #line 39
+        s ≡ @Sender
+}
+
+defn mkReceiver ≡ @Receiver
+(
+    name ≡ @Str,
+    component ≡ @Eh,
+    port ≡ Port,
+    q ≡ @Queue
+)
+{
+                                                       #line 47
+        r ≡ @Receiver
+}
