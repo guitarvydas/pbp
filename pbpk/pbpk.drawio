@@ -1,0 +1,291 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.6.1 Chrome/142.0.7444.265 Electron/39.8.0 Safari/537.36" version="29.6.1" pages="11">
+  <diagram name="mevent" id="I3CKWUkG5vgTnBkbEewf">
+    <mxGraphModel dx="1106" dy="752" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="3PX57cdpHm6qWSy7ywV4-1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="port" vertex="1">
+          <mxGeometry height="60" width="120" x="240" y="240" as="geometry" />
+        </mxCell>
+        <mxCell id="3PX57cdpHm6qWSy7ywV4-2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="payload" vertex="1">
+          <mxGeometry height="60" width="200" x="360" y="240" as="geometry" />
+        </mxCell>
+        <mxCell id="3PX57cdpHm6qWSy7ywV4-3" parent="1" style="shape=curlyBracket;whiteSpace=wrap;html=1;rounded=1;labelPosition=left;verticalLabelPosition=middle;align=right;verticalAlign=middle;rotation=-90;opacity=50;textOpacity=50;dashed=1;" value="" vertex="1">
+          <mxGeometry height="195" width="20" x="452.5" y="272.5" as="geometry" />
+        </mxCell>
+        <mxCell id="3PX57cdpHm6qWSy7ywV4-4" parent="1" style="shape=curlyBracket;whiteSpace=wrap;html=1;rounded=1;labelPosition=left;verticalLabelPosition=middle;align=right;verticalAlign=middle;rotation=-90;opacity=50;textOpacity=50;dashed=1;" value="" vertex="1">
+          <mxGeometry height="112.5" width="20" x="293.75" y="313.75" as="geometry" />
+        </mxCell>
+        <mxCell id="3PX57cdpHm6qWSy7ywV4-5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;opacity=50;textOpacity=50;dashed=1;" value="Port" vertex="1">
+          <mxGeometry height="60" width="120" x="240" y="400" as="geometry" />
+        </mxCell>
+        <mxCell id="3PX57cdpHm6qWSy7ywV4-6" parent="1" style="rounded=1;whiteSpace=wrap;html=1;opacity=50;textOpacity=50;dashed=1;" value="Payload" vertex="1">
+          <mxGeometry height="60" width="120" x="402.5" y="400" as="geometry" />
+        </mxCell>
+        <mxCell id="3PX57cdpHm6qWSy7ywV4-7" parent="1" style="rounded=1;whiteSpace=wrap;html=1;opacity=50;textOpacity=50;dashed=1;" value="Port = String&lt;div&gt;Payload = String&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="120" x="590" y="480" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="qymdzcn1OCRiXE2cch-y" name="Leaf Template">
+    <mxGraphModel dx="618" dy="752" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="cdrb5EfauDF415CuugID-1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="instance data" vertex="1">
+          <mxGeometry height="60" width="120" x="240" y="340" as="geometry" />
+        </mxCell>
+        <mxCell id="w5wkb9wRvpcDbmMH_Ehd-1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="name" vertex="1">
+          <mxGeometry height="60" width="120" x="240" y="160" as="geometry" />
+        </mxCell>
+        <mxCell id="w5wkb9wRvpcDbmMH_Ehd-2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="mevent handler" vertex="1">
+          <mxGeometry height="60" width="120" x="240" y="220" as="geometry" />
+        </mxCell>
+        <mxCell id="w5wkb9wRvpcDbmMH_Ehd-3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="reset handler" vertex="1">
+          <mxGeometry height="60" width="120" x="240" y="280" as="geometry" />
+        </mxCell>
+        <mxCell id="w5wkb9wRvpcDbmMH_Ehd-5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;dashPattern=1 4;" value="jit arg" vertex="1">
+          <mxGeometry height="20" width="90" x="270" y="380" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="NlJ6yXaqKh0fJk4IB8S0" name="Container Template">
+    <mxGraphModel dx="618" dy="752" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="wDFklvXgJDIf76cgqfsi-1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="instance data" vertex="1">
+          <mxGeometry height="60" width="120" x="160" y="220" as="geometry" />
+        </mxCell>
+        <mxCell id="wDFklvXgJDIf76cgqfsi-2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="name" vertex="1">
+          <mxGeometry height="60" width="120" x="160" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="wDFklvXgJDIf76cgqfsi-3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="mevent handler" vertex="1">
+          <mxGeometry height="60" width="120" x="160" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="wDFklvXgJDIf76cgqfsi-4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="reset handler" vertex="1">
+          <mxGeometry height="60" width="120" x="160" y="160" as="geometry" />
+        </mxCell>
+        <mxCell id="wDFklvXgJDIf76cgqfsi-5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;dashPattern=1 4;" value="jit arg" vertex="1">
+          <mxGeometry height="20" width="90" x="190" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="wDFklvXgJDIf76cgqfsi-6" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="[children templates]" vertex="1">
+          <mxGeometry height="60" width="120" x="160" y="280" as="geometry" />
+        </mxCell>
+        <mxCell id="wDFklvXgJDIf76cgqfsi-7" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="[wires templates]" vertex="1">
+          <mxGeometry height="60" width="120" x="160" y="340" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="mxVvJDnMHcgNpb8NaU8E" name="Wire Template">
+    <mxGraphModel dx="618" dy="752" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="7A-9Ex32IcOLTz5DTCAV-1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="dir" vertex="1">
+          <mxGeometry height="60" width="120" x="80" y="160" as="geometry" />
+        </mxCell>
+        <mxCell id="7A-9Ex32IcOLTz5DTCAV-2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="sender template" vertex="1">
+          <mxGeometry height="60" width="120" x="80" y="220" as="geometry" />
+        </mxCell>
+        <mxCell id="7A-9Ex32IcOLTz5DTCAV-3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="sender&#39;s port" vertex="1">
+          <mxGeometry height="60" width="120" x="80" y="280" as="geometry" />
+        </mxCell>
+        <mxCell id="7A-9Ex32IcOLTz5DTCAV-4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="receiver template" vertex="1">
+          <mxGeometry height="60" width="120" x="80" y="340" as="geometry" />
+        </mxCell>
+        <mxCell id="7A-9Ex32IcOLTz5DTCAV-5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="receiver&#39;s port" vertex="1">
+          <mxGeometry height="60" width="120" x="80" y="400" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="AHTMFkDwmkWNmGlW-dMk" name="Template Registry">
+    <mxGraphModel dx="618" dy="752" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="9OOe3AUH4dOGEAul11rl-1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=top;" value="Template Registry" vertex="1">
+          <mxGeometry height="120" width="360" x="90" y="160" as="geometry" />
+        </mxCell>
+        <mxCell id="9OOe3AUH4dOGEAul11rl-4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;" value="" vertex="1">
+          <mxGeometry height="80" width="280" x="120" y="190" as="geometry" />
+        </mxCell>
+        <mxCell id="9OOe3AUH4dOGEAul11rl-2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="template" vertex="1">
+          <mxGeometry height="60" width="120" x="270" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="9OOe3AUH4dOGEAul11rl-3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="name" vertex="1">
+          <mxGeometry height="60" width="120" x="130" y="200" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="D5UUPJKZvLKNJTKg9xIO" name="Eh">
+    <mxGraphModel dx="618" dy="752" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="WndqsaJ-byS0QPDNorJK-1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="owner" vertex="1">
+          <mxGeometry height="60" width="120" x="160" y="220" as="geometry" />
+        </mxCell>
+        <mxCell id="WndqsaJ-byS0QPDNorJK-2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="output queue" vertex="1">
+          <mxGeometry height="60" width="120" x="160" y="160" as="geometry" />
+        </mxCell>
+        <mxCell id="WndqsaJ-byS0QPDNorJK-3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="input queue" vertex="1">
+          <mxGeometry height="60" width="120" x="160" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="WndqsaJ-byS0QPDNorJK-4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;opacity=50;textOpacity=50;" value="inject" vertex="1">
+          <mxGeometry height="60" width="120" x="200" y="380" as="geometry" />
+        </mxCell>
+        <mxCell id="xsjRWXIUXfDyE-pqbr15-1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="(instance) name" vertex="1">
+          <mxGeometry height="60" width="120" x="160" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="xsjRWXIUXfDyE-pqbr15-2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="priority dispatch flag" vertex="1">
+          <mxGeometry height="60" width="120" x="160" y="280" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="BZjDpdO40LCqTS3ex3Ib" name="Leaf Eh">
+    <mxGraphModel dx="1106" dy="752" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="ZrXSKCnhuT_2xUbtiFpa" name="Container Eh">
+    <mxGraphModel dx="1106" dy="752" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram name="Wire Instance" id="Y7xvl8GddrEToazQfbtT">
+    <mxGraphModel dx="618" dy="752" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+      <root>
+        <mxCell id="joYBW2KDDQolAfPpEMMJ-0" />
+        <mxCell id="joYBW2KDDQolAfPpEMMJ-1" parent="joYBW2KDDQolAfPpEMMJ-0" />
+        <mxCell id="joYBW2KDDQolAfPpEMMJ-2" parent="joYBW2KDDQolAfPpEMMJ-1" style="rounded=1;whiteSpace=wrap;html=1;" value="dir" vertex="1">
+          <mxGeometry height="60" width="120" x="80" y="160" as="geometry" />
+        </mxCell>
+        <mxCell id="joYBW2KDDQolAfPpEMMJ-3" parent="joYBW2KDDQolAfPpEMMJ-1" style="rounded=1;whiteSpace=wrap;html=1;" value="sender" vertex="1">
+          <mxGeometry height="60" width="120" x="80" y="220" as="geometry" />
+        </mxCell>
+        <mxCell id="joYBW2KDDQolAfPpEMMJ-4" parent="joYBW2KDDQolAfPpEMMJ-1" style="rounded=1;whiteSpace=wrap;html=1;" value="sender&#39;s port" vertex="1">
+          <mxGeometry height="60" width="120" x="80" y="280" as="geometry" />
+        </mxCell>
+        <mxCell id="joYBW2KDDQolAfPpEMMJ-5" parent="joYBW2KDDQolAfPpEMMJ-1" style="rounded=1;whiteSpace=wrap;html=1;" value="receiver" vertex="1">
+          <mxGeometry height="60" width="120" x="80" y="340" as="geometry" />
+        </mxCell>
+        <mxCell id="joYBW2KDDQolAfPpEMMJ-6" parent="joYBW2KDDQolAfPpEMMJ-1" style="rounded=1;whiteSpace=wrap;html=1;" value="receiver&#39;s port" vertex="1">
+          <mxGeometry height="60" width="120" x="80" y="400" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="m2Uc-smJlR2aJxsaqrUu" name="Stock">
+    <mxGraphModel dx="1106" dy="752" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="FsYMpPGCnwmiXQdjHbp5" name="builtin">
+    <mxGraphModel dx="618" dy="752" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="gTpRvDiSpSLUFmlqVXGF-1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="String" vertex="1">
+          <mxGeometry height="30" width="120" x="120" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="gTpRvDiSpSLUFmlqVXGF-2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="List" vertex="1">
+          <mxGeometry height="30" width="120" x="120" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="gTpRvDiSpSLUFmlqVXGF-3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="Symbol" vertex="1">
+          <mxGeometry height="30" width="120" x="120" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="gTpRvDiSpSLUFmlqVXGF-4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="Number" vertex="1">
+          <mxGeometry height="30" width="120" x="120" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="gTpRvDiSpSLUFmlqVXGF-6" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="date and time and timezone" vertex="1">
+          <mxGeometry height="30" width="120" x="120" y="140" as="geometry" />
+        </mxCell>
+        <mxCell id="gTpRvDiSpSLUFmlqVXGF-7" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="date and time" vertex="1">
+          <mxGeometry height="30" width="120" x="120" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="gTpRvDiSpSLUFmlqVXGF-8" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="date" vertex="1">
+          <mxGeometry height="30" width="120" x="120" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="gTpRvDiSpSLUFmlqVXGF-9" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="time" vertex="1">
+          <mxGeometry height="30" width="120" x="120" y="230" as="geometry" />
+        </mxCell>
+        <mxCell id="gTpRvDiSpSLUFmlqVXGF-10" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="tuple" vertex="1">
+          <mxGeometry height="30" width="120" x="120" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="gTpRvDiSpSLUFmlqVXGF-11" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="decimal floating point" vertex="1">
+          <mxGeometry height="30" width="120" x="120" y="290" as="geometry" />
+        </mxCell>
+        <mxCell id="gTpRvDiSpSLUFmlqVXGF-12" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="european decimal floating point" vertex="1">
+          <mxGeometry height="30" width="120" x="120" y="320" as="geometry" />
+        </mxCell>
+        <mxCell id="gTpRvDiSpSLUFmlqVXGF-13" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="currency" vertex="1">
+          <mxGeometry height="30" width="120" x="120" y="350" as="geometry" />
+        </mxCell>
+        <mxCell id="gTpRvDiSpSLUFmlqVXGF-14" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="range" vertex="1">
+          <mxGeometry height="30" width="120" x="120" y="380" as="geometry" />
+        </mxCell>
+        <mxCell id="gTpRvDiSpSLUFmlqVXGF-15" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="pair" vertex="1">
+          <mxGeometry height="30" width="120" x="120" y="410" as="geometry" />
+        </mxCell>
+        <mxCell id="gTpRvDiSpSLUFmlqVXGF-16" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="hex" vertex="1">
+          <mxGeometry height="30" width="120" x="120" y="440" as="geometry" />
+        </mxCell>
+        <mxCell id="gTpRvDiSpSLUFmlqVXGF-17" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="integer" vertex="1">
+          <mxGeometry height="30" width="120" x="120" y="470" as="geometry" />
+        </mxCell>
+        <mxCell id="gTpRvDiSpSLUFmlqVXGF-18" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="long string" vertex="1">
+          <mxGeometry height="30" width="120" x="120" y="500" as="geometry" />
+        </mxCell>
+        <mxCell id="gTpRvDiSpSLUFmlqVXGF-19" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="htmltag" vertex="1">
+          <mxGeometry height="30" width="120" x="120" y="530" as="geometry" />
+        </mxCell>
+        <mxCell id="gTpRvDiSpSLUFmlqVXGF-20" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="path" vertex="1">
+          <mxGeometry height="30" width="120" x="120" y="560" as="geometry" />
+        </mxCell>
+        <mxCell id="gTpRvDiSpSLUFmlqVXGF-21" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="url" vertex="1">
+          <mxGeometry height="30" width="120" x="120" y="590" as="geometry" />
+        </mxCell>
+        <mxCell id="gTpRvDiSpSLUFmlqVXGF-22" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="email" vertex="1">
+          <mxGeometry height="30" width="120" x="120" y="620" as="geometry" />
+        </mxCell>
+        <mxCell id="gTpRvDiSpSLUFmlqVXGF-23" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="binary hex" vertex="1">
+          <mxGeometry height="30" width="120" x="120" y="650" as="geometry" />
+        </mxCell>
+        <mxCell id="gTpRvDiSpSLUFmlqVXGF-24" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="binary b64" vertex="1">
+          <mxGeometry height="30" width="120" x="120" y="680" as="geometry" />
+        </mxCell>
+        <mxCell id="gTpRvDiSpSLUFmlqVXGF-25" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="true" vertex="1">
+          <mxGeometry height="30" width="120" x="120" y="710" as="geometry" />
+        </mxCell>
+        <mxCell id="gTpRvDiSpSLUFmlqVXGF-26" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="false" vertex="1">
+          <mxGeometry height="30" width="120" x="120" y="740" as="geometry" />
+        </mxCell>
+        <mxCell id="gTpRvDiSpSLUFmlqVXGF-27" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="none" vertex="1">
+          <mxGeometry height="30" width="120" x="120" y="770" as="geometry" />
+        </mxCell>
+        <mxCell id="gTpRvDiSpSLUFmlqVXGF-28" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="litstring" vertex="1">
+          <mxGeometry height="30" width="120" x="120" y="800" as="geometry" />
+        </mxCell>
+        <mxCell id="gTpRvDiSpSLUFmlqVXGF-29" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="nan" vertex="1">
+          <mxGeometry height="30" width="120" x="120" y="830" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
