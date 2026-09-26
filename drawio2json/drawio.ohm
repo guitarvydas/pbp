@@ -1,0 +1,37 @@
+drawio {
+  main = applySyntactic<MxEnvelope>
+  MxEnvelope = "<" "mxfile" (~">" any)+ ">" DiagramEnvelope+ "</mxfile>"
+  DiagramEnvelope =
+    | "<diagram" DrawioID Name ">" MxGraphModelEnvelope "</diagram>" -- idname
+    | "<diagram" Name DrawioID ">" MxGraphModelEnvelope "</diagram>" -- nameid
+  MxGraphModelEnvelope = "<mxGraphModel" attribute* ">" RootEnvelope "</mxGraphModel>"
+  RootEnvelope = "<root>" MxCell+ "</root>"
+
+  MxCell =
+    | "<mxCell" "id" "=" str<"1"> "parent" "=" str<"0"> "/>" -- id1
+    | "<mxCell" "id" "=" str<"0"> "/>"                       -- id0
+    | "<mxCell" CellAttribute+ ">" MxGeometry "</mxCell>" -- figure
+
+  MxGeometry = 
+    | "<mxGeometry" (~"</mxGeometry>" any)+ "</mxGeometry>" -- withcontent
+    | "<mxGeometry" (~"/>" any)+ "/>" -- withoutcontent
+
+  CellAttribute =
+    | DrawioID -- id
+    | Parent   -- parent
+    | style    -- style
+    | attribute
+    
+  str<s> = "\"" s "\""
+  Parent = "parent" "=" string
+  DrawioID = "id" "=" string
+  Name = "name" "=" string
+  style = "style" spaces "=" spaces string
+  attribute = word spaces "=" spaces string
+
+  word = alnum+
+  string = "\"" stringchar* "\""
+  stringchar =
+    | "\\" any     -- escaped
+    | ~"\"" any   -- raw
+}

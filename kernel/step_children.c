@@ -58,6 +58,9 @@ void step_children(Container *container, MEvent *causingMevent)
     int count;
     int i;
 
+    Container* child;
+    MEvent* mev;
+
     /* causingMevent is not consulted by this phase of the algorithm;
        kept in the signature to match the original interface. */
     (void) causingMevent;
@@ -68,19 +71,19 @@ void step_children(Container *container, MEvent *causingMevent)
        children that are not "idle" */
     list = queue2list(container->visit_ordering, &count);
     for (i = 0; i < count; i++) {
-        Container *child = list[i];
+        child = list[i];
 
         /* child == container represents self; skip it */
         if (!is_self(child, container)) {
             if (!q_empty(child->inq)) {
-                MEvent *mev = q_dequeue(child->inq);
+                mev = q_dequeue(child->inq);
                 step_child_once(child, mev);
                 destroy_mevent(mev);
             } else {
                 if (child->state == CONTAINER_IDLE) {
                     /* pass */
                 } else {
-                    MEvent *mev = force_tick(container, child);
+                    mev = force_tick(container, child);
                     step_child_once(child, mev);
                     destroy_mevent(mev);
                 }
@@ -92,7 +95,7 @@ void step_children(Container *container, MEvent *causingMevent)
     /* phase 2 - loop through children and route their outputs to the
        appropriate receiver queues based on .connections */
     for (i = 0; i < container->num_children; i++) {
-        Container *child = container->children[i];
+        child = container->children[i];
 
         if (child->state == CONTAINER_ACTIVE) {
             /* if child remains active, the container must remain
@@ -101,7 +104,7 @@ void step_children(Container *container, MEvent *causingMevent)
         }
 
         while (!q_empty(child->outq)) {
-            MEvent *mev = q_dequeue(child->outq);
+            mev = q_dequeue(child->outq);
             route(container, child, mev);
             destroy_mevent(mev);
         }
