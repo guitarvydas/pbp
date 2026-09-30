@@ -27,7 +27,7 @@ defn create_across_connector ≡ @Wire
         target_component ≡ @Part                            #line 21
 }
 
-defn create_up_connector ≡
+defn create_up_connector ≡ @Wire
 (
     container ≡ @Container,
     proto_conn ≡ @Wire_Proto,
@@ -40,7 +40,7 @@ defn create_up_connector ≡
         source_component ≡ @Part                            #line 38
 }
 
-defn create_through_connector ≡
+defn create_through_connector ≡ @Wire
 (
     container ≡ @Container,
     proto_conn ≡ @Wire_Proto,
@@ -65,7 +65,7 @@ defn container_instantiator ≡ @Container
 }
 
                                                        #line 89
-defn container_handler ≡ ρHandler
+defn container_handler ≡ ~
 (
     container ≡ @Container,
     mevent ≡ @Mevent

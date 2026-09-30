@@ -1,0 +1,23 @@
+typeExtractor {
+  Main = TopLevel+
+  TopLevel =
+    | Defn -- defn
+    | Line -- line
+  Defn = "defn"  id "≡" FunctionType Formals FunctionBody
+  FunctionType =
+    | "~" -- procedure
+    | Type -- returnvalue
+  Formals = "(" TypedParamComma ")"
+  TypedParamComma = TypedID ","? TypedParamComma?
+  TypedID = id "≡" Type
+  FunctionBody = "{" BodyInnards? "}"
+  BodyInnards =
+    | "{" BodyInnards? "}" BodyInnards? -- brace
+    | "(" BodyInnards? ")" BodyInnards? -- parenthesis
+    | "[" BodyInnards? "]" BodyInnards? -- bracket
+    | TypedID BodyInnards?            -- TypedVar
+    | ~"}" ~")" ~"]" any  BodyInnards? -- other
+  Type = "@"? id
+  id = (alnum | "_")+
+  Line = "#line" digit+
+}
