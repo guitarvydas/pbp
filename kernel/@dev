@@ -54,4 +54,4 @@ rm -f temp.*
 
 
 
-   ./extract2.bash "container.tyty" | tee "container.ty2"
+./extract2.bash "container.tyty" | tee "container.ty2" | python3 rm_extra_commas.py

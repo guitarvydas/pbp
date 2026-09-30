@@ -1,11 +1,11 @@
 %parameter scope
 %rewrite typeExtractor {
-  Main [TopLevel+] = ‛[«TopLevel»\n]’
+  Main [TopLevel+] = ‛[«TopLevel»]’
   TopLevel_defn [x]  = ‛«x»’
   TopLevel_line [x]  = ‛«x»’
   Defn [_defn_ id _eq_ functiontype Formals FunctionBody] =
   ⎡ scope=‛«id»’
-     ‛\n{"name":"«id»", «functiontype», "scope:"_global", "kind":"function"},’
+     ‛\n{"name":"«id»", «functiontype», "scope:"_global", "kind":"function"},«Formals»«FunctionBody»’
   ⎦
   FunctionType_procedure [_tilde_] = ‛"pointer":false, "type":"void"’
   FunctionType_returnvalue [ty] = ‛«ty»’
@@ -13,11 +13,11 @@
   Formals [_lp typedvarcomma _rp] = ‛«typedvarcomma»’
   TypedParamComma [typedID _comma? typedparamcomma?] = ‛\n{«typedID»,"kind":"parameter"},«typedparamcomma»’
   TypedID [id _eq Type] = ‛"name":"«id»", «Type», "scope":"⟪scope⟫"’
-  FunctionBody [_lb BodyInnards? _rb] = ‛\n«BodyInnards»’
+  FunctionBody [_lb BodyInnards? _rb] = ‛«BodyInnards»’
   BodyInnards_brace [_l BodyInnards? _r rec?] = ‛«BodyInnards»«rec»’
   BodyInnards_parenthesis [_l BodyInnards? _r rec?] = ‛«BodyInnards»«rec»’
   BodyInnards_bracket [_l BodyInnards? _r rec?] = ‛«BodyInnards»«rec»’
-  BodyInnards_TypedVar [typedid rec?] = ‛\nvar «typedid»«rec»’
+  BodyInnards_TypedVar [typedid rec?] = ‛\n{«typedid», "kind":"variable"},«rec»’
   BodyInnards_other [c rec?] = ‛«rec»’
   Type_pointer [_at id] = ‛"pointer":true, "type":"«id»"’
   Type_plain [id] = ‛"pointer":false", type:"«id»"’

@@ -131,7 +131,7 @@ let _rewrite = {
 
 Main : function (TopLevel,) {
 enter_rule ("Main");
-    set_return (`[${TopLevel.rwr ().join ('')}\n]`);
+    set_return (`[${TopLevel.rwr ().join ('')}]`);
 return exit_rule ("Main");
 },
 TopLevel_defn : function (x,) {
@@ -147,7 +147,7 @@ return exit_rule ("TopLevel_line");
 Defn : function (_defn_,id,_eq_,functiontype,Formals,FunctionBody,) {
 enter_rule ("Defn");
     pushParameter ("scope", `${id.rwr ()}`);
-    set_return (`\n{"name":"${id.rwr ()}", ${functiontype.rwr ()}, "scope:"_global", "kind":"function"},`);
+    set_return (`\n{"name":"${id.rwr ()}", ${functiontype.rwr ()}, "scope:"_global", "kind":"function"},${Formals.rwr ()}${FunctionBody.rwr ()}`);
 popParameter ("scope");
 return exit_rule ("Defn");
 },
@@ -178,7 +178,7 @@ return exit_rule ("TypedID");
 },
 FunctionBody : function (_lb,BodyInnards,_rb,) {
 enter_rule ("FunctionBody");
-    set_return (`\n${BodyInnards.rwr ().join ('')}`);
+    set_return (`${BodyInnards.rwr ().join ('')}`);
 return exit_rule ("FunctionBody");
 },
 BodyInnards_brace : function (_l,BodyInnards,_r,rec,) {
@@ -198,7 +198,7 @@ return exit_rule ("BodyInnards_bracket");
 },
 BodyInnards_TypedVar : function (typedid,rec,) {
 enter_rule ("BodyInnards_TypedVar");
-    set_return (`\nvar ${typedid.rwr ()}${rec.rwr ().join ('')}`);
+    set_return (`\n{${typedid.rwr ()}, "kind":"variable"},${rec.rwr ().join ('')}`);
 return exit_rule ("BodyInnards_TypedVar");
 },
 BodyInnards_other : function (c,rec,) {
