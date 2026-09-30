@@ -55,7 +55,9 @@ typeExtractor {
     | "[" BodyInnards? "]" BodyInnards? -- bracket
     | TypedID BodyInnards?            -- TypedVar
     | ~"}" ~")" ~"]" any  BodyInnards? -- other
-  Type = "@"? id
+  Type =
+    | "@" id -- pointer
+    | id     -- plain
   id = (alnum | "_")+
   Line = "#line" digit+
 }
@@ -145,13 +147,13 @@ return exit_rule ("TopLevel_line");
 Defn : function (_defn_,id,_eq_,functiontype,Formals,FunctionBody,) {
 enter_rule ("Defn");
     pushParameter ("scope", `${id.rwr ()}`);
-    set_return (`\n{"name":"${id.rwr ()}", "type":"${functiontype.rwr ()}", "scope:"_global", "kind":"function"},`);
+    set_return (`\n{"name":"${id.rwr ()}", ${functiontype.rwr ()}, "scope:"_global", "kind":"function"},`);
 popParameter ("scope");
 return exit_rule ("Defn");
 },
 FunctionType_procedure : function (_tilde_,) {
 enter_rule ("FunctionType_procedure");
-    set_return (`void`);
+    set_return (`"pointer":false, "type":"void"`);
 return exit_rule ("FunctionType_procedure");
 },
 FunctionType_returnvalue : function (ty,) {
@@ -171,7 +173,7 @@ return exit_rule ("TypedParamComma");
 },
 TypedID : function (id,_eq,Type,) {
 enter_rule ("TypedID");
-    set_return (`"name":"${id.rwr ()}", "type":"${Type.rwr ()}", "scope":"${getParameter ("scope")}"`);
+    set_return (`"name":"${id.rwr ()}", ${Type.rwr ()}, "scope":"${getParameter ("scope")}"`);
 return exit_rule ("TypedID");
 },
 FunctionBody : function (_lb,BodyInnards,_rb,) {
@@ -204,10 +206,15 @@ enter_rule ("BodyInnards_other");
     set_return (`${rec.rwr ().join ('')}`);
 return exit_rule ("BodyInnards_other");
 },
-Type : function (_at,id,) {
-enter_rule ("Type");
-    set_return (`${_at.rwr ().join ('')}${id.rwr ()}`);
-return exit_rule ("Type");
+Type_pointer : function (_at,id,) {
+enter_rule ("Type_pointer");
+    set_return (`"pointer":true, "type":"${id.rwr ()}"`);
+return exit_rule ("Type_pointer");
+},
+Type_plain : function (id,) {
+enter_rule ("Type_plain");
+    set_return (`"pointer":false", type:"${id.rwr ()}"`);
+return exit_rule ("Type_plain");
 },
 id : function (cs,) {
 enter_rule ("id");

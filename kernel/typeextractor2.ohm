@@ -17,7 +17,9 @@ typeExtractor {
     | "[" BodyInnards? "]" BodyInnards? -- bracket
     | TypedID BodyInnards?            -- TypedVar
     | ~"}" ~")" ~"]" any  BodyInnards? -- other
-  Type = "@"? id
+  Type =
+    | "@" id -- pointer
+    | id     -- plain
   id = (alnum | "_")+
   Line = "#line" digit+
 }
