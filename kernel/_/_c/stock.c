@@ -332,7 +332,7 @@ void stop_handler (eh,mev) {
     s =  str( "   !!! stopping: '") +  str( parent.name) +  "'"  /* line 288 */
     external print ( s, file=sys.stderr)               /* line 289 */
     external                                           /* line 290 */
-    parent.stop ( parent)                              /* line 291 */
+    parent.reset ( parent)                             /* line 291 */
     send ( eh, "", mev.payload.v, mev)                 /* line 292 *//* line 293 *//* line 294 */}
 
 /*  all of the the built_in leaves are listed here */  /* line 295 */

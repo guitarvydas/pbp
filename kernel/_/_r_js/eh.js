@@ -11,28 +11,27 @@
 /*  */                                                 /* line 11 */
 /*  `instance_data` is a pointer to instance data that the `leaf_handler` *//* line 12 */
 /*  function may want whenever it is invoked again. */ /* line 13 *//* line 14 */
-/*  TODO: what is .routings for? (is it a historical artefact that can be removed?)  *//* line 15 *//* line 16 */
-/*  Eh_States :: enum { idle, active } */              /* line 17 */
+/*  Eh_States :: enum { idle, active } */              /* line 15 */
 class Eh {
-  constructor () {                                     /* line 18 */
+  constructor () {                                     /* line 16 */
 
-    this.name =  "";                                   /* line 19 */
-    this.inq =  []                                     /* line 20 */;
-    this.outq =  []                                    /* line 21 */;
-    this.owner =  null;                                /* line 22 */
-    this.children = [];                                /* line 23 */
-    this.visit_ordering =  []                          /* line 24 */;
-    this.connections = [];                             /* line 25 */
-    this.handler =  null;                              /* line 26 */
-    this.finject =  null;                              /* line 27 */
-    this.stop =  null;                                 /* line 28 */
-    this.instance_data =  null;                        /* line 29 *//*  arg needed for probe support  *//* line 30 */
-    this.arg =  "";                                    /* line 31 */
-    this.state =  "idle";                              /* line 32 */
-    this.special =  false;                             /* line 33 *//* line 34 */
+    this.name =  "";                                   /* line 17 */
+    this.inq =  []                                     /* line 18 */;
+    this.outq =  []                                    /* line 19 */;
+    this.owner =  null;                                /* line 20 */
+    this.children = [];                                /* line 21 */
+    this.visit_ordering =  []                          /* line 22 */;
+    this.connections = [];                             /* line 23 */
+    this.handler =  null;                              /* line 24 */
+    this.finject =  null;                              /* line 25 */
+    this.reset =  null;                                /* line 26 */
+    this.instance_data =  null;                        /* line 27 *//*  arg needed for probe support  *//* line 28 */
+    this.arg =  "";                                    /* line 29 */
+    this.state =  "idle";                              /* line 30 */
+    this.special =  false;                             /* line 31 *//* line 32 */
   }
 }
-                                                       /* line 35 */
-function injector (eh,mevent) {                        /* line 36 */
-    eh.handler ( eh, mevent)                           /* line 37 *//* line 38 *//* line 39 */
+                                                       /* line 33 */
+function injector (eh,mevent) {                        /* line 34 */
+    eh.handler ( eh, mevent)                           /* line 35 *//* line 36 *//* line 37 */
 }

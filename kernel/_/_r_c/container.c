@@ -86,10 +86,10 @@ void container_handler (container,mevent) {
         step_children ( container, mevent)             /* line 93 *//* line 94 *//* line 95 */}
 
 /*  Stop all children. Reset to a known state. Hit the big red button.  *//* line 96 */
-void container_reset_children (container) {
+void container_reset (container) {
                                                        /* line 97 */
     for child in  container.children:                  /* line 98 */
-        child.stop ( child)                            /* line 99 *//* line 100 */
+        child.reset ( child)                           /* line 99 *//* line 100 */
     external
     container.visit_ordering.clear ()                  /* line 101 */
     external
@@ -226,7 +226,7 @@ void make_container (name,owner) {
     eh.owner =  owner                                  /* line 253 */
     eh.handler =  container_handler                    /* line 254 */
     eh.finject =  injector                             /* line 255 */
-    eh.stop =  container_reset_children                /* line 256 */
+    eh.reset =  container_reset                        /* line 256 */
     eh.state =  "idle"                                 /* line 257 */
     eh.kind =  "container"                             /* line 258 */
     return ( eh)                                       /* line 259 */;;;;;;;/* line 260 *//* line 261 */}
