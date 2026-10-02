@@ -3,7 +3,6 @@ emit {
   Main = ParaMark TopLevel+
   TopLevel =
     | Defvar -- defvar
-    | Defconst -- defconst
     | Defn -- defn
     | Defobj -- defobj
     | Import -- import
@@ -12,7 +11,6 @@ emit {
     | line -- line
 
    Defvar = kw<"defvar"> Lval "⇐" Exp line?
-   Defconst = kw<"defconst"> Lval "≡" Exp line?
    Defn = kw<"defn"> ident Formals StatementBlock line?
    Defobj = kw<"defobj"> ident ObjFormals line? "{" line? InitStatement+ "}" line?
    Import = kw<"import"> ident line?
@@ -232,8 +230,7 @@ emit {
     | ~"“" ~"”" any -- other
 
     keyword = (
-        kw<"defconst">
-      | kw<"deftemp">
+        kw<"deftemp">
       | kw<"defobj">
       | kw<"defvar">
       | kw<"defn">
