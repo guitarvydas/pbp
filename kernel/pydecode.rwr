@@ -12,6 +12,5 @@
   char_tab [c] = ‛	’
   char_newline [c] = ‛
 ’
-  char_paramark [c] = ‛¶’
   char_other [c] = ‛«c»’
 }

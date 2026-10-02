@@ -132,10 +132,10 @@ function format_mevent_raw (m) {                       /* line 63 */
     }                                                  /* line 69 */
 }
 /* line 1 */
-const  enumDown =  0                                   /* line 2 */;
-const  enumAcross =  1                                 /* line 3 */;
-const  enumUp =  2                                     /* line 4 */;
-const  enumThrough =  3                                /* line 5 */;/* line 6 *//* line 7 */
+let  enumDown =  0;                                    /* line 2 */
+let  enumAcross =  1;                                  /* line 3 */
+let  enumUp =  2;                                      /* line 4 */
+let  enumThrough =  3;                                 /* line 5 *//* line 6 *//* line 7 */
 /*  Routing connection for a container component. The `direction` field has *//* line 8 */
 /*  no affect on the default mevent routing system _ it is there for debugging *//* line 9 */
 /*  purposes, or for reading by other tools. */        /* line 10 *//* line 11 */

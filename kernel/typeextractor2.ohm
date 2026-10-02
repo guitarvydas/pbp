@@ -4,7 +4,6 @@ typeExtractor {
     | Defn -- defn
     | DefObj -- obj
     | Defvar -- defvar
-    | Defconst -- defconst
     | Line -- line
   Defn = "defn"  id "≡" FunctionType Formals FunctionBody
   DefObj = "defobj" id ObjBody

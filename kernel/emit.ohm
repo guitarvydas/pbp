@@ -1,10 +1,11 @@
 emit {
 
-  Main = ParaMark TopLevel+
+  Main = TopLevel+
   TopLevel =
     | Defvar -- defvar
     | Defn -- defn
     | Defobj -- defobj
+    | External -- external
     | comment line? -- comment
     | line -- line
 
@@ -283,5 +284,4 @@ emit {
   line = "⎩" (~"⎩" ~"⎭" any)* "⎭"
 
   Comma = line? "," line?
-  ParaMark = "¶"
 }

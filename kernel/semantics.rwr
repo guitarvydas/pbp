@@ -1,20 +1,15 @@
 % rewrite semantics {
 
-Main [ Para TopLevel+] = ‛«Para»«TopLevel»’
+Main [ TopLevel+] = ‛«TopLevel»’
 
 TopLevel_defvar [ Defvar] =‛«Defvar»’
-TopLevel_defconst [ Defconst] =‛«Defconst»’
 TopLevel_defn [ Defn] =‛«Defn»’
 TopLevel_defobj [ Defobj] =‛«Defobj»’
-TopLevel_import [ Import] =‛«Import»’
-TopLevel_external [x] =‛«x»’
 TopLevel_comment [ comment line?] =‛«comment»«line»\n’
 TopLevel_line [line] =‛«line»’
 Defvar [ _2 Lval _3 Exp line?] = ‛«_2»«Lval»«_3»«Exp»«line»’
-Defconst [ _5 Lval _6 Exp line?] = ‛«_5»«Lval»«_6»«Exp»«line»’
 Defn [ _8 ident Formals StatementBlock line?] = ‛«_8»«ident»«Formals»«StatementBlock»«line»’
 Defobj [ _10 ident ObjFormals line1? _11 line2? InitStatement+ _12 line3?] = ‛«_10»«ident»«ObjFormals»«line1»«_11»«line2»«InitStatement»«_12»«line3»’
-Import [ _14 ident line?] = ‛«_14»«ident»«line»’
 StatementBlock [ line1? lb line2? Rec_Statement line3? rb line4?] = ‛«line1»«lb»«line2»«Rec_Statement»«line3»«rb»«line4»’
 
 Rec_Statement [line1? R_Statement line2?] = ‛«line1»«R_Statement»«line2»’
@@ -155,5 +150,4 @@ port [ string] = ‛«string»’
 
 line [lb cs* rb] = ‛«lb»«cs»«rb»’
 Comma [line1? _comma line2?] = ‛«line1»«_comma»«line2»’
-ParaMark [c] = ‛«c»’
 }

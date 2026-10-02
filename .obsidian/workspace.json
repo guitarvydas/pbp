@@ -197,17 +197,18 @@
   },
   "active": "c769a219810c4f52",
   "lastOpenFiles": [
-    "kernel/out.✗",
-    "kernel/temp.nanodsl.29459.mjs",
-    "kernel/temp.nanodsl.26733.mjs",
-    "kernel/temp.nanodsl.8077.mjs",
-    "kernel/temp.nanodsl.22190.mjs",
-    "kernel/temp.nanodsl.19464.mjs",
-    "kernel/temp.nanodsl.809.mjs",
-    "kernel/temp.nanodsl.21262.mjs",
-    "kernel/temp.nanodsl.2606.mjs",
-    "kernel/temp.nanodsl.32648.mjs",
-    "kernel/temp.nanodsl.13993.mjs",
+    "kernel/out.ty",
+    "kernel/temp.nanodsl.2209.mjs",
+    "kernel/temp.nanodsl.16322.mjs",
+    "kernel/temp.nanodsl.29526.mjs",
+    "kernel/temp.nanodsl.26374.mjs",
+    "kernel/temp.nanodsl.22740.mjs",
+    "kernel/temp.nanodsl.4084.mjs",
+    "kernel/temp.nanodsl.17772.mjs",
+    "kernel/temp.nanodsl.31884.mjs",
+    "kernel/temp.nanodsl.29158.mjs",
+    "kernel/temp.nanodsl.10077.mjs",
+    "kernel/kernel-Back End.drawio.png",
     "kernel/junk.md",
     "kernel/typetable.md",
     "kernel/misc/prompt.md",
@@ -241,7 +242,6 @@
     "tinykernel/doc/stirng_pool.png",
     "kernel/video/probe.png",
     "kernel-self/kernel-Back-End.drawio.png",
-    "doc/pbp-lifecycle.drawio.png",
-    "pbp/sm/pbp/pbp-lifecycle.drawio.png"
+    "doc/pbp-lifecycle.drawio.png"
   ]
 }

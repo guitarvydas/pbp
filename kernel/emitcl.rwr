@@ -1,16 +1,16 @@
 % rewrite emitCL {
 
-Main [ Para TopLevel+] = ‛«Para»«TopLevel»’
+Main [ TopLevel+] = ‛«TopLevel»’
 
 TopLevel_defvar [ Defvar] =‛«Defvar»’
 TopLevel_defn [ Defn] =‛«Defn»’
 TopLevel_defobj [ Defobj] =‛«Defobj»’
+TopLevel_external [x] = ‛«x»’
 TopLevel_comment [s line?] =‛«s»«line»’
 TopLevel_line [line] =‛«line»’
 
 kw [ s] = ‛«s»’
 Defvar [ __ lval _eq e line?] = ‛\n(defparameter «lval» «e»)«line»’
-Defconst [ __ lval _eq e line?] = ‛\n(defparameter «lval» «e»)’
 Defn [ _4 ident Formals StatementBlock line?] = 
   ⎡ functionName=‛«ident»’
     ‛\n(defun «ident» (&optional «Formals»)⤷\n(declare (ignorable «Formals»))«StatementBlock»⤶)’
@@ -355,6 +355,5 @@ port [s] = ‛«s»’
 line [lb cs* rb] = ‛«lb»«cs»«rb»’
 Comma [line1? _comma line2?] = ‛«line1» «line2»’
 
-ParaMark [c] = ‛«c»’
 
 }

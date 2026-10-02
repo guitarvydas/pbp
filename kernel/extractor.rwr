@@ -1,11 +1,10 @@
 % rewrite extractor {
 
-Main [ Para TopLevel+] = ‛«Para»«TopLevel»’
+Main [ TopLevel+] = ‛«TopLevel»’
 
 TopLevel_defvar [ Defvar] =‛«Defvar»’
 TopLevel_defn [ Defn] =‛«Defn»’
 TopLevel_defobj [ Defobj] =‛«Defobj»’
-TopLevel_import [ Import] =‛«Import»’
 TopLevel_external [x] =‛«x»’
 TopLevel_comment [s line?] =‛\n«s»«line»’
 TopLevel_line [line] =‛«line»’
@@ -14,7 +13,6 @@ kw [ s] = ‛«s»’
 Defvar [ __ lval _eq e line?] = ‛\nvar «lval» ≡ «line»’
 Defn [ _4 ident Formals StatementBlock line?] = ‛\ndefn «ident» ≡  \n«Formals» \n{⤷\n«StatementBlock»«line»⤶\n}\n’
 Defobj [ _defobj ident Formals line1? lb line2? init+ rb line3?] = ‛\ndefobj «ident» {⤷\n«line1»«line2»«init»«line3»⤶\n}\n’
-Import [ _10 ident line?] = ‛\nimport «ident»«line»’
 StatementBlock [ line1? lb line2? Statement     line3? rb  line4?] = ‛«line1»«line2»⤷«Statement»«line3»«line4»⤶’
 
 Rec_Statement [line1? R_Statement line2?] = ‛«line1»«R_Statement»«line2»’
@@ -211,5 +209,4 @@ port [s] = ‛«s»’
 
 line [lb cs* rb] = ‛«lb»«cs»«rb»’
 Comma [line1? _comma line2?] = ‛«_comma»’
-ParaMark [c] = ‛’
 }
