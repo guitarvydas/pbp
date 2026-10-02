@@ -21,14 +21,14 @@ defn trash_handler ≡ ~
                                                        #line 7#line 8#line 9#line 10
 }
 
-class TwoMevents {
+defobj TwoMevents {
                                                        #line 11
     firstmev ≡ @Mevent                                        #line 12
     secondmev ≡ @Mevent                                       #line 13#line 14
 }
                                                        #line 15
                                                        #line 16
-class Deracer_Instance_Data {
+defobj Deracer_Instance_Data {
                                                        #line 17
     state ≡ State                                            #line 18
     buffer ≡ @TwoMevents                                          #line 19#line 20
@@ -57,8 +57,8 @@ defn deracer_instantiate ≡ @Leaf
     reg ≡ @Component_Registry,
     owner ≡ @Container,
     name ≡ @Str,
-    template_data ≡ @%Ignored,
-    arg ≡ @%Ignored
+    template_data ≡ Ignored,
+    arg ≡ Ignored
 )
 {
                                                        #line 32
@@ -76,7 +76,7 @@ defn send_firstmev_then_secondmev ≡ ~
                                                        #line 41#line 45#line 46
 }
 
-defn deracer_handler ≡
+defn deracer_handler ≡ ~
 (
     eh ≡ @Leaf,
     mev ≡ @Mevent
@@ -99,7 +99,7 @@ defn low_level_read_text_file_instantiate ≡ @Leaf
         name_with_id ≡ @Str
 }
 
-defn low_level_read_text_file_handler ≡
+defn low_level_read_text_file_handler ≡ ~
 (
     eh ≡ @Leaf,
     mev ≡ @Mevent
@@ -114,8 +114,8 @@ defn ensure_string_datum_instantiate ≡ @Leaf
     reg ≡ @Component_Registry,
     owner ≡ @Container,
     name ≡ @Str,
-    template_data ≡ @%Ignored,
-    arg ≡ @%Ignored
+    template_data ≡ Ignored,
+    arg ≡ Ignored
 )
 {
                                                        #line 90
@@ -138,7 +138,7 @@ defn ensure_string_datum_handler ≡ ~
         }                                              #line 102#line 103
 }
 
-class Syncfilewrite_Data {
+defobj Syncfilewrite_Data {
                                                        #line 104
     filename ≡ @Str                                        #line 105#line 106
 }
@@ -158,8 +158,8 @@ defn syncfilewrite_instantiate ≡ @Leaf
     reg ≡ @Component_Registry,
     owner ≡ @Container,
     name ≡ @Str,
-    template_data ≡ @%Ignored,
-    arg ≡ @%Ignored
+    template_data ≡ Ignored,
+    arg ≡ Ignored
 )
 {
                                                        #line 113
@@ -186,7 +186,7 @@ defn syncfilewrite_handler ≡ ~
         }
 }
 
-class StringConcat_Instance_Data {
+defobj StringConcat_Instance_Data {
                                                        #line 136
     buffer1 ≡ @Str                                         #line 137
     buffer2 ≡ @Str                                         #line 138#line 139
@@ -207,8 +207,8 @@ defn stringconcat_instantiate ≡ @Leaf
     reg ≡ @Component_Registry,
     owner ≡ @Container,
     name ≡ @Str,
-    template_data ≡ @%Ignored,
-    arg ≡ @%Ignored
+    template_data ≡ Ignored,
+    arg ≡ Ignored
 )
 {
                                                        #line 147
@@ -258,8 +258,8 @@ defn string_constant_instantiate ≡ @Leaf
     reg ≡ @Component_Registry,
     owner ≡ @Container,
     name ≡ @Str,
-    template_data ≡ @%Ignored,
-    arg ≡ @%Ignored
+    template_data ≡ Ignored,
+    arg ≡ Ignored
 )
 {
                                                        #line 187#line 195#line 196
@@ -280,8 +280,8 @@ defn fakepipename_instantiate ≡ @Leaf
     reg ≡ @Component_Registry,
     owner ≡ @Container,
     name ≡ @Str,
-    template_data ≡ @%Ignored,
-    arg ≡ @%Ignored
+    template_data ≡ Ignored,
+    arg ≡ Ignored
 )
 {
                                                        #line 202
@@ -289,7 +289,7 @@ defn fakepipename_instantiate ≡ @Leaf
 
 }
 
-var  rand ≡ Number                                           #line 207#line 208
+defvar  rand ≡ Number                                           #line 207#line 208
 defn fakepipename_handler ≡ ~
 (
     eh ≡ @Leaf,
@@ -299,7 +299,7 @@ defn fakepipename_handler ≡ ~
                                                        #line 209#line 213#line 214
 }
                                                        #line 215
-class Switch1star_Instance_Data {
+defobj Switch1star_Instance_Data {
                                                        #line 216
     state ≡ @Str                                           #line 217#line 218
 }
@@ -319,8 +319,8 @@ defn switch1star_instantiate ≡ @Leaf
     reg ≡ @Component_Registry,
     owner ≡ @Container,
     name ≡ @Str,
-    template_data ≡ @%Ignored,
-    arg ≡ @%Ignored
+    template_data ≡ Ignored,
+    arg ≡ Ignored
 )
 {
                                                        #line 225
@@ -339,7 +339,7 @@ defn switch1star_handler ≡ ~
         whichOutput ≡ @Str                                 #line 233
 }
 
-class StringAccumulator {
+defobj StringAccumulator {
                                                        #line 250
     s ≡ @Str                                               #line 251#line 252
 }
@@ -356,8 +356,8 @@ defn strcatstar_instantiate ≡ @Leaf
     reg ≡ @Component_Registry,
     owner ≡ @Container,
     name ≡ @Str,
-    template_data ≡ @%Ignored,
-    arg ≡ @%Ignored
+    template_data ≡ Ignored,
+    arg ≡ Ignored
 )
 {
                                                        #line 258
@@ -380,8 +380,8 @@ defn stop_instantiate ≡ @Leaf
     reg ≡ @Component_Registry,
     owner ≡ @Container,
     name ≡ @Str,
-    template_data ≡ @%Ignored,
-    arg ≡ @%Ignored
+    template_data ≡ Ignored,
+    arg ≡ Ignored
 )
 {
                                                        #line 275

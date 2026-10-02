@@ -1,4 +1,4 @@
-[
+
 {"name":"enumDown", "pointer":false", type:"Dir", "scope":"global", "kind":"global variable"},
 {"name":"enumAcross", "pointer":false", type:"Dir", "scope":"global", "kind":"global variable"},
 {"name":"enumUp", "pointer":false", type:"Dir", "scope":"global", "kind":"global variable"},
@@ -26,4 +26,4 @@
 {"name":"component", "pointer":true, "type":"Eh", "scope":"mkReceiver","kind":"parameter"},
 {"name":"port", "pointer":false", type:"Port", "scope":"mkReceiver","kind":"parameter"},
 {"name":"q", "pointer":true, "type":"Queue", "scope":"mkReceiver","kind":"parameter"},
-{"name":"r", "pointer":true, "type":"Receiver", "scope":"mkReceiver", "kind":"variable"},]
+{"name":"r", "pointer":true, "type":"Receiver", "scope":"mkReceiver", "kind":"variable"},

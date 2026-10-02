@@ -6,8 +6,8 @@ defn make_leaf ≡ @Leaf
     owner ≡ @Container,
     instance_data ≡ @,
     arg ≡ @Str,
-    handler ≡ ~Handler
-    reset_handler ≡ ~ResetHandler
+    handler ≡ Fhandler
+    reset_handler ≡ Freset
 )
 {
                                                        #line 4

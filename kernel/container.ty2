@@ -1,4 +1,4 @@
-[
+
 {"name":"create_down_connector", "pointer":true, "type":"Wire", "scope:"_global", "kind":"function"},
 {"name":"container", "pointer":true, "type":"Container", "scope":"create_down_connector","kind":"parameter"},
 {"name":"proto_conn", "pointer":true, "type":"Wire_Proto", "scope":"create_down_connector","kind":"parameter"},
@@ -122,4 +122,4 @@
 {"name":"eh", "pointer":true, "type":"Part", "scope":"put_output","kind":"parameter"},
 {"name":"mev", "pointer":true, "type":"Mevent", "scope":"put_output","kind":"parameter"},
 {"name":"clone_payload", "pointer":true, "type":"Payload", "scope:"_global", "kind":"function"},
-{"name":"clone_payload", "pointer":true, "type":"Payload", "scope":"clone_payload","kind":"parameter"},]
+{"name":"clone_payload", "pointer":true, "type":"Payload", "scope":"clone_payload","kind":"parameter"},

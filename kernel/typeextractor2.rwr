@@ -1,6 +1,6 @@
 %parameter scope
 %rewrite typeExtractor {
-  Main [TopLevel+] = ‛[«TopLevel»]’
+  Main [TopLevel+] = ‛«TopLevel»’
   TopLevel_defn [x]  = ‛«x»’
   TopLevel_line [x]  = ‛«x»’
   TopLevel_defvar [x] = ‛«x»’
@@ -26,6 +26,7 @@
   BodyInnards_TypedVar [typedid rec?] = ‛\n{«typedid», "kind":"variable"},«rec»’
   BodyInnards_other [c rec?] = ‛«rec»’
   Type_pointer [_at id] = ‛"pointer":true, "type":"«id»"’
+  Type_pointerany [_at] = ‛"pointer":true, "type":"any"’
   Type_plain [id] = ‛"pointer":false", type:"«id»"’
   id [cs+] = ‛«cs»’
   Line [_line digit+] = ‛’

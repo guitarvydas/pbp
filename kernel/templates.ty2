@@ -1,4 +1,4 @@
-[
+
 {"name":"Component_Registry", "pointer":false, "type":"obj", "scope:"_global", "kind":"obj"},
 {"name":"templates", "pointer":true, "type":"Dict_of_Template", "scope":"Component_Registry", "kind":"variable"},
 {"name":"Template", "pointer":false, "type":"obj", "scope:"_global", "kind":"obj"},
@@ -47,4 +47,4 @@
 {"name":"instance_name", "pointer":true, "type":"Str", "scope":"generate_instance_name", "kind":"variable"},
 {"name":"instance_name", "pointer":true, "type":"Str", "scope":"generate_instance_name", "kind":"variable"},
 {"name":"mangle_name", "pointer":true, "type":"Str", "scope:"_global", "kind":"function"},
-{"name":"s", "pointer":true, "type":"Str", "scope":"mangle_name","kind":"parameter"},]
+{"name":"s", "pointer":true, "type":"Str", "scope":"mangle_name","kind":"parameter"},
