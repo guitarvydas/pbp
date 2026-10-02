@@ -12,7 +12,7 @@
   ⎡ scope=‛«id»’
      ‛\n{"name":"«id»", "pointer":false, "type":"obj", "scope:"_global", "kind":"obj"},«ObjBody»’
   ⎦
-  DefVar [_1 id _3 ty] = ‛\n«_1»«id»«_3»«ty»’
+  DefVar [_1 id _3 ty] = ‛\n{"name":"«id»", «ty», "scope":"global", "kind":"global variable"},’
   FunctionType_procedure [_tilde_] = ‛"pointer":false, "type":"void"’
   FunctionType_returnvalue [ty] = ‛«ty»’
 

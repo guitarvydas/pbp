@@ -23,7 +23,7 @@ defobj Eh {
     visit_ordering ≡ @Queue_of_Part
     connections ≡ @Collection_of_Wire                                     #line 25
     handler ≡ ~Handler                                         #line 27
-    reset_instance_data ≡                              #line 28
+    reset_instance_data ≡ Freset                             #line 28
     finject ≡                                          #line 29
     stop ≡                                             #line 30
     instance_data ≡                                    #line 31#line 32

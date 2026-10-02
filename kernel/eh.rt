@@ -12,7 +12,6 @@
 ⌈ `instance_data` is a pointer to instance data that the `leaf_handler`⌉
 ⌈ function may want whenever it is invoked again.⌉
 
-⌈ TODO: what is .routings for? (is it a historical artefact that can be removed?) ⌉
 
 ⌈ Eh_States :: enum { idle, active }⌉
 defobj Eh () {

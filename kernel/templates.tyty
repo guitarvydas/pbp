@@ -1,20 +1,20 @@
-class Component_Registry {
+defobj Component_Registry {
                                                        #line 1
     templates ≡  @Dict_of_Template                                         #line 2#line 3
 }
                                                        #line 4
-class Template {
+defobj Template {
                                                        #line 5
     name ≡ @Str                                            #line 6
     container ≡ @Container                                       #line 7
-    instantiator ≡ λ@Part                                    #line 8#line 9
+    instantiator ≡ Finstantiator                                   #line 8#line 9
 }
                                                        #line 10
 defn mkTemplate ≡ @Template
 (
     name ≡ @Str,
     template_data ≡ @Container,
-    instantiator ≡ λ@Part
+    instantiator ≡ Finstantiator
 )
 {
                                                        #line 11

@@ -1,8 +1,8 @@
 [
-defvarenumDown≡"pointer":false", type:"Dir"
-defvarenumAcross≡"pointer":false", type:"Dir"
-defvarenumUp≡"pointer":false", type:"Dir"
-defvarenumThrough≡"pointer":false", type:"Dir"
+{"name":"enumDown", "pointer":false", type:"Dir", "scope":"global", "kind":"global variable"},
+{"name":"enumAcross", "pointer":false", type:"Dir", "scope":"global", "kind":"global variable"},
+{"name":"enumUp", "pointer":false", type:"Dir", "scope":"global", "kind":"global variable"},
+{"name":"enumThrough", "pointer":false", type:"Dir", "scope":"global", "kind":"global variable"},
 {"name":"Connector", "pointer":false, "type":"obj", "scope:"_global", "kind":"obj"},
 {"name":"direction", "pointer":false", type:"Dir", "scope":"Connector", "kind":"variable"},
 {"name":"sender", "pointer":true, "type":"Sender", "scope":"Connector", "kind":"variable"},

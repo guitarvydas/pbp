@@ -11,7 +11,7 @@ typeExtractor2 {
   FunctionType =
     | "~" -- procedure
     | Type -- returnvalue
-  Formals = "(" TypedParamComma ")"
+  Formals = "(" TypedParamComma? ")"
   TypedParamComma = TypedID ","? TypedParamComma?
   TypedID = id "≡" Type
   ObjBody = FunctionBody

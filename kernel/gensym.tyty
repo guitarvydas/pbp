@@ -1,4 +1,4 @@
-var  digits ≡ Array_of_Str                                          #line 8#line 9
+defvar  digits ≡ Array_of_Str                                          #line 8#line 9
 defn subscripted_digit ≡ @Str
 (
     n ≡ Int
@@ -7,7 +7,7 @@ defn subscripted_digit ≡ @Str
                                                        #line 10#line 17#line 18
 }
 
-var counter ≡ Int
+defvar counter ≡ Int
 
 defn gensymbol ≡ @Str
 (

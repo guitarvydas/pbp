@@ -1,0 +1,13 @@
+[
+{"name":"Eh", "pointer":false, "type":"obj", "scope:"_global", "kind":"obj"},
+{"name":"name", "pointer":true, "type":"Str", "scope":"Eh", "kind":"variable"},
+{"name":"inq", "pointer":true, "type":"Queue", "scope":"Eh", "kind":"variable"},
+{"name":"outq", "pointer":true, "type":"Queue", "scope":"Eh", "kind":"variable"},
+{"name":"owner", "pointer":true, "type":"Container", "scope":"Eh", "kind":"variable"},
+{"name":"children", "pointer":true, "type":"Collection_of_Part", "scope":"Eh", "kind":"variable"},
+{"name":"visit_ordering", "pointer":true, "type":"Queue_of_Part", "scope":"Eh", "kind":"variable"},
+{"name":"connections", "pointer":true, "type":"Collection_of_Wire", "scope":"Eh", "kind":"variable"},
+{"name":"arg", "pointer":true, "type":"Str", "scope":"Eh", "kind":"variable"},
+{"name":"state", "pointer":true, "type":"Str", "scope":"Eh", "kind":"variable"},
+{"name":"special", "pointer":false", type:"Bool", "scope":"Eh", "kind":"variable"},
+{"name":"kind", "pointer":true, "type":"Str", "scope":"Eh", "kind":"variable"},]

@@ -49,7 +49,7 @@ typeExtractor2 {
   FunctionType =
     | "~" -- procedure
     | Type -- returnvalue
-  Formals = "(" TypedParamComma ")"
+  Formals = "(" TypedParamComma? ")"
   TypedParamComma = TypedID ","? TypedParamComma?
   TypedID = id "≡" Type
   ObjBody = FunctionBody
@@ -173,7 +173,7 @@ return exit_rule ("DefObj");
 },
 DefVar : function (_1,id,_3,ty,) {
 enter_rule ("DefVar");
-    set_return (`\n${_1.rwr ()}${id.rwr ()}${_3.rwr ()}${ty.rwr ()}`);
+    set_return (`\n{"name":"${id.rwr ()}", ${ty.rwr ()}, "scope":"global", "kind":"global variable"},`);
 return exit_rule ("DefVar");
 },
 FunctionType_procedure : function (_tilde_,) {
