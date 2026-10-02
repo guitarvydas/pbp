@@ -106,7 +106,7 @@ defn container_handler ≡
 }
 
                                                        #line 96
-defn container_reset_children ≡
+defn container_reset ≡
 (
     container ≡
 )

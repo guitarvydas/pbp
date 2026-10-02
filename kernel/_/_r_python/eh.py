@@ -11,24 +11,23 @@
 #                                                      #line 11
 # `instance_data` is a pointer to instance data that the `leaf_handler`#line 12
 # function may want whenever it is invoked again.      #line 13#line 14
-# TODO: what is .routings for? (is it a historical artefact that can be removed?) #line 15#line 16
-# Eh_States :: enum { idle, active }                   #line 17
+# Eh_States :: enum { idle, active }                   #line 15
 class Eh:
-    def __init__ (self,):                              #line 18
-        self.name =  ""                                #line 19
-        self.inq =  deque ([])                         #line 20
-        self.outq =  deque ([])                        #line 21
-        self.owner =  None                             #line 22
-        self.children = []                             #line 23
-        self.visit_ordering =  deque ([])              #line 24
-        self.connections = []                          #line 25
-        self.handler =  None                           #line 26
-        self.finject =  None                           #line 27
-        self.stop =  None                              #line 28
-        self.instance_data =  None                     #line 29# arg needed for probe support #line 30
-        self.arg =  ""                                 #line 31
-        self.state =  "idle"                           #line 32
-        self.special =  False                          #line 33#line 34
-                                                       #line 35
-def injector (eh,mevent):                              #line 36
-    eh.handler ( eh, mevent)                           #line 37#line 38#line 39
+    def __init__ (self,):                              #line 16
+        self.name =  ""                                #line 17
+        self.inq =  deque ([])                         #line 18
+        self.outq =  deque ([])                        #line 19
+        self.owner =  None                             #line 20
+        self.children = []                             #line 21
+        self.visit_ordering =  deque ([])              #line 22
+        self.connections = []                          #line 23
+        self.handler =  None                           #line 24
+        self.finject =  None                           #line 25
+        self.reset =  None                             #line 26
+        self.instance_data =  None                     #line 27# arg needed for probe support #line 28
+        self.arg =  ""                                 #line 29
+        self.state =  "idle"                           #line 30
+        self.special =  False                          #line 31#line 32
+                                                       #line 33
+def injector (eh,mevent):                              #line 34
+    eh.handler ( eh, mevent)                           #line 35#line 36#line 37

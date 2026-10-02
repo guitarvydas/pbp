@@ -12,48 +12,47 @@
 /*  */                                                 /* line 11 */
 /*  `instance_data` is a pointer to instance data that the `leaf_handler` *//* line 12 */
 /*  function may want whenever it is invoked again. */ /* line 13 *//* line 14 */
-/*  TODO: what is .routings for? (is it a historical artefact that can be removed?)  *//* line 15 *//* line 16 */
-/*  Eh_States :: enum { idle, active } */              /* line 17 */
+/*  Eh_States :: enum { idle, active } */              /* line 15 */
 typedef struct _Eh {
-                                                       /* line 18 */
-    name;                                              /* line 19 */
+                                                       /* line 16 */
+    name;                                              /* line 17 */
     inq;
     outq;
-    owner;                                             /* line 22 */
-    children;                                          /* line 23 */
+    owner;                                             /* line 20 */
+    children;                                          /* line 21 */
     visit_ordering;
-    connections;                                       /* line 25 */
-    handler;                                           /* line 26 */
-    finject;                                           /* line 27 */
-    stop;                                              /* line 28 */
-    instance_data;                                     /* line 29 *//*  arg needed for probe support  *//* line 30 */
-    arg;                                               /* line 31 */
-    state;                                             /* line 32 */
-    special;                                           /* line 33 *//* line 34 */
+    connections;                                       /* line 23 */
+    handler;                                           /* line 24 */
+    finject;                                           /* line 25 */
+    reset;                                             /* line 26 */
+    instance_data;                                     /* line 27 *//*  arg needed for probe support  *//* line 28 */
+    arg;                                               /* line 29 */
+    state;                                             /* line 30 */
+    special;                                           /* line 31 *//* line 32 */
 } Eh;
 Eh fresh_Eh () {
     Eh *self;
     self = (Mevent*)malloc(sizeof(Mevent));
-    self->name =  "";                                  /* line 19 */
-    self->inq =  deque ([])                            /* line 20 */;
-    self->outq =  deque ([])                           /* line 21 */;
-    self->owner =  NULL;                               /* line 22 */
-    self->children = [];                               /* line 23 */
-    self->visit_ordering =  deque ([])                 /* line 24 */;
-    self->connections = [];                            /* line 25 */
-    self->handler =  NULL;                             /* line 26 */
-    self->finject =  NULL;                             /* line 27 */
-    self->stop =  NULL;                                /* line 28 */
-    self->instance_data =  NULL;                       /* line 29 *//*  arg needed for probe support  *//* line 30 */
-    self->arg =  "";                                   /* line 31 */
-    self->state =  "idle";                             /* line 32 */
-    self->special =  False;                            /* line 33 *//* line 34 */
+    self->name =  "";                                  /* line 17 */
+    self->inq =  deque ([])                            /* line 18 */;
+    self->outq =  deque ([])                           /* line 19 */;
+    self->owner =  NULL;                               /* line 20 */
+    self->children = [];                               /* line 21 */
+    self->visit_ordering =  deque ([])                 /* line 22 */;
+    self->connections = [];                            /* line 23 */
+    self->handler =  NULL;                             /* line 24 */
+    self->finject =  NULL;                             /* line 25 */
+    self->reset =  NULL;                               /* line 26 */
+    self->instance_data =  NULL;                       /* line 27 *//*  arg needed for probe support  *//* line 28 */
+    self->arg =  "";                                   /* line 29 */
+    self->state =  "idle";                             /* line 30 */
+    self->special =  False;                            /* line 31 *//* line 32 */
     return self;
 }
-                                                       /* line 35 */
+                                                       /* line 33 */
 void injector (eh,mevent) {
-                                                       /* line 36 */
-    eh.handler ( eh, mevent)                           /* line 37 *//* line 38 *//* line 39 */}
+                                                       /* line 34 */
+    eh.handler ( eh, mevent)                           /* line 35 *//* line 36 *//* line 37 */}
 int  digits = [ "₀", "₁", "₂", "₃", "₄", "₅", "₆", "₇", "₈", "₉", "₁₀", "₁₁", "₁₂", "₁₃", "₁₄", "₁₅", "₁₆", "₁₇", "₁₈", "₁₉", "₂₀", "₂₁", "₂₂", "₂₃", "₂₄", "₂₅", "₂₆", "₂₇", "₂₈", "₂₉"]/* line 7 */;/* line 8 *//* line 9 */
 void subscripted_digit (n) {
                                                        /* line 10 */
@@ -454,10 +453,10 @@ void container_handler (container,mevent) {
         step_children ( container, mevent)             /* line 93 *//* line 94 *//* line 95 */}
 
 /*  Stop all children. Reset to a known state. Hit the big red button.  *//* line 96 */
-void container_reset_children (container) {
+void container_reset (container) {
                                                        /* line 97 */
     for child in  container.children:                  /* line 98 */
-        child.stop ( child)                            /* line 99 *//* line 100 */
+        child.reset ( child)                           /* line 99 *//* line 100 */
     external
     container.visit_ordering.clear ()                  /* line 101 */
     external
@@ -594,7 +593,7 @@ void make_container (name,owner) {
     eh.owner =  owner                                  /* line 253 */
     eh.handler =  container_handler                    /* line 254 */
     eh.finject =  injector                             /* line 255 */
-    eh.stop =  container_reset_children                /* line 256 */
+    eh.reset =  container_reset                        /* line 256 */
     eh.state =  "idle"                                 /* line 257 */
     eh.kind =  "container"                             /* line 258 */
     return ( eh)                                       /* line 259 */;;;;;;;/* line 260 *//* line 261 */}
@@ -647,7 +646,7 @@ void make_leaf (name,owner,instance_data,arg,handler,reset_handler) {
     eh.handler =  handler                              /* line 12 */
     eh.reset_handler =  reset_handler                  /* line 13 */
     eh.finject =  injector                             /* line 14 */
-    eh.stop =  leaf_reset                              /* line 15 */
+    eh.reset =  leaf_reset                             /* line 15 */
     eh.instance_data =  instance_data                  /* line 16 */
     eh.arg =  arg                                      /* line 17 */
     eh.state =  "idle"                                 /* line 18 */
@@ -1066,7 +1065,7 @@ void stop_handler (eh,mev) {
     s =  str( "   !!! stopping: '") +  str( parent.name) +  "'"  /* line 288 */
     external print ( s, file=sys.stderr)               /* line 289 */
     external                                           /* line 290 */
-    parent.stop ( parent)                              /* line 291 */
+    parent.reset ( parent)                             /* line 291 */
     send ( eh, "", mev.payload.v, mev)                 /* line 292 *//* line 293 *//* line 294 */}
 
 /*  all of the the built_in leaves are listed here */  /* line 295 */

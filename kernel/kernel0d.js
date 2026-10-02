@@ -16,30 +16,29 @@ import 'dotenv/config';
 /*  */                                                 /* line 11 */
 /*  `instance_data` is a pointer to instance data that the `leaf_handler` *//* line 12 */
 /*  function may want whenever it is invoked again. */ /* line 13 *//* line 14 */
-/*  TODO: what is .routings for? (is it a historical artefact that can be removed?)  *//* line 15 *//* line 16 */
-/*  Eh_States :: enum { idle, active } */              /* line 17 */
+/*  Eh_States :: enum { idle, active } */              /* line 15 */
 class Eh {
-  constructor () {                                     /* line 18 */
+  constructor () {                                     /* line 16 */
 
-    this.name =  "";                                   /* line 19 */
-    this.inq =  []                                     /* line 20 */;
-    this.outq =  []                                    /* line 21 */;
-    this.owner =  null;                                /* line 22 */
-    this.children = [];                                /* line 23 */
-    this.visit_ordering =  []                          /* line 24 */;
-    this.connections = [];                             /* line 25 */
-    this.handler =  null;                              /* line 26 */
-    this.finject =  null;                              /* line 27 */
-    this.stop =  null;                                 /* line 28 */
-    this.instance_data =  null;                        /* line 29 *//*  arg needed for probe support  *//* line 30 */
-    this.arg =  "";                                    /* line 31 */
-    this.state =  "idle";                              /* line 32 */
-    this.special =  false;                             /* line 33 *//* line 34 */
+    this.name =  "";                                   /* line 17 */
+    this.inq =  []                                     /* line 18 */;
+    this.outq =  []                                    /* line 19 */;
+    this.owner =  null;                                /* line 20 */
+    this.children = [];                                /* line 21 */
+    this.visit_ordering =  []                          /* line 22 */;
+    this.connections = [];                             /* line 23 */
+    this.handler =  null;                              /* line 24 */
+    this.finject =  null;                              /* line 25 */
+    this.reset =  null;                                /* line 26 */
+    this.instance_data =  null;                        /* line 27 *//*  arg needed for probe support  *//* line 28 */
+    this.arg =  "";                                    /* line 29 */
+    this.state =  "idle";                              /* line 30 */
+    this.special =  false;                             /* line 31 *//* line 32 */
   }
 }
-                                                       /* line 35 */
-function injector (eh,mevent) {                        /* line 36 */
-    eh.handler ( eh, mevent)                           /* line 37 *//* line 38 *//* line 39 */
+                                                       /* line 33 */
+function injector (eh,mevent) {                        /* line 34 */
+    eh.handler ( eh, mevent)                           /* line 35 *//* line 36 *//* line 37 */
 }
 let  digits = [ "₀", "₁", "₂", "₃", "₄", "₅", "₆", "₇", "₈", "₉", "₁₀", "₁₁", "₁₂", "₁₃", "₁₄", "₁₅", "₁₆", "₁₇", "₁₈", "₁₉", "₂₀", "₂₁", "₂₂", "₂₃", "₂₄", "₂₅", "₂₆", "₂₇", "₂₈", "₂₉"];/* line 7 *//* line 8 *//* line 9 */
 function subscripted_digit (n) {                       /* line 10 *//* line 11 */
@@ -420,9 +419,9 @@ function container_handler (container,mevent) {        /* line 90 */
 }
 
 /*  Stop all children. Reset to a known state. Hit the big red button.  *//* line 96 */
-function container_reset_children (container) {        /* line 97 */
+function container_reset (container) {                 /* line 97 */
     for (let child of  container.children) {           /* line 98 */
-      child.stop ( child)                              /* line 99 *//* line 100 */
+      child.reset ( child)                             /* line 99 *//* line 100 */
     }
 
     container.visit_ordering = [];                     /* line 101 */
@@ -579,7 +578,7 @@ function make_container (name,owner) {                 /* line 250 */
     eh.owner =  owner;                                 /* line 253 */
     eh.handler =  container_handler;                   /* line 254 */
     eh.finject =  injector;                            /* line 255 */
-    eh.stop =  container_reset_children;               /* line 256 */
+    eh.reset =  container_reset;                       /* line 256 */
     eh.state =  "idle";                                /* line 257 */
     eh.kind =  "container";                            /* line 258 */
     return  eh;                                        /* line 259 *//* line 260 *//* line 261 */
@@ -633,7 +632,7 @@ function make_leaf (name,owner,instance_data,arg,handler,reset_handler) {/* line
     eh.handler =  handler;                             /* line 12 */
     eh.reset_handler =  reset_handler;                 /* line 13 */
     eh.finject =  injector;                            /* line 14 */
-    eh.stop =  leaf_reset;                             /* line 15 */
+    eh.reset =  leaf_reset;                            /* line 15 */
     eh.instance_data =  instance_data;                 /* line 16 */
     eh.arg =  arg;                                     /* line 17 */
     eh.state =  "idle";                                /* line 18 */
@@ -1043,7 +1042,7 @@ function stop_handler (eh,mev) {                       /* line 285 */
     let  s =  ( "   !!! stopping: '".toString ()+  ( parent.name.toString ()+  "'".toString ()) .toString ()) /* line 288 */;
     console.error ( s);                                /* line 289 */
                                                        /* line 290 */
-    parent.stop ( parent)                              /* line 291 */
+    parent.reset ( parent)                             /* line 291 */
     send ( eh, "", mev.payload.v, mev)                 /* line 292 *//* line 293 *//* line 294 */
 }
 
