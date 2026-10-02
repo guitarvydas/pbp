@@ -1,0 +1,18 @@
+class Datum {
+
+    v ≡ @Payload 
+    clone ≡ λ(@Eh) -> @Datum 
+    reclaim ≡ λ(@Eh) -> ~    
+    other ≡ @                
+}
+
+---------
+
+class Datum {
+                         
+    v ≡ @Payload         
+    clone ≡ Fclone
+    reclaim ≡ Freclaim
+    other ≡ @         
+}
+

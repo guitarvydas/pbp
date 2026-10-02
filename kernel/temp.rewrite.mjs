@@ -40,6 +40,13 @@ enter_rule ("Defn");
 popParameter ("scope");
 return exit_rule ("Defn");
 },
+DefObj : function (_defobj_,id,ObjBody,) {
+enter_rule ("DefObj");
+    pushParameter ("scope", `${id.rwr ()}`);
+    set_return (`\n{"name":"${id.rwr ()}", "pointer":false, "type":"obj", "scope:"_global", "kind":"obj"},${ObjBody.rwr ()}`);
+popParameter ("scope");
+return exit_rule ("DefObj");
+},
 FunctionType_procedure : function (_tilde_,) {
 enter_rule ("FunctionType_procedure");
     set_return (`"pointer":false, "type":"void"`);

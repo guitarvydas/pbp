@@ -1,9 +1,9 @@
-class Component_Registry {
+defobj Component_Registry {
                                                        #line 1
     templates ≡                                        #line 2#line 3
 }
                                                        #line 4
-class Template {
+defobj Template {
                                                        #line 5
     name ≡                                             #line 6
     container ≡                                        #line 7

@@ -1,5 +1,5 @@
 #line 1
-class Datum {
+defobj Datum {
                                                        #line 2
     v ≡                                                #line 3
     clone ≡                                            #line 4
@@ -11,7 +11,7 @@ class Datum {
                                                        #line 11
                                                        #line 12
                                                        #line 13
-class Mevent {
+defobj Mevent {
                                                        #line 14
     port ≡                                             #line 15
     payload ≡                                          #line 16#line 17

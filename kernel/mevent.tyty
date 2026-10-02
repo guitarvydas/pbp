@@ -1,9 +1,9 @@
 #line 1
-class Datum {
+defobj Datum {
                                                        #line 2
     v ≡ @Payload                                               #line 3
-    clone ≡ λ@Datum                                           #line 4
-    reclaim ≡ ~                                         #line 5
+    clone ≡ Fclone
+    reclaim ≡ Freclaim
     other ≡ @                                           #line 6#line 7
 }
 
@@ -12,7 +12,7 @@ class Datum {
                                                        #line 11
                                                        #line 12
                                                        #line 13
-class @Mevent {
+defobj Mevent {
                                                        #line 14
     port ≡ Port                                            #line 15
     payload ≡ @Payload                                         #line 16#line 17

@@ -40,14 +40,17 @@ typeExtractor {
   Main = TopLevel+
   TopLevel =
     | Defn -- defn
+    | DefObj -- obj
     | Line -- line
   Defn = "defn"  id "≡" FunctionType Formals FunctionBody
+  DefObj = "defobj" id ObjBody
   FunctionType =
     | "~" -- procedure
     | Type -- returnvalue
   Formals = "(" TypedParamComma ")"
   TypedParamComma = TypedID ","? TypedParamComma?
   TypedID = id "≡" Type
+  ObjBody = FunctionBody
   FunctionBody = "{" BodyInnards? "}"
   BodyInnards =
     | "{" BodyInnards? "}" BodyInnards? -- brace
@@ -150,6 +153,13 @@ enter_rule ("Defn");
     set_return (`\n{"name":"${id.rwr ()}", ${functiontype.rwr ()}, "scope:"_global", "kind":"function"},${Formals.rwr ()}${FunctionBody.rwr ()}`);
 popParameter ("scope");
 return exit_rule ("Defn");
+},
+DefObj : function (_defobj_,id,ObjBody,) {
+enter_rule ("DefObj");
+    pushParameter ("scope", `${id.rwr ()}`);
+    set_return (`\n{"name":"${id.rwr ()}", "pointer":false, "type":"obj", "scope:"_global", "kind":"obj"},${ObjBody.rwr ()}`);
+popParameter ("scope");
+return exit_rule ("DefObj");
 },
 FunctionType_procedure : function (_tilde_,) {
 enter_rule ("FunctionType_procedure");

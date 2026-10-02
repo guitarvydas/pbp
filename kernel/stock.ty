@@ -30,14 +30,14 @@ defn trash_handler ≡
                                                        #line 11#line 12#line 13#line 14
 }
 
-class TwoMevents {
+defobj TwoMevents {
                                                        #line 15
     firstmev ≡                                         #line 16
     secondmev ≡                                        #line 17#line 18
 }
                                                        #line 19
                                                        #line 20
-class Deracer_Instance_Data {
+defobj Deracer_Instance_Data {
                                                        #line 21
     state ≡                                            #line 22
     buffer ≡                                           #line 23#line 24
@@ -187,7 +187,7 @@ defn ensure_string_datum_handler ≡
         }                                              #line 106#line 107
 }
 
-class Syncfilewrite_Data {
+defobj Syncfilewrite_Data {
                                                        #line 108
     filename ≡                                         #line 109#line 110
 }
@@ -242,7 +242,7 @@ defn syncfilewrite_handler ≡
         }                                              #line 138#line 139
 }
 
-class StringConcat_Instance_Data {
+defobj StringConcat_Instance_Data {
                                                        #line 140
     buffer1 ≡                                          #line 141
     buffer2 ≡                                          #line 142#line 143
@@ -371,7 +371,7 @@ defn fakepipename_handler ≡
                                                        #line 213#line 217#line 218
 }
                                                        #line 219
-class Switch1star_Instance_Data {
+defobj Switch1star_Instance_Data {
                                                        #line 220
     state ≡                                            #line 221#line 222
 }
@@ -431,7 +431,7 @@ defn switch1star_handler ≡
         }                                              #line 252#line 253
 }
 
-class StringAccumulator {
+defobj StringAccumulator {
                                                        #line 254
     s ≡                                                #line 255#line 256
 }

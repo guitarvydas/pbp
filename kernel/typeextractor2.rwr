@@ -7,6 +7,10 @@
   ⎡ scope=‛«id»’
      ‛\n{"name":"«id»", «functiontype», "scope:"_global", "kind":"function"},«Formals»«FunctionBody»’
   ⎦
+  DefObj [_defobj_ id ObjBody] =
+  ⎡ scope=‛«id»’
+     ‛\n{"name":"«id»", "pointer":false, "type":"obj", "scope:"_global", "kind":"obj"},«ObjBody»’
+  ⎦
   FunctionType_procedure [_tilde_] = ‛"pointer":false, "type":"void"’
   FunctionType_returnvalue [ty] = ‛«ty»’
 
