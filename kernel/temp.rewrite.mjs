@@ -18,20 +18,25 @@ parameters ["scope"] = [];
 
 let _rewrite = {
 
-main : function (topLevel,) {
-enter_rule ("main");
-    set_return (`[${topLevel.rwr ().join ('')}]`);
-return exit_rule ("main");
+Main : function (TopLevel,) {
+enter_rule ("Main");
+    set_return (`[${TopLevel.rwr ().join ('')}]`);
+return exit_rule ("Main");
 },
-topLevel_defn : function (x,) {
-enter_rule ("topLevel_defn");
+TopLevel_defn : function (x,) {
+enter_rule ("TopLevel_defn");
     set_return (`${x.rwr ()}`);
-return exit_rule ("topLevel_defn");
+return exit_rule ("TopLevel_defn");
 },
-topLevel_line : function (x,) {
-enter_rule ("topLevel_line");
+TopLevel_line : function (x,) {
+enter_rule ("TopLevel_line");
     set_return (`${x.rwr ()}`);
-return exit_rule ("topLevel_line");
+return exit_rule ("TopLevel_line");
+},
+TopLevel_defvar : function (x,) {
+enter_rule ("TopLevel_defvar");
+    set_return (`${x.rwr ()}`);
+return exit_rule ("TopLevel_defvar");
 },
 Defn : function (_defn_,id,_eq_,functiontype,Formals,FunctionBody,) {
 enter_rule ("Defn");
@@ -47,10 +52,10 @@ enter_rule ("DefObj");
 popParameter ("scope");
 return exit_rule ("DefObj");
 },
-defvar : function (ws1,_2,ws2,id,ws3,_6,ws4,exp,ws5,) {
-enter_rule ("defvar");
-    set_return (`\n${ws2.rwr ()}${_2.rwr ()}${ws2.rwr ()}${id.rwr ()}${ws3.rwr ()}${_6.rwr ()}${ws4.rwr ()}${exp.rwr ()}${ws5.rwr ()}`);
-return exit_rule ("defvar");
+DefVar : function (_1,id,_3,ty,) {
+enter_rule ("DefVar");
+    set_return (`\n${_1.rwr ()}${id.rwr ()}${_3.rwr ()}${ty.rwr ()}`);
+return exit_rule ("DefVar");
 },
 FunctionType_procedure : function (_tilde_,) {
 enter_rule ("FunctionType_procedure");

@@ -1,8 +1,9 @@
 %parameter scope
 %rewrite typeExtractor {
-  main [topLevel+] = ‛[«topLevel»]’
-  topLevel_defn [x]  = ‛«x»’
-  topLevel_line [x]  = ‛«x»’
+  Main [TopLevel+] = ‛[«TopLevel»]’
+  TopLevel_defn [x]  = ‛«x»’
+  TopLevel_line [x]  = ‛«x»’
+  TopLevel_defvar [x] = ‛«x»’
   Defn [_defn_ id _eq_ functiontype Formals FunctionBody] =
   ⎡ scope=‛«id»’
      ‛\n{"name":"«id»", «functiontype», "scope:"_global", "kind":"function"},«Formals»«FunctionBody»’
@@ -11,7 +12,7 @@
   ⎡ scope=‛«id»’
      ‛\n{"name":"«id»", "pointer":false, "type":"obj", "scope:"_global", "kind":"obj"},«ObjBody»’
   ⎦
-  defvar [ws1 _2 ws2 id ws3 _6 ws4 exp ws5] = ‛\n«ws2»«_2»«ws2»«id»«ws3»«_6»«ws4»«exp»«ws5»’
+  DefVar [_1 id _3 ty] = ‛\n«_1»«id»«_3»«ty»’
   FunctionType_procedure [_tilde_] = ‛"pointer":false, "type":"void"’
   FunctionType_returnvalue [ty] = ‛«ty»’
 

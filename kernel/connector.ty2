@@ -1,8 +1,8 @@
 [
-  defvar  enumDown ≡  Dir                                    
-  defvar  enumAcross ≡   Dir                                 
-  defvar  enumUp ≡ Dir                                       
-  defvar  enumThrough ≡ Dir                                  
+defvarenumDown≡"pointer":false", type:"Dir"
+defvarenumAcross≡"pointer":false", type:"Dir"
+defvarenumUp≡"pointer":false", type:"Dir"
+defvarenumThrough≡"pointer":false", type:"Dir"
 {"name":"Connector", "pointer":false, "type":"obj", "scope:"_global", "kind":"obj"},
 {"name":"direction", "pointer":false", type:"Dir", "scope":"Connector", "kind":"variable"},
 {"name":"sender", "pointer":true, "type":"Sender", "scope":"Connector", "kind":"variable"},
