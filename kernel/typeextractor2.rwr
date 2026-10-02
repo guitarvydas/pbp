@@ -1,8 +1,8 @@
 %parameter scope
 %rewrite typeExtractor {
-  Main [TopLevel+] = ‛[«TopLevel»]’
-  TopLevel_defn [x]  = ‛«x»’
-  TopLevel_line [x]  = ‛«x»’
+  main [topLevel+] = ‛[«topLevel»]’
+  topLevel_defn [x]  = ‛«x»’
+  topLevel_line [x]  = ‛«x»’
   Defn [_defn_ id _eq_ functiontype Formals FunctionBody] =
   ⎡ scope=‛«id»’
      ‛\n{"name":"«id»", «functiontype», "scope:"_global", "kind":"function"},«Formals»«FunctionBody»’

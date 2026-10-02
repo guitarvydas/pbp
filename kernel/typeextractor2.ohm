@@ -1,13 +1,11 @@
 typeExtractor2 {
-  Main = TopLevel+
-  TopLevel =
-    | Defn -- defn
-    | DefObj -- obj
-    | Defvar -- defvar
-    | Line -- line
+  main = topLevel+
+  topLevel =
+    | applySyntactic<Defn> -- defn
+    | applySyntactic<DefObj> -- obj
+    | applySyntactic<Line> -- line
   Defn = "defn"  id "≡" FunctionType Formals FunctionBody
   DefObj = "defobj" id ObjBody
-  Defvar = "defvar" id "⇐" Exp line?
   FunctionType =
     | "~" -- procedure
     | Type -- returnvalue

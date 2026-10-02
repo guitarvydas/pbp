@@ -18,20 +18,20 @@ parameters ["scope"] = [];
 
 let _rewrite = {
 
-Main : function (TopLevel,) {
-enter_rule ("Main");
-    set_return (`[${TopLevel.rwr ().join ('')}]`);
-return exit_rule ("Main");
+main : function (topLevel,) {
+enter_rule ("main");
+    set_return (`[${topLevel.rwr ().join ('')}]`);
+return exit_rule ("main");
 },
-TopLevel_defn : function (x,) {
-enter_rule ("TopLevel_defn");
+topLevel_defn : function (x,) {
+enter_rule ("topLevel_defn");
     set_return (`${x.rwr ()}`);
-return exit_rule ("TopLevel_defn");
+return exit_rule ("topLevel_defn");
 },
-TopLevel_line : function (x,) {
-enter_rule ("TopLevel_line");
+topLevel_line : function (x,) {
+enter_rule ("topLevel_line");
     set_return (`${x.rwr ()}`);
-return exit_rule ("TopLevel_line");
+return exit_rule ("topLevel_line");
 },
 Defn : function (_defn_,id,_eq_,functiontype,Formals,FunctionBody,) {
 enter_rule ("Defn");
