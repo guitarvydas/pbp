@@ -1,8 +1,8 @@
 #|line 1|#
-(defparameter  enumDown  0)
-(defparameter  enumAcross  1)
-(defparameter  enumUp  2)
-(defparameter  enumThrough  3)                              #|line 6|# #|line 7|# #|  Routing connection for a container component. The `direction` field has |# #|line 8|# #|  no affect on the default mevent routing system _ it is there for debugging |# #|line 9|# #|  purposes, or for reading by other tools. |# #|line 10|# #|line 11|#
+(defparameter  enumDown  0)                                 #|line 2|#
+(defparameter  enumAcross  1)                               #|line 3|#
+(defparameter  enumUp  2)                                   #|line 4|#
+(defparameter  enumThrough  3)                              #|line 5|# #|line 6|# #|line 7|# #|  Routing connection for a container component. The `direction` field has |# #|line 8|# #|  no affect on the default mevent routing system _ it is there for debugging |# #|line 9|# #|  purposes, or for reading by other tools. |# #|line 10|# #|line 11|#
 (defclass Connector ()                                      #|line 12|#
   (
     (direction :accessor direction :initarg :direction :initform  nil)  #|  down, across, up, through |# #|line 13|#

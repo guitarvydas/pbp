@@ -1,8 +1,8 @@
-/* line 1 */const int
-enumDown =  0                                          /* line 2 */;const int
-enumAcross =  1                                        /* line 3 */;const int
-enumUp =  2                                            /* line 4 */;const int
-enumThrough =  3                                       /* line 5 */;/* line 6 *//* line 7 */
+/* line 1 */
+int  enumDown =  0                                     /* line 2 */;
+int  enumAcross =  1                                   /* line 3 */;
+int  enumUp =  2                                       /* line 4 */;
+int  enumThrough =  3                                  /* line 5 */;/* line 6 *//* line 7 */
 /*  Routing connection for a container component. The `direction` field has *//* line 8 */
 /*  no affect on the default mevent routing system _ it is there for debugging *//* line 9 */
 /*  purposes, or for reading by other tools. */        /* line 10 *//* line 11 */
