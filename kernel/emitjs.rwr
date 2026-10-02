@@ -3,17 +3,13 @@
 Main [ Para TopLevel+] = ‛«Para»«TopLevel»’
 
 TopLevel_defvar [ Defvar] =‛«Defvar»’
-TopLevel_defconst [ Defconst] =‛«Defconst»’
 TopLevel_defn [ Defn] =‛«Defn»’
 TopLevel_defobj [ Defobj] =‛«Defobj»’
-TopLevel_import [ Import] =‛«Import»’
-TopLevel_external [x] =‛«x»’
 TopLevel_comment [s line?] =‛\n«s»«line»’
 TopLevel_line [line] =‛«line»’
 
 kw [ s] = ‛«s»’
 Defvar [ __ lval _eq e line?] = ‛\nlet «lval» = «e»;«line»’
-Defconst [ __ lval _eq e line?] = ‛\nconst «lval» = «e»«line»;’
 Defn [ _4 ident Formals StatementBlock line?] = ‛\nfunction «ident» «Formals» {⤷«StatementBlock»«line»⤶\n}\n’
 
 Defobj [ _defobj ident Formals line1? lb line2? init+ rb line3?] = ‛
@@ -24,7 +20,6 @@ constructor («Formals») {«line1»⤷«line2»
 }
 ’
 
-Import [ _10 ident line?] = ‛\nimport «ident»«line»’
 StatementBlock [ line1? lb line2? Statement     line3? rb  line4?] = ‛«line1»«line2»⤷«Statement»«line3»«line4»⤶’
 
 Rec_Statement [line1? R_Statement line2?] = ‛«line1»«R_Statement»«line2»’

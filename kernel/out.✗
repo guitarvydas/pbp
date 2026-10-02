@@ -1,0 +1,25 @@
+Error: Line 1, col 2:
+> 1 | ¶#❲preamble❳()⎩1⎭
+       ^
+Expected "⎩", "⌈", or "❲"
+
+grammar = "emit
+"Error: Line 1, col 2:
+> 1 | ¶#❲preamble❳()⎩1⎭
+       ^
+Expected "⎩", "⌈", or "❲"
+
+grammar = "emit
+"Error: Line 1, col 2:
+> 1 | ¶#❲preamble❳()⎩1⎭
+       ^
+Expected "⎩", "⌈", or "❲"
+
+grammar = "emit
+"Error: Line 1, col 2:
+> 1 | ¶#❲preamble❳()⎩1⎭
+       ^
+Expected "⎩", "⌈", or "❲"
+
+grammar = "emit
+"
