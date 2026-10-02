@@ -128,13 +128,13 @@
         (funcall (quote step_children)   container  mevent ) #|line 93|#
         ))                                                  #|line 94|#
   ) #|  Stop all children. Reset to a known state. Hit the big red button.  |# #|line 96|#
-(defun container_reset_children (&optional  container)
+(defun container_reset (&optional  container)
   (declare (ignorable  container))                          #|line 97|#
   (loop for child in (slot-value  container 'children)
     do
       (progn
         child                                               #|line 98|#
-        (funcall (slot-value  child 'stop)   child          #|line 99|#) #|line 100|#
+        (funcall (slot-value  child 'reset)   child         #|line 99|#) #|line 100|#
         ))
 
   (setf (slot-value  container 'visit_ordering) (make-instance 'Queue)) #|line 101|#
@@ -327,7 +327,7 @@
     (setf (slot-value  eh 'owner)  owner)                   #|line 253|#
     (setf (slot-value  eh 'handler)  #'container_handler)   #|line 254|#
     (setf (slot-value  eh 'finject)  #'injector)            #|line 255|#
-    (setf (slot-value  eh 'stop)  #'container_reset_children) #|line 256|#
+    (setf (slot-value  eh 'reset)  #'container_reset)       #|line 256|#
     (setf (slot-value  eh 'state)  "idle")                  #|line 257|#
     (setf (slot-value  eh 'kind)  "container")              #|line 258|#
     (return-from make_container  eh)                        #|line 259|#) #|line 260|#

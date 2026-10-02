@@ -332,7 +332,7 @@ function stop_handler (eh,mev) {                       /* line 285 */
     let  s =  ( "   !!! stopping: '".toString ()+  ( parent.name.toString ()+  "'".toString ()) .toString ()) /* line 288 */;
     console.error ( s);                                /* line 289 */
                                                        /* line 290 */
-    parent.stop ( parent)                              /* line 291 */
+    parent.reset ( parent)                             /* line 291 */
     send ( eh, "", mev.payload.v, mev)                 /* line 292 *//* line 293 *//* line 294 */
 }
 

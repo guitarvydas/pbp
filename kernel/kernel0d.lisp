@@ -107,28 +107,28 @@ x))))
 (defmethod queue2list ((self Queue))
 (contents self))
                                                             #|line 1|#
-#|  Data for an asyncronous component _ effectively, a function with input |# #|line 1|# #|  and output queues of mevents. |# #|line 2|# #|  |# #|line 3|# #|  Components can either be a user_supplied function ("leaf“), or a “container“ |# #|line 4|# #|  that routes mevents to child components according to a list of connections |# #|line 5|# #|  that serve as a mevent routing table. |# #|line 6|# #|  |# #|line 7|# #|  Child components themselves can be leaves or other containers. |# #|line 8|# #|  |# #|line 9|# #|  `handler` invokes the code that is attached to this component. |# #|line 10|# #|  |# #|line 11|# #|  `instance_data` is a pointer to instance data that the `leaf_handler` |# #|line 12|# #|  function may want whenever it is invoked again. |# #|line 13|# #|line 14|# #|  TODO: what is .routings for? (is it a historical artefact that can be removed?)  |# #|line 15|# #|line 16|# #|  Eh_States :: enum { idle, active } |# #|line 17|#
-(defclass Eh ()                                             #|line 18|#
+#|  Data for an asyncronous component _ effectively, a function with input |# #|line 1|# #|  and output queues of mevents. |# #|line 2|# #|  |# #|line 3|# #|  Components can either be a user_supplied function ("leaf“), or a “container“ |# #|line 4|# #|  that routes mevents to child components according to a list of connections |# #|line 5|# #|  that serve as a mevent routing table. |# #|line 6|# #|  |# #|line 7|# #|  Child components themselves can be leaves or other containers. |# #|line 8|# #|  |# #|line 9|# #|  `handler` invokes the code that is attached to this component. |# #|line 10|# #|  |# #|line 11|# #|  `instance_data` is a pointer to instance data that the `leaf_handler` |# #|line 12|# #|  function may want whenever it is invoked again. |# #|line 13|# #|line 14|# #|  Eh_States :: enum { idle, active } |# #|line 15|#
+(defclass Eh ()                                             #|line 16|#
   (
-    (name :accessor name :initarg :name :initform  "")      #|line 19|#
-    (inq :accessor inq :initarg :inq :initform  (make-instance 'Queue) #|line 20|#)
-    (outq :accessor outq :initarg :outq :initform  (make-instance 'Queue) #|line 21|#)
-    (owner :accessor owner :initarg :owner :initform  nil)  #|line 22|#
-    (children :accessor children :initarg :children :initform  nil)  #|line 23|#
-    (visit_ordering :accessor visit_ordering :initarg :visit_ordering :initform  (make-instance 'Queue) #|line 24|#)
-    (connections :accessor connections :initarg :connections :initform  nil)  #|line 25|#
-    (handler :accessor handler :initarg :handler :initform  nil)  #|line 26|#
-    (finject :accessor finject :initarg :finject :initform  nil)  #|line 27|#
-    (stop :accessor stop :initarg :stop :initform  nil)     #|line 28|#
-    (instance_data :accessor instance_data :initarg :instance_data :initform  nil)  #|line 29|# #|  arg needed for probe support  |# #|line 30|#
-    (arg :accessor arg :initarg :arg :initform  "")         #|line 31|#
-    (state :accessor state :initarg :state :initform  "idle")  #|line 32|#
-    (special :accessor special :initarg :special :initform  nil)  #|line 33|#)) #|line 34|#
+    (name :accessor name :initarg :name :initform  "")      #|line 17|#
+    (inq :accessor inq :initarg :inq :initform  (make-instance 'Queue) #|line 18|#)
+    (outq :accessor outq :initarg :outq :initform  (make-instance 'Queue) #|line 19|#)
+    (owner :accessor owner :initarg :owner :initform  nil)  #|line 20|#
+    (children :accessor children :initarg :children :initform  nil)  #|line 21|#
+    (visit_ordering :accessor visit_ordering :initarg :visit_ordering :initform  (make-instance 'Queue) #|line 22|#)
+    (connections :accessor connections :initarg :connections :initform  nil)  #|line 23|#
+    (handler :accessor handler :initarg :handler :initform  nil)  #|line 24|#
+    (finject :accessor finject :initarg :finject :initform  nil)  #|line 25|#
+    (reset :accessor reset :initarg :reset :initform  nil)  #|line 26|#
+    (instance_data :accessor instance_data :initarg :instance_data :initform  nil)  #|line 27|# #|  arg needed for probe support  |# #|line 28|#
+    (arg :accessor arg :initarg :arg :initform  "")         #|line 29|#
+    (state :accessor state :initarg :state :initform  "idle")  #|line 30|#
+    (special :accessor special :initarg :special :initform  nil)  #|line 31|#)) #|line 32|#
 
-                                                            #|line 35|#
+                                                            #|line 33|#
 (defun injector (&optional  eh  mevent)
-  (declare (ignorable  eh  mevent))                         #|line 36|#
-  (funcall (slot-value  eh 'handler)   eh  mevent           #|line 37|#) #|line 38|#
+  (declare (ignorable  eh  mevent))                         #|line 34|#
+  (funcall (slot-value  eh 'handler)   eh  mevent           #|line 35|#) #|line 36|#
   )
 (defparameter  digits (list                                 #|line 1|#  "₀"  "₁"  "₂"  "₃"  "₄"  "₅"  "₆"  "₇"  "₈"  "₉"  "₁₀"  "₁₁"  "₁₂"  "₁₃"  "₁₄"  "₁₅"  "₁₆"  "₁₇"  "₁₈"  "₁₉"  "₂₀"  "₂₁"  "₂₂"  "₂₃"  "₂₄"  "₂₅"  "₂₆"  "₂₇"  "₂₈"  "₂₉" )) #|line 7|# #|line 8|# #|line 9|#
 (defun subscripted_digit (&optional  n)
@@ -525,13 +525,13 @@ x))))
         (funcall (quote step_children)   container  mevent ) #|line 93|#
         ))                                                  #|line 94|#
   ) #|  Stop all children. Reset to a known state. Hit the big red button.  |# #|line 96|#
-(defun container_reset_children (&optional  container)
+(defun container_reset (&optional  container)
   (declare (ignorable  container))                          #|line 97|#
   (loop for child in (slot-value  container 'children)
     do
       (progn
         child                                               #|line 98|#
-        (funcall (slot-value  child 'stop)   child          #|line 99|#) #|line 100|#
+        (funcall (slot-value  child 'reset)   child         #|line 99|#) #|line 100|#
         ))
 
   (setf (slot-value  container 'visit_ordering) (make-instance 'Queue)) #|line 101|#
@@ -724,7 +724,7 @@ x))))
     (setf (slot-value  eh 'owner)  owner)                   #|line 253|#
     (setf (slot-value  eh 'handler)  #'container_handler)   #|line 254|#
     (setf (slot-value  eh 'finject)  #'injector)            #|line 255|#
-    (setf (slot-value  eh 'stop)  #'container_reset_children) #|line 256|#
+    (setf (slot-value  eh 'reset)  #'container_reset)       #|line 256|#
     (setf (slot-value  eh 'state)  "idle")                  #|line 257|#
     (setf (slot-value  eh 'kind)  "container")              #|line 258|#
     (return-from make_container  eh)                        #|line 259|#) #|line 260|#
@@ -782,7 +782,7 @@ x))))
       (setf (slot-value  eh 'handler)  handler)             #|line 12|#
       (setf (slot-value  eh 'reset_handler)  reset_handler) #|line 13|#
       (setf (slot-value  eh 'finject)  #'injector)          #|line 14|#
-      (setf (slot-value  eh 'stop)  #'leaf_reset)           #|line 15|#
+      (setf (slot-value  eh 'reset)  #'leaf_reset)          #|line 15|#
       (setf (slot-value  eh 'instance_data)  instance_data) #|line 16|#
       (setf (slot-value  eh 'arg)  arg)                     #|line 17|#
       (setf (slot-value  eh 'state)  "idle")                #|line 18|#
@@ -1246,7 +1246,7 @@ x))))
         (format *error-output* "~a~%"  s)                   #|line 289|#
         (format *error-output* "
         ")                                                  #|line 290|#
-        (funcall (slot-value  parent 'stop)   parent        #|line 291|#)
+        (funcall (slot-value  parent 'reset)   parent       #|line 291|#)
         (funcall (quote send)   eh  "" (slot-value (slot-value  mev 'payload) 'v)  mev  #|line 292|#)))) #|line 293|#
   ) #|  all of the the built_in leaves are listed here |#   #|line 295|# #|  future: refactor this such that programmers can pick and choose which (lumps of) builtins are used in a specific project |# #|line 296|# #|line 297|#
 (defun initialize_stock_components (&optional  reg)
