@@ -361,7 +361,7 @@ defn fakepipename_instantiate ≡
         return make_leaf ( instance_name, owner, None, "", fakepipename_handler, None)#line 208#line 209#line 210
 }
 
-var  rand ≡                                            #line 211#line 212
+defvar  rand ≡                                         #line 211#line 212
 defn fakepipename_handler ≡
 (
     eh ≡ ,
