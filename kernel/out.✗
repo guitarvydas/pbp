@@ -1,0 +1,9 @@
+Error: Line 2, col 2:
+  1 | ⎩1⎭
+> 2 | ❲defconst❳ ❲enumDown❳ ≡ 0⎩2⎭
+       ^
+  3 | ❲defconst❳ ❲enumAcross❳ ≡ 1⎩3⎭
+Expected "defobj", "defn", or "defvar"
+
+grammar = "semantics
+"

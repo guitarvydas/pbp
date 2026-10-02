@@ -94,9 +94,9 @@ defn container_handler (container, mevent) {
 }
 
 ⌈ Stop all children. Reset to a known state. Hit the big red button. ⌉
-defn container_reset_children (container) {
+defn container_reset (container) {
     for child in container.children {
-        child.stop (child)
+        child.reset (child)
     }
     #resetQueue (container.visit_ordering)
     #resetQueue (container.inq)
@@ -253,7 +253,7 @@ defn make_container (name, owner) {
     eh.owner ⇐ owner
     eh.handler ⇐ ↪︎container_handler
     eh.finject ⇐ ↪︎injector
-    eh.stop ⇐ ↪︎container_reset_children
+    eh.reset ⇐ ↪︎container_reset
     eh.state ⇐ “idle”
     eh.kind ⇐ “container”
     return eh

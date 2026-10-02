@@ -1,8 +1,8 @@
 
-defvar enumDown ⇐ 0
-defvar enumAcross ⇐ 1
-defvar enumUp ⇐ 2
-defvar enumThrough ⇐ 3
+defconst enumDown ≡ 0
+defconst enumAcross ≡ 1
+defconst enumUp ≡ 2
+defconst enumThrough ≡ 3
 
 
 ⌈ Routing connection for a container component. The `direction` field has⌉

@@ -12,7 +12,7 @@ defn make_leaf (name, owner, instance_data, arg, handler, reset_handler) {
     eh.handler ⇐ handler
     eh.reset_handler ⇐ reset_handler
     eh.finject ⇐ ↪︎injector
-    eh.stop ⇐ ↪︎leaf_reset
+    eh.reset ⇐ ↪︎leaf_reset
     eh.instance_data ⇐ instance_data
     eh.arg ⇐ arg
     eh.state ⇐ “idle”
