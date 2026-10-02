@@ -6,7 +6,7 @@ defvar  enumThrough ≡ Dir                                  #line 5#line 6#line
                                                        #line 8
                                                        #line 9
                                                        #line 10#line 11
-class Connector {
+defobj Connector {
                                                        #line 12
     direction ≡ Dir                                       #line 13
     sender ≡ @Sender                                          #line 14
@@ -15,7 +15,7 @@ class Connector {
                                                        #line 17
                                                        #line 18
                                                        #line 19#line 20
-class Sender {
+defobj Sender {
                                                        #line 21
     name ≡ @Str                                            #line 22
     component ≡ @Eh                                       #line 23
@@ -24,7 +24,7 @@ class Sender {
                                                        #line 26#line 27#line 28
                                                        #line 29
                                                        #line 30#line 31
-class Receiver {
+defobj Receiver {
                                                        #line 32
     name ≡ @Str                                            #line 33
     queue ≡ @Queue                                           #line 34

@@ -4,8 +4,10 @@ typeExtractor2 {
     | applySyntactic<Defn> -- defn
     | applySyntactic<DefObj> -- obj
     | applySyntactic<Line> -- line
+    | defvar -- defvar
   Defn = "defn"  id "≡" FunctionType Formals FunctionBody
   DefObj = "defobj" id ObjBody
+  defvar = spaces "defvar" spaces id spaces "≡" spaces exp spaces
   FunctionType =
     | "~" -- procedure
     | Type -- returnvalue
@@ -25,4 +27,7 @@ typeExtractor2 {
     | id     -- plain
   id = (alnum | "_")+
   Line = "#line" digit+
+
+  exp = expchar+
+  expchar = ~"#line" ~"def" any
 }

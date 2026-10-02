@@ -11,6 +11,7 @@
   ⎡ scope=‛«id»’
      ‛\n{"name":"«id»", "pointer":false, "type":"obj", "scope:"_global", "kind":"obj"},«ObjBody»’
   ⎦
+  defvar [ws1 _2 ws2 id ws3 _6 ws4 exp ws5] = ‛\n«ws2»«_2»«ws2»«id»«ws3»«_6»«ws4»«exp»«ws5»’
   FunctionType_procedure [_tilde_] = ‛"pointer":false, "type":"void"’
   FunctionType_returnvalue [ty] = ‛«ty»’
 
@@ -27,4 +28,9 @@
   Type_plain [id] = ‛"pointer":false", type:"«id»"’
   id [cs+] = ‛«cs»’
   Line [_line digit+] = ‛’
+
+  exp [cs+] = ‛«cs»’
+  expchar [c] = ‛«c»’
+
+  spaces [cs+] = ‛«cs»’
 }

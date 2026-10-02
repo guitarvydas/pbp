@@ -42,8 +42,10 @@ typeExtractor2 {
     | applySyntactic<Defn> -- defn
     | applySyntactic<DefObj> -- obj
     | applySyntactic<Line> -- line
+    | defvar -- defvar
   Defn = "defn"  id "≡" FunctionType Formals FunctionBody
   DefObj = "defobj" id ObjBody
+  defvar = spaces "defvar" spaces id spaces "≡" spaces exp spaces
   FunctionType =
     | "~" -- procedure
     | Type -- returnvalue
@@ -63,6 +65,9 @@ typeExtractor2 {
     | id     -- plain
   id = (alnum | "_")+
   Line = "#line" digit+
+
+  exp = expchar+
+  expchar = ~"#line" ~"def" any
 }
 `;
 
@@ -161,6 +166,11 @@ enter_rule ("DefObj");
 popParameter ("scope");
 return exit_rule ("DefObj");
 },
+defvar : function (ws1,_2,ws2,id,ws3,_6,ws4,exp,ws5,) {
+enter_rule ("defvar");
+    set_return (`\n${ws2.rwr ()}${_2.rwr ()}${ws2.rwr ()}${id.rwr ()}${ws3.rwr ()}${_6.rwr ()}${ws4.rwr ()}${exp.rwr ()}${ws5.rwr ()}`);
+return exit_rule ("defvar");
+},
 FunctionType_procedure : function (_tilde_,) {
 enter_rule ("FunctionType_procedure");
     set_return (`"pointer":false, "type":"void"`);
@@ -235,6 +245,21 @@ Line : function (_line,digit,) {
 enter_rule ("Line");
     set_return (``);
 return exit_rule ("Line");
+},
+exp : function (cs,) {
+enter_rule ("exp");
+    set_return (`${cs.rwr ().join ('')}`);
+return exit_rule ("exp");
+},
+expchar : function (c,) {
+enter_rule ("expchar");
+    set_return (`${c.rwr ()}`);
+return exit_rule ("expchar");
+},
+spaces : function (cs,) {
+enter_rule ("spaces");
+    set_return (`${cs.rwr ().join ('')}`);
+return exit_rule ("spaces");
 },
 _terminal: function () { return this.sourceString; },
 _iter: function (...children) { return children.map(c => c.rwr ()); }
