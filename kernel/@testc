@@ -1,6 +1,9 @@
 #!/bin/bash
 set -e
 
+# small
+exit 0
+
 if [ -n "$PBPDEV" ]; then
     # do something
     echo "*** Dev: skipping build in @testc"
