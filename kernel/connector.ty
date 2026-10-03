@@ -1,8 +1,8 @@
 #line 1
-var  enumDown ≡                                        #line 2
-var  enumAcross ≡                                      #line 3
-var  enumUp ≡                                          #line 4
-var  enumThrough ≡                                     #line 5#line 6#line 7
+defvar  enumDown ≡                                     #line 2
+defvar  enumAcross ≡                                   #line 3
+defvar  enumUp ≡                                       #line 4
+defvar  enumThrough ≡                                  #line 5#line 6#line 7
                                                        #line 8
                                                        #line 9
                                                        #line 10#line 11

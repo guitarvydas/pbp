@@ -54,4 +54,5 @@ rm -f temp.*
 
 
 
-./extract2.bash "mevent.tyty" | tee "container.ty2" | python3 rm_extra_commas.py
+#./extract2.bash "connector.tyty" | tee "connector.ty2" | python3 rm_extra_commas.py
+./do_typeextractor2.bash

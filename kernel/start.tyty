@@ -1,6 +1,6 @@
 #line 1
-var load_errors ≡ Bool
-var runtime_errors ≡ Bool
+defvar load_errors ≡ Bool
+defvar runtime_errors ≡ Bool
 
 defn load_error ≡ ~
 (
@@ -36,7 +36,7 @@ defn initialize_component_palette_from_files ≡ @Component_Registry
         }                                              #line 27#line 28
 }
 
-defn initialize_component_palette_from_string ≡
+defn initialize_component_palette_from_string ≡ ~
 (
     lnet ≡ @JSONStr
 )
@@ -69,7 +69,7 @@ defn initialize_from_string ≡ @Tuple_Palette_DiagramNames_ArgStr
         return [ palette,[ None, arg]]                 #line 47#line 48#line 49
 }
 
-defn start ≡
+defn start ≡ ~
 (
     arg ≡ @Str ,
     part_name ≡ @Str,
@@ -78,7 +78,7 @@ defn start ≡
 )
 {
                                                        #line 50
-        part ≡                                         #line 54#line 55
+        part ≡ @Part                                         #line 54#line 55
 }
 
 defn start_bare ≡ @Part

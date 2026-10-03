@@ -1,0 +1,50 @@
+
+{"name":"Component_Registry", "pointer":false, "type":"obj", "scope:"_global", "kind":"obj"}
+{"name":"templates", "pointer":true, "type":"Dict_of_Template", "scope":"Component_Registry", "kind":"variable"}
+{"name":"Template", "pointer":false, "type":"obj", "scope:"_global", "kind":"obj"}
+{"name":"name", "pointer":true, "type":"Str", "scope":"Template", "kind":"variable"}
+{"name":"container", "pointer":true, "type":"Container", "scope":"Template", "kind":"variable"}
+{"name":"instantiator", "pointer":false", type:"Finstantiator", "scope":"Template", "kind":"variable"}
+{"name":"mkTemplate", "pointer":true, "type":"Template", "scope:"_global", "kind":"function"}
+{"name":"name", "pointer":true, "type":"Str", "scope":"mkTemplate","kind":"parameter"}
+{"name":"template_data", "pointer":true, "type":"Container", "scope":"mkTemplate","kind":"parameter"}
+{"name":"instantiator", "pointer":false", type:"Finstantiator", "scope":"mkTemplate","kind":"parameter"}
+{"name":"templ", "pointer":true, "type":"Template", "scope":"mkTemplate", "kind":"variable"}
+{"name":"lnet2internal_from_file", "pointer":true, "type":"Collection_of_Wire", "scope:"_global", "kind":"function"}
+{"name":"json_filename", "pointer":true, "type":"Pathname", "scope":"lnet2internal_from_file","kind":"parameter"}
+{"name":"pathname", "pointer":true, "type":"Pathname", "scope":"lnet2internal_from_file", "kind":"variable"}
+{"name":"filename", "pointer":true, "type":"Str", "scope":"lnet2internal_from_file", "kind":"variable"}
+{"name":"lnet2internal_from_string", "pointer":true, "type":"Collection_of_Wire", "scope:"_global", "kind":"function"}
+{"name":"lnet", "pointer":true, "type":"Str", "scope":"lnet2internal_from_string","kind":"parameter"}
+{"name":"make_component_registry", "pointer":true, "type":"Component_Registry", "scope:"_global", "kind":"function"}
+{"name":"register_component", "pointer":true, "type":"Component_Registry", "scope:"_global", "kind":"function"}
+{"name":"reg", "pointer":true, "type":"Component_Registry", "scope":"register_component","kind":"parameter"}
+{"name":"template", "pointer":true, "type":"Template", "scope":"register_component","kind":"parameter"}
+{"name":"register_component_allow_overwriting", "pointer":true, "type":"Component_Registry", "scope:"_global", "kind":"function"}
+{"name":"reg", "pointer":true, "type":"Component_Registry", "scope":"register_component_allow_overwriting","kind":"parameter"}
+{"name":"template", "pointer":true, "type":"Template", "scope":"register_component_allow_overwriting","kind":"parameter"}
+{"name":"abstracted_register_component", "pointer":false, "type":"void", "scope:"_global", "kind":"function"}
+{"name":"reg", "pointer":true, "type":"Component_Registry", "scope":"abstracted_register_component","kind":"parameter"}
+{"name":"template", "pointer":true, "type":"Template", "scope":"abstracted_register_component","kind":"parameter"}
+{"name":"ok_to_overwrite", "pointer":false", type:"Bool", "scope":"abstracted_register_component","kind":"parameter"}
+{"name":"name", "pointer":true, "type":"Str", "scope":"abstracted_register_component", "kind":"variable"}
+{"name":"get_component_instance", "pointer":true, "type":"Part", "scope:"_global", "kind":"function"}
+{"name":"reg", "pointer":true, "type":"Component_Registry", "scope":"get_component_instance","kind":"parameter"}
+{"name":"full_name", "pointer":true, "type":"Str", "scope":"get_component_instance","kind":"parameter"}
+{"name":"owner", "pointer":true, "type":"Container", "scope":"get_component_instance","kind":"parameter"}
+{"name":"template_name", "pointer":true, "type":"Str", "scope":"get_component_instance", "kind":"variable"}
+{"name":"instance_name", "pointer":true, "type":"Str", "scope":"get_component_instance", "kind":"variable"}
+{"name":"instance", "pointer":true, "type":"Part", "scope":"get_component_instance", "kind":"variable"}
+{"name":"template", "pointer":true, "type":"Template", "scope":"get_component_instance", "kind":"variable"}
+{"name":"instance_name", "pointer":true, "type":"Str", "scope":"get_component_instance", "kind":"variable"}
+{"name":"instance", "pointer":true, "type":"PART", "scope":"get_component_instance", "kind":"variable"}
+{"name":"generate_instance_name", "pointer":true, "type":"Str", "scope:"_global", "kind":"function"}
+{"name":"owner", "pointer":true, "type":"Container", "scope":"generate_instance_name","kind":"parameter"}
+{"name":"template_name", "pointer":true, "type":"Str", "scope":"generate_instance_name","kind":"parameter"}
+{"name":"owner_name", "pointer":true, "type":"Str", "scope":"generate_instance_name", "kind":"variable"}
+{"name":"instance_name", "pointer":true, "type":"Str", "scope":"generate_instance_name", "kind":"variable"}
+{"name":"owner_name", "pointer":true, "type":"Str", "scope":"generate_instance_name", "kind":"variable"}
+{"name":"instance_name", "pointer":true, "type":"Str", "scope":"generate_instance_name", "kind":"variable"}
+{"name":"instance_name", "pointer":true, "type":"Str", "scope":"generate_instance_name", "kind":"variable"}
+{"name":"mangle_name", "pointer":true, "type":"Str", "scope:"_global", "kind":"function"}
+{"name":"s", "pointer":true, "type":"Str", "scope":"mangle_name","kind":"parameter"}

@@ -10,8 +10,8 @@ TopLevel_comment [s line?] =‛\n«s»«line»’
 TopLevel_line [line] =‛«line»’
 
 kw [ s] = ‛«s»’
-Defvar [ __ lval _eq e line?] = ‛\nint «lval» = «e»«line»;’
-Defn [ _4 ident Formals StatementBlock line?] = ‛\nvoid «ident» «Formals» {\n«StatementBlock»«line»}\n’
+Defvar [ __ lval _eq e line?] = ‛\n⎨getdeclaration ‛_global’ ‛«lval»’⎬ = «e»«line»;’
+Defn [ _4 ident Formals StatementBlock line?] = ‛\n⎨getdeclaration ‛_global’ ‛«ident»’⎬ «Formals» {\n«StatementBlock»«line»}\n’
 
 Defobj [ _defobj ident Formals line1? lb line2? init+ rb line3?] = ‛
 typedef struct _«ident» {⤷

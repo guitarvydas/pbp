@@ -13,23 +13,21 @@
                                                        #line 13#line 14
                                                        #line 15#line 16
                                                        #line 17
-class Eh {
-                                                       #line 18
-    name ≡ @Str                                             #line 19
+defobj Eh {
+                                                       #line 16
+    name ≡ @Str                                            #line 17
     inq ≡ @Queue
     outq ≡ @Queue
-    owner ≡ @Container                                           #line 22
-    children ≡ @Collection_of_Part                                        #line 23
+    owner ≡ @Container                                           #line 20
+    children ≡ @Collection_of_Part                                        #line 21
     visit_ordering ≡ @Queue_of_Part
-    connections ≡ @Collection_of_Wire                                     #line 25
-    routings ≡ @%Ignored
-    handler ≡ ~Handler                                         #line 27
-    reset_instance_data ≡                              #line 28
-    finject ≡                                          #line 29
-    stop ≡                                             #line 30
-    instance_data ≡                                    #line 31#line 32
-    arg ≡ @Str                                             #line 33
-    state ≡ @Str                                           #line 34
-    special ≡ Bool                                          #line 35#line 36
+    connections ≡ @Collection_ofWire                                     #line 23
+    handler ≡ Fhandler                                         #line 24
+    finject ≡ Finject                                         #line 25
+    reset ≡ Freset                                           #line 26
+    instance_data ≡ @                                   #line 27#line 28
+    arg ≡ @Str                                             #line 29
+    state ≡ @Str                                           #line 30
+    special ≡ Bool                                         #line 31#line 32
     kind ≡ @Str                                            #line 37#line 38
 }

@@ -1,6 +1,6 @@
-var  load_errors ≡                                     #line 1
-var  runtime_errors ≡                                  #line 2
-var  ticktime ≡                                        #line 3#line 4
+defvar  load_errors ≡                                  #line 1
+defvar  runtime_errors ≡                               #line 2
+defvar  ticktime ≡                                     #line 3#line 4
 defn load_error ≡
 (
     s ≡

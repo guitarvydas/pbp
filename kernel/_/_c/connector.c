@@ -1,8 +1,8 @@
 /* line 1 */
-int  enumDown =  0                                     /* line 2 */;
-int  enumAcross =  1                                   /* line 3 */;
-int  enumUp =  2                                       /* line 4 */;
-int  enumThrough =  3                                  /* line 5 */;/* line 6 *//* line 7 */
+void*  enumDown =  0                                   /* line 2 */;
+void*  enumAcross =  1                                 /* line 3 */;
+void*  enumUp =  2                                     /* line 4 */;
+void*  enumThrough =  3                                /* line 5 */;/* line 6 *//* line 7 */
 /*  Routing connection for a container component. The `direction` field has *//* line 8 */
 /*  no affect on the default mevent routing system _ it is there for debugging *//* line 9 */
 /*  purposes, or for reading by other tools. */        /* line 10 *//* line 11 */
@@ -57,7 +57,7 @@ Receiver fresh_Receiver () {
     return self;
 }
                                                        /* line 38 */
-void mkSender (name,component,port) {
+void* mkSender (name,component,port) {
                                                        /* line 39 */
     s =  Sender ()                                     /* line 40 */
     s.name =  name                                     /* line 41 */
@@ -65,7 +65,7 @@ void mkSender (name,component,port) {
     s.port =  port                                     /* line 43 */
     return ( s)                                        /* line 44 */;;;/* line 45 *//* line 46 */}
 
-void mkReceiver (name,component,port,q) {
+void* mkReceiver (name,component,port,q) {
                                                        /* line 47 */
     r =  Receiver ()                                   /* line 48 */
     r.name =  name                                     /* line 49 */

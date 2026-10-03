@@ -1,0 +1,31 @@
+
+{"name":"jit_instantiate", "pointer":true, "type":"Part", "scope:"_global", "kind":"function"}
+{"name":"reg", "pointer":true, "type":"Component_Registry", "scope":"jit_instantiate","kind":"parameter"}
+{"name":"owner", "pointer":true, "type":"Container", "scope":"jit_instantiate","kind":"parameter"}
+{"name":"name", "pointer":true, "type":"Str", "scope":"jit_instantiate","kind":"parameter"}
+{"name":"arg", "pointer":true, "type":"Str", "scope":"jit_instantiate","kind":"parameter"}
+{"name":"name_with_id", "pointer":true, "type":"Str", "scope":"jit_instantiate", "kind":"variable"}
+{"name":"inst", "pointer":true, "type":"Part", "scope":"jit_instantiate", "kind":"variable"}
+{"name":"firstc", "pointer":false", type:"Char", "scope":"jit_instantiate", "kind":"variable"}
+{"name":"handle_jit", "pointer":false, "type":"void", "scope:"_global", "kind":"function"}
+{"name":"eh", "pointer":true, "type":"Part", "scope":"handle_jit","kind":"parameter"}
+{"name":"mev", "pointer":true, "type":"Mevent", "scope":"handle_jit","kind":"parameter"}
+{"name":"s", "pointer":true, "type":"Str", "scope":"handle_jit", "kind":"variable"}
+{"name":"firstc", "pointer":false", type:"Char", "scope":"handle_jit", "kind":"variable"}
+{"name":"probe_handler", "pointer":false, "type":"void", "scope:"_global", "kind":"function"}
+{"name":"eh", "pointer":true, "type":"Part", "scope":"probe_handler","kind":"parameter"}
+{"name":"tag", "pointer":false", type:"Port", "scope":"probe_handler","kind":"parameter"}
+{"name":"mev", "pointer":true, "type":"Mevent", "scope":"probe_handler","kind":"parameter"}
+{"name":"s", "pointer":true, "type":"Str", "scope":"probe_handler", "kind":"variable"}
+{"name":"shell_out_handler", "pointer":false, "type":"void", "scope:"_global", "kind":"function"}
+{"name":"eh", "pointer":true, "type":"Part", "scope":"shell_out_handler","kind":"parameter"}
+{"name":"tag", "pointer":false", type:"Port", "scope":"shell_out_handler","kind":"parameter"}
+{"name":"mev", "pointer":true, "type":"Mevent", "scope":"shell_out_handler","kind":"parameter"}
+{"name":"s", "pointer":true, "type":"Str", "scope":"shell_out_handler", "kind":"variable"}
+{"name":"ret", "pointer":false", type:"Int", "scope":"shell_out_handler", "kind":"variable"}
+{"name":"rc", "pointer":false", type:"Int", "scope":"shell_out_handler", "kind":"variable"}
+{"name":"stdout", "pointer":true, "type":"Str", "scope":"shell_out_handler", "kind":"variable"}
+{"name":"stderr", "pointer":true, "type":"Str", "scope":"shell_out_handler", "kind":"variable"}
+{"name":"command", "pointer":true, "type":"Str", "scope":"shell_out_handler", "kind":"variable"}
+{"name":"pbpRoot", "pointer":true, "type":"Pathname", "scope":"shell_out_handler", "kind":"variable"}
+{"name":"command", "pointer":true, "type":"Str", "scope":"shell_out_handler", "kind":"variable"}

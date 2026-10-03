@@ -1,4 +1,4 @@
-void create_down_connector (container,proto_conn,connectors,children_by_id) {
+void* create_down_connector (container,proto_conn,connectors,children_by_id) {
                                                        /* line 1 */
     /*  JSON: {;dir': 0, 'source': {'name': '', 'id': 0}, 'source_port': '', 'target': {'name': 'Echo', 'id': 12}, 'target_port': ''}, *//* line 2 */
     connector =  Connector ()                          /* line 3 */
@@ -13,7 +13,7 @@ void create_down_connector (container,proto_conn,connectors,children_by_id) {
         connector.receiver = mkReceiver ( target_component.name, target_component, proto_conn [ "target_port"], target_component.inq)/* line 12 */;/* line 13 */
     return ( connector)                                /* line 14 */;;/* line 15 *//* line 16 */}
 
-void create_across_connector (container,proto_conn,connectors,children_by_id) {
+void* create_across_connector (container,proto_conn,connectors,children_by_id) {
                                                        /* line 17 */
     connector =  Connector ()                          /* line 18 */
     connector.direction =  "across"                    /* line 19 */
@@ -29,7 +29,7 @@ void create_across_connector (container,proto_conn,connectors,children_by_id) {
             connector.receiver = mkReceiver ( target_component.name, target_component, proto_conn [ "target_port"], target_component.inq)/* line 29 */;/* line 30 */;/* line 31 */
     return ( connector)                                /* line 32 */;/* line 33 *//* line 34 */}
 
-void create_up_connector (container,proto_conn,connectors,children_by_id) {
+void* create_up_connector (container,proto_conn,connectors,children_by_id) {
                                                        /* line 35 */
     connector =  Connector ()                          /* line 36 */
     connector.direction =  "up"                        /* line 37 */
@@ -41,7 +41,7 @@ void create_up_connector (container,proto_conn,connectors,children_by_id) {
         connector.receiver = mkReceiver ( container.name, container, proto_conn [ "target_port"], container.outq)/* line 43 */;;/* line 44 */
     return ( connector)                                /* line 45 */;/* line 46 *//* line 47 */}
 
-void create_through_connector (container,proto_conn,connectors,children_by_id) {
+void* create_through_connector (container,proto_conn,connectors,children_by_id) {
                                                        /* line 48 */
     connector =  Connector ()                          /* line 49 */
     connector.direction =  "through"                   /* line 50 */
@@ -49,7 +49,7 @@ void create_through_connector (container,proto_conn,connectors,children_by_id) {
     connector.receiver = mkReceiver ( container.name, container, proto_conn [ "target_port"], container.outq)/* line 52 */
     return ( connector)                                /* line 53 */;;;/* line 54 *//* line 55 */}
                                                        /* line 56 */
-void container_instantiator (reg,owner,container_name,desc,arg) {
+void* container_instantiator (reg,owner,container_name,desc,arg) {
                                                        /* line 57 */
     static enumDown, enumUp, enumAcross, enumThrough   /* line 58 */
     container = make_container ( container_name, owner)/* line 59 */
@@ -78,7 +78,7 @@ void container_instantiator (reg,owner,container_name,desc,arg) {
     return ( container)                                /* line 86 */;;/* line 87 *//* line 88 */}
 
 /*  The default handler for container components. */   /* line 89 */
-void container_handler (container,mevent) {
+void* container_handler (container,mevent) {
                                                        /* line 90 */
     route ( container, container, mevent)
     /*  references to 'self' are replaced by the container during instantiation *//* line 91 */
@@ -86,10 +86,10 @@ void container_handler (container,mevent) {
         step_children ( container, mevent)             /* line 93 *//* line 94 *//* line 95 */}
 
 /*  Stop all children. Reset to a known state. Hit the big red button.  *//* line 96 */
-void container_reset_children (container) {
+void* container_reset (container) {
                                                        /* line 97 */
     for child in  container.children:                  /* line 98 */
-        child.stop ( child)                            /* line 99 *//* line 100 */
+        child.reset ( child)                           /* line 99 *//* line 100 */
     external
     container.visit_ordering.clear ()                  /* line 101 */
     external
@@ -99,30 +99,30 @@ void container_reset_children (container) {
     container.state =  "idle";                         /* line 104 *//* line 105 *//* line 106 */}
 
 /*  Frees the given container and associated data. */  /* line 107 */
-void destroy_container (eh) {
+void* destroy_container (eh) {
                                                        /* line 108 */
                                                        /* line 109 *//* line 110 */}
 
 /*  Checks if two senders match, by pointer equality and port name matching. *//* line 111 */
-void sender_eq (s1,s2) {
+void* sender_eq (s1,s2) {
                                                        /* line 112 */
     same_components = ( s1.component ==  s2.component) /* line 113 */
     same_ports = ( s1.port ==  s2.port)                /* line 114 */
     return ( same_components and  same_ports)          /* line 115 *//* line 116 *//* line 117 */}
 
 /*  Delivers the given mevent to the receiver of this connector. *//* line 118 *//* line 119 */
-void deposit (parent,conn,mevent) {
+void* deposit (parent,conn,mevent) {
                                                        /* line 120 */
     new_mevent = make_mevent ( conn.receiver.port, mevent.payload)/* line 121 */
     push_mevent ( parent, conn.receiver.component, conn.receiver.queue, new_mevent)/* line 122 *//* line 123 *//* line 124 */}
 
-void force_tick (parent,eh) {
+void* force_tick (parent,eh) {
                                                        /* line 125 */
     tick_mev = make_mevent ( ".",new_datum_bang ())    /* line 126 */
     push_mevent ( parent, eh, eh.inq, tick_mev)        /* line 127 */
     return ( tick_mev)                                 /* line 128 *//* line 129 *//* line 130 */}
 
-void push_mevent (parent,receiver,inq,m) {
+void* push_mevent (parent,receiver,inq,m) {
                                                        /* line 131 */
     external  inq.append ( m)                          /* line 132 */
     if ( receiver.special):                            /* line 133 */
@@ -130,19 +130,19 @@ void push_mevent (parent,receiver,inq,m) {
     else:                                              /* line 135 */
         external  parent.visit_ordering.append ( receiver)/* line 136 *//* line 137 *//* line 138 *//* line 139 *//* line 140 */}
 
-void is_self (child,container) {
+void* is_self (child,container) {
                                                        /* line 141 */
     /*  in an earlier version “self“ was denoted as ϕ *//* line 142 */
     return ( child ==  container)                      /* line 143 *//* line 144 *//* line 145 */}
 
-void step_child_once (child,mev) {
+void* step_child_once (child,mev) {
                                                        /* line 146 */
     if ( ("PBPSTEPPING" in os.environ) ):              /* line 147 */
         external print ( str( "-- stepping ❮") +  str( child.name) +  "❯"  , file=sys.stderr)/* line 148 */
         external                                       /* line 149 *//* line 150 */
     child.handler ( child, mev)                        /* line 151 *//* line 152 *//* line 153 */}
 
-void step_children (container,causingMevent) {
+void* step_children (container,causingMevent) {
                                                        /* line 154 */
     container.state =  "idle"                          /* line 155 *//* line 156 */
     /*  phase 1 - loop through children and process inputs or children that not "idle"  *//* line 157 */
@@ -172,19 +172,19 @@ void step_children (container,causingMevent) {
             route ( container, child, mev)             /* line 188 */
             destroy_mevent ( mev)                      /* line 189 *//* line 190 *//* line 191 */;/* line 192 *//* line 193 */}
 
-void attempt_tick (parent,eh) {
+void* attempt_tick (parent,eh) {
                                                        /* line 194 */
     if  eh.state!= "idle":                             /* line 195 */
         force_tick ( parent, eh)                       /* line 196 *//* line 197 *//* line 198 *//* line 199 */}
 
-void is_tick (mev) {
+void* is_tick (mev) {
                                                        /* line 200 */
     return ( "." ==  mev.port)
     /*  assume that any mevent that is sent to port "." is a tick  *//* line 201 *//* line 202 *//* line 203 */}
 
 /*  Routes a single mevent to all matching destinations, according to *//* line 204 */
 /*  the container's connection network. */             /* line 205 *//* line 206 */
-void route (container,from_component,mevent) {
+void* route (container,from_component,mevent) {
                                                        /* line 207 */
     was_sent =  False
     /*  for checking that output went somewhere (at least during bootstrap) *//* line 208 */
@@ -206,34 +206,34 @@ void route (container,from_component,mevent) {
     if not ( was_sent):                                /* line 229 */
         external live_update ( "internal error",  str( container.name) +  str( ": mevent on port '") +  str( mevent.port) +  str( "' from ") +  str( fromname) +  " dropped on floor..."     )/* line 230 *//* line 231 */;/* line 232 *//* line 233 */}
 
-void any_child_ready (container) {
+void* any_child_ready (container) {
                                                        /* line 234 */
     for child in  container.children:                  /* line 235 */
         if child_is_ready ( child):                    /* line 236 */
             return ( True)                             /* line 237 *//* line 238 *//* line 239 */
     return ( False)                                    /* line 240 *//* line 241 *//* line 242 */}
 
-void child_is_ready (eh) {
+void* child_is_ready (eh) {
                                                        /* line 243 */
     return ((not ((0==len( eh.outq)))) or (not ((0==len( eh.inq)))) or ( eh.state!= "idle") or (any_child_ready ( eh)))/* line 244 *//* line 245 *//* line 246 */}
                                                        /* line 247 */
 /*  Creates a component that acts as a container. It is the same as a `Eh` instance *//* line 248 */
 /*  whose handler function is `container_handler`. */  /* line 249 */
-void make_container (name,owner) {
+void* make_container (name,owner) {
                                                        /* line 250 */
     eh =  Eh ()                                        /* line 251 */
     eh.name =  name                                    /* line 252 */
     eh.owner =  owner                                  /* line 253 */
     eh.handler =  container_handler                    /* line 254 */
     eh.finject =  injector                             /* line 255 */
-    eh.stop =  container_reset_children                /* line 256 */
+    eh.reset =  container_reset                        /* line 256 */
     eh.state =  "idle"                                 /* line 257 */
     eh.kind =  "container"                             /* line 258 */
     return ( eh)                                       /* line 259 */;;;;;;;/* line 260 *//* line 261 */}
 
 /*  Sends a mevent on the given `port` with `data`, placing it on the output *//* line 262 */
 /*  of the given component. */                         /* line 263 *//* line 264 */
-void send (eh,port,obj,causingMevent) {
+void* send (eh,port,obj,causingMevent) {
                                                        /* line 265 */
     d =  Datum ()                                      /* line 266 */
     d.v =  obj                                         /* line 267 */
@@ -242,27 +242,27 @@ void send (eh,port,obj,causingMevent) {
     mev = make_mevent ( port, d)                       /* line 270 */
     put_output ( eh, mev)                              /* line 271 */;;;/* line 272 *//* line 273 */}
 
-void forward (eh,port,mev) {
+void* forward (eh,port,mev) {
                                                        /* line 274 */
     fwdmev = make_mevent ( port, mev.payload)          /* line 275 */
     put_output ( eh, fwdmev)                           /* line 276 *//* line 277 *//* line 278 */}
 
-void inject_mevent (eh,mev) {
+void* inject_mevent (eh,mev) {
                                                        /* line 279 */
     eh.finject ( eh, mev)                              /* line 280 *//* line 281 *//* line 282 */}
 
-void set_active (eh) {
+void* set_active (eh) {
                                                        /* line 283 */
     eh.state =  "active";                              /* line 284 *//* line 285 *//* line 286 */}
 
-void set_idle (eh) {
+void* set_idle (eh) {
                                                        /* line 287 */
     eh.state =  "idle";                                /* line 288 *//* line 289 *//* line 290 */}
 
-void put_output (eh,mev) {
+void* put_output (eh,mev) {
                                                        /* line 291 */
     external  eh.outq.append ( mev)                    /* line 292 *//* line 293 *//* line 294 */}
 
-void obj_clone (obj) {
+void* obj_clone (obj) {
                                                        /* line 295 */
     return ( obj)                                      /* line 296 *//* line 297 */}

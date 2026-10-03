@@ -369,7 +369,7 @@
         (format *error-output* "~a~%"  s)                   #|line 289|#
         (format *error-output* "
         ")                                                  #|line 290|#
-        (funcall (slot-value  parent 'stop)   parent        #|line 291|#)
+        (funcall (slot-value  parent 'reset)   parent       #|line 291|#)
         (funcall (quote send)   eh  "" (slot-value (slot-value  mev 'payload) 'v)  mev  #|line 292|#)))) #|line 293|#
   ) #|  all of the the built_in leaves are listed here |#   #|line 295|# #|  future: refactor this such that programmers can pick and choose which (lumps of) builtins are used in a specific project |# #|line 296|# #|line 297|#
 (defun initialize_stock_components (&optional  reg)

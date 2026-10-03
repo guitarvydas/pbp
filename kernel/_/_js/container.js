@@ -100,9 +100,9 @@ function container_handler (container,mevent) {        /* line 90 */
 }
 
 /*  Stop all children. Reset to a known state. Hit the big red button.  *//* line 96 */
-function container_reset_children (container) {        /* line 97 */
+function container_reset (container) {                 /* line 97 */
     for (let child of  container.children) {           /* line 98 */
-      child.stop ( child)                              /* line 99 *//* line 100 */
+      child.reset ( child)                             /* line 99 *//* line 100 */
     }
 
     container.visit_ordering = [];                     /* line 101 */
@@ -259,7 +259,7 @@ function make_container (name,owner) {                 /* line 250 */
     eh.owner =  owner;                                 /* line 253 */
     eh.handler =  container_handler;                   /* line 254 */
     eh.finject =  injector;                            /* line 255 */
-    eh.stop =  container_reset_children;               /* line 256 */
+    eh.reset =  container_reset;                       /* line 256 */
     eh.state =  "idle";                                /* line 257 */
     eh.kind =  "container";                            /* line 258 */
     return  eh;                                        /* line 259 *//* line 260 *//* line 261 */
