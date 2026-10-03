@@ -1,6 +1,6 @@
 /*  Creates a new leaf component out of a handler function, and a data parameter *//* line 1 */
 /*  that will be passed back to your handler when called. *//* line 2 *//* line 3 */
-void make_leaf (name,owner,instance_data,arg,handler,reset_handler) {
+void* make_leaf (name,owner,instance_data,arg,handler,reset_handler) {
                                                        /* line 4 */
     eh =  Eh ()                                        /* line 5 */
     nm =  ""                                           /* line 6 */
@@ -18,7 +18,7 @@ void make_leaf (name,owner,instance_data,arg,handler,reset_handler) {
     return ( eh)                                       /* line 19 */;;;;;;;;;/* line 20 *//* line 21 */}
 
 /*  Reset Leaf part to a known, idle state. Hit the big red button.  *//* line 22 */
-void leaf_reset (part) {
+void* leaf_reset (part) {
                                                        /* line 23 */
     external
     part.inq.clear ()                                  /* line 24 */

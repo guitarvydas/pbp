@@ -33,3 +33,10 @@ function second(s) {
   return s.split('⫶').slice(0, -1).map(item => item.split('◦')[1]).join('');
 }
 
+function getdeclaration(scope, id) {
+    return `void* ${id}`;
+}
+
+function getuse(scope, id) {
+    return  `(*id)`;
+}

@@ -49,6 +49,6 @@ Eh fresh_Eh () {
     return self;
 }
                                                        /* line 33 */
-void injector (eh,mevent) {
+void* injector (eh,mevent) {
                                                        /* line 34 */
     eh.handler ( eh, mevent)                           /* line 35 *//* line 36 *//* line 37 */}

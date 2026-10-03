@@ -1,174 +1,174 @@
 
-{"name":"trash_instantiate", "pointer":true, "type":"Leaf", "scope:"_global", "kind":"function"},
-{"name":"reg", "pointer":true, "type":"Component_Registry", "scope":"trash_instantiate","kind":"parameter"},
-{"name":"owner", "pointer":true, "type":"Container", "scope":"trash_instantiate","kind":"parameter"},
-{"name":"name", "pointer":true, "type":"Str", "scope":"trash_instantiate","kind":"parameter"},
-{"name":"template_data", "pointer":true, "type":"Template", "scope":"trash_instantiate","kind":"parameter"},
-{"name":"arg", "pointer":true, "type":"Str", "scope":"trash_instantiate","kind":"parameter"},
-{"name":"name_with_id", "pointer":true, "type":"Str", "scope":"trash_instantiate", "kind":"variable"},
-{"name":"trash_handler", "pointer":false, "type":"void", "scope:"_global", "kind":"function"},
-{"name":"eh", "pointer":true, "type":"Part", "scope":"trash_handler","kind":"parameter"},
-{"name":"mev", "pointer":true, "type":"Mevent", "scope":"trash_handler","kind":"parameter"},
-{"name":"TwoMevents", "pointer":false, "type":"obj", "scope:"_global", "kind":"obj"},
-{"name":"firstmev", "pointer":true, "type":"Mevent", "scope":"TwoMevents", "kind":"variable"},
-{"name":"secondmev", "pointer":true, "type":"Mevent", "scope":"TwoMevents", "kind":"variable"},
-{"name":"Deracer_Instance_Data", "pointer":false, "type":"obj", "scope:"_global", "kind":"obj"},
-{"name":"state", "pointer":false", type:"State", "scope":"Deracer_Instance_Data", "kind":"variable"},
-{"name":"buffer", "pointer":true, "type":"TwoMevents", "scope":"Deracer_Instance_Data", "kind":"variable"},
-{"name":"reclaim_Buffers_from_heap", "pointer":false, "type":"void", "scope:"_global", "kind":"function"},
-{"name":"inst", "pointer":true, "type":"Leaf", "scope":"reclaim_Buffers_from_heap","kind":"parameter"},
-{"name":"deracer_reset_handler", "pointer":false, "type":"void", "scope:"_global", "kind":"function"},
-{"name":"eh", "pointer":true, "type":"Leaf", "scope":"deracer_reset_handler","kind":"parameter"},
-{"name":"inst", "pointer":true, "type":"Deracer_Instance_Data", "scope":"deracer_reset_handler", "kind":"variable"},
-{"name":"deracer_instantiate", "pointer":true, "type":"Leaf", "scope:"_global", "kind":"function"},
-{"name":"reg", "pointer":true, "type":"Component_Registry", "scope":"deracer_instantiate","kind":"parameter"},
-{"name":"owner", "pointer":true, "type":"Container", "scope":"deracer_instantiate","kind":"parameter"},
-{"name":"name", "pointer":true, "type":"Str", "scope":"deracer_instantiate","kind":"parameter"},
-{"name":"template_data", "pointer":false", type:"Ignored", "scope":"deracer_instantiate","kind":"parameter"},
-{"name":"arg", "pointer":false", type:"Ignored", "scope":"deracer_instantiate","kind":"parameter"},
-{"name":"name_with_id", "pointer":true, "type":"Str", "scope":"deracer_instantiate", "kind":"variable"},
-{"name":"inst", "pointer":true, "type":"Deracer_Instance_Data", "scope":"deracer_instantiate", "kind":"variable"},
-{"name":"eh", "pointer":true, "type":"Leaf", "scope":"deracer_instantiate", "kind":"variable"},
-{"name":"send_firstmev_then_secondmev", "pointer":false, "type":"void", "scope:"_global", "kind":"function"},
-{"name":"eh", "pointer":true, "type":"Leaf", "scope":"send_firstmev_then_secondmev","kind":"parameter"},
-{"name":"inst", "pointer":true, "type":"Deracer_Instance_Data", "scope":"send_firstmev_then_secondmev","kind":"parameter"},
-{"name":"deracer_handler", "pointer":false, "type":"void", "scope:"_global", "kind":"function"},
-{"name":"eh", "pointer":true, "type":"Leaf", "scope":"deracer_handler","kind":"parameter"},
-{"name":"mev", "pointer":true, "type":"Mevent", "scope":"deracer_handler","kind":"parameter"},
-{"name":"inst", "pointer":true, "type":"Deracer_Instance_Data", "scope":"deracer_handler", "kind":"variable"},
-{"name":"low_level_read_text_file_instantiate", "pointer":true, "type":"Leaf", "scope:"_global", "kind":"function"},
-{"name":"reg", "pointer":true, "type":"Component_Registry", "scope":"low_level_read_text_file_instantiate","kind":"parameter"},
-{"name":"owner", "pointer":true, "type":"Container", "scope":"low_level_read_text_file_instantiate","kind":"parameter"},
-{"name":"name", "pointer":true, "type":"Str", "scope":"low_level_read_text_file_instantiate","kind":"parameter"},
-{"name":"template_data", "pointer":true, "type":"Template", "scope":"low_level_read_text_file_instantiate","kind":"parameter"},
-{"name":"arg", "pointer":true, "type":"Str", "scope":"low_level_read_text_file_instantiate","kind":"parameter"},
-{"name":"name_with_id", "pointer":true, "type":"Str", "scope":"low_level_read_text_file_instantiate", "kind":"variable"},
-{"name":"low_level_read_text_file_handler", "pointer":false, "type":"void", "scope:"_global", "kind":"function"},
-{"name":"eh", "pointer":true, "type":"Leaf", "scope":"low_level_read_text_file_handler","kind":"parameter"},
-{"name":"mev", "pointer":true, "type":"Mevent", "scope":"low_level_read_text_file_handler","kind":"parameter"},
-{"name":"fname", "pointer":true, "type":"Payload", "scope":"low_level_read_text_file_handler", "kind":"variable"},
-{"name":"ensure_string_datum_instantiate", "pointer":true, "type":"Leaf", "scope:"_global", "kind":"function"},
-{"name":"reg", "pointer":true, "type":"Component_Registry", "scope":"ensure_string_datum_instantiate","kind":"parameter"},
-{"name":"owner", "pointer":true, "type":"Container", "scope":"ensure_string_datum_instantiate","kind":"parameter"},
-{"name":"name", "pointer":true, "type":"Str", "scope":"ensure_string_datum_instantiate","kind":"parameter"},
-{"name":"template_data", "pointer":false", type:"Ignored", "scope":"ensure_string_datum_instantiate","kind":"parameter"},
-{"name":"arg", "pointer":false", type:"Ignored", "scope":"ensure_string_datum_instantiate","kind":"parameter"},
-{"name":"name_with_id", "pointer":true, "type":"Str", "scope":"ensure_string_datum_instantiate", "kind":"variable"},
-{"name":"ensure_string_datum_handler", "pointer":false, "type":"void", "scope:"_global", "kind":"function"},
-{"name":"eh", "pointer":true, "type":"Leaf", "scope":"ensure_string_datum_handler","kind":"parameter"},
-{"name":"mev", "pointer":true, "type":"Mevent", "scope":"ensure_string_datum_handler","kind":"parameter"},
-{"name":"emev", "pointer":true, "type":"Str", "scope":"ensure_string_datum_handler", "kind":"variable"},
-{"name":"Syncfilewrite_Data", "pointer":false, "type":"obj", "scope:"_global", "kind":"obj"},
-{"name":"filename", "pointer":true, "type":"Str", "scope":"Syncfilewrite_Data", "kind":"variable"},
-{"name":"syncfilewrite_reset_handler", "pointer":false, "type":"void", "scope:"_global", "kind":"function"},
-{"name":"eh", "pointer":true, "type":"Leaf", "scope":"syncfilewrite_reset_handler","kind":"parameter"},
-{"name":"syncfilewrite_instantiate", "pointer":true, "type":"Leaf", "scope:"_global", "kind":"function"},
-{"name":"reg", "pointer":true, "type":"Component_Registry", "scope":"syncfilewrite_instantiate","kind":"parameter"},
-{"name":"owner", "pointer":true, "type":"Container", "scope":"syncfilewrite_instantiate","kind":"parameter"},
-{"name":"name", "pointer":true, "type":"Str", "scope":"syncfilewrite_instantiate","kind":"parameter"},
-{"name":"template_data", "pointer":false", type:"Ignored", "scope":"syncfilewrite_instantiate","kind":"parameter"},
-{"name":"arg", "pointer":false", type:"Ignored", "scope":"syncfilewrite_instantiate","kind":"parameter"},
-{"name":"name_with_id", "pointer":true, "type":"Str", "scope":"syncfilewrite_instantiate", "kind":"variable"},
-{"name":"inst", "pointer":true, "type":"SyncFilewrite_Data", "scope":"syncfilewrite_instantiate", "kind":"variable"},
-{"name":"syncfilewrite_handler", "pointer":false, "type":"void", "scope:"_global", "kind":"function"},
-{"name":"eh", "pointer":true, "type":"Leaf", "scope":"syncfilewrite_handler","kind":"parameter"},
-{"name":"mev", "pointer":true, "type":"Mevent", "scope":"syncfilewrite_handler","kind":"parameter"},
-{"name":"inst", "pointer":true, "type":"Synfilewrite_Data", "scope":"syncfilewrite_handler", "kind":"variable"},
-{"name":"contents", "pointer":true, "type":"Payload", "scope":"syncfilewrite_handler", "kind":"variable"},
-{"name":"f", "pointer":true, "type":"FileDescriptor", "scope":"syncfilewrite_handler", "kind":"variable"},
-{"name":"StringConcat_Instance_Data", "pointer":false, "type":"obj", "scope:"_global", "kind":"obj"},
-{"name":"buffer1", "pointer":true, "type":"Str", "scope":"StringConcat_Instance_Data", "kind":"variable"},
-{"name":"buffer2", "pointer":true, "type":"Str", "scope":"StringConcat_Instance_Data", "kind":"variable"},
-{"name":"stringconcat_reset_handler", "pointer":false, "type":"void", "scope:"_global", "kind":"function"},
-{"name":"eh", "pointer":true, "type":"Leaf", "scope":"stringconcat_reset_handler","kind":"parameter"},
-{"name":"inst", "pointer":true, "type":"StringConcat_Instance_Data", "scope":"stringconcat_reset_handler", "kind":"variable"},
-{"name":"stringconcat_instantiate", "pointer":true, "type":"Leaf", "scope:"_global", "kind":"function"},
-{"name":"reg", "pointer":true, "type":"Component_Registry", "scope":"stringconcat_instantiate","kind":"parameter"},
-{"name":"owner", "pointer":true, "type":"Container", "scope":"stringconcat_instantiate","kind":"parameter"},
-{"name":"name", "pointer":true, "type":"Str", "scope":"stringconcat_instantiate","kind":"parameter"},
-{"name":"template_data", "pointer":false", type:"Ignored", "scope":"stringconcat_instantiate","kind":"parameter"},
-{"name":"arg", "pointer":false", type:"Ignored", "scope":"stringconcat_instantiate","kind":"parameter"},
-{"name":"name_with_id", "pointer":true, "type":"Str", "scope":"stringconcat_instantiate", "kind":"variable"},
-{"name":"instp", "pointer":true, "type":"StringConcat_Instance_Data", "scope":"stringconcat_instantiate", "kind":"variable"},
-{"name":"stringconcat_handler", "pointer":false, "type":"void", "scope:"_global", "kind":"function"},
-{"name":"eh", "pointer":true, "type":"Leaf", "scope":"stringconcat_handler","kind":"parameter"},
-{"name":"mev", "pointer":true, "type":"Mevent", "scope":"stringconcat_handler","kind":"parameter"},
-{"name":"inst", "pointer":true, "type":"StringConcat_Instance_Data", "scope":"stringconcat_handler", "kind":"variable"},
-{"name":"maybe_stringconcat", "pointer":false, "type":"void", "scope:"_global", "kind":"function"},
-{"name":"eh", "pointer":true, "type":"Leaf", "scope":"maybe_stringconcat","kind":"parameter"},
-{"name":"inst", "pointer":true, "type":"StringConcat_Instance_Dat", "scope":"maybe_stringconcat","kind":"parameter"},
-{"name":"mev", "pointer":true, "type":"Mevent", "scope":"maybe_stringconcat","kind":"parameter"},
-{"name":"concatenated_string", "pointer":true, "type":"Str", "scope":"maybe_stringconcat", "kind":"variable"},
-{"name":"concatenated_string", "pointer":true, "type":"Str", "scope":"maybe_stringconcat", "kind":"variable"},
-{"name":"string_constant_instantiate", "pointer":true, "type":"Leaf", "scope:"_global", "kind":"function"},
-{"name":"reg", "pointer":true, "type":"Component_Registry", "scope":"string_constant_instantiate","kind":"parameter"},
-{"name":"owner", "pointer":true, "type":"Container", "scope":"string_constant_instantiate","kind":"parameter"},
-{"name":"name", "pointer":true, "type":"Str", "scope":"string_constant_instantiate","kind":"parameter"},
-{"name":"template_data", "pointer":false", type:"Ignored", "scope":"string_constant_instantiate","kind":"parameter"},
-{"name":"arg", "pointer":false", type:"Ignored", "scope":"string_constant_instantiate","kind":"parameter"},
-{"name":"string_constant_handler", "pointer":false, "type":"void", "scope:"_global", "kind":"function"},
-{"name":"eh", "pointer":true, "type":"Leaf", "scope":"string_constant_handler","kind":"parameter"},
-{"name":"mev", "pointer":true, "type":"Mevent", "scope":"string_constant_handler","kind":"parameter"},
-{"name":"s", "pointer":true, "type":"Str", "scope":"string_constant_handler", "kind":"variable"},
-{"name":"fakepipename_instantiate", "pointer":true, "type":"Leaf", "scope:"_global", "kind":"function"},
-{"name":"reg", "pointer":true, "type":"Component_Registry", "scope":"fakepipename_instantiate","kind":"parameter"},
-{"name":"owner", "pointer":true, "type":"Container", "scope":"fakepipename_instantiate","kind":"parameter"},
-{"name":"name", "pointer":true, "type":"Str", "scope":"fakepipename_instantiate","kind":"parameter"},
-{"name":"template_data", "pointer":false", type:"Ignored", "scope":"fakepipename_instantiate","kind":"parameter"},
-{"name":"arg", "pointer":false", type:"Ignored", "scope":"fakepipename_instantiate","kind":"parameter"},
-{"name":"instance_name", "pointer":true, "type":"Str", "scope":"fakepipename_instantiate", "kind":"variable"},
-{"name":"rand", "pointer":false", type:"Number", "scope":"global", "kind":"global variable"},
-{"name":"fakepipename_handler", "pointer":false, "type":"void", "scope:"_global", "kind":"function"},
-{"name":"eh", "pointer":true, "type":"Leaf", "scope":"fakepipename_handler","kind":"parameter"},
-{"name":"mev", "pointer":true, "type":"Mevent", "scope":"fakepipename_handler","kind":"parameter"},
-{"name":"Switch1star_Instance_Data", "pointer":false, "type":"obj", "scope:"_global", "kind":"obj"},
-{"name":"state", "pointer":true, "type":"Str", "scope":"Switch1star_Instance_Data", "kind":"variable"},
-{"name":"switch1star_reset_handler", "pointer":false, "type":"void", "scope:"_global", "kind":"function"},
-{"name":"eh", "pointer":true, "type":"Leaf", "scope":"switch1star_reset_handler","kind":"parameter"},
-{"name":"inst", "pointer":true, "type":"Switch1star_Instance_Data", "scope":"switch1star_reset_handler", "kind":"variable"},
-{"name":"inst", "pointer":true, "type":"Switch1star_Instance_Data", "scope":"switch1star_reset_handler", "kind":"variable"},
-{"name":"switch1star_instantiate", "pointer":true, "type":"Leaf", "scope:"_global", "kind":"function"},
-{"name":"reg", "pointer":true, "type":"Component_Registry", "scope":"switch1star_instantiate","kind":"parameter"},
-{"name":"owner", "pointer":true, "type":"Container", "scope":"switch1star_instantiate","kind":"parameter"},
-{"name":"name", "pointer":true, "type":"Str", "scope":"switch1star_instantiate","kind":"parameter"},
-{"name":"template_data", "pointer":false", type:"Ignored", "scope":"switch1star_instantiate","kind":"parameter"},
-{"name":"arg", "pointer":false", type:"Ignored", "scope":"switch1star_instantiate","kind":"parameter"},
-{"name":"name_with_id", "pointer":true, "type":"Str", "scope":"switch1star_instantiate", "kind":"variable"},
-{"name":"instp", "pointer":true, "type":"Switch1star_Instance_Data", "scope":"switch1star_instantiate", "kind":"variable"},
-{"name":"switch1star_handler", "pointer":false, "type":"void", "scope:"_global", "kind":"function"},
-{"name":"eh", "pointer":true, "type":"Leaf", "scope":"switch1star_handler","kind":"parameter"},
-{"name":"mev", "pointer":true, "type":"Mevent", "scope":"switch1star_handler","kind":"parameter"},
-{"name":"inst", "pointer":true, "type":"Switch1star_Instance_Data", "scope":"switch1star_handler", "kind":"variable"},
-{"name":"whichOutput", "pointer":true, "type":"Str", "scope":"switch1star_handler", "kind":"variable"},
-{"name":"StringAccumulator", "pointer":false, "type":"obj", "scope:"_global", "kind":"obj"},
-{"name":"s", "pointer":true, "type":"Str", "scope":"StringAccumulator", "kind":"variable"},
-{"name":"strcatstar_reset_handler", "pointer":false, "type":"void", "scope:"_global", "kind":"function"},
-{"name":"eh", "pointer":true, "type":"Leaf", "scope":"strcatstar_reset_handler","kind":"parameter"},
-{"name":"strcatstar_instantiate", "pointer":true, "type":"Leaf", "scope:"_global", "kind":"function"},
-{"name":"reg", "pointer":true, "type":"Component_Registry", "scope":"strcatstar_instantiate","kind":"parameter"},
-{"name":"owner", "pointer":true, "type":"Container", "scope":"strcatstar_instantiate","kind":"parameter"},
-{"name":"name", "pointer":true, "type":"Str", "scope":"strcatstar_instantiate","kind":"parameter"},
-{"name":"template_data", "pointer":false", type:"Ignored", "scope":"strcatstar_instantiate","kind":"parameter"},
-{"name":"arg", "pointer":false", type:"Ignored", "scope":"strcatstar_instantiate","kind":"parameter"},
-{"name":"name_with_id", "pointer":true, "type":"Str", "scope":"strcatstar_instantiate", "kind":"variable"},
-{"name":"instp", "pointer":true, "type":"Switch1star_Instance_Data", "scope":"strcatstar_instantiate", "kind":"variable"},
-{"name":"strcatstar_handler", "pointer":false, "type":"void", "scope:"_global", "kind":"function"},
-{"name":"eh", "pointer":true, "type":"Leaf", "scope":"strcatstar_handler","kind":"parameter"},
-{"name":"mev", "pointer":true, "type":"Mevent", "scope":"strcatstar_handler","kind":"parameter"},
-{"name":"accum", "pointer":true, "type":"Switch1star_Instance_Data", "scope":"strcatstar_handler", "kind":"variable"},
-{"name":"stop_instantiate", "pointer":true, "type":"Leaf", "scope:"_global", "kind":"function"},
-{"name":"reg", "pointer":true, "type":"Component_Registry", "scope":"stop_instantiate","kind":"parameter"},
-{"name":"owner", "pointer":true, "type":"Container", "scope":"stop_instantiate","kind":"parameter"},
-{"name":"name", "pointer":true, "type":"Str", "scope":"stop_instantiate","kind":"parameter"},
-{"name":"template_data", "pointer":false", type:"Ignored", "scope":"stop_instantiate","kind":"parameter"},
-{"name":"arg", "pointer":false", type:"Ignored", "scope":"stop_instantiate","kind":"parameter"},
-{"name":"name_with_id", "pointer":true, "type":"Str", "scope":"stop_instantiate", "kind":"variable"},
-{"name":"inst", "pointer":true, "type":"Switch1star_Instance_Data", "scope":"stop_instantiate", "kind":"variable"},
-{"name":"stop_handler", "pointer":false, "type":"void", "scope:"_global", "kind":"function"},
-{"name":"eh", "pointer":true, "type":"Leaf", "scope":"stop_handler","kind":"parameter"},
-{"name":"mev", "pointer":true, "type":"Mevent", "scope":"stop_handler","kind":"parameter"},
-{"name":"inst", "pointer":true, "type":"any", "scope":"stop_handler", "kind":"variable"},
-{"name":"parent", "pointer":true, "type":"Container", "scope":"stop_handler", "kind":"variable"},
-{"name":"s", "pointer":true, "type":"Str", "scope":"stop_handler", "kind":"variable"},
-{"name":"initialize_stock_components", "pointer":false, "type":"void", "scope:"_global", "kind":"function"},
-{"name":"reg", "pointer":true, "type":"Component_Registry", "scope":"initialize_stock_components","kind":"parameter"},
+{"name":"trash_instantiate", "pointer":true, "type":"Leaf", "scope:"_global", "kind":"function"}
+{"name":"reg", "pointer":true, "type":"Component_Registry", "scope":"trash_instantiate","kind":"parameter"}
+{"name":"owner", "pointer":true, "type":"Container", "scope":"trash_instantiate","kind":"parameter"}
+{"name":"name", "pointer":true, "type":"Str", "scope":"trash_instantiate","kind":"parameter"}
+{"name":"template_data", "pointer":true, "type":"Template", "scope":"trash_instantiate","kind":"parameter"}
+{"name":"arg", "pointer":true, "type":"Str", "scope":"trash_instantiate","kind":"parameter"}
+{"name":"name_with_id", "pointer":true, "type":"Str", "scope":"trash_instantiate", "kind":"variable"}
+{"name":"trash_handler", "pointer":false, "type":"void", "scope:"_global", "kind":"function"}
+{"name":"eh", "pointer":true, "type":"Part", "scope":"trash_handler","kind":"parameter"}
+{"name":"mev", "pointer":true, "type":"Mevent", "scope":"trash_handler","kind":"parameter"}
+{"name":"TwoMevents", "pointer":false, "type":"obj", "scope:"_global", "kind":"obj"}
+{"name":"firstmev", "pointer":true, "type":"Mevent", "scope":"TwoMevents", "kind":"variable"}
+{"name":"secondmev", "pointer":true, "type":"Mevent", "scope":"TwoMevents", "kind":"variable"}
+{"name":"Deracer_Instance_Data", "pointer":false, "type":"obj", "scope:"_global", "kind":"obj"}
+{"name":"state", "pointer":false", type:"State", "scope":"Deracer_Instance_Data", "kind":"variable"}
+{"name":"buffer", "pointer":true, "type":"TwoMevents", "scope":"Deracer_Instance_Data", "kind":"variable"}
+{"name":"reclaim_Buffers_from_heap", "pointer":false, "type":"void", "scope:"_global", "kind":"function"}
+{"name":"inst", "pointer":true, "type":"Leaf", "scope":"reclaim_Buffers_from_heap","kind":"parameter"}
+{"name":"deracer_reset_handler", "pointer":false, "type":"void", "scope:"_global", "kind":"function"}
+{"name":"eh", "pointer":true, "type":"Leaf", "scope":"deracer_reset_handler","kind":"parameter"}
+{"name":"inst", "pointer":true, "type":"Deracer_Instance_Data", "scope":"deracer_reset_handler", "kind":"variable"}
+{"name":"deracer_instantiate", "pointer":true, "type":"Leaf", "scope:"_global", "kind":"function"}
+{"name":"reg", "pointer":true, "type":"Component_Registry", "scope":"deracer_instantiate","kind":"parameter"}
+{"name":"owner", "pointer":true, "type":"Container", "scope":"deracer_instantiate","kind":"parameter"}
+{"name":"name", "pointer":true, "type":"Str", "scope":"deracer_instantiate","kind":"parameter"}
+{"name":"template_data", "pointer":false", type:"Ignored", "scope":"deracer_instantiate","kind":"parameter"}
+{"name":"arg", "pointer":false", type:"Ignored", "scope":"deracer_instantiate","kind":"parameter"}
+{"name":"name_with_id", "pointer":true, "type":"Str", "scope":"deracer_instantiate", "kind":"variable"}
+{"name":"inst", "pointer":true, "type":"Deracer_Instance_Data", "scope":"deracer_instantiate", "kind":"variable"}
+{"name":"eh", "pointer":true, "type":"Leaf", "scope":"deracer_instantiate", "kind":"variable"}
+{"name":"send_firstmev_then_secondmev", "pointer":false, "type":"void", "scope:"_global", "kind":"function"}
+{"name":"eh", "pointer":true, "type":"Leaf", "scope":"send_firstmev_then_secondmev","kind":"parameter"}
+{"name":"inst", "pointer":true, "type":"Deracer_Instance_Data", "scope":"send_firstmev_then_secondmev","kind":"parameter"}
+{"name":"deracer_handler", "pointer":false, "type":"void", "scope:"_global", "kind":"function"}
+{"name":"eh", "pointer":true, "type":"Leaf", "scope":"deracer_handler","kind":"parameter"}
+{"name":"mev", "pointer":true, "type":"Mevent", "scope":"deracer_handler","kind":"parameter"}
+{"name":"inst", "pointer":true, "type":"Deracer_Instance_Data", "scope":"deracer_handler", "kind":"variable"}
+{"name":"low_level_read_text_file_instantiate", "pointer":true, "type":"Leaf", "scope:"_global", "kind":"function"}
+{"name":"reg", "pointer":true, "type":"Component_Registry", "scope":"low_level_read_text_file_instantiate","kind":"parameter"}
+{"name":"owner", "pointer":true, "type":"Container", "scope":"low_level_read_text_file_instantiate","kind":"parameter"}
+{"name":"name", "pointer":true, "type":"Str", "scope":"low_level_read_text_file_instantiate","kind":"parameter"}
+{"name":"template_data", "pointer":true, "type":"Template", "scope":"low_level_read_text_file_instantiate","kind":"parameter"}
+{"name":"arg", "pointer":true, "type":"Str", "scope":"low_level_read_text_file_instantiate","kind":"parameter"}
+{"name":"name_with_id", "pointer":true, "type":"Str", "scope":"low_level_read_text_file_instantiate", "kind":"variable"}
+{"name":"low_level_read_text_file_handler", "pointer":false, "type":"void", "scope:"_global", "kind":"function"}
+{"name":"eh", "pointer":true, "type":"Leaf", "scope":"low_level_read_text_file_handler","kind":"parameter"}
+{"name":"mev", "pointer":true, "type":"Mevent", "scope":"low_level_read_text_file_handler","kind":"parameter"}
+{"name":"fname", "pointer":true, "type":"Payload", "scope":"low_level_read_text_file_handler", "kind":"variable"}
+{"name":"ensure_string_datum_instantiate", "pointer":true, "type":"Leaf", "scope:"_global", "kind":"function"}
+{"name":"reg", "pointer":true, "type":"Component_Registry", "scope":"ensure_string_datum_instantiate","kind":"parameter"}
+{"name":"owner", "pointer":true, "type":"Container", "scope":"ensure_string_datum_instantiate","kind":"parameter"}
+{"name":"name", "pointer":true, "type":"Str", "scope":"ensure_string_datum_instantiate","kind":"parameter"}
+{"name":"template_data", "pointer":false", type:"Ignored", "scope":"ensure_string_datum_instantiate","kind":"parameter"}
+{"name":"arg", "pointer":false", type:"Ignored", "scope":"ensure_string_datum_instantiate","kind":"parameter"}
+{"name":"name_with_id", "pointer":true, "type":"Str", "scope":"ensure_string_datum_instantiate", "kind":"variable"}
+{"name":"ensure_string_datum_handler", "pointer":false, "type":"void", "scope:"_global", "kind":"function"}
+{"name":"eh", "pointer":true, "type":"Leaf", "scope":"ensure_string_datum_handler","kind":"parameter"}
+{"name":"mev", "pointer":true, "type":"Mevent", "scope":"ensure_string_datum_handler","kind":"parameter"}
+{"name":"emev", "pointer":true, "type":"Str", "scope":"ensure_string_datum_handler", "kind":"variable"}
+{"name":"Syncfilewrite_Data", "pointer":false, "type":"obj", "scope:"_global", "kind":"obj"}
+{"name":"filename", "pointer":true, "type":"Str", "scope":"Syncfilewrite_Data", "kind":"variable"}
+{"name":"syncfilewrite_reset_handler", "pointer":false, "type":"void", "scope:"_global", "kind":"function"}
+{"name":"eh", "pointer":true, "type":"Leaf", "scope":"syncfilewrite_reset_handler","kind":"parameter"}
+{"name":"syncfilewrite_instantiate", "pointer":true, "type":"Leaf", "scope:"_global", "kind":"function"}
+{"name":"reg", "pointer":true, "type":"Component_Registry", "scope":"syncfilewrite_instantiate","kind":"parameter"}
+{"name":"owner", "pointer":true, "type":"Container", "scope":"syncfilewrite_instantiate","kind":"parameter"}
+{"name":"name", "pointer":true, "type":"Str", "scope":"syncfilewrite_instantiate","kind":"parameter"}
+{"name":"template_data", "pointer":false", type:"Ignored", "scope":"syncfilewrite_instantiate","kind":"parameter"}
+{"name":"arg", "pointer":false", type:"Ignored", "scope":"syncfilewrite_instantiate","kind":"parameter"}
+{"name":"name_with_id", "pointer":true, "type":"Str", "scope":"syncfilewrite_instantiate", "kind":"variable"}
+{"name":"inst", "pointer":true, "type":"SyncFilewrite_Data", "scope":"syncfilewrite_instantiate", "kind":"variable"}
+{"name":"syncfilewrite_handler", "pointer":false, "type":"void", "scope:"_global", "kind":"function"}
+{"name":"eh", "pointer":true, "type":"Leaf", "scope":"syncfilewrite_handler","kind":"parameter"}
+{"name":"mev", "pointer":true, "type":"Mevent", "scope":"syncfilewrite_handler","kind":"parameter"}
+{"name":"inst", "pointer":true, "type":"Synfilewrite_Data", "scope":"syncfilewrite_handler", "kind":"variable"}
+{"name":"contents", "pointer":true, "type":"Payload", "scope":"syncfilewrite_handler", "kind":"variable"}
+{"name":"f", "pointer":true, "type":"FileDescriptor", "scope":"syncfilewrite_handler", "kind":"variable"}
+{"name":"StringConcat_Instance_Data", "pointer":false, "type":"obj", "scope:"_global", "kind":"obj"}
+{"name":"buffer1", "pointer":true, "type":"Str", "scope":"StringConcat_Instance_Data", "kind":"variable"}
+{"name":"buffer2", "pointer":true, "type":"Str", "scope":"StringConcat_Instance_Data", "kind":"variable"}
+{"name":"stringconcat_reset_handler", "pointer":false, "type":"void", "scope:"_global", "kind":"function"}
+{"name":"eh", "pointer":true, "type":"Leaf", "scope":"stringconcat_reset_handler","kind":"parameter"}
+{"name":"inst", "pointer":true, "type":"StringConcat_Instance_Data", "scope":"stringconcat_reset_handler", "kind":"variable"}
+{"name":"stringconcat_instantiate", "pointer":true, "type":"Leaf", "scope:"_global", "kind":"function"}
+{"name":"reg", "pointer":true, "type":"Component_Registry", "scope":"stringconcat_instantiate","kind":"parameter"}
+{"name":"owner", "pointer":true, "type":"Container", "scope":"stringconcat_instantiate","kind":"parameter"}
+{"name":"name", "pointer":true, "type":"Str", "scope":"stringconcat_instantiate","kind":"parameter"}
+{"name":"template_data", "pointer":false", type:"Ignored", "scope":"stringconcat_instantiate","kind":"parameter"}
+{"name":"arg", "pointer":false", type:"Ignored", "scope":"stringconcat_instantiate","kind":"parameter"}
+{"name":"name_with_id", "pointer":true, "type":"Str", "scope":"stringconcat_instantiate", "kind":"variable"}
+{"name":"instp", "pointer":true, "type":"StringConcat_Instance_Data", "scope":"stringconcat_instantiate", "kind":"variable"}
+{"name":"stringconcat_handler", "pointer":false, "type":"void", "scope:"_global", "kind":"function"}
+{"name":"eh", "pointer":true, "type":"Leaf", "scope":"stringconcat_handler","kind":"parameter"}
+{"name":"mev", "pointer":true, "type":"Mevent", "scope":"stringconcat_handler","kind":"parameter"}
+{"name":"inst", "pointer":true, "type":"StringConcat_Instance_Data", "scope":"stringconcat_handler", "kind":"variable"}
+{"name":"maybe_stringconcat", "pointer":false, "type":"void", "scope:"_global", "kind":"function"}
+{"name":"eh", "pointer":true, "type":"Leaf", "scope":"maybe_stringconcat","kind":"parameter"}
+{"name":"inst", "pointer":true, "type":"StringConcat_Instance_Dat", "scope":"maybe_stringconcat","kind":"parameter"}
+{"name":"mev", "pointer":true, "type":"Mevent", "scope":"maybe_stringconcat","kind":"parameter"}
+{"name":"concatenated_string", "pointer":true, "type":"Str", "scope":"maybe_stringconcat", "kind":"variable"}
+{"name":"concatenated_string", "pointer":true, "type":"Str", "scope":"maybe_stringconcat", "kind":"variable"}
+{"name":"string_constant_instantiate", "pointer":true, "type":"Leaf", "scope:"_global", "kind":"function"}
+{"name":"reg", "pointer":true, "type":"Component_Registry", "scope":"string_constant_instantiate","kind":"parameter"}
+{"name":"owner", "pointer":true, "type":"Container", "scope":"string_constant_instantiate","kind":"parameter"}
+{"name":"name", "pointer":true, "type":"Str", "scope":"string_constant_instantiate","kind":"parameter"}
+{"name":"template_data", "pointer":false", type:"Ignored", "scope":"string_constant_instantiate","kind":"parameter"}
+{"name":"arg", "pointer":false", type:"Ignored", "scope":"string_constant_instantiate","kind":"parameter"}
+{"name":"string_constant_handler", "pointer":false, "type":"void", "scope:"_global", "kind":"function"}
+{"name":"eh", "pointer":true, "type":"Leaf", "scope":"string_constant_handler","kind":"parameter"}
+{"name":"mev", "pointer":true, "type":"Mevent", "scope":"string_constant_handler","kind":"parameter"}
+{"name":"s", "pointer":true, "type":"Str", "scope":"string_constant_handler", "kind":"variable"}
+{"name":"fakepipename_instantiate", "pointer":true, "type":"Leaf", "scope:"_global", "kind":"function"}
+{"name":"reg", "pointer":true, "type":"Component_Registry", "scope":"fakepipename_instantiate","kind":"parameter"}
+{"name":"owner", "pointer":true, "type":"Container", "scope":"fakepipename_instantiate","kind":"parameter"}
+{"name":"name", "pointer":true, "type":"Str", "scope":"fakepipename_instantiate","kind":"parameter"}
+{"name":"template_data", "pointer":false", type:"Ignored", "scope":"fakepipename_instantiate","kind":"parameter"}
+{"name":"arg", "pointer":false", type:"Ignored", "scope":"fakepipename_instantiate","kind":"parameter"}
+{"name":"instance_name", "pointer":true, "type":"Str", "scope":"fakepipename_instantiate", "kind":"variable"}
+{"name":"rand", "pointer":false", type:"Number", "scope":"global", "kind":"global variable"}
+{"name":"fakepipename_handler", "pointer":false, "type":"void", "scope:"_global", "kind":"function"}
+{"name":"eh", "pointer":true, "type":"Leaf", "scope":"fakepipename_handler","kind":"parameter"}
+{"name":"mev", "pointer":true, "type":"Mevent", "scope":"fakepipename_handler","kind":"parameter"}
+{"name":"Switch1star_Instance_Data", "pointer":false, "type":"obj", "scope:"_global", "kind":"obj"}
+{"name":"state", "pointer":true, "type":"Str", "scope":"Switch1star_Instance_Data", "kind":"variable"}
+{"name":"switch1star_reset_handler", "pointer":false, "type":"void", "scope:"_global", "kind":"function"}
+{"name":"eh", "pointer":true, "type":"Leaf", "scope":"switch1star_reset_handler","kind":"parameter"}
+{"name":"inst", "pointer":true, "type":"Switch1star_Instance_Data", "scope":"switch1star_reset_handler", "kind":"variable"}
+{"name":"inst", "pointer":true, "type":"Switch1star_Instance_Data", "scope":"switch1star_reset_handler", "kind":"variable"}
+{"name":"switch1star_instantiate", "pointer":true, "type":"Leaf", "scope:"_global", "kind":"function"}
+{"name":"reg", "pointer":true, "type":"Component_Registry", "scope":"switch1star_instantiate","kind":"parameter"}
+{"name":"owner", "pointer":true, "type":"Container", "scope":"switch1star_instantiate","kind":"parameter"}
+{"name":"name", "pointer":true, "type":"Str", "scope":"switch1star_instantiate","kind":"parameter"}
+{"name":"template_data", "pointer":false", type:"Ignored", "scope":"switch1star_instantiate","kind":"parameter"}
+{"name":"arg", "pointer":false", type:"Ignored", "scope":"switch1star_instantiate","kind":"parameter"}
+{"name":"name_with_id", "pointer":true, "type":"Str", "scope":"switch1star_instantiate", "kind":"variable"}
+{"name":"instp", "pointer":true, "type":"Switch1star_Instance_Data", "scope":"switch1star_instantiate", "kind":"variable"}
+{"name":"switch1star_handler", "pointer":false, "type":"void", "scope:"_global", "kind":"function"}
+{"name":"eh", "pointer":true, "type":"Leaf", "scope":"switch1star_handler","kind":"parameter"}
+{"name":"mev", "pointer":true, "type":"Mevent", "scope":"switch1star_handler","kind":"parameter"}
+{"name":"inst", "pointer":true, "type":"Switch1star_Instance_Data", "scope":"switch1star_handler", "kind":"variable"}
+{"name":"whichOutput", "pointer":true, "type":"Str", "scope":"switch1star_handler", "kind":"variable"}
+{"name":"StringAccumulator", "pointer":false, "type":"obj", "scope:"_global", "kind":"obj"}
+{"name":"s", "pointer":true, "type":"Str", "scope":"StringAccumulator", "kind":"variable"}
+{"name":"strcatstar_reset_handler", "pointer":false, "type":"void", "scope:"_global", "kind":"function"}
+{"name":"eh", "pointer":true, "type":"Leaf", "scope":"strcatstar_reset_handler","kind":"parameter"}
+{"name":"strcatstar_instantiate", "pointer":true, "type":"Leaf", "scope:"_global", "kind":"function"}
+{"name":"reg", "pointer":true, "type":"Component_Registry", "scope":"strcatstar_instantiate","kind":"parameter"}
+{"name":"owner", "pointer":true, "type":"Container", "scope":"strcatstar_instantiate","kind":"parameter"}
+{"name":"name", "pointer":true, "type":"Str", "scope":"strcatstar_instantiate","kind":"parameter"}
+{"name":"template_data", "pointer":false", type:"Ignored", "scope":"strcatstar_instantiate","kind":"parameter"}
+{"name":"arg", "pointer":false", type:"Ignored", "scope":"strcatstar_instantiate","kind":"parameter"}
+{"name":"name_with_id", "pointer":true, "type":"Str", "scope":"strcatstar_instantiate", "kind":"variable"}
+{"name":"instp", "pointer":true, "type":"Switch1star_Instance_Data", "scope":"strcatstar_instantiate", "kind":"variable"}
+{"name":"strcatstar_handler", "pointer":false, "type":"void", "scope:"_global", "kind":"function"}
+{"name":"eh", "pointer":true, "type":"Leaf", "scope":"strcatstar_handler","kind":"parameter"}
+{"name":"mev", "pointer":true, "type":"Mevent", "scope":"strcatstar_handler","kind":"parameter"}
+{"name":"accum", "pointer":true, "type":"Switch1star_Instance_Data", "scope":"strcatstar_handler", "kind":"variable"}
+{"name":"stop_instantiate", "pointer":true, "type":"Leaf", "scope:"_global", "kind":"function"}
+{"name":"reg", "pointer":true, "type":"Component_Registry", "scope":"stop_instantiate","kind":"parameter"}
+{"name":"owner", "pointer":true, "type":"Container", "scope":"stop_instantiate","kind":"parameter"}
+{"name":"name", "pointer":true, "type":"Str", "scope":"stop_instantiate","kind":"parameter"}
+{"name":"template_data", "pointer":false", type:"Ignored", "scope":"stop_instantiate","kind":"parameter"}
+{"name":"arg", "pointer":false", type:"Ignored", "scope":"stop_instantiate","kind":"parameter"}
+{"name":"name_with_id", "pointer":true, "type":"Str", "scope":"stop_instantiate", "kind":"variable"}
+{"name":"inst", "pointer":true, "type":"Switch1star_Instance_Data", "scope":"stop_instantiate", "kind":"variable"}
+{"name":"stop_handler", "pointer":false, "type":"void", "scope:"_global", "kind":"function"}
+{"name":"eh", "pointer":true, "type":"Leaf", "scope":"stop_handler","kind":"parameter"}
+{"name":"mev", "pointer":true, "type":"Mevent", "scope":"stop_handler","kind":"parameter"}
+{"name":"inst", "pointer":true, "type":"any", "scope":"stop_handler", "kind":"variable"}
+{"name":"parent", "pointer":true, "type":"Container", "scope":"stop_handler", "kind":"variable"}
+{"name":"s", "pointer":true, "type":"Str", "scope":"stop_handler", "kind":"variable"}
+{"name":"initialize_stock_components", "pointer":false, "type":"void", "scope:"_global", "kind":"function"}
+{"name":"reg", "pointer":true, "type":"Component_Registry", "scope":"initialize_stock_components","kind":"parameter"}

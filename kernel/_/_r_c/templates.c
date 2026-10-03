@@ -24,7 +24,7 @@ Template fresh_Template () {
     return self;
 }
                                                        /* line 10 */
-void mkTemplate (name,template_data,instantiator) {
+void* mkTemplate (name,template_data,instantiator) {
                                                        /* line 11 */
     templ =  Template ()                               /* line 12 */
     templ.name =  name                                 /* line 13 */
@@ -36,7 +36,7 @@ void mkTemplate (name,template_data,instantiator) {
 /*  the actual data structure depends on the json parser library used by the target language  *//* line 21 */
 /*  the form of the data structure doesn;t matter here, as long as we use lookup operators "@" in this .rt code  *//* line 22 *//* line 23 */
 /*  ... by reading the little-net from an external file  *//* line 24 */
-void lnet2internal_from_file (container_xml) {
+void* lnet2internal_from_file (container_xml) {
                                                        /* line 25 */
     pathname = os.getenv('PBPWD', '<none>')            /* line 26 */
     filename =  os.path.basename ( container_xml)      /* line 27 */
@@ -56,7 +56,7 @@ void lnet2internal_from_file (container_xml) {
                                                        /* line 28 *//* line 29 *//* line 30 */}
 
 /*  ... by reading the little-net from an embedded string (an aspect of creating t2t tool code)  *//* line 31 */
-void lnet2internal_from_string (lnet) {
+void* lnet2internal_from_string (lnet) {
                                                        /* line 32 */
     external
     try:
@@ -67,23 +67,23 @@ void lnet2internal_from_string (lnet) {
         return None
                                                        /* line 33 *//* line 34 *//* line 35 */}
 
-void delete_decls (d) {
+void* delete_decls (d) {
                                                        /* line 36 */
                                                        /* line 37 *//* line 38 *//* line 39 */}
 
-void make_component_registry () {
+void* make_component_registry () {
                                                        /* line 40 */
     return ( Component_Registry ()                     /* line 41 */)/* line 42 *//* line 43 */}
 
-void register_component (reg,template) {
+void* register_component (reg,template) {
 
     return (abstracted_register_component ( reg, template, False))/* line 44 */}
 
-void register_component_allow_overwriting (reg,template) {
+void* register_component_allow_overwriting (reg,template) {
 
     return (abstracted_register_component ( reg, template, True))/* line 45 *//* line 46 */}
 
-void abstracted_register_component (reg,template,ok_to_overwrite) {
+void* abstracted_register_component (reg,template,ok_to_overwrite) {
                                                        /* line 47 */
     name = mangle_name ( template.name)                /* line 48 */
     if  reg!= NULL and  name in  reg.templates and not  ok_to_overwrite:/* line 49 */
@@ -93,7 +93,7 @@ void abstracted_register_component (reg,template,ok_to_overwrite) {
         reg.templates [name] =  template               /* line 53 */
         return ( reg)                                  /* line 54 */;/* line 55 *//* line 56 *//* line 57 */}
 
-void get_component_instance (reg,full_name,owner) {
+void* get_component_instance (reg,full_name,owner) {
                                                        /* line 58 */
     /*  If a part name begins with ":", it is treated as a JIT part and we let the runtime factory generate it on-the-fly (see kernel_external.rt and external.rt) else it is assumed to be a regular AOT part and assumed to have been registered before runtime, so we just pull its template out of the registry and instantiate it.  *//* line 59 */
     /*  ":?<string>" is a probe part that is tagged with <string>  *//* line 60 */
@@ -118,7 +118,7 @@ void get_component_instance (reg,full_name,owner) {
             load_error ( str( "Registry Error (B): Can't find component /") +  str( template_name) +  "/"  )/* line 80 */
             return ( NULL)                             /* line 81 *//* line 82 *//* line 83 *//* line 84 *//* line 85 */}
 
-void generate_instance_name (owner,template_name) {
+void* generate_instance_name (owner,template_name) {
                                                        /* line 86 */
     owner_name =  ""                                   /* line 87 */
     instance_name =  template_name                     /* line 88 */
@@ -129,7 +129,7 @@ void generate_instance_name (owner,template_name) {
         instance_name =  template_name;                /* line 93 *//* line 94 */
     return ( instance_name)                            /* line 95 *//* line 96 *//* line 97 */}
 
-void mangle_name (s) {
+void* mangle_name (s) {
                                                        /* line 98 */
     /*  trim name to remove code from Container component names _ deferred until later (or never) *//* line 99 */
     return ( s)                                        /* line 100 *//* line 101 */}
