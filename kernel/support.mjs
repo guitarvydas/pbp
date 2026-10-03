@@ -37,6 +37,10 @@ function getdeclaration(scope, id) {
     return `void* ${id}`;
 }
 
-function getuse(scope, id) {
-    return  `(*id)`;
+function getmaybederef(deref, scope, id) {
+    if (deref = "false") {
+	return id;
+    } else {
+	return  `(*id)`;
+    }
 }
