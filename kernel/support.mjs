@@ -38,9 +38,22 @@ function getdeclaration(scope, id) {
 }
 
 function getmaybederef(deref, scope, id) {
-    if (deref = "false") {
+    if (deref === "⊥") {
+	console.error (`in getmaybederef false=${deref} ${scope} ${id}`);
 	return id;
     } else {
-	return  `(*id)`;
+	console.error (`in getmaybederef else ${deref} ${scope} ${id}`);
+	return `(*${id})`;
     }
 }
+
+function pderef(s) {
+    return `**deref=${s}**`;
+}
+
+import { appendFileSync } from 'fs';
+
+function pbplog (s) {
+    appendFileSync('pbplog.txt', s + "\n");
+}
+

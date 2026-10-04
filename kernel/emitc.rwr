@@ -5,7 +5,7 @@
 
 Main [ TopLevel+] = 
   ⎡ scope=‛_global’
-    ⎡ deref=‛false’
+    ⎡ deref=‛⊥’
        ‛«TopLevel»’
     ⎦
   ⎦
@@ -203,12 +203,30 @@ ExpExp_basic [ Primary] =‛«Primary»’
 Primary_call [p actuals] = ‛«p» «actuals»’
 Primary_plain [p] = ‛«p»’
 
-PrimaryIndexed_lookupident [p _at key] = ‛«p» [«key»]’
-PrimaryIndexed_lookup [p _at key] = ‛«p» [«key»]’
-PrimaryIndexed_fieldident [p _dot key] = ‛«p».«key»’ 
-PrimaryIndexed_field [p _dot key] = ‛«p».«key»’ 
-PrimaryIndexed_index [p lb e rb] = ‛«p» [«e»]’ 
-PrimaryIndexed_nthslice [p lb ds+ _colon rb] = ‛«p» [«ds»:]’
+PrimaryIndexed_lookupident [p _at key] =
+  ⎡ deref=‛⊤’ 
+    ‛«p» [«key»]’ 
+  ⎦
+PrimaryIndexed_lookup [p _at key] = 
+  ⎡ deref=‛⊤’
+      ‛«p» [«key»]’
+  ⎦
+PrimaryIndexed_fieldident [p _dot key] =
+  ⎡ deref=‛⊤’
+      ‛ «p».«key»’
+  ⎦
+PrimaryIndexed_field [p _dot key] =
+  ⎡ deref=‛⊤’
+      ‛«p».«key»’
+  ⎦
+PrimaryIndexed_index [p lb e rb] =
+  ⎡ deref=‛⊤’
+      ‛«p» [«e»]’
+  ⎦
+PrimaryIndexed_nthslice [p lb ds+ _colon rb] =
+  ⎡ deref=‛⊤’
+      ‛«p» [«ds»:]’
+  ⎦
 PrimaryIndexed_atom [a] = ‛«a»’
 
 Atom_external [x] = ‛«x»’
