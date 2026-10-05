@@ -1,7 +1,7 @@
 
-{"name":"digits", "pointer":false", type:"Array_of_Str", "scope":"global", "kind":"global variable"}
-{"name":"subscripted_digit", "pointer":true, "type":"Str", "scope:"_global", "kind":"function"}
-{"name":"n", "pointer":false", type:"Int", "scope":"subscripted_digit","kind":"parameter"}
-{"name":"counter", "pointer":false", type:"Int", "scope":"global", "kind":"global variable"}
-{"name":"gensymbol", "pointer":true, "type":"Str", "scope:"_global", "kind":"function"}
-{"name":"s", "pointer":true, "type":"Str", "scope":"gensymbol","kind":"parameter"}
+{"name":"digits", "indir":1, "type":"Array_of_Str", "scope":"global", "kind":"variable"}
+{"name":"subscripted_digit", "indir":2, "type":"Str", "scope":"global", "kind":"function"}
+{"name":"n", "indir":1, "type":"Int", "scope":"subscripted_digit","kind":"parameter"}
+{"name":"counter", "indir":1, "type":"Int", "scope":"global", "kind":"variable"}
+{"name":"gensymbol", "indir":2, "type":"Str", "scope":"global", "kind":"function"}
+{"name":"s", "indir":2, "type":"Str", "scope":"gensymbol","kind":"parameter"}

@@ -6,14 +6,14 @@
   TopLevel_defvar [x] = ‛«x»’
   Defn [_defn_ id _eq_ functiontype Formals FunctionBody] =
   ⎡ scope=‛«id»’
-     ‛\n{"name":"«id»", «functiontype», "scope:"_global", "kind":"function"}«Formals»«FunctionBody»’
+     ‛\n{"name":"«id»", «functiontype», "scope":"global", "kind":"function"}«Formals»«FunctionBody»’
   ⎦
   DefObj [_defobj_ id ObjBody] =
   ⎡ scope=‛«id»’
-     ‛\n{"name":"«id»", "pointer":false, "type":"obj", "scope:"_global", "kind":"obj"}«ObjBody»’
+     ‛\n{"name":"«id»", "indir":1, "type":"obj", "scope":"global", "kind":"obj"}«ObjBody»’
   ⎦
-  DefVar [_1 id _3 ty] = ‛\n{"name":"«id»", «ty», "scope":"global", "kind":"global variable"}’
-  FunctionType_procedure [_tilde_] = ‛"pointer":false, "type":"void"’
+  DefVar [_1 id _3 ty] = ‛\n{"name":"«id»", «ty», "scope":"global", "kind":"variable"}’
+  FunctionType_procedure [_tilde_] = ‛"indir":1, "type":"void"’
   FunctionType_returnvalue [ty] = ‛«ty»’
 
   Formals [_lp typedvarcomma _rp] = ‛«typedvarcomma»’
@@ -25,9 +25,9 @@
   BodyInnards_bracket [_l BodyInnards? _r rec?] = ‛«BodyInnards»«rec»’
   BodyInnards_TypedVar [typedid rec?] = ‛\n{«typedid», "kind":"variable"}«rec»’
   BodyInnards_other [c rec?] = ‛«rec»’
-  Type_pointer [_at id] = ‛"pointer":true, "type":"«id»"’
-  Type_pointerany [_at] = ‛"pointer":true, "type":"any"’
-  Type_plain [id] = ‛"pointer":false", type:"«id»"’
+  Type_pointer [_at id] = ‛"indir":2, "type":"«id»"’
+  Type_pointerany [_at] = ‛"indir":2, "type":"any"’
+  Type_plain [id] = ‛"indir":1, "type":"«id»"’
   id [cs+] = ‛«cs»’
   Line [_line digit+] = ‛’
 

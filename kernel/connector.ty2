@@ -1,29 +1,29 @@
 
-{"name":"enumDown", "pointer":false", type:"Dir", "scope":"global", "kind":"global variable"}
-{"name":"enumAcross", "pointer":false", type:"Dir", "scope":"global", "kind":"global variable"}
-{"name":"enumUp", "pointer":false", type:"Dir", "scope":"global", "kind":"global variable"}
-{"name":"enumThrough", "pointer":false", type:"Dir", "scope":"global", "kind":"global variable"}
-{"name":"Connector", "pointer":false, "type":"obj", "scope:"_global", "kind":"obj"}
-{"name":"direction", "pointer":false", type:"Dir", "scope":"Connector", "kind":"variable"}
-{"name":"sender", "pointer":true, "type":"Sender", "scope":"Connector", "kind":"variable"}
-{"name":"receiver", "pointer":true, "type":"Receiver", "scope":"Connector", "kind":"variable"}
-{"name":"Sender", "pointer":false, "type":"obj", "scope:"_global", "kind":"obj"}
-{"name":"name", "pointer":true, "type":"Str", "scope":"Sender", "kind":"variable"}
-{"name":"component", "pointer":true, "type":"Eh", "scope":"Sender", "kind":"variable"}
-{"name":"port", "pointer":false", type:"Port", "scope":"Sender", "kind":"variable"}
-{"name":"Receiver", "pointer":false, "type":"obj", "scope:"_global", "kind":"obj"}
-{"name":"name", "pointer":true, "type":"Str", "scope":"Receiver", "kind":"variable"}
-{"name":"queue", "pointer":true, "type":"Queue", "scope":"Receiver", "kind":"variable"}
-{"name":"port", "pointer":false", type:"Port", "scope":"Receiver", "kind":"variable"}
-{"name":"component", "pointer":true, "type":"Eh", "scope":"Receiver", "kind":"variable"}
-{"name":"mkSender", "pointer":true, "type":"Sender", "scope:"_global", "kind":"function"}
-{"name":"name", "pointer":true, "type":"Str", "scope":"mkSender","kind":"parameter"}
-{"name":"component", "pointer":true, "type":"Eh", "scope":"mkSender","kind":"parameter"}
-{"name":"port", "pointer":false", type:"Port", "scope":"mkSender","kind":"parameter"}
-{"name":"s", "pointer":true, "type":"Sender", "scope":"mkSender", "kind":"variable"}
-{"name":"mkReceiver", "pointer":true, "type":"Receiver", "scope:"_global", "kind":"function"}
-{"name":"name", "pointer":true, "type":"Str", "scope":"mkReceiver","kind":"parameter"}
-{"name":"component", "pointer":true, "type":"Eh", "scope":"mkReceiver","kind":"parameter"}
-{"name":"port", "pointer":false", type:"Port", "scope":"mkReceiver","kind":"parameter"}
-{"name":"q", "pointer":true, "type":"Queue", "scope":"mkReceiver","kind":"parameter"}
-{"name":"r", "pointer":true, "type":"Receiver", "scope":"mkReceiver", "kind":"variable"}
+{"name":"enumDown", "indir":1, "type":"Dir", "scope":"global", "kind":"variable"}
+{"name":"enumAcross", "indir":1, "type":"Dir", "scope":"global", "kind":"variable"}
+{"name":"enumUp", "indir":1, "type":"Dir", "scope":"global", "kind":"variable"}
+{"name":"enumThrough", "indir":1, "type":"Dir", "scope":"global", "kind":"variable"}
+{"name":"Connector", "indir":1, "type":"obj", "scope":"global", "kind":"obj"}
+{"name":"direction", "indir":1, "type":"Dir", "scope":"Connector", "kind":"variable"}
+{"name":"sender", "indir":2, "type":"Sender", "scope":"Connector", "kind":"variable"}
+{"name":"receiver", "indir":2, "type":"Receiver", "scope":"Connector", "kind":"variable"}
+{"name":"Sender", "indir":1, "type":"obj", "scope":"global", "kind":"obj"}
+{"name":"name", "indir":2, "type":"Str", "scope":"Sender", "kind":"variable"}
+{"name":"component", "indir":2, "type":"Eh", "scope":"Sender", "kind":"variable"}
+{"name":"port", "indir":1, "type":"Port", "scope":"Sender", "kind":"variable"}
+{"name":"Receiver", "indir":1, "type":"obj", "scope":"global", "kind":"obj"}
+{"name":"name", "indir":2, "type":"Str", "scope":"Receiver", "kind":"variable"}
+{"name":"queue", "indir":2, "type":"Queue", "scope":"Receiver", "kind":"variable"}
+{"name":"port", "indir":1, "type":"Port", "scope":"Receiver", "kind":"variable"}
+{"name":"component", "indir":2, "type":"Eh", "scope":"Receiver", "kind":"variable"}
+{"name":"mkSender", "indir":2, "type":"Sender", "scope":"global", "kind":"function"}
+{"name":"name", "indir":2, "type":"Str", "scope":"mkSender","kind":"parameter"}
+{"name":"component", "indir":2, "type":"Eh", "scope":"mkSender","kind":"parameter"}
+{"name":"port", "indir":1, "type":"Port", "scope":"mkSender","kind":"parameter"}
+{"name":"s", "indir":2, "type":"Sender", "scope":"mkSender", "kind":"variable"}
+{"name":"mkReceiver", "indir":2, "type":"Receiver", "scope":"global", "kind":"function"}
+{"name":"name", "indir":2, "type":"Str", "scope":"mkReceiver","kind":"parameter"}
+{"name":"component", "indir":2, "type":"Eh", "scope":"mkReceiver","kind":"parameter"}
+{"name":"port", "indir":1, "type":"Port", "scope":"mkReceiver","kind":"parameter"}
+{"name":"q", "indir":2, "type":"Queue", "scope":"mkReceiver","kind":"parameter"}
+{"name":"r", "indir":2, "type":"Receiver", "scope":"mkReceiver", "kind":"variable"}

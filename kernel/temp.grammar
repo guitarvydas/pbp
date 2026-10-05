@@ -1,0 +1,34 @@
+typeExtractor2 {
+  Main = TopLevel+
+  TopLevel =
+    | Defn -- defn
+    | DefObj -- obj
+    | Line -- line
+    | DefVar -- defvar
+  Defn = "defn"  id "≡" FunctionType Formals FunctionBody
+  DefObj = "defobj" id ObjBody
+  DefVar = "defvar" id "≡" Type
+  FunctionType =
+    | "~" -- procedure
+    | Type -- returnvalue
+  Formals = "(" TypedParamComma? ")"
+  TypedParamComma = TypedID ","? TypedParamComma?
+  TypedID = id "≡" Type
+  ObjBody = FunctionBody
+  FunctionBody = "{" BodyInnards? "}"
+  BodyInnards =
+    | "{" BodyInnards? "}" BodyInnards? -- brace
+    | "(" BodyInnards? ")" BodyInnards? -- parenthesis
+    | "[" BodyInnards? "]" BodyInnards? -- bracket
+    | TypedID BodyInnards?            -- TypedVar
+    | ~"}" ~")" ~"]" any  BodyInnards? -- other
+  Type =
+    | "@" id -- pointer
+    | "@" ~id -- pointerany
+    | id     -- plain
+  id = (alnum | "_")+
+  Line = "#line" digit+
+
+  exp = expchar+
+  expchar = ~"#line" ~"def" any
+}

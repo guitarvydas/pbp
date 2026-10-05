@@ -39,10 +39,8 @@ function getdeclaration(scope, id) {
 
 function getmaybederef(deref, scope, id) {
     if (deref === "⊥") {
-	console.error (`in getmaybederef false=${deref} ${scope} ${id}`);
 	return id;
     } else {
-	console.error (`in getmaybederef else ${deref} ${scope} ${id}`);
 	return `(*${id})`;
     }
 }

@@ -1,4 +1,5 @@
 #!/bin/bash
+# clone of @make with additions instead of calling @makec for development
 
 set -eE
 export SHELLOPTS
@@ -54,5 +55,7 @@ rm -f temp.*
 
 
 
-./extract2.bash "container.tyty" | tee "container.ty2" | python3 rm_extra_commas.py
-#./do_typeextractor2.bash
+# ./extract2.bash "container.tyty" | tee "container.ty2" | python3 rm_extra_commas.py
+./do_typeextractor2.bash
+cat *.ty2 >typetable.jsn
+

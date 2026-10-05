@@ -1,13 +1,13 @@
 
-{"name":"make_leaf", "pointer":true, "type":"Leaf", "scope:"_global", "kind":"function"}
-{"name":"name", "pointer":true, "type":"Str", "scope":"make_leaf","kind":"parameter"}
-{"name":"owner", "pointer":true, "type":"Container", "scope":"make_leaf","kind":"parameter"}
-{"name":"instance_data", "pointer":true, "type":"any", "scope":"make_leaf","kind":"parameter"}
-{"name":"arg", "pointer":true, "type":"Str", "scope":"make_leaf","kind":"parameter"}
-{"name":"handler", "pointer":false", type:"Fhandler", "scope":"make_leaf","kind":"parameter"}
-{"name":"reset_handler", "pointer":false", type:"Freset", "scope":"make_leaf","kind":"parameter"}
-{"name":"eh", "pointer":true, "type":"Leaf", "scope":"make_leaf", "kind":"variable"}
-{"name":"nm", "pointer":true, "type":"Str", "scope":"make_leaf", "kind":"variable"}
-{"name":"nm", "pointer":true, "type":"Part", "scope":"make_leaf", "kind":"variable"}
-{"name":"leaf_reset", "pointer":false, "type":"void", "scope:"_global", "kind":"function"}
-{"name":"part", "pointer":true, "type":"Leaf", "scope":"leaf_reset","kind":"parameter"}
+{"name":"make_leaf", "indir":2, "type":"Leaf", "scope":"global", "kind":"function"}
+{"name":"name", "indir":2, "type":"Str", "scope":"make_leaf","kind":"parameter"}
+{"name":"owner", "indir":2, "type":"Container", "scope":"make_leaf","kind":"parameter"}
+{"name":"instance_data", "indir":2, "type":"any", "scope":"make_leaf","kind":"parameter"}
+{"name":"arg", "indir":2, "type":"Str", "scope":"make_leaf","kind":"parameter"}
+{"name":"handler", "indir":1, "type":"Fhandler", "scope":"make_leaf","kind":"parameter"}
+{"name":"reset_handler", "indir":1, "type":"Freset", "scope":"make_leaf","kind":"parameter"}
+{"name":"eh", "indir":2, "type":"Leaf", "scope":"make_leaf", "kind":"variable"}
+{"name":"nm", "indir":2, "type":"Str", "scope":"make_leaf", "kind":"variable"}
+{"name":"nm", "indir":2, "type":"Part", "scope":"make_leaf", "kind":"variable"}
+{"name":"leaf_reset", "indir":1, "type":"void", "scope":"global", "kind":"function"}
+{"name":"part", "indir":2, "type":"Leaf", "scope":"leaf_reset","kind":"parameter"}
