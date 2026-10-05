@@ -6,15 +6,15 @@
   TopLevel_defvar [x] = ‛«x»’
   Defn [_defn_ id _eq_ functiontype Formals FunctionBody] =
   ⎡ scope=‛«id»’
-     ‛\n{"name":"«id»", «functiontype», "scope":"global", "kind":"function"}«Formals»«FunctionBody»’
+     ‛\n{"name":"«id»", «functiontype», "scope":"global" }«Formals»«FunctionBody»’
   ⎦
   DefObj [_defobj_ id ObjBody] =
   ⎡ scope=‛«id»’
      ‛\n{"name":"«id»", "indir":1, "type":"obj", "scope":"global", "kind":"obj"}«ObjBody»’
   ⎦
   DefVar [_1 id _3 ty] = ‛\n{"name":"«id»", «ty», "scope":"global", "kind":"variable"}’
-  FunctionType_procedure [_tilde_] = ‛"indir":1, "type":"void"’
-  FunctionType_returnvalue [ty] = ‛«ty»’
+  FunctionType_procedure [_tilde_] = ‛"indir":0, "type":"void", "kind":"proc"’
+  FunctionType_returnvalue [ty] = ‛«ty», "kind":"retproc"’
 
   Formals [_lp typedvarcomma _rp] = ‛«typedvarcomma»’
   TypedParamComma [typedID _comma? typedparamcomma?] = ‛\n{«typedID»,"kind":"parameter"}«typedparamcomma»’

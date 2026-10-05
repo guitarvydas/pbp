@@ -1,5 +1,5 @@
 
-{"name":"jit_instantiate", "indir":2, "type":"Part", "scope":"global", "kind":"function"}
+{"name":"jit_instantiate", "indir":2, "type":"Part", "kind":"retproc", "scope":"global" }
 {"name":"reg", "indir":2, "type":"Component_Registry", "scope":"jit_instantiate","kind":"parameter"}
 {"name":"owner", "indir":2, "type":"Container", "scope":"jit_instantiate","kind":"parameter"}
 {"name":"name", "indir":2, "type":"Str", "scope":"jit_instantiate","kind":"parameter"}
@@ -7,17 +7,17 @@
 {"name":"name_with_id", "indir":2, "type":"Str", "scope":"jit_instantiate", "kind":"variable"}
 {"name":"inst", "indir":2, "type":"Part", "scope":"jit_instantiate", "kind":"variable"}
 {"name":"firstc", "indir":1, "type":"Char", "scope":"jit_instantiate", "kind":"variable"}
-{"name":"handle_jit", "indir":1, "type":"void", "scope":"global", "kind":"function"}
+{"name":"handle_jit", "indir":0, "type":"void", "kind":"proc", "scope":"global" }
 {"name":"eh", "indir":2, "type":"Part", "scope":"handle_jit","kind":"parameter"}
 {"name":"mev", "indir":2, "type":"Mevent", "scope":"handle_jit","kind":"parameter"}
 {"name":"s", "indir":2, "type":"Str", "scope":"handle_jit", "kind":"variable"}
 {"name":"firstc", "indir":1, "type":"Char", "scope":"handle_jit", "kind":"variable"}
-{"name":"probe_handler", "indir":1, "type":"void", "scope":"global", "kind":"function"}
+{"name":"probe_handler", "indir":0, "type":"void", "kind":"proc", "scope":"global" }
 {"name":"eh", "indir":2, "type":"Part", "scope":"probe_handler","kind":"parameter"}
 {"name":"tag", "indir":1, "type":"Port", "scope":"probe_handler","kind":"parameter"}
 {"name":"mev", "indir":2, "type":"Mevent", "scope":"probe_handler","kind":"parameter"}
 {"name":"s", "indir":2, "type":"Str", "scope":"probe_handler", "kind":"variable"}
-{"name":"shell_out_handler", "indir":1, "type":"void", "scope":"global", "kind":"function"}
+{"name":"shell_out_handler", "indir":0, "type":"void", "kind":"proc", "scope":"global" }
 {"name":"eh", "indir":2, "type":"Part", "scope":"shell_out_handler","kind":"parameter"}
 {"name":"tag", "indir":1, "type":"Port", "scope":"shell_out_handler","kind":"parameter"}
 {"name":"mev", "indir":2, "type":"Mevent", "scope":"shell_out_handler","kind":"parameter"}

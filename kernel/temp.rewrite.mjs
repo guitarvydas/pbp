@@ -41,7 +41,7 @@ return exit_rule ("TopLevel_defvar");
 Defn : function (_defn_,id,_eq_,functiontype,Formals,FunctionBody,) {
 enter_rule ("Defn");
     pushParameter ("scope", `${id.rwr ()}`);
-    set_return (`\n{"name":"${id.rwr ()}", ${functiontype.rwr ()}, "scope":"global", "kind":"function"}${Formals.rwr ()}${FunctionBody.rwr ()}`);
+    set_return (`\n{"name":"${id.rwr ()}", ${functiontype.rwr ()}, "scope":"global" }${Formals.rwr ()}${FunctionBody.rwr ()}`);
 popParameter ("scope");
 return exit_rule ("Defn");
 },
@@ -59,12 +59,12 @@ return exit_rule ("DefVar");
 },
 FunctionType_procedure : function (_tilde_,) {
 enter_rule ("FunctionType_procedure");
-    set_return (`"indir":1, "type":"void"`);
+    set_return (`"indir":0, "type":"void", "kind":"proc"`);
 return exit_rule ("FunctionType_procedure");
 },
 FunctionType_returnvalue : function (ty,) {
 enter_rule ("FunctionType_returnvalue");
-    set_return (`${ty.rwr ()}`);
+    set_return (`${ty.rwr ()}, "kind":"retproc"`);
 return exit_rule ("FunctionType_returnvalue");
 },
 Formals : function (_lp,typedvarcomma,_rp,) {

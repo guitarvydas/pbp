@@ -7,23 +7,23 @@
 {"name":"Mevent", "indir":1, "type":"obj", "scope":"global", "kind":"obj"}
 {"name":"port", "indir":1, "type":"Port", "scope":"Mevent", "kind":"variable"}
 {"name":"payload", "indir":2, "type":"Payload", "scope":"Mevent", "kind":"variable"}
-{"name":"clone_port", "indir":1, "type":"Port", "scope":"global", "kind":"function"}
+{"name":"clone_port", "indir":1, "type":"Port", "kind":"retproc", "scope":"global" }
 {"name":"s", "indir":1, "type":"Port", "scope":"clone_port","kind":"parameter"}
-{"name":"make_mevent", "indir":2, "type":"Mevent", "scope":"global", "kind":"function"}
+{"name":"make_mevent", "indir":2, "type":"Mevent", "kind":"retproc", "scope":"global" }
 {"name":"port", "indir":1, "type":"Port", "scope":"make_mevent","kind":"parameter"}
 {"name":"datum", "indir":2, "type":"Datum", "scope":"make_mevent","kind":"parameter"}
 {"name":"p", "indir":1, "type":"Port", "scope":"make_mevent", "kind":"variable"}
 {"name":"m", "indir":2, "type":"Mevent", "scope":"make_mevent", "kind":"variable"}
-{"name":"mevent_clone", "indir":2, "type":"Mevent", "scope":"global", "kind":"function"}
+{"name":"mevent_clone", "indir":2, "type":"Mevent", "kind":"retproc", "scope":"global" }
 {"name":"mev", "indir":2, "type":"Mevent", "scope":"mevent_clone","kind":"parameter"}
 {"name":"m", "indir":2, "type":"Mevent", "scope":"mevent_clone", "kind":"variable"}
-{"name":"destroy_mevent", "indir":1, "type":"void", "scope":"global", "kind":"function"}
+{"name":"destroy_mevent", "indir":0, "type":"void", "kind":"proc", "scope":"global" }
 {"name":"mev", "indir":2, "type":"Mevent", "scope":"destroy_mevent","kind":"parameter"}
-{"name":"destroy_datum", "indir":1, "type":"void", "scope":"global", "kind":"function"}
+{"name":"destroy_datum", "indir":0, "type":"void", "kind":"proc", "scope":"global" }
 {"name":"mev", "indir":2, "type":"Mevent", "scope":"destroy_datum","kind":"parameter"}
-{"name":"destroy_port", "indir":1, "type":"void", "scope":"global", "kind":"function"}
+{"name":"destroy_port", "indir":0, "type":"void", "kind":"proc", "scope":"global" }
 {"name":"mev", "indir":2, "type":"Mevent", "scope":"destroy_port","kind":"parameter"}
-{"name":"format_mevent", "indir":2, "type":"Str", "scope":"global", "kind":"function"}
+{"name":"format_mevent", "indir":2, "type":"Str", "kind":"retproc", "scope":"global" }
 {"name":"m", "indir":2, "type":"Mevent", "scope":"format_mevent","kind":"parameter"}
-{"name":"format_mevent_raw", "indir":2, "type":"Str", "scope":"global", "kind":"function"}
+{"name":"format_mevent_raw", "indir":2, "type":"Str", "kind":"retproc", "scope":"global" }
 {"name":"m", "indir":2, "type":"Mevent", "scope":"format_mevent_raw","kind":"parameter"}

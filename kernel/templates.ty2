@@ -5,30 +5,30 @@
 {"name":"name", "indir":2, "type":"Str", "scope":"Template", "kind":"variable"}
 {"name":"container", "indir":2, "type":"Container", "scope":"Template", "kind":"variable"}
 {"name":"instantiator", "indir":1, "type":"Finstantiator", "scope":"Template", "kind":"variable"}
-{"name":"mkTemplate", "indir":2, "type":"Template", "scope":"global", "kind":"function"}
+{"name":"mkTemplate", "indir":2, "type":"Template", "kind":"retproc", "scope":"global" }
 {"name":"name", "indir":2, "type":"Str", "scope":"mkTemplate","kind":"parameter"}
 {"name":"template_data", "indir":2, "type":"Container", "scope":"mkTemplate","kind":"parameter"}
 {"name":"instantiator", "indir":1, "type":"Finstantiator", "scope":"mkTemplate","kind":"parameter"}
 {"name":"templ", "indir":2, "type":"Template", "scope":"mkTemplate", "kind":"variable"}
-{"name":"lnet2internal_from_file", "indir":2, "type":"Collection_of_Wire", "scope":"global", "kind":"function"}
+{"name":"lnet2internal_from_file", "indir":2, "type":"Collection_of_Wire", "kind":"retproc", "scope":"global" }
 {"name":"json_filename", "indir":2, "type":"Pathname", "scope":"lnet2internal_from_file","kind":"parameter"}
 {"name":"pathname", "indir":2, "type":"Pathname", "scope":"lnet2internal_from_file", "kind":"variable"}
 {"name":"filename", "indir":2, "type":"Str", "scope":"lnet2internal_from_file", "kind":"variable"}
-{"name":"lnet2internal_from_string", "indir":2, "type":"Collection_of_Wire", "scope":"global", "kind":"function"}
+{"name":"lnet2internal_from_string", "indir":2, "type":"Collection_of_Wire", "kind":"retproc", "scope":"global" }
 {"name":"lnet", "indir":2, "type":"Str", "scope":"lnet2internal_from_string","kind":"parameter"}
-{"name":"make_component_registry", "indir":2, "type":"Component_Registry", "scope":"global", "kind":"function"}
-{"name":"register_component", "indir":2, "type":"Component_Registry", "scope":"global", "kind":"function"}
+{"name":"make_component_registry", "indir":2, "type":"Component_Registry", "kind":"retproc", "scope":"global" }
+{"name":"register_component", "indir":2, "type":"Component_Registry", "kind":"retproc", "scope":"global" }
 {"name":"reg", "indir":2, "type":"Component_Registry", "scope":"register_component","kind":"parameter"}
 {"name":"template", "indir":2, "type":"Template", "scope":"register_component","kind":"parameter"}
-{"name":"register_component_allow_overwriting", "indir":2, "type":"Component_Registry", "scope":"global", "kind":"function"}
+{"name":"register_component_allow_overwriting", "indir":2, "type":"Component_Registry", "kind":"retproc", "scope":"global" }
 {"name":"reg", "indir":2, "type":"Component_Registry", "scope":"register_component_allow_overwriting","kind":"parameter"}
 {"name":"template", "indir":2, "type":"Template", "scope":"register_component_allow_overwriting","kind":"parameter"}
-{"name":"abstracted_register_component", "indir":1, "type":"void", "scope":"global", "kind":"function"}
+{"name":"abstracted_register_component", "indir":0, "type":"void", "kind":"proc", "scope":"global" }
 {"name":"reg", "indir":2, "type":"Component_Registry", "scope":"abstracted_register_component","kind":"parameter"}
 {"name":"template", "indir":2, "type":"Template", "scope":"abstracted_register_component","kind":"parameter"}
 {"name":"ok_to_overwrite", "indir":1, "type":"Bool", "scope":"abstracted_register_component","kind":"parameter"}
 {"name":"name", "indir":2, "type":"Str", "scope":"abstracted_register_component", "kind":"variable"}
-{"name":"get_component_instance", "indir":2, "type":"Part", "scope":"global", "kind":"function"}
+{"name":"get_component_instance", "indir":2, "type":"Part", "kind":"retproc", "scope":"global" }
 {"name":"reg", "indir":2, "type":"Component_Registry", "scope":"get_component_instance","kind":"parameter"}
 {"name":"full_name", "indir":2, "type":"Str", "scope":"get_component_instance","kind":"parameter"}
 {"name":"owner", "indir":2, "type":"Container", "scope":"get_component_instance","kind":"parameter"}
@@ -38,7 +38,7 @@
 {"name":"template", "indir":2, "type":"Template", "scope":"get_component_instance", "kind":"variable"}
 {"name":"instance_name", "indir":2, "type":"Str", "scope":"get_component_instance", "kind":"variable"}
 {"name":"instance", "indir":2, "type":"PART", "scope":"get_component_instance", "kind":"variable"}
-{"name":"generate_instance_name", "indir":2, "type":"Str", "scope":"global", "kind":"function"}
+{"name":"generate_instance_name", "indir":2, "type":"Str", "kind":"retproc", "scope":"global" }
 {"name":"owner", "indir":2, "type":"Container", "scope":"generate_instance_name","kind":"parameter"}
 {"name":"template_name", "indir":2, "type":"Str", "scope":"generate_instance_name","kind":"parameter"}
 {"name":"owner_name", "indir":2, "type":"Str", "scope":"generate_instance_name", "kind":"variable"}
@@ -46,5 +46,5 @@
 {"name":"owner_name", "indir":2, "type":"Str", "scope":"generate_instance_name", "kind":"variable"}
 {"name":"instance_name", "indir":2, "type":"Str", "scope":"generate_instance_name", "kind":"variable"}
 {"name":"instance_name", "indir":2, "type":"Str", "scope":"generate_instance_name", "kind":"variable"}
-{"name":"mangle_name", "indir":2, "type":"Str", "scope":"global", "kind":"function"}
+{"name":"mangle_name", "indir":2, "type":"Str", "kind":"retproc", "scope":"global" }
 {"name":"s", "indir":2, "type":"Str", "scope":"mangle_name","kind":"parameter"}
