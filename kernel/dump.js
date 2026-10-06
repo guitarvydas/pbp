@@ -10,6 +10,8 @@ for (const line of lines) {
     if (obj.op === "newscope") {
 	scopes[obj.operand] = {};
     } else {
+	// scopes[obj.operand.scope][obj.operand.name] = obj.operand;
+	scopes[obj.operand.scope][obj.operand.name] = JSON.stringify(obj.operand);
     }
 }
 console.log (scopes);

@@ -197,6 +197,8 @@
   },
   "active": "c769a219810c4f52",
   "lastOpenFiles": [
+    "kernel/dump.js~",
+    "kernel/#dump.js#",
     "kernel/dump.js",
     "kernel/temp.nanodsl.2759.mjs",
     "kernel/temp.nanodsl.15962.mjs",
@@ -206,8 +208,6 @@
     "kernel/temp.nanodsl.19171.mjs",
     "kernel/temp.nanodsl.16446.mjs",
     "kernel/temp.nanodsl.29650.mjs",
-    "kernel/temp.nanodsl.26924.mjs",
-    "kernel/temp.nanodsl.7360.mjs",
     "kernel/prompt.md",
     "kernel/kernel-Back End.drawio.png",
     "kernel/junk.md",
