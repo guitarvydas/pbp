@@ -1,0 +1,4 @@
+#!/bin/bash
+set -e
+./do_typeextractor2.bash
+cat *.ty2 >typetable.jsn

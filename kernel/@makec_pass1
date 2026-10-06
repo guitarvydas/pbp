@@ -1,0 +1,4 @@
+#!/bin/bash
+set -e
+
+./do_extractor.bash
