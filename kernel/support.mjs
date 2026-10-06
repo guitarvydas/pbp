@@ -67,12 +67,10 @@ function gettypeinfo() {
 
 
 function getdeclaration(scope, id) {
-    let desc = lookup(scope, id);
     return `void* ${id}`;
 }
 
 function getmaybederef(deref, scope, id) {
-    let desc = lookup(scope, id);
     if (deref === "⊥") {
 	return id;
     } else {
