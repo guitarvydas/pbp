@@ -41,20 +41,20 @@ return exit_rule ("TopLevel_defvar");
 Defn : function (_defn_,id,_eq_,functiontype,Formals,FunctionBody,) {
 enter_rule ("Defn");
     pushParameter ("scope", `${id.rwr ()}`);
-    set_return (`\n{"op":"newscope", "data":"${id.rwr ()}"}\n{"op":"insert", "data":{"name":"${id.rwr ()}", ${functiontype.rwr ()}, "scope":"_global" }}${Formals.rwr ()}${FunctionBody.rwr ()}`);
+    set_return (`\n{"op":"newscope", "operand":"${id.rwr ()}"}\n{"op":"insert", "operand":{"name":"${id.rwr ()}", ${functiontype.rwr ()}, "scope":"_global" }}${Formals.rwr ()}${FunctionBody.rwr ()}`);
 popParameter ("scope");
 return exit_rule ("Defn");
 },
 DefObj : function (_defobj_,id,ObjBody,) {
 enter_rule ("DefObj");
     pushParameter ("scope", `${id.rwr ()}`);
-    set_return (`\n{"op":"newscope", "data":"${id.rwr ()}"}\n{"op":"insert", "data":{"name":"${id.rwr ()}", "indir":1, "type":"obj", "scope":"_global", "kind":"obj"}}${ObjBody.rwr ()}`);
+    set_return (`\n{"op":"newscope", "operand":"${id.rwr ()}"}\n{"op":"insert", "operand":{"name":"${id.rwr ()}", "indir":1, "type":"obj", "scope":"_global", "kind":"obj"}}${ObjBody.rwr ()}`);
 popParameter ("scope");
 return exit_rule ("DefObj");
 },
 DefVar : function (_1,id,_3,ty,) {
 enter_rule ("DefVar");
-    set_return (`\n{"op":"insert", "data":{"name":"${id.rwr ()}", ${ty.rwr ()}, "scope":"_global", "kind":"variable"}}`);
+    set_return (`\n{"op":"insert", "operand":{"name":"${id.rwr ()}", ${ty.rwr ()}, "scope":"_global", "kind":"variable"}}`);
 return exit_rule ("DefVar");
 },
 FunctionType_procedure : function (_tilde_,) {
@@ -74,7 +74,7 @@ return exit_rule ("Formals");
 },
 TypedParamComma : function (typedID,_comma,typedparamcomma,) {
 enter_rule ("TypedParamComma");
-    set_return (`\n{"op":"insert", "data":{${typedID.rwr ()},"kind":"parameter"}}${typedparamcomma.rwr ().join ('')}`);
+    set_return (`\n{"op":"insert", "operand":{${typedID.rwr ()},"kind":"parameter"}}${typedparamcomma.rwr ().join ('')}`);
 return exit_rule ("TypedParamComma");
 },
 TypedID : function (id,_eq,Type,) {
@@ -104,7 +104,7 @@ return exit_rule ("BodyInnards_bracket");
 },
 BodyInnards_TypedVar : function (typedid,rec,) {
 enter_rule ("BodyInnards_TypedVar");
-    set_return (`\n{"op":"insert", "data":{${typedid.rwr ()}, "kind":"variable"}}${rec.rwr ().join ('')}`);
+    set_return (`\n{"op":"insert", "operand":{${typedid.rwr ()}, "kind":"variable"}}${rec.rwr ().join ('')}`);
 return exit_rule ("BodyInnards_TypedVar");
 },
 BodyInnards_other : function (c,rec,) {

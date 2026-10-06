@@ -1,18 +1,18 @@
 
-{"op":"newscope", "data":"Eh"}
-{"op":"insert", "data":{"name":"Eh", "indir":1, "type":"obj", "scope":"_global", "kind":"obj"}}
-{"op":"insert", "data":{"name":"name", "indir":2, "type":"Str", "scope":"Eh", "kind":"variable"}}
-{"op":"insert", "data":{"name":"inq", "indir":2, "type":"Queue", "scope":"Eh", "kind":"variable"}}
-{"op":"insert", "data":{"name":"outq", "indir":2, "type":"Queue", "scope":"Eh", "kind":"variable"}}
-{"op":"insert", "data":{"name":"owner", "indir":2, "type":"Container", "scope":"Eh", "kind":"variable"}}
-{"op":"insert", "data":{"name":"children", "indir":2, "type":"Collection_of_Part", "scope":"Eh", "kind":"variable"}}
-{"op":"insert", "data":{"name":"visit_ordering", "indir":2, "type":"Queue_of_Part", "scope":"Eh", "kind":"variable"}}
-{"op":"insert", "data":{"name":"connections", "indir":2, "type":"Collection_ofWire", "scope":"Eh", "kind":"variable"}}
-{"op":"insert", "data":{"name":"handler", "indir":1, "type":"Fhandler", "scope":"Eh", "kind":"variable"}}
-{"op":"insert", "data":{"name":"finject", "indir":1, "type":"Finject", "scope":"Eh", "kind":"variable"}}
-{"op":"insert", "data":{"name":"reset", "indir":1, "type":"Freset", "scope":"Eh", "kind":"variable"}}
-{"op":"insert", "data":{"name":"instance_data", "indir":2, "type":"any", "scope":"Eh", "kind":"variable"}}
-{"op":"insert", "data":{"name":"arg", "indir":2, "type":"Str", "scope":"Eh", "kind":"variable"}}
-{"op":"insert", "data":{"name":"state", "indir":2, "type":"Str", "scope":"Eh", "kind":"variable"}}
-{"op":"insert", "data":{"name":"special", "indir":1, "type":"Bool", "scope":"Eh", "kind":"variable"}}
-{"op":"insert", "data":{"name":"kind", "indir":2, "type":"Str", "scope":"Eh", "kind":"variable"}}
+{"op":"newscope", "operand":"Eh"}
+{"op":"insert", "operand":{"name":"Eh", "indir":1, "type":"obj", "scope":"_global", "kind":"obj"}}
+{"op":"insert", "operand":{"name":"name", "indir":2, "type":"Str", "scope":"Eh", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"inq", "indir":2, "type":"Queue", "scope":"Eh", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"outq", "indir":2, "type":"Queue", "scope":"Eh", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"owner", "indir":2, "type":"Container", "scope":"Eh", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"children", "indir":2, "type":"Collection_of_Part", "scope":"Eh", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"visit_ordering", "indir":2, "type":"Queue_of_Part", "scope":"Eh", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"connections", "indir":2, "type":"Collection_ofWire", "scope":"Eh", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"handler", "indir":1, "type":"Fhandler", "scope":"Eh", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"finject", "indir":1, "type":"Finject", "scope":"Eh", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"reset", "indir":1, "type":"Freset", "scope":"Eh", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"instance_data", "indir":2, "type":"any", "scope":"Eh", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"arg", "indir":2, "type":"Str", "scope":"Eh", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"state", "indir":2, "type":"Str", "scope":"Eh", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"special", "indir":1, "type":"Bool", "scope":"Eh", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"kind", "indir":2, "type":"Str", "scope":"Eh", "kind":"variable"}}

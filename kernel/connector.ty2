@@ -1,34 +1,34 @@
 
-{"op":"insert", "data":{"name":"enumDown", "indir":1, "type":"Dir", "scope":"_global", "kind":"variable"}}
-{"op":"insert", "data":{"name":"enumAcross", "indir":1, "type":"Dir", "scope":"_global", "kind":"variable"}}
-{"op":"insert", "data":{"name":"enumUp", "indir":1, "type":"Dir", "scope":"_global", "kind":"variable"}}
-{"op":"insert", "data":{"name":"enumThrough", "indir":1, "type":"Dir", "scope":"_global", "kind":"variable"}}
-{"op":"newscope", "data":"Connector"}
-{"op":"insert", "data":{"name":"Connector", "indir":1, "type":"obj", "scope":"_global", "kind":"obj"}}
-{"op":"insert", "data":{"name":"direction", "indir":1, "type":"Dir", "scope":"Connector", "kind":"variable"}}
-{"op":"insert", "data":{"name":"sender", "indir":2, "type":"Sender", "scope":"Connector", "kind":"variable"}}
-{"op":"insert", "data":{"name":"receiver", "indir":2, "type":"Receiver", "scope":"Connector", "kind":"variable"}}
-{"op":"newscope", "data":"Sender"}
-{"op":"insert", "data":{"name":"Sender", "indir":1, "type":"obj", "scope":"_global", "kind":"obj"}}
-{"op":"insert", "data":{"name":"name", "indir":2, "type":"Str", "scope":"Sender", "kind":"variable"}}
-{"op":"insert", "data":{"name":"component", "indir":2, "type":"Eh", "scope":"Sender", "kind":"variable"}}
-{"op":"insert", "data":{"name":"port", "indir":1, "type":"Port", "scope":"Sender", "kind":"variable"}}
-{"op":"newscope", "data":"Receiver"}
-{"op":"insert", "data":{"name":"Receiver", "indir":1, "type":"obj", "scope":"_global", "kind":"obj"}}
-{"op":"insert", "data":{"name":"name", "indir":2, "type":"Str", "scope":"Receiver", "kind":"variable"}}
-{"op":"insert", "data":{"name":"queue", "indir":2, "type":"Queue", "scope":"Receiver", "kind":"variable"}}
-{"op":"insert", "data":{"name":"port", "indir":1, "type":"Port", "scope":"Receiver", "kind":"variable"}}
-{"op":"insert", "data":{"name":"component", "indir":2, "type":"Eh", "scope":"Receiver", "kind":"variable"}}
-{"op":"newscope", "data":"mkSender"}
-{"op":"insert", "data":{"name":"mkSender", "indir":2, "type":"Sender", "kind":"retproc", "scope":"_global" }}
-{"op":"insert", "data":{"name":"name", "indir":2, "type":"Str", "scope":"mkSender","kind":"parameter"}}
-{"op":"insert", "data":{"name":"component", "indir":2, "type":"Eh", "scope":"mkSender","kind":"parameter"}}
-{"op":"insert", "data":{"name":"port", "indir":1, "type":"Port", "scope":"mkSender","kind":"parameter"}}
-{"op":"insert", "data":{"name":"s", "indir":2, "type":"Sender", "scope":"mkSender", "kind":"variable"}}
-{"op":"newscope", "data":"mkReceiver"}
-{"op":"insert", "data":{"name":"mkReceiver", "indir":2, "type":"Receiver", "kind":"retproc", "scope":"_global" }}
-{"op":"insert", "data":{"name":"name", "indir":2, "type":"Str", "scope":"mkReceiver","kind":"parameter"}}
-{"op":"insert", "data":{"name":"component", "indir":2, "type":"Eh", "scope":"mkReceiver","kind":"parameter"}}
-{"op":"insert", "data":{"name":"port", "indir":1, "type":"Port", "scope":"mkReceiver","kind":"parameter"}}
-{"op":"insert", "data":{"name":"q", "indir":2, "type":"Queue", "scope":"mkReceiver","kind":"parameter"}}
-{"op":"insert", "data":{"name":"r", "indir":2, "type":"Receiver", "scope":"mkReceiver", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"enumDown", "indir":1, "type":"Dir", "scope":"_global", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"enumAcross", "indir":1, "type":"Dir", "scope":"_global", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"enumUp", "indir":1, "type":"Dir", "scope":"_global", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"enumThrough", "indir":1, "type":"Dir", "scope":"_global", "kind":"variable"}}
+{"op":"newscope", "operand":"Connector"}
+{"op":"insert", "operand":{"name":"Connector", "indir":1, "type":"obj", "scope":"_global", "kind":"obj"}}
+{"op":"insert", "operand":{"name":"direction", "indir":1, "type":"Dir", "scope":"Connector", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"sender", "indir":2, "type":"Sender", "scope":"Connector", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"receiver", "indir":2, "type":"Receiver", "scope":"Connector", "kind":"variable"}}
+{"op":"newscope", "operand":"Sender"}
+{"op":"insert", "operand":{"name":"Sender", "indir":1, "type":"obj", "scope":"_global", "kind":"obj"}}
+{"op":"insert", "operand":{"name":"name", "indir":2, "type":"Str", "scope":"Sender", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"component", "indir":2, "type":"Eh", "scope":"Sender", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"port", "indir":1, "type":"Port", "scope":"Sender", "kind":"variable"}}
+{"op":"newscope", "operand":"Receiver"}
+{"op":"insert", "operand":{"name":"Receiver", "indir":1, "type":"obj", "scope":"_global", "kind":"obj"}}
+{"op":"insert", "operand":{"name":"name", "indir":2, "type":"Str", "scope":"Receiver", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"queue", "indir":2, "type":"Queue", "scope":"Receiver", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"port", "indir":1, "type":"Port", "scope":"Receiver", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"component", "indir":2, "type":"Eh", "scope":"Receiver", "kind":"variable"}}
+{"op":"newscope", "operand":"mkSender"}
+{"op":"insert", "operand":{"name":"mkSender", "indir":2, "type":"Sender", "kind":"retproc", "scope":"_global" }}
+{"op":"insert", "operand":{"name":"name", "indir":2, "type":"Str", "scope":"mkSender","kind":"parameter"}}
+{"op":"insert", "operand":{"name":"component", "indir":2, "type":"Eh", "scope":"mkSender","kind":"parameter"}}
+{"op":"insert", "operand":{"name":"port", "indir":1, "type":"Port", "scope":"mkSender","kind":"parameter"}}
+{"op":"insert", "operand":{"name":"s", "indir":2, "type":"Sender", "scope":"mkSender", "kind":"variable"}}
+{"op":"newscope", "operand":"mkReceiver"}
+{"op":"insert", "operand":{"name":"mkReceiver", "indir":2, "type":"Receiver", "kind":"retproc", "scope":"_global" }}
+{"op":"insert", "operand":{"name":"name", "indir":2, "type":"Str", "scope":"mkReceiver","kind":"parameter"}}
+{"op":"insert", "operand":{"name":"component", "indir":2, "type":"Eh", "scope":"mkReceiver","kind":"parameter"}}
+{"op":"insert", "operand":{"name":"port", "indir":1, "type":"Port", "scope":"mkReceiver","kind":"parameter"}}
+{"op":"insert", "operand":{"name":"q", "indir":2, "type":"Queue", "scope":"mkReceiver","kind":"parameter"}}
+{"op":"insert", "operand":{"name":"r", "indir":2, "type":"Receiver", "scope":"mkReceiver", "kind":"variable"}}

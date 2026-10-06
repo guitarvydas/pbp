@@ -1,39 +1,39 @@
 
-{"op":"newscope", "data":"Datum"}
-{"op":"insert", "data":{"name":"Datum", "indir":1, "type":"obj", "scope":"_global", "kind":"obj"}}
-{"op":"insert", "data":{"name":"v", "indir":2, "type":"Payload", "scope":"Datum", "kind":"variable"}}
-{"op":"insert", "data":{"name":"clone", "indir":1, "type":"Fclone", "scope":"Datum", "kind":"variable"}}
-{"op":"insert", "data":{"name":"reclaim", "indir":1, "type":"Freclaim", "scope":"Datum", "kind":"variable"}}
-{"op":"insert", "data":{"name":"other", "indir":2, "type":"any", "scope":"Datum", "kind":"variable"}}
-{"op":"newscope", "data":"Mevent"}
-{"op":"insert", "data":{"name":"Mevent", "indir":1, "type":"obj", "scope":"_global", "kind":"obj"}}
-{"op":"insert", "data":{"name":"port", "indir":1, "type":"Port", "scope":"Mevent", "kind":"variable"}}
-{"op":"insert", "data":{"name":"payload", "indir":2, "type":"Payload", "scope":"Mevent", "kind":"variable"}}
-{"op":"newscope", "data":"clone_port"}
-{"op":"insert", "data":{"name":"clone_port", "indir":1, "type":"Port", "kind":"retproc", "scope":"_global" }}
-{"op":"insert", "data":{"name":"s", "indir":1, "type":"Port", "scope":"clone_port","kind":"parameter"}}
-{"op":"newscope", "data":"make_mevent"}
-{"op":"insert", "data":{"name":"make_mevent", "indir":2, "type":"Mevent", "kind":"retproc", "scope":"_global" }}
-{"op":"insert", "data":{"name":"port", "indir":1, "type":"Port", "scope":"make_mevent","kind":"parameter"}}
-{"op":"insert", "data":{"name":"datum", "indir":2, "type":"Datum", "scope":"make_mevent","kind":"parameter"}}
-{"op":"insert", "data":{"name":"p", "indir":1, "type":"Port", "scope":"make_mevent", "kind":"variable"}}
-{"op":"insert", "data":{"name":"m", "indir":2, "type":"Mevent", "scope":"make_mevent", "kind":"variable"}}
-{"op":"newscope", "data":"mevent_clone"}
-{"op":"insert", "data":{"name":"mevent_clone", "indir":2, "type":"Mevent", "kind":"retproc", "scope":"_global" }}
-{"op":"insert", "data":{"name":"mev", "indir":2, "type":"Mevent", "scope":"mevent_clone","kind":"parameter"}}
-{"op":"insert", "data":{"name":"m", "indir":2, "type":"Mevent", "scope":"mevent_clone", "kind":"variable"}}
-{"op":"newscope", "data":"destroy_mevent"}
-{"op":"insert", "data":{"name":"destroy_mevent", "indir":0, "type":"void", "kind":"proc", "scope":"_global" }}
-{"op":"insert", "data":{"name":"mev", "indir":2, "type":"Mevent", "scope":"destroy_mevent","kind":"parameter"}}
-{"op":"newscope", "data":"destroy_datum"}
-{"op":"insert", "data":{"name":"destroy_datum", "indir":0, "type":"void", "kind":"proc", "scope":"_global" }}
-{"op":"insert", "data":{"name":"mev", "indir":2, "type":"Mevent", "scope":"destroy_datum","kind":"parameter"}}
-{"op":"newscope", "data":"destroy_port"}
-{"op":"insert", "data":{"name":"destroy_port", "indir":0, "type":"void", "kind":"proc", "scope":"_global" }}
-{"op":"insert", "data":{"name":"mev", "indir":2, "type":"Mevent", "scope":"destroy_port","kind":"parameter"}}
-{"op":"newscope", "data":"format_mevent"}
-{"op":"insert", "data":{"name":"format_mevent", "indir":2, "type":"Str", "kind":"retproc", "scope":"_global" }}
-{"op":"insert", "data":{"name":"m", "indir":2, "type":"Mevent", "scope":"format_mevent","kind":"parameter"}}
-{"op":"newscope", "data":"format_mevent_raw"}
-{"op":"insert", "data":{"name":"format_mevent_raw", "indir":2, "type":"Str", "kind":"retproc", "scope":"_global" }}
-{"op":"insert", "data":{"name":"m", "indir":2, "type":"Mevent", "scope":"format_mevent_raw","kind":"parameter"}}
+{"op":"newscope", "operand":"Datum"}
+{"op":"insert", "operand":{"name":"Datum", "indir":1, "type":"obj", "scope":"_global", "kind":"obj"}}
+{"op":"insert", "operand":{"name":"v", "indir":2, "type":"Payload", "scope":"Datum", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"clone", "indir":1, "type":"Fclone", "scope":"Datum", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"reclaim", "indir":1, "type":"Freclaim", "scope":"Datum", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"other", "indir":2, "type":"any", "scope":"Datum", "kind":"variable"}}
+{"op":"newscope", "operand":"Mevent"}
+{"op":"insert", "operand":{"name":"Mevent", "indir":1, "type":"obj", "scope":"_global", "kind":"obj"}}
+{"op":"insert", "operand":{"name":"port", "indir":1, "type":"Port", "scope":"Mevent", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"payload", "indir":2, "type":"Payload", "scope":"Mevent", "kind":"variable"}}
+{"op":"newscope", "operand":"clone_port"}
+{"op":"insert", "operand":{"name":"clone_port", "indir":1, "type":"Port", "kind":"retproc", "scope":"_global" }}
+{"op":"insert", "operand":{"name":"s", "indir":1, "type":"Port", "scope":"clone_port","kind":"parameter"}}
+{"op":"newscope", "operand":"make_mevent"}
+{"op":"insert", "operand":{"name":"make_mevent", "indir":2, "type":"Mevent", "kind":"retproc", "scope":"_global" }}
+{"op":"insert", "operand":{"name":"port", "indir":1, "type":"Port", "scope":"make_mevent","kind":"parameter"}}
+{"op":"insert", "operand":{"name":"datum", "indir":2, "type":"Datum", "scope":"make_mevent","kind":"parameter"}}
+{"op":"insert", "operand":{"name":"p", "indir":1, "type":"Port", "scope":"make_mevent", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"m", "indir":2, "type":"Mevent", "scope":"make_mevent", "kind":"variable"}}
+{"op":"newscope", "operand":"mevent_clone"}
+{"op":"insert", "operand":{"name":"mevent_clone", "indir":2, "type":"Mevent", "kind":"retproc", "scope":"_global" }}
+{"op":"insert", "operand":{"name":"mev", "indir":2, "type":"Mevent", "scope":"mevent_clone","kind":"parameter"}}
+{"op":"insert", "operand":{"name":"m", "indir":2, "type":"Mevent", "scope":"mevent_clone", "kind":"variable"}}
+{"op":"newscope", "operand":"destroy_mevent"}
+{"op":"insert", "operand":{"name":"destroy_mevent", "indir":0, "type":"void", "kind":"proc", "scope":"_global" }}
+{"op":"insert", "operand":{"name":"mev", "indir":2, "type":"Mevent", "scope":"destroy_mevent","kind":"parameter"}}
+{"op":"newscope", "operand":"destroy_datum"}
+{"op":"insert", "operand":{"name":"destroy_datum", "indir":0, "type":"void", "kind":"proc", "scope":"_global" }}
+{"op":"insert", "operand":{"name":"mev", "indir":2, "type":"Mevent", "scope":"destroy_datum","kind":"parameter"}}
+{"op":"newscope", "operand":"destroy_port"}
+{"op":"insert", "operand":{"name":"destroy_port", "indir":0, "type":"void", "kind":"proc", "scope":"_global" }}
+{"op":"insert", "operand":{"name":"mev", "indir":2, "type":"Mevent", "scope":"destroy_port","kind":"parameter"}}
+{"op":"newscope", "operand":"format_mevent"}
+{"op":"insert", "operand":{"name":"format_mevent", "indir":2, "type":"Str", "kind":"retproc", "scope":"_global" }}
+{"op":"insert", "operand":{"name":"m", "indir":2, "type":"Mevent", "scope":"format_mevent","kind":"parameter"}}
+{"op":"newscope", "operand":"format_mevent_raw"}
+{"op":"insert", "operand":{"name":"format_mevent_raw", "indir":2, "type":"Str", "kind":"retproc", "scope":"_global" }}
+{"op":"insert", "operand":{"name":"m", "indir":2, "type":"Mevent", "scope":"format_mevent_raw","kind":"parameter"}}
