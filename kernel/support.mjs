@@ -53,16 +53,26 @@ function readtypetable (fname) {
     }
 }
 
+function lookup (scope, id) {
+    let descriptor = scopes[scope][id];
+    if (null == descriptor) {
+	throw `can't find ${id} in ${scope}`;
+    }
+    return descriptor;
+}
+
 function gettypeinfo() {
     readtypetable("typetable.jsn");
 }
 
 
 function getdeclaration(scope, id) {
+    let desc = lookup(scope, id);
     return `void* ${id}`;
 }
 
 function getmaybederef(deref, scope, id) {
+    let desc = lookup(scope, id);
     if (deref === "⊥") {
 	return id;
     } else {
