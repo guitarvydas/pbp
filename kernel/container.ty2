@@ -1,125 +1,154 @@
 
-{"name":"create_down_connector", "indir":2, "type":"Wire", "kind":"retproc", "scope":"global" }
-{"name":"container", "indir":2, "type":"Container", "scope":"create_down_connector","kind":"parameter"}
-{"name":"proto_conn", "indir":2, "type":"Wire_Proto", "scope":"create_down_connector","kind":"parameter"}
-{"name":"connectors", "indir":2, "type":"Collection_of_Wire", "scope":"create_down_connector","kind":"parameter"}
-{"name":"children_by_id", "indir":2, "type":"Table_by_ID_of_Part", "scope":"create_down_connector","kind":"parameter"}
-{"name":"connector", "indir":2, "type":"Wire", "scope":"create_down_connector", "kind":"variable"}
-{"name":"target_proto", "indir":2, "type":"Part", "scope":"create_down_connector", "kind":"variable"}
-{"name":"id_proto", "indir":1, "type":"ID", "scope":"create_down_connector", "kind":"variable"}
-{"name":"target_component", "indir":2, "type":"Part", "scope":"create_down_connector", "kind":"variable"}
-{"name":"create_across_connector", "indir":2, "type":"Wire", "kind":"retproc", "scope":"global" }
-{"name":"container", "indir":2, "type":"Container", "scope":"create_across_connector","kind":"parameter"}
-{"name":"proto_conn", "indir":2, "type":"Wire_Proto", "scope":"create_across_connector","kind":"parameter"}
-{"name":"connectors", "indir":2, "type":"Collection_of_Wire", "scope":"create_across_connector","kind":"parameter"}
-{"name":"children_by_id", "indir":2, "type":"Table_by_ID_of_Part", "scope":"create_across_connector","kind":"parameter"}
-{"name":"connector", "indir":2, "type":"Wire", "scope":"create_across_connector", "kind":"variable"}
-{"name":"source_component", "indir":2, "type":"Part", "scope":"create_across_connector", "kind":"variable"}
-{"name":"target_component", "indir":2, "type":"Part", "scope":"create_across_connector", "kind":"variable"}
-{"name":"create_up_connector", "indir":2, "type":"Wire", "kind":"retproc", "scope":"global" }
-{"name":"container", "indir":2, "type":"Container", "scope":"create_up_connector","kind":"parameter"}
-{"name":"proto_conn", "indir":2, "type":"Wire_Proto", "scope":"create_up_connector","kind":"parameter"}
-{"name":"connectors", "indir":2, "type":"Collection_of_Wire", "scope":"create_up_connector","kind":"parameter"}
-{"name":"children_by_id", "indir":2, "type":"Table_by_ID_of_Part", "scope":"create_up_connector","kind":"parameter"}
-{"name":"connector", "indir":2, "type":"Wire", "scope":"create_up_connector", "kind":"variable"}
-{"name":"source_component", "indir":2, "type":"Part", "scope":"create_up_connector", "kind":"variable"}
-{"name":"create_through_connector", "indir":2, "type":"Wire", "kind":"retproc", "scope":"global" }
-{"name":"container", "indir":2, "type":"Container", "scope":"create_through_connector","kind":"parameter"}
-{"name":"proto_conn", "indir":2, "type":"Wire_Proto", "scope":"create_through_connector","kind":"parameter"}
-{"name":"connectors", "indir":2, "type":"Collection_of_Wire", "scope":"create_through_connector","kind":"parameter"}
-{"name":"children_by_id", "indir":2, "type":"Table_by_ID_of_Part", "scope":"create_through_connector","kind":"parameter"}
-{"name":"connector", "indir":2, "type":"Wire", "scope":"create_through_connector", "kind":"variable"}
-{"name":"container_instantiator", "indir":2, "type":"Container", "kind":"retproc", "scope":"global" }
-{"name":"reg", "indir":2, "type":"Component_Registry", "scope":"container_instantiator","kind":"parameter"}
-{"name":"owner", "indir":2, "type":"Container", "scope":"container_instantiator","kind":"parameter"}
-{"name":"container_name", "indir":2, "type":"Str", "scope":"container_instantiator","kind":"parameter"}
-{"name":"desc", "indir":2, "type":"Container_Template", "scope":"container_instantiator","kind":"parameter"}
-{"name":"arg", "indir":2, "type":"Str", "scope":"container_instantiator","kind":"parameter"}
-{"name":"container_handler", "indir":0, "type":"void", "kind":"proc", "scope":"global" }
-{"name":"container", "indir":2, "type":"Container", "scope":"container_handler","kind":"parameter"}
-{"name":"mevent", "indir":2, "type":"Mevent", "scope":"container_handler","kind":"parameter"}
-{"name":"container_reset_children", "indir":0, "type":"void", "kind":"proc", "scope":"global" }
-{"name":"container", "indir":2, "type":"Container", "scope":"container_reset_children","kind":"parameter"}
-{"name":"child", "indir":2, "type":"Part", "scope":"container_reset_children", "kind":"variable"}
-{"name":"destroy_container", "indir":0, "type":"void", "kind":"proc", "scope":"global" }
-{"name":"eh", "indir":2, "type":"Part", "scope":"destroy_container","kind":"parameter"}
-{"name":"sender_eq", "indir":1, "type":"BOOL", "kind":"retproc", "scope":"global" }
-{"name":"s1", "indir":2, "type":"Part", "scope":"sender_eq","kind":"parameter"}
-{"name":"s2", "indir":2, "type":"Part", "scope":"sender_eq","kind":"parameter"}
-{"name":"same_components", "indir":1, "type":"BOOL", "scope":"sender_eq", "kind":"variable"}
-{"name":"same_ports", "indir":1, "type":"BOOL", "scope":"sender_eq", "kind":"variable"}
-{"name":"deposit", "indir":0, "type":"void", "kind":"proc", "scope":"global" }
-{"name":"parent", "indir":2, "type":"Container", "scope":"deposit","kind":"parameter"}
-{"name":"conn", "indir":2, "type":"Wire", "scope":"deposit","kind":"parameter"}
-{"name":"mevent", "indir":2, "type":"Mevent", "scope":"deposit","kind":"parameter"}
-{"name":"new_mevent", "indir":2, "type":"Mevent", "scope":"deposit", "kind":"variable"}
-{"name":"force_tick", "indir":0, "type":"void", "kind":"proc", "scope":"global" }
-{"name":"parent", "indir":2, "type":"Container", "scope":"force_tick","kind":"parameter"}
-{"name":"eh", "indir":2, "type":"Part", "scope":"force_tick","kind":"parameter"}
-{"name":"tick_mev", "indir":2, "type":"Mevent", "scope":"force_tick", "kind":"variable"}
-{"name":"push_mevent", "indir":0, "type":"void", "kind":"proc", "scope":"global" }
-{"name":"parent", "indir":2, "type":"Container", "scope":"push_mevent","kind":"parameter"}
-{"name":"receiver", "indir":2, "type":"Part", "scope":"push_mevent","kind":"parameter"}
-{"name":"inq", "indir":2, "type":"Queue", "scope":"push_mevent","kind":"parameter"}
-{"name":"m", "indir":2, "type":"Mevent", "scope":"push_mevent","kind":"parameter"}
-{"name":"is_self", "indir":1, "type":"Bool", "kind":"retproc", "scope":"global" }
-{"name":"child", "indir":2, "type":"Part", "scope":"is_self","kind":"parameter"}
-{"name":"container", "indir":2, "type":"Container", "scope":"is_self","kind":"parameter"}
-{"name":"step_child_once", "indir":0, "type":"void", "kind":"proc", "scope":"global" }
-{"name":"child", "indir":2, "type":"Part", "scope":"step_child_once","kind":"parameter"}
-{"name":"mev", "indir":2, "type":"Mevent", "scope":"step_child_once","kind":"parameter"}
-{"name":"step_children", "indir":0, "type":"void", "kind":"proc", "scope":"global" }
-{"name":"container", "indir":2, "type":"Container", "scope":"step_children","kind":"parameter"}
-{"name":"causingMevent", "indir":2, "type":"Mevent", "scope":"step_children","kind":"parameter"}
-{"name":"child", "indir":2, "type":"Part", "scope":"step_children", "kind":"variable"}
-{"name":"mev", "indir":2, "type":"Mevent", "scope":"step_children", "kind":"variable"}
-{"name":"mev", "indir":2, "type":"Mevent", "scope":"step_children", "kind":"variable"}
-{"name":"child", "indir":2, "type":"Part", "scope":"step_children", "kind":"variable"}
-{"name":"mev", "indir":2, "type":"Mevent", "scope":"step_children", "kind":"variable"}
-{"name":"attempt_tick", "indir":0, "type":"void", "kind":"proc", "scope":"global" }
-{"name":"parent", "indir":2, "type":"Container", "scope":"attempt_tick","kind":"parameter"}
-{"name":"eh", "indir":2, "type":"Part", "scope":"attempt_tick","kind":"parameter"}
-{"name":"is_tick", "indir":1, "type":"Bool", "kind":"retproc", "scope":"global" }
-{"name":"mev", "indir":2, "type":"Mevent", "scope":"is_tick","kind":"parameter"}
-{"name":"route", "indir":0, "type":"void", "kind":"proc", "scope":"global" }
-{"name":"container", "indir":2, "type":"Container", "scope":"route","kind":"parameter"}
-{"name":"from_component", "indir":2, "type":"Part", "scope":"route","kind":"parameter"}
-{"name":"mevent", "indir":2, "type":"Mevent", "scope":"route","kind":"parameter"}
-{"name":"was_sent", "indir":1, "type":"Bool", "scope":"route", "kind":"variable"}
-{"name":"fromname", "indir":2, "type":"Str", "scope":"route", "kind":"variable"}
-{"name":"any_child_ready", "indir":1, "type":"Bool", "kind":"retproc", "scope":"global" }
-{"name":"container", "indir":2, "type":"Container", "scope":"any_child_ready","kind":"parameter"}
-{"name":"child", "indir":2, "type":"Part", "scope":"any_child_ready", "kind":"variable"}
-{"name":"child_is_ready", "indir":1, "type":"Bool", "kind":"retproc", "scope":"global" }
-{"name":"eh", "indir":2, "type":"Part", "scope":"child_is_ready","kind":"parameter"}
-{"name":"append_routing_descriptor", "indir":0, "type":"void", "kind":"proc", "scope":"global" }
-{"name":"container", "indir":2, "type":"Container", "scope":"append_routing_descriptor","kind":"parameter"}
-{"name":"desc", "indir":2, "type":"Wire", "scope":"append_routing_descriptor","kind":"parameter"}
-{"name":"make_container", "indir":2, "type":"Container", "kind":"retproc", "scope":"global" }
-{"name":"name", "indir":2, "type":"Str", "scope":"make_container","kind":"parameter"}
-{"name":"owner", "indir":2, "type":"Container", "scope":"make_container","kind":"parameter"}
-{"name":"eh", "indir":2, "type":"Container", "scope":"make_container", "kind":"variable"}
-{"name":"send", "indir":0, "type":"void", "kind":"proc", "scope":"global" }
-{"name":"eh", "indir":2, "type":"Part", "scope":"send","kind":"parameter"}
-{"name":"port", "indir":1, "type":"Port", "scope":"send","kind":"parameter"}
-{"name":"obj", "indir":2, "type":"Part", "scope":"send","kind":"parameter"}
-{"name":"causingMevent", "indir":2, "type":"Mevent", "scope":"send","kind":"parameter"}
-{"name":"d", "indir":2, "type":"Payload", "scope":"send", "kind":"variable"}
-{"name":"mev", "indir":2, "type":"Mevent", "scope":"send", "kind":"variable"}
-{"name":"forward", "indir":0, "type":"void", "kind":"proc", "scope":"global" }
-{"name":"eh", "indir":2, "type":"Part", "scope":"forward","kind":"parameter"}
-{"name":"port", "indir":1, "type":"Port", "scope":"forward","kind":"parameter"}
-{"name":"mev", "indir":2, "type":"Mevent", "scope":"forward","kind":"parameter"}
-{"name":"fwdmev", "indir":2, "type":"Mevent", "scope":"forward", "kind":"variable"}
-{"name":"inject_mevent", "indir":2, "type":"Mevent", "kind":"retproc", "scope":"global" }
-{"name":"eh", "indir":2, "type":"Part", "scope":"inject_mevent","kind":"parameter"}
-{"name":"mev", "indir":2, "type":"Mevent", "scope":"inject_mevent","kind":"parameter"}
-{"name":"set_active", "indir":0, "type":"void", "kind":"proc", "scope":"global" }
-{"name":"eh", "indir":2, "type":"Part", "scope":"set_active","kind":"parameter"}
-{"name":"set_idle", "indir":0, "type":"void", "kind":"proc", "scope":"global" }
-{"name":"eh", "indir":2, "type":"Part", "scope":"set_idle","kind":"parameter"}
-{"name":"put_output", "indir":0, "type":"void", "kind":"proc", "scope":"global" }
-{"name":"eh", "indir":2, "type":"Part", "scope":"put_output","kind":"parameter"}
-{"name":"mev", "indir":2, "type":"Mevent", "scope":"put_output","kind":"parameter"}
-{"name":"clone_payload", "indir":2, "type":"Payload", "kind":"retproc", "scope":"global" }
-{"name":"clone_payload", "indir":2, "type":"Payload", "scope":"clone_payload","kind":"parameter"}
+{"op":"newscope", "data":"create_down_connector"}
+{"op":"insert", "data":{"name":"create_down_connector", "indir":2, "type":"Wire", "kind":"retproc", "scope":"_global" }}
+{"op":"insert", "data":{"name":"container", "indir":2, "type":"Container", "scope":"create_down_connector","kind":"parameter"}}
+{"op":"insert", "data":{"name":"proto_conn", "indir":2, "type":"Wire_Proto", "scope":"create_down_connector","kind":"parameter"}}
+{"op":"insert", "data":{"name":"connectors", "indir":2, "type":"Collection_of_Wire", "scope":"create_down_connector","kind":"parameter"}}
+{"op":"insert", "data":{"name":"children_by_id", "indir":2, "type":"Table_by_ID_of_Part", "scope":"create_down_connector","kind":"parameter"}}
+{"op":"insert", "data":{"name":"connector", "indir":2, "type":"Wire", "scope":"create_down_connector", "kind":"variable"}}
+{"op":"insert", "data":{"name":"target_proto", "indir":2, "type":"Part", "scope":"create_down_connector", "kind":"variable"}}
+{"op":"insert", "data":{"name":"id_proto", "indir":1, "type":"ID", "scope":"create_down_connector", "kind":"variable"}}
+{"op":"insert", "data":{"name":"target_component", "indir":2, "type":"Part", "scope":"create_down_connector", "kind":"variable"}}
+{"op":"newscope", "data":"create_across_connector"}
+{"op":"insert", "data":{"name":"create_across_connector", "indir":2, "type":"Wire", "kind":"retproc", "scope":"_global" }}
+{"op":"insert", "data":{"name":"container", "indir":2, "type":"Container", "scope":"create_across_connector","kind":"parameter"}}
+{"op":"insert", "data":{"name":"proto_conn", "indir":2, "type":"Wire_Proto", "scope":"create_across_connector","kind":"parameter"}}
+{"op":"insert", "data":{"name":"connectors", "indir":2, "type":"Collection_of_Wire", "scope":"create_across_connector","kind":"parameter"}}
+{"op":"insert", "data":{"name":"children_by_id", "indir":2, "type":"Table_by_ID_of_Part", "scope":"create_across_connector","kind":"parameter"}}
+{"op":"insert", "data":{"name":"connector", "indir":2, "type":"Wire", "scope":"create_across_connector", "kind":"variable"}}
+{"op":"insert", "data":{"name":"source_component", "indir":2, "type":"Part", "scope":"create_across_connector", "kind":"variable"}}
+{"op":"insert", "data":{"name":"target_component", "indir":2, "type":"Part", "scope":"create_across_connector", "kind":"variable"}}
+{"op":"newscope", "data":"create_up_connector"}
+{"op":"insert", "data":{"name":"create_up_connector", "indir":2, "type":"Wire", "kind":"retproc", "scope":"_global" }}
+{"op":"insert", "data":{"name":"container", "indir":2, "type":"Container", "scope":"create_up_connector","kind":"parameter"}}
+{"op":"insert", "data":{"name":"proto_conn", "indir":2, "type":"Wire_Proto", "scope":"create_up_connector","kind":"parameter"}}
+{"op":"insert", "data":{"name":"connectors", "indir":2, "type":"Collection_of_Wire", "scope":"create_up_connector","kind":"parameter"}}
+{"op":"insert", "data":{"name":"children_by_id", "indir":2, "type":"Table_by_ID_of_Part", "scope":"create_up_connector","kind":"parameter"}}
+{"op":"insert", "data":{"name":"connector", "indir":2, "type":"Wire", "scope":"create_up_connector", "kind":"variable"}}
+{"op":"insert", "data":{"name":"source_component", "indir":2, "type":"Part", "scope":"create_up_connector", "kind":"variable"}}
+{"op":"newscope", "data":"create_through_connector"}
+{"op":"insert", "data":{"name":"create_through_connector", "indir":2, "type":"Wire", "kind":"retproc", "scope":"_global" }}
+{"op":"insert", "data":{"name":"container", "indir":2, "type":"Container", "scope":"create_through_connector","kind":"parameter"}}
+{"op":"insert", "data":{"name":"proto_conn", "indir":2, "type":"Wire_Proto", "scope":"create_through_connector","kind":"parameter"}}
+{"op":"insert", "data":{"name":"connectors", "indir":2, "type":"Collection_of_Wire", "scope":"create_through_connector","kind":"parameter"}}
+{"op":"insert", "data":{"name":"children_by_id", "indir":2, "type":"Table_by_ID_of_Part", "scope":"create_through_connector","kind":"parameter"}}
+{"op":"insert", "data":{"name":"connector", "indir":2, "type":"Wire", "scope":"create_through_connector", "kind":"variable"}}
+{"op":"newscope", "data":"container_instantiator"}
+{"op":"insert", "data":{"name":"container_instantiator", "indir":2, "type":"Container", "kind":"retproc", "scope":"_global" }}
+{"op":"insert", "data":{"name":"reg", "indir":2, "type":"Component_Registry", "scope":"container_instantiator","kind":"parameter"}}
+{"op":"insert", "data":{"name":"owner", "indir":2, "type":"Container", "scope":"container_instantiator","kind":"parameter"}}
+{"op":"insert", "data":{"name":"container_name", "indir":2, "type":"Str", "scope":"container_instantiator","kind":"parameter"}}
+{"op":"insert", "data":{"name":"desc", "indir":2, "type":"Container_Template", "scope":"container_instantiator","kind":"parameter"}}
+{"op":"insert", "data":{"name":"arg", "indir":2, "type":"Str", "scope":"container_instantiator","kind":"parameter"}}
+{"op":"newscope", "data":"container_handler"}
+{"op":"insert", "data":{"name":"container_handler", "indir":0, "type":"void", "kind":"proc", "scope":"_global" }}
+{"op":"insert", "data":{"name":"container", "indir":2, "type":"Container", "scope":"container_handler","kind":"parameter"}}
+{"op":"insert", "data":{"name":"mevent", "indir":2, "type":"Mevent", "scope":"container_handler","kind":"parameter"}}
+{"op":"newscope", "data":"container_reset_children"}
+{"op":"insert", "data":{"name":"container_reset_children", "indir":0, "type":"void", "kind":"proc", "scope":"_global" }}
+{"op":"insert", "data":{"name":"container", "indir":2, "type":"Container", "scope":"container_reset_children","kind":"parameter"}}
+{"op":"insert", "data":{"name":"child", "indir":2, "type":"Part", "scope":"container_reset_children", "kind":"variable"}}
+{"op":"newscope", "data":"destroy_container"}
+{"op":"insert", "data":{"name":"destroy_container", "indir":0, "type":"void", "kind":"proc", "scope":"_global" }}
+{"op":"insert", "data":{"name":"eh", "indir":2, "type":"Part", "scope":"destroy_container","kind":"parameter"}}
+{"op":"newscope", "data":"sender_eq"}
+{"op":"insert", "data":{"name":"sender_eq", "indir":1, "type":"BOOL", "kind":"retproc", "scope":"_global" }}
+{"op":"insert", "data":{"name":"s1", "indir":2, "type":"Part", "scope":"sender_eq","kind":"parameter"}}
+{"op":"insert", "data":{"name":"s2", "indir":2, "type":"Part", "scope":"sender_eq","kind":"parameter"}}
+{"op":"insert", "data":{"name":"same_components", "indir":1, "type":"BOOL", "scope":"sender_eq", "kind":"variable"}}
+{"op":"insert", "data":{"name":"same_ports", "indir":1, "type":"BOOL", "scope":"sender_eq", "kind":"variable"}}
+{"op":"newscope", "data":"deposit"}
+{"op":"insert", "data":{"name":"deposit", "indir":0, "type":"void", "kind":"proc", "scope":"_global" }}
+{"op":"insert", "data":{"name":"parent", "indir":2, "type":"Container", "scope":"deposit","kind":"parameter"}}
+{"op":"insert", "data":{"name":"conn", "indir":2, "type":"Wire", "scope":"deposit","kind":"parameter"}}
+{"op":"insert", "data":{"name":"mevent", "indir":2, "type":"Mevent", "scope":"deposit","kind":"parameter"}}
+{"op":"insert", "data":{"name":"new_mevent", "indir":2, "type":"Mevent", "scope":"deposit", "kind":"variable"}}
+{"op":"newscope", "data":"force_tick"}
+{"op":"insert", "data":{"name":"force_tick", "indir":0, "type":"void", "kind":"proc", "scope":"_global" }}
+{"op":"insert", "data":{"name":"parent", "indir":2, "type":"Container", "scope":"force_tick","kind":"parameter"}}
+{"op":"insert", "data":{"name":"eh", "indir":2, "type":"Part", "scope":"force_tick","kind":"parameter"}}
+{"op":"insert", "data":{"name":"tick_mev", "indir":2, "type":"Mevent", "scope":"force_tick", "kind":"variable"}}
+{"op":"newscope", "data":"push_mevent"}
+{"op":"insert", "data":{"name":"push_mevent", "indir":0, "type":"void", "kind":"proc", "scope":"_global" }}
+{"op":"insert", "data":{"name":"parent", "indir":2, "type":"Container", "scope":"push_mevent","kind":"parameter"}}
+{"op":"insert", "data":{"name":"receiver", "indir":2, "type":"Part", "scope":"push_mevent","kind":"parameter"}}
+{"op":"insert", "data":{"name":"inq", "indir":2, "type":"Queue", "scope":"push_mevent","kind":"parameter"}}
+{"op":"insert", "data":{"name":"m", "indir":2, "type":"Mevent", "scope":"push_mevent","kind":"parameter"}}
+{"op":"newscope", "data":"is_self"}
+{"op":"insert", "data":{"name":"is_self", "indir":1, "type":"Bool", "kind":"retproc", "scope":"_global" }}
+{"op":"insert", "data":{"name":"child", "indir":2, "type":"Part", "scope":"is_self","kind":"parameter"}}
+{"op":"insert", "data":{"name":"container", "indir":2, "type":"Container", "scope":"is_self","kind":"parameter"}}
+{"op":"newscope", "data":"step_child_once"}
+{"op":"insert", "data":{"name":"step_child_once", "indir":0, "type":"void", "kind":"proc", "scope":"_global" }}
+{"op":"insert", "data":{"name":"child", "indir":2, "type":"Part", "scope":"step_child_once","kind":"parameter"}}
+{"op":"insert", "data":{"name":"mev", "indir":2, "type":"Mevent", "scope":"step_child_once","kind":"parameter"}}
+{"op":"newscope", "data":"step_children"}
+{"op":"insert", "data":{"name":"step_children", "indir":0, "type":"void", "kind":"proc", "scope":"_global" }}
+{"op":"insert", "data":{"name":"container", "indir":2, "type":"Container", "scope":"step_children","kind":"parameter"}}
+{"op":"insert", "data":{"name":"causingMevent", "indir":2, "type":"Mevent", "scope":"step_children","kind":"parameter"}}
+{"op":"insert", "data":{"name":"child", "indir":2, "type":"Part", "scope":"step_children", "kind":"variable"}}
+{"op":"insert", "data":{"name":"mev", "indir":2, "type":"Mevent", "scope":"step_children", "kind":"variable"}}
+{"op":"insert", "data":{"name":"mev", "indir":2, "type":"Mevent", "scope":"step_children", "kind":"variable"}}
+{"op":"insert", "data":{"name":"child", "indir":2, "type":"Part", "scope":"step_children", "kind":"variable"}}
+{"op":"insert", "data":{"name":"mev", "indir":2, "type":"Mevent", "scope":"step_children", "kind":"variable"}}
+{"op":"newscope", "data":"attempt_tick"}
+{"op":"insert", "data":{"name":"attempt_tick", "indir":0, "type":"void", "kind":"proc", "scope":"_global" }}
+{"op":"insert", "data":{"name":"parent", "indir":2, "type":"Container", "scope":"attempt_tick","kind":"parameter"}}
+{"op":"insert", "data":{"name":"eh", "indir":2, "type":"Part", "scope":"attempt_tick","kind":"parameter"}}
+{"op":"newscope", "data":"is_tick"}
+{"op":"insert", "data":{"name":"is_tick", "indir":1, "type":"Bool", "kind":"retproc", "scope":"_global" }}
+{"op":"insert", "data":{"name":"mev", "indir":2, "type":"Mevent", "scope":"is_tick","kind":"parameter"}}
+{"op":"newscope", "data":"route"}
+{"op":"insert", "data":{"name":"route", "indir":0, "type":"void", "kind":"proc", "scope":"_global" }}
+{"op":"insert", "data":{"name":"container", "indir":2, "type":"Container", "scope":"route","kind":"parameter"}}
+{"op":"insert", "data":{"name":"from_component", "indir":2, "type":"Part", "scope":"route","kind":"parameter"}}
+{"op":"insert", "data":{"name":"mevent", "indir":2, "type":"Mevent", "scope":"route","kind":"parameter"}}
+{"op":"insert", "data":{"name":"was_sent", "indir":1, "type":"Bool", "scope":"route", "kind":"variable"}}
+{"op":"insert", "data":{"name":"fromname", "indir":2, "type":"Str", "scope":"route", "kind":"variable"}}
+{"op":"newscope", "data":"any_child_ready"}
+{"op":"insert", "data":{"name":"any_child_ready", "indir":1, "type":"Bool", "kind":"retproc", "scope":"_global" }}
+{"op":"insert", "data":{"name":"container", "indir":2, "type":"Container", "scope":"any_child_ready","kind":"parameter"}}
+{"op":"insert", "data":{"name":"child", "indir":2, "type":"Part", "scope":"any_child_ready", "kind":"variable"}}
+{"op":"newscope", "data":"child_is_ready"}
+{"op":"insert", "data":{"name":"child_is_ready", "indir":1, "type":"Bool", "kind":"retproc", "scope":"_global" }}
+{"op":"insert", "data":{"name":"eh", "indir":2, "type":"Part", "scope":"child_is_ready","kind":"parameter"}}
+{"op":"newscope", "data":"append_routing_descriptor"}
+{"op":"insert", "data":{"name":"append_routing_descriptor", "indir":0, "type":"void", "kind":"proc", "scope":"_global" }}
+{"op":"insert", "data":{"name":"container", "indir":2, "type":"Container", "scope":"append_routing_descriptor","kind":"parameter"}}
+{"op":"insert", "data":{"name":"desc", "indir":2, "type":"Wire", "scope":"append_routing_descriptor","kind":"parameter"}}
+{"op":"newscope", "data":"make_container"}
+{"op":"insert", "data":{"name":"make_container", "indir":2, "type":"Container", "kind":"retproc", "scope":"_global" }}
+{"op":"insert", "data":{"name":"name", "indir":2, "type":"Str", "scope":"make_container","kind":"parameter"}}
+{"op":"insert", "data":{"name":"owner", "indir":2, "type":"Container", "scope":"make_container","kind":"parameter"}}
+{"op":"insert", "data":{"name":"eh", "indir":2, "type":"Container", "scope":"make_container", "kind":"variable"}}
+{"op":"newscope", "data":"send"}
+{"op":"insert", "data":{"name":"send", "indir":0, "type":"void", "kind":"proc", "scope":"_global" }}
+{"op":"insert", "data":{"name":"eh", "indir":2, "type":"Part", "scope":"send","kind":"parameter"}}
+{"op":"insert", "data":{"name":"port", "indir":1, "type":"Port", "scope":"send","kind":"parameter"}}
+{"op":"insert", "data":{"name":"obj", "indir":2, "type":"Part", "scope":"send","kind":"parameter"}}
+{"op":"insert", "data":{"name":"causingMevent", "indir":2, "type":"Mevent", "scope":"send","kind":"parameter"}}
+{"op":"insert", "data":{"name":"d", "indir":2, "type":"Payload", "scope":"send", "kind":"variable"}}
+{"op":"insert", "data":{"name":"mev", "indir":2, "type":"Mevent", "scope":"send", "kind":"variable"}}
+{"op":"newscope", "data":"forward"}
+{"op":"insert", "data":{"name":"forward", "indir":0, "type":"void", "kind":"proc", "scope":"_global" }}
+{"op":"insert", "data":{"name":"eh", "indir":2, "type":"Part", "scope":"forward","kind":"parameter"}}
+{"op":"insert", "data":{"name":"port", "indir":1, "type":"Port", "scope":"forward","kind":"parameter"}}
+{"op":"insert", "data":{"name":"mev", "indir":2, "type":"Mevent", "scope":"forward","kind":"parameter"}}
+{"op":"insert", "data":{"name":"fwdmev", "indir":2, "type":"Mevent", "scope":"forward", "kind":"variable"}}
+{"op":"newscope", "data":"inject_mevent"}
+{"op":"insert", "data":{"name":"inject_mevent", "indir":2, "type":"Mevent", "kind":"retproc", "scope":"_global" }}
+{"op":"insert", "data":{"name":"eh", "indir":2, "type":"Part", "scope":"inject_mevent","kind":"parameter"}}
+{"op":"insert", "data":{"name":"mev", "indir":2, "type":"Mevent", "scope":"inject_mevent","kind":"parameter"}}
+{"op":"newscope", "data":"set_active"}
+{"op":"insert", "data":{"name":"set_active", "indir":0, "type":"void", "kind":"proc", "scope":"_global" }}
+{"op":"insert", "data":{"name":"eh", "indir":2, "type":"Part", "scope":"set_active","kind":"parameter"}}
+{"op":"newscope", "data":"set_idle"}
+{"op":"insert", "data":{"name":"set_idle", "indir":0, "type":"void", "kind":"proc", "scope":"_global" }}
+{"op":"insert", "data":{"name":"eh", "indir":2, "type":"Part", "scope":"set_idle","kind":"parameter"}}
+{"op":"newscope", "data":"put_output"}
+{"op":"insert", "data":{"name":"put_output", "indir":0, "type":"void", "kind":"proc", "scope":"_global" }}
+{"op":"insert", "data":{"name":"eh", "indir":2, "type":"Part", "scope":"put_output","kind":"parameter"}}
+{"op":"insert", "data":{"name":"mev", "indir":2, "type":"Mevent", "scope":"put_output","kind":"parameter"}}
+{"op":"newscope", "data":"clone_payload"}
+{"op":"insert", "data":{"name":"clone_payload", "indir":2, "type":"Payload", "kind":"retproc", "scope":"_global" }}
+{"op":"insert", "data":{"name":"clone_payload", "indir":2, "type":"Payload", "scope":"clone_payload","kind":"parameter"}}

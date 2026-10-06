@@ -1,7 +1,9 @@
 
-{"name":"digits", "indir":1, "type":"Array_of_Str", "scope":"global", "kind":"variable"}
-{"name":"subscripted_digit", "indir":2, "type":"Str", "kind":"retproc", "scope":"global" }
-{"name":"n", "indir":1, "type":"Int", "scope":"subscripted_digit","kind":"parameter"}
-{"name":"counter", "indir":1, "type":"Int", "scope":"global", "kind":"variable"}
-{"name":"gensymbol", "indir":2, "type":"Str", "kind":"retproc", "scope":"global" }
-{"name":"s", "indir":2, "type":"Str", "scope":"gensymbol","kind":"parameter"}
+{"op":"insert", "data":{"name":"digits", "indir":1, "type":"Array_of_Str", "scope":"_global", "kind":"variable"}}
+{"op":"newscope", "data":"subscripted_digit"}
+{"op":"insert", "data":{"name":"subscripted_digit", "indir":2, "type":"Str", "kind":"retproc", "scope":"_global" }}
+{"op":"insert", "data":{"name":"n", "indir":1, "type":"Int", "scope":"subscripted_digit","kind":"parameter"}}
+{"op":"insert", "data":{"name":"counter", "indir":1, "type":"Int", "scope":"_global", "kind":"variable"}}
+{"op":"newscope", "data":"gensymbol"}
+{"op":"insert", "data":{"name":"gensymbol", "indir":2, "type":"Str", "kind":"retproc", "scope":"_global" }}
+{"op":"insert", "data":{"name":"s", "indir":2, "type":"Str", "scope":"gensymbol","kind":"parameter"}}

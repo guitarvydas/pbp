@@ -6,24 +6,24 @@
   TopLevel_defvar [x] = ‛«x»’
   Defn [_defn_ id _eq_ functiontype Formals FunctionBody] =
   ⎡ scope=‛«id»’
-     ‛\n{"name":"«id»", «functiontype», "scope":"global" }«Formals»«FunctionBody»’
+     ‛\n{"op":"newscope", "data":"«id»"}\n{"op":"insert", "data":{"name":"«id»", «functiontype», "scope":"_global" }}«Formals»«FunctionBody»’
   ⎦
   DefObj [_defobj_ id ObjBody] =
   ⎡ scope=‛«id»’
-     ‛\n{"name":"«id»", "indir":1, "type":"obj", "scope":"global", "kind":"obj"}«ObjBody»’
+     ‛\n{"op":"newscope", "data":"«id»"}\n{"op":"insert", "data":{"name":"«id»", "indir":1, "type":"obj", "scope":"_global", "kind":"obj"}}«ObjBody»’
   ⎦
-  DefVar [_1 id _3 ty] = ‛\n{"name":"«id»", «ty», "scope":"global", "kind":"variable"}’
+  DefVar [_1 id _3 ty] = ‛\n{"op":"insert", "data":{"name":"«id»", «ty», "scope":"_global", "kind":"variable"}}’
   FunctionType_procedure [_tilde_] = ‛"indir":0, "type":"void", "kind":"proc"’
   FunctionType_returnvalue [ty] = ‛«ty», "kind":"retproc"’
 
   Formals [_lp typedvarcomma _rp] = ‛«typedvarcomma»’
-  TypedParamComma [typedID _comma? typedparamcomma?] = ‛\n{«typedID»,"kind":"parameter"}«typedparamcomma»’
+  TypedParamComma [typedID _comma? typedparamcomma?] = ‛\n{"op":"insert", "data":{«typedID»,"kind":"parameter"}}«typedparamcomma»’
   TypedID [id _eq Type] = ‛"name":"«id»", «Type», "scope":"⟪scope⟫"’
   FunctionBody [_lb BodyInnards? _rb] = ‛«BodyInnards»’
   BodyInnards_brace [_l BodyInnards? _r rec?] = ‛«BodyInnards»«rec»’
   BodyInnards_parenthesis [_l BodyInnards? _r rec?] = ‛«BodyInnards»«rec»’
   BodyInnards_bracket [_l BodyInnards? _r rec?] = ‛«BodyInnards»«rec»’
-  BodyInnards_TypedVar [typedid rec?] = ‛\n{«typedid», "kind":"variable"}«rec»’
+  BodyInnards_TypedVar [typedid rec?] = ‛\n{"op":"insert", "data":{«typedid», "kind":"variable"}}«rec»’
   BodyInnards_other [c rec?] = ‛«rec»’
   Type_pointer [_at id] = ‛"indir":2, "type":"«id»"’
   Type_pointerany [_at] = ‛"indir":2, "type":"any"’

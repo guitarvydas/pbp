@@ -1,0 +1,50 @@
+```
+let line = '{"op":"%insert","data":{"name":"s", "indir":2, "type":"Str", "scope":"mangle_name","kind":"parameter"}}';
+
+console.log("0\n");
+console.log(line);
+const obj = JSON.parse(line);
+console.log("a\n");
+console.log(obj);
+console.log("b\n");
+console.log(obj.op);
+console.log("c\n");
+console.log(obj.data);
+console.log("d\n");
+console.log(obj.op, obj.data);
+```
+
+I get
+```
+0
+
+{"op":"%insert","data":{"name":"s", "indir":2, "type":"Str", "scope":"mangle_name","kind":"parameter"}}
+a
+
+{
+  op: '%insert',
+  data: {
+    name: 's',
+    indir: 2,
+    type: 'Str',
+    scope: 'mangle_name',
+    kind: 'parameter'
+  }
+}
+b
+
+%insert
+c
+
+{
+  name: 's',
+  indir: 2,
+  type: 'Str',
+  scope: 'mangle_name',
+  kind: 'parameter'
+}
+d
+
+NaNnsert
+```
+I'm confused about the last line of output (`NaNnsert`)
