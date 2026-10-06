@@ -1,18 +1,18 @@
 /*  (This used to be called `external` due to historical reasons). This has evolved into 2 kinds of Leaf parts: AOT and JIT (statically generated before runtime, vs. dynamically generated at runtime). If a part name begins with ;:', it is treated specially as a JIT part, else the part is assumed to have been pre-loaded into the register in the regular way.  *//* line 1 *//* line 2 */
-void* jit_instantiate (reg,owner,name,arg) {
+void* jit_instantiate (void* reg,void* owner,void* name,void* arg) {
                                                        /* line 3 */
     name_with_id = gensymbol ( name)                   /* line 4 */
     inst = make_leaf ( name_with_id, owner, NULL, arg, handle_jit, NULL)/* line 5 */
-    firstc =  name [ 1]                                /* line 6 */
+    firstc =  (*name) [ 1]                             /* line 6 */
     if ( firstc!= "$"):                                /* line 7 */
         /*  probes get to go to the front of the line  *//* line 8 */
-        inst.special =  True;                          /* line 9 *//* line 10 */
+        (*inst).special =  True;                       /* line 9 *//* line 10 */
     return ( inst)                                     /* line 11 *//* line 12 *//* line 13 */}
 
-void* handle_jit (eh,mev) {
+void* handle_jit (void* eh,void* mev) {
                                                        /* line 14 */
-    s =  eh.arg                                        /* line 15 */
-    firstc =  s [ 1]                                   /* line 16 */
+    s =   (*eh).arg                                    /* line 15 */
+    firstc =  (*s) [ 1]                                /* line 16 */
     if  firstc ==  "$":                                /* line 17 */
         shell_out_handler ( eh,    s[1:] [1:] [1:] , mev)/* line 18 */
     elif  firstc ==  "?":                              /* line 19 */
@@ -21,14 +21,14 @@ void* handle_jit (eh,mev) {
         /*  just a string, send it out  */             /* line 22 */
         send ( eh, "",  s[1:] , mev)                   /* line 23 *//* line 24 *//* line 25 *//* line 26 */}
 
-void* probe_handler (eh,tag,mev) {
+void* probe_handler (void* eh,void* tag,void* mev) {
                                                        /* line 27 */
-    s =  mev.payload.v                                 /* line 28 */
-    external live_update ( "Info",  str( "  @") +  str(str ( ticktime)) +  str( "  ") +  str( "probe ") +  str( eh.name) +  str( ": ") + str ( s)      )/* line 36 *//* line 37 *//* line 38 */}
+    s =    (*mev).payload.v                            /* line 28 */
+    external live_update ( "Info",  str( "  @") +  str(str ( ticktime)) +  str( "  ") +  str( "probe ") +  str(  (*eh).name) +  str( ": ") + str ( s)      )/* line 36 *//* line 37 *//* line 38 */}
 
-void* shell_out_handler (eh,cmd,mev) {
+void* shell_out_handler (void* eh,void* cmd,void* mev) {
                                                        /* line 39 */
-    s =  mev.payload.v                                 /* line 40 */
+    s =    (*mev).payload.v                            /* line 40 */
     ret =  NULL                                        /* line 41 */
     rc =  NULL                                         /* line 42 */
     stdout =  NULL                                     /* line 43 */

@@ -33,6 +33,31 @@ function second(s) {
   return s.split('⫶').slice(0, -1).map(item => item.split('◦')[1]).join('');
 }
 
+/// type table based stuff
+/// read in the type table, arranged by scope names
+/// use the type table during code emission to generate code in a typed language (C in this case)
+
+let scopes = {"_global":{}};
+    
+function readtypetable (fname) {
+    const lines = fs.readFileSync(fname, "utf8").split("\n");
+
+    for (const line of lines) {
+	if (line.trim() === "") continue;   // skip blank lines
+	const obj = JSON.parse(line);
+	if (obj.op === "newscope") {
+	    scopes[obj.operand] = {};
+	} else if (obj.op === "insert") {
+	    scopes[obj.operand.scope][obj.operand.name] = obj.operand;
+	}
+    }
+}
+
+function gettypeinfo() {
+    readtypetable("typetable.jsn");
+}
+
+
 function getdeclaration(scope, id) {
     return `void* ${id}`;
 }
@@ -49,9 +74,7 @@ function pderef(s) {
     return `**deref=${s}**`;
 }
 
-import { appendFileSync } from 'fs';
-
 function pbplog (s) {
-    appendFileSync('pbplog.txt', s + "\n");
+    fs.appendFileSync('pbplog.txt', s + "\n");
 }
 

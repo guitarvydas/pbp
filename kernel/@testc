@@ -1,8 +1,8 @@
 #!/bin/bash
 set -e
 
-# small
-exit 0
+# # small, short testing
+# exit 0
 
 if [ -n "$PBPDEV" ]; then
     # do something

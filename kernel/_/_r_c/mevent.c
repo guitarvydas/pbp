@@ -33,53 +33,53 @@ Mevent fresh_Mevent () {
     return self;
 }
                                                        /* line 18 */
-void* clone_port (s) {
+void* clone_port (void* s) {
                                                        /* line 19 */
     return (clone_string ( s)                          /* line 20 */)/* line 21 *//* line 22 */}
 
 /*  Utility for making a `Mevent`. Used to safely "seed“ mevents *//* line 23 */
 /*  entering the very top of a network. */             /* line 24 */
-void* make_mevent (port,datum) {
+void* make_mevent (void* port,void* datum) {
                                                        /* line 25 */
     p = clone_string ( port)                           /* line 26 */
     m =  Mevent ()                                     /* line 27 */
-    m.port =  p                                        /* line 28 */
-    m.payload =  datum.clone ()                        /* line 29 */
+    (*m).port =  p                                     /* line 28 */
+    (*m).payload =   (*datum).clone ()                 /* line 29 */
     return ( m)                                        /* line 30 */;;/* line 31 *//* line 32 */}
 
 /*  Clones a mevent. Primarily used internally for “fanning out“ a mevent to multiple destinations. *//* line 33 */
-void* mevent_clone (mev) {
+void* mevent_clone (void* mev) {
                                                        /* line 34 */
     m =  Mevent ()                                     /* line 35 */
-    m.port = clone_port ( mev.port)                    /* line 36 */
-    m.payload =  mev.payload.clone ()                  /* line 37 */
+    (*m).port = clone_port (  (*mev).port)             /* line 36 */
+    (*m).payload =    (*mev).payload.clone ()          /* line 37 */
     return ( m)                                        /* line 38 */;;/* line 39 *//* line 40 */}
 
 /*  Frees a mevent. */                                 /* line 41 */
-void* destroy_mevent (mev) {
+void* destroy_mevent (void* mev) {
                                                        /* line 42 */
     /*  during debug, dont destroy any mevent, since we want to trace mevents, thus, we need to persist ancestor mevents *//* line 43 */
                                                        /* line 44 *//* line 45 *//* line 46 */}
 
-void* destroy_datum (mev) {
+void* destroy_datum (void* mev) {
                                                        /* line 47 */
                                                        /* line 48 *//* line 49 *//* line 50 */}
 
-void* destroy_port (mev) {
+void* destroy_port (void* mev) {
                                                        /* line 51 */
                                                        /* line 52 *//* line 53 *//* line 54 */}
 
 /*  */                                                 /* line 55 */
-void* format_mevent (m) {
+void* format_mevent (void* m) {
                                                        /* line 56 */
     if  m ==  NULL:                                    /* line 57 */
         return ( "{}")                                 /* line 58 */
     else:                                              /* line 59 */
-        return ( str( "{%5C”") +  str( m.port) +  str( "%5C”:%5C”") +  str( m.payload.v) +  "%5C”}"    /* line 60 */)/* line 61 *//* line 62 */}
+        return ( str( "{%5C”") +  str(  (*m).port) +  str( "%5C”:%5C”") +  str(   (*m).payload.v) +  "%5C”}"    /* line 60 */)/* line 61 *//* line 62 */}
 
-void* format_mevent_raw (m) {
+void* format_mevent_raw (void* m) {
                                                        /* line 63 */
     if  m ==  NULL:                                    /* line 64 */
         return ( "")                                   /* line 65 */
     else:                                              /* line 66 */
-        return ( m.payload.v)                          /* line 67 *//* line 68 *//* line 69 */}
+        return (   (*m).payload.v)                     /* line 67 *//* line 68 *//* line 69 */}

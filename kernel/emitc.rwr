@@ -4,9 +4,11 @@
 % rewrite emitc {
 
 Main [ TopLevel+] = 
-  ⎡ scope=‛_global’
-    ⎡ deref=‛⊥’
-       ‛«TopLevel»’
+  ⎡ ⎨gettypeinfo ⎬
+    ⎡ scope=‛_global’
+      ⎡ deref=‛⊥’
+	 ‛«TopLevel»’
+      ⎦
     ⎦
   ⎦
 
