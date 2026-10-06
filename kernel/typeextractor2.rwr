@@ -28,7 +28,7 @@
   Type_pointer [_at id] = ‛"indir":2, "type":"«id»"’
   Type_pointerany [_at] = ‛"indir":2, "type":"any"’
   Type_plain [id] = ‛"indir":1, "type":"«id»"’
-  id [cs+] = ‛«cs»’
+  id [ulb? cs+ urb?] = ‛«ulb»«cs»«urb»’
   Line [_line digit+] = ‛’
 
   exp [cs+] = ‛«cs»’

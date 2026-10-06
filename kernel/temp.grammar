@@ -26,7 +26,7 @@ typeExtractor2 {
     | "@" id -- pointer
     | "@" ~id -- pointerany
     | id     -- plain
-  id = (alnum | "_")+
+  id = "❲"? (alnum | "_")+ "❳"?
   Line = "#line" digit+
 
   exp = expchar+

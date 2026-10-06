@@ -127,9 +127,9 @@ enter_rule ("Type_plain");
     set_return (`"indir":1, "type":"${id.rwr ()}"`);
 return exit_rule ("Type_plain");
 },
-id : function (cs,) {
+id : function (ulb,cs,urb,) {
 enter_rule ("id");
-    set_return (`${cs.rwr ().join ('')}`);
+    set_return (`${ulb.rwr ().join ('')}${cs.rwr ().join ('')}${urb.rwr ().join ('')}`);
 return exit_rule ("id");
 },
 Line : function (_line,digit,) {
