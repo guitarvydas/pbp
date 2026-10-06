@@ -1,0 +1,74 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.6.1 Chrome/142.0.7444.265 Electron/39.8.0 Safari/537.36" version="29.6.1">
+  <diagram name="Page-1" id="_aA-1PmFJbHiksa7n4a1">
+    <mxGraphModel dx="1096" dy="884" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="MhHqY9P7XuKcFjh2RFts-20" parent="1" style="ellipse;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=11;labelBackgroundColor=default;fillColor=none;dashed=1;dashPattern=1 1;strokeColor=#6c8ebf;" value="" vertex="1">
+          <mxGeometry height="560" width="500" x="180" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="MhHqY9P7XuKcFjh2RFts-3" edge="1" parent="1" source="MhHqY9P7XuKcFjh2RFts-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;sketch=1;curveFitting=1;jiggle=2;" target="MhHqY9P7XuKcFjh2RFts-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="MhHqY9P7XuKcFjh2RFts-1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;sketch=1;curveFitting=1;jiggle=2;" value="wrote and debugged kernel0d.py in Python" vertex="1">
+          <mxGeometry height="80" width="160" x="360" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="MhHqY9P7XuKcFjh2RFts-5" edge="1" parent="1" source="MhHqY9P7XuKcFjh2RFts-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;sketch=1;curveFitting=1;jiggle=2;" target="MhHqY9P7XuKcFjh2RFts-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="MhHqY9P7XuKcFjh2RFts-2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;sketch=1;curveFitting=1;jiggle=2;" value="changed syntax to &#39;.rt&#39; which is a subset of Python - just enough to get kernel0d.rt working" vertex="1">
+          <mxGeometry height="80" width="160" x="360" y="220" as="geometry" />
+        </mxCell>
+        <mxCell id="MhHqY9P7XuKcFjh2RFts-10" edge="1" parent="1" source="MhHqY9P7XuKcFjh2RFts-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="MhHqY9P7XuKcFjh2RFts-9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="MhHqY9P7XuKcFjh2RFts-4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;sketch=1;curveFitting=1;jiggle=2;" value="extended &#39;.rt&#39; to allow it to emit Py, JS and CL&amp;nbsp;" vertex="1">
+          <mxGeometry height="80" width="160" x="360" y="340" as="geometry" />
+        </mxCell>
+        <mxCell id="MhHqY9P7XuKcFjh2RFts-6" parent="1" style="shape=mxgraph.basic.arc;html=1;startAngle=0.3;endAngle=0.20070924548595298;endArrow=classic;endFill=1;sketch=1;curveFitting=1;jiggle=2;dashed=1;" value="" vertex="1">
+          <mxGeometry height="50" width="50" x="320" y="355" as="geometry" />
+        </mxCell>
+        <mxCell id="MhHqY9P7XuKcFjh2RFts-7" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;sketch=1;curveFitting=1;jiggle=2;dashed=1;spacingLeft=2;spacingBottom=0;spacingRight=2;" value="elided code that was very different in Py, JS and CL using #external constructs" vertex="1">
+          <mxGeometry height="100" width="110" x="220" y="330" as="geometry" />
+        </mxCell>
+        <mxCell id="MhHqY9P7XuKcFjh2RFts-9" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="use T2T to transmogrify `.rt&#39; files to Py, JS and CL" vertex="1">
+          <mxGeometry height="80" width="160" x="360" y="480" as="geometry" />
+        </mxCell>
+        <mxCell id="MhHqY9P7XuKcFjh2RFts-12" edge="1" parent="1" source="MhHqY9P7XuKcFjh2RFts-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;" target="MhHqY9P7XuKcFjh2RFts-9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="MhHqY9P7XuKcFjh2RFts-11" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#d5e8d4;strokeColor=#82b366;sketch=1;curveFitting=1;jiggle=2;" value=".rt files that make up kernel" vertex="1">
+          <mxGeometry height="80" width="60" x="40" y="480" as="geometry" />
+        </mxCell>
+        <mxCell id="MhHqY9P7XuKcFjh2RFts-13" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#fff2cc;strokeColor=#d6b656;sketch=1;curveFitting=1;jiggle=2;" value="kernel0d.py" vertex="1">
+          <mxGeometry height="80" width="80" x="800" y="390" as="geometry" />
+        </mxCell>
+        <mxCell id="MhHqY9P7XuKcFjh2RFts-14" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#fff2cc;strokeColor=#d6b656;sketch=1;curveFitting=1;jiggle=2;" value=".rt files that make up kernel" vertex="1">
+          <mxGeometry height="80" width="80" x="800" y="480" as="geometry" />
+        </mxCell>
+        <mxCell id="MhHqY9P7XuKcFjh2RFts-15" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#fff2cc;strokeColor=#d6b656;sketch=1;curveFitting=1;jiggle=2;" value=".rt files that make up kernel" vertex="1">
+          <mxGeometry height="80" width="80" x="800" y="570" as="geometry" />
+        </mxCell>
+        <mxCell id="MhHqY9P7XuKcFjh2RFts-16" edge="1" parent="1" source="MhHqY9P7XuKcFjh2RFts-9" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;curved=0;" target="MhHqY9P7XuKcFjh2RFts-14">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="MhHqY9P7XuKcFjh2RFts-17" edge="1" parent="1" source="MhHqY9P7XuKcFjh2RFts-9" style="edgeStyle=orthogonalEdgeStyle;shape=connector;curved=0;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;strokeColor=default;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;endArrow=classic;" target="MhHqY9P7XuKcFjh2RFts-13">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="720" y="520" />
+              <mxPoint x="720" y="430" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="MhHqY9P7XuKcFjh2RFts-18" edge="1" parent="1" source="MhHqY9P7XuKcFjh2RFts-9" style="edgeStyle=orthogonalEdgeStyle;shape=connector;curved=0;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;strokeColor=default;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;endArrow=classic;" target="MhHqY9P7XuKcFjh2RFts-15">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="720" y="520" />
+              <mxPoint x="720" y="610" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

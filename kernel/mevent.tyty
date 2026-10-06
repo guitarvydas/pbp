@@ -1,10 +1,10 @@
 #line 1
-defobj Datum {
+defobj ❲Datum❳ {
                                                        #line 2
-    v ≡ @Payload                                               #line 3
-    clone ≡ Fclone
-    reclaim ≡ Freclaim
-    other ≡ @                                           #line 6#line 7
+    ❲v❳ ≡ @Payload                                               #line 3
+    ❲clone❳ ≡ Fclone
+    ❲reclaim❳ ≡ Freclaim
+    ❲other❳ ≡ @                                           #line 6#line 7
 }
 
                                                        #line 8#line 9
@@ -12,15 +12,15 @@ defobj Datum {
                                                        #line 11
                                                        #line 12
                                                        #line 13
-defobj Mevent {
+defobj ❲Mevent❳ {
                                                        #line 14
-    port ≡ Port                                            #line 15
-    payload ≡ @Payload                                         #line 16#line 17
+    ❲port❳ ≡ Port                                            #line 15
+    ❲payload❳ ≡ @Payload                                         #line 16#line 17
 }
                                                        #line 18
-defn clone_port ≡ Port
+defn ❲clone_port❳ ≡ Port
 (
-    s ≡ Port
+    ❲s❳ ≡ Port
 )
 {
                                                        #line 19
@@ -28,63 +28,63 @@ defn clone_port ≡ Port
 
                                                        #line 23
                                                        #line 24
-defn make_mevent ≡ @Mevent
+defn ❲make_mevent❳ ≡ @Mevent
 (
-    port ≡ Port,
-    datum ≡ @Datum
+    ❲port❳ ≡ Port,
+    ❲datum❳ ≡ @Datum
 )
 {
                                                        #line 25
-        p ≡ Port
-        m ≡ @Mevent
+        ❲p❳ ≡ Port
+        ❲m❳ ≡ @Mevent
 }
 
                                                        #line 33
-defn mevent_clone ≡ @Mevent
+defn ❲mevent_clone❳ ≡ @Mevent
 (
-    mev ≡ @Mevent
+    ❲mev❳ ≡ @Mevent
 )
 {
                                                        #line 34
-        m ≡ @Mevent
+      ❲m❳ ≡ @Mevent
 }
 
                                                        #line 41
-defn destroy_mevent ≡ ~
+defn ❲destroy_mevent❳ ≡ ~
 (
-    mev ≡ @Mevent
+    ❲mev❳ ≡ @Mevent
 )
 {
                                                        #line 42#line 43#line 44#line 45#line 46
 }
 
-defn destroy_datum ≡ ~
+defn ❲destroy_datum❳ ≡ ~
 (
-    mev ≡ @Mevent
+    ❲mev❳ ≡ @Mevent
 )
 {
                                                        #line 47#line 48#line 49#line 50
 }
 
-defn destroy_port ≡ ~
+defn ❲destroy_port❳ ≡ ~
 (
-    mev ≡ @Mevent
+    ❲mev❳ ≡ @Mevent
 )
 {
                                                        #line 51#line 52#line 53#line 54
 }
 
                                                        #line 55
-defn format_mevent ≡ @Str
+defn ❲format_mevent❳ ≡ @Str
 (
-    m ≡ @Mevent
+    ❲m❳ ≡ @Mevent
 )
 {
 }
 
-defn format_mevent_raw ≡ @Str
+defn ❲format_mevent_raw❳ ≡ @Str
 (
-    m ≡ @Mevent
+    ❲m❳ ≡ @Mevent
 )
 {
 }
