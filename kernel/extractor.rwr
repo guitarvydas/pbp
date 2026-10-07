@@ -12,7 +12,7 @@ TopLevel_line [line] =‛«line»’
 kw [ s] = ‛«s»’
 Defvar [ __ lval _eq e line?] = ‛\ndefvar «lval» ≡ «line»’
 Defn [ _4 ident Formals StatementBlock line?] = ‛\ndefn «ident» ≡  \n«Formals» \n{⤷\n«StatementBlock»«line»⤶\n}\n’
-Defobj [ _defobj ident Formals line1? lb line2? init+ rb line3?] = ‛\ndefobj «ident» {⤷\n«line1»«line2»«init»«line3»⤶\n}\n’
+Defobj [ _defobj ident line1? lb line2? init+ rb line3?] = ‛\ndefobj «ident» {⤷\n«line1»«line2»«init»«line3»⤶\n}\n’
 StatementBlock [ line1? lb line2? Statement     line3? rb  line4?] = ‛«line1»«line2»⤷«Statement»«line3»«line4»⤶’
 
 Rec_Statement [line1? R_Statement line2?] = ‛«line1»«R_Statement»«line2»’
@@ -158,7 +158,6 @@ Lval [ Exp ] = ‛«Exp»’
 keyword [ _144] = ‛«_144»’
 Formals_noformals [ _148 _149] =‛«_148»«_149»’
 Formals_withformals [ _150 FormalComma* _151] =‛«_150»«FormalComma»\n«_151»’
-ObjFormals_noformals [ _148 _149] =‛’
 LambdaFormals_noformals [ _148 _149] =‛’
 LambdaFormals_withformals [ _150 FormalComma* _151] =‛«FormalComma»’
 Formal [ ident] = ‛⤷\n«ident» ≡ ⤶’
@@ -187,11 +186,12 @@ stringchar_rec [lb cs* rb] = ‛«lb»«cs»«rb»’
 stringchar_other [c] = ‛«c»’
 
 
-kw [lb s rb] = ‛«lb»«s»«rb»’
-ident [lb cs* rb] = ‛«lb»«cs»«rb»’
-idchar_rec [lb cs* rb] = ‛«lb»«cs»«rb»’
-idchar_other [c] = ‛«c»’
-
+kw [id] = ‛«id»’
+xkw [id] = ‛«id»’
+ident [c cs*] = ‛«c»«cs»’
+id1char [c] =‛«c»’
+id2char [c] =‛«c»’
+idtail [c+] =‛«c»’
 comment [lb cs* rb] = ‛’
 commentchar_rec [lb cs* rb] = ‛’
 commentchar_other [c] = ‛’

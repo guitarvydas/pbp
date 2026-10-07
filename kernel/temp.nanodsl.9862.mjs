@@ -203,7 +203,7 @@ return exit_rule ("char_string");
 },
 char_comment : function (lb,cs,rb,) {
 enter_rule ("char_comment");
-    set_return (``);
+    set_return (`#${cs.rwr ().join ('')}`);
 return exit_rule ("char_comment");
 },
 char_errormessage : function (lb,cs,rb,) {
@@ -218,7 +218,7 @@ return exit_rule ("char_line");
 },
 char_ulb : function (c,) {
 enter_rule ("char_ulb");
-    set_return (`${c.rwr ()}`);
+    set_return (``);
 return exit_rule ("char_ulb");
 },
 char_encodedulb : function (c,) {
@@ -228,7 +228,7 @@ return exit_rule ("char_encodedulb");
 },
 char_urb : function (c,) {
 enter_rule ("char_urb");
-    set_return (`${c.rwr ()}`);
+    set_return (``);
 return exit_rule ("char_urb");
 },
 char_encodedurb : function (c,) {

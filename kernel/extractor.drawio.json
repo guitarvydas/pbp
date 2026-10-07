@@ -17,6 +17,18 @@
       {
         "name": "Exhale iPython",
         "id": 15
+      },
+      {
+        "name": ":?A",
+        "id": 19
+      },
+      {
+        "name": ":?B",
+        "id": 21
+      },
+      {
+        "name": ":?C",
+        "id": 23
       }
     ],
     "connections": [
@@ -62,6 +74,45 @@
         "target": {
           "name": "Exhale iPython",
           "id": 15
+        }
+      },
+      {
+        "dir": 1,
+        "source_port": "",
+        "target_port": "",
+        "source": {
+          "name": "Exhale iPython",
+          "id": 15
+        },
+        "target": {
+          "name": ":?C",
+          "id": 23
+        }
+      },
+      {
+        "dir": 1,
+        "source_port": "",
+        "target_port": "",
+        "source": {
+          "name": "Extract for Typing",
+          "id": 11
+        },
+        "target": {
+          "name": ":?B",
+          "id": 21
+        }
+      },
+      {
+        "dir": 1,
+        "source_port": "",
+        "target_port": "",
+        "source": {
+          "name": "Front End",
+          "id": 5
+        },
+        "target": {
+          "name": ":?A",
+          "id": 19
         }
       },
       {
@@ -250,7 +301,7 @@
     "name": "Exhale iPython",
     "children": [
       {
-        "name": "Decode for iPython",
+        "name": "Decode for Python",
         "id": 5
       },
       {
@@ -276,7 +327,7 @@
         "source_port": "",
         "target_port": "",
         "target": {
-          "name": "Decode for iPython",
+          "name": "Decode for Python",
           "id": 5
         }
       },
@@ -324,7 +375,7 @@
         "source_port": "",
         "target_port": "",
         "source": {
-          "name": "Decode for iPython",
+          "name": "Decode for Python",
           "id": 5
         },
         "target": {
@@ -382,7 +433,7 @@
         "source_port": "✗",
         "target_port": "✗",
         "source": {
-          "name": "Decode for iPython",
+          "name": "Decode for Python",
           "id": 5
         }
       }
@@ -390,10 +441,10 @@
     "file": "extractor.drawio"
   },
   {
-    "name": "Decode for iPython",
+    "name": "Decode for Python",
     "children": [
       {
-        "name": ":$ _/t2t pydecode extractordecode",
+        "name": ":$ _/t2t pydecode",
         "id": 5
       }
     ],
@@ -403,7 +454,7 @@
         "source_port": "",
         "target_port": "",
         "target": {
-          "name": ":$ _/t2t pydecode extractordecode",
+          "name": ":$ _/t2t pydecode",
           "id": 5
         }
       },
@@ -412,7 +463,7 @@
         "source_port": "",
         "target_port": "",
         "source": {
-          "name": ":$ _/t2t pydecode extractordecode",
+          "name": ":$ _/t2t pydecode",
           "id": 5
         }
       },
@@ -421,7 +472,7 @@
         "source_port": "✗",
         "target_port": "✗",
         "source": {
-          "name": ":$ _/t2t pydecode extractordecode",
+          "name": ":$ _/t2t pydecode",
           "id": 5
         }
       }

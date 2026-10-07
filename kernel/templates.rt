@@ -1,8 +1,8 @@
-defobj Component_Registry () {
+defobj Component_Registry {
         • templates ⇐ {}
 }
 
-defobj Template () {
+defobj Template {
         • name ⇐ ϕ
         • container ⇐ ϕ
         • instantiator ⇐ ϕ

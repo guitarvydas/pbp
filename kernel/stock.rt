@@ -12,13 +12,13 @@ defn trash_handler (eh, mev) {
     ⌈ to appease dumped_on_floor checker⌉
     pass
 }
-defobj TwoMevents () {
+defobj TwoMevents {
         • firstmev ⇐ ϕ
         • secondmev ⇐ ϕ
 }
 
 ⌈ Deracer_States :: enum { idle, waitingForFirstmev, waitingForSecondmev }⌉
-defobj Deracer_Instance_Data () {
+defobj Deracer_Instance_Data {
         • state ⇐ ϕ
         • buffer ⇐ ϕ
 }
@@ -105,7 +105,7 @@ defn ensure_string_datum_handler (eh, mev) {
     }
 }
 
-defobj Syncfilewrite_Data () {
+defobj Syncfilewrite_Data {
         • filename ⇐ “”
 }
 
@@ -137,7 +137,7 @@ defn syncfilewrite_handler (eh, mev) {
     }
 }
 
-defobj StringConcat_Instance_Data () {
+defobj StringConcat_Instance_Data {
         • buffer1 ⇐ ϕ
         • buffer2 ⇐ ϕ
 }
@@ -217,7 +217,7 @@ defn fakepipename_handler (eh, mev) {
 }
 
 
-defobj Switch1star_Instance_Data () {
+defobj Switch1star_Instance_Data {
         • state ⇐ “1”
 }
 
@@ -251,7 +251,7 @@ defn switch1star_handler (eh, mev) {
     }
 }
 
-defobj StringAccumulator () {
+defobj StringAccumulator {
         • s ⇐ “”
 }
 

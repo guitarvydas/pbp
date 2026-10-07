@@ -1,16 +1,16 @@
-defvar  ❲digits❳ ≡                                     #line 8#line 9
-defn ❲subscripted_digit❳ ≡
+defvar  digits ≡                                       #line 8#line 9
+defn subscripted_digit ≡
 (
-    ❲n❳ ≡
+    n ≡
 )
 {
                                                        #line 10#line 17#line 18
 }
 
-defvar  ❲counter❳ ≡                                    #line 19#line 20
-defn ❲gensymbol❳ ≡
+defvar  counter ≡                                      #line 19#line 20
+defn gensymbol ≡
 (
-    ❲s❳ ≡
+    s ≡
 )
 {
                                                        #line 21#line 26#line 27

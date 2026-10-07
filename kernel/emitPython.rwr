@@ -283,10 +283,12 @@ stringchar_rec [lb cs* rb] = ‛«lb»«cs»«rb»’
 stringchar_other [c] = ‛«c»’
 
 
-kw [lb s rb] = ‛«lb»«s»«rb»’
-ident [lb cs* rb] = ‛«lb»«cs»«rb»’
-idchar_rec [lb cs* rb] = ‛«lb»«cs»«rb»’
-idchar_other [c] = ‛«c»’
+kw [s] = ‛«s»’
+xkw [s] = ‛«s»’
+ident [c cs*] = ‛«c»«cs»’
+id1char [c] = ‛«c»’
+id2char [c] = ‛«c»’
+idtail [c] = ‛«c»’
 
 comment [lb cs* rb] = ‛«lb»«cs»«rb»’
 commentchar_rec [lb cs* rb] = ‛«lb»«cs»«rb»’

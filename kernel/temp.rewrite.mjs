@@ -875,25 +875,35 @@ enter_rule ("stringchar_other");
     set_return (`${c.rwr ()}`);
 return exit_rule ("stringchar_other");
 },
-kw : function (lb,s,rb,) {
+kw : function (s,) {
 enter_rule ("kw");
-    set_return (`${lb.rwr ()}${s.rwr ()}${rb.rwr ()}`);
+    set_return (`${s.rwr ()}`);
 return exit_rule ("kw");
 },
-ident : function (lb,cs,rb,) {
+xkw : function (s,) {
+enter_rule ("xkw");
+    set_return (`${s.rwr ()}`);
+return exit_rule ("xkw");
+},
+ident : function (c,cs,) {
 enter_rule ("ident");
-    set_return (`${lb.rwr ()}${cs.rwr ().join ('')}${rb.rwr ()}`);
+    set_return (`${c.rwr ()}${cs.rwr ().join ('')}`);
 return exit_rule ("ident");
 },
-idchar_rec : function (lb,cs,rb,) {
-enter_rule ("idchar_rec");
-    set_return (`${lb.rwr ()}${cs.rwr ().join ('')}${rb.rwr ()}`);
-return exit_rule ("idchar_rec");
-},
-idchar_other : function (c,) {
-enter_rule ("idchar_other");
+id1char : function (c,) {
+enter_rule ("id1char");
     set_return (`${c.rwr ()}`);
-return exit_rule ("idchar_other");
+return exit_rule ("id1char");
+},
+id2char : function (c,) {
+enter_rule ("id2char");
+    set_return (`${c.rwr ()}`);
+return exit_rule ("id2char");
+},
+idtail : function (c,) {
+enter_rule ("idtail");
+    set_return (`${c.rwr ()}`);
+return exit_rule ("idtail");
 },
 comment : function (lb,cs,rb,) {
 enter_rule ("comment");

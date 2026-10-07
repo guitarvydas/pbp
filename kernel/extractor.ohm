@@ -11,7 +11,7 @@ extractor {
 
    Defvar = kw<"defvar"> Lval "⇐" Exp line?
    Defn = kw<"defn"> ident Formals StatementBlock line?
-   Defobj = kw<"defobj"> ident ObjFormals line? "{" line? InitStatement+ "}" line?
+   Defobj = kw<"defobj"> ident line? "{" line? InitStatement+ "}" line?
 
    StatementBlock = line? "{" line? Rec_Statement line? "}" line?
 
@@ -188,9 +188,6 @@ extractor {
     Formals =
       | "(" ")" -- noformals
       | "(" FormalComma* ")" -- withformals
-    ObjFormals =
-      | "(" ")" -- noformals
-      | "(" FormalComma* ")" -- withformals
     LambdaFormals =
       | "(" ")" -- noformals
       | "(" FormalComma* ")" -- withformals
@@ -254,12 +251,12 @@ extractor {
   lambda = ("λ" | kw<"%CE%BB">)
   phi = ("ϕ" | kw<"%CF%95">)
 
-  kw<s> = "❲" s "❳"
-  xkw<s> = "❲" s "❳"
-  ident  = ~keyword "❲" idchar+ "❳"
-  idchar =
-    | "❲" idchar+ "❳" -- rec
-    | ~"❲" ~"❳" any -- other
+  kw<s> = s ~idtail
+  xkw<s> = s ~idtail
+  ident  = ~keyword id1char id2char*
+  id1char = letter | "_"
+  id2char = alnum | "_"
+  idtail = id2char+
 
   comment = "⌈" commentchar* "⌉"
   commentchar = 
