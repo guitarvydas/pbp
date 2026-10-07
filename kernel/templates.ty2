@@ -1,62 +1,221 @@
+genscoperest
+'"scope"'
+'["_global","❲Component_Registry❳"]'
+'"❲Component_Registry❳"'
+genscope
+'"scope"'
+'["_global"]'
+genscoperest
+'"scope"'
+'["❲Template❳"]'
+'"❲Template❳"'
+genscope
+'"scope"'
+'[]'
+genscope
+'"scope"'
+'[]'
+genscope
+'"scope"'
+'[]'
+genscoperest
+'"scope"'
+'["❲mkTemplate❳"]'
+'"❲mkTemplate❳"'
+genscope
+'"scope"'
+'[]'
+genscope
+'"scope"'
+'[]'
+genscope
+'"scope"'
+'[]'
+genscope
+'"scope"'
+'[]'
+genscoperest
+'"scope"'
+'["❲lnet2internal_from_file❳"]'
+'"❲lnet2internal_from_file❳"'
+genscope
+'"scope"'
+'[]'
+genscope
+'"scope"'
+'[]'
+genscope
+'"scope"'
+'[]'
+genscoperest
+'"scope"'
+'["❲lnet2internal_from_string❳"]'
+'"❲lnet2internal_from_string❳"'
+genscope
+'"scope"'
+'[]'
+genscoperest
+'"scope"'
+'["❲make_component_registry❳"]'
+'"❲make_component_registry❳"'
+genscoperest
+'"scope"'
+'["❲register_component❳"]'
+'"❲register_component❳"'
+genscope
+'"scope"'
+'[]'
+genscope
+'"scope"'
+'[]'
+genscoperest
+'"scope"'
+'["❲register_component_allow_overwriting❳"]'
+'"❲register_component_allow_overwriting❳"'
+genscope
+'"scope"'
+'[]'
+genscope
+'"scope"'
+'[]'
+genscoperest
+'"scope"'
+'["❲abstracted_register_component❳"]'
+'"❲abstracted_register_component❳"'
+genscope
+'"scope"'
+'[]'
+genscope
+'"scope"'
+'[]'
+genscope
+'"scope"'
+'[]'
+genscope
+'"scope"'
+'[]'
+genscoperest
+'"scope"'
+'["❲get_component_instance❳"]'
+'"❲get_component_instance❳"'
+genscope
+'"scope"'
+'[]'
+genscope
+'"scope"'
+'[]'
+genscope
+'"scope"'
+'[]'
+genscope
+'"scope"'
+'[]'
+genscope
+'"scope"'
+'[]'
+genscope
+'"scope"'
+'[]'
+genscope
+'"scope"'
+'[]'
+genscope
+'"scope"'
+'[]'
+genscope
+'"scope"'
+'[]'
+genscoperest
+'"scope"'
+'["❲generate_instance_name❳"]'
+'"❲generate_instance_name❳"'
+genscope
+'"scope"'
+'[]'
+genscope
+'"scope"'
+'[]'
+genscope
+'"scope"'
+'[]'
+genscope
+'"scope"'
+'[]'
+genscope
+'"scope"'
+'[]'
+genscope
+'"scope"'
+'[]'
+genscope
+'"scope"'
+'[]'
+genscoperest
+'"scope"'
+'["❲mangle_name❳"]'
+'"❲mangle_name❳"'
+genscope
+'"scope"'
+'[]'
 
 {"op":"newscope", "operand":"❲Component_Registry❳"}
-{"op":"insert", "operand":{"name":"❲Component_Registry❳", "indir":1, "type":"obj", "scope":"_global", "kind":"obj"}}
-{"op":"insert", "operand":{"name":"❲templates❳", "indir":2, "type":"Dict_of_Template", "scope":"❲Component_Registry❳", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"❲Component_Registry❳", "indir":1, "type":"obj", "scope":""❲Component_Registry❳"l", "kind":"obj"}}
+{"op":"insert", "operand":{"name":"❲templates❳", "indir":2, "type":"Dict_of_Template", "scope":"["_global"]", "kind":"variable"}}
 {"op":"newscope", "operand":"❲Template❳"}
-{"op":"insert", "operand":{"name":"❲Template❳", "indir":1, "type":"obj", "scope":"_global", "kind":"obj"}}
-{"op":"insert", "operand":{"name":"❲name❳", "indir":2, "type":"Str", "scope":"❲Template❳", "kind":"variable"}}
-{"op":"insert", "operand":{"name":"❲container❳", "indir":2, "type":"Container", "scope":"❲Template❳", "kind":"variable"}}
-{"op":"insert", "operand":{"name":"❲instantiator❳", "indir":1, "type":"Finstantiator", "scope":"❲Template❳", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"❲Template❳", "indir":1, "type":"obj", "scope":""❲Template❳"l", "kind":"obj"}}
+{"op":"insert", "operand":{"name":"❲name❳", "indir":2, "type":"Str", "scope":"[]", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"❲container❳", "indir":2, "type":"Container", "scope":"[]", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"❲instantiator❳", "indir":1, "type":"Finstantiator", "scope":"[]", "kind":"variable"}}
 {"op":"newscope", "operand":"❲mkTemplate❳"}
-{"op":"insert", "operand":{"name":"❲mkTemplate❳", "indir":2, "type":"Template", "kind":"retproc", "scope":"_global" }}
-{"op":"insert", "operand":{"name":"❲name❳", "indir":2, "type":"Str", "scope":"❲mkTemplate❳","kind":"parameter"}}
-{"op":"insert", "operand":{"name":"❲template_data❳", "indir":2, "type":"Container", "scope":"❲mkTemplate❳","kind":"parameter"}}
-{"op":"insert", "operand":{"name":"❲instantiator❳", "indir":1, "type":"Finstantiator", "scope":"❲mkTemplate❳","kind":"parameter"}}
-{"op":"insert", "operand":{"name":"❲templ❳", "indir":2, "type":"Template", "scope":"❲mkTemplate❳", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"❲mkTemplate❳", "indir":2, "type":"Template", "kind":"retproc", "scope":""❲mkTemplate❳"" }}
+{"op":"insert", "operand":{"name":"❲name❳", "indir":2, "type":"Str", "scope":"[]","kind":"parameter"}}
+{"op":"insert", "operand":{"name":"❲template_data❳", "indir":2, "type":"Container", "scope":"[]","kind":"parameter"}}
+{"op":"insert", "operand":{"name":"❲instantiator❳", "indir":1, "type":"Finstantiator", "scope":"[]","kind":"parameter"}}
+{"op":"insert", "operand":{"name":"❲templ❳", "indir":2, "type":"Template", "scope":"[]", "kind":"variable"}}
 {"op":"newscope", "operand":"❲lnet2internal_from_file❳"}
-{"op":"insert", "operand":{"name":"❲lnet2internal_from_file❳", "indir":2, "type":"Collection_of_Wire", "kind":"retproc", "scope":"_global" }}
-{"op":"insert", "operand":{"name":"❲json_filename❳", "indir":2, "type":"Pathname", "scope":"❲lnet2internal_from_file❳","kind":"parameter"}}
-{"op":"insert", "operand":{"name":"❲pathname❳", "indir":2, "type":"Pathname", "scope":"❲lnet2internal_from_file❳", "kind":"variable"}}
-{"op":"insert", "operand":{"name":"❲filename❳", "indir":2, "type":"Str", "scope":"❲lnet2internal_from_file❳", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"❲lnet2internal_from_file❳", "indir":2, "type":"Collection_of_Wire", "kind":"retproc", "scope":""❲lnet2internal_from_file❳"" }}
+{"op":"insert", "operand":{"name":"❲json_filename❳", "indir":2, "type":"Pathname", "scope":"[]","kind":"parameter"}}
+{"op":"insert", "operand":{"name":"❲pathname❳", "indir":2, "type":"Pathname", "scope":"[]", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"❲filename❳", "indir":2, "type":"Str", "scope":"[]", "kind":"variable"}}
 {"op":"newscope", "operand":"❲lnet2internal_from_string❳"}
-{"op":"insert", "operand":{"name":"❲lnet2internal_from_string❳", "indir":2, "type":"Collection_of_Wire", "kind":"retproc", "scope":"_global" }}
-{"op":"insert", "operand":{"name":"❲lnet❳", "indir":2, "type":"Str", "scope":"❲lnet2internal_from_string❳","kind":"parameter"}}
+{"op":"insert", "operand":{"name":"❲lnet2internal_from_string❳", "indir":2, "type":"Collection_of_Wire", "kind":"retproc", "scope":""❲lnet2internal_from_string❳"" }}
+{"op":"insert", "operand":{"name":"❲lnet❳", "indir":2, "type":"Str", "scope":"[]","kind":"parameter"}}
 {"op":"newscope", "operand":"❲make_component_registry❳"}
-{"op":"insert", "operand":{"name":"❲make_component_registry❳", "indir":2, "type":"Component_Registry", "kind":"retproc", "scope":"_global" }}
+{"op":"insert", "operand":{"name":"❲make_component_registry❳", "indir":2, "type":"Component_Registry", "kind":"retproc", "scope":""❲make_component_registry❳"" }}
 {"op":"newscope", "operand":"❲register_component❳"}
-{"op":"insert", "operand":{"name":"❲register_component❳", "indir":2, "type":"Component_Registry", "kind":"retproc", "scope":"_global" }}
-{"op":"insert", "operand":{"name":"❲reg❳", "indir":2, "type":"Component_Registry", "scope":"❲register_component❳","kind":"parameter"}}
-{"op":"insert", "operand":{"name":"❲template❳", "indir":2, "type":"Template", "scope":"❲register_component❳","kind":"parameter"}}
+{"op":"insert", "operand":{"name":"❲register_component❳", "indir":2, "type":"Component_Registry", "kind":"retproc", "scope":""❲register_component❳"" }}
+{"op":"insert", "operand":{"name":"❲reg❳", "indir":2, "type":"Component_Registry", "scope":"[]","kind":"parameter"}}
+{"op":"insert", "operand":{"name":"❲template❳", "indir":2, "type":"Template", "scope":"[]","kind":"parameter"}}
 {"op":"newscope", "operand":"❲register_component_allow_overwriting❳"}
-{"op":"insert", "operand":{"name":"❲register_component_allow_overwriting❳", "indir":2, "type":"Component_Registry", "kind":"retproc", "scope":"_global" }}
-{"op":"insert", "operand":{"name":"❲reg❳", "indir":2, "type":"Component_Registry", "scope":"❲register_component_allow_overwriting❳","kind":"parameter"}}
-{"op":"insert", "operand":{"name":"❲template❳", "indir":2, "type":"Template", "scope":"❲register_component_allow_overwriting❳","kind":"parameter"}}
+{"op":"insert", "operand":{"name":"❲register_component_allow_overwriting❳", "indir":2, "type":"Component_Registry", "kind":"retproc", "scope":""❲register_component_allow_overwriting❳"" }}
+{"op":"insert", "operand":{"name":"❲reg❳", "indir":2, "type":"Component_Registry", "scope":"[]","kind":"parameter"}}
+{"op":"insert", "operand":{"name":"❲template❳", "indir":2, "type":"Template", "scope":"[]","kind":"parameter"}}
 {"op":"newscope", "operand":"❲abstracted_register_component❳"}
-{"op":"insert", "operand":{"name":"❲abstracted_register_component❳", "indir":0, "type":"void", "kind":"proc", "scope":"_global" }}
-{"op":"insert", "operand":{"name":"❲reg❳", "indir":2, "type":"Component_Registry", "scope":"❲abstracted_register_component❳","kind":"parameter"}}
-{"op":"insert", "operand":{"name":"❲template❳", "indir":2, "type":"Template", "scope":"❲abstracted_register_component❳","kind":"parameter"}}
-{"op":"insert", "operand":{"name":"❲ok_to_overwrite❳", "indir":1, "type":"Bool", "scope":"❲abstracted_register_component❳","kind":"parameter"}}
-{"op":"insert", "operand":{"name":"❲name❳", "indir":2, "type":"Str", "scope":"❲abstracted_register_component❳", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"❲abstracted_register_component❳", "indir":0, "type":"void", "kind":"proc", "scope":""❲abstracted_register_component❳"" }}
+{"op":"insert", "operand":{"name":"❲reg❳", "indir":2, "type":"Component_Registry", "scope":"[]","kind":"parameter"}}
+{"op":"insert", "operand":{"name":"❲template❳", "indir":2, "type":"Template", "scope":"[]","kind":"parameter"}}
+{"op":"insert", "operand":{"name":"❲ok_to_overwrite❳", "indir":1, "type":"Bool", "scope":"[]","kind":"parameter"}}
+{"op":"insert", "operand":{"name":"❲name❳", "indir":2, "type":"Str", "scope":"[]", "kind":"variable"}}
 {"op":"newscope", "operand":"❲get_component_instance❳"}
-{"op":"insert", "operand":{"name":"❲get_component_instance❳", "indir":2, "type":"Part", "kind":"retproc", "scope":"_global" }}
-{"op":"insert", "operand":{"name":"❲reg❳", "indir":2, "type":"Component_Registry", "scope":"❲get_component_instance❳","kind":"parameter"}}
-{"op":"insert", "operand":{"name":"❲full_name❳", "indir":2, "type":"Str", "scope":"❲get_component_instance❳","kind":"parameter"}}
-{"op":"insert", "operand":{"name":"❲owner❳", "indir":2, "type":"Container", "scope":"❲get_component_instance❳","kind":"parameter"}}
-{"op":"insert", "operand":{"name":"❲template_name❳", "indir":2, "type":"Str", "scope":"❲get_component_instance❳", "kind":"variable"}}
-{"op":"insert", "operand":{"name":"❲instance_name❳", "indir":2, "type":"Str", "scope":"❲get_component_instance❳", "kind":"variable"}}
-{"op":"insert", "operand":{"name":"❲instance❳", "indir":2, "type":"Part", "scope":"❲get_component_instance❳", "kind":"variable"}}
-{"op":"insert", "operand":{"name":"❲template❳", "indir":2, "type":"Template", "scope":"❲get_component_instance❳", "kind":"variable"}}
-{"op":"insert", "operand":{"name":"❲instance_name❳", "indir":2, "type":"Str", "scope":"❲get_component_instance❳", "kind":"variable"}}
-{"op":"insert", "operand":{"name":"❲instance❳", "indir":2, "type":"PART", "scope":"❲get_component_instance❳", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"❲get_component_instance❳", "indir":2, "type":"Part", "kind":"retproc", "scope":""❲get_component_instance❳"" }}
+{"op":"insert", "operand":{"name":"❲reg❳", "indir":2, "type":"Component_Registry", "scope":"[]","kind":"parameter"}}
+{"op":"insert", "operand":{"name":"❲full_name❳", "indir":2, "type":"Str", "scope":"[]","kind":"parameter"}}
+{"op":"insert", "operand":{"name":"❲owner❳", "indir":2, "type":"Container", "scope":"[]","kind":"parameter"}}
+{"op":"insert", "operand":{"name":"❲template_name❳", "indir":2, "type":"Str", "scope":"[]", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"❲instance_name❳", "indir":2, "type":"Str", "scope":"[]", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"❲instance❳", "indir":2, "type":"Part", "scope":"[]", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"❲template❳", "indir":2, "type":"Template", "scope":"[]", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"❲instance_name❳", "indir":2, "type":"Str", "scope":"[]", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"❲instance❳", "indir":2, "type":"PART", "scope":"[]", "kind":"variable"}}
 {"op":"newscope", "operand":"❲generate_instance_name❳"}
-{"op":"insert", "operand":{"name":"❲generate_instance_name❳", "indir":2, "type":"Str", "kind":"retproc", "scope":"_global" }}
-{"op":"insert", "operand":{"name":"❲owner❳", "indir":2, "type":"Container", "scope":"❲generate_instance_name❳","kind":"parameter"}}
-{"op":"insert", "operand":{"name":"❲template_name❳", "indir":2, "type":"Str", "scope":"❲generate_instance_name❳","kind":"parameter"}}
-{"op":"insert", "operand":{"name":"❲owner_name❳", "indir":2, "type":"Str", "scope":"❲generate_instance_name❳", "kind":"variable"}}
-{"op":"insert", "operand":{"name":"❲instance_name❳", "indir":2, "type":"Str", "scope":"❲generate_instance_name❳", "kind":"variable"}}
-{"op":"insert", "operand":{"name":"❲owner_name❳", "indir":2, "type":"Str", "scope":"❲generate_instance_name❳", "kind":"variable"}}
-{"op":"insert", "operand":{"name":"❲instance_name❳", "indir":2, "type":"Str", "scope":"❲generate_instance_name❳", "kind":"variable"}}
-{"op":"insert", "operand":{"name":"❲instance_name❳", "indir":2, "type":"Str", "scope":"❲generate_instance_name❳", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"❲generate_instance_name❳", "indir":2, "type":"Str", "kind":"retproc", "scope":""❲generate_instance_name❳"" }}
+{"op":"insert", "operand":{"name":"❲owner❳", "indir":2, "type":"Container", "scope":"[]","kind":"parameter"}}
+{"op":"insert", "operand":{"name":"❲template_name❳", "indir":2, "type":"Str", "scope":"[]","kind":"parameter"}}
+{"op":"insert", "operand":{"name":"❲owner_name❳", "indir":2, "type":"Str", "scope":"[]", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"❲instance_name❳", "indir":2, "type":"Str", "scope":"[]", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"❲owner_name❳", "indir":2, "type":"Str", "scope":"[]", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"❲instance_name❳", "indir":2, "type":"Str", "scope":"[]", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"❲instance_name❳", "indir":2, "type":"Str", "scope":"[]", "kind":"variable"}}
 {"op":"newscope", "operand":"❲mangle_name❳"}
-{"op":"insert", "operand":{"name":"❲mangle_name❳", "indir":2, "type":"Str", "kind":"retproc", "scope":"_global" }}
-{"op":"insert", "operand":{"name":"❲s❳", "indir":2, "type":"Str", "scope":"❲mangle_name❳","kind":"parameter"}}
+{"op":"insert", "operand":{"name":"❲mangle_name❳", "indir":2, "type":"Str", "kind":"retproc", "scope":""❲mangle_name❳"" }}
+{"op":"insert", "operand":{"name":"❲s❳", "indir":2, "type":"Str", "scope":"[]","kind":"parameter"}}

@@ -1,24 +1,28 @@
 %parameter scope
 %rewrite typeExtractor {
-  Main [TopLevel+] = ‛«TopLevel»’
+  Main [TopLevel+] =
+  ⎡ scope=‛_global’
+    ‛«TopLevel»’
+  ⎦
+
   TopLevel_defn [x]  = ‛«x»’
   TopLevel_line [x]  = ‛«x»’
   TopLevel_defvar [x] = ‛«x»’
   Defn [_defn_ id _eq_ functiontype Formals FunctionBody] =
   ⎡ scope=‛«id»’
-     ‛\n{"op":"newscope", "operand":"«id»"}\n{"op":"insert", "operand":{"name":"«id»", «functiontype», "scope":"_global" }}«Formals»«FunctionBody»’
+     ‛\n{"op":"newscope", "operand":"«id»"}\n{"op":"insert", "operand":{"name":"«id»", «functiontype», "scope":"⎨genscoperest ‛scope’⎬" }}«Formals»«FunctionBody»’
   ⎦
   DefObj [_defobj_ id ObjBody] =
   ⎡ scope=‛«id»’
-     ‛\n{"op":"newscope", "operand":"«id»"}\n{"op":"insert", "operand":{"name":"«id»", "indir":1, "type":"obj", "scope":"_global", "kind":"obj"}}«ObjBody»’
+     ‛\n{"op":"newscope", "operand":"«id»"}\n{"op":"insert", "operand":{"name":"«id»", "indir":1, "type":"obj", "scope":"⎨genscoperest ‛scope’⎬l", "kind":"obj"}}«ObjBody»’
   ⎦
-  DefVar [_1 id _3 ty] = ‛\n{"op":"insert", "operand":{"name":"«id»", «ty», "scope":"_global", "kind":"variable"}}’
+  DefVar [_1 id _3 ty] = ‛\n{"op":"insert", "operand":{"name":"«id»", «ty», "scope":"⎨genscope ‛scope’⎬", "kind":"variable"}}’
   FunctionType_procedure [_tilde_] = ‛"indir":0, "type":"void", "kind":"proc"’
   FunctionType_returnvalue [ty] = ‛«ty», "kind":"retproc"’
 
   Formals [_lp typedvarcomma _rp] = ‛«typedvarcomma»’
   TypedParamComma [typedID _comma? typedparamcomma?] = ‛\n{"op":"insert", "operand":{«typedID»,"kind":"parameter"}}«typedparamcomma»’
-  TypedID [id _eq Type] = ‛"name":"«id»", «Type», "scope":"⟪scope⟫"’
+  TypedID [id _eq Type] = ‛"name":"«id»", «Type», "scope":"⎨genscope ‛scope’⎬"’
   FunctionBody [_lb BodyInnards? _rb] = ‛«BodyInnards»’
   BodyInnards_brace [_l BodyInnards? _r rec?] = ‛«BodyInnards»«rec»’
   BodyInnards_parenthesis [_l BodyInnards? _r rec?] = ‛«BodyInnards»«rec»’

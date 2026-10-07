@@ -53,6 +53,22 @@ function readtypetable (fname) {
     }
 }
 
+function genscope (pname) {
+    console.log ("%s", "genscope");
+    console.log ("%o", JSON.stringify(pname));
+    console.log ("%o", JSON.stringify(parameters [pname]));
+    return `${JSON.stringify(parameters [pname])}`;
+}
+
+function genscoperest (pname) {
+    console.log ("%s", "genscoperest");
+    console.log ("%o", JSON.stringify(pname));
+    console.log ("%o", JSON.stringify(parameters [pname]));
+    let rest = parameters [pname].pop ();
+    console.log ("%o", JSON.stringify(rest));
+    return `${JSON.stringify(rest)}`;
+}
+
 function lookup (scope, id) {
     let descriptor = scopes[scope][id];
     if (null == descriptor) {
@@ -67,10 +83,12 @@ function gettypeinfo() {
 
 
 function getdeclaration(scope, id) {
+    let desc = lookup (scope, id);
     return `void* ${id}`;
 }
 
 function getmaybederef(deref, scope, id) {
+    let desc = lookup (scope, id);
     if (deref === "⊥") {
 	return id;
     } else {
