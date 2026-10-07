@@ -36,31 +36,23 @@ function exit_rule (name) {
 }
 
 const grammar = String.raw`
-internalize {
+jsdecode {
   text = char+
   char =
-    | nl -- nl
-    | "“" stringchar* "”" -- string
-    | "\"" stringchar* "\"" -- dqstring
-    | "⌈" commentchar* "⌉" -- comment
-    | id -- ident
-    | ~"❲" ~"❳" any -- any
-
-  stringchar =
-    | "\\" "“" -- beginquote
-    | "\\" "”" -- endquote
-    | "\\" "\"" -- dqquote
-    | "“" stringchar+ "”" -- rec
-    | ~"“" ~"”" ~"\"" any -- other
-
-  commentchar =
-    | "⌈" commentchar+ "⌉" -- rec
-    | ~"⌈" ~"⌉" any -- other
-
-  id = (letter | "_") (letter | digit | "_")*
-  dq = "\""
-  nl = "\n"
+    | "“" (~"“" ~"”" any)* "”"  -- string
+    | "⌈" (~"⌈" ~"⌉" any)* "⌉"  -- comment
+    | "⎝" (~"⎝" ~"⎠" any)* "⎠"  -- errormessage
+    | "⎩" (~"⎩" ~"⎭" any)* "⎭"  -- line
+    | "❲"                       -- ulb
+    | "%E2%9D%B2"               -- encodedulb
+    | "❳"                       -- urb
+    | "%E2%9D%B3"               -- encodedurb
+    | "%20"                     -- space
+    | "%09"                     -- tab
+    | "%0A"                     -- newline
+    | any                       -- other
 }
+
 `;
 
 let args = {};
@@ -130,12 +122,12 @@ function readtypetable (fname) {
 }
 
 function genscope (pname) {
-    return `${JSON.stringify(parameters [pname])}`.replace(/\"/g,'\\"');
+    return `${parameters [pname].join('/')}`;
 }
 
 function genscoperest (pname) {
-    let rest = parameters [pname].pop ();
-    return `${JSON.stringify(rest)}`.replace(/\"/g,'\\"');
+    let rest = parameters [pname].slice(1);
+    return `${rest.join('/')}`;
 }
 
 function lookup (scope, id) {
@@ -192,90 +184,71 @@ function getParameter (name) {
 
 let _rewrite = {
 
-text : function (c,) {
+text : function (chars,) {
 enter_rule ("text");
-    set_return (`${c.rwr ().join ('')}`);
+    set_return (`${chars.rwr ().join ('')}`);
 return exit_rule ("text");
-},
-char_nl : function (s,) {
-enter_rule ("char_nl");
-    set_return (`⎩${getlineinc ()}⎭\n`);
-return exit_rule ("char_nl");
 },
 char_string : function (lq,cs,rq,) {
 enter_rule ("char_string");
-    set_return (`“${encodews (`${cs.rwr ().join ('')}`,)}”`);
+    set_return (`"${cs.rwr ().join ('')}"`);
 return exit_rule ("char_string");
-},
-char_dqstring : function (ldq,cs,rdq,) {
-enter_rule ("char_dqstring");
-    set_return (`“${encodews (`${cs.rwr ().join ('')}`,)}”`);
-return exit_rule ("char_dqstring");
 },
 char_comment : function (lb,cs,rb,) {
 enter_rule ("char_comment");
-    set_return (`⌈${encodews (`${cs.rwr ().join ('')}`,)}⌉`);
+    set_return (`/* ${cs.rwr ().join ('')} */`);
 return exit_rule ("char_comment");
 },
-char_ident : function (s,) {
-enter_rule ("char_ident");
-    set_return (`${encodews (`${s.rwr ()}`,)}`);
-return exit_rule ("char_ident");
+char_errormessage : function (lb,cs,rb,) {
+enter_rule ("char_errormessage");
+    set_return (` >>> ${cs.rwr ().join ('')} <<< `);
+return exit_rule ("char_errormessage");
 },
-char_any : function (c,) {
-enter_rule ("char_any");
-    set_return (`${c.rwr ()}`);
-return exit_rule ("char_any");
+char_line : function (lb,cs,rb,) {
+enter_rule ("char_line");
+    set_return (`/* line ${cs.rwr ().join ('')} */`);
+return exit_rule ("char_line");
 },
-stringchar_rec : function (lb,cs,rb,) {
-enter_rule ("stringchar_rec");
-    set_return (`${lb.rwr ()}${cs.rwr ().join ('')}${rb.rwr ()}`);
-return exit_rule ("stringchar_rec");
-},
-stringchar_beginquote : function (bslash,q,) {
-enter_rule ("stringchar_beginquote");
-    set_return (`%5C“`);
-return exit_rule ("stringchar_beginquote");
-},
-stringchar_endquote : function (bslash,q,) {
-enter_rule ("stringchar_endquote");
-    set_return (`%5C”`);
-return exit_rule ("stringchar_endquote");
-},
-stringchar_dqquote : function (bslash,q,) {
-enter_rule ("stringchar_dqquote");
-    set_return (`%5C”`);
-return exit_rule ("stringchar_dqquote");
-},
-stringchar_other : function (c,) {
-enter_rule ("stringchar_other");
-    set_return (`${c.rwr ()}`);
-return exit_rule ("stringchar_other");
-},
-commentchar_rec : function (lb,cs,rb,) {
-enter_rule ("commentchar_rec");
-    set_return (`${lb.rwr ()}${cs.rwr ().join ('')}${rb.rwr ()}`);
-return exit_rule ("commentchar_rec");
-},
-commentchar_other : function (c,) {
-enter_rule ("commentchar_other");
-    set_return (`${c.rwr ()}`);
-return exit_rule ("commentchar_other");
-},
-id : function (firstc,morecs,) {
-enter_rule ("id");
-    set_return (`${firstc.rwr ()}${morecs.rwr ().join ('')}`);
-return exit_rule ("id");
-},
-dq : function (c,) {
-enter_rule ("dq");
-    set_return (`%22`);
-return exit_rule ("dq");
-},
-nl : function (c,) {
-enter_rule ("nl");
+char_ulb : function (c,) {
+enter_rule ("char_ulb");
     set_return (``);
-return exit_rule ("nl");
+return exit_rule ("char_ulb");
+},
+char_encodedulb : function (c,) {
+enter_rule ("char_encodedulb");
+    set_return (`_L`);
+return exit_rule ("char_encodedulb");
+},
+char_urb : function (c,) {
+enter_rule ("char_urb");
+    set_return (``);
+return exit_rule ("char_urb");
+},
+char_encodedurb : function (c,) {
+enter_rule ("char_encodedurb");
+    set_return (`R_`);
+return exit_rule ("char_encodedurb");
+},
+char_space : function (c,) {
+enter_rule ("char_space");
+    set_return (`_`);
+return exit_rule ("char_space");
+},
+char_tab : function (c,) {
+enter_rule ("char_tab");
+    set_return (`	`);
+return exit_rule ("char_tab");
+},
+char_newline : function (c,) {
+enter_rule ("char_newline");
+    set_return (`
+`);
+return exit_rule ("char_newline");
+},
+char_other : function (c,) {
+enter_rule ("char_other");
+    set_return (`${c.rwr ()}`);
+return exit_rule ("char_other");
 },
 _terminal: function () { return this.sourceString; },
 _iter: function (...children) { return children.map(c => c.rwr ()); }

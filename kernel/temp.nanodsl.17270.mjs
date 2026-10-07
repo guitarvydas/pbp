@@ -324,12 +324,12 @@ function readtypetable (fname) {
 }
 
 function genscope (pname) {
-    return `${JSON.stringify(parameters [pname])}`.replace(/\"/g,'\\"');
+    return `${parameters [pname].join('/')}`;
 }
 
 function genscoperest (pname) {
-    let rest = parameters [pname].pop ();
-    return `${JSON.stringify(rest)}`.replace(/\"/g,'\\"');
+    let rest = parameters [pname].slice(1);
+    return `${rest.join('/')}`;
 }
 
 function lookup (scope, id) {

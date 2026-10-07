@@ -64,7 +64,7 @@ typeExtractor2 {
     | "@" id -- pointer
     | "@" ~id -- pointerany
     | id     -- plain
-  id = "❲"? (alnum | "_")+ "❳"?
+  id = (letter | "_" | "%") (alnum | "_" | "%")*
   Line = "#line" digit+
 
   exp = expchar+
@@ -139,12 +139,12 @@ function readtypetable (fname) {
 }
 
 function genscope (pname) {
-    return `${JSON.stringify(parameters [pname])}`.replace(/\"/g,'\\"');
+    return `${parameters [pname].join('/')}`;
 }
 
 function genscoperest (pname) {
-    let rest = parameters [pname].pop ();
-    return `${JSON.stringify(rest)}`.replace(/\"/g,'\\"');
+    let rest = parameters [pname].slice(1);
+    return `${rest.join('/')}`;
 }
 
 function lookup (scope, id) {
@@ -313,9 +313,9 @@ enter_rule ("Type_plain");
     set_return (`"indir":1, "type":"${id.rwr ()}"`);
 return exit_rule ("Type_plain");
 },
-id : function (ulb,cs,urb,) {
+id : function (c,cs,) {
 enter_rule ("id");
-    set_return (`${ulb.rwr ().join ('')}${cs.rwr ().join ('')}${urb.rwr ().join ('')}`);
+    set_return (`${c.rwr ()}${cs.rwr ().join ('')}`);
 return exit_rule ("id");
 },
 Line : function (_line,digit,) {

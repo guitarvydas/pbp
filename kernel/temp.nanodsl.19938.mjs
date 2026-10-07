@@ -392,12 +392,12 @@ function readtypetable (fname) {
 }
 
 function genscope (pname) {
-    return `${JSON.stringify(parameters [pname])}`.replace(/\"/g,'\\"');
+    return `${parameters [pname].join('/')}`;
 }
 
 function genscoperest (pname) {
-    let rest = parameters [pname].pop ();
-    return `${JSON.stringify(rest)}`.replace(/\"/g,'\\"');
+    let rest = parameters [pname].slice(1);
+    return `${rest.join('/')}`;
 }
 
 function lookup (scope, id) {
@@ -451,12 +451,21 @@ function getParameter (name) {
     return top;
 }
 
+parameters ["scope"] = [];
+parameters ["deref"] = [];
 
 let _rewrite = {
 
 Main : function (TopLevel,) {
 enter_rule ("Main");
+    gettypeinfo ();
+    
+    pushParameter ("scope", `_global`);
+    pushParameter ("deref", `⊥`);
     set_return (`${TopLevel.rwr ().join ('')}`);
+popParameter ("deref");
+popParameter ("scope");
+
 return exit_rule ("Main");
 },
 TopLevel_defvar : function (Defvar,) {
@@ -496,17 +505,28 @@ return exit_rule ("kw");
 },
 Defvar : function (__,lval,_eq,e,line,) {
 enter_rule ("Defvar");
-    set_return (`\n${lval.rwr ()} = ${e.rwr ()}${line.rwr ().join ('')}`);
+    set_return (`\n${getdeclaration (`${getParameter ("scope")}`,`${lval.rwr ()}`,)} = ${e.rwr ()}${line.rwr ().join ('')};`);
 return exit_rule ("Defvar");
 },
 Defn : function (_4,ident,Formals,StatementBlock,line,) {
 enter_rule ("Defn");
-    set_return (`\ndef ${ident.rwr ()} ${Formals.rwr ()}:${StatementBlock.rwr ()}${line.rwr ().join ('')}\n`);
+    pushParameter ("scope", `${ident.rwr ()}`);
+    set_return (`\n${getdeclaration (`_global`,`${ident.rwr ()}`,)} ${Formals.rwr ()} {\n${StatementBlock.rwr ()}${line.rwr ().join ('')}}\n`);
+popParameter ("scope");
 return exit_rule ("Defn");
 },
 Defobj : function (_defobj,ident,Formals,line1,lb,line2,init,rb,line3,) {
 enter_rule ("Defobj");
-    set_return (`\nclass ${ident.rwr ()}:⤷\ndef __init__ (self,${Formals.rwr ()}):${line1.rwr ().join ('')}⤷${line2.rwr ().join ('')}${init.rwr ().join ('')}${line3.rwr ().join ('')}⤶⤶\n`);
+    set_return (`
+typedef struct _${ident.rwr ()} {⤷
+  ${line1.rwr ().join ('')}${line2.rwr ().join ('')}${first (`${init.rwr ().join ('')}`,)}${line3.rwr ().join ('')}⤶
+} ${ident.rwr ()};
+${ident.rwr ()} fresh_${ident.rwr ()} (${Formals.rwr ()}) {⤷
+  ${ident.rwr ()} *self;
+  self = (Mevent*)malloc(sizeof(Mevent));${second (`${init.rwr ().join ('')}`,)}${line3.rwr ().join ('')}
+  return self;⤶
+}
+`);
 return exit_rule ("Defobj");
 },
 StatementBlock : function (line1,lb,line2,Statement,line3,rb,line4,) {
@@ -521,7 +541,7 @@ return exit_rule ("Rec_Statement");
 },
 R_Statement_globals : function (_24,ident1,cidents,scope,) {
 enter_rule ("R_Statement_globals");
-    set_return (`\nglobal ${ident1.rwr ()}${cidents.rwr ().join ('')}${scope.rwr ().join ('')}`);
+    set_return (`\nstatic ${ident1.rwr ()}${cidents.rwr ().join ('')}${scope.rwr ().join ('')}`);
 return exit_rule ("R_Statement_globals");
 },
 R_Statement_comment : function (s,rec,) {
@@ -531,7 +551,7 @@ return exit_rule ("R_Statement_comment");
 },
 R_Statement_external : function (x,rec,) {
 enter_rule ("R_Statement_external");
-    set_return (`\n${x.rwr ()}${rec.rwr ().join ('')}`);
+    set_return (`\nexternal ${x.rwr ()}${rec.rwr ().join ('')}`);
 return exit_rule ("R_Statement_external");
 },
 R_Statement_if : function (IfStatement,) {
@@ -541,7 +561,7 @@ return exit_rule ("R_Statement_if");
 },
 R_Statement_pass : function (_27,scope,) {
 enter_rule ("R_Statement_pass");
-    set_return (`\npass${scope.rwr ().join ('')}`);
+    set_return (`\n${scope.rwr ().join ('')}`);
 return exit_rule ("R_Statement_pass");
 },
 R_Statement_return : function (_29,ReturnExp,) {
@@ -561,7 +581,7 @@ return exit_rule ("R_Statement_while");
 },
 R_Statement_assignment : function (Assignment,) {
 enter_rule ("R_Statement_assignment");
-    set_return (`${Assignment.rwr ()}`);
+    set_return (`${Assignment.rwr ()};`);
 return exit_rule ("R_Statement_assignment");
 },
 R_Statement_call : function (Lval,scope,) {
@@ -685,45 +705,7 @@ return exit_rule ("ExternalPhrase_basename");
 },
 ExternalPhrase_preamble : function (_octothorpe,_preamble,lb,rp,) {
 enter_rule ("ExternalPhrase_preamble");
-    set_return (`
-
-
-#
-import sys
-import re
-import subprocess
-import tempfile
-import shlex
-import os
-import json
-from collections import deque
-import socket
-import struct
-import base64
-import hashlib
-import random
-from repl import live_update
-
-def deque_to_json(d):⤷
-    # """
-    # Convert a deque of Mevent objects to a JSON string, preserving order.
-    # Each Mevent object is converted to a dict with a single key (from Mevent.key)
-    # containing the payload as its value.
-    
-    # Args:
-    #     d: The deque of Mevent objects to convert
-        
-    # Returns:
-    #     A JSON string representation of the deque
-    # """
-    # # Convert deque to list of objects where each mevent's key contains its payload
-    ordered_list = [{mev.port: "" if mev.payload.v is None else mev.payload.v} for mev in d]
-    
-    # # Convert to JSON with indentation for readability
-    return json.dumps(ordered_list, indent=2)
-⤶
-
-`);
+    set_return (``);
 return exit_rule ("ExternalPhrase_preamble");
 },
 ExternalPhrase_print_stdout : function (_octothorpe,_,lp,e,rp,) {
@@ -900,12 +882,12 @@ return exit_rule ("Defsynonym_legal");
 },
 InitStatement : function (_mark,ident,ty,_33,Exp,fluff,) {
 enter_rule ("InitStatement");
-    set_return (`\nself.${ident.rwr ()} = ${Exp.rwr ()} ${fluff.rwr ().join ('')}`);
+    set_return (`\n${ty.rwr ().join ('')} ${ident.rwr ()}; ${fluff.rwr ().join ('')}◦\nself->${ident.rwr ()} = ${Exp.rwr ()}; ${fluff.rwr ().join ('')}⫶`);
 return exit_rule ("InitStatement");
 },
-Type : function (_colon,id,) {
+Type : function (_colon,ident,) {
 enter_rule ("Type");
-    set_return (`${id.rwr ()}`);
+    set_return (`${ident.rwr ()}`);
 return exit_rule ("Type");
 },
 IfStatement : function (_35,Exp,StatementBlock,ElifStatement,ElseStatement,rec,) {
@@ -955,7 +937,7 @@ return exit_rule ("ReturnExp_multiple");
 },
 ReturnExp_single : function (Exp,rec,) {
 enter_rule ("ReturnExp_single");
-    set_return (`${Exp.rwr ()}${rec.rwr ().join ('')}`);
+    set_return (`(${Exp.rwr ()})${rec.rwr ().join ('')}`);
 return exit_rule ("ReturnExp_single");
 },
 ExpComma : function (Exp,Comma,) {
@@ -1055,32 +1037,44 @@ return exit_rule ("Primary_plain");
 },
 PrimaryIndexed_lookupident : function (p,_at,key,) {
 enter_rule ("PrimaryIndexed_lookupident");
+    pushParameter ("deref", `⊤`);
     set_return (`${p.rwr ()} [${key.rwr ()}]`);
+popParameter ("deref");
 return exit_rule ("PrimaryIndexed_lookupident");
 },
 PrimaryIndexed_lookup : function (p,_at,key,) {
 enter_rule ("PrimaryIndexed_lookup");
+    pushParameter ("deref", `⊤`);
     set_return (`${p.rwr ()} [${key.rwr ()}]`);
+popParameter ("deref");
 return exit_rule ("PrimaryIndexed_lookup");
 },
 PrimaryIndexed_fieldident : function (p,_dot,key,) {
 enter_rule ("PrimaryIndexed_fieldident");
-    set_return (`${p.rwr ()}.${key.rwr ()}`);
+    pushParameter ("deref", `⊤`);
+    set_return (` ${p.rwr ()}.${key.rwr ()}`);
+popParameter ("deref");
 return exit_rule ("PrimaryIndexed_fieldident");
 },
 PrimaryIndexed_field : function (p,_dot,key,) {
 enter_rule ("PrimaryIndexed_field");
+    pushParameter ("deref", `⊤`);
     set_return (`${p.rwr ()}.${key.rwr ()}`);
+popParameter ("deref");
 return exit_rule ("PrimaryIndexed_field");
 },
 PrimaryIndexed_index : function (p,lb,e,rb,) {
 enter_rule ("PrimaryIndexed_index");
+    pushParameter ("deref", `⊤`);
     set_return (`${p.rwr ()} [${e.rwr ()}]`);
+popParameter ("deref");
 return exit_rule ("PrimaryIndexed_index");
 },
 PrimaryIndexed_nthslice : function (p,lb,ds,_colon,rb,) {
 enter_rule ("PrimaryIndexed_nthslice");
+    pushParameter ("deref", `⊤`);
     set_return (`${p.rwr ()} [${ds.rwr ().join ('')}:]`);
+popParameter ("deref");
 return exit_rule ("PrimaryIndexed_nthslice");
 },
 PrimaryIndexed_atom : function (a,) {
@@ -1125,7 +1119,7 @@ return exit_rule ("Atom_lambda");
 },
 Atom_phi : function (phi,) {
 enter_rule ("Atom_phi");
-    set_return (` None`);
+    set_return (` NULL`);
 return exit_rule ("Atom_phi");
 },
 Atom_true : function (_88,) {
@@ -1165,7 +1159,7 @@ return exit_rule ("Atom_number");
 },
 Atom_ident : function (ident,) {
 enter_rule ("Atom_ident");
-    set_return (` ${ident.rwr ()}`);
+    set_return (` ${getmaybederef (`${getParameter ("deref")}`,`${getParameter ("scope")}`,`${ident.rwr ()}`,)}`);
 return exit_rule ("Atom_ident");
 },
 PrimaryComma : function (Primary,_94,line,) {
@@ -1225,7 +1219,7 @@ return exit_rule ("LambdaFormals_withformals");
 },
 Formal : function (ident,) {
 enter_rule ("Formal");
-    set_return (`${ident.rwr ()}`);
+    set_return (`${getdeclaration (`${getParameter ("scope")}`,`${ident.rwr ()}`,)}`);
 return exit_rule ("Formal");
 },
 FormalComma : function (Formal,comma,) {
@@ -1300,7 +1294,7 @@ return exit_rule ("boolNeq");
 },
 phi : function (_192,) {
 enter_rule ("phi");
-    set_return (` None`);
+    set_return (` nil`);
 return exit_rule ("phi");
 },
 string : function (lb,cs,rb,) {
