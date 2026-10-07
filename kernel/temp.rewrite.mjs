@@ -66,15 +66,15 @@ enter_rule ("kw");
     set_return (`${s.rwr ()}`);
 return exit_rule ("kw");
 },
-Defvar : function (__,lval,_eq,e,line,) {
+Defvar : function (__,id,_eq,e,line,) {
 enter_rule ("Defvar");
-    set_return (`\n${getdeclaration (`${getParameter ("scope")}`,`${lval.rwr ()}`,)} = ${e.rwr ()}${line.rwr ().join ('')};`);
+    set_return (`\n${getdeclaration (`1`,`${getParameter ("scope")}`,`${id.rwr ()}`,)} = ${e.rwr ()}${line.rwr ().join ('')};`);
 return exit_rule ("Defvar");
 },
 Defn : function (_4,ident,Formals,StatementBlock,line,) {
 enter_rule ("Defn");
     pushParameter ("scope", `${ident.rwr ()}`);
-    set_return (`\n${getdeclaration (`_global`,`${ident.rwr ()}`,)} ${Formals.rwr ()} {\n${StatementBlock.rwr ()}${line.rwr ().join ('')}}\n`);
+    set_return (`\n${getdeclaration (`2`,`_global`,`${ident.rwr ()}`,)} ${Formals.rwr ()} {\n${StatementBlock.rwr ()}${line.rwr ().join ('')}}\n`);
 popParameter ("scope");
 return exit_rule ("Defn");
 },
@@ -762,7 +762,7 @@ return exit_rule ("Formals_withformals");
 },
 Formal : function (ident,) {
 enter_rule ("Formal");
-    set_return (`${getdeclaration (`${getParameter ("scope")}`,`${ident.rwr ()}`,)}`);
+    set_return (`${getdeclaration (`3`,`${getParameter ("scope")}`,`${ident.rwr ()}`,)}`);
 return exit_rule ("Formal");
 },
 FormalComma : function (Formal,comma,) {

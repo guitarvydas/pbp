@@ -20,10 +20,10 @@ TopLevel_comment [s line?] =‛\n«s»«line»’
 TopLevel_line [line] =‛«line»’
 
 kw [ s] = ‛«s»’
-Defvar [ __ lval _eq e line?] = ‛\n⎨getdeclaration ‛⟪scope⟫’ ‛«lval»’⎬ = «e»«line»;’
+Defvar [ __ id _eq e line?] = ‛\n⎨getdeclaration ‛1’ ‛⟪scope⟫’ ‛«id»’⎬ = «e»«line»;’
 Defn [ _4 ident Formals StatementBlock line?] = 
   ⎡ scope=‛«ident»’
-     ‛\n⎨getdeclaration ‛_global’ ‛«ident»’⎬ «Formals» {\n«StatementBlock»«line»}\n’
+     ‛\n⎨getdeclaration ‛2’ ‛_global’ ‛«ident»’⎬ «Formals» {\n«StatementBlock»«line»}\n’
   ⎦
 
 Defobj [ _defobj ident line1? lb line2? init+ rb line3?] = ‛
@@ -257,7 +257,7 @@ Lval [ Exp ] = ‛«Exp»’
 keyword [ _144] = ‛«_144»’
 Formals_noformals [ _148 _149] =‛«_148»«_149»’
 Formals_withformals [ _150 FormalComma* _151] =‛«_150»«FormalComma»«_151»’
-Formal [ ident] = ‛⎨getdeclaration ‛⟪scope⟫’ ‛«ident»’⎬’
+Formal [ ident] = ‛⎨getdeclaration ‛3’ ‛⟪scope⟫’ ‛«ident»’⎬’
 FormalComma [Formal comma?] =‛«Formal»«comma»’
 
 Actuals_noactuals [ _154 _155] =‛«_154»«_155»’

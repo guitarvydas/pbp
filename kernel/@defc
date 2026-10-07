@@ -27,6 +27,6 @@ export NTYLIST="preamble eh gensym mevent connector templates container leaf jit
 export TYLIST="preamble eh gensym mevent connector templates container leaf jit stock start"
 
 # # small
-# export BASENAMES="container"
-# export NTYLIST="container"
-# export TYLIST="container"
+# export BASENAMES="junk"
+# export NTYLIST="junk"
+# export TYLIST="junk"

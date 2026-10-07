@@ -46,7 +46,7 @@ function fetchscopeobject (scope) {
     for (const name of scopelist) {
 	dict = scopes[name];
 	if (!dict) {
-	    throw `scope ${name} not found in ${scope}`;
+	    throw `scope ${name} not found in ${scopes}`;
 	}
     }
     return dict;
@@ -83,20 +83,24 @@ function genscoperest (pname) {
 }
 
 function lookup (scope, id) {
-    let descriptor = scopes[scope][id];
-    if (null == descriptor) {
-	throw `can't find ${id} in ${scope}`;
+    let sc = fetchscopeobject(scope);
+    let descriptor = sc[id];
+    if (!descriptor) {
+	console.log ("%o", descriptor);
+	throw `can't find "${id}" in "${scope}"`;
     }
     return descriptor;
 }
 
 
-function getdeclaration(scope, id) {
+function getdeclaration(n, scope, id) {
+    pbplog (`getdeclaration(${n}, "${scope}", "${id}")`);
     let desc = lookup (scope, id);
     return `void* ${id}`;
 }
 
 function getmaybederef(deref, scope, id) {
+    pbplog ("getmaybederef");
     let desc = lookup (scope, id);
     if (deref === "⊥") {
 	return id;

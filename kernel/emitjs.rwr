@@ -10,7 +10,7 @@ TopLevel_comment [s line?] =‛\n«s»«line»’
 TopLevel_line [line] =‛«line»’
 
 kw [ s] = ‛«s»’
-Defvar [ __ lval _eq e line?] = ‛\nlet «lval» = «e»;«line»’
+Defvar [ __ id _eq e line?] = ‛\nlet «id» = «e»;«line»’
 Defn [ _4 ident Formals StatementBlock line?] = ‛\nfunction «ident» «Formals» {⤷«StatementBlock»«line»⤶\n}\n’
 
 Defobj [ _defobj ident line1? lb line2? init+ rb line3?] = ‛
