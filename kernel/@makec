@@ -5,6 +5,6 @@ echo "pass1"
 echo
 echo "building type table"
 ./@makec_buildtypetable
-# echo
-# echo "pass2"
-# ./@makec_pass2
+echo
+echo "pass2"
+./@makec_pass2
