@@ -1,4 +1,4 @@
-defvar _digits ≡ Array_of_Str                                          #line 8#line 9
+defvar digits ≡ Array_of_Str                                          #line 8#line 9
 defn subscripted_digit ≡ @Str
 (
     n ≡ Int

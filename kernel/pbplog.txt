@@ -1,4 +1,4 @@
-Wed  7 Oct 2026 19:15:51 EDT
+Wed  7 Oct 2026 19:20:00 EDT
 getdeclaration(2, "_global", "injector")
 getdeclaration(3, "injector", "eh")
 getdeclaration(3, "injector", "mevent")
@@ -6,3 +6,8 @@ getmaybederef
 getmaybederef
 getmaybederef
 getdeclaration(1, "_global", "digits")
+getdeclaration(2, "_global", "subscripted_digit")
+getdeclaration(3, "subscripted_digit", "n")
+getmaybederef
+getmaybederef
+getmaybederef

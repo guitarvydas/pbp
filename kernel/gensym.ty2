@@ -1,5 +1,5 @@
 
-{"op":"insert", "operand":{"name":"_digits", "indir":1, "type":"Array_of_Str", "scope":"_global", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"digits", "indir":1, "type":"Array_of_Str", "scope":"_global", "kind":"variable"}}
 {"op":"newscope", "operand":"subscripted_digit"}
 {"op":"insert", "operand":{"name":"subscripted_digit", "indir":2, "type":"Str", "kind":"retproc", "scope":"_global" }}
 {"op":"insert", "operand":{"name":"n", "indir":1, "type":"Int", "scope":"_global/subscripted_digit","kind":"parameter"}}
