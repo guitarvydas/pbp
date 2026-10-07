@@ -130,19 +130,12 @@ function readtypetable (fname) {
 }
 
 function genscope (pname) {
-    console.log ("%s", "genscope");
-    console.log ("%o", JSON.stringify(pname));
-    console.log ("%o", JSON.stringify(parameters [pname]));
-    return `${JSON.stringify(parameters [pname])}`;
+    return `${JSON.stringify(parameters [pname])}`.replace(/\"/g,'\\"');
 }
 
 function genscoperest (pname) {
-    console.log ("%s", "genscoperest");
-    console.log ("%o", JSON.stringify(pname));
-    console.log ("%o", JSON.stringify(parameters [pname]));
     let rest = parameters [pname].pop ();
-    console.log ("%o", JSON.stringify(rest));
-    return `${JSON.stringify(rest)}`;
+    return `${JSON.stringify(rest)}`.replace(/\"/g,'\\"');
 }
 
 function lookup (scope, id) {

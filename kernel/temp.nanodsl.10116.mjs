@@ -392,19 +392,12 @@ function readtypetable (fname) {
 }
 
 function genscope (pname) {
-    console.log ("%s", "genscope");
-    console.log ("%o", JSON.stringify(pname));
-    console.log ("%o", JSON.stringify(parameters [pname]));
-    return `${JSON.stringify(parameters [pname])}`;
+    return `${JSON.stringify(parameters [pname])}`.replace(/\"/g,'\\"');
 }
 
 function genscoperest (pname) {
-    console.log ("%s", "genscoperest");
-    console.log ("%o", JSON.stringify(pname));
-    console.log ("%o", JSON.stringify(parameters [pname]));
     let rest = parameters [pname].pop ();
-    console.log ("%o", JSON.stringify(rest));
-    return `${JSON.stringify(rest)}`;
+    return `${JSON.stringify(rest)}`.replace(/\"/g,'\\"');
 }
 
 function lookup (scope, id) {
@@ -488,7 +481,7 @@ return exit_rule ("TopLevel_external");
 },
 TopLevel_comment : function (s,line,) {
 enter_rule ("TopLevel_comment");
-    set_return (`\n${s.rwr ()}${line.rwr ().join ('')}`);
+    set_return (`${s.rwr ()}${line.rwr ().join ('')}`);
 return exit_rule ("TopLevel_comment");
 },
 TopLevel_line : function (line,) {
@@ -503,28 +496,27 @@ return exit_rule ("kw");
 },
 Defvar : function (__,lval,_eq,e,line,) {
 enter_rule ("Defvar");
-    set_return (`\nlet ${lval.rwr ()} = ${e.rwr ()};${line.rwr ().join ('')}`);
+    set_return (`\n(defparameter ${lval.rwr ()} ${e.rwr ()})${line.rwr ().join ('')}`);
 return exit_rule ("Defvar");
 },
 Defn : function (_4,ident,Formals,StatementBlock,line,) {
 enter_rule ("Defn");
-    set_return (`\nfunction ${ident.rwr ()} ${Formals.rwr ()} {⤷${StatementBlock.rwr ()}${line.rwr ().join ('')}⤶\n}\n`);
+    pushParameter ("functionName", `${ident.rwr ()}`);
+    set_return (`\n(defun ${ident.rwr ()} (&optional ${Formals.rwr ()})⤷\n(declare (ignorable ${Formals.rwr ()}))${StatementBlock.rwr ()}⤶)`);
+popParameter ("functionName");
 return exit_rule ("Defn");
 },
 Defobj : function (_defobj,ident,Formals,line1,lb,line2,init,rb,line3,) {
 enter_rule ("Defobj");
     set_return (`
-class ${ident.rwr ()} {⤷
-constructor (${Formals.rwr ()}) {${line1.rwr ().join ('')}⤷${line2.rwr ().join ('')}
-${init.rwr ().join ('')}${line3.rwr ().join ('')}⤶
-}⤶
-}
+(defclass ${ident.rwr ()} ()${line1.rwr ().join ('')}⤷${line2.rwr ().join ('')}
+  (⤷${init.rwr ().join ('')}⤶⤶))${line3.rwr ().join ('')}\n
 `);
 return exit_rule ("Defobj");
 },
 StatementBlock : function (line1,lb,line2,Statement,line3,rb,line4,) {
 enter_rule ("StatementBlock");
-    set_return (`${line1.rwr ().join ('')}${line2.rwr ().join ('')}⤷${Statement.rwr ()}${line3.rwr ().join ('')}${line4.rwr ().join ('')}⤶`);
+    set_return (`${line1.rwr ().join ('')}${line2.rwr ().join ('')}${Statement.rwr ()}${line3.rwr ().join ('')}${line4.rwr ().join ('')}\n`);
 return exit_rule ("StatementBlock");
 },
 Rec_Statement : function (line1,R_Statement,line2,) {
@@ -532,9 +524,9 @@ enter_rule ("Rec_Statement");
     set_return (`${line1.rwr ().join ('')}${R_Statement.rwr ()}${line2.rwr ().join ('')}`);
 return exit_rule ("Rec_Statement");
 },
-R_Statement_globals : function (_24,ident1,cidents,rec,) {
+R_Statement_globals : function (_24,ident1,cidents,scope,) {
 enter_rule ("R_Statement_globals");
-    set_return (`${rec.rwr ().join ('')}`);
+    set_return (`${scope.rwr ().join ('')}`);
 return exit_rule ("R_Statement_globals");
 },
 R_Statement_comment : function (s,rec,) {
@@ -554,12 +546,12 @@ return exit_rule ("R_Statement_if");
 },
 R_Statement_pass : function (_27,scope,) {
 enter_rule ("R_Statement_pass");
-    set_return (`${scope.rwr ().join ('')}`);
+    set_return (`\n#| pass |#${scope.rwr ().join ('')}`);
 return exit_rule ("R_Statement_pass");
 },
 R_Statement_return : function (_29,ReturnExp,) {
 enter_rule ("R_Statement_return");
-    set_return (`\nreturn ${ReturnExp.rwr ()};`);
+    set_return (`\n(return-from ${getParameter ("functionName")} ⤷${ReturnExp.rwr ()}⤶)`);
 return exit_rule ("R_Statement_return");
 },
 R_Statement_for : function (ForStatement,) {
@@ -600,63 +592,49 @@ return exit_rule ("External");
 ExternalPhrase_read : function (_octothorpe,_read,lp,eh,_comma1,msg,_comma2,fname,_comma3,ok,_comma4,err,rp,) {
 enter_rule ("ExternalPhrase_read");
     set_return (`
-    if (fname == "0") {
-	data = fs.readFileSync (0, { encoding: 'utf8'});
-    } else {
-        data = fs.readFileSync (${fname.rwr ()}, { encoding: 'utf8'});
-    }
-    if (data) {⤷
-        send_string (eh, ${ok.rwr ()}, data, ${msg.rwr ()});⤶
-    } else {⤷
-        send_string (eh, ${err.rwr ()}, \`read error on file '\$\{${fname.rwr ()}}'\`, ${msg.rwr ()});⤶
-    }
+;; read text from a named file ${fname.rwr ()}, send the text out on port ${ok.rwr ()} else send error info on port ${err.rwr ()}
+;; given ${eh.rwr ()} and ${msg.rwr ()} if needed
+(handler-bind ((error #'(lambda (condition) (send_string ${eh.rwr ()} ${err.rwr ()} (format nil "~&~A~&" condition)))))⤷
+  (with-open-file (stream ${fname.rwr ()})⤷
+    (let ((contents (make-string (file-length stream))))⤷
+      (read-sequence contents stream)
+      (send_string ${eh.rwr ()} ${ok.rwr ()} contents))))⤶⤶⤶
 `);
 return exit_rule ("ExternalPhrase_read");
 },
 ExternalPhrase_raclnetf : function (_octothorpe,_,lp,pathname,_comma,fname,rp,) {
 enter_rule ("ExternalPhrase_raclnetf");
     set_return (`
-    let jstr = undefined;
-    if (filename == "0") {
-	jstr = fs.readFileSync (0, { encoding: 'utf8'});
-    } else if (pathname) {
-	jstr = fs.readFileSync (\`\${pathname}/\${filename}\`, { encoding: 'utf8'});
-    } else {
-	jstr = fs.readFileSync (\`\${filename}\`, { encoding: 'utf8'});
-    }
-    if (jstr) {
-        return JSON.parse (jstr);
-    } else {
-        return undefined;
-    }
+  ;; read json from a named file and convert it into internal form (a list of Container alists)
+  (json2dict (merge-pathnames ${pathname.rwr ()} ${fname.rwr ()}))
 `);
 return exit_rule ("ExternalPhrase_raclnetf");
 },
 ExternalPhrase_internalizeLnetFromString : function (_octothorpe,_,lp,rp,) {
 enter_rule ("ExternalPhrase_internalizeLnetFromString");
     set_return (`
-    return JSON.parse (lnet);
+  (internalize-lnet-from-JSON *lnet*)
 `);
 return exit_rule ("ExternalPhrase_internalizeLnetFromString");
 },
-ExternalPhrase_freshQueue : function (_octothorpe,_,lp,rp,) {
+ExternalPhrase_freshQueue : function (_octothorpe,_83,_84,_85,) {
 enter_rule ("ExternalPhrase_freshQueue");
-    set_return (` []`);
+    set_return (` (make-instance 'Queue)`);
 return exit_rule ("ExternalPhrase_freshQueue");
 },
-ExternalPhrase_resetQueue : function (_octothorpe,_,lp,e,rp,) {
+ExternalPhrase_resetQueue : function (_octothorpe,_83,_84,e,_85,) {
 enter_rule ("ExternalPhrase_resetQueue");
-    set_return (`\n${e.rwr ()} = [];`);
+    set_return (`\n(setf ${e.rwr ()} (make-instance 'Queue))`);
 return exit_rule ("ExternalPhrase_resetQueue");
 },
-ExternalPhrase_freshStack : function (_octothorpe,_,lp,rp,) {
+ExternalPhrase_freshStack : function (_octothorpe,_83,_84,_85,) {
 enter_rule ("ExternalPhrase_freshStack");
-    set_return (` []`);
+    set_return (` nil`);
 return exit_rule ("ExternalPhrase_freshStack");
 },
 ExternalPhrase_fresh : function (_octothorpe,_83,_84,ident,_85,) {
 enter_rule ("ExternalPhrase_fresh");
-    set_return (` new ${ident.rwr ()} ();`);
+    set_return (` (make-instance '${ident.rwr ()})`);
 return exit_rule ("ExternalPhrase_fresh");
 },
 ExternalPhrase_stringshrink : function (_octothorpe,_83,_84,e,_85,) {
@@ -666,165 +644,265 @@ return exit_rule ("ExternalPhrase_stringshrink");
 },
 ExternalPhrase_stringcar : function (_octothorpe,_83,_84,e,_85,) {
 enter_rule ("ExternalPhrase_stringcar");
-    set_return (` ${e.rwr ()}[0] `);
+    set_return (` (string (char ${e.rwr ()} 0))`);
 return exit_rule ("ExternalPhrase_stringcar");
 },
 ExternalPhrase_stringcdr : function (_octothorpe,_83,_84,e,_85,) {
 enter_rule ("ExternalPhrase_stringcdr");
-    set_return (` ${e.rwr ()}.substring (1) `);
+    set_return (` (subseq ${e.rwr ()} 1)`);
 return exit_rule ("ExternalPhrase_stringcdr");
 },
 ExternalPhrase_strcons : function (_octothorpe,_strcons,lp,e1,_comma,e2,rp,) {
 enter_rule ("ExternalPhrase_strcons");
-    set_return (` (${e1.rwr ()}.toString ()+ ${e2.rwr ()}.toString ()) `);
+    set_return (` (concatenate 'string ${e1.rwr ()} ${e2.rwr ()})`);
 return exit_rule ("ExternalPhrase_strcons");
 },
-ExternalPhrase_append : function (_octothorpe,_,lp,e1,_comma,e2,rp,) {
+ExternalPhrase_append : function (_octothorpe,_append,lp,lis,_comma,e2,rp,) {
 enter_rule ("ExternalPhrase_append");
-    set_return (` ${e1.rwr ()}.push (${e2.rwr ()}) `);
+    set_return (` (setf ${lis.rwr ()} (append ${lis.rwr ()} (list ${e2.rwr ()})))`);
 return exit_rule ("ExternalPhrase_append");
 },
 ExternalPhrase_basename : function (_octothorpe,_basename,lp,s,rp,) {
 enter_rule ("ExternalPhrase_basename");
-    set_return (` ${s.rwr ()}`);
+    set_return (`${s.rwr ()}`);
 return exit_rule ("ExternalPhrase_basename");
 },
 ExternalPhrase_preamble : function (_octothorpe,_preamble,lb,rp,) {
 enter_rule ("ExternalPhrase_preamble");
-    set_return (`
-import * as fs from 'fs';
-import path from 'path';
-import execSync from 'child_process';
-import 'dotenv/config';
+    set_return (`(load "~/quicklisp/setup.lisp")
+(proclaim '(optimize (debug 3) (safety 3) (speed 0)))
+(ql:quickload :uiop)
+(ql:quickload :cl-json)
+
+(defun getwd (s)
+  #+lispworks (merge-pathnames s (get-working-directory))
+  #-lispworks s
+)
+
+(defun dict-fresh () (make-hash-table :test 'equal))
+
+(defun dict-in? (name table)
+  (when (and table name)
+    (multiple-value-bind (dont-care found)
+       (gethash name table)
+      dont-care ;; quell warnings that dont-care is unused
+      found)))
+
+(defun jparse (filename)
+  (let ((s (uiop:read-file-string filename)))
+    (internalize-lnet-from-JSON s)))
+  
+(defun internalize-lnet-from-JSON (s)
+  (let ((s (uiop:read-file-string filename)))
+    (let ((cl-json:*json-identifier-name-to-lisp* 'identity)) ;; preserves case
+      (with-input-from-string (strm s)
+        (cl-json:decode-json strm)))))
+
+(defun json2dict (filename)
+  (let ((j (jparse filename)))
+    (make-dict nil j)))
+
+
+(defun make-dict (dict x)
+  (assert (or (not (null dict)) (not (null x))))
+  (cond 
+
+    ;; done
+    ((null x) dict)
+
+    ;; bottom
+    ((atom x) x)
+
+    ;; key/value pair - put it in dict
+    ((kv? x)
+      (let ((v (make-dict dict (val x))))
+        (setf (gethash (key x) dict) v)
+	dict))
+
+    ;; begin new dict
+    ((kv? (car x))
+      (let ((new-dict (make-hash-table :test 'equal)))
+        (mapc #'(lambda (y)
+                  (make-dict new-dict y))
+          x)
+        new-dict))
+
+    ;; list of dicts (json array)
+    ((not (kv? (car x)))
+      ;; list of kvs (json array)
+      (mapcar #'(lambda (y)
+                  (make-dict nil y))
+        x))))
+
+(defun key (kv)
+  (symbol-name (car kv)))
+
+(defun val (kv)
+  (cdr kv))
+
+(defun kv? (x)
+  (and (listp x)
+       (atom (car x))))
+
+;;;;
+;(load "~/quicklisp/setup.lisp")
+(ql:quickload '(:websocket-driver-client :cl-json :uiop))
+
+(defun live_update (key value)
+  (let* ((client (wsd:make-client "ws://localhost:8966"))
+         (json-data (json:encode-json-to-string 
+                    (list (cons key value)))))
+    (wsd:start-connection client)
+    (wsd:send client json-data)
+    (sleep 0.1)  ; Add small delay to ensure message is sent
+    (wsd:close-connection client)))
+
+
+;;;;
+
+(defclass Queue ()
+  ((contents :accessor contents :initform nil)))
+
+(defmethod enqueue ((self Queue) v)
+  (setf (contents self) (append (contents self) (list v))))
+
+(defmethod prequeue ((self Queue) v)
+  (push v (contents self)))
+
+(defmethod dequeue ((self Queue))
+  (pop (contents self)))
+    
+(defmethod empty? ((self Queue))
+  (null (contents self)))
+
+(defmethod queue2list ((self Queue))
+  (contents self))
 `);
 return exit_rule ("ExternalPhrase_preamble");
 },
 ExternalPhrase_print_stdout : function (_octothorpe,_,lp,e,rp,) {
 enter_rule ("ExternalPhrase_print_stdout");
-    set_return (`console.log (${e.rwr ()});`);
+    set_return (`(format *standard-output* "~a~%25" ${e.rwr ()})`);
 return exit_rule ("ExternalPhrase_print_stdout");
 },
 ExternalPhrase_print_stderr : function (_octothorpe,_,lp,e,rp,) {
 enter_rule ("ExternalPhrase_print_stderr");
-    set_return (`console.error (${e.rwr ()});`);
+    set_return (`(format *error-output* "~a~%25" ${e.rwr ()})`);
 return exit_rule ("ExternalPhrase_print_stderr");
 },
 ExternalPhrase_print_nl : function (_octothorpe,_,lp,rp,) {
 enter_rule ("ExternalPhrase_print_nl");
-    set_return (`console.log ();`);
+    set_return (`(format *standard-output* "%0A")`);
 return exit_rule ("ExternalPhrase_print_nl");
 },
 ExternalPhrase_print_nl_stderr : function (_octothorpe,_,lp,rp,) {
 enter_rule ("ExternalPhrase_print_nl_stderr");
-    set_return (``);
+    set_return (`(format *error-output* "%0A")`);
 return exit_rule ("ExternalPhrase_print_nl_stderr");
 },
-ExternalPhrase_substitute : function (_octothorpe,_,lp,find,_comma1,replace,_comma2,s,rp,) {
+ExternalPhrase_substitute : function (_octothorpe,_,lp,new_item,_comma1,old_item,_comma2,s,rp,) {
 enter_rule ("ExternalPhrase_substitute");
-    set_return (`${s.rwr ()}.replaceAll (${find.rwr ()}, ${replace.rwr ()})`);
+    set_return (`(substitute ${new_item.rwr ()} ${old_item.rwr ()} ${s.rwr ()})`);
 return exit_rule ("ExternalPhrase_substitute");
 },
 ExternalPhrase_run_command : function (_octothorpe,_,lp,cmd,_comma1,args,_comma2,ret,_comma3,rc,_comma4,out,_comma5,errout,rp,) {
 enter_rule ("ExternalPhrase_run_command");
-    set_return (`
-${out.rwr ()} = execSync(\`\${${cmd.rwr ()}} \${${enspace (`${args.rwr ()}`,)}}\`, { encoding: 'utf-8' });
-${ret.rwr ()} = true;
-`);
+    set_return (`(multiple-value-setq (${out.rwr ()} ${errout.rwr ()} ${rc.rwr ()}) (uiop::run-program (concatenate 'string ${cmd.rwr ()} " " ${args.rwr ()}) :output :string :error :string))`);
 return exit_rule ("ExternalPhrase_run_command");
 },
 ExternalPhrase_abort : function (_octothorpe,_,lp,rp,) {
 enter_rule ("ExternalPhrase_abort");
-    set_return (` process.exit (1)`);
+    set_return (`(break)`);
 return exit_rule ("ExternalPhrase_abort");
 },
 ExternalPhrase_asstr : function (_octothorpe,_,lp,e,rp,) {
 enter_rule ("ExternalPhrase_asstr");
-    set_return (`\`\${${e.rwr ()}}\``);
+    set_return (`(format nil "~a" ${e.rwr ()})`);
 return exit_rule ("ExternalPhrase_asstr");
 },
 ExternalPhrase_len : function (_octothorpe,_,lp,e,rp,) {
 enter_rule ("ExternalPhrase_len");
-    set_return (`(${e.rwr ()}.length)`);
+    set_return (`(length ${e.rwr ()})`);
 return exit_rule ("ExternalPhrase_len");
 },
 ExternalPhrase_asint : function (_octothorpe,_,lp,e,rp,) {
 enter_rule ("ExternalPhrase_asint");
-    set_return (`Number (${e.rwr ()})`);
+    set_return (`(parse-integer ${e.rwr ()})`);
 return exit_rule ("ExternalPhrase_asint");
 },
 ExternalPhrase_enqueue : function (_octothorpe,_,lp,obj,_comma,e,rp,) {
 enter_rule ("ExternalPhrase_enqueue");
-    set_return (`${obj.rwr ()}.push (${e.rwr ()})`);
+    set_return (`(enqueue ${obj.rwr ()} ${e.rwr ()})`);
 return exit_rule ("ExternalPhrase_enqueue");
 },
 ExternalPhrase_prequeue : function (_octothorpe,_,lp,obj,_comma,e,rp,) {
 enter_rule ("ExternalPhrase_prequeue");
-    set_return (`${obj.rwr ()}.unshift (${e.rwr ()})`);
+    set_return (`(prequeue ${obj.rwr ()} ${e.rwr ()})`);
 return exit_rule ("ExternalPhrase_prequeue");
 },
 ExternalPhrase_dequeue : function (_octothorpe,_,lp,obj,rp,) {
 enter_rule ("ExternalPhrase_dequeue");
-    set_return (`${obj.rwr ()}.shift ()`);
+    set_return (`(dequeue ${obj.rwr ()})`);
 return exit_rule ("ExternalPhrase_dequeue");
 },
 ExternalPhrase_empty : function (_octothorpe,_,lp,q,rp,) {
 enter_rule ("ExternalPhrase_empty");
-    set_return (`(0===${q.rwr ()}.length)`);
+    set_return (`(empty? ${q.rwr ()})`);
 return exit_rule ("ExternalPhrase_empty");
 },
 ExternalPhrase_queue2list : function (_octothorpe,_,lp,q,rp,) {
 enter_rule ("ExternalPhrase_queue2list");
-    set_return (` ${q.rwr ()}`);
+    set_return (`(queue2list ${q.rwr ()})`);
 return exit_rule ("ExternalPhrase_queue2list");
 },
 ExternalPhrase_negate : function (_octothorpe,_,lp,x,rp,) {
 enter_rule ("ExternalPhrase_negate");
-    set_return (`(-${x.rwr ()})`);
+    set_return (`(- ${x.rwr ()})`);
 return exit_rule ("ExternalPhrase_negate");
 },
 ExternalPhrase_liveUpdate : function (_octothorpe,_,lp,s1,_comma,s2,rp,) {
 enter_rule ("ExternalPhrase_liveUpdate");
-    set_return (`console.error (${s1.rwr ()} + ": " + ${s2.rwr ()})`);
+    set_return (`(live_update ${s1.rwr ()} ${s2.rwr ()})`);
 return exit_rule ("ExternalPhrase_liveUpdate");
 },
 ExternalPhrase_queueAsJsonToStdout : function (_octothorpe,_,lp,x,rp,) {
 enter_rule ("ExternalPhrase_queueAsJsonToStdout");
-    set_return (`console.log (JSON.stringify (${x.rwr ()}.map(item => ({ [item.port]: item.datum.v })), null, 2));`);
+    set_return (`(queue-as-json-to-stdout ${x.rwr ()})`);
 return exit_rule ("ExternalPhrase_queueAsJsonToStdout");
 },
 ExternalPhrase_dir : function (_octothorpe,_,lp,x,rp,) {
 enter_rule ("ExternalPhrase_dir");
-    set_return (` ${x.rwr ()} `);
+    set_return (`(getwd ${x.rwr ()})`);
 return exit_rule ("ExternalPhrase_dir");
 },
 ExternalPhrase_dispatch_lookup : function (_octothorpe,_,lp,arg,_comma,eh,rp,) {
 enter_rule ("ExternalPhrase_dispatch_lookup");
-    set_return (`dispatch_lookup (${arg.rwr ()}, ${eh.rwr ()})`);
+    set_return (`(dispatch_lookup ${arg.rwr ()} ${eh.rwr ()})`);
 return exit_rule ("ExternalPhrase_dispatch_lookup");
 },
 ExternalPhrase_dispatch : function (_octothorpe,_,lp,f,_comma,eh,_comma1,msg,rp,) {
 enter_rule ("ExternalPhrase_dispatch");
-    set_return (`${f.rwr ()} (${eh.rwr ()}, ${msg.rwr ()})`);
+    set_return (`(${f.rwr ()} ${eh.rwr ()}, ${msg.rwr ()})`);
 return exit_rule ("ExternalPhrase_dispatch");
 },
 ExternalPhrase_getPbpRoot : function (_octothorpe,_,lp,rp,) {
 enter_rule ("ExternalPhrase_getPbpRoot");
-    set_return (`process.env.PBP`);
+    set_return (`(uiop:getenv "PBP")`);
 return exit_rule ("ExternalPhrase_getPbpRoot");
 },
 ExternalPhrase_getWD : function (_octothorpe,_,lp,rp,) {
 enter_rule ("ExternalPhrase_getWD");
-    set_return (`process.env.PBPWD`);
+    set_return (`(uiop:getenv "PBPWD")`);
 return exit_rule ("ExternalPhrase_getWD");
 },
 ExternalPhrase_showStepping : function (_octothorpe,_,lp,rp,) {
 enter_rule ("ExternalPhrase_showStepping");
-    set_return (` (typeof process.env.PBPSTEPPING !== "undefined") `);
+    set_return (` (not (null (uiop:getenv "PBPSTEPPING"))) `);
 return exit_rule ("ExternalPhrase_showStepping");
 },
 ExternalPhrase_showCommand : function (_octothorpe,_,lp,rp,) {
 enter_rule ("ExternalPhrase_showCommand");
-    set_return (` (typeof process.env.PBPSHELLOUT !== "undefined") `);
+    set_return (` (not (null (uiop:getenv "PBPSHELLOUT"))) `);
 return exit_rule ("ExternalPhrase_showCommand");
 },
 ExternalPhrase_unrecognized : function (_octothorpe,ident,lp,stuff,rp,) {
@@ -834,22 +912,22 @@ return exit_rule ("ExternalPhrase_unrecognized");
 },
 Deftemp : function (_deftemp,lval,_mutate,e,rec,) {
 enter_rule ("Deftemp");
-    set_return (`\nlet ${lval.rwr ()} = ${e.rwr ()};${rec.rwr ().join ('')}`);
+    set_return (`\n(let ((${lval.rwr ()} ${e.rwr ()}))⤷\n(declare (ignorable ${lval.rwr ()}))${rec.rwr ().join ('')}⤶)`);
 return exit_rule ("Deftemp");
 },
 Defsynonym_illegal : function (lval,err,_eqv,e,rec,) {
 enter_rule ("Defsynonym_illegal");
-    set_return (`\nlet ${lval.rwr ()} ${err.rwr ()} = ${e.rwr ()};${rec.rwr ().join ('')}`);
+    set_return (`\n${lval.rwr ()} ${err.rwr ()} = ${e.rwr ()}${rec.rwr ().join ('')}`);
 return exit_rule ("Defsynonym_illegal");
 },
 Defsynonym_legal : function (id,_eqv,e,rec,) {
 enter_rule ("Defsynonym_legal");
-    set_return (`\nlet ${id.rwr ()} = ${e.rwr ()};${rec.rwr ().join ('')}`);
+    set_return (`\n(let ((${id.rwr ()} ${e.rwr ()}))⤷\n(declare (ignorable ${id.rwr ()}))${rec.rwr ().join ('')}⤶)`);
 return exit_rule ("Defsynonym_legal");
 },
 InitStatement : function (_mark,ident,ty,_33,Exp,fluff,) {
 enter_rule ("InitStatement");
-    set_return (`\nthis.${ident.rwr ()} = ${Exp.rwr ()};${fluff.rwr ().join ('')}`);
+    set_return (`\n(${ident.rwr ()} :accessor ${ident.rwr ()} :initarg :${ident.rwr ()} :initform ${Exp.rwr ()}) ${fluff.rwr ().join ('')}`);
 return exit_rule ("InitStatement");
 },
 Type : function (_colon,id,) {
@@ -859,37 +937,37 @@ return exit_rule ("Type");
 },
 IfStatement : function (_35,Exp,StatementBlock,ElifStatement,ElseStatement,rec,) {
 enter_rule ("IfStatement");
-    set_return (`\nif (${Exp.rwr ()}) {${StatementBlock.rwr ()}\n}${ElifStatement.rwr ().join ('')}${ElseStatement.rwr ().join ('')}${rec.rwr ().join ('')}`);
+    set_return (`\n(cond ⤷\n(${Exp.rwr ()}⤷${StatementBlock.rwr ()}⤶)${ElifStatement.rwr ().join ('')}${ElseStatement.rwr ().join ('')}⤶)${rec.rwr ().join ('')}`);
 return exit_rule ("IfStatement");
 },
 ElifStatement : function (_37,Exp,StatementBlock,) {
 enter_rule ("ElifStatement");
-    set_return (`\nelse if (${Exp.rwr ()}) {${StatementBlock.rwr ()}\n}`);
+    set_return (`\n(${Exp.rwr ()}⤷${StatementBlock.rwr ()}⤶)`);
 return exit_rule ("ElifStatement");
 },
 ElseStatement : function (_39,StatementBlock,) {
 enter_rule ("ElseStatement");
-    set_return (`\n else {${StatementBlock.rwr ()}\n}`);
+    set_return (`\n(t⤷${StatementBlock.rwr ()}⤶)`);
 return exit_rule ("ElseStatement");
 },
 ForStatement : function (_41,ident,_43,Exp,StatementBlock,rec,) {
 enter_rule ("ForStatement");
-    set_return (`\nfor (let ${ident.rwr ()} of ${Exp.rwr ()}) {${StatementBlock.rwr ()}\n}${rec.rwr ().join ('')}`);
+    set_return (`\n(loop for ${ident.rwr ()} in ${Exp.rwr ()}⤷\ndo⤷\n(progn⤷\n${ident.rwr ()}${StatementBlock.rwr ()}))⤶⤶⤶${rec.rwr ().join ('')}`);
 return exit_rule ("ForStatement");
 },
 WhileStatement : function (_45,Exp,StatementBlock,rec,) {
 enter_rule ("WhileStatement");
-    set_return (`\nwhile (${Exp.rwr ()}) {${StatementBlock.rwr ()}\n}${rec.rwr ().join ('')}`);
+    set_return (`\n(loop while ${Exp.rwr ()}⤷\ndo⤷\n(progn⤷${StatementBlock.rwr ()}⤶)⤶)⤶${rec.rwr ().join ('')}`);
 return exit_rule ("WhileStatement");
 },
-Assignment_multiple : function (_55,Lvals,_57,_58,Exp,rec,) {
+Assignment_multiple : function (lb,Lvals,rb,_assign,Exp,rec,) {
 enter_rule ("Assignment_multiple");
-    set_return (`\n[${Lvals.rwr ().join ('')}] = ${Exp.rwr ()};${rec.rwr ().join ('')}`);
+    set_return (`\n(multiple-value-setq (${Lvals.rwr ().join ('')}) ⤷${Exp.rwr ()}⤶)${rec.rwr ().join ('')}`);
 return exit_rule ("Assignment_multiple");
 },
 Assignment_single : function (Lval,_59,Exp,rec,) {
 enter_rule ("Assignment_single");
-    set_return (`\n${Lval.rwr ()} = ${Exp.rwr ()};${rec.rwr ().join ('')}`);
+    set_return (`\n(setf ${Lval.rwr ()} ${Exp.rwr ()})${rec.rwr ().join ('')}`);
 return exit_rule ("Assignment_single");
 },
 LvalComma : function (Lval,Comma,) {
@@ -899,7 +977,7 @@ return exit_rule ("LvalComma");
 },
 ReturnExp_multiple : function (_60,Exps,_62,rec,) {
 enter_rule ("ReturnExp_multiple");
-    set_return (`[${Exps.rwr ().join ('')}]${rec.rwr ().join ('')}`);
+    set_return (`(values ${Exps.rwr ().join ('')})${rec.rwr ().join ('')}`);
 return exit_rule ("ReturnExp_multiple");
 },
 ReturnExp_single : function (Exp,rec,) {
@@ -919,7 +997,7 @@ return exit_rule ("Exp");
 },
 BooleanAndOrIn_andOrIn : function (e1,op,e2,) {
 enter_rule ("BooleanAndOrIn_andOrIn");
-    set_return (`((${e1.rwr ()})${op.rwr ()}(${e2.rwr ()}))`);
+    set_return (`(${op.rwr ()} ${e1.rwr ()} ${e2.rwr ()})`);
 return exit_rule ("BooleanAndOrIn_andOrIn");
 },
 BooleanAndOrIn_default : function (e,) {
@@ -929,12 +1007,12 @@ return exit_rule ("BooleanAndOrIn_default");
 },
 BooleanExp_boolopneq : function (BooleanExp,boolOp,BooleanNot,) {
 enter_rule ("BooleanExp_boolopneq");
-    set_return (`${BooleanExp.rwr ()}${boolOp.rwr ()}${BooleanNot.rwr ()}`);
+    set_return (`(not (${boolOp.rwr ()} ${BooleanExp.rwr ()} ${BooleanNot.rwr ()}))`);
 return exit_rule ("BooleanExp_boolopneq");
 },
 BooleanExp_boolop : function (BooleanExp,boolOp,BooleanNot,) {
 enter_rule ("BooleanExp_boolop");
-    set_return (`${BooleanExp.rwr ()}${boolOp.rwr ()}${BooleanNot.rwr ()}`);
+    set_return (`(${boolOp.rwr ()} ${BooleanExp.rwr ()} ${BooleanNot.rwr ()})`);
 return exit_rule ("BooleanExp_boolop");
 },
 BooleanExp_basic : function (BooleanNot,) {
@@ -944,7 +1022,7 @@ return exit_rule ("BooleanExp_basic");
 },
 BooleanNot_not : function (_64,BooleanExp,) {
 enter_rule ("BooleanNot_not");
-    set_return (`(! ${BooleanExp.rwr ()})`);
+    set_return (`(not ${BooleanExp.rwr ()})`);
 return exit_rule ("BooleanNot_not");
 },
 BooleanNot_basic : function (AddExp,) {
@@ -954,12 +1032,12 @@ return exit_rule ("BooleanNot_basic");
 },
 AddExp_plus : function (AddExp,_65,MulExp,) {
 enter_rule ("AddExp_plus");
-    set_return (`${AddExp.rwr ()}${_65.rwr ()}${MulExp.rwr ()}`);
+    set_return (`(+ ${AddExp.rwr ()} ${MulExp.rwr ()})`);
 return exit_rule ("AddExp_plus");
 },
 AddExp_minus : function (AddExp,_66,MulExp,) {
 enter_rule ("AddExp_minus");
-    set_return (`${AddExp.rwr ()}${_66.rwr ()}${MulExp.rwr ()}`);
+    set_return (`(- ${AddExp.rwr ()} ${MulExp.rwr ()})`);
 return exit_rule ("AddExp_minus");
 },
 AddExp_basic : function (MulExp,) {
@@ -969,12 +1047,12 @@ return exit_rule ("AddExp_basic");
 },
 MulExp_times : function (MulExp,_67,ExpExp,) {
 enter_rule ("MulExp_times");
-    set_return (`${MulExp.rwr ()}${_67.rwr ()}${ExpExp.rwr ()}`);
+    set_return (`(* ${MulExp.rwr ()} ${ExpExp.rwr ()})`);
 return exit_rule ("MulExp_times");
 },
 MulExp_divide : function (MulExp,_68,ExpExp,) {
 enter_rule ("MulExp_divide");
-    set_return (`${MulExp.rwr ()}${_68.rwr ()}${ExpExp.rwr ()}`);
+    set_return (`(/ ${MulExp.rwr ()} ${ExpExp.rwr ()})`);
 return exit_rule ("MulExp_divide");
 },
 MulExp_basic : function (ExpExp,) {
@@ -984,7 +1062,7 @@ return exit_rule ("MulExp_basic");
 },
 ExpExp_power : function (Primary,_69,ExpExp,) {
 enter_rule ("ExpExp_power");
-    set_return (`${Primary.rwr ()}${_69.rwr ()}${ExpExp.rwr ()}`);
+    set_return (`(expt ${Primary.rwr ()} ${ExpExp.rwr ()})`);
 return exit_rule ("ExpExp_power");
 },
 ExpExp_basic : function (Primary,) {
@@ -994,7 +1072,7 @@ return exit_rule ("ExpExp_basic");
 },
 Primary_call : function (p,actuals,) {
 enter_rule ("Primary_call");
-    set_return (`${p.rwr ()} ${actuals.rwr ()}`);
+    set_return (`(funcall ${p.rwr ()} ${actuals.rwr ()})`);
 return exit_rule ("Primary_call");
 },
 Primary_plain : function (p,) {
@@ -1004,32 +1082,32 @@ return exit_rule ("Primary_plain");
 },
 PrimaryIndexed_lookupident : function (p,_at,key,) {
 enter_rule ("PrimaryIndexed_lookupident");
-    set_return (`${p.rwr ()} [${key.rwr ()}]`);
+    set_return (`(gethash ${key.rwr ()} ${p.rwr ()})`);
 return exit_rule ("PrimaryIndexed_lookupident");
 },
 PrimaryIndexed_lookup : function (p,_at,key,) {
 enter_rule ("PrimaryIndexed_lookup");
-    set_return (`${p.rwr ()} [${key.rwr ()}]`);
+    set_return (`(gethash ${key.rwr ()} ${p.rwr ()})`);
 return exit_rule ("PrimaryIndexed_lookup");
 },
 PrimaryIndexed_fieldident : function (p,_dot,key,) {
 enter_rule ("PrimaryIndexed_fieldident");
-    set_return (`${p.rwr ()}.${key.rwr ()}`);
+    set_return (`(slot-value ${p.rwr ()} '${key.rwr ()})`);
 return exit_rule ("PrimaryIndexed_fieldident");
 },
 PrimaryIndexed_field : function (p,_dot,key,) {
 enter_rule ("PrimaryIndexed_field");
-    set_return (`${p.rwr ()}.${key.rwr ()}`);
+    set_return (`(slot-value ${p.rwr ()} ${key.rwr ()})`);
 return exit_rule ("PrimaryIndexed_field");
 },
 PrimaryIndexed_index : function (p,lb,e,rb,) {
 enter_rule ("PrimaryIndexed_index");
-    set_return (`${p.rwr ()} [${e.rwr ()}]`);
+    set_return (`(nth ${e.rwr ()} ${p.rwr ()})`);
 return exit_rule ("PrimaryIndexed_index");
 },
 PrimaryIndexed_nthslice : function (p,lb,ds,_colon,rb,) {
 enter_rule ("PrimaryIndexed_nthslice");
-    set_return (`${p.rwr ()} [${ds.rwr ().join ('')}:]`);
+    set_return (`(nthcdr ${ds.rwr ().join ('')} ${p.rwr ()})`);
 return exit_rule ("PrimaryIndexed_nthslice");
 },
 PrimaryIndexed_atom : function (a,) {
@@ -1042,65 +1120,67 @@ enter_rule ("Atom_external");
     set_return (`${x.rwr ()}`);
 return exit_rule ("Atom_external");
 },
+Atom_callident : function (id,actuals,) {
+enter_rule ("Atom_callident");
+    set_return (`(funcall (quote ${id.rwr ()}) ${actuals.rwr ()})`);
+return exit_rule ("Atom_callident");
+},
 Atom_emptylistconst : function (_72,_73,) {
 enter_rule ("Atom_emptylistconst");
-    set_return (`${_72.rwr ()}${_73.rwr ()}`);
+    set_return (` nil`);
 return exit_rule ("Atom_emptylistconst");
 },
 Atom_emptydict : function (_76,_77,) {
 enter_rule ("Atom_emptydict");
-    set_return (`${_76.rwr ()}${_77.rwr ()}`);
+    set_return (` (dict-fresh)`);
 return exit_rule ("Atom_emptydict");
 },
 Atom_paren : function (_70,Exp,_71,) {
 enter_rule ("Atom_paren");
-    set_return (`${_70.rwr ()}${Exp.rwr ()}${_71.rwr ()}`);
+    set_return (`${Exp.rwr ()}`);
 return exit_rule ("Atom_paren");
 },
 Atom_listconst : function (lb,line1,PrimaryComma,line2,rb,) {
 enter_rule ("Atom_listconst");
-    set_return (`${lb.rwr ()}${PrimaryComma.rwr ().join ('')}${rb.rwr ()}${line2.rwr ().join ('')}`);
+    set_return (`(list ${line1.rwr ().join ('')} ${PrimaryComma.rwr ().join ('')})${line2.rwr ().join ('')}`);
 return exit_rule ("Atom_listconst");
 },
 Atom_dict : function (_78,line1,PairComma,line2,_79,) {
 enter_rule ("Atom_dict");
-    set_return (`${_78.rwr ()}${line1.rwr ().join ('')}${PairComma.rwr ().join ('')}${line2.rwr ().join ('')}${_79.rwr ()}`);
+    pushParameter ("freshdict", `_dict`);
+    set_return (`\n(let ((_dict (dict-fresh)))⤷${line1.rwr ().join ('')}${PairComma.rwr ().join ('')}${line2.rwr ().join ('')}\n_dict⤶)`);
+popParameter ("freshdict");
 return exit_rule ("Atom_dict");
 },
 Atom_lambda : function (_80,Formals,_81,Exp,) {
 enter_rule ("Atom_lambda");
-    set_return (` function (${Formals.rwr ().join ('')}) {return ${Exp.rwr ()};}`);
+    set_return (` #'(lambda (&optional ${Formals.rwr ().join ('')})⤷${Exp.rwr ()}⤶)`);
 return exit_rule ("Atom_lambda");
 },
 Atom_phi : function (phi,) {
 enter_rule ("Atom_phi");
-    set_return (` null`);
+    set_return (` nil`);
 return exit_rule ("Atom_phi");
 },
 Atom_true : function (_88,) {
 enter_rule ("Atom_true");
-    set_return (` true`);
+    set_return (` t`);
 return exit_rule ("Atom_true");
 },
 Atom_false : function (_89,) {
 enter_rule ("Atom_false");
-    set_return (` false`);
+    set_return (` nil`);
 return exit_rule ("Atom_false");
 },
 Atom_subr : function (_,ident,) {
 enter_rule ("Atom_subr");
-    set_return (` ${ident.rwr ()}`);
+    set_return (` #'${ident.rwr ()}`);
 return exit_rule ("Atom_subr");
 },
 Atom_range : function (_91,_92,Exp,_93,) {
 enter_rule ("Atom_range");
-    set_return (`${_91.rwr ()}${_92.rwr ()}${Exp.rwr ()}${_93.rwr ()}`);
+    set_return (`(loop for n from 0 below ${Exp.rwr ()} by 1 collect n)`);
 return exit_rule ("Atom_range");
-},
-Atom_callident : function (id,actuals,) {
-enter_rule ("Atom_callident");
-    set_return (`${id.rwr ()} ${actuals.rwr ()}`);
-return exit_rule ("Atom_callident");
 },
 Atom_string : function (string,) {
 enter_rule ("Atom_string");
@@ -1119,12 +1199,12 @@ return exit_rule ("Atom_ident");
 },
 PrimaryComma : function (Primary,_94,line,) {
 enter_rule ("PrimaryComma");
-    set_return (`${Primary.rwr ()}${_94.rwr ().join ('')}${line.rwr ().join ('')}`);
+    set_return (`${Primary.rwr ()} ${line.rwr ().join ('')}`);
 return exit_rule ("PrimaryComma");
 },
 PairComma : function (Pair,_95,) {
 enter_rule ("PairComma");
-    set_return (`${Pair.rwr ()}${_95.rwr ().join ('')}`);
+    set_return (`${Pair.rwr ()} `);
 return exit_rule ("PairComma");
 },
 StuffInsideParentheses_rec : function (lp,stuff,rp,) {
@@ -1149,12 +1229,12 @@ return exit_rule ("keyword");
 },
 Formals_noformals : function (_148,_149,) {
 enter_rule ("Formals_noformals");
-    set_return (`${_148.rwr ()}${_149.rwr ()}`);
+    set_return (``);
 return exit_rule ("Formals_noformals");
 },
 Formals_withformals : function (_150,FormalComma,_151,) {
 enter_rule ("Formals_withformals");
-    set_return (`${_150.rwr ()}${FormalComma.rwr ().join ('')}${_151.rwr ()}`);
+    set_return (`${FormalComma.rwr ().join ('')}`);
 return exit_rule ("Formals_withformals");
 },
 ObjFormals_noformals : function (_148,_149,) {
@@ -1179,17 +1259,17 @@ return exit_rule ("Formal");
 },
 FormalComma : function (Formal,comma,) {
 enter_rule ("FormalComma");
-    set_return (`${Formal.rwr ()}${comma.rwr ().join ('')}`);
+    set_return (` ${Formal.rwr ()}${comma.rwr ().join ('')}`);
 return exit_rule ("FormalComma");
 },
 Actuals_noactuals : function (_154,_155,) {
 enter_rule ("Actuals_noactuals");
-    set_return (`${_154.rwr ()}${_155.rwr ()}`);
+    set_return (``);
 return exit_rule ("Actuals_noactuals");
 },
 Actuals_actuals : function (_156,ActualComma,_157,line,) {
 enter_rule ("Actuals_actuals");
-    set_return (`${_156.rwr ()}${ActualComma.rwr ().join ('')}${_157.rwr ()}${line.rwr ().join ('')}`);
+    set_return (` ${ActualComma.rwr ().join ('')} ${line.rwr ().join ('')}`);
 return exit_rule ("Actuals_actuals");
 },
 Actual : function (Exp,) {
@@ -1199,12 +1279,12 @@ return exit_rule ("Actual");
 },
 ActualComma : function (comment,Actual,comma,line,) {
 enter_rule ("ActualComma");
-    set_return (`${Actual.rwr ()}${comma.rwr ().join ('')}${line.rwr ().join ('')}`);
+    set_return (`${comment.rwr ().join ('')}${Actual.rwr ()}${comma.rwr ().join ('')}${line.rwr ().join ('')}`);
 return exit_rule ("ActualComma");
 },
 number_fract : function (num,_160,den,) {
 enter_rule ("number_fract");
-    set_return (`${num.rwr ().join ('')}${_160.rwr ()}${den.rwr ().join ('')}`);
+    set_return (`${num.rwr ().join ('')}.${den.rwr ().join ('')}`);
 return exit_rule ("number_fract");
 },
 number_whole : function (digit,) {
@@ -1214,22 +1294,22 @@ return exit_rule ("number_whole");
 },
 Pair : function (string,_161,Exp,_162,) {
 enter_rule ("Pair");
-    set_return (`${string.rwr ()}${_161.rwr ()}${Exp.rwr ()}${_162.rwr ().join ('')}`);
+    set_return (`\n(setf (gethash ${string.rwr ()} ${getParameter ("freshdict")}) ⤷${Exp.rwr ()}⤶)`);
 return exit_rule ("Pair");
 },
 andOrIn_and : function (op,) {
 enter_rule ("andOrIn_and");
-    set_return (` && `);
+    set_return (` and `);
 return exit_rule ("andOrIn_and");
 },
 andOrIn_or : function (op,) {
 enter_rule ("andOrIn_or");
-    set_return (` || `);
+    set_return (` or `);
 return exit_rule ("andOrIn_or");
 },
 andOrIn_in : function (op,) {
 enter_rule ("andOrIn_in");
-    set_return (` in `);
+    set_return (` dict-in? `);
 return exit_rule ("andOrIn_in");
 },
 boolOp : function (_191,) {
@@ -1239,17 +1319,17 @@ return exit_rule ("boolOp");
 },
 boolEq : function (op,) {
 enter_rule ("boolEq");
-    set_return (`==`);
+    set_return (`equal `);
 return exit_rule ("boolEq");
 },
 boolNeq : function (op,) {
 enter_rule ("boolNeq");
-    set_return (`!=`);
+    set_return (`equal `);
 return exit_rule ("boolNeq");
 },
 phi : function (_192,) {
 enter_rule ("phi");
-    set_return (` null`);
+    set_return (` nil`);
 return exit_rule ("phi");
 },
 string : function (lb,cs,rb,) {
@@ -1364,7 +1444,7 @@ return exit_rule ("line");
 },
 Comma : function (line1,_comma,line2,) {
 enter_rule ("Comma");
-    set_return (`${_comma.rwr ()}`);
+    set_return (`${line1.rwr ().join ('')} ${line2.rwr ().join ('')}`);
 return exit_rule ("Comma");
 },
 _terminal: function () { return this.sourceString; },
