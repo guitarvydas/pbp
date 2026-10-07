@@ -107,7 +107,6 @@ semantics {
       | "(" Exp ")" -- paren
       | "[" line? PrimaryComma+ line? "]" -- listconst
       | "{" line? PairComma+ line? "}" -- dict
-      | lambda LambdaFormals? ":" Exp -- lambda
       | phi -- phi
       | "⊤" -- true
       | "⊥" -- false
@@ -127,10 +126,6 @@ semantics {
     Formals =
       | "(" ")" -- noformals
       | "(" FormalComma* ")" -- withformals
-    LambdaFormals =
-      | "(" ")" -- noformals
-      | "(" FormalComma* ")" -- withformals
-
     Formal = ident
        
     FormalComma = Formal Comma?
@@ -179,11 +174,9 @@ semantics {
       | kw<"range">
       | kw<"while">
       | kw<"as">
-      | lambda
       | phi
       )
       
-  lambda = ("λ" | kw<"%CE%BB">)
   phi = ("ϕ" | kw<"%CF%95">)
 
   kw<s> = s ~idtail

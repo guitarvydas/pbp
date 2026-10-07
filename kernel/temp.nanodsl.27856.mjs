@@ -145,7 +145,6 @@ semantics {
       | "(" Exp ")" -- paren
       | "[" line? PrimaryComma+ line? "]" -- listconst
       | "{" line? PairComma+ line? "}" -- dict
-      | lambda LambdaFormals? ":" Exp -- lambda
       | phi -- phi
       | "⊤" -- true
       | "⊥" -- false
@@ -165,10 +164,6 @@ semantics {
     Formals =
       | "(" ")" -- noformals
       | "(" FormalComma* ")" -- withformals
-    LambdaFormals =
-      | "(" ")" -- noformals
-      | "(" FormalComma* ")" -- withformals
-
     Formal = ident
        
     FormalComma = Formal Comma?
@@ -217,11 +212,9 @@ semantics {
       | kw<"range">
       | kw<"while">
       | kw<"as">
-      | lambda
       | phi
       )
       
-  lambda = ("λ" | kw<"%CE%BB">)
   phi = ("ϕ" | kw<"%CF%95">)
 
   kw<s> = s ~idtail
@@ -760,11 +753,6 @@ enter_rule ("Atom_dict");
     set_return (`${lb.rwr ()}${line1.rwr ().join ('')}${PairComma.rwr ().join ('')}${line2.rwr ().join ('')}${rb.rwr ()}`);
 return exit_rule ("Atom_dict");
 },
-Atom_lambda : function (lambda,LambdaFormals,_87,Exp,) {
-enter_rule ("Atom_lambda");
-    set_return (`${lambda.rwr ()}${LambdaFormals.rwr ().join ('')}${_87.rwr ()}${Exp.rwr ()}`);
-return exit_rule ("Atom_lambda");
-},
 Atom_phi : function (phi,) {
 enter_rule ("Atom_phi");
     set_return (`${phi.rwr ()}`);
@@ -834,16 +822,6 @@ Formals_withformals : function (_129,FormalComma,_130,) {
 enter_rule ("Formals_withformals");
     set_return (`${_129.rwr ()}${FormalComma.rwr ().join ('')}${_130.rwr ()}`);
 return exit_rule ("Formals_withformals");
-},
-LambdaFormals_noformals : function (_135,_136,) {
-enter_rule ("LambdaFormals_noformals");
-    set_return (`${_135.rwr ()}${_136.rwr ()}`);
-return exit_rule ("LambdaFormals_noformals");
-},
-LambdaFormals_withformals : function (_137,FormalComma,_138,) {
-enter_rule ("LambdaFormals_withformals");
-    set_return (`${_137.rwr ()}${FormalComma.rwr ().join ('')}${_138.rwr ()}`);
-return exit_rule ("LambdaFormals_withformals");
 },
 Formal : function (ident,) {
 enter_rule ("Formal");
@@ -934,11 +912,6 @@ keyword : function (_222,) {
 enter_rule ("keyword");
     set_return (`${_222.rwr ()}`);
 return exit_rule ("keyword");
-},
-lambda : function (_226,) {
-enter_rule ("lambda");
-    set_return (`${_226.rwr ()}`);
-return exit_rule ("lambda");
 },
 phi : function (_230,) {
 enter_rule ("phi");

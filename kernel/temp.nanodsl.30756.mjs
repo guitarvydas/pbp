@@ -201,7 +201,6 @@ emit {
       | "(" Exp ")" -- paren
       | "[" line? PrimaryComma+ line? "]" -- listconst
       | "{" line? PairComma+ line? "}" -- dict
-      | lambda LambdaFormals? ":" Exp -- lambda
       | phi -- phi
       | "⊤" -- true
       | "⊥" -- false
@@ -224,9 +223,6 @@ emit {
     Lval = Exp
 
     Formals =
-      | "(" ")" -- noformals
-      | "(" FormalComma* ")" -- withformals
-    LambdaFormals =
       | "(" ")" -- noformals
       | "(" FormalComma* ")" -- withformals
 
@@ -283,11 +279,9 @@ emit {
       | kw<"as">
       | kw<"pair">
       | kw<"push">
-      | lambda
       | phi
       )
       
-  lambda = ("λ" | kw<"%CE%BB">)
   phi = ("ϕ" | kw<"%CF%95">)
 
   kw<s> = s ~idtail
@@ -1166,11 +1160,6 @@ enter_rule ("Atom_dict");
 popParameter ("freshdict");
 return exit_rule ("Atom_dict");
 },
-Atom_lambda : function (_80,Formals,_81,Exp,) {
-enter_rule ("Atom_lambda");
-    set_return (` #'(lambda (&optional ${Formals.rwr ().join ('')})⤷${Exp.rwr ()}⤶)`);
-return exit_rule ("Atom_lambda");
-},
 Atom_phi : function (phi,) {
 enter_rule ("Atom_phi");
     set_return (` nil`);
@@ -1250,16 +1239,6 @@ Formals_withformals : function (_150,FormalComma,_151,) {
 enter_rule ("Formals_withformals");
     set_return (`${FormalComma.rwr ().join ('')}`);
 return exit_rule ("Formals_withformals");
-},
-LambdaFormals_noformals : function (_148,_149,) {
-enter_rule ("LambdaFormals_noformals");
-    set_return (``);
-return exit_rule ("LambdaFormals_noformals");
-},
-LambdaFormals_withformals : function (_150,FormalComma,_151,) {
-enter_rule ("LambdaFormals_withformals");
-    set_return (`${FormalComma.rwr ().join ('')}`);
-return exit_rule ("LambdaFormals_withformals");
 },
 Formal : function (ident,) {
 enter_rule ("Formal");

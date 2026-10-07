@@ -675,11 +675,6 @@ enter_rule ("Atom_dict");
     set_return (`${_78.rwr ()}${line1.rwr ().join ('')}${PairComma.rwr ().join ('')}${line2.rwr ().join ('')}${_79.rwr ()}`);
 return exit_rule ("Atom_dict");
 },
-Atom_lambda : function (_80,Formals,_81,Exp,) {
-enter_rule ("Atom_lambda");
-    set_return (` lambda ${Formals.rwr ().join ('')}: ${Exp.rwr ()}`);
-return exit_rule ("Atom_lambda");
-},
 Atom_phi : function (phi,) {
 enter_rule ("Atom_phi");
     set_return (` NULL`);
@@ -764,16 +759,6 @@ Formals_withformals : function (_150,FormalComma,_151,) {
 enter_rule ("Formals_withformals");
     set_return (`${_150.rwr ()}${FormalComma.rwr ().join ('')}${_151.rwr ()}`);
 return exit_rule ("Formals_withformals");
-},
-LambdaFormals_noformals : function (_148,_149,) {
-enter_rule ("LambdaFormals_noformals");
-    set_return (``);
-return exit_rule ("LambdaFormals_noformals");
-},
-LambdaFormals_withformals : function (_150,FormalComma,_151,) {
-enter_rule ("LambdaFormals_withformals");
-    set_return (`${FormalComma.rwr ().join ('')}`);
-return exit_rule ("LambdaFormals_withformals");
 },
 Formal : function (ident,) {
 enter_rule ("Formal");
