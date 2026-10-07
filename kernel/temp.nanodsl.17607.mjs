@@ -122,12 +122,12 @@ function readtypetable (fname) {
 }
 
 function genscope (pname) {
-    return `${parameters [pname].join('/')}`;
+    return `${parameters [pname].join('/')}` + '/';
 }
 
 function genscoperest (pname) {
     let rest = parameters [pname].slice(0, -1);
-    return `${rest.join('/')}`;
+    return `${rest.join('/')}` + '/';
 }
 
 function lookup (scope, id) {

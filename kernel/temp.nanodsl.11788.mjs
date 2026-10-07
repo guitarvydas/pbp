@@ -36,11 +36,11 @@ function exit_rule (name) {
 }
 
 const grammar = String.raw`
-cldecode {
+pydecode {
   text = char+
   char =
     | "“" (~"“" ~"”" any)* "”"  -- string
-    | "⌈" (~"⌈" ~"⌉" any)* "⌉"   -- comment
+    | "⌈" (~"⌈" ~"⌉" any)* "⌉"  -- comment
     | "⎝" (~"⎝" ~"⎠" any)* "⎠"  -- errormessage
     | "⎩" (~"⎩" ~"⎭" any)* "⎭"  -- line
     | "❲"                       -- ulb
@@ -52,6 +52,7 @@ cldecode {
     | "%0A"                     -- newline
     | any                       -- other
 }
+
 `;
 
 let args = {};
@@ -121,12 +122,12 @@ function readtypetable (fname) {
 }
 
 function genscope (pname) {
-    return `${parameters [pname].join('/')}`;
+    return `${parameters [pname].join('/')}` + '/';
 }
 
 function genscoperest (pname) {
     let rest = parameters [pname].slice(0, -1);
-    return `${rest.join('/')}`;
+    return `${rest.join('/')}` + '/';
 }
 
 function lookup (scope, id) {
@@ -195,7 +196,7 @@ return exit_rule ("char_string");
 },
 char_comment : function (lb,cs,rb,) {
 enter_rule ("char_comment");
-    set_return (` #| ${cs.rwr ().join ('')} |#`);
+    set_return (`#${cs.rwr ().join ('')}`);
 return exit_rule ("char_comment");
 },
 char_errormessage : function (lb,cs,rb,) {
@@ -205,7 +206,7 @@ return exit_rule ("char_errormessage");
 },
 char_line : function (lb,cs,rb,) {
 enter_rule ("char_line");
-    set_return (` #|line ${cs.rwr ().join ('')}|#`);
+    set_return (`#line ${cs.rwr ().join ('')}`);
 return exit_rule ("char_line");
 },
 char_ulb : function (c,) {
@@ -215,7 +216,7 @@ return exit_rule ("char_ulb");
 },
 char_encodedulb : function (c,) {
 enter_rule ("char_encodedulb");
-    set_return (`-L`);
+    set_return (`_L`);
 return exit_rule ("char_encodedulb");
 },
 char_urb : function (c,) {
@@ -225,22 +226,23 @@ return exit_rule ("char_urb");
 },
 char_encodedurb : function (c,) {
 enter_rule ("char_encodedurb");
-    set_return (`R-`);
+    set_return (`R_`);
 return exit_rule ("char_encodedurb");
 },
 char_space : function (c,) {
 enter_rule ("char_space");
-    set_return (`-`);
+    set_return (`_`);
 return exit_rule ("char_space");
 },
 char_tab : function (c,) {
 enter_rule ("char_tab");
-    set_return (`-TAB-`);
+    set_return (`	`);
 return exit_rule ("char_tab");
 },
 char_newline : function (c,) {
 enter_rule ("char_newline");
-    set_return (`\n`);
+    set_return (`
+`);
 return exit_rule ("char_newline");
 },
 char_other : function (c,) {

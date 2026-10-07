@@ -36,7 +36,7 @@ function exit_rule (name) {
 }
 
 const grammar = String.raw`
-jsdecode {
+pydecode {
   text = char+
   char =
     | "“" (~"“" ~"”" any)* "”"  -- string
@@ -122,12 +122,12 @@ function readtypetable (fname) {
 }
 
 function genscope (pname) {
-    return `${parameters [pname].join('/')}`;
+    return `${parameters [pname].join('/')}` + '/';
 }
 
 function genscoperest (pname) {
     let rest = parameters [pname].slice(0, -1);
-    return `${rest.join('/')}`;
+    return `${rest.join('/')}` + '/';
 }
 
 function lookup (scope, id) {
@@ -196,7 +196,7 @@ return exit_rule ("char_string");
 },
 char_comment : function (lb,cs,rb,) {
 enter_rule ("char_comment");
-    set_return (`/* ${cs.rwr ().join ('')} */`);
+    set_return (`#${cs.rwr ().join ('')}`);
 return exit_rule ("char_comment");
 },
 char_errormessage : function (lb,cs,rb,) {
@@ -206,7 +206,7 @@ return exit_rule ("char_errormessage");
 },
 char_line : function (lb,cs,rb,) {
 enter_rule ("char_line");
-    set_return (`/* line ${cs.rwr ().join ('')} */`);
+    set_return (`#line ${cs.rwr ().join ('')}`);
 return exit_rule ("char_line");
 },
 char_ulb : function (c,) {

@@ -139,12 +139,12 @@ function readtypetable (fname) {
 }
 
 function genscope (pname) {
-    return `${parameters [pname].join('/')}`;
+    return `${parameters [pname].join('/')}` + '/';
 }
 
 function genscoperest (pname) {
     let rest = parameters [pname].slice(0, -1);
-    return `${rest.join('/')}`;
+    return `${rest.join('/')}` + '/';
 }
 
 function lookup (scope, id) {
@@ -234,7 +234,7 @@ return exit_rule ("Defn");
 DefObj : function (_defobj_,id,ObjBody,) {
 enter_rule ("DefObj");
     pushParameter ("scope", `${id.rwr ()}`);
-    set_return (`\n{"op":"newscope", "operand":"${id.rwr ()}"}\n{"op":"insert", "operand":{"name":"${id.rwr ()}", "indir":1, "type":"obj", "scope":"${genscoperest (`scope`,)}l", "kind":"obj"}}${ObjBody.rwr ()}`);
+    set_return (`\n{"op":"newscope", "operand":"${id.rwr ()}"}\n{"op":"insert", "operand":{"name":"${id.rwr ()}", "indir":1, "type":"obj", "scope":"${genscoperest (`scope`,)}", "kind":"obj"}}${ObjBody.rwr ()}`);
 popParameter ("scope");
 return exit_rule ("DefObj");
 },

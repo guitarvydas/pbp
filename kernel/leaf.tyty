@@ -1,29 +1,29 @@
 #line 1
                                                        #line 2#line 3
-defn ❲make_leaf❳ ≡ @Leaf
+defn make_leaf ≡ @Leaf
 (
-    ❲name❳ ≡ @Str,
-    ❲owner❳ ≡ @Container,
-    ❲instance_data❳ ≡ @,
-    ❲arg❳ ≡ @Str,
-    ❲handler❳ ≡ Fhandler
-    ❲reset_handler❳ ≡ Freset
+    name ≡ @Str,
+    owner ≡ @Container,
+    instance_data ≡ @,
+    arg ≡ @Str,
+    handler ≡ Fhandler
+    reset_handler ≡ Freset
 )
 {
                                                        #line 4
-        ❲eh❳ ≡ @Leaf
-        ❲nm❳ ≡ @Str                                          #line 6
+        eh ≡ @Leaf
+        nm ≡ @Str                                          #line 6
         if  None!= owner {
                                                        #line 7
-            ❲nm❳ ≡ @Part                                      #line 8#line 9
+            nm ≡ @Part                                      #line 8#line 9
         }
         return  eh                                     #line 20#line 21#line 22
 }
 
                                                        #line 23
-defn ❲leaf_reset❳ ≡ ~
+defn leaf_reset ≡ ~
 (
-    ❲part❳ ≡ @Leaf
+    part ≡ @Leaf
 )
 {
 }
