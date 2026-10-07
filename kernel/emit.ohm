@@ -9,7 +9,7 @@ emit {
     | comment line? -- comment
     | line -- line
 
-   Defvar = kw<"defvar"> Lval "⇐" Exp line?
+   Defvar = kw<"defvar"> ident "⇐" Exp line?
    Defn = kw<"defn"> ident Formals StatementBlock line?
    Defobj = kw<"defobj"> ident line? "{" line? InitStatement+ "}" line?
 

@@ -10,7 +10,7 @@ TopLevel_comment [s line?] =‛«s»«line»’
 TopLevel_line [line] =‛«line»’
 
 kw [ s] = ‛«s»’
-Defvar [ __ lval _eq e line?] = ‛\n(defparameter «lval» «e»)«line»’
+Defvar [ __ id _eq e line?] = ‛\n(defparameter «id» «e»)«line»’
 Defn [ _4 ident Formals StatementBlock line?] = 
   ⎡ functionName=‛«ident»’
     ‛\n(defun «ident» (&optional «Formals»)⤷\n(declare (ignorable «Formals»))«StatementBlock»⤶)’

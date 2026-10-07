@@ -11,8 +11,10 @@ fi
 node das2json.mjs kernel.drawio
 
 for i in $BASENAMES; do
+    echo "tas $i"
     ./tas.bash "$i"
 done
+echo "done tas"
 
 : > new_kernel0d.py
 : > new_kernel0d.js
