@@ -11,7 +11,7 @@ semantics {
 
    Defvar = kw<"defvar"> Lval "⇐" Exp line?
    Defn = kw<"defn"> ident Formals StatementBlock line?
-   Defobj = kw<"defobj"> ident ObjFormals line? "{" line? InitStatement+ "}" line?
+   Defobj = kw<"defobj"> ident line? "{" line? InitStatement+ "}" line?
 
    StatementBlock = line? "{" line? Rec_Statement line? "}" line?
 
@@ -127,8 +127,6 @@ semantics {
     Formals =
       | "(" ")" -- noformals
       | "(" FormalComma* ")" -- withformals
-    ObjFormals =
-      | "(" ")" -- noformals
     LambdaFormals =
       | "(" ")" -- noformals
       | "(" FormalComma* ")" -- withformals

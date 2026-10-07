@@ -26,11 +26,11 @@ Defn [ _4 ident Formals StatementBlock line?] =
      ‛\n⎨getdeclaration ‛_global’ ‛«ident»’⎬ «Formals» {\n«StatementBlock»«line»}\n’
   ⎦
 
-Defobj [ _defobj ident Formals line1? lb line2? init+ rb line3?] = ‛
+Defobj [ _defobj ident line1? lb line2? init+ rb line3?] = ‛
 typedef struct _«ident» {⤷
   «line1»«line2»⎨first ‛«init»’⎬«line3»⤶
 } «ident»;
-«ident» fresh_«ident» («Formals») {⤷
+«ident» fresh_«ident» () {⤷
   «ident» *self;
   self = (Mevent*)malloc(sizeof(Mevent));⎨second ‛«init»’⎬«line3»
   return self;⤶
@@ -258,7 +258,6 @@ Lval [ Exp ] = ‛«Exp»’
 keyword [ _144] = ‛«_144»’
 Formals_noformals [ _148 _149] =‛«_148»«_149»’
 Formals_withformals [ _150 FormalComma* _151] =‛«_150»«FormalComma»«_151»’
-ObjFormals_noformals [ _148 _149] =‛’
 LambdaFormals_noformals [ _148 _149] =‛’
 LambdaFormals_withformals [ _150 FormalComma* _151] =‛«FormalComma»’
 Formal [ ident] = ‛⎨getdeclaration ‛⟪scope⟫’ ‛«ident»’⎬’

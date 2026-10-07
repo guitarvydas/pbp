@@ -13,9 +13,9 @@ kw [ s] = ‛«s»’
 Defvar [ __ lval _eq e line?] = ‛\nlet «lval» = «e»;«line»’
 Defn [ _4 ident Formals StatementBlock line?] = ‛\nfunction «ident» «Formals» {⤷«StatementBlock»«line»⤶\n}\n’
 
-Defobj [ _defobj ident Formals line1? lb line2? init+ rb line3?] = ‛
+Defobj [ _defobj ident line1? lb line2? init+ rb line3?] = ‛
 class «ident» {⤷
-constructor («Formals») {«line1»⤷«line2»
+constructor () {«line1»⤷«line2»
 «init»«line3»⤶
 }⤶
 }
@@ -209,7 +209,6 @@ Lval [ Exp ] = ‛«Exp»’
 keyword [ _144] = ‛«_144»’
 Formals_noformals [ _148 _149] =‛«_148»«_149»’
 Formals_withformals [ _150 FormalComma* _151] =‛«_150»«FormalComma»«_151»’
-ObjFormals_noformals [ _148 _149] =‛’
 LambdaFormals_noformals [ _148 _149] =‛’
 LambdaFormals_withformals [ _150 FormalComma* _151] =‛«FormalComma»’
 Formal [ ident] = ‛«ident»’

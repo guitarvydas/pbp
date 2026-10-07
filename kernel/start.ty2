@@ -1,207 +1,58 @@
-genscope
-'"scope"'
-'["_global"]'
-genscope
-'"scope"'
-'["_global"]'
-genscoperest
-'"scope"'
-'["_global","❲load_error❳"]'
-'"❲load_error❳"'
-genscope
-'"scope"'
-'["_global"]'
-genscoperest
-'"scope"'
-'["❲runtime_error❳"]'
-'"❲runtime_error❳"'
-genscope
-'"scope"'
-'[]'
-genscoperest
-'"scope"'
-'["❲initialize_component_palette_from_files❳"]'
-'"❲initialize_component_palette_from_files❳"'
-genscope
-'"scope"'
-'[]'
-genscope
-'"scope"'
-'[]'
-genscope
-'"scope"'
-'[]'
-genscope
-'"scope"'
-'[]'
-genscope
-'"scope"'
-'[]'
-genscoperest
-'"scope"'
-'["❲initialize_component_palette_from_string❳"]'
-'"❲initialize_component_palette_from_string❳"'
-genscope
-'"scope"'
-'[]'
-genscope
-'"scope"'
-'[]'
-genscope
-'"scope"'
-'[]'
-genscope
-'"scope"'
-'[]'
-genscoperest
-'"scope"'
-'["❲initialize_from_files❳"]'
-'"❲initialize_from_files❳"'
-genscope
-'"scope"'
-'[]'
-genscope
-'"scope"'
-'[]'
-genscope
-'"scope"'
-'[]'
-genscoperest
-'"scope"'
-'["❲initialize_from_string❳"]'
-'"❲initialize_from_string❳"'
-genscope
-'"scope"'
-'[]'
-genscope
-'"scope"'
-'[]'
-genscoperest
-'"scope"'
-'["❲start❳"]'
-'"❲start❳"'
-genscope
-'"scope"'
-'[]'
-genscope
-'"scope"'
-'[]'
-genscope
-'"scope"'
-'[]'
-genscope
-'"scope"'
-'[]'
-genscope
-'"scope"'
-'[]'
-genscoperest
-'"scope"'
-'["start_bare❳"]'
-'"start_bare❳"'
-genscope
-'"scope"'
-'[]'
-genscope
-'"scope"'
-'[]'
-genscope
-'"scope"'
-'[]'
-genscope
-'"scope"'
-'[]'
-genscope
-'"scope"'
-'[]'
-genscoperest
-'"scope"'
-'["❲inject❳"]'
-'"❲inject❳"'
-genscope
-'"scope"'
-'[]'
-genscope
-'"scope"'
-'[]'
-genscope
-'"scope"'
-'[]'
-genscope
-'"scope"'
-'[]'
-genscope
-'"scope"'
-'[]'
-genscoperest
-'"scope"'
-'["❲finalize❳"]'
-'"❲finalize❳"'
-genscope
-'"scope"'
-'[]'
-genscoperest
-'"scope"'
-'["❲new_datum_bang❳"]'
-'"❲new_datum_bang❳"'
-genscope
-'"scope"'
-'[]'
 
-{"op":"insert", "operand":{"name":"load_errors❳", "indir":1, "type":"Bool", "scope":"["_global"]", "kind":"variable"}}
-{"op":"insert", "operand":{"name":"runtime_errors❳", "indir":1, "type":"Bool", "scope":"["_global"]", "kind":"variable"}}
-{"op":"newscope", "operand":"❲load_error❳"}
-{"op":"insert", "operand":{"name":"❲load_error❳", "indir":0, "type":"void", "kind":"proc", "scope":""❲load_error❳"" }}
-{"op":"insert", "operand":{"name":"❲s❳", "indir":2, "type":"Str", "scope":"["_global"]","kind":"parameter"}}
-{"op":"newscope", "operand":"❲runtime_error❳"}
-{"op":"insert", "operand":{"name":"❲runtime_error❳", "indir":0, "type":"void", "kind":"proc", "scope":""❲runtime_error❳"" }}
-{"op":"insert", "operand":{"name":"❲s❳", "indir":2, "type":"Str", "scope":"[]","kind":"parameter"}}
-{"op":"newscope", "operand":"❲initialize_component_palette_from_files❳"}
-{"op":"insert", "operand":{"name":"❲initialize_component_palette_from_files❳", "indir":2, "type":"Component_Registry", "kind":"retproc", "scope":""❲initialize_component_palette_from_files❳"" }}
-{"op":"insert", "operand":{"name":"❲diagram_source_files❳", "indir":2, "type":"Collection_of_Pathname", "scope":"[]","kind":"parameter"}}
-{"op":"insert", "operand":{"name":"❲reg❳", "indir":2, "type":"Component_Registry", "scope":"[]", "kind":"variable"}}
-{"op":"insert", "operand":{"name":"❲diagram_source❳", "indir":2, "type":"Pathname", "scope":"[]", "kind":"variable"}}
-{"op":"insert", "operand":{"name":"❲all_containers_within_single_file❳", "indir":2, "type":"Collection_of_Container", "scope":"[]", "kind":"variable"}}
-{"op":"insert", "operand":{"name":"❲container❳", "indir":2, "type":"Container", "scope":"[]", "kind":"variable"}}
-{"op":"newscope", "operand":"❲initialize_component_palette_from_string❳"}
-{"op":"insert", "operand":{"name":"❲initialize_component_palette_from_string❳", "indir":0, "type":"void", "kind":"proc", "scope":""❲initialize_component_palette_from_string❳"" }}
-{"op":"insert", "operand":{"name":"❲lnet❳", "indir":2, "type":"JSONStr", "scope":"[]","kind":"parameter"}}
-{"op":"insert", "operand":{"name":"❲reg❳", "indir":2, "type":"Component_Registry", "scope":"[]", "kind":"variable"}}
-{"op":"insert", "operand":{"name":"❲all_containers❳", "indir":2, "type":"Collection_of_Container", "scope":"[]", "kind":"variable"}}
-{"op":"insert", "operand":{"name":"❲container❳", "indir":2, "type":"Container", "scope":"[]", "kind":"variable"}}
-{"op":"newscope", "operand":"❲initialize_from_files❳"}
-{"op":"insert", "operand":{"name":"❲initialize_from_files❳", "indir":2, "type":"Tuple_Palette_DiagramNames_ArgStr", "kind":"retproc", "scope":""❲initialize_from_files❳"" }}
-{"op":"insert", "operand":{"name":"❲diagram_names❳", "indir":2, "type":"Collection_of_DiagramsName", "scope":"[]","kind":"parameter"}}
-{"op":"insert", "operand":{"name":"❲arg❳", "indir":2, "type":"Str", "scope":"[]", "kind":"variable"}}
-{"op":"insert", "operand":{"name":"❲palette❳", "indir":2, "type":"Component_Registry", "scope":"[]", "kind":"variable"}}
-{"op":"newscope", "operand":"❲initialize_from_string❳"}
-{"op":"insert", "operand":{"name":"❲initialize_from_string❳", "indir":2, "type":"Tuple_Palette_DiagramNames_ArgStr", "kind":"retproc", "scope":""❲initialize_from_string❳"" }}
-{"op":"insert", "operand":{"name":"❲arg❳", "indir":2, "type":"Str", "scope":"[]", "kind":"variable"}}
-{"op":"insert", "operand":{"name":"❲palette❳", "indir":2, "type":"Component_Registry", "scope":"[]", "kind":"variable"}}
-{"op":"newscope", "operand":"❲start❳"}
-{"op":"insert", "operand":{"name":"❲start❳", "indir":0, "type":"void", "kind":"proc", "scope":""❲start❳"" }}
-{"op":"insert", "operand":{"name":"❲arg❳", "indir":2, "type":"Str", "scope":"[]","kind":"parameter"}}
-{"op":"insert", "operand":{"name":"❲part_name❳", "indir":2, "type":"Str", "scope":"[]","kind":"parameter"}}
-{"op":"insert", "operand":{"name":"❲palette❳", "indir":2, "type":"Component_Registry", "scope":"[]","kind":"parameter"}}
-{"op":"insert", "operand":{"name":"❲env❳", "indir":2, "type":"Tuple_Palette_DiagramNames_ArgStr", "scope":"[]","kind":"parameter"}}
-{"op":"insert", "operand":{"name":"❲part❳", "indir":2, "type":"Part", "scope":"[]", "kind":"variable"}}
-{"op":"newscope", "operand":"start_bare❳"}
-{"op":"insert", "operand":{"name":"start_bare❳", "indir":2, "type":"Part", "kind":"retproc", "scope":""start_bare❳"" }}
-{"op":"insert", "operand":{"name":"❲part_name❳", "indir":2, "type":"Str", "scope":"[]","kind":"parameter"}}
-{"op":"insert", "operand":{"name":"❲palette❳", "indir":2, "type":"Component_Registry", "scope":"[]","kind":"parameter"}}
-{"op":"insert", "operand":{"name":"❲env❳", "indir":2, "type":"Tuple_Palette_DiagramNames_ArgStr", "scope":"[]","kind":"parameter"}}
-{"op":"insert", "operand":{"name":"❲diagram_names❳", "indir":2, "type":"Collection_of_DiagramsName", "scope":"[]", "kind":"variable"}}
-{"op":"insert", "operand":{"name":"❲part❳", "indir":2, "type":"Part", "scope":"[]", "kind":"variable"}}
-{"op":"newscope", "operand":"❲inject❳"}
-{"op":"insert", "operand":{"name":"❲inject❳", "indir":0, "type":"void", "kind":"proc", "scope":""❲inject❳"" }}
-{"op":"insert", "operand":{"name":"❲part❳", "indir":2, "type":"Part", "scope":"[]","kind":"parameter"}}
-{"op":"insert", "operand":{"name":"❲port❳", "indir":1, "type":"Port", "scope":"[]","kind":"parameter"}}
-{"op":"insert", "operand":{"name":"❲payload❳", "indir":2, "type":"Payload", "scope":"[]","kind":"parameter"}}
-{"op":"insert", "operand":{"name":"❲d❳", "indir":2, "type":"Datum", "scope":"[]", "kind":"variable"}}
-{"op":"insert", "operand":{"name":"❲mev❳", "indir":2, "type":"Mevent", "scope":"[]", "kind":"variable"}}
-{"op":"newscope", "operand":"❲finalize❳"}
-{"op":"insert", "operand":{"name":"❲finalize❳", "indir":0, "type":"void", "kind":"proc", "scope":""❲finalize❳"" }}
-{"op":"insert", "operand":{"name":"❲part❳", "indir":2, "type":"Part", "scope":"[]","kind":"parameter"}}
-{"op":"newscope", "operand":"❲new_datum_bang❳"}
-{"op":"insert", "operand":{"name":"❲new_datum_bang❳", "indir":2, "type":"Datum", "kind":"retproc", "scope":""❲new_datum_bang❳"" }}
-{"op":"insert", "operand":{"name":"❲d❳", "indir":2, "type":"Datum", "scope":"[]", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"load_errors", "indir":1, "type":"Bool", "scope":"_global", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"runtime_errors", "indir":1, "type":"Bool", "scope":"_global", "kind":"variable"}}
+{"op":"newscope", "operand":"load_error"}
+{"op":"insert", "operand":{"name":"load_error", "indir":0, "type":"void", "kind":"proc", "scope":"_global" }}
+{"op":"insert", "operand":{"name":"s", "indir":2, "type":"Str", "scope":"_global/load_error","kind":"parameter"}}
+{"op":"newscope", "operand":"runtime_error"}
+{"op":"insert", "operand":{"name":"runtime_error", "indir":0, "type":"void", "kind":"proc", "scope":"_global" }}
+{"op":"insert", "operand":{"name":"s", "indir":2, "type":"Str", "scope":"_global/runtime_error","kind":"parameter"}}
+{"op":"newscope", "operand":"initialize_component_palette_from_files"}
+{"op":"insert", "operand":{"name":"initialize_component_palette_from_files", "indir":2, "type":"Component_Registry", "kind":"retproc", "scope":"_global" }}
+{"op":"insert", "operand":{"name":"diagram_source_files", "indir":2, "type":"Collection_of_Pathname", "scope":"_global/initialize_component_palette_from_files","kind":"parameter"}}
+{"op":"insert", "operand":{"name":"reg", "indir":2, "type":"Component_Registry", "scope":"_global/initialize_component_palette_from_files", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"diagram_source", "indir":2, "type":"Pathname", "scope":"_global/initialize_component_palette_from_files", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"all_containers_within_single_file", "indir":2, "type":"Collection_of_Container", "scope":"_global/initialize_component_palette_from_files", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"container", "indir":2, "type":"Container", "scope":"_global/initialize_component_palette_from_files", "kind":"variable"}}
+{"op":"newscope", "operand":"initialize_component_palette_from_string"}
+{"op":"insert", "operand":{"name":"initialize_component_palette_from_string", "indir":0, "type":"void", "kind":"proc", "scope":"_global" }}
+{"op":"insert", "operand":{"name":"lnet", "indir":2, "type":"JSONStr", "scope":"_global/initialize_component_palette_from_string","kind":"parameter"}}
+{"op":"insert", "operand":{"name":"reg", "indir":2, "type":"Component_Registry", "scope":"_global/initialize_component_palette_from_string", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"all_containers", "indir":2, "type":"Collection_of_Container", "scope":"_global/initialize_component_palette_from_string", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"container", "indir":2, "type":"Container", "scope":"_global/initialize_component_palette_from_string", "kind":"variable"}}
+{"op":"newscope", "operand":"initialize_from_files"}
+{"op":"insert", "operand":{"name":"initialize_from_files", "indir":2, "type":"Tuple_Palette_DiagramNames_ArgStr", "kind":"retproc", "scope":"_global" }}
+{"op":"insert", "operand":{"name":"diagram_names", "indir":2, "type":"Collection_of_DiagramsName", "scope":"_global/initialize_from_files","kind":"parameter"}}
+{"op":"insert", "operand":{"name":"arg", "indir":2, "type":"Str", "scope":"_global/initialize_from_files", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"palette", "indir":2, "type":"Component_Registry", "scope":"_global/initialize_from_files", "kind":"variable"}}
+{"op":"newscope", "operand":"initialize_from_string"}
+{"op":"insert", "operand":{"name":"initialize_from_string", "indir":2, "type":"Tuple_Palette_DiagramNames_ArgStr", "kind":"retproc", "scope":"_global" }}
+{"op":"insert", "operand":{"name":"arg", "indir":2, "type":"Str", "scope":"_global/initialize_from_string", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"palette", "indir":2, "type":"Component_Registry", "scope":"_global/initialize_from_string", "kind":"variable"}}
+{"op":"newscope", "operand":"start"}
+{"op":"insert", "operand":{"name":"start", "indir":0, "type":"void", "kind":"proc", "scope":"_global" }}
+{"op":"insert", "operand":{"name":"arg", "indir":2, "type":"Str", "scope":"_global/start","kind":"parameter"}}
+{"op":"insert", "operand":{"name":"part_name", "indir":2, "type":"Str", "scope":"_global/start","kind":"parameter"}}
+{"op":"insert", "operand":{"name":"palette", "indir":2, "type":"Component_Registry", "scope":"_global/start","kind":"parameter"}}
+{"op":"insert", "operand":{"name":"env", "indir":2, "type":"Tuple_Palette_DiagramNames_ArgStr", "scope":"_global/start","kind":"parameter"}}
+{"op":"insert", "operand":{"name":"part", "indir":2, "type":"Part", "scope":"_global/start", "kind":"variable"}}
+{"op":"newscope", "operand":"start_bare"}
+{"op":"insert", "operand":{"name":"start_bare", "indir":2, "type":"Part", "kind":"retproc", "scope":"_global" }}
+{"op":"insert", "operand":{"name":"part_name", "indir":2, "type":"Str", "scope":"_global/start_bare","kind":"parameter"}}
+{"op":"insert", "operand":{"name":"palette", "indir":2, "type":"Component_Registry", "scope":"_global/start_bare","kind":"parameter"}}
+{"op":"insert", "operand":{"name":"env", "indir":2, "type":"Tuple_Palette_DiagramNames_ArgStr", "scope":"_global/start_bare","kind":"parameter"}}
+{"op":"insert", "operand":{"name":"diagram_names", "indir":2, "type":"Collection_of_DiagramsName", "scope":"_global/start_bare", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"part", "indir":2, "type":"Part", "scope":"_global/start_bare", "kind":"variable"}}
+{"op":"newscope", "operand":"inject"}
+{"op":"insert", "operand":{"name":"inject", "indir":0, "type":"void", "kind":"proc", "scope":"_global" }}
+{"op":"insert", "operand":{"name":"part", "indir":2, "type":"Part", "scope":"_global/inject","kind":"parameter"}}
+{"op":"insert", "operand":{"name":"port", "indir":1, "type":"Port", "scope":"_global/inject","kind":"parameter"}}
+{"op":"insert", "operand":{"name":"payload", "indir":2, "type":"Payload", "scope":"_global/inject","kind":"parameter"}}
+{"op":"insert", "operand":{"name":"d", "indir":2, "type":"Datum", "scope":"_global/inject", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"mev", "indir":2, "type":"Mevent", "scope":"_global/inject", "kind":"variable"}}
+{"op":"newscope", "operand":"finalize"}
+{"op":"insert", "operand":{"name":"finalize", "indir":0, "type":"void", "kind":"proc", "scope":"_global" }}
+{"op":"insert", "operand":{"name":"part", "indir":2, "type":"Part", "scope":"_global/finalize","kind":"parameter"}}
+{"op":"newscope", "operand":"new_datum_bang"}
+{"op":"insert", "operand":{"name":"new_datum_bang", "indir":2, "type":"Datum", "kind":"retproc", "scope":"_global" }}
+{"op":"insert", "operand":{"name":"d", "indir":2, "type":"Datum", "scope":"_global/new_datum_bang", "kind":"variable"}}

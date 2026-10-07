@@ -9,7 +9,7 @@ TopLevel_comment [ comment line?] =‛«comment»«line»\n’
 TopLevel_line [line] =‛«line»’
 Defvar [ _2 Lval _3 Exp line?] = ‛«_2»«Lval»«_3»«Exp»«line»’
 Defn [ _8 ident Formals StatementBlock line?] = ‛«_8»«ident»«Formals»«StatementBlock»«line»’
-Defobj [ _10 ident ObjFormals line1? _11 line2? InitStatement+ _12 line3?] = ‛«_10»«ident»«ObjFormals»«line1»«_11»«line2»«InitStatement»«_12»«line3»’
+Defobj [ _10 ident line1? _11 line2? InitStatement+ _12 line3?] = ‛«_10»«ident»«line1»«_11»«line2»«InitStatement»«_12»«line3»’
 StatementBlock [ line1? lb line2? Rec_Statement line3? rb line4?] = ‛«line1»«lb»«line2»«Rec_Statement»«line3»«rb»«line4»’
 
 Rec_Statement [line1? R_Statement line2?] = ‛«line1»«R_Statement»«line2»’
@@ -104,7 +104,6 @@ Lval [ Exp] = ‛«Exp»’
 Formals_noformals [ _127 _128] =‛«_127»«_128»’
 Formals_withformals [ _129 FormalComma* _130] =‛«_129»«FormalComma»«_130»’
 
-ObjFormals_noformals [ _131 _132] =‛«_131»«_132»’
 
 LambdaFormals_noformals [ _135 _136] =‛«_135»«_136»’
 LambdaFormals_withformals [ _137 FormalComma* _138] =‛«_137»«FormalComma»«_138»’

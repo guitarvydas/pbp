@@ -38,7 +38,20 @@ function second(s) {
 /// use the type table during code emission to generate code in a typed language (C in this case)
 
 let scopes = {"_global":{}};
-    
+
+function fetchscopeobject (scope) {
+    // scope is a string of scope names with '/' separating the fields
+    let scopelist = scope.split('/');
+    let dict = {};
+    for (const name of scopelist) {
+	dict = scopes[name];
+	if (!dict) {
+	    throw `scope ${name} not found in ${scope}`;
+	}
+    }
+    return dict;
+}
+
 function readtypetable (fname) {
     const lines = fs.readFileSync(fname, "utf8").split("\n");
 
@@ -48,18 +61,25 @@ function readtypetable (fname) {
 	if (obj.op === "newscope") {
 	    scopes[obj.operand] = {};
 	} else if (obj.op === "insert") {
-	    scopes[obj.operand.scope][obj.operand.name] = obj.operand;
+	    let scope = fetchscopeobject(obj.operand.scope);
+	    scope[obj.operand.name] = obj.operand;
 	}
     }
 }
 
+
+function gettypeinfo() {
+    readtypetable("typetable.jsn");
+}
+
+
 function genscope (pname) {
-    return `${parameters [pname].join('/')}` + '/';
+    return `${parameters [pname].join('/')}`;
 }
 
 function genscoperest (pname) {
     let rest = parameters [pname].slice(0, -1);
-    return `${rest.join('/')}` + '/';
+    return `${rest.join('/')}`;
 }
 
 function lookup (scope, id) {
@@ -68,10 +88,6 @@ function lookup (scope, id) {
 	throw `can't find ${id} in ${scope}`;
     }
     return descriptor;
-}
-
-function gettypeinfo() {
-    readtypetable("typetable.jsn");
 }
 
 

@@ -16,7 +16,7 @@ Defn [ _4 ident Formals StatementBlock line?] =
     ‛\n(defun «ident» (&optional «Formals»)⤷\n(declare (ignorable «Formals»))«StatementBlock»⤶)’
   ⎦
 
-Defobj [ _defobj ident Formals line1? lb line2? init+ rb line3?] = ‛
+Defobj [ _defobj ident line1? lb line2? init+ rb line3?] = ‛
 (defclass «ident» ()«line1»⤷«line2»
   (⤷«init»⤶⤶))«line3»\n
 ’
@@ -304,7 +304,6 @@ Lval [ Exp ] = ‛«Exp»’
 keyword [ _144] = ‛«_144»’
 Formals_noformals [ _148 _149] =‛’
 Formals_withformals [ _150 FormalComma* _151] =‛«FormalComma»’
-ObjFormals_noformals [ _148 _149] =‛’
 LambdaFormals_noformals [ _148 _149] =‛’
 LambdaFormals_withformals [ _150 FormalComma* _151] =‛«FormalComma»’
 Formal [ ident] = ‛«ident»’

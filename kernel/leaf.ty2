@@ -1,53 +1,15 @@
-genscoperest
-'"scope"'
-'["_global","❲make_leaf❳"]'
-'"❲make_leaf❳"'
-genscope
-'"scope"'
-'["_global"]'
-genscope
-'"scope"'
-'["_global"]'
-genscope
-'"scope"'
-'["_global"]'
-genscope
-'"scope"'
-'["_global"]'
-genscope
-'"scope"'
-'["_global"]'
-genscope
-'"scope"'
-'["_global"]'
-genscope
-'"scope"'
-'["_global"]'
-genscope
-'"scope"'
-'["_global"]'
-genscope
-'"scope"'
-'["_global"]'
-genscoperest
-'"scope"'
-'["❲leaf_reset❳"]'
-'"❲leaf_reset❳"'
-genscope
-'"scope"'
-'[]'
 
-{"op":"newscope", "operand":"❲make_leaf❳"}
-{"op":"insert", "operand":{"name":"❲make_leaf❳", "indir":2, "type":"Leaf", "kind":"retproc", "scope":""❲make_leaf❳"" }}
-{"op":"insert", "operand":{"name":"❲name❳", "indir":2, "type":"Str", "scope":"["_global"]","kind":"parameter"}}
-{"op":"insert", "operand":{"name":"❲owner❳", "indir":2, "type":"Container", "scope":"["_global"]","kind":"parameter"}}
-{"op":"insert", "operand":{"name":"❲instance_data❳", "indir":2, "type":"any", "scope":"["_global"]","kind":"parameter"}}
-{"op":"insert", "operand":{"name":"❲arg❳", "indir":2, "type":"Str", "scope":"["_global"]","kind":"parameter"}}
-{"op":"insert", "operand":{"name":"❲handler❳", "indir":1, "type":"Fhandler", "scope":"["_global"]","kind":"parameter"}}
-{"op":"insert", "operand":{"name":"❲reset_handler❳", "indir":1, "type":"Freset", "scope":"["_global"]","kind":"parameter"}}
-{"op":"insert", "operand":{"name":"❲eh❳", "indir":2, "type":"Leaf", "scope":"["_global"]", "kind":"variable"}}
-{"op":"insert", "operand":{"name":"❲nm❳", "indir":2, "type":"Str", "scope":"["_global"]", "kind":"variable"}}
-{"op":"insert", "operand":{"name":"❲nm❳", "indir":2, "type":"Part", "scope":"["_global"]", "kind":"variable"}}
-{"op":"newscope", "operand":"❲leaf_reset❳"}
-{"op":"insert", "operand":{"name":"❲leaf_reset❳", "indir":0, "type":"void", "kind":"proc", "scope":""❲leaf_reset❳"" }}
-{"op":"insert", "operand":{"name":"❲part❳", "indir":2, "type":"Leaf", "scope":"[]","kind":"parameter"}}
+{"op":"newscope", "operand":"make_leaf"}
+{"op":"insert", "operand":{"name":"make_leaf", "indir":2, "type":"Leaf", "kind":"retproc", "scope":"_global" }}
+{"op":"insert", "operand":{"name":"name", "indir":2, "type":"Str", "scope":"_global/make_leaf","kind":"parameter"}}
+{"op":"insert", "operand":{"name":"owner", "indir":2, "type":"Container", "scope":"_global/make_leaf","kind":"parameter"}}
+{"op":"insert", "operand":{"name":"instance_data", "indir":2, "type":"any", "scope":"_global/make_leaf","kind":"parameter"}}
+{"op":"insert", "operand":{"name":"arg", "indir":2, "type":"Str", "scope":"_global/make_leaf","kind":"parameter"}}
+{"op":"insert", "operand":{"name":"handler", "indir":1, "type":"Fhandler", "scope":"_global/make_leaf","kind":"parameter"}}
+{"op":"insert", "operand":{"name":"reset_handler", "indir":1, "type":"Freset", "scope":"_global/make_leaf","kind":"parameter"}}
+{"op":"insert", "operand":{"name":"eh", "indir":2, "type":"Leaf", "scope":"_global/make_leaf", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"nm", "indir":2, "type":"Str", "scope":"_global/make_leaf", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"nm", "indir":2, "type":"Part", "scope":"_global/make_leaf", "kind":"variable"}}
+{"op":"newscope", "operand":"leaf_reset"}
+{"op":"insert", "operand":{"name":"leaf_reset", "indir":0, "type":"void", "kind":"proc", "scope":"_global" }}
+{"op":"insert", "operand":{"name":"part", "indir":2, "type":"Leaf", "scope":"_global/leaf_reset","kind":"parameter"}}
