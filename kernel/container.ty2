@@ -1,6 +1,6 @@
 
 {"op":"newscope", "operand":"create_down_connector"}
-{"op":"insert", "operand":{"name":"create_down_connector", "indir":2, "type":"Wire", "kind":"retproc", "scope":"create_down_connector" }}
+{"op":"insert", "operand":{"name":"create_down_connector", "indir":2, "type":"Wire", "kind":"retproc", "scope":"_global" }}
 {"op":"insert", "operand":{"name":"container", "indir":2, "type":"Container", "scope":"_global/create_down_connector","kind":"parameter"}}
 {"op":"insert", "operand":{"name":"proto_conn", "indir":2, "type":"Wire_Proto", "scope":"_global/create_down_connector","kind":"parameter"}}
 {"op":"insert", "operand":{"name":"connectors", "indir":2, "type":"Collection_of_Wire", "scope":"_global/create_down_connector","kind":"parameter"}}
@@ -10,7 +10,7 @@
 {"op":"insert", "operand":{"name":"id_proto", "indir":1, "type":"ID", "scope":"_global/create_down_connector", "kind":"variable"}}
 {"op":"insert", "operand":{"name":"target_component", "indir":2, "type":"Part", "scope":"_global/create_down_connector", "kind":"variable"}}
 {"op":"newscope", "operand":"create_across_connector"}
-{"op":"insert", "operand":{"name":"create_across_connector", "indir":2, "type":"Wire", "kind":"retproc", "scope":"create_across_connector" }}
+{"op":"insert", "operand":{"name":"create_across_connector", "indir":2, "type":"Wire", "kind":"retproc", "scope":"_global" }}
 {"op":"insert", "operand":{"name":"container", "indir":2, "type":"Container", "scope":"_global/create_across_connector","kind":"parameter"}}
 {"op":"insert", "operand":{"name":"proto_conn", "indir":2, "type":"Wire_Proto", "scope":"_global/create_across_connector","kind":"parameter"}}
 {"op":"insert", "operand":{"name":"connectors", "indir":2, "type":"Collection_of_Wire", "scope":"_global/create_across_connector","kind":"parameter"}}
@@ -19,7 +19,7 @@
 {"op":"insert", "operand":{"name":"source_component", "indir":2, "type":"Part", "scope":"_global/create_across_connector", "kind":"variable"}}
 {"op":"insert", "operand":{"name":"target_component", "indir":2, "type":"Part", "scope":"_global/create_across_connector", "kind":"variable"}}
 {"op":"newscope", "operand":"create_up_connector"}
-{"op":"insert", "operand":{"name":"create_up_connector", "indir":2, "type":"Wire", "kind":"retproc", "scope":"create_up_connector" }}
+{"op":"insert", "operand":{"name":"create_up_connector", "indir":2, "type":"Wire", "kind":"retproc", "scope":"_global" }}
 {"op":"insert", "operand":{"name":"container", "indir":2, "type":"Container", "scope":"_global/create_up_connector","kind":"parameter"}}
 {"op":"insert", "operand":{"name":"proto_conn", "indir":2, "type":"Wire_Proto", "scope":"_global/create_up_connector","kind":"parameter"}}
 {"op":"insert", "operand":{"name":"connectors", "indir":2, "type":"Collection_of_Wire", "scope":"_global/create_up_connector","kind":"parameter"}}
@@ -27,63 +27,63 @@
 {"op":"insert", "operand":{"name":"connector", "indir":2, "type":"Wire", "scope":"_global/create_up_connector", "kind":"variable"}}
 {"op":"insert", "operand":{"name":"source_component", "indir":2, "type":"Part", "scope":"_global/create_up_connector", "kind":"variable"}}
 {"op":"newscope", "operand":"create_through_connector"}
-{"op":"insert", "operand":{"name":"create_through_connector", "indir":2, "type":"Wire", "kind":"retproc", "scope":"create_through_connector" }}
+{"op":"insert", "operand":{"name":"create_through_connector", "indir":2, "type":"Wire", "kind":"retproc", "scope":"_global" }}
 {"op":"insert", "operand":{"name":"container", "indir":2, "type":"Container", "scope":"_global/create_through_connector","kind":"parameter"}}
 {"op":"insert", "operand":{"name":"proto_conn", "indir":2, "type":"Wire_Proto", "scope":"_global/create_through_connector","kind":"parameter"}}
 {"op":"insert", "operand":{"name":"connectors", "indir":2, "type":"Collection_of_Wire", "scope":"_global/create_through_connector","kind":"parameter"}}
 {"op":"insert", "operand":{"name":"children_by_id", "indir":2, "type":"Table_by_ID_of_Part", "scope":"_global/create_through_connector","kind":"parameter"}}
 {"op":"insert", "operand":{"name":"connector", "indir":2, "type":"Wire", "scope":"_global/create_through_connector", "kind":"variable"}}
 {"op":"newscope", "operand":"container_instantiator"}
-{"op":"insert", "operand":{"name":"container_instantiator", "indir":2, "type":"Container", "kind":"retproc", "scope":"container_instantiator" }}
+{"op":"insert", "operand":{"name":"container_instantiator", "indir":2, "type":"Container", "kind":"retproc", "scope":"_global" }}
 {"op":"insert", "operand":{"name":"reg", "indir":2, "type":"Component_Registry", "scope":"_global/container_instantiator","kind":"parameter"}}
 {"op":"insert", "operand":{"name":"owner", "indir":2, "type":"Container", "scope":"_global/container_instantiator","kind":"parameter"}}
 {"op":"insert", "operand":{"name":"container_name", "indir":2, "type":"Str", "scope":"_global/container_instantiator","kind":"parameter"}}
 {"op":"insert", "operand":{"name":"desc", "indir":2, "type":"Container_Template", "scope":"_global/container_instantiator","kind":"parameter"}}
 {"op":"insert", "operand":{"name":"arg", "indir":2, "type":"Str", "scope":"_global/container_instantiator","kind":"parameter"}}
 {"op":"newscope", "operand":"container_handler"}
-{"op":"insert", "operand":{"name":"container_handler", "indir":0, "type":"void", "kind":"proc", "scope":"container_handler" }}
+{"op":"insert", "operand":{"name":"container_handler", "indir":0, "type":"void", "kind":"proc", "scope":"_global" }}
 {"op":"insert", "operand":{"name":"container", "indir":2, "type":"Container", "scope":"_global/container_handler","kind":"parameter"}}
 {"op":"insert", "operand":{"name":"mevent", "indir":2, "type":"Mevent", "scope":"_global/container_handler","kind":"parameter"}}
 {"op":"newscope", "operand":"container_reset_children"}
-{"op":"insert", "operand":{"name":"container_reset_children", "indir":0, "type":"void", "kind":"proc", "scope":"container_reset_children" }}
+{"op":"insert", "operand":{"name":"container_reset_children", "indir":0, "type":"void", "kind":"proc", "scope":"_global" }}
 {"op":"insert", "operand":{"name":"container", "indir":2, "type":"Container", "scope":"_global/container_reset_children","kind":"parameter"}}
 {"op":"insert", "operand":{"name":"child", "indir":2, "type":"Part", "scope":"_global/container_reset_children", "kind":"variable"}}
 {"op":"newscope", "operand":"destroy_container"}
-{"op":"insert", "operand":{"name":"destroy_container", "indir":0, "type":"void", "kind":"proc", "scope":"destroy_container" }}
+{"op":"insert", "operand":{"name":"destroy_container", "indir":0, "type":"void", "kind":"proc", "scope":"_global" }}
 {"op":"insert", "operand":{"name":"eh", "indir":2, "type":"Part", "scope":"_global/destroy_container","kind":"parameter"}}
 {"op":"newscope", "operand":"sender_eq"}
-{"op":"insert", "operand":{"name":"sender_eq", "indir":1, "type":"BOOL", "kind":"retproc", "scope":"sender_eq" }}
+{"op":"insert", "operand":{"name":"sender_eq", "indir":1, "type":"BOOL", "kind":"retproc", "scope":"_global" }}
 {"op":"insert", "operand":{"name":"s1", "indir":2, "type":"Part", "scope":"_global/sender_eq","kind":"parameter"}}
 {"op":"insert", "operand":{"name":"s2", "indir":2, "type":"Part", "scope":"_global/sender_eq","kind":"parameter"}}
 {"op":"insert", "operand":{"name":"same_components", "indir":1, "type":"BOOL", "scope":"_global/sender_eq", "kind":"variable"}}
 {"op":"insert", "operand":{"name":"same_ports", "indir":1, "type":"BOOL", "scope":"_global/sender_eq", "kind":"variable"}}
 {"op":"newscope", "operand":"deposit"}
-{"op":"insert", "operand":{"name":"deposit", "indir":0, "type":"void", "kind":"proc", "scope":"deposit" }}
+{"op":"insert", "operand":{"name":"deposit", "indir":0, "type":"void", "kind":"proc", "scope":"_global" }}
 {"op":"insert", "operand":{"name":"parent", "indir":2, "type":"Container", "scope":"_global/deposit","kind":"parameter"}}
 {"op":"insert", "operand":{"name":"conn", "indir":2, "type":"Wire", "scope":"_global/deposit","kind":"parameter"}}
 {"op":"insert", "operand":{"name":"mevent", "indir":2, "type":"Mevent", "scope":"_global/deposit","kind":"parameter"}}
 {"op":"insert", "operand":{"name":"new_mevent", "indir":2, "type":"Mevent", "scope":"_global/deposit", "kind":"variable"}}
 {"op":"newscope", "operand":"force_tick"}
-{"op":"insert", "operand":{"name":"force_tick", "indir":0, "type":"void", "kind":"proc", "scope":"force_tick" }}
+{"op":"insert", "operand":{"name":"force_tick", "indir":0, "type":"void", "kind":"proc", "scope":"_global" }}
 {"op":"insert", "operand":{"name":"parent", "indir":2, "type":"Container", "scope":"_global/force_tick","kind":"parameter"}}
 {"op":"insert", "operand":{"name":"eh", "indir":2, "type":"Part", "scope":"_global/force_tick","kind":"parameter"}}
 {"op":"insert", "operand":{"name":"tick_mev", "indir":2, "type":"Mevent", "scope":"_global/force_tick", "kind":"variable"}}
 {"op":"newscope", "operand":"push_mevent"}
-{"op":"insert", "operand":{"name":"push_mevent", "indir":0, "type":"void", "kind":"proc", "scope":"push_mevent" }}
+{"op":"insert", "operand":{"name":"push_mevent", "indir":0, "type":"void", "kind":"proc", "scope":"_global" }}
 {"op":"insert", "operand":{"name":"parent", "indir":2, "type":"Container", "scope":"_global/push_mevent","kind":"parameter"}}
 {"op":"insert", "operand":{"name":"receiver", "indir":2, "type":"Part", "scope":"_global/push_mevent","kind":"parameter"}}
 {"op":"insert", "operand":{"name":"inq", "indir":2, "type":"Queue", "scope":"_global/push_mevent","kind":"parameter"}}
 {"op":"insert", "operand":{"name":"m", "indir":2, "type":"Mevent", "scope":"_global/push_mevent","kind":"parameter"}}
 {"op":"newscope", "operand":"is_self"}
-{"op":"insert", "operand":{"name":"is_self", "indir":1, "type":"Bool", "kind":"retproc", "scope":"is_self" }}
+{"op":"insert", "operand":{"name":"is_self", "indir":1, "type":"Bool", "kind":"retproc", "scope":"_global" }}
 {"op":"insert", "operand":{"name":"child", "indir":2, "type":"Part", "scope":"_global/is_self","kind":"parameter"}}
 {"op":"insert", "operand":{"name":"container", "indir":2, "type":"Container", "scope":"_global/is_self","kind":"parameter"}}
 {"op":"newscope", "operand":"step_child_once"}
-{"op":"insert", "operand":{"name":"step_child_once", "indir":0, "type":"void", "kind":"proc", "scope":"step_child_once" }}
+{"op":"insert", "operand":{"name":"step_child_once", "indir":0, "type":"void", "kind":"proc", "scope":"_global" }}
 {"op":"insert", "operand":{"name":"child", "indir":2, "type":"Part", "scope":"_global/step_child_once","kind":"parameter"}}
 {"op":"insert", "operand":{"name":"mev", "indir":2, "type":"Mevent", "scope":"_global/step_child_once","kind":"parameter"}}
 {"op":"newscope", "operand":"step_children"}
-{"op":"insert", "operand":{"name":"step_children", "indir":0, "type":"void", "kind":"proc", "scope":"step_children" }}
+{"op":"insert", "operand":{"name":"step_children", "indir":0, "type":"void", "kind":"proc", "scope":"_global" }}
 {"op":"insert", "operand":{"name":"container", "indir":2, "type":"Container", "scope":"_global/step_children","kind":"parameter"}}
 {"op":"insert", "operand":{"name":"causingMevent", "indir":2, "type":"Mevent", "scope":"_global/step_children","kind":"parameter"}}
 {"op":"insert", "operand":{"name":"child", "indir":2, "type":"Part", "scope":"_global/step_children", "kind":"variable"}}
@@ -92,37 +92,37 @@
 {"op":"insert", "operand":{"name":"child", "indir":2, "type":"Part", "scope":"_global/step_children", "kind":"variable"}}
 {"op":"insert", "operand":{"name":"mev", "indir":2, "type":"Mevent", "scope":"_global/step_children", "kind":"variable"}}
 {"op":"newscope", "operand":"attempt_tick"}
-{"op":"insert", "operand":{"name":"attempt_tick", "indir":0, "type":"void", "kind":"proc", "scope":"attempt_tick" }}
+{"op":"insert", "operand":{"name":"attempt_tick", "indir":0, "type":"void", "kind":"proc", "scope":"_global" }}
 {"op":"insert", "operand":{"name":"parent", "indir":2, "type":"Container", "scope":"_global/attempt_tick","kind":"parameter"}}
 {"op":"insert", "operand":{"name":"eh", "indir":2, "type":"Part", "scope":"_global/attempt_tick","kind":"parameter"}}
 {"op":"newscope", "operand":"is_tick"}
-{"op":"insert", "operand":{"name":"is_tick", "indir":1, "type":"Bool", "kind":"retproc", "scope":"is_tick" }}
+{"op":"insert", "operand":{"name":"is_tick", "indir":1, "type":"Bool", "kind":"retproc", "scope":"_global" }}
 {"op":"insert", "operand":{"name":"mev", "indir":2, "type":"Mevent", "scope":"_global/is_tick","kind":"parameter"}}
 {"op":"newscope", "operand":"route"}
-{"op":"insert", "operand":{"name":"route", "indir":0, "type":"void", "kind":"proc", "scope":"route" }}
+{"op":"insert", "operand":{"name":"route", "indir":0, "type":"void", "kind":"proc", "scope":"_global" }}
 {"op":"insert", "operand":{"name":"container", "indir":2, "type":"Container", "scope":"_global/route","kind":"parameter"}}
 {"op":"insert", "operand":{"name":"from_component", "indir":2, "type":"Part", "scope":"_global/route","kind":"parameter"}}
 {"op":"insert", "operand":{"name":"mevent", "indir":2, "type":"Mevent", "scope":"_global/route","kind":"parameter"}}
 {"op":"insert", "operand":{"name":"was_sent", "indir":1, "type":"Bool", "scope":"_global/route", "kind":"variable"}}
 {"op":"insert", "operand":{"name":"fromname", "indir":2, "type":"Str", "scope":"_global/route", "kind":"variable"}}
 {"op":"newscope", "operand":"any_child_ready"}
-{"op":"insert", "operand":{"name":"any_child_ready", "indir":1, "type":"Bool", "kind":"retproc", "scope":"any_child_ready" }}
+{"op":"insert", "operand":{"name":"any_child_ready", "indir":1, "type":"Bool", "kind":"retproc", "scope":"_global" }}
 {"op":"insert", "operand":{"name":"container", "indir":2, "type":"Container", "scope":"_global/any_child_ready","kind":"parameter"}}
 {"op":"insert", "operand":{"name":"child", "indir":2, "type":"Part", "scope":"_global/any_child_ready", "kind":"variable"}}
 {"op":"newscope", "operand":"child_is_ready"}
-{"op":"insert", "operand":{"name":"child_is_ready", "indir":1, "type":"Bool", "kind":"retproc", "scope":"child_is_ready" }}
+{"op":"insert", "operand":{"name":"child_is_ready", "indir":1, "type":"Bool", "kind":"retproc", "scope":"_global" }}
 {"op":"insert", "operand":{"name":"eh", "indir":2, "type":"Part", "scope":"_global/child_is_ready","kind":"parameter"}}
 {"op":"newscope", "operand":"append_routing_descriptor"}
-{"op":"insert", "operand":{"name":"append_routing_descriptor", "indir":0, "type":"void", "kind":"proc", "scope":"append_routing_descriptor" }}
+{"op":"insert", "operand":{"name":"append_routing_descriptor", "indir":0, "type":"void", "kind":"proc", "scope":"_global" }}
 {"op":"insert", "operand":{"name":"container", "indir":2, "type":"Container", "scope":"_global/append_routing_descriptor","kind":"parameter"}}
 {"op":"insert", "operand":{"name":"desc", "indir":2, "type":"Wire", "scope":"_global/append_routing_descriptor","kind":"parameter"}}
 {"op":"newscope", "operand":"make_container"}
-{"op":"insert", "operand":{"name":"make_container", "indir":2, "type":"Container", "kind":"retproc", "scope":"make_container" }}
+{"op":"insert", "operand":{"name":"make_container", "indir":2, "type":"Container", "kind":"retproc", "scope":"_global" }}
 {"op":"insert", "operand":{"name":"name", "indir":2, "type":"Str", "scope":"_global/make_container","kind":"parameter"}}
 {"op":"insert", "operand":{"name":"owner", "indir":2, "type":"Container", "scope":"_global/make_container","kind":"parameter"}}
 {"op":"insert", "operand":{"name":"eh", "indir":2, "type":"Container", "scope":"_global/make_container", "kind":"variable"}}
 {"op":"newscope", "operand":"send"}
-{"op":"insert", "operand":{"name":"send", "indir":0, "type":"void", "kind":"proc", "scope":"send" }}
+{"op":"insert", "operand":{"name":"send", "indir":0, "type":"void", "kind":"proc", "scope":"_global" }}
 {"op":"insert", "operand":{"name":"eh", "indir":2, "type":"Part", "scope":"_global/send","kind":"parameter"}}
 {"op":"insert", "operand":{"name":"port", "indir":1, "type":"Port", "scope":"_global/send","kind":"parameter"}}
 {"op":"insert", "operand":{"name":"obj", "indir":2, "type":"Part", "scope":"_global/send","kind":"parameter"}}
@@ -130,25 +130,25 @@
 {"op":"insert", "operand":{"name":"d", "indir":2, "type":"Payload", "scope":"_global/send", "kind":"variable"}}
 {"op":"insert", "operand":{"name":"mev", "indir":2, "type":"Mevent", "scope":"_global/send", "kind":"variable"}}
 {"op":"newscope", "operand":"forward"}
-{"op":"insert", "operand":{"name":"forward", "indir":0, "type":"void", "kind":"proc", "scope":"forward" }}
+{"op":"insert", "operand":{"name":"forward", "indir":0, "type":"void", "kind":"proc", "scope":"_global" }}
 {"op":"insert", "operand":{"name":"eh", "indir":2, "type":"Part", "scope":"_global/forward","kind":"parameter"}}
 {"op":"insert", "operand":{"name":"port", "indir":1, "type":"Port", "scope":"_global/forward","kind":"parameter"}}
 {"op":"insert", "operand":{"name":"mev", "indir":2, "type":"Mevent", "scope":"_global/forward","kind":"parameter"}}
 {"op":"insert", "operand":{"name":"fwdmev", "indir":2, "type":"Mevent", "scope":"_global/forward", "kind":"variable"}}
 {"op":"newscope", "operand":"inject_mevent"}
-{"op":"insert", "operand":{"name":"inject_mevent", "indir":2, "type":"Mevent", "kind":"retproc", "scope":"inject_mevent" }}
+{"op":"insert", "operand":{"name":"inject_mevent", "indir":2, "type":"Mevent", "kind":"retproc", "scope":"_global" }}
 {"op":"insert", "operand":{"name":"eh", "indir":2, "type":"Part", "scope":"_global/inject_mevent","kind":"parameter"}}
 {"op":"insert", "operand":{"name":"mev", "indir":2, "type":"Mevent", "scope":"_global/inject_mevent","kind":"parameter"}}
 {"op":"newscope", "operand":"set_active"}
-{"op":"insert", "operand":{"name":"set_active", "indir":0, "type":"void", "kind":"proc", "scope":"set_active" }}
+{"op":"insert", "operand":{"name":"set_active", "indir":0, "type":"void", "kind":"proc", "scope":"_global" }}
 {"op":"insert", "operand":{"name":"eh", "indir":2, "type":"Part", "scope":"_global/set_active","kind":"parameter"}}
 {"op":"newscope", "operand":"set_idle"}
-{"op":"insert", "operand":{"name":"set_idle", "indir":0, "type":"void", "kind":"proc", "scope":"set_idle" }}
+{"op":"insert", "operand":{"name":"set_idle", "indir":0, "type":"void", "kind":"proc", "scope":"_global" }}
 {"op":"insert", "operand":{"name":"eh", "indir":2, "type":"Part", "scope":"_global/set_idle","kind":"parameter"}}
 {"op":"newscope", "operand":"put_output"}
-{"op":"insert", "operand":{"name":"put_output", "indir":0, "type":"void", "kind":"proc", "scope":"put_output" }}
+{"op":"insert", "operand":{"name":"put_output", "indir":0, "type":"void", "kind":"proc", "scope":"_global" }}
 {"op":"insert", "operand":{"name":"eh", "indir":2, "type":"Part", "scope":"_global/put_output","kind":"parameter"}}
 {"op":"insert", "operand":{"name":"mev", "indir":2, "type":"Mevent", "scope":"_global/put_output","kind":"parameter"}}
 {"op":"newscope", "operand":"clone_payload"}
-{"op":"insert", "operand":{"name":"clone_payload", "indir":2, "type":"Payload", "kind":"retproc", "scope":"clone_payload" }}
+{"op":"insert", "operand":{"name":"clone_payload", "indir":2, "type":"Payload", "kind":"retproc", "scope":"_global" }}
 {"op":"insert", "operand":{"name":"clone_payload", "indir":2, "type":"Payload", "scope":"_global/clone_payload","kind":"parameter"}}

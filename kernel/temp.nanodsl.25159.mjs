@@ -134,7 +134,7 @@ function genscope (pname) {
 }
 
 function genscoperest (pname) {
-    let rest = parameters [pname].slice(1);
+    let rest = parameters [pname].slice(0, -1);
     return `${rest.join('/')}`;
 }
 
