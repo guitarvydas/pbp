@@ -226,12 +226,13 @@ semantics {
   lambda = ("λ" | kw<"%CE%BB">)
   phi = ("ϕ" | kw<"%CF%95">)
 
-  kw<s> = "❲" s "❳"
-  ident  = ~keyword "❲" idchar+ "❳"
-  idchar =
-    | "❲" idchar+ "❳" -- rec
-    | ~"❲" ~"❳" any -- other
-
+  kw<s> = s ~idtail
+  xkw<s> = s ~idtail
+  ident  = ~keyword id1char id2char*
+  id1char = letter | "_" | "%"
+  id2char = alnum | "_" | "%"
+  idtail = id2char
+  
   comment = "⌈" commentchar* "⌉"
   commentchar = 
     | "⌈" commentchar* "⌉" -- rec
@@ -942,25 +943,35 @@ enter_rule ("phi");
     set_return (`${_230.rwr ()}`);
 return exit_rule ("phi");
 },
-kw : function (_231,s,_232,) {
+kw : function (s,) {
 enter_rule ("kw");
-    set_return (`${_231.rwr ()}${s.rwr ()}${_232.rwr ()}`);
+    set_return (` ${s.rwr ()}`);
 return exit_rule ("kw");
 },
-ident : function (_233,idchar,_234,) {
+xkw : function (s,) {
+enter_rule ("xkw");
+    set_return (` ${s.rwr ()}`);
+return exit_rule ("xkw");
+},
+ident : function (id1char,id2char,) {
 enter_rule ("ident");
-    set_return (`${_233.rwr ()}${idchar.rwr ().join ('')}${_234.rwr ()}`);
+    set_return (` ${id1char.rwr ()}${id2char.rwr ().join ('')}`);
 return exit_rule ("ident");
 },
-idchar_rec : function (_235,idchar,_236,) {
-enter_rule ("idchar_rec");
-    set_return (`${_235.rwr ()}${idchar.rwr ().join ('')}${_236.rwr ()}`);
-return exit_rule ("idchar_rec");
+id1char : function (c,) {
+enter_rule ("id1char");
+    set_return (`${c.rwr ()}`);
+return exit_rule ("id1char");
 },
-idchar_other : function (any,) {
-enter_rule ("idchar_other");
-    set_return (`${any.rwr ()}`);
-return exit_rule ("idchar_other");
+id2char : function (c,) {
+enter_rule ("id2char");
+    set_return (`${c.rwr ()}`);
+return exit_rule ("id2char");
+},
+idtail : function (c,) {
+enter_rule ("idtail");
+    set_return (`${c.rwr ()}`);
+return exit_rule ("idtail");
 },
 comment : function (_239,commentchar,_240,) {
 enter_rule ("comment");

@@ -250,7 +250,7 @@
     "name": "Exhale iPython",
     "children": [
       {
-        "name": "Decode for iPython",
+        "name": "Decode for Python",
         "id": 5
       },
       {
@@ -276,7 +276,7 @@
         "source_port": "",
         "target_port": "",
         "target": {
-          "name": "Decode for iPython",
+          "name": "Decode for Python",
           "id": 5
         }
       },
@@ -324,7 +324,7 @@
         "source_port": "",
         "target_port": "",
         "source": {
-          "name": "Decode for iPython",
+          "name": "Decode for Python",
           "id": 5
         },
         "target": {
@@ -382,7 +382,7 @@
         "source_port": "✗",
         "target_port": "✗",
         "source": {
-          "name": "Decode for iPython",
+          "name": "Decode for Python",
           "id": 5
         }
       }
@@ -390,10 +390,10 @@
     "file": "extractor.drawio"
   },
   {
-    "name": "Decode for iPython",
+    "name": "Decode for Python",
     "children": [
       {
-        "name": ":$ _/t2t pydecode extractordecode",
+        "name": ":$ _/t2t pydecode",
         "id": 5
       }
     ],
@@ -403,7 +403,7 @@
         "source_port": "",
         "target_port": "",
         "target": {
-          "name": ":$ _/t2t pydecode extractordecode",
+          "name": ":$ _/t2t pydecode",
           "id": 5
         }
       },
@@ -412,7 +412,7 @@
         "source_port": "",
         "target_port": "",
         "source": {
-          "name": ":$ _/t2t pydecode extractordecode",
+          "name": ":$ _/t2t pydecode",
           "id": 5
         }
       },
@@ -421,7 +421,7 @@
         "source_port": "✗",
         "target_port": "✗",
         "source": {
-          "name": ":$ _/t2t pydecode extractordecode",
+          "name": ":$ _/t2t pydecode",
           "id": 5
         }
       }

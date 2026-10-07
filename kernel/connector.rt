@@ -9,7 +9,7 @@ defvar enumThrough ⇐ 3
 ⌈ no affect on the default mevent routing system _ it is there for debugging⌉
 ⌈ purposes, or for reading by other tools.⌉
 
-defobj Connector () {
+defobj Connector {
         • direction ⇐ ϕ ⌈ down, across, up, through⌉
         • sender ⇐ ϕ
         • receiver ⇐ ϕ
@@ -18,7 +18,7 @@ defobj Connector () {
 ⌈ `Sender` is used to “pattern match“ which `Receiver` a mevent should go to,⌉
 ⌈ based on component ID (pointer) and port name.⌉
 
-defobj Sender () {
+defobj Sender {
         • name ⇐ ϕ
         • component ⇐ ϕ
         • port ⇐ ϕ
@@ -29,7 +29,7 @@ defobj Sender () {
 ⌈ `Receiver` is a handle to a destination queue, and a `port` name to assign⌉
 ⌈ to incoming mevents to this queue.⌉
 
-defobj Receiver () {
+defobj Receiver {
         • name ⇐ ϕ
         • queue ⇐ ϕ
         • port ⇐ ϕ

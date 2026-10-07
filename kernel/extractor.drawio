@@ -293,7 +293,7 @@
         <mxCell id="YmXs-5adpHLC2ztlbFvv-3" parent="1" style="rhombus;whiteSpace=wrap;html=1;rounded=1;fillColor=#0050ef;fontColor=#ffffff;strokeColor=#001DBC;fontStyle=1;glass=0;sketch=0;fontSize=12;points=[[0,0.5,0,0,0],[0.5,0,0,0,0],[0.5,1,0,0,0],[1,0.5,0,0,0]];shadow=1;textOpacity=30;" value="✗" vertex="1">
           <mxGeometry height="40" width="40" x="1040" y="220" as="geometry" />
         </mxCell>
-        <mxCell id="YmXs-5adpHLC2ztlbFvv-4" parent="1" style="rounded=1;sketch=0;container=1;recursiveResize=0;verticalAlign=top;arcSize=6;fontStyle=1;autosize=0;points=[];absoluteArcSize=1;shadow=1;strokeColor=#001DBC;fillColor=#0050ef;fontColor=#ffffff;fontFamily=Helvetica;fontSize=11;labelBackgroundColor=none;" value="Decode for iPython" vertex="1">
+        <mxCell id="YmXs-5adpHLC2ztlbFvv-4" parent="1" style="rounded=1;sketch=0;container=1;recursiveResize=0;verticalAlign=top;arcSize=6;fontStyle=1;autosize=0;points=[];absoluteArcSize=1;shadow=1;strokeColor=#001DBC;fillColor=#0050ef;fontColor=#ffffff;fontFamily=Helvetica;fontSize=11;labelBackgroundColor=none;" value="Decode for Python" vertex="1">
           <mxGeometry height="110" width="130" x="-170" y="80" as="geometry">
             <mxRectangle height="26" width="99" x="-98" y="-1230" as="alternateBounds" />
           </mxGeometry>
@@ -423,7 +423,7 @@
       </root>
     </mxGraphModel>
   </diagram>
-  <diagram id="1bJ1oFMiwLnK5MnNWNZZ" name="Decode for iPython">
+  <diagram id="1bJ1oFMiwLnK5MnNWNZZ" name="Decode for Python">
     <mxGraphModel dx="1096" dy="884" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
       <root>
         <mxCell id="0" />
@@ -437,7 +437,7 @@
         <mxCell id="Dv_crfGrHvaOy8bDrwXG-3" parent="1" style="rhombus;whiteSpace=wrap;html=1;rounded=1;fillColor=#0050ef;fontColor=#ffffff;strokeColor=#001DBC;fontStyle=1;glass=0;sketch=0;fontSize=12;points=[[0,0.5,0,0,0],[0.5,0,0,0,0],[0.5,1,0,0,0],[1,0.5,0,0,0]];shadow=1;textOpacity=30;" value="✗" vertex="1">
           <mxGeometry height="40" width="40" x="530" y="220" as="geometry" />
         </mxCell>
-        <mxCell id="Dv_crfGrHvaOy8bDrwXG-4" parent="1" style="rounded=1;sketch=0;container=1;recursiveResize=0;verticalAlign=top;arcSize=6;fontStyle=1;autosize=0;points=[];absoluteArcSize=1;shadow=1;strokeColor=#001DBC;fillColor=#0050ef;fontColor=#ffffff;fontFamily=Helvetica;fontSize=11;" value=":$ _/t2t pydecode extractordecode" vertex="1">
+        <mxCell id="Dv_crfGrHvaOy8bDrwXG-4" parent="1" style="rounded=1;sketch=0;container=1;recursiveResize=0;verticalAlign=top;arcSize=6;fontStyle=1;autosize=0;points=[];absoluteArcSize=1;shadow=1;strokeColor=#001DBC;fillColor=#0050ef;fontColor=#ffffff;fontFamily=Helvetica;fontSize=11;" value=":$ _/t2t pydecode" vertex="1">
           <mxGeometry height="110" width="250" x="160" y="80" as="geometry">
             <mxRectangle height="26" width="99" x="-98" y="-1230" as="alternateBounds" />
           </mxGeometry>

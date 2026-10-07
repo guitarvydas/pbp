@@ -12,28 +12,28 @@
                                                        #line 12
                                                        #line 13#line 14
                                                        #line 15
-defobj ❲Eh❳ {
+defobj Eh {
                                                        #line 16
-    ❲name❳ ≡                                           #line 17
-    ❲inq❳ ≡
-    ❲outq❳ ≡
-    ❲owner❳ ≡                                          #line 20
-    ❲children❳ ≡                                       #line 21
-    ❲visit_ordering❳ ≡
-    ❲connections❳ ≡                                    #line 23
-    ❲handler❳ ≡                                        #line 24
-    ❲finject❳ ≡                                        #line 25
-    ❲reset❳ ≡                                          #line 26
-    ❲instance_data❳ ≡                                  #line 27#line 28
-    ❲arg❳ ≡                                            #line 29
-    ❲state❳ ≡                                          #line 30
-    ❲special❳ ≡                                        #line 31#line 32
+    name ≡                                             #line 17
+    inq ≡
+    outq ≡
+    owner ≡                                            #line 20
+    children ≡                                         #line 21
+    visit_ordering ≡
+    connections ≡                                      #line 23
+    handler ≡                                          #line 24
+    finject ≡                                          #line 25
+    reset ≡                                            #line 26
+    instance_data ≡                                    #line 27#line 28
+    arg ≡                                              #line 29
+    state ≡                                            #line 30
+    special ≡                                          #line 31#line 32
 }
                                                        #line 33
-defn ❲injector❳ ≡
+defn injector ≡
 (
-    ❲eh❳ ≡ ,
-    ❲mevent❳ ≡
+    eh ≡ ,
+    mevent ≡
 )
 {
                                                        #line 34#line 36#line 37
