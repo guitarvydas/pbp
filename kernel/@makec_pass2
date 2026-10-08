@@ -11,7 +11,6 @@ fi
 node das2json.mjs kernel.drawio
 
 for i in $BASENAMES; do
-    echo "tas $i"
     ./tas.bash "$i"
 done
 echo "done tas"

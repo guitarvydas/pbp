@@ -174,7 +174,6 @@ extractor {
       | ident -- ident
 
 
-
     PrimaryComma = Primary Comma? line?
     PairComma = Pair Comma?
 

@@ -17,3 +17,10 @@
     (setf  counter (+  counter  1))                         #|line 24|#
     (return-from gensymbol  name_with_id)                   #|line 25|#) #|line 26|#
   )
+(defun gensymbolwoglob (&optional  s)
+  (declare (ignorable  s))                                  #|line 28|#
+  (let ((name_with_id  (concatenate 'string  s (funcall (quote subscripted_digit)   counter )) #|line 29|#))
+    (declare (ignorable name_with_id))
+    (setf  counter (+  counter  1))                         #|line 30|#
+    (return-from gensymbolwoglob  name_with_id)             #|line 31|#) #|line 32|#
+  )

@@ -4,7 +4,8 @@ defn subscripted_digit ≡ @Str
     n ≡ Int
 )
 {
-                                                       #line 10#line 17#line 18
+                                                       #line 10
+        digits  ≡ [_global,digits]                    #line 17#line 18
 }
 
 defvar counter ≡ Int
@@ -14,5 +15,6 @@ defn gensymbol ≡ @Str
     s ≡ @Str
 )
 {
-                                                       #line 19#line 24#line 25
+                                                       #line 21
+        counter  ≡ [_global,counter]                  #line 26#line 27
 }

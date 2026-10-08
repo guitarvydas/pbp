@@ -14,3 +14,9 @@ function gensymbol (s) {                               /* line 21 *//* line 22 *
     counter =  counter+ 1;                             /* line 24 */
     return  name_with_id;                              /* line 25 *//* line 26 *//* line 27 */
 }
+
+function gensymbolwoglob (s) {                         /* line 28 */
+    let name_with_id =  ( s.toString ()+ subscripted_digit ( counter).toString ()) /* line 29 */;
+    counter =  counter+ 1;                             /* line 30 */
+    return  name_with_id;                              /* line 31 *//* line 32 *//* line 33 */
+}

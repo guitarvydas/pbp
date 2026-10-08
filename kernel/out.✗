@@ -1,4 +1,4 @@
-undefinedcan't find "digits" in "subscripted_digit"
+undefinedcan't find "name_with_id" in "_global/gensymbol"
 
 grammar = "emit
 "

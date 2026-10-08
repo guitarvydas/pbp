@@ -89,7 +89,11 @@ function lookup (scope, id) {
 	console.log ("%o", descriptor);
 	throw `can't find "${id}" in "${scope}"`;
     }
-    return descriptor;
+    if (descriptor.lookup) {
+	return lookup (descriptor.lookup.scope, descriptor.lookup.name);
+    } else {
+	return descriptor;
+    }
 }
 
 
@@ -100,7 +104,7 @@ function getdeclaration(n, scope, id) {
 }
 
 function getmaybederef(deref, scope, id) {
-    pbplog ("getmaybederef");
+    pbplog (`getmaybederef(${deref}, "${scope}", "${id}")`);
     let desc = lookup (scope, id);
     if (deref === "⊥") {
 	return id;

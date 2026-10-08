@@ -335,7 +335,7 @@ defn string_constant_instantiate ≡
 )
 {
                                                        #line 191
-        projectRoot  ≡ =[_global,projectRoot]          #line 199#line 200
+        projectRoot  ≡ [_global,projectRoot]           #line 199#line 200
 }
 
 defn string_constant_handler ≡
@@ -370,7 +370,7 @@ defn fakepipename_handler ≡
 )
 {
                                                        #line 213
-        rand  ≡ =[_global,rand]                        #line 217#line 218
+        rand  ≡ [_global,rand]                         #line 217#line 218
 }
                                                        #line 219
 defobj Switch1star_Instance_Data {
