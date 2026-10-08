@@ -93,7 +93,39 @@ defn container_instantiator ≡
 )
 {
                                                        #line 57
-        enumDown  ≡ [_global,enumDown]                 #line 90#line 91
+        enumDown  ≡ [_global,enumDown]                 #line 58
+        enumUp  ≡ [_global,enumUp]                     #line 59
+        enumAcross  ≡ [_global,enumAcross]             #line 60
+        enumThrough  ≡ [_global,enumThrough]           #line 61
+        container ≡
+        children ≡                                     #line 63
+        children_by_id ≡                               #line 64#line 65
+        child_desc ≡
+        for child_desc in  desc [ "children"] {
+                                                       #line 66
+            child_instance ≡
+            id ≡                                       #line 69
+            children_by_id [id] ≡                      #line 70#line 71#line 72
+        }
+        connectors ≡                                   #line 75
+        proto_conn ≡
+        for proto_conn in  desc [ "connections"] {
+                                                       #line 76
+            connector ≡
+            if  proto_conn [ "dir"] ==  enumDown {
+                                                       #line 78
+            }
+            elif  proto_conn [ "dir"] ==  enumAcross
+            {                                          #line 80
+            }
+            elif  proto_conn [ "dir"] ==  enumUp
+            {                                          #line 82
+            }
+            elif  proto_conn [ "dir"] ==  enumThrough
+            {                                          #line 84#line 86
+            }                                          #line 87
+        }
+        return  container                              #line 89#line 90#line 91
 }
 
                                                        #line 92
@@ -278,7 +310,34 @@ defn route ≡
                                                        #line 210
         was_sent ≡                                     #line 211
         fromname ≡                                     #line 212
-        ticktime  ≡ [_global,ticktime]                 #line 235#line 236
+        ticktime  ≡ [_global,ticktime]                 #line 213
+        ticktime ≡                                     #line 214
+        if is_tick ( mevent) {
+                                                       #line 215
+            child ≡
+            for child in  container.children {
+                                                       #line 216#line 217
+            }
+            was_sent ≡                                 #line 218
+        }
+        else
+        {                                              #line 219
+            if (not (is_self ( from_component, container))) {
+                                                       #line 220
+                fromname ≡                             #line 221#line 222
+            }
+            from_sender ≡                              #line 224
+            connector ≡
+            for connector in  container.connections {
+                                                       #line 225
+                if sender_eq ( from_sender, connector.sender) {
+                                                       #line 226#line 229
+                }                                      #line 230
+            }                                          #line 231
+        }
+        if not ( was_sent) {
+                                                       #line 232#line 234
+        }                                              #line 235#line 236
 }
 
 defn any_child_ready ≡

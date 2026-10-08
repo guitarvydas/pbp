@@ -11,9 +11,4 @@ def gensymbol (s):                                     #line 21
     global counter                                     #line 22
     name_with_id =  str( s) + subscripted_digit ( counter) #line 23
     counter =  counter+ 1                              #line 24
-    return  name_with_id                               #line 25#line 26#line 27
-
-def gensymbolwoglob (s):                               #line 28
-    name_with_id =  str( s) + subscripted_digit ( counter) #line 29
-    counter =  counter+ 1                              #line 30
-    return  name_with_id                               #line 31#line 32#line 33
+    return  name_with_id                               #line 25#line 26

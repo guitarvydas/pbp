@@ -335,7 +335,14 @@ defn string_constant_instantiate ≡
 )
 {
                                                        #line 191
-        projectRoot  ≡ [_global,projectRoot]           #line 199#line 200
+        projectRoot  ≡ [_global,projectRoot]           #line 192
+        name_with_id ≡
+        s ≡                                            #line 194
+        if  projectRoot!= "" {
+                                                       #line 195
+            s ≡                                        #line 197
+        }
+        return make_leaf ( name_with_id, owner, s, "", string_constant_handler, None)#line 198#line 199#line 200
 }
 
 defn string_constant_handler ≡
@@ -370,7 +377,8 @@ defn fakepipename_handler ≡
 )
 {
                                                        #line 213
-        rand  ≡ [_global,rand]                         #line 217#line 218
+        rand  ≡ [_global,rand]                         #line 214
+        rand ≡                                         #line 215#line 217#line 218
 }
                                                        #line 219
 defobj Switch1star_Instance_Data {

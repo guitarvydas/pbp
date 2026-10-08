@@ -5,7 +5,15 @@ defn subscripted_digit ≡
 )
 {
                                                        #line 10
-        digits  ≡ [_global,digits]                     #line 17#line 18
+        digits  ≡ [_global,digits]                     #line 11
+        if ( n >=  0 and  n <=  29) {
+                                                       #line 12
+            return  digits [ n]                        #line 13
+        }
+        else
+        {                                              #line 14
+            return  str( "₊") + str ( n)               #line 15#line 16
+        }                                              #line 17#line 18
 }
 
 defvar  counter ≡                                      #line 19#line 20
@@ -15,16 +23,8 @@ defn gensymbol ≡
 )
 {
                                                        #line 21
-        counter  ≡ [_global,counter]                   #line 26#line 27
-}
-
-defn gensymbolwoglob ≡
-(
-    s ≡
-)
-{
-                                                       #line 28
+        counter  ≡ [_global,counter]                   #line 22
         name_with_id ≡
-        counter ≡                                      #line 30
-        return  name_with_id                           #line 31#line 32#line 33
+        counter ≡                                      #line 24
+        return  name_with_id                           #line 25#line 26
 }

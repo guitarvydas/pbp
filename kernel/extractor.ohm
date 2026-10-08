@@ -19,8 +19,8 @@ extractor {
    R_Statement =
      | comment Rec_Statement? -- comment
      | External Rec_Statement? -- external
-     | Deftemp -- deftemp
-     | Defsynonym -- defsynonym     
+     | Deftemp  Rec_Statement? -- deftemp
+     | Defsynonym  Rec_Statement? -- defsynonym     
      | kw<"global"> ident Rec_Statement? -- globals
      | IfStatement  -- if
      | kw<"pass"> Rec_Statement? -- pass

@@ -57,8 +57,8 @@ extractor {
    R_Statement =
      | comment Rec_Statement? -- comment
      | External Rec_Statement? -- external
-     | Deftemp -- deftemp
-     | Defsynonym -- defsynonym     
+     | Deftemp  Rec_Statement? -- deftemp
+     | Defsynonym  Rec_Statement? -- defsynonym     
      | kw<"global"> ident Rec_Statement? -- globals
      | IfStatement  -- if
      | kw<"pass"> Rec_Statement? -- pass
@@ -538,11 +538,6 @@ enter_rule ("Rec_Statement");
     set_return (`${line1.rwr ().join ('')}${R_Statement.rwr ()}${line2.rwr ().join ('')}`);
 return exit_rule ("Rec_Statement");
 },
-R_Statement_globals : function (_24,ident,scope,) {
-enter_rule ("R_Statement_globals");
-    set_return (`\n${ident.rwr ()}  ≡ [_global,${ident.rwr ()}]`);
-return exit_rule ("R_Statement_globals");
-},
 R_Statement_comment : function (s,rec,) {
 enter_rule ("R_Statement_comment");
     set_return (`${rec.rwr ().join ('')}`);
@@ -552,6 +547,21 @@ R_Statement_external : function (x,rec,) {
 enter_rule ("R_Statement_external");
     set_return (`${rec.rwr ().join ('')}`);
 return exit_rule ("R_Statement_external");
+},
+R_Statement_deftemp : function (x,rec,) {
+enter_rule ("R_Statement_deftemp");
+    set_return (`${x.rwr ()}${rec.rwr ().join ('')}`);
+return exit_rule ("R_Statement_deftemp");
+},
+R_Statement_defsynonym : function (x,rec,) {
+enter_rule ("R_Statement_defsynonym");
+    set_return (`${x.rwr ()}${rec.rwr ().join ('')}`);
+return exit_rule ("R_Statement_defsynonym");
+},
+R_Statement_globals : function (_24,ident,rec,) {
+enter_rule ("R_Statement_globals");
+    set_return (`\n${ident.rwr ()}  ≡ [_global,${ident.rwr ()}]${rec.rwr ().join ('')}`);
+return exit_rule ("R_Statement_globals");
 },
 R_Statement_if : function (IfStatement,) {
 enter_rule ("R_Statement_if");

@@ -7,7 +7,8 @@ defn load_error ≡
 )
 {
                                                        #line 5
-        load_errors  ≡ [_global,load_errors]           #line 10#line 11
+        load_errors  ≡ [_global,load_errors]           #line 6
+        load_errors ≡                                  #line 9#line 10#line 11
 }
 
 defn runtime_error ≡
@@ -16,7 +17,8 @@ defn runtime_error ≡
 )
 {
                                                        #line 12
-        runtime_errors  ≡ [_global,runtime_errors]     #line 17#line 18
+        runtime_errors  ≡ [_global,runtime_errors]     #line 13
+        runtime_errors ≡                               #line 16#line 17#line 18
 }
                                                        #line 19
 defn initialize_component_palette_from_files ≡

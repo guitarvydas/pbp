@@ -16,9 +16,11 @@ Defobj [ _defobj ident line1? lb line2? init+ rb line3?] = ‛\ndefobj «ident»
 StatementBlock [ line1? lb line2? Statement     line3? rb  line4?] = ‛«line1»«line2»⤷«Statement»«line3»«line4»⤶’
 
 Rec_Statement [line1? R_Statement line2?] = ‛«line1»«R_Statement»«line2»’
-R_Statement_globals [ _24 ident scope?] =‛\n«ident»  ≡ [_global,«ident»]’
 R_Statement_comment [s rec?] =‛«rec»’
 R_Statement_external [x rec?] = ‛«rec»’
+R_Statement_deftemp [x rec?] =‛«x»«rec»’
+R_Statement_defsynonym [x rec?] =‛«x»«rec»’
+R_Statement_globals [ _24 ident rec?] =‛\n«ident»  ≡ [_global,«ident»]«rec»’
 R_Statement_if [ IfStatement] =‛«IfStatement»’
 R_Statement_pass [ _27 scope?] =‛«scope»’
 R_Statement_return [ _29 ReturnExp] =‛\nreturn «ReturnExp»’
