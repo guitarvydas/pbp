@@ -86,6 +86,7 @@ Atom_emptydict [ _79 _80] =‛«_79»«_80»’
 Atom_paren [ _81 Exp _82] =‛«_81»«Exp»«_82»’
 Atom_listconst [ lb line1? PrimaryComma+ line2? rb] =‛«lb»«line1»«PrimaryComma»«rb»«line2»’
 Atom_dict [ lb line1? PairComma+ line2? rb] =‛«lb»«line1»«PairComma»«line2»«rb»’
+Atom_lambda [ lambda LambdaFormals? _87 Exp] =‛«lambda»«LambdaFormals»«_87»«Exp»’
 Atom_phi [ phi] =‛«phi»’
 Atom_true [ _119] =‛«_119»’
 Atom_false [ _120] =‛«_120»’
@@ -103,6 +104,8 @@ Lval [ Exp] = ‛«Exp»’
 Formals_noformals [ _127 _128] =‛«_127»«_128»’
 Formals_withformals [ _129 FormalComma* _130] =‛«_129»«FormalComma»«_130»’
 
+LambdaFormals_noformals [ _135 _136] =‛«_135»«_136»’
+LambdaFormals_withformals [ _137 FormalComma* _138] =‛«_137»«FormalComma»«_138»’
 
 Formal [ ident] =‛«ident»’
 FormalComma [Formal comma?] = ‛«Formal»«comma»’
@@ -125,6 +128,7 @@ string [ _164 stringchar* _165] = ‛«_164»«stringchar»«_165»’
 stringchar_rec [ _166 stringchar* _167] =‛«_166»«stringchar»«_167»’
 stringchar_other [ any] =‛«any»’
 keyword [ _222] = ‛«_222»’
+lambda [ _226] = ‛«_226»’
 phi [ _230] = ‛«_230»’
 kw [s] = ‛ «s»’
 xkw [s] = ‛ «s»’

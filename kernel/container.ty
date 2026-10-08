@@ -93,7 +93,7 @@ defn container_instantiator ≡
 )
 {
                                                        #line 57
-        enumDown  ≡ =[_global,enumDown]                #line 90#line 91
+        enumDown  ≡ [_global,enumDown]                 #line 90#line 91
 }
 
                                                        #line 92
@@ -278,7 +278,7 @@ defn route ≡
                                                        #line 210
         was_sent ≡                                     #line 211
         fromname ≡                                     #line 212
-        ticktime  ≡ =[_global,ticktime]                #line 235#line 236
+        ticktime  ≡ [_global,ticktime]                 #line 235#line 236
 }
 
 defn any_child_ready ≡

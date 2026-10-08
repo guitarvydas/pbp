@@ -74,7 +74,7 @@ return exit_rule ("Defvar");
 Defn : function (_4,ident,Formals,StatementBlock,line,) {
 enter_rule ("Defn");
     pushParameter ("scope", `${ident.rwr ()}`);
-    set_return (`\n${getdeclaration (`2`,`_global`,`${ident.rwr ()}`,)} ${Formals.rwr ()} {\n${StatementBlock.rwr ()}${line.rwr ().join ('')}}\n`);
+    set_return (`\n${getdeclaration (`2`,`${genscoperest (`scope`,)}`,`${ident.rwr ()}`,)} ${Formals.rwr ()} {\n${StatementBlock.rwr ()}${line.rwr ().join ('')}}\n`);
 popParameter ("scope");
 return exit_rule ("Defn");
 },
@@ -675,6 +675,11 @@ enter_rule ("Atom_dict");
     set_return (`${_78.rwr ()}${line1.rwr ().join ('')}${PairComma.rwr ().join ('')}${line2.rwr ().join ('')}${_79.rwr ()}`);
 return exit_rule ("Atom_dict");
 },
+Atom_lambda : function (_80,Formals,_81,Exp,) {
+enter_rule ("Atom_lambda");
+    set_return (` lambda ${Formals.rwr ().join ('')}: ${Exp.rwr ()}`);
+return exit_rule ("Atom_lambda");
+},
 Atom_phi : function (phi,) {
 enter_rule ("Atom_phi");
     set_return (` NULL`);
@@ -717,7 +722,7 @@ return exit_rule ("Atom_number");
 },
 Atom_ident : function (ident,) {
 enter_rule ("Atom_ident");
-    set_return (` ${getmaybederef (`${getParameter ("deref")}`,`${getParameter ("scope")}`,`${ident.rwr ()}`,)}`);
+    set_return (` ${getmaybederef (`${getParameter ("deref")}`,`${genscope (`scope`,)}`,`${ident.rwr ()}`,)}`);
 return exit_rule ("Atom_ident");
 },
 PrimaryComma : function (Primary,_94,line,) {
@@ -760,9 +765,19 @@ enter_rule ("Formals_withformals");
     set_return (`${_150.rwr ()}${FormalComma.rwr ().join ('')}${_151.rwr ()}`);
 return exit_rule ("Formals_withformals");
 },
+LambdaFormals_noformals : function (_148,_149,) {
+enter_rule ("LambdaFormals_noformals");
+    set_return (``);
+return exit_rule ("LambdaFormals_noformals");
+},
+LambdaFormals_withformals : function (_150,FormalComma,_151,) {
+enter_rule ("LambdaFormals_withformals");
+    set_return (`${FormalComma.rwr ().join ('')}`);
+return exit_rule ("LambdaFormals_withformals");
+},
 Formal : function (ident,) {
 enter_rule ("Formal");
-    set_return (`${getdeclaration (`3`,`${getParameter ("scope")}`,`${ident.rwr ()}`,)}`);
+    set_return (`${getdeclaration (`3`,`${genscope (`scope`,)}`,`${ident.rwr ()}`,)}`);
 return exit_rule ("Formal");
 },
 FormalComma : function (Formal,comma,) {

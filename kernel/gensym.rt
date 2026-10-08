@@ -25,3 +25,9 @@ defn gensymbol (s) {
     return name_with_id
 }
 
+defn gensymbolwoglob (s) {
+    name_with_id ≡ #strcons (s, subscripted_digit (counter))
+    counter ⇐ counter + 1
+    return name_with_id
+}
+

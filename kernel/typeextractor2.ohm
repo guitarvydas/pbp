@@ -14,7 +14,7 @@ typeExtractor2 {
   Formals = "(" TypedParamComma? ")"
   TypedParamComma = TypedID ","? TypedParamComma?
   TypedID =
-    | id "≡" "=" "[" scopepath "," id "]" -- global
+    | id "≡" "[" scopepath "," id "]" -- global
     | id "≡" Type                         -- local
   ObjBody = FunctionBody
   FunctionBody = "{" BodyInnards? "}"

@@ -284,6 +284,7 @@ Atom_dict [ _78 line1? PairComma+ line2? _79] =
   ‛\n(let ((_dict (dict-fresh)))⤷«line1»«PairComma»«line2»\n_dict⤶)’
 ⎦
 
+Atom_lambda [ _80 Formals? _81 Exp] = ‛ #'(lambda (&optional «Formals»)⤷«Exp»⤶)’
 Atom_phi [ phi] =‛ nil’
 Atom_true [ _88] =‛ t’
 Atom_false [ _89] =‛ nil’
@@ -303,6 +304,8 @@ Lval [ Exp ] = ‛«Exp»’
 keyword [ _144] = ‛«_144»’
 Formals_noformals [ _148 _149] =‛’
 Formals_withformals [ _150 FormalComma* _151] =‛«FormalComma»’
+LambdaFormals_noformals [ _148 _149] =‛’
+LambdaFormals_withformals [ _150 FormalComma* _151] =‛«FormalComma»’
 Formal [ ident] = ‛«ident»’
 FormalComma [Formal comma?] =‛ «Formal»«comma»’
 

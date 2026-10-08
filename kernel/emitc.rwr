@@ -23,7 +23,7 @@ kw [ s] = ‛«s»’
 Defvar [ __ id _eq e line?] = ‛\n⎨getdeclaration ‛1’ ‛⟪scope⟫’ ‛«id»’⎬ = «e»«line»;’
 Defn [ _4 ident Formals StatementBlock line?] = 
   ⎡ scope=‛«ident»’
-     ‛\n⎨getdeclaration ‛2’ ‛_global’ ‛«ident»’⎬ «Formals» {\n«StatementBlock»«line»}\n’
+     ‛\n⎨getdeclaration ‛2’ ‛⎨genscoperest ‛scope’⎬’ ‛«ident»’⎬ «Formals» {\n«StatementBlock»«line»}\n’
   ⎦
 
 Defobj [ _defobj ident line1? lb line2? init+ rb line3?] = ‛
@@ -237,6 +237,7 @@ Atom_emptydict [ _76 _77] =‛«_76»«_77»’
 Atom_paren [ _70 Exp _71] =‛«_70»«Exp»«_71»’
 Atom_listconst [ lb line1? PrimaryComma+ line2? rb] =‛«lb»«PrimaryComma»«rb»«line2»’
 Atom_dict [ _78 line1? PairComma+ line2? _79] =‛«_78»«line1»«PairComma»«line2»«_79»’
+Atom_lambda [ _80 Formals? _81 Exp] =‛ lambda «Formals»: «Exp»’
 Atom_phi [ phi] =‛ NULL’
 Atom_true [ _88] =‛ True’
 Atom_false [ _89] =‛ False’
@@ -245,7 +246,7 @@ Atom_range [ _91 _92 Exp _93] =‛«_91»«_92»«Exp»«_93»’
 Atom_callident [id actuals] = ‛«id» «actuals»’
 Atom_string [ string] =‛ «string»’
 Atom_number [ number] =‛ «number»’
-Atom_ident [ ident ] =‛ ⎨getmaybederef ‛⟪deref⟫’ ‛⟪scope⟫’ ‛«ident»’⎬’
+Atom_ident [ ident ] =‛ ⎨getmaybederef ‛⟪deref⟫’ ‛⎨genscope ‛scope’⎬’ ‛«ident»’⎬’
 
 PrimaryComma [ Primary _94? line?] = ‛«Primary»«_94»«line»’
 PairComma [ Pair _95?] = ‛«Pair»«_95»’
@@ -257,7 +258,9 @@ Lval [ Exp ] = ‛«Exp»’
 keyword [ _144] = ‛«_144»’
 Formals_noformals [ _148 _149] =‛«_148»«_149»’
 Formals_withformals [ _150 FormalComma* _151] =‛«_150»«FormalComma»«_151»’
-Formal [ ident] = ‛⎨getdeclaration ‛3’ ‛⟪scope⟫’ ‛«ident»’⎬’
+LambdaFormals_noformals [ _148 _149] =‛’
+LambdaFormals_withformals [ _150 FormalComma* _151] =‛«FormalComma»’
+Formal [ ident] = ‛⎨getdeclaration ‛3’ ‛⎨genscope ‛scope’⎬’ ‛«ident»’⎬’
 FormalComma [Formal comma?] =‛«Formal»«comma»’
 
 Actuals_noactuals [ _154 _155] =‛«_154»«_155»’

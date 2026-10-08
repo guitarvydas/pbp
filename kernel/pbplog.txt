@@ -1,13 +1,23 @@
-Thu  8 Oct 2026 04:08:56 EDT
+Thu  8 Oct 2026 09:08:00 EDT
 getdeclaration(2, "_global", "injector")
-getdeclaration(3, "injector", "eh")
-getdeclaration(3, "injector", "mevent")
-getmaybederef
-getmaybederef
-getmaybederef
+getdeclaration(3, "_global/injector", "eh")
+getdeclaration(3, "_global/injector", "mevent")
+getmaybederef(⊤, "_global/injector", "eh")
+getmaybederef(⊥, "_global/injector", "eh")
+getmaybederef(⊥, "_global/injector", "mevent")
 getdeclaration(1, "_global", "digits")
 getdeclaration(2, "_global", "subscripted_digit")
-getdeclaration(3, "subscripted_digit", "n")
-getmaybederef
-getmaybederef
-getmaybederef
+getdeclaration(3, "_global/subscripted_digit", "n")
+getmaybederef(⊥, "_global/subscripted_digit", "n")
+getmaybederef(⊥, "_global/subscripted_digit", "n")
+getmaybederef(⊤, "_global/subscripted_digit", "digits")
+getmaybederef(⊤, "_global/subscripted_digit", "n")
+getmaybederef(⊥, "_global/subscripted_digit", "n")
+getdeclaration(1, "_global", "counter")
+getdeclaration(2, "_global", "gensymbol")
+getdeclaration(3, "_global/gensymbol", "s")
+getmaybederef(⊥, "_global/gensymbol", "s")
+getmaybederef(⊥, "_global/gensymbol", "counter")
+getmaybederef(⊥, "_global/gensymbol", "counter")
+getmaybederef(⊥, "_global/gensymbol", "counter")
+getmaybederef(⊥, "_global/gensymbol", "name_with_id")
