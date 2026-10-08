@@ -9,3 +9,4 @@
 {"op":"insert", "operand":{"name":"gensymbol", "indir":2, "type":"Str", "kind":"retproc", "scope":"_global" }}
 {"op":"insert", "operand":{"name":"s", "indir":2, "type":"Str", "scope":"_global/gensymbol","kind":"parameter"}}
 {"op":"insert", "operand":{"name":"counter", "lookup":{"scope":"_global", "name":"counter"}, "scope":"_global/gensymbol", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"name_with_id", "indir":2, "type":"Str", "scope":"_global/gensymbol", "kind":"variable"}}

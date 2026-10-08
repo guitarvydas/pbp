@@ -33,10 +33,6 @@ defn lnet2internal_from_string (lnet) {
     #internalize_lnet_from_string ()
 }
 
-defn delete_decls (d) {
-    pass
-}
-
 defn make_component_registry () {
     return #fresh (Component_Registry)
 }

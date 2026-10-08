@@ -15,7 +15,7 @@
 {"op":"insert", "operand":{"name":"templ", "indir":2, "type":"Template", "scope":"_global/mkTemplate", "kind":"variable"}}
 {"op":"newscope", "operand":"lnet2internal_from_file"}
 {"op":"insert", "operand":{"name":"lnet2internal_from_file", "indir":2, "type":"Collection_of_Wire", "kind":"retproc", "scope":"_global" }}
-{"op":"insert", "operand":{"name":"json_filename", "indir":2, "type":"Pathname", "scope":"_global/lnet2internal_from_file","kind":"parameter"}}
+{"op":"insert", "operand":{"name":"container_xml", "indir":2, "type":"Pathname", "scope":"_global/lnet2internal_from_file","kind":"parameter"}}
 {"op":"insert", "operand":{"name":"pathname", "indir":2, "type":"Pathname", "scope":"_global/lnet2internal_from_file", "kind":"variable"}}
 {"op":"insert", "operand":{"name":"filename", "indir":2, "type":"Str", "scope":"_global/lnet2internal_from_file", "kind":"variable"}}
 {"op":"newscope", "operand":"lnet2internal_from_string"}

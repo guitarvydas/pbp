@@ -27,7 +27,7 @@ defn mkTemplate ≡ @Template
                                                        #line 24
 defn lnet2internal_from_file ≡ @Collection_of_Wire
 (
-    json_filename ≡ @Pathname
+    container_xml ≡ @Pathname
 )
 {
                                                        #line 25

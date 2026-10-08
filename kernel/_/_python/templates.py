@@ -1,9 +1,9 @@
 class Component_Registry:
-    def __init__ (self,):                              #line 1
+    def __init__ (self):                               #line 1
         self.templates = {}                            #line 2#line 3
                                                        #line 4
 class Template:
-    def __init__ (self,):                              #line 5
+    def __init__ (self):                               #line 5
         self.name =  None                              #line 6
         self.container =  None                         #line 7
         self.instantiator =  None                      #line 8#line 9
@@ -48,61 +48,58 @@ def lnet2internal_from_string (lnet):                  #line 32
         return None
                                                        #line 33#line 34#line 35
 
-def delete_decls (d):                                  #line 36
-    pass                                               #line 37#line 38#line 39
-
-def make_component_registry ():                        #line 40
-    return  Component_Registry ()                      #line 41#line 42#line 43
+def make_component_registry ():                        #line 36
+    return  Component_Registry ()                      #line 37#line 38#line 39
 
 def register_component (reg,template):
-    return abstracted_register_component ( reg, template, False)#line 44
+    return abstracted_register_component ( reg, template, False)#line 40
 
 def register_component_allow_overwriting (reg,template):
-    return abstracted_register_component ( reg, template, True)#line 45#line 46
+    return abstracted_register_component ( reg, template, True)#line 41#line 42
 
-def abstracted_register_component (reg,template,ok_to_overwrite):#line 47
-    name = mangle_name ( template.name)                #line 48
-    if  reg!= None and  name in  reg.templates and not  ok_to_overwrite:#line 49
-        load_error ( str( "Component /") +  str( template.name) +  "/ already declared"  )#line 50
-        return  reg                                    #line 51
-    else:                                              #line 52
-        reg.templates [name] =  template               #line 53
-        return  reg                                    #line 54#line 55#line 56#line 57
+def abstracted_register_component (reg,template,ok_to_overwrite):#line 43
+    name = mangle_name ( template.name)                #line 44
+    if  reg!= None and  name in  reg.templates and not  ok_to_overwrite:#line 45
+        load_error ( str( "Component /") +  str( template.name) +  "/ already declared"  )#line 46
+        return  reg                                    #line 47
+    else:                                              #line 48
+        reg.templates [name] =  template               #line 49
+        return  reg                                    #line 50#line 51#line 52#line 53
 
-def get_component_instance (reg,full_name,owner):      #line 58
-    # If a part name begins with ":", it is treated as a JIT part and we let the runtime factory generate it on-the-fly (see kernel_external.rt and external.rt) else it is assumed to be a regular AOT part and assumed to have been registered before runtime, so we just pull its template out of the registry and instantiate it. #line 59
-    # ":?<string>" is a probe part that is tagged with <string> #line 60
-    # ":$ <command>" is a shell-out part that sends <command> to the operating system shell #line 61
-    # ":<string>" else, it's just treated as a string part that produces <string> on its output #line 62
-    template_name = mangle_name ( full_name)           #line 63
-    if  ":" ==   full_name[0] :                        #line 64
-        instance_name = generate_instance_name ( owner, template_name)#line 65
-        instance = jit_instantiate ( reg, owner, instance_name, full_name)#line 66
-        return  instance                               #line 67
-    else:                                              #line 68
-        if  template_name in  reg.templates:           #line 69
-            template =  reg.templates [template_name]  #line 70
-            if ( template ==  None):                   #line 71
-                load_error ( str( "Registry Error (A): Can't find component /") +  str( template_name) +  "/"  )#line 72
-                return  None                           #line 73
-            else:                                      #line 74
-                instance_name = generate_instance_name ( owner, template_name)#line 75
-                instance =  template.instantiator ( reg, owner, instance_name, template.template_data, "")#line 76
-                return  instance                       #line 77#line 78
-        else:                                          #line 79
-            load_error ( str( "Registry Error (B): Can't find component /") +  str( template_name) +  "/"  )#line 80
-            return  None                               #line 81#line 82#line 83#line 84#line 85
+def get_component_instance (reg,full_name,owner):      #line 54
+    # If a part name begins with ":", it is treated as a JIT part and we let the runtime factory generate it on-the-fly (see kernel_external.rt and external.rt) else it is assumed to be a regular AOT part and assumed to have been registered before runtime, so we just pull its template out of the registry and instantiate it. #line 55
+    # ":?<string>" is a probe part that is tagged with <string> #line 56
+    # ":$ <command>" is a shell-out part that sends <command> to the operating system shell #line 57
+    # ":<string>" else, it's just treated as a string part that produces <string> on its output #line 58
+    template_name = mangle_name ( full_name)           #line 59
+    if  ":" ==   full_name[0] :                        #line 60
+        instance_name = generate_instance_name ( owner, template_name)#line 61
+        instance = jit_instantiate ( reg, owner, instance_name, full_name)#line 62
+        return  instance                               #line 63
+    else:                                              #line 64
+        if  template_name in  reg.templates:           #line 65
+            template =  reg.templates [template_name]  #line 66
+            if ( template ==  None):                   #line 67
+                load_error ( str( "Registry Error (A): Can't find component /") +  str( template_name) +  "/"  )#line 68
+                return  None                           #line 69
+            else:                                      #line 70
+                instance_name = generate_instance_name ( owner, template_name)#line 71
+                instance =  template.instantiator ( reg, owner, instance_name, template.template_data, "")#line 72
+                return  instance                       #line 73#line 74
+        else:                                          #line 75
+            load_error ( str( "Registry Error (B): Can't find component /") +  str( template_name) +  "/"  )#line 76
+            return  None                               #line 77#line 78#line 79#line 80#line 81
 
-def generate_instance_name (owner,template_name):      #line 86
-    owner_name =  ""                                   #line 87
-    instance_name =  template_name                     #line 88
-    if  None!= owner:                                  #line 89
-        owner_name =  owner.name                       #line 90
-        instance_name =  str( owner_name) +  str( "▹") +  template_name  #line 91
-    else:                                              #line 92
-        instance_name =  template_name                 #line 93#line 94
-    return  instance_name                              #line 95#line 96#line 97
+def generate_instance_name (owner,template_name):      #line 82
+    owner_name =  ""                                   #line 83
+    instance_name =  template_name                     #line 84
+    if  None!= owner:                                  #line 85
+        owner_name =  owner.name                       #line 86
+        instance_name =  str( owner_name) +  str( "▹") +  template_name  #line 87
+    else:                                              #line 88
+        instance_name =  template_name                 #line 89#line 90
+    return  instance_name                              #line 91#line 92#line 93
 
-def mangle_name (s):                                   #line 98
-    # trim name to remove code from Container component names _ deferred until later (or never)#line 99
-    return  s                                          #line 100#line 101
+def mangle_name (s):                                   #line 94
+    # trim name to remove code from Container component names _ deferred until later (or never)#line 95
+    return  s                                          #line 96#line 97

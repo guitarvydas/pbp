@@ -1,4 +1,4 @@
-undefinedcan't find "name_with_id" in "_global/gensymbol"
+undefinedcan't find "child_desc" in "_global/container_instantiator"
 
 grammar = "emit
 "

@@ -16,5 +16,6 @@ defn gensymbol ≡ @Str
 )
 {
                                                        #line 21
-        counter  ≡ [_global,counter]                  #line 26#line 27
+        counter  ≡ [_global,counter]                   #line 22
+        name_with_id ≡ @Str
 }
