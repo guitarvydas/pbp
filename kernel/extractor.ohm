@@ -21,7 +21,7 @@ extractor {
      | External Rec_Statement? -- external
      | Deftemp -- deftemp
      | Defsynonym -- defsynonym     
-     | kw<"global"> ident CommaIdent* Rec_Statement? -- globals
+     | kw<"global"> ident Rec_Statement? -- globals
      | IfStatement  -- if
      | kw<"pass"> Rec_Statement? -- pass
      | kw<"return"> ReturnExp -- return
@@ -30,7 +30,6 @@ extractor {
      | Assignment -- assignment
      | Lval Rec_Statement? -- call
      | line Rec_Statement? -- line
-   CommaIdent = Comma ident
 
    External = ExternalPhrase line?
    ExternalPhrase =

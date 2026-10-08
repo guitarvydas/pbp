@@ -13,7 +13,9 @@ typeExtractor2 {
     | Type -- returnvalue
   Formals = "(" TypedParamComma? ")"
   TypedParamComma = TypedID ","? TypedParamComma?
-  TypedID = id "≡" Type
+  TypedID =
+    | id "≡" "=" "[" scopepath "," id "]" -- global
+    | id "≡" Type                         -- local
   ObjBody = FunctionBody
   FunctionBody = "{" BodyInnards? "}"
   BodyInnards =
@@ -28,6 +30,9 @@ typeExtractor2 {
     | id     -- plain
   id = (letter | "_" | "%") (alnum | "_" | "%")*
   Line = "#line" digit+
+  scopepath = 
+    | scopepath "/" id -- rec
+    | id -- id
 
   exp = expchar+
   expchar = ~"#line" ~"def" any

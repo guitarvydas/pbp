@@ -4,7 +4,8 @@ defn subscripted_digit ≡
     n ≡
 )
 {
-                                                       #line 10#line 17#line 18
+                                                       #line 10
+        digits  ≡ =[_global,digits]                    #line 17#line 18
 }
 
 defvar  counter ≡                                      #line 19#line 20
@@ -13,5 +14,6 @@ defn gensymbol ≡
     s ≡
 )
 {
-                                                       #line 21#line 26#line 27
+                                                       #line 21
+        counter  ≡ =[_global,counter]                  #line 26#line 27
 }

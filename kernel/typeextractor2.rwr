@@ -22,7 +22,8 @@
 
   Formals [_lp typedvarcomma _rp] = ‛«typedvarcomma»’
   TypedParamComma [typedID _comma? typedparamcomma?] = ‛\n{"op":"insert", "operand":{«typedID»,"kind":"parameter"}}«typedparamcomma»’
-  TypedID [id _eq Type] = ‛"name":"«id»", «Type», "scope":"⎨genscope ‛scope’⎬"’
+  TypedID_global [id _eqv _eq _lb scopepath _comma id2 _rb] = ‛"name":"«id»", "lookup":«id2», "scope":"«scopepath»"’
+  TypedID_local [id _eq Type] = ‛"name":"«id»", «Type», "scope":"⎨genscope ‛scope’⎬"’
   FunctionBody [_lb BodyInnards? _rb] = ‛«BodyInnards»’
   BodyInnards_brace [_l BodyInnards? _r rec?] = ‛«BodyInnards»«rec»’
   BodyInnards_parenthesis [_l BodyInnards? _r rec?] = ‛«BodyInnards»«rec»’

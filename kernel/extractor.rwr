@@ -16,7 +16,7 @@ Defobj [ _defobj ident line1? lb line2? init+ rb line3?] = ‛\ndefobj «ident»
 StatementBlock [ line1? lb line2? Statement     line3? rb  line4?] = ‛«line1»«line2»⤷«Statement»«line3»«line4»⤶’
 
 Rec_Statement [line1? R_Statement line2?] = ‛«line1»«R_Statement»«line2»’
-R_Statement_globals [ _24 ident1  cidents* scope?] =‛’
+R_Statement_globals [ _24 ident scope?] =‛\n«ident»  ≡ =[_global,«ident»]’
 R_Statement_comment [s rec?] =‛«rec»’
 R_Statement_external [x rec?] = ‛«rec»’
 R_Statement_if [ IfStatement] =‛«IfStatement»’
@@ -27,7 +27,6 @@ R_Statement_while [ WhileStatement] =‛«WhileStatement»’
 R_Statement_assignment [ Assignment] =‛«Assignment»’
 R_Statement_call [ Lval scope?] =‛’
 R_Statement_line [line rec?] = ‛«line»«rec»’
-CommaIdent [_comma ident] = ‛, «ident»’
 
 External [x line?] = ‛«x»«line»’
 ExternalPhrase_read [_octothorpe _read lp eh _comma1 msg _comma2 fname _comma3 ok _comma4 err rp] = ‛’

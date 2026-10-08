@@ -55,7 +55,10 @@ defn create_through_connector (container, proto_conn, connectors, children_by_id
 
 
 defn container_instantiator (reg, owner, container_name, desc, arg) {
-    global enumDown, enumUp, enumAcross, enumThrough
+    global enumDown
+    global enumUp
+    global enumAcross
+    global enumThrough
     container ≡ make_container (container_name, owner)
     children ≡ []
     children_by_id ≡ {} ⌈ not strictly necessary, but, we can remove 1 runtime lookup by “compiling it out“ here⌉

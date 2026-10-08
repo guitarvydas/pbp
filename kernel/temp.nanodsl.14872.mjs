@@ -51,7 +51,9 @@ typeExtractor2 {
     | Type -- returnvalue
   Formals = "(" TypedParamComma? ")"
   TypedParamComma = TypedID ","? TypedParamComma?
-  TypedID = id "≡" Type
+  TypedID =
+    | id "≡" "=" "[" scopepath "," id "]" -- global
+    | id "≡" Type                         -- local
   ObjBody = FunctionBody
   FunctionBody = "{" BodyInnards? "}"
   BodyInnards =
@@ -66,6 +68,9 @@ typeExtractor2 {
     | id     -- plain
   id = (letter | "_" | "%") (alnum | "_" | "%")*
   Line = "#line" digit+
+  scopepath = 
+    | scopepath "/" id -- rec
+    | id -- id
 
   exp = expchar+
   expchar = ~"#line" ~"def" any
@@ -283,10 +288,15 @@ enter_rule ("TypedParamComma");
     set_return (`\n{"op":"insert", "operand":{${typedID.rwr ()},"kind":"parameter"}}${typedparamcomma.rwr ().join ('')}`);
 return exit_rule ("TypedParamComma");
 },
-TypedID : function (id,_eq,Type,) {
-enter_rule ("TypedID");
+TypedID_global : function (id,_eqv,_eq,_lb,scopepath,_comma,id2,_rb,) {
+enter_rule ("TypedID_global");
+    set_return (`"name":"${id.rwr ()}", "lookup":${id2.rwr ()}, "scope":"${scopepath.rwr ()}"`);
+return exit_rule ("TypedID_global");
+},
+TypedID_local : function (id,_eq,Type,) {
+enter_rule ("TypedID_local");
     set_return (`"name":"${id.rwr ()}", ${Type.rwr ()}, "scope":"${genscope (`scope`,)}"`);
-return exit_rule ("TypedID");
+return exit_rule ("TypedID_local");
 },
 FunctionBody : function (_lb,BodyInnards,_rb,) {
 enter_rule ("FunctionBody");

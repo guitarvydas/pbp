@@ -59,7 +59,7 @@ extractor {
      | External Rec_Statement? -- external
      | Deftemp -- deftemp
      | Defsynonym -- defsynonym     
-     | kw<"global"> ident CommaIdent* Rec_Statement? -- globals
+     | kw<"global"> ident Rec_Statement? -- globals
      | IfStatement  -- if
      | kw<"pass"> Rec_Statement? -- pass
      | kw<"return"> ReturnExp -- return
@@ -68,7 +68,6 @@ extractor {
      | Assignment -- assignment
      | Lval Rec_Statement? -- call
      | line Rec_Statement? -- line
-   CommaIdent = Comma ident
 
    External = ExternalPhrase line?
    ExternalPhrase =
@@ -536,9 +535,9 @@ enter_rule ("Rec_Statement");
     set_return (`${line1.rwr ().join ('')}${R_Statement.rwr ()}${line2.rwr ().join ('')}`);
 return exit_rule ("Rec_Statement");
 },
-R_Statement_globals : function (_24,ident1,cidents,scope,) {
+R_Statement_globals : function (_24,ident,scope,) {
 enter_rule ("R_Statement_globals");
-    set_return (``);
+    set_return (`\n${ident.rwr ()}  ≡ =[_global,${ident.rwr ()}]`);
 return exit_rule ("R_Statement_globals");
 },
 R_Statement_comment : function (s,rec,) {
@@ -590,11 +589,6 @@ R_Statement_line : function (line,rec,) {
 enter_rule ("R_Statement_line");
     set_return (`${line.rwr ()}${rec.rwr ().join ('')}`);
 return exit_rule ("R_Statement_line");
-},
-CommaIdent : function (_comma,ident,) {
-enter_rule ("CommaIdent");
-    set_return (`, ${ident.rwr ()}`);
-return exit_rule ("CommaIdent");
 },
 External : function (x,line,) {
 enter_rule ("External");
