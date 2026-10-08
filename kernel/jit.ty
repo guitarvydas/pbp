@@ -46,7 +46,8 @@ defn probe_handler ≡
 )
 {
                                                        #line 27
-        s ≡                                            #line 28#line 37#line 38
+        ticktime  ≡ [_global,ticktime]                 #line 28
+        s ≡                                            #line 29#line 38#line 39
 }
 
 defn shell_out_handler ≡
@@ -56,25 +57,25 @@ defn shell_out_handler ≡
     mev ≡
 )
 {
-                                                       #line 39
-        s ≡                                            #line 40
-        ret ≡                                          #line 41
-        rc ≡                                           #line 42
-        stdout ≡                                       #line 43
-        stderr ≡                                       #line 44
-        command ≡                                      #line 45
+                                                       #line 40
+        s ≡                                            #line 41
+        ret ≡                                          #line 42
+        rc ≡                                           #line 43
+        stdout ≡                                       #line 44
+        stderr ≡                                       #line 45
+        command ≡                                      #line 46
         pbpRoot ≡
         if  pbpRoot!= "" {
-                                                       #line 47
-            command ≡                                  #line 51
+                                                       #line 48
+            command ≡                                  #line 52
         }
         if ( ("PBPSHELLUT" in os.environ) ) {
-                                                       #line 52#line 55
+                                                       #line 53#line 56
         }
         if  rc ==  0 {
-                                                       #line 57
+                                                       #line 58
         }
         else
-        {                                              #line 59#line 61
-        }                                              #line 62#line 63
+        {                                              #line 60#line 62
+        }                                              #line 63#line 64
 }

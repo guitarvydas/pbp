@@ -1,6 +1,7 @@
 
 {"op":"insert", "operand":{"name":"load_errors", "indir":1, "type":"Bool", "scope":"_global", "kind":"variable"}}
 {"op":"insert", "operand":{"name":"runtime_errors", "indir":1, "type":"Bool", "scope":"_global", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"ticktime", "indir":1, "type":"Int", "scope":"_global", "kind":"variable"}}
 {"op":"newscope", "operand":"load_error"}
 {"op":"insert", "operand":{"name":"load_error", "indir":0, "type":"void", "kind":"proc", "scope":"_global" }}
 {"op":"insert", "operand":{"name":"s", "indir":2, "type":"Str", "scope":"_global/load_error","kind":"parameter"}}

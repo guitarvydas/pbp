@@ -38,16 +38,29 @@
 {"op":"insert", "operand":{"name":"reg", "indir":2, "type":"Component_Registry", "scope":"_global/container_instantiator","kind":"parameter"}}
 {"op":"insert", "operand":{"name":"owner", "indir":2, "type":"Container", "scope":"_global/container_instantiator","kind":"parameter"}}
 {"op":"insert", "operand":{"name":"container_name", "indir":2, "type":"Str", "scope":"_global/container_instantiator","kind":"parameter"}}
-{"op":"insert", "operand":{"name":"desc", "indir":2, "type":"Container_Template", "scope":"_global/container_instantiator","kind":"parameter"}}
+{"op":"insert", "operand":{"name":"desc", "indir":2, "type":"Template", "scope":"_global/container_instantiator","kind":"parameter"}}
 {"op":"insert", "operand":{"name":"arg", "indir":2, "type":"Str", "scope":"_global/container_instantiator","kind":"parameter"}}
+{"op":"insert", "operand":{"name":"enumDown", "lookup":{"scope":"_global", "name":"enumDown"}, "scope":"_global/container_instantiator", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"enumUp", "lookup":{"scope":"_global", "name":"enumUp"}, "scope":"_global/container_instantiator", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"enumAcross", "lookup":{"scope":"_global", "name":"enumAcross"}, "scope":"_global/container_instantiator", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"enumThrough", "lookup":{"scope":"_global", "name":"enumThrough"}, "scope":"_global/container_instantiator", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"container", "indir":2, "type":"Container", "scope":"_global/container_instantiator", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"children", "indir":2, "type":"Collection_of_PartInstance", "scope":"_global/container_instantiator", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"children_by_id", "indir":2, "type":"Collection_of_PartInstance", "scope":"_global/container_instantiator", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"child_desc", "indir":2, "type":"Template", "scope":"_global/container_instantiator", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"child_instance", "indir":2, "type":"PartInstance", "scope":"_global/container_instantiator", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"id", "indir":2, "type":"Str", "scope":"_global/container_instantiator", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"connectors", "indir":2, "type":"Collection_of_WireInstance", "scope":"_global/container_instantiator", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"proto_conn", "indir":2, "type":"WireTemplate", "scope":"_global/container_instantiator", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"connector", "indir":2, "type":"WireInstance", "scope":"_global/container_instantiator", "kind":"variable"}}
 {"op":"newscope", "operand":"container_handler"}
 {"op":"insert", "operand":{"name":"container_handler", "indir":0, "type":"void", "kind":"proc", "scope":"_global" }}
 {"op":"insert", "operand":{"name":"container", "indir":2, "type":"Container", "scope":"_global/container_handler","kind":"parameter"}}
 {"op":"insert", "operand":{"name":"mevent", "indir":2, "type":"Mevent", "scope":"_global/container_handler","kind":"parameter"}}
-{"op":"newscope", "operand":"container_reset_children"}
-{"op":"insert", "operand":{"name":"container_reset_children", "indir":0, "type":"void", "kind":"proc", "scope":"_global" }}
-{"op":"insert", "operand":{"name":"container", "indir":2, "type":"Container", "scope":"_global/container_reset_children","kind":"parameter"}}
-{"op":"insert", "operand":{"name":"child", "indir":2, "type":"Part", "scope":"_global/container_reset_children", "kind":"variable"}}
+{"op":"newscope", "operand":"container_reset"}
+{"op":"insert", "operand":{"name":"container_reset", "indir":0, "type":"void", "kind":"proc", "scope":"_global" }}
+{"op":"insert", "operand":{"name":"container", "indir":2, "type":"Container", "scope":"_global/container_reset","kind":"parameter"}}
+{"op":"insert", "operand":{"name":"child", "indir":2, "type":"Part", "scope":"_global/container_reset", "kind":"variable"}}
 {"op":"newscope", "operand":"destroy_container"}
 {"op":"insert", "operand":{"name":"destroy_container", "indir":0, "type":"void", "kind":"proc", "scope":"_global" }}
 {"op":"insert", "operand":{"name":"eh", "indir":2, "type":"Part", "scope":"_global/destroy_container","kind":"parameter"}}
@@ -105,6 +118,11 @@
 {"op":"insert", "operand":{"name":"mevent", "indir":2, "type":"Mevent", "scope":"_global/route","kind":"parameter"}}
 {"op":"insert", "operand":{"name":"was_sent", "indir":1, "type":"Bool", "scope":"_global/route", "kind":"variable"}}
 {"op":"insert", "operand":{"name":"fromname", "indir":2, "type":"Str", "scope":"_global/route", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"ticktime", "lookup":{"scope":"_global", "name":"ticktime"}, "scope":"_global/route", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"child", "indir":2, "type":"PartInstance", "scope":"_global/route", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"fromname", "indir":2, "type":"Str", "scope":"_global/route", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"from_sender", "indir":2, "type":"Sender", "scope":"_global/route", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"connector", "indir":2, "type":"WireInstance", "scope":"_global/route", "kind":"variable"}}
 {"op":"newscope", "operand":"any_child_ready"}
 {"op":"insert", "operand":{"name":"any_child_ready", "indir":1, "type":"Bool", "kind":"retproc", "scope":"_global" }}
 {"op":"insert", "operand":{"name":"container", "indir":2, "type":"Container", "scope":"_global/any_child_ready","kind":"parameter"}}
@@ -149,6 +167,6 @@
 {"op":"insert", "operand":{"name":"put_output", "indir":0, "type":"void", "kind":"proc", "scope":"_global" }}
 {"op":"insert", "operand":{"name":"eh", "indir":2, "type":"Part", "scope":"_global/put_output","kind":"parameter"}}
 {"op":"insert", "operand":{"name":"mev", "indir":2, "type":"Mevent", "scope":"_global/put_output","kind":"parameter"}}
-{"op":"newscope", "operand":"clone_payload"}
-{"op":"insert", "operand":{"name":"clone_payload", "indir":2, "type":"Payload", "kind":"retproc", "scope":"_global" }}
-{"op":"insert", "operand":{"name":"clone_payload", "indir":2, "type":"Payload", "scope":"_global/clone_payload","kind":"parameter"}}
+{"op":"newscope", "operand":"obj_clone"}
+{"op":"insert", "operand":{"name":"obj_clone", "indir":2, "type":"Payload", "kind":"retproc", "scope":"_global" }}
+{"op":"insert", "operand":{"name":"obj", "indir":2, "type":"Payload", "scope":"_global/obj_clone","kind":"parameter"}}

@@ -57,11 +57,31 @@ defn container_instantiator ≡ @Container
     reg ≡ @Component_Registry,
     owner ≡ @Container,
     container_name ≡ @Str,
-    desc ≡ @Container_Template,
+    desc ≡ @Template,
     arg ≡ @Str
 )
 {
-                                                       #line 57#line 87#line 88
+                                                       #line 57
+        enumDown  ≡ [_global,enumDown]                 #line 58
+        enumUp  ≡ [_global,enumUp]                     #line 59
+        enumAcross  ≡ [_global,enumAcross]             #line 60
+        enumThrough  ≡ [_global,enumThrough]           #line 61
+        container ≡ @Container
+        children ≡ @Collection_of_PartInstance                                    #line 63
+        children_by_id ≡ @Collection_of_PartInstance                              #line 64#line 65
+        child_desc ≡ @Template
+        for child_desc in  desc [ "children"] {
+                                                       #line 66
+            child_instance ≡ @PartInstance
+            id ≡ @Str                                      #line 69
+        }
+        connectors ≡ @Collection_of_WireInstance                                  #line 75
+        proto_conn ≡ @WireTemplate
+        for proto_conn in  desc [ "connections"] {
+                                                       #line 76
+            connector ≡ @WireInstance
+        }
+        return  container                              #line 89#line 90#line 91
 }
 
                                                        #line 89
@@ -75,7 +95,7 @@ defn container_handler ≡ ~
 }
 
                                                        #line 96
-defn container_reset_children ≡ ~
+defn container_reset ≡ ~
 (
     container ≡ @Container
 )
@@ -219,9 +239,15 @@ defn route ≡ ~
     mevent ≡ @Mevent
 )
 {
-                                                       #line 208
-        was_sent ≡ Bool                                    #line 209
-        fromname ≡ @Str                                    #line 210#line 233#line 234
+                                                       #line 210
+        was_sent ≡ Bool                                    #line 211
+        fromname ≡ @Str                                    #line 212
+        ticktime  ≡ [_global,ticktime]                 #line 213
+            child ≡ @PartInstance
+                                                       #line 220
+                fromname ≡ @Str                            #line 221#line 222
+            from_sender ≡ @Sender                              #line 224
+            connector ≡ @WireInstance
 }
 
 defn any_child_ready ≡ Bool
@@ -323,9 +349,11 @@ defn put_output ≡ ~
                                                        #line 296#line 298#line 299
 }
 
-defn clone_payload ≡ @Payload
+defn obj_clone ≡ @Payload
 (
-    clone_payload ≡ @Payload
+    obj ≡ @Payload
 )
 {
+                                                       #line 298
+        return  obj                                    #line 299#line 300
 }

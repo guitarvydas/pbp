@@ -1,6 +1,7 @@
 #line 1
 defvar load_errors ≡ Bool
 defvar runtime_errors ≡ Bool
+defvar  ticktime ≡ Int                                     #line 3#line 4
 
 defn load_error ≡ ~
 (

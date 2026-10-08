@@ -31,7 +31,7 @@ defn probe_handler ≡ ~
     mev ≡ @Mevent
 )
 {
-                                                       #line 27
+        ticktime  ≡ [_global,ticktime]                 #line 28
         s ≡ @Str                                           #line 28#line 37#line 38
 }
 

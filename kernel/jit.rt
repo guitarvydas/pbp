@@ -25,6 +25,7 @@ defn handle_jit (eh, mev) {
 }
 
 defn probe_handler (eh, tag, mev) {
+    global ticktime
     s ≡ mev.payload.v
     #live_update (“Info”,
         #strcons (“  @”, 

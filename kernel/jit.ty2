@@ -19,6 +19,7 @@
 {"op":"insert", "operand":{"name":"eh", "indir":2, "type":"Part", "scope":"_global/probe_handler","kind":"parameter"}}
 {"op":"insert", "operand":{"name":"tag", "indir":1, "type":"Port", "scope":"_global/probe_handler","kind":"parameter"}}
 {"op":"insert", "operand":{"name":"mev", "indir":2, "type":"Mevent", "scope":"_global/probe_handler","kind":"parameter"}}
+{"op":"insert", "operand":{"name":"ticktime", "lookup":{"scope":"_global", "name":"ticktime"}, "scope":"_global/probe_handler", "kind":"variable"}}
 {"op":"insert", "operand":{"name":"s", "indir":2, "type":"Str", "scope":"_global/probe_handler", "kind":"variable"}}
 {"op":"newscope", "operand":"shell_out_handler"}
 {"op":"insert", "operand":{"name":"shell_out_handler", "indir":0, "type":"void", "kind":"proc", "scope":"_global" }}
