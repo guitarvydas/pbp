@@ -92,8 +92,7 @@ emit {
      | Lval errorMessage "≡" Exp Rec_Statement? -- illegal
      | ident "≡" Exp Rec_Statement? -- legal
 
-   InitStatement = "•" ident Type? "⇐" Exp (comment | line)*
-   Type = ":" ident
+   InitStatement = "•" ident "⇐" Exp (comment | line)*
 
    IfStatement = kw<"if"> Exp StatementBlock ElifStatement* ElseStatement? Rec_Statement?
    ElifStatement = kw<"elif"> Exp StatementBlock
