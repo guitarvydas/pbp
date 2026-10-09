@@ -24,7 +24,7 @@
 {"op":"newscope", "operand":"shell_out_handler"}
 {"op":"insert", "operand":{"name":"shell_out_handler", "indir":0, "type":"void", "kind":"proc", "scope":"_global" }}
 {"op":"insert", "operand":{"name":"eh", "indir":2, "type":"Part", "scope":"_global/shell_out_handler","kind":"parameter"}}
-{"op":"insert", "operand":{"name":"tag", "indir":1, "type":"Port", "scope":"_global/shell_out_handler","kind":"parameter"}}
+{"op":"insert", "operand":{"name":"cmd", "indir":1, "type":"Port", "scope":"_global/shell_out_handler","kind":"parameter"}}
 {"op":"insert", "operand":{"name":"mev", "indir":2, "type":"Mevent", "scope":"_global/shell_out_handler","kind":"parameter"}}
 {"op":"insert", "operand":{"name":"s", "indir":2, "type":"Str", "scope":"_global/shell_out_handler", "kind":"variable"}}
 {"op":"insert", "operand":{"name":"ret", "indir":1, "type":"Int", "scope":"_global/shell_out_handler", "kind":"variable"}}

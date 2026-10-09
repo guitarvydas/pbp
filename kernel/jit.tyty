@@ -38,7 +38,7 @@ defn probe_handler ≡ ~
 defn shell_out_handler ≡ ~
 (
     eh ≡ @Part,
-    tag ≡ Port,
+    cmd ≡ Port,
     mev ≡ @Mevent
 )
 {
