@@ -188,6 +188,8 @@ defn maybe_stringconcat (eh, inst, mev) {
 
 ⌈⌉
 
+defvar projectRoot ⇐ “.”
+
 defn string_constant_instantiate (reg, owner, name, template_data, arg) {
     global projectRoot
     name_with_id ≡ gensymbol (“strconst”)

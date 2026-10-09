@@ -1,4 +1,13 @@
 #line 1
+defn clone_string ≡ @Str
+(
+    s ≡ @Str
+)
+{
+                                                       #line 1
+        return  s                                      #line 2#line 3#line 4
+}
+
 defn trash_instantiate ≡ @Leaf
 (
     reg ≡ @Component_Registry,
@@ -253,6 +262,7 @@ defn maybe_stringconcat ≡ ~
 }
 
                                                        #line 185#line 186
+defvar  projectRoot ≡ @Str                                  #line 191#line 192
 defn string_constant_instantiate ≡ @Leaf
 (
     reg ≡ @Component_Registry,
@@ -262,7 +272,15 @@ defn string_constant_instantiate ≡ @Leaf
     arg ≡ Ignored
 )
 {
-                                                       #line 187#line 195#line 196
+                                                       #line 191
+        projectRoot  ≡ [_global,projectRoot]           #line 192
+        name_with_id ≡ @Str
+        s ≡ @Str                                           #line 194
+        if  projectRoot!= "" {
+                                                       #line 195
+            s ≡ @Str                                       #line 197
+        }
+        return make_leaf ( name_with_id, owner, s, "", string_constant_handler, None)#line 198#line 199#line 200
 }
 
 defn string_constant_handler ≡ ~

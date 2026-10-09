@@ -325,6 +325,7 @@ defn maybe_stringconcat ≡
 }
 
                                                        #line 189#line 190
+defvar  projectRoot ≡                                  #line 191#line 192
 defn string_constant_instantiate ≡
 (
     reg ≡ ,
@@ -334,15 +335,15 @@ defn string_constant_instantiate ≡
     arg ≡
 )
 {
-                                                       #line 191
-        projectRoot  ≡ [_global,projectRoot]           #line 192
+                                                       #line 193
+        projectRoot  ≡ [_global,projectRoot]           #line 194
         name_with_id ≡
-        s ≡                                            #line 194
+        s ≡                                            #line 196
         if  projectRoot!= "" {
-                                                       #line 195
-            s ≡                                        #line 197
+                                                       #line 197
+            s ≡                                        #line 199
         }
-        return make_leaf ( name_with_id, owner, s, "", string_constant_handler, None)#line 198#line 199#line 200
+        return make_leaf ( name_with_id, owner, s, "", string_constant_handler, None)#line 200#line 201#line 202
 }
 
 defn string_constant_handler ≡
@@ -351,8 +352,8 @@ defn string_constant_handler ≡
     mev ≡
 )
 {
-                                                       #line 201
-        s ≡                                            #line 202#line 204#line 205
+                                                       #line 203
+        s ≡                                            #line 204#line 206#line 207
 }
 
 defn fakepipename_instantiate ≡
@@ -364,36 +365,36 @@ defn fakepipename_instantiate ≡
     arg ≡
 )
 {
-                                                       #line 206
+                                                       #line 208
         instance_name ≡
-        return make_leaf ( instance_name, owner, None, "", fakepipename_handler, None)#line 208#line 209#line 210
+        return make_leaf ( instance_name, owner, None, "", fakepipename_handler, None)#line 210#line 211#line 212
 }
 
-defvar  rand ≡                                         #line 211#line 212
+defvar  rand ≡                                         #line 213#line 214
 defn fakepipename_handler ≡
 (
     eh ≡ ,
     mev ≡
 )
 {
-                                                       #line 213
-        rand  ≡ [_global,rand]                         #line 214
-        rand ≡                                         #line 215#line 217#line 218
+                                                       #line 215
+        rand  ≡ [_global,rand]                         #line 216
+        rand ≡                                         #line 217#line 219#line 220
 }
-                                                       #line 219
+                                                       #line 221
 defobj Switch1star_Instance_Data {
-                                                       #line 220
-    state ≡                                            #line 221#line 222
+                                                       #line 222
+    state ≡                                            #line 223#line 224
 }
-                                                       #line 223
+                                                       #line 225
 defn switch1star_reset_handler ≡
 (
     eh ≡
 )
 {
-                                                       #line 224
-        inst ≡                                         #line 225
-        inst ≡                                         #line 227#line 228
+                                                       #line 226
+        inst ≡                                         #line 227
+        inst ≡                                         #line 229#line 230
 }
 
 defn switch1star_instantiate ≡
@@ -405,10 +406,10 @@ defn switch1star_instantiate ≡
     arg ≡
 )
 {
-                                                       #line 229
+                                                       #line 231
         name_with_id ≡
         instp ≡
-        return make_leaf ( name_with_id, owner, instp, "", switch1star_handler, switch1star_reset_handler)#line 232#line 233#line 234
+        return make_leaf ( name_with_id, owner, instp, "", switch1star_handler, switch1star_reset_handler)#line 234#line 235#line 236
 }
 
 defn switch1star_handler ≡
@@ -417,42 +418,42 @@ defn switch1star_handler ≡
     mev ≡
 )
 {
-                                                       #line 235
-        inst ≡                                         #line 236
-        whichOutput ≡                                  #line 237
+                                                       #line 237
+        inst ≡                                         #line 238
+        whichOutput ≡                                  #line 239
         if  "" ==  mev.port {
-                                                       #line 238
+                                                       #line 240
             if  "1" ==  whichOutput {
-                                                       #line 239
+                                                       #line 241
             }
             elif  "*" ==  whichOutput
-            {                                          #line 242
+            {                                          #line 244
             }
             else
-            {                                          #line 244#line 246
+            {                                          #line 246#line 248
             }
         }
         elif  "reset" ==  mev.port
-        {                                              #line 247
+        {                                              #line 249
 
         }
         else
-        {                                              #line 249#line 251
-        }                                              #line 252#line 253
+        {                                              #line 251#line 253
+        }                                              #line 254#line 255
 }
 
 defobj StringAccumulator {
-                                                       #line 254
-    s ≡                                                #line 255#line 256
+                                                       #line 256
+    s ≡                                                #line 257#line 258
 }
-                                                       #line 257
+                                                       #line 259
 defn strcatstar_reset_handler ≡
 (
     eh ≡
 )
 {
-                                                       #line 258
-                                                       #line 261
+                                                       #line 260
+                                                       #line 263
 }
 
 defn strcatstar_instantiate ≡
@@ -464,10 +465,10 @@ defn strcatstar_instantiate ≡
     arg ≡
 )
 {
-                                                       #line 262
+                                                       #line 264
         name_with_id ≡
         instp ≡
-        return make_leaf ( name_with_id, owner, instp, "", strcatstar_handler, strcatstar_reset_handler)#line 265#line 266#line 267
+        return make_leaf ( name_with_id, owner, instp, "", strcatstar_handler, strcatstar_reset_handler)#line 267#line 268#line 269
 }
 
 defn strcatstar_handler ≡
@@ -476,18 +477,18 @@ defn strcatstar_handler ≡
     mev ≡
 )
 {
-                                                       #line 268
-        accum ≡                                        #line 269
-        if  "" ==  mev.port {
                                                        #line 270
+        accum ≡                                        #line 271
+        if  "" ==  mev.port {
+                                                       #line 272
 
         }
         elif  "fini" ==  mev.port
-        {                                              #line 272
+        {                                              #line 274
         }
         else
-        {                                              #line 274#line 276
-        }                                              #line 277#line 278
+        {                                              #line 276#line 278
+        }                                              #line 279#line 280
 }
 
 defn stop_instantiate ≡
@@ -499,10 +500,10 @@ defn stop_instantiate ≡
     arg ≡
 )
 {
-                                                       #line 279
+                                                       #line 281
         name_with_id ≡
-        inst ≡                                         #line 281
-        return make_leaf ( name_with_id, owner, inst, "", stop_handler, None)#line 282#line 283#line 284
+        inst ≡                                         #line 283
+        return make_leaf ( name_with_id, owner, inst, "", stop_handler, None)#line 284#line 285#line 286
 }
 
 defn stop_handler ≡
@@ -511,18 +512,18 @@ defn stop_handler ≡
     mev ≡
 )
 {
-                                                       #line 285
-        inst ≡                                         #line 286
-        parent ≡                                       #line 287
-        s ≡                                            #line 293#line 294
+                                                       #line 287
+        inst ≡                                         #line 288
+        parent ≡                                       #line 289
+        s ≡                                            #line 295#line 296
 }
 
-                                                       #line 295
-                                                       #line 296#line 297
+                                                       #line 297
+                                                       #line 298#line 299
 defn initialize_stock_components ≡
 (
     reg ≡
 )
 {
-                                                       #line 298#line 315#line 316
+                                                       #line 300#line 317#line 318
 }

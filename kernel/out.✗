@@ -1,4 +1,4 @@
-can't find "clone_string" in "_global"
+can't find "rand" in "_global/fakepipename_handler"
 
 grammar = "emit
 "

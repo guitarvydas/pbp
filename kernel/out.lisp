@@ -241,150 +241,151 @@
         (setf (slot-value  inst 'buffer2)  nil)             #|line 185|#) #|line 186|#
       ))                                                    #|line 187|#
   ) #|  |#                                                  #|line 189|# #|line 190|#
+(defparameter projectRoot  ".")                             #|line 191|# #|line 192|#
 (defun string_constant_instantiate (&optional  reg  owner  name  template_data  arg)
-  (declare (ignorable  reg  owner  name  template_data  arg)) #|line 191|# #|line 192|#
-  (let ((name_with_id (funcall (quote gensymbol)   "strconst"  #|line 193|#)))
+  (declare (ignorable  reg  owner  name  template_data  arg)) #|line 193|# #|line 194|#
+  (let ((name_with_id (funcall (quote gensymbol)   "strconst"  #|line 195|#)))
     (declare (ignorable name_with_id))
     (let (( s  template_data))
-      (declare (ignorable  s))                              #|line 194|#
+      (declare (ignorable  s))                              #|line 196|#
       (cond
-        ((not (equal   projectRoot  ""))                    #|line 195|#
-          (setf  s (substitute  "_00_"  projectRoot  s)     #|line 196|#) #|line 197|#
+        ((not (equal   projectRoot  ""))                    #|line 197|#
+          (setf  s (substitute  "_00_"  projectRoot  s)     #|line 198|#) #|line 199|#
           ))
-      (return-from string_constant_instantiate (funcall (quote make_leaf)   name_with_id  owner  s  ""  #'string_constant_handler  nil  #|line 198|#)))) #|line 199|#
+      (return-from string_constant_instantiate (funcall (quote make_leaf)   name_with_id  owner  s  ""  #'string_constant_handler  nil  #|line 200|#)))) #|line 201|#
   )
 (defun string_constant_handler (&optional  eh  mev)
-  (declare (ignorable  eh  mev))                            #|line 201|#
+  (declare (ignorable  eh  mev))                            #|line 203|#
   (let ((s (slot-value  eh 'instance_data)))
-    (declare (ignorable s))                                 #|line 202|#
-    (funcall (quote send)   eh  ""  s  mev                  #|line 203|#)) #|line 204|#
+    (declare (ignorable s))                                 #|line 204|#
+    (funcall (quote send)   eh  ""  s  mev                  #|line 205|#)) #|line 206|#
   )
 (defun fakepipename_instantiate (&optional  reg  owner  name  template_data  arg)
-  (declare (ignorable  reg  owner  name  template_data  arg)) #|line 206|#
-  (let ((instance_name (funcall (quote gensymbol)   "fakepipe"  #|line 207|#)))
+  (declare (ignorable  reg  owner  name  template_data  arg)) #|line 208|#
+  (let ((instance_name (funcall (quote gensymbol)   "fakepipe"  #|line 209|#)))
     (declare (ignorable instance_name))
-    (return-from fakepipename_instantiate (funcall (quote make_leaf)   instance_name  owner  nil  ""  #'fakepipename_handler  nil  #|line 208|#))) #|line 209|#
+    (return-from fakepipename_instantiate (funcall (quote make_leaf)   instance_name  owner  nil  ""  #'fakepipename_handler  nil  #|line 210|#))) #|line 211|#
   )
-(defparameter rand  0)                                      #|line 211|# #|line 212|#
+(defparameter rand  0)                                      #|line 213|# #|line 214|#
 (defun fakepipename_handler (&optional  eh  mev)
-  (declare (ignorable  eh  mev))                            #|line 213|# #|line 214|#
+  (declare (ignorable  eh  mev))                            #|line 215|# #|line 216|#
   (setf  rand (+  rand  1))
-  #|  not very random, but good enough _ ;rand' must be unique within a single run |# #|line 215|#
-  (funcall (quote send)   eh  ""  (concatenate 'string  "/tmp/fakepipe"  rand)  mev  #|line 216|#) #|line 217|#
-  )                                                         #|line 219|#
-(defclass Switch1star_Instance_Data ()                      #|line 220|#
+  #|  not very random, but good enough _ ;rand' must be unique within a single run |# #|line 217|#
+  (funcall (quote send)   eh  ""  (concatenate 'string  "/tmp/fakepipe"  rand)  mev  #|line 218|#) #|line 219|#
+  )                                                         #|line 221|#
+(defclass Switch1star_Instance_Data ()                      #|line 222|#
   (
-    (state :accessor state :initarg :state :initform  "1")  #|line 221|#)) #|line 222|#
+    (state :accessor state :initarg :state :initform  "1")  #|line 223|#)) #|line 224|#
 
-                                                            #|line 223|#
+                                                            #|line 225|#
 (defun switch1star_reset_handler (&optional  eh)
-  (declare (ignorable  eh))                                 #|line 224|#
+  (declare (ignorable  eh))                                 #|line 226|#
   (let (( inst (slot-value  eh 'instance_data)))
-    (declare (ignorable  inst))                             #|line 225|#
-    (setf  inst  (make-instance 'Switch1star_Instance_Data) #|line 226|#)) #|line 227|#
+    (declare (ignorable  inst))                             #|line 227|#
+    (setf  inst  (make-instance 'Switch1star_Instance_Data) #|line 228|#)) #|line 229|#
   )
 (defun switch1star_instantiate (&optional  reg  owner  name  template_data  arg)
-  (declare (ignorable  reg  owner  name  template_data  arg)) #|line 229|#
-  (let ((name_with_id (funcall (quote gensymbol)   "switch1*"  #|line 230|#)))
+  (declare (ignorable  reg  owner  name  template_data  arg)) #|line 231|#
+  (let ((name_with_id (funcall (quote gensymbol)   "switch1*"  #|line 232|#)))
     (declare (ignorable name_with_id))
-    (let ((instp  (make-instance 'Switch1star_Instance_Data) #|line 231|#))
+    (let ((instp  (make-instance 'Switch1star_Instance_Data) #|line 233|#))
       (declare (ignorable instp))
-      (return-from switch1star_instantiate (funcall (quote make_leaf)   name_with_id  owner  instp  ""  #'switch1star_handler  #'switch1star_reset_handler  #|line 232|#)))) #|line 233|#
+      (return-from switch1star_instantiate (funcall (quote make_leaf)   name_with_id  owner  instp  ""  #'switch1star_handler  #'switch1star_reset_handler  #|line 234|#)))) #|line 235|#
   )
 (defun switch1star_handler (&optional  eh  mev)
-  (declare (ignorable  eh  mev))                            #|line 235|#
+  (declare (ignorable  eh  mev))                            #|line 237|#
   (let (( inst (slot-value  eh 'instance_data)))
-    (declare (ignorable  inst))                             #|line 236|#
+    (declare (ignorable  inst))                             #|line 238|#
     (let ((whichOutput (slot-value  inst 'state)))
-      (declare (ignorable whichOutput))                     #|line 237|#
+      (declare (ignorable whichOutput))                     #|line 239|#
       (cond
-        (( equal    "" (slot-value  mev 'port))             #|line 238|#
+        (( equal    "" (slot-value  mev 'port))             #|line 240|#
           (cond
-            (( equal    "1"  whichOutput)                   #|line 239|#
-              (funcall (quote forward)   eh  "1"  mev       #|line 240|#)
-              (setf (slot-value  inst 'state)  "*")         #|line 241|#
+            (( equal    "1"  whichOutput)                   #|line 241|#
+              (funcall (quote forward)   eh  "1"  mev       #|line 242|#)
+              (setf (slot-value  inst 'state)  "*")         #|line 243|#
               )
-            (( equal    "*"  whichOutput)                   #|line 242|#
-              (funcall (quote forward)   eh  "*"  mev       #|line 243|#)
+            (( equal    "*"  whichOutput)                   #|line 244|#
+              (funcall (quote forward)   eh  "*"  mev       #|line 245|#)
               )
-            (t                                              #|line 244|#
-              (funcall (quote send)   eh  "✗"  "internal error bad state in switch1*"  mev  #|line 245|#) #|line 246|#
+            (t                                              #|line 246|#
+              (funcall (quote send)   eh  "✗"  "internal error bad state in switch1*"  mev  #|line 247|#) #|line 248|#
               ))
           )
-        (( equal    "reset" (slot-value  mev 'port))        #|line 247|#
-          (setf (slot-value  inst 'state)  "1")             #|line 248|#
+        (( equal    "reset" (slot-value  mev 'port))        #|line 249|#
+          (setf (slot-value  inst 'state)  "1")             #|line 250|#
           )
-        (t                                                  #|line 249|#
-          (funcall (quote send)   eh  "✗"  "internal error bad mevent for switch1*"  mev  #|line 250|#) #|line 251|#
-          ))))                                              #|line 252|#
+        (t                                                  #|line 251|#
+          (funcall (quote send)   eh  "✗"  "internal error bad mevent for switch1*"  mev  #|line 252|#) #|line 253|#
+          ))))                                              #|line 254|#
   )
-(defclass StringAccumulator ()                              #|line 254|#
+(defclass StringAccumulator ()                              #|line 256|#
   (
-    (s :accessor s :initarg :s :initform  "")               #|line 255|#)) #|line 256|#
+    (s :accessor s :initarg :s :initform  "")               #|line 257|#)) #|line 258|#
 
-                                                            #|line 257|#
+                                                            #|line 259|#
 (defun strcatstar_reset_handler (&optional  eh)
-  (declare (ignorable  eh))                                 #|line 258|#
-  (setf (slot-value  eh 'instance_data)  (make-instance 'StringAccumulator) #|line 259|#) #|line 260|#
+  (declare (ignorable  eh))                                 #|line 260|#
+  (setf (slot-value  eh 'instance_data)  (make-instance 'StringAccumulator) #|line 261|#) #|line 262|#
   )
 (defun strcatstar_instantiate (&optional  reg  owner  name  template_data  arg)
-  (declare (ignorable  reg  owner  name  template_data  arg)) #|line 262|#
-  (let ((name_with_id (funcall (quote gensymbol)   "String Concat *"  #|line 263|#)))
+  (declare (ignorable  reg  owner  name  template_data  arg)) #|line 264|#
+  (let ((name_with_id (funcall (quote gensymbol)   "String Concat *"  #|line 265|#)))
     (declare (ignorable name_with_id))
-    (let ((instp  (make-instance 'StringAccumulator)        #|line 264|#))
+    (let ((instp  (make-instance 'StringAccumulator)        #|line 266|#))
       (declare (ignorable instp))
-      (return-from strcatstar_instantiate (funcall (quote make_leaf)   name_with_id  owner  instp  ""  #'strcatstar_handler  #'strcatstar_reset_handler  #|line 265|#)))) #|line 266|#
+      (return-from strcatstar_instantiate (funcall (quote make_leaf)   name_with_id  owner  instp  ""  #'strcatstar_handler  #'strcatstar_reset_handler  #|line 267|#)))) #|line 268|#
   )
 (defun strcatstar_handler (&optional  eh  mev)
-  (declare (ignorable  eh  mev))                            #|line 268|#
+  (declare (ignorable  eh  mev))                            #|line 270|#
   (let (( accum (slot-value  eh 'instance_data)))
-    (declare (ignorable  accum))                            #|line 269|#
+    (declare (ignorable  accum))                            #|line 271|#
     (cond
-      (( equal    "" (slot-value  mev 'port))               #|line 270|#
-        (setf (slot-value  accum 's)  (concatenate 'string (slot-value  accum 's) (slot-value (slot-value  mev 'payload) 'v)) #|line 271|#)
+      (( equal    "" (slot-value  mev 'port))               #|line 272|#
+        (setf (slot-value  accum 's)  (concatenate 'string (slot-value  accum 's) (slot-value (slot-value  mev 'payload) 'v)) #|line 273|#)
         )
-      (( equal    "fini" (slot-value  mev 'port))           #|line 272|#
-        (funcall (quote send)   eh  "" (slot-value  accum 's)  mev  #|line 273|#)
+      (( equal    "fini" (slot-value  mev 'port))           #|line 274|#
+        (funcall (quote send)   eh  "" (slot-value  accum 's)  mev  #|line 275|#)
         )
-      (t                                                    #|line 274|#
-        (funcall (quote send)   eh  "✗"  "internal error bad mevent for String Concat *"  mev  #|line 275|#) #|line 276|#
-        )))                                                 #|line 277|#
+      (t                                                    #|line 276|#
+        (funcall (quote send)   eh  "✗"  "internal error bad mevent for String Concat *"  mev  #|line 277|#) #|line 278|#
+        )))                                                 #|line 279|#
   )
 (defun stop_instantiate (&optional  reg  owner  name  template_data  arg)
-  (declare (ignorable  reg  owner  name  template_data  arg)) #|line 279|#
-  (let ((name_with_id (funcall (quote gensymbol)   "Stop"   #|line 280|#)))
+  (declare (ignorable  reg  owner  name  template_data  arg)) #|line 281|#
+  (let ((name_with_id (funcall (quote gensymbol)   "Stop"   #|line 282|#)))
     (declare (ignorable name_with_id))
     (let ((inst  nil))
-      (declare (ignorable inst))                            #|line 281|#
-      (return-from stop_instantiate (funcall (quote make_leaf)   name_with_id  owner  inst  ""  #'stop_handler  nil  #|line 282|#)))) #|line 283|#
+      (declare (ignorable inst))                            #|line 283|#
+      (return-from stop_instantiate (funcall (quote make_leaf)   name_with_id  owner  inst  ""  #'stop_handler  nil  #|line 284|#)))) #|line 285|#
   )
 (defun stop_handler (&optional  eh  mev)
-  (declare (ignorable  eh  mev))                            #|line 285|#
+  (declare (ignorable  eh  mev))                            #|line 287|#
   (let (( inst (slot-value  eh 'instance_data)))
-    (declare (ignorable  inst))                             #|line 286|#
+    (declare (ignorable  inst))                             #|line 288|#
     (let (( parent (slot-value  eh 'owner)))
-      (declare (ignorable  parent))                         #|line 287|#
-      (let (( s  (concatenate 'string  "   !!! stopping: '"  (concatenate 'string (slot-value  parent 'name)  "'")) #|line 288|#))
+      (declare (ignorable  parent))                         #|line 289|#
+      (let (( s  (concatenate 'string  "   !!! stopping: '"  (concatenate 'string (slot-value  parent 'name)  "'")) #|line 290|#))
         (declare (ignorable  s))
-        (format *error-output* "~a~%"  s)                   #|line 289|#
+        (format *error-output* "~a~%"  s)                   #|line 291|#
         (format *error-output* "
-        ")                                                  #|line 290|#
-        (funcall (slot-value  parent 'reset)   parent       #|line 291|#)
-        (funcall (quote send)   eh  "" (slot-value (slot-value  mev 'payload) 'v)  mev  #|line 292|#)))) #|line 293|#
-  ) #|  all of the the built_in leaves are listed here |#   #|line 295|# #|  future: refactor this such that programmers can pick and choose which (lumps of) builtins are used in a specific project |# #|line 296|# #|line 297|#
+        ")                                                  #|line 292|#
+        (funcall (slot-value  parent 'reset)   parent       #|line 293|#)
+        (funcall (quote send)   eh  "" (slot-value (slot-value  mev 'payload) 'v)  mev  #|line 294|#)))) #|line 295|#
+  ) #|  all of the the built_in leaves are listed here |#   #|line 297|# #|  future: refactor this such that programmers can pick and choose which (lumps of) builtins are used in a specific project |# #|line 298|# #|line 299|#
 (defun initialize_stock_components (&optional  reg)
-  (declare (ignorable  reg))                                #|line 298|#
-  (funcall (quote register_component)   reg (funcall (quote mkTemplate)   "1then2"  nil  #'deracer_instantiate )  #|line 299|#)
-  (funcall (quote register_component)   reg (funcall (quote mkTemplate)   "1→2"  nil  #'deracer_instantiate )  #|line 300|#)
-  (funcall (quote register_component)   reg (funcall (quote mkTemplate)   "trash"  nil  #'trash_instantiate )  #|line 301|#)
-  (funcall (quote register_component)   reg (funcall (quote mkTemplate)   "🗑️"  nil  #'trash_instantiate )  #|line 302|#)
-  (funcall (quote register_component)   reg (funcall (quote mkTemplate)   "🚫"  nil  #'stop_instantiate )  #|line 303|#) #|line 304|# #|line 305|#
-  (funcall (quote register_component)   reg (funcall (quote mkTemplate)   "Read Text File"  nil  #'low_level_read_text_file_instantiate )  #|line 306|#)
-  (funcall (quote register_component)   reg (funcall (quote mkTemplate)   "Ensure String Datum"  nil  #'ensure_string_datum_instantiate )  #|line 307|#) #|line 308|#
-  (funcall (quote register_component)   reg (funcall (quote mkTemplate)   "syncfilewrite"  nil  #'syncfilewrite_instantiate )  #|line 309|#)
-  (funcall (quote register_component)   reg (funcall (quote mkTemplate)   "String Concat"  nil  #'stringconcat_instantiate )  #|line 310|#)
-  (funcall (quote register_component)   reg (funcall (quote mkTemplate)   "switch1*"  nil  #'switch1star_instantiate )  #|line 311|#)
-  (funcall (quote register_component)   reg (funcall (quote mkTemplate)   "String Concat *"  nil  #'strcatstar_instantiate )  #|line 312|#)
-  #|  for fakepipe |#                                       #|line 313|#
-  (funcall (quote register_component)   reg (funcall (quote mkTemplate)   "fakepipename"  nil  #'fakepipename_instantiate )  #|line 314|#) #|line 315|#
+  (declare (ignorable  reg))                                #|line 300|#
+  (funcall (quote register_component)   reg (funcall (quote mkTemplate)   "1then2"  nil  #'deracer_instantiate )  #|line 301|#)
+  (funcall (quote register_component)   reg (funcall (quote mkTemplate)   "1→2"  nil  #'deracer_instantiate )  #|line 302|#)
+  (funcall (quote register_component)   reg (funcall (quote mkTemplate)   "trash"  nil  #'trash_instantiate )  #|line 303|#)
+  (funcall (quote register_component)   reg (funcall (quote mkTemplate)   "🗑️"  nil  #'trash_instantiate )  #|line 304|#)
+  (funcall (quote register_component)   reg (funcall (quote mkTemplate)   "🚫"  nil  #'stop_instantiate )  #|line 305|#) #|line 306|# #|line 307|#
+  (funcall (quote register_component)   reg (funcall (quote mkTemplate)   "Read Text File"  nil  #'low_level_read_text_file_instantiate )  #|line 308|#)
+  (funcall (quote register_component)   reg (funcall (quote mkTemplate)   "Ensure String Datum"  nil  #'ensure_string_datum_instantiate )  #|line 309|#) #|line 310|#
+  (funcall (quote register_component)   reg (funcall (quote mkTemplate)   "syncfilewrite"  nil  #'syncfilewrite_instantiate )  #|line 311|#)
+  (funcall (quote register_component)   reg (funcall (quote mkTemplate)   "String Concat"  nil  #'stringconcat_instantiate )  #|line 312|#)
+  (funcall (quote register_component)   reg (funcall (quote mkTemplate)   "switch1*"  nil  #'switch1star_instantiate )  #|line 313|#)
+  (funcall (quote register_component)   reg (funcall (quote mkTemplate)   "String Concat *"  nil  #'strcatstar_instantiate )  #|line 314|#)
+  #|  for fakepipe |#                                       #|line 315|#
+  (funcall (quote register_component)   reg (funcall (quote mkTemplate)   "fakepipename"  nil  #'fakepipename_instantiate )  #|line 316|#) #|line 317|#
   )

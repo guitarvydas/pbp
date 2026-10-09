@@ -390,6 +390,9 @@
 {"op":"insert", "operand":{"name":"new_datum_bang", "indir":2, "type":"Datum", "kind":"retproc", "scope":"_global" }}
 {"op":"insert", "operand":{"name":"d", "indir":2, "type":"Datum", "scope":"_global/new_datum_bang", "kind":"variable"}}
 
+{"op":"newscope", "operand":"clone_string"}
+{"op":"insert", "operand":{"name":"clone_string", "indir":2, "type":"Str", "kind":"retproc", "scope":"_global" }}
+{"op":"insert", "operand":{"name":"s", "indir":2, "type":"Str", "scope":"_global/clone_string","kind":"parameter"}}
 {"op":"newscope", "operand":"trash_instantiate"}
 {"op":"insert", "operand":{"name":"trash_instantiate", "indir":2, "type":"Leaf", "kind":"retproc", "scope":"_global" }}
 {"op":"insert", "operand":{"name":"reg", "indir":2, "type":"Component_Registry", "scope":"_global/trash_instantiate","kind":"parameter"}}
@@ -513,6 +516,7 @@
 {"op":"insert", "operand":{"name":"mev", "indir":2, "type":"Mevent", "scope":"_global/maybe_stringconcat","kind":"parameter"}}
 {"op":"insert", "operand":{"name":"concatenated_string", "indir":2, "type":"Str", "scope":"_global/maybe_stringconcat", "kind":"variable"}}
 {"op":"insert", "operand":{"name":"concatenated_string", "indir":2, "type":"Str", "scope":"_global/maybe_stringconcat", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"projectRoot", "indir":2, "type":"Str", "scope":"_global", "kind":"variable"}}
 {"op":"newscope", "operand":"string_constant_instantiate"}
 {"op":"insert", "operand":{"name":"string_constant_instantiate", "indir":2, "type":"Leaf", "kind":"retproc", "scope":"_global" }}
 {"op":"insert", "operand":{"name":"reg", "indir":2, "type":"Component_Registry", "scope":"_global/string_constant_instantiate","kind":"parameter"}}
@@ -520,6 +524,10 @@
 {"op":"insert", "operand":{"name":"name", "indir":2, "type":"Str", "scope":"_global/string_constant_instantiate","kind":"parameter"}}
 {"op":"insert", "operand":{"name":"template_data", "indir":1, "type":"Ignored", "scope":"_global/string_constant_instantiate","kind":"parameter"}}
 {"op":"insert", "operand":{"name":"arg", "indir":1, "type":"Ignored", "scope":"_global/string_constant_instantiate","kind":"parameter"}}
+{"op":"insert", "operand":{"name":"projectRoot", "lookup":{"scope":"_global", "name":"projectRoot"}, "scope":"_global/string_constant_instantiate", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"name_with_id", "indir":2, "type":"Str", "scope":"_global/string_constant_instantiate", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"s", "indir":2, "type":"Str", "scope":"_global/string_constant_instantiate", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"s", "indir":2, "type":"Str", "scope":"_global/string_constant_instantiate", "kind":"variable"}}
 {"op":"newscope", "operand":"string_constant_handler"}
 {"op":"insert", "operand":{"name":"string_constant_handler", "indir":0, "type":"void", "kind":"proc", "scope":"_global" }}
 {"op":"insert", "operand":{"name":"eh", "indir":2, "type":"Leaf", "scope":"_global/string_constant_handler","kind":"parameter"}}
