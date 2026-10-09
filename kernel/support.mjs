@@ -92,7 +92,6 @@ function lookup (scope, ubid) {
     let id = rmub(ubid);
     let descriptor = sc[id];
     if (!descriptor) {
-	console.log ("%o", descriptor);
 	throw `can't find "${id}" in "${scope}"`;
     }
     if (descriptor.lookup) {
