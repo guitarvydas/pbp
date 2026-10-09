@@ -5,6 +5,7 @@ internalize {
     | "“" stringchar* "”" -- string
     | "\"" stringchar* "\"" -- dqstring
     | "⌈" commentchar* "⌉" -- comment
+    | "❲" wordchar+ "❳" -- word
     | id -- ident
     | ~"❲" ~"❳" any -- any
 
@@ -19,6 +20,10 @@ internalize {
     | "⌈" commentchar+ "⌉" -- rec
     | ~"⌈" ~"⌉" any -- other
 
+  wordchar =
+    | "❲" wordchar+ "❳" -- rec
+    | ~"❲" ~"❳" any -- other
+    
   id = (letter | "_") (letter | digit | "_")*
   dq = "\""
   nl = "\n"

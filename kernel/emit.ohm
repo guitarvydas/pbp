@@ -252,12 +252,12 @@ emit {
   lambda = ("λ" | kw<"%CE%BB">)
   phi = ("ϕ" | kw<"%CF%95">)
 
-  kw<s> = s ~idtail
-  xkw<s> = s ~idtail
-  ident  = ~keyword id1char id2char*
-  id1char = letter | "_" | "%"
-  id2char = alnum | "_" | "%"
-  idtail = id2char
+  kw<s> = "❲" s "❳"
+  xkw<s> = "❲" s "❳"
+  ident  = ~keyword "❲" idchar+ "❳"
+  idchar =
+    | "❲" idchar+ "❳" -- rec
+    | ~"❲" ~"❳" any -- other
 
   comment = "⌈" commentchar* "⌉"
   commentchar = 

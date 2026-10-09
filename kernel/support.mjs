@@ -52,8 +52,13 @@ function fetchscopeobject (scope) {
     return dict;
 }
 
+function rmub(s) {
+    // remove unicode brackets around idents (if any)
+    return s.replace("❲","").replace("❳","");
+}
+    
 function readtypetable (fname) {
-    const lines = fs.readFileSync(fname, "utf8").split("\n");
+    const lines = rmub(fs.readFileSync(fname, "utf8")).split("\n");
 
     for (const line of lines) {
 	if (line.trim() === "") continue;   // skip blank lines
@@ -82,15 +87,16 @@ function genscoperest (pname) {
     return `${rest.join('/')}`;
 }
 
-function lookup (scope, id) {
+function lookup (scope, ubid) {
     let sc = fetchscopeobject(scope);
+    let id = rmub(ubid);
     let descriptor = sc[id];
     if (!descriptor) {
 	console.log ("%o", descriptor);
 	throw `can't find "${id}" in "${scope}"`;
     }
     if (descriptor.lookup) {
-	return lookup (descriptor.lookup.scope, descriptor.lookup.name);
+	return lookup (rmub(descriptor.lookup.scope), rmub(descriptor.lookup.name));
     } else {
 	return descriptor;
     }
@@ -99,13 +105,13 @@ function lookup (scope, id) {
 
 function getdeclaration(n, scope, id) {
     pbplog (`getdeclaration(${n}, "${scope}", "${id}")`);
-    let desc = lookup (scope, id);
+    let desc = lookup (rmub(scope), rmub(id));
     return `void* ${id}`;
 }
 
 function getmaybederef(deref, scope, id) {
     pbplog (`getmaybederef(${deref}, "${scope}", "${id}")`);
-    let desc = lookup (scope, id);
+    let desc = lookup (rmub(scope), rmub(id));
     if (deref === "⊥") {
 	return id;
     } else {

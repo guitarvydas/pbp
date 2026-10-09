@@ -8,3 +8,4 @@ tmp*
 *.bkp
 _.py
 __pycache__/
+temp.*
