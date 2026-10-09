@@ -314,7 +314,9 @@ defn fakepipename_handler ≡ ~
     mev ≡ @Mevent
 )
 {
-                                                       #line 209#line 213#line 214
+                                                       #line 215
+        rand  ≡ [_global,rand]                         #line 216
+        rand ≡                                         #line 217#line 219#line 220
 }
                                                        #line 215
 defobj Switch1star_Instance_Data {

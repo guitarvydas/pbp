@@ -222,133 +222,134 @@ void* maybe_stringconcat (void* eh,void* inst,void* mev) {
         (*inst).buffer2 =  NULL;                       /* line 185 */;/* line 186 *//* line 187 *//* line 188 */}
 
 /*  */                                                 /* line 189 *//* line 190 */
+void* projectRoot =  "."                               /* line 191 */;/* line 192 */
 void* string_constant_instantiate (void* reg,void* owner,void* name,void* template_data,void* arg) {
-                                                       /* line 191 */
-    static projectRoot                                 /* line 192 */
-    name_with_id = gensymbol ( "strconst")             /* line 193 */
-    s =  template_data                                 /* line 194 */
-    if  projectRoot!= "":                              /* line 195 */
-        s = re.sub ( "_00_",  projectRoot,  s)         /* line 196 */;/* line 197 */
-    return (make_leaf ( name_with_id, owner, s, "", string_constant_handler, NULL)/* line 198 */)/* line 199 *//* line 200 */}
+                                                       /* line 193 */
+    static projectRoot                                 /* line 194 */
+    name_with_id = gensymbol ( "strconst")             /* line 195 */
+    s =  template_data                                 /* line 196 */
+    if  projectRoot!= "":                              /* line 197 */
+        s = re.sub ( "_00_",  projectRoot,  s)         /* line 198 */;/* line 199 */
+    return (make_leaf ( name_with_id, owner, s, "", string_constant_handler, NULL)/* line 200 */)/* line 201 *//* line 202 */}
 
 void* string_constant_handler (void* eh,void* mev) {
-                                                       /* line 201 */
-    s =   (*eh).instance_data                          /* line 202 */
-    send ( eh, "", s, mev)                             /* line 203 *//* line 204 *//* line 205 */}
+                                                       /* line 203 */
+    s =   (*eh).instance_data                          /* line 204 */
+    send ( eh, "", s, mev)                             /* line 205 *//* line 206 *//* line 207 */}
 
 void* fakepipename_instantiate (void* reg,void* owner,void* name,void* template_data,void* arg) {
-                                                       /* line 206 */
-    instance_name = gensymbol ( "fakepipe")            /* line 207 */
-    return (make_leaf ( instance_name, owner, NULL, "", fakepipename_handler, NULL)/* line 208 */)/* line 209 *//* line 210 */}
+                                                       /* line 208 */
+    instance_name = gensymbol ( "fakepipe")            /* line 209 */
+    return (make_leaf ( instance_name, owner, NULL, "", fakepipename_handler, NULL)/* line 210 */)/* line 211 *//* line 212 */}
 
-void*  rand =  0                                       /* line 211 */;/* line 212 */
+void* rand =  0                                        /* line 213 */;/* line 214 */
 void* fakepipename_handler (void* eh,void* mev) {
-                                                       /* line 213 */
-    static rand                                        /* line 214 */
+                                                       /* line 215 */
+    static rand                                        /* line 216 */
     rand =  rand+ 1
-    /*  not very random, but good enough _ ;rand' must be unique within a single run *//* line 215 */
-    send ( eh, "", str( "/tmp/fakepipe") +  rand , mev)/* line 216 */;/* line 217 *//* line 218 */}
-                                                       /* line 219 */
+    /*  not very random, but good enough _ ;rand' must be unique within a single run *//* line 217 */
+    send ( eh, "", str( "/tmp/fakepipe") +  rand , mev)/* line 218 */;/* line 219 *//* line 220 */}
+                                                       /* line 221 */
 typedef struct _Switch1star_Instance_Data {
-                                                       /* line 220 */
-    state;                                             /* line 221 *//* line 222 */
+                                                       /* line 222 */
+    state;                                             /* line 223 *//* line 224 */
 } Switch1star_Instance_Data;
 Switch1star_Instance_Data fresh_Switch1star_Instance_Data () {
     Switch1star_Instance_Data *self;
     self = (Mevent*)malloc(sizeof(Mevent));
-    self->state =  "1";                                /* line 221 *//* line 222 */
+    self->state =  "1";                                /* line 223 *//* line 224 */
     return self;
 }
-                                                       /* line 223 */
+                                                       /* line 225 */
 void* switch1star_reset_handler (void* eh) {
-                                                       /* line 224 */
-    inst =   (*eh).instance_data                       /* line 225 */
-    inst =  Switch1star_Instance_Data ()               /* line 226 */;/* line 227 *//* line 228 */}
+                                                       /* line 226 */
+    inst =   (*eh).instance_data                       /* line 227 */
+    inst =  Switch1star_Instance_Data ()               /* line 228 */;/* line 229 *//* line 230 */}
 
 void* switch1star_instantiate (void* reg,void* owner,void* name,void* template_data,void* arg) {
-                                                       /* line 229 */
-    name_with_id = gensymbol ( "switch1*")             /* line 230 */
-    instp =  Switch1star_Instance_Data ()              /* line 231 */
-    return (make_leaf ( name_with_id, owner, instp, "", switch1star_handler, switch1star_reset_handler)/* line 232 */)/* line 233 *//* line 234 */}
+                                                       /* line 231 */
+    name_with_id = gensymbol ( "switch1*")             /* line 232 */
+    instp =  Switch1star_Instance_Data ()              /* line 233 */
+    return (make_leaf ( name_with_id, owner, instp, "", switch1star_handler, switch1star_reset_handler)/* line 234 */)/* line 235 *//* line 236 */}
 
 void* switch1star_handler (void* eh,void* mev) {
-                                                       /* line 235 */
-    inst =   (*eh).instance_data                       /* line 236 */
-    whichOutput =   (*inst).state                      /* line 237 */
-    if  "" ==   (*mev).port:                           /* line 238 */
-        if  "1" ==  whichOutput:                       /* line 239 */
-            forward ( eh, "1", mev)                    /* line 240 */
-            (*inst).state =  "*";                      /* line 241 */
-        elif  "*" ==  whichOutput:                     /* line 242 */
-            forward ( eh, "*", mev)                    /* line 243 */
-        else:                                          /* line 244 */
-            send ( eh, "✗", "internal error bad state in switch1*", mev)/* line 245 *//* line 246 */
-    elif  "reset" ==   (*mev).port:                    /* line 247 */
-        (*inst).state =  "1";                          /* line 248 */
-    else:                                              /* line 249 */
-        send ( eh, "✗", "internal error bad mevent for switch1*", mev)/* line 250 *//* line 251 *//* line 252 *//* line 253 */}
+                                                       /* line 237 */
+    inst =   (*eh).instance_data                       /* line 238 */
+    whichOutput =   (*inst).state                      /* line 239 */
+    if  "" ==   (*mev).port:                           /* line 240 */
+        if  "1" ==  whichOutput:                       /* line 241 */
+            forward ( eh, "1", mev)                    /* line 242 */
+            (*inst).state =  "*";                      /* line 243 */
+        elif  "*" ==  whichOutput:                     /* line 244 */
+            forward ( eh, "*", mev)                    /* line 245 */
+        else:                                          /* line 246 */
+            send ( eh, "✗", "internal error bad state in switch1*", mev)/* line 247 *//* line 248 */
+    elif  "reset" ==   (*mev).port:                    /* line 249 */
+        (*inst).state =  "1";                          /* line 250 */
+    else:                                              /* line 251 */
+        send ( eh, "✗", "internal error bad mevent for switch1*", mev)/* line 252 *//* line 253 *//* line 254 *//* line 255 */}
 
 typedef struct _StringAccumulator {
-                                                       /* line 254 */
-    s;                                                 /* line 255 *//* line 256 */
+                                                       /* line 256 */
+    s;                                                 /* line 257 *//* line 258 */
 } StringAccumulator;
 StringAccumulator fresh_StringAccumulator () {
     StringAccumulator *self;
     self = (Mevent*)malloc(sizeof(Mevent));
-    self->s =  "";                                     /* line 255 *//* line 256 */
+    self->s =  "";                                     /* line 257 *//* line 258 */
     return self;
 }
-                                                       /* line 257 */
+                                                       /* line 259 */
 void* strcatstar_reset_handler (void* eh) {
-                                                       /* line 258 */
-    (*eh).instance_data =  StringAccumulator ()        /* line 259 */;/* line 260 *//* line 261 */}
+                                                       /* line 260 */
+    (*eh).instance_data =  StringAccumulator ()        /* line 261 */;/* line 262 *//* line 263 */}
 
 void* strcatstar_instantiate (void* reg,void* owner,void* name,void* template_data,void* arg) {
-                                                       /* line 262 */
-    name_with_id = gensymbol ( "String Concat *")      /* line 263 */
-    instp =  StringAccumulator ()                      /* line 264 */
-    return (make_leaf ( name_with_id, owner, instp, "", strcatstar_handler, strcatstar_reset_handler)/* line 265 */)/* line 266 *//* line 267 */}
+                                                       /* line 264 */
+    name_with_id = gensymbol ( "String Concat *")      /* line 265 */
+    instp =  StringAccumulator ()                      /* line 266 */
+    return (make_leaf ( name_with_id, owner, instp, "", strcatstar_handler, strcatstar_reset_handler)/* line 267 */)/* line 268 *//* line 269 */}
 
 void* strcatstar_handler (void* eh,void* mev) {
-                                                       /* line 268 */
-    accum =   (*eh).instance_data                      /* line 269 */
-    if  "" ==   (*mev).port:                           /* line 270 */
-        (*accum).s =  str(  (*accum).s) +    (*mev).payload.v /* line 271 */;
-    elif  "fini" ==   (*mev).port:                     /* line 272 */
-        send ( eh, "",  (*accum).s, mev)               /* line 273 */
-    else:                                              /* line 274 */
-        send ( eh, "✗", "internal error bad mevent for String Concat *", mev)/* line 275 *//* line 276 *//* line 277 *//* line 278 */}
+                                                       /* line 270 */
+    accum =   (*eh).instance_data                      /* line 271 */
+    if  "" ==   (*mev).port:                           /* line 272 */
+        (*accum).s =  str(  (*accum).s) +    (*mev).payload.v /* line 273 */;
+    elif  "fini" ==   (*mev).port:                     /* line 274 */
+        send ( eh, "",  (*accum).s, mev)               /* line 275 */
+    else:                                              /* line 276 */
+        send ( eh, "✗", "internal error bad mevent for String Concat *", mev)/* line 277 *//* line 278 *//* line 279 *//* line 280 */}
 
 void* stop_instantiate (void* reg,void* owner,void* name,void* template_data,void* arg) {
-                                                       /* line 279 */
-    name_with_id = gensymbol ( "Stop")                 /* line 280 */
-    inst =  NULL                                       /* line 281 */
-    return (make_leaf ( name_with_id, owner, inst, "", stop_handler, NULL)/* line 282 */)/* line 283 *//* line 284 */}
+                                                       /* line 281 */
+    name_with_id = gensymbol ( "Stop")                 /* line 282 */
+    inst =  NULL                                       /* line 283 */
+    return (make_leaf ( name_with_id, owner, inst, "", stop_handler, NULL)/* line 284 */)/* line 285 *//* line 286 */}
 
 void* stop_handler (void* eh,void* mev) {
-                                                       /* line 285 */
-    inst =   (*eh).instance_data                       /* line 286 */
-    parent =   (*eh).owner                             /* line 287 */
-    s =  str( "   !!! stopping: '") +  str(  (*parent).name) +  "'"  /* line 288 */
-    external print ( s, file=sys.stderr)               /* line 289 */
-    external                                           /* line 290 */
-    (*parent).reset ( parent)                          /* line 291 */
-    send ( eh, "",   (*mev).payload.v, mev)            /* line 292 *//* line 293 *//* line 294 */}
+                                                       /* line 287 */
+    inst =   (*eh).instance_data                       /* line 288 */
+    parent =   (*eh).owner                             /* line 289 */
+    s =  str( "   !!! stopping: '") +  str(  (*parent).name) +  "'"  /* line 290 */
+    external print ( s, file=sys.stderr)               /* line 291 */
+    external                                           /* line 292 */
+    (*parent).reset ( parent)                          /* line 293 */
+    send ( eh, "",   (*mev).payload.v, mev)            /* line 294 *//* line 295 *//* line 296 */}
 
-/*  all of the the built_in leaves are listed here */  /* line 295 */
-/*  future: refactor this such that programmers can pick and choose which (lumps of) builtins are used in a specific project *//* line 296 *//* line 297 */
+/*  all of the the built_in leaves are listed here */  /* line 297 */
+/*  future: refactor this such that programmers can pick and choose which (lumps of) builtins are used in a specific project *//* line 298 *//* line 299 */
 void* initialize_stock_components (void* reg) {
-                                                       /* line 298 */
-    register_component ( reg,mkTemplate ( "1then2", NULL, deracer_instantiate))/* line 299 */
-    register_component ( reg,mkTemplate ( "1→2", NULL, deracer_instantiate))/* line 300 */
-    register_component ( reg,mkTemplate ( "trash", NULL, trash_instantiate))/* line 301 */
-    register_component ( reg,mkTemplate ( "🗑️", NULL, trash_instantiate))/* line 302 */
-    register_component ( reg,mkTemplate ( "🚫", NULL, stop_instantiate))/* line 303 *//* line 304 *//* line 305 */
-    register_component ( reg,mkTemplate ( "Read Text File", NULL, low_level_read_text_file_instantiate))/* line 306 */
-    register_component ( reg,mkTemplate ( "Ensure String Datum", NULL, ensure_string_datum_instantiate))/* line 307 *//* line 308 */
-    register_component ( reg,mkTemplate ( "syncfilewrite", NULL, syncfilewrite_instantiate))/* line 309 */
-    register_component ( reg,mkTemplate ( "String Concat", NULL, stringconcat_instantiate))/* line 310 */
-    register_component ( reg,mkTemplate ( "switch1*", NULL, switch1star_instantiate))/* line 311 */
-    register_component ( reg,mkTemplate ( "String Concat *", NULL, strcatstar_instantiate))/* line 312 */
-    /*  for fakepipe */                                /* line 313 */
-    register_component ( reg,mkTemplate ( "fakepipename", NULL, fakepipename_instantiate))/* line 314 *//* line 315 *//* line 316 */}
+                                                       /* line 300 */
+    register_component ( reg,mkTemplate ( "1then2", NULL, deracer_instantiate))/* line 301 */
+    register_component ( reg,mkTemplate ( "1→2", NULL, deracer_instantiate))/* line 302 */
+    register_component ( reg,mkTemplate ( "trash", NULL, trash_instantiate))/* line 303 */
+    register_component ( reg,mkTemplate ( "🗑️", NULL, trash_instantiate))/* line 304 */
+    register_component ( reg,mkTemplate ( "🚫", NULL, stop_instantiate))/* line 305 *//* line 306 *//* line 307 */
+    register_component ( reg,mkTemplate ( "Read Text File", NULL, low_level_read_text_file_instantiate))/* line 308 */
+    register_component ( reg,mkTemplate ( "Ensure String Datum", NULL, ensure_string_datum_instantiate))/* line 309 *//* line 310 */
+    register_component ( reg,mkTemplate ( "syncfilewrite", NULL, syncfilewrite_instantiate))/* line 311 */
+    register_component ( reg,mkTemplate ( "String Concat", NULL, stringconcat_instantiate))/* line 312 */
+    register_component ( reg,mkTemplate ( "switch1*", NULL, switch1star_instantiate))/* line 313 */
+    register_component ( reg,mkTemplate ( "String Concat *", NULL, strcatstar_instantiate))/* line 314 */
+    /*  for fakepipe */                                /* line 315 */
+    register_component ( reg,mkTemplate ( "fakepipename", NULL, fakepipename_instantiate))/* line 316 *//* line 317 *//* line 318 */}

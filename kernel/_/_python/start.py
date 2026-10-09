@@ -54,22 +54,23 @@ def start_bare (part_name,palette,env):                #line 59
     return  part                                       #line 69#line 70#line 71
 
 def inject (part,port,payload):                        #line 72
-    if not  load_errors:                               #line 73
-        d =  Datum ()                                  #line 74
-        d.v =  payload                                 #line 75
-        d.clone =  lambda : obj_clone ( d)             #line 76
-        d.reclaim =  None                              #line 77
-        mev = make_mevent ( port, d)                   #line 78
-        inject_mevent ( part, mev)                     #line 79
-    else:                                              #line 80
-        exit (1)                                       #line 81#line 82#line 83#line 84
+    global load_errors                                 #line 73
+    if not  load_errors:                               #line 74
+        d =  Datum ()                                  #line 75
+        d.v =  payload                                 #line 76
+        d.clone =  lambda : obj_clone ( d)             #line 77
+        d.reclaim =  None                              #line 78
+        mev = make_mevent ( port, d)                   #line 79
+        inject_mevent ( part, mev)                     #line 80
+    else:                                              #line 81
+        exit (1)                                       #line 82#line 83#line 84#line 85
 
-def finalize (part):                                   #line 85
-    print (deque_to_json ( part.outq))                 #line 86#line 87#line 88
+def finalize (part):                                   #line 86
+    print (deque_to_json ( part.outq))                 #line 87#line 88#line 89
 
-def new_datum_bang ():                                 #line 89
-    d =  Datum ()                                      #line 90
-    d.v =  "!"                                         #line 91
-    d.clone =  lambda : obj_clone ( d)                 #line 92
-    d.reclaim =  None                                  #line 93
-    return  d                                          #line 94#line 95
+def new_datum_bang ():                                 #line 90
+    d =  Datum ()                                      #line 91
+    d.v =  "!"                                         #line 92
+    d.clone =  lambda : obj_clone ( d)                 #line 93
+    d.reclaim =  None                                  #line 94
+    return  d                                          #line 95#line 96

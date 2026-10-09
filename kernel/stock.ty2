@@ -155,6 +155,7 @@
 {"op":"insert", "operand":{"name":"fakepipename_handler", "indir":0, "type":"void", "kind":"proc", "scope":"_global" }}
 {"op":"insert", "operand":{"name":"eh", "indir":2, "type":"Leaf", "scope":"_global/fakepipename_handler","kind":"parameter"}}
 {"op":"insert", "operand":{"name":"mev", "indir":2, "type":"Mevent", "scope":"_global/fakepipename_handler","kind":"parameter"}}
+{"op":"insert", "operand":{"name":"rand", "lookup":{"scope":"_global", "name":"rand"}, "scope":"_global/fakepipename_handler", "kind":"variable"}}
 {"op":"newscope", "operand":"Switch1star_Instance_Data"}
 {"op":"insert", "operand":{"name":"Switch1star_Instance_Data", "indir":1, "type":"obj", "scope":"_global", "kind":"obj"}}
 {"op":"insert", "operand":{"name":"state", "indir":2, "type":"Str", "scope":"_global/Switch1star_Instance_Data", "kind":"variable"}}

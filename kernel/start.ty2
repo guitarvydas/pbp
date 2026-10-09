@@ -5,9 +5,11 @@
 {"op":"newscope", "operand":"load_error"}
 {"op":"insert", "operand":{"name":"load_error", "indir":0, "type":"void", "kind":"proc", "scope":"_global" }}
 {"op":"insert", "operand":{"name":"s", "indir":2, "type":"Str", "scope":"_global/load_error","kind":"parameter"}}
+{"op":"insert", "operand":{"name":"load_errors", "lookup":{"scope":"_global", "name":"load_errors"}, "scope":"_global/load_error", "kind":"variable"}}
 {"op":"newscope", "operand":"runtime_error"}
 {"op":"insert", "operand":{"name":"runtime_error", "indir":0, "type":"void", "kind":"proc", "scope":"_global" }}
 {"op":"insert", "operand":{"name":"s", "indir":2, "type":"Str", "scope":"_global/runtime_error","kind":"parameter"}}
+{"op":"insert", "operand":{"name":"runtime_errors", "lookup":{"scope":"_global", "name":"runtime_errors"}, "scope":"_global/runtime_error", "kind":"variable"}}
 {"op":"newscope", "operand":"initialize_component_palette_from_files"}
 {"op":"insert", "operand":{"name":"initialize_component_palette_from_files", "indir":2, "type":"Component_Registry", "kind":"retproc", "scope":"_global" }}
 {"op":"insert", "operand":{"name":"diagram_source_files", "indir":2, "type":"Collection_of_Pathname", "scope":"_global/initialize_component_palette_from_files","kind":"parameter"}}
@@ -49,6 +51,7 @@
 {"op":"insert", "operand":{"name":"part", "indir":2, "type":"Part", "scope":"_global/inject","kind":"parameter"}}
 {"op":"insert", "operand":{"name":"port", "indir":1, "type":"Port", "scope":"_global/inject","kind":"parameter"}}
 {"op":"insert", "operand":{"name":"payload", "indir":2, "type":"Payload", "scope":"_global/inject","kind":"parameter"}}
+{"op":"insert", "operand":{"name":"load_errors", "lookup":{"scope":"_global", "name":"load_errors"}, "scope":"_global/inject", "kind":"variable"}}
 {"op":"insert", "operand":{"name":"d", "indir":2, "type":"Datum", "scope":"_global/inject", "kind":"variable"}}
 {"op":"insert", "operand":{"name":"mev", "indir":2, "type":"Mevent", "scope":"_global/inject", "kind":"variable"}}
 {"op":"newscope", "operand":"finalize"}

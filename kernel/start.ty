@@ -109,14 +109,15 @@ defn inject ≡
 )
 {
                                                        #line 72
+        load_errors  ≡ [_global,load_errors]           #line 73
         if not  load_errors {
-                                                       #line 73
+                                                       #line 74
             d ≡
             mev ≡
         }
         else
-        {                                              #line 80#line 82
-        }                                              #line 83#line 84
+        {                                              #line 81#line 83
+        }                                              #line 84#line 85
 }
 
 defn finalize ≡
@@ -124,13 +125,13 @@ defn finalize ≡
     part ≡
 )
 {
-                                                       #line 85#line 87#line 88
+                                                       #line 86#line 88#line 89
 }
 
 defn new_datum_bang ≡
 ()
 {
-                                                       #line 89
+                                                       #line 90
         d ≡
-        return  d                                      #line 94#line 95
+        return  d                                      #line 95#line 96
 }

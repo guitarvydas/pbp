@@ -70,6 +70,7 @@ defn start_bare (part_name, palette, env) {
 }
 
 defn inject (part, port, payload) {
+    global load_errors
     if not load_errors {
         deftemp d ⇐ #fresh (Datum)
         d.v ⇐ payload
