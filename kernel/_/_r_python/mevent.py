@@ -1,6 +1,6 @@
 #line 1
 class Datum:
-    def __init__ (self,):                              #line 2
+    def __init__ (self):                               #line 2
         self.v =  None                                 #line 3
         self.clone =  None                             #line 4
         self.reclaim =  None                           #line 5
@@ -11,7 +11,7 @@ class Datum:
 # `port` refers to the name of the incoming or outgoing port of this component.#line 12
 # `payload` is the data attached to this mevent.       #line 13
 class Mevent:
-    def __init__ (self,):                              #line 14
+    def __init__ (self):                               #line 14
         self.port =  None                              #line 15
         self.payload =  None                           #line 16#line 17
                                                        #line 18

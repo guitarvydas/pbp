@@ -13,7 +13,7 @@
 # function may want whenever it is invoked again.      #line 13#line 14
 # Eh_States :: enum { idle, active }                   #line 15
 class Eh:
-    def __init__ (self,):                              #line 16
+    def __init__ (self):                               #line 16
         self.name =  ""                                #line 17
         self.inq =  deque ([])                         #line 18
         self.outq =  deque ([])                        #line 19

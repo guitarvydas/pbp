@@ -337,7 +337,7 @@
   (let (( d  (make-instance 'Datum)                         #|line 269|#))
     (declare (ignorable  d))
     (setf (slot-value  d 'v)  obj)                          #|line 270|#
-    (setf (slot-value  d 'clone)  #'obj_clone)              #|line 271|#
+    (setf (slot-value  d 'clone)  #'(lambda (&optional )(funcall (quote obj_clone)   d  #|line 271|#)))
     (setf (slot-value  d 'reclaim)  nil)                    #|line 272|#
     (let ((mev (funcall (quote make_mevent)   port  d       #|line 273|#)))
       (declare (ignorable mev))

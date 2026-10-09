@@ -218,7 +218,7 @@ def make_container (name,owner):                       #line 253
 def send (eh,port,obj,causingMevent):                  #line 268
     d =  Datum ()                                      #line 269
     d.v =  obj                                         #line 270
-    d.clone =  obj_clone                               #line 271
+    d.clone =  lambda : obj_clone ( d)                 #line 271
     d.reclaim =  None                                  #line 272
     mev = make_mevent ( port, d)                       #line 273
     put_output ( eh, mev)                              #line 274#line 275#line 276

@@ -223,133 +223,134 @@ function maybe_stringconcat (eh,inst,mev) {            /* line 173 */
 }
 
 /*  */                                                 /* line 189 *//* line 190 */
-function string_constant_instantiate (reg,owner,name,template_data,arg) {/* line 191 *//* line 192 */
-    let name_with_id = gensymbol ( "strconst")         /* line 193 */;
-    let  s =  template_data;                           /* line 194 */
-    if ( projectRoot!= "") {                           /* line 195 */
-      s =  s.replaceAll ( "_00_",  projectRoot)        /* line 196 */;/* line 197 */
+let projectRoot =  ".";                                /* line 191 *//* line 192 */
+function string_constant_instantiate (reg,owner,name,template_data,arg) {/* line 193 *//* line 194 */
+    let name_with_id = gensymbol ( "strconst")         /* line 195 */;
+    let  s =  template_data;                           /* line 196 */
+    if ( projectRoot!= "") {                           /* line 197 */
+      s =  s.replaceAll ( "_00_",  projectRoot)        /* line 198 */;/* line 199 */
     }
-    return make_leaf ( name_with_id, owner, s, "", string_constant_handler, null)/* line 198 */;/* line 199 *//* line 200 */
+    return make_leaf ( name_with_id, owner, s, "", string_constant_handler, null)/* line 200 */;/* line 201 *//* line 202 */
 }
 
-function string_constant_handler (eh,mev) {            /* line 201 */
-    let s =  eh.instance_data;                         /* line 202 */
-    send ( eh, "", s, mev)                             /* line 203 *//* line 204 *//* line 205 */
+function string_constant_handler (eh,mev) {            /* line 203 */
+    let s =  eh.instance_data;                         /* line 204 */
+    send ( eh, "", s, mev)                             /* line 205 *//* line 206 *//* line 207 */
 }
 
-function fakepipename_instantiate (reg,owner,name,template_data,arg) {/* line 206 */
-    let instance_name = gensymbol ( "fakepipe")        /* line 207 */;
-    return make_leaf ( instance_name, owner, null, "", fakepipename_handler, null)/* line 208 */;/* line 209 *//* line 210 */
+function fakepipename_instantiate (reg,owner,name,template_data,arg) {/* line 208 */
+    let instance_name = gensymbol ( "fakepipe")        /* line 209 */;
+    return make_leaf ( instance_name, owner, null, "", fakepipename_handler, null)/* line 210 */;/* line 211 *//* line 212 */
 }
 
-let  rand =  0;                                        /* line 211 *//* line 212 */
-function fakepipename_handler (eh,mev) {               /* line 213 *//* line 214 */
+let rand =  0;                                         /* line 213 *//* line 214 */
+function fakepipename_handler (eh,mev) {               /* line 215 *//* line 216 */
     rand =  rand+ 1;
-    /*  not very random, but good enough _ ;rand' must be unique within a single run *//* line 215 */
-    send ( eh, "", ( "/tmp/fakepipe".toString ()+  rand.toString ()) , mev)/* line 216 *//* line 217 *//* line 218 */
+    /*  not very random, but good enough _ ;rand' must be unique within a single run *//* line 217 */
+    send ( eh, "", ( "/tmp/fakepipe".toString ()+  rand.toString ()) , mev)/* line 218 *//* line 219 *//* line 220 */
 }
-                                                       /* line 219 */
+                                                       /* line 221 */
 class Switch1star_Instance_Data {
-  constructor () {                                     /* line 220 */
+  constructor () {                                     /* line 222 */
 
-    this.state =  "1";                                 /* line 221 *//* line 222 */
+    this.state =  "1";                                 /* line 223 *//* line 224 */
   }
 }
-                                                       /* line 223 */
-function switch1star_reset_handler (eh) {              /* line 224 */
-    let  inst =  eh.instance_data;                     /* line 225 */
-    inst =  new Switch1star_Instance_Data ();          /* line 226 */;/* line 227 *//* line 228 */
+                                                       /* line 225 */
+function switch1star_reset_handler (eh) {              /* line 226 */
+    let  inst =  eh.instance_data;                     /* line 227 */
+    inst =  new Switch1star_Instance_Data ();          /* line 228 */;/* line 229 *//* line 230 */
 }
 
-function switch1star_instantiate (reg,owner,name,template_data,arg) {/* line 229 */
-    let name_with_id = gensymbol ( "switch1*")         /* line 230 */;
-    let instp =  new Switch1star_Instance_Data ();     /* line 231 */;
-    return make_leaf ( name_with_id, owner, instp, "", switch1star_handler, switch1star_reset_handler)/* line 232 */;/* line 233 *//* line 234 */
+function switch1star_instantiate (reg,owner,name,template_data,arg) {/* line 231 */
+    let name_with_id = gensymbol ( "switch1*")         /* line 232 */;
+    let instp =  new Switch1star_Instance_Data ();     /* line 233 */;
+    return make_leaf ( name_with_id, owner, instp, "", switch1star_handler, switch1star_reset_handler)/* line 234 */;/* line 235 *//* line 236 */
 }
 
-function switch1star_handler (eh,mev) {                /* line 235 */
-    let  inst =  eh.instance_data;                     /* line 236 */
-    let whichOutput =  inst.state;                     /* line 237 */
-    if ( "" ==  mev.port) {                            /* line 238 */
-      if ( "1" ==  whichOutput) {                      /* line 239 */
-        forward ( eh, "1", mev)                        /* line 240 */
-        inst.state =  "*";                             /* line 241 */
+function switch1star_handler (eh,mev) {                /* line 237 */
+    let  inst =  eh.instance_data;                     /* line 238 */
+    let whichOutput =  inst.state;                     /* line 239 */
+    if ( "" ==  mev.port) {                            /* line 240 */
+      if ( "1" ==  whichOutput) {                      /* line 241 */
+        forward ( eh, "1", mev)                        /* line 242 */
+        inst.state =  "*";                             /* line 243 */
       }
-      else if ( "*" ==  whichOutput) {                 /* line 242 */
-        forward ( eh, "*", mev)                        /* line 243 */
+      else if ( "*" ==  whichOutput) {                 /* line 244 */
+        forward ( eh, "*", mev)                        /* line 245 */
       }
-      else {                                           /* line 244 */
-        send ( eh, "✗", "internal error bad state in switch1*", mev)/* line 245 *//* line 246 */
+      else {                                           /* line 246 */
+        send ( eh, "✗", "internal error bad state in switch1*", mev)/* line 247 *//* line 248 */
       }
     }
-    else if ( "reset" ==  mev.port) {                  /* line 247 */
-      inst.state =  "1";                               /* line 248 */
+    else if ( "reset" ==  mev.port) {                  /* line 249 */
+      inst.state =  "1";                               /* line 250 */
     }
-    else {                                             /* line 249 */
-      send ( eh, "✗", "internal error bad mevent for switch1*", mev)/* line 250 *//* line 251 */
-    }                                                  /* line 252 *//* line 253 */
+    else {                                             /* line 251 */
+      send ( eh, "✗", "internal error bad mevent for switch1*", mev)/* line 252 *//* line 253 */
+    }                                                  /* line 254 *//* line 255 */
 }
 
 class StringAccumulator {
-  constructor () {                                     /* line 254 */
+  constructor () {                                     /* line 256 */
 
-    this.s =  "";                                      /* line 255 *//* line 256 */
+    this.s =  "";                                      /* line 257 *//* line 258 */
   }
 }
-                                                       /* line 257 */
-function strcatstar_reset_handler (eh) {               /* line 258 */
-    eh.instance_data =  new StringAccumulator ();      /* line 259 */;/* line 260 *//* line 261 */
+                                                       /* line 259 */
+function strcatstar_reset_handler (eh) {               /* line 260 */
+    eh.instance_data =  new StringAccumulator ();      /* line 261 */;/* line 262 *//* line 263 */
 }
 
-function strcatstar_instantiate (reg,owner,name,template_data,arg) {/* line 262 */
-    let name_with_id = gensymbol ( "String Concat *")  /* line 263 */;
-    let instp =  new StringAccumulator ();             /* line 264 */;
-    return make_leaf ( name_with_id, owner, instp, "", strcatstar_handler, strcatstar_reset_handler)/* line 265 */;/* line 266 *//* line 267 */
+function strcatstar_instantiate (reg,owner,name,template_data,arg) {/* line 264 */
+    let name_with_id = gensymbol ( "String Concat *")  /* line 265 */;
+    let instp =  new StringAccumulator ();             /* line 266 */;
+    return make_leaf ( name_with_id, owner, instp, "", strcatstar_handler, strcatstar_reset_handler)/* line 267 */;/* line 268 *//* line 269 */
 }
 
-function strcatstar_handler (eh,mev) {                 /* line 268 */
-    let  accum =  eh.instance_data;                    /* line 269 */
-    if ( "" ==  mev.port) {                            /* line 270 */
-      accum.s =  ( accum.s.toString ()+  mev.payload.v.toString ()) /* line 271 */;
+function strcatstar_handler (eh,mev) {                 /* line 270 */
+    let  accum =  eh.instance_data;                    /* line 271 */
+    if ( "" ==  mev.port) {                            /* line 272 */
+      accum.s =  ( accum.s.toString ()+  mev.payload.v.toString ()) /* line 273 */;
     }
-    else if ( "fini" ==  mev.port) {                   /* line 272 */
-      send ( eh, "", accum.s, mev)                     /* line 273 */
+    else if ( "fini" ==  mev.port) {                   /* line 274 */
+      send ( eh, "", accum.s, mev)                     /* line 275 */
     }
-    else {                                             /* line 274 */
-      send ( eh, "✗", "internal error bad mevent for String Concat *", mev)/* line 275 *//* line 276 */
-    }                                                  /* line 277 *//* line 278 */
+    else {                                             /* line 276 */
+      send ( eh, "✗", "internal error bad mevent for String Concat *", mev)/* line 277 *//* line 278 */
+    }                                                  /* line 279 *//* line 280 */
 }
 
-function stop_instantiate (reg,owner,name,template_data,arg) {/* line 279 */
-    let name_with_id = gensymbol ( "Stop")             /* line 280 */;
-    let inst =  null;                                  /* line 281 */
-    return make_leaf ( name_with_id, owner, inst, "", stop_handler, null)/* line 282 */;/* line 283 *//* line 284 */
+function stop_instantiate (reg,owner,name,template_data,arg) {/* line 281 */
+    let name_with_id = gensymbol ( "Stop")             /* line 282 */;
+    let inst =  null;                                  /* line 283 */
+    return make_leaf ( name_with_id, owner, inst, "", stop_handler, null)/* line 284 */;/* line 285 *//* line 286 */
 }
 
-function stop_handler (eh,mev) {                       /* line 285 */
-    let  inst =  eh.instance_data;                     /* line 286 */
-    let  parent =  eh.owner;                           /* line 287 */
-    let  s =  ( "   !!! stopping: '".toString ()+  ( parent.name.toString ()+  "'".toString ()) .toString ()) /* line 288 */;
-    console.error ( s);                                /* line 289 */
-                                                       /* line 290 */
-    parent.reset ( parent)                             /* line 291 */
-    send ( eh, "", mev.payload.v, mev)                 /* line 292 *//* line 293 *//* line 294 */
+function stop_handler (eh,mev) {                       /* line 287 */
+    let  inst =  eh.instance_data;                     /* line 288 */
+    let  parent =  eh.owner;                           /* line 289 */
+    let  s =  ( "   !!! stopping: '".toString ()+  ( parent.name.toString ()+  "'".toString ()) .toString ()) /* line 290 */;
+    console.error ( s);                                /* line 291 */
+                                                       /* line 292 */
+    parent.reset ( parent)                             /* line 293 */
+    send ( eh, "", mev.payload.v, mev)                 /* line 294 *//* line 295 *//* line 296 */
 }
 
-/*  all of the the built_in leaves are listed here */  /* line 295 */
-/*  future: refactor this such that programmers can pick and choose which (lumps of) builtins are used in a specific project *//* line 296 *//* line 297 */
-function initialize_stock_components (reg) {           /* line 298 */
-    register_component ( reg,mkTemplate ( "1then2", null, deracer_instantiate))/* line 299 */
-    register_component ( reg,mkTemplate ( "1→2", null, deracer_instantiate))/* line 300 */
-    register_component ( reg,mkTemplate ( "trash", null, trash_instantiate))/* line 301 */
-    register_component ( reg,mkTemplate ( "🗑️", null, trash_instantiate))/* line 302 */
-    register_component ( reg,mkTemplate ( "🚫", null, stop_instantiate))/* line 303 *//* line 304 *//* line 305 */
-    register_component ( reg,mkTemplate ( "Read Text File", null, low_level_read_text_file_instantiate))/* line 306 */
-    register_component ( reg,mkTemplate ( "Ensure String Datum", null, ensure_string_datum_instantiate))/* line 307 *//* line 308 */
-    register_component ( reg,mkTemplate ( "syncfilewrite", null, syncfilewrite_instantiate))/* line 309 */
-    register_component ( reg,mkTemplate ( "String Concat", null, stringconcat_instantiate))/* line 310 */
-    register_component ( reg,mkTemplate ( "switch1*", null, switch1star_instantiate))/* line 311 */
-    register_component ( reg,mkTemplate ( "String Concat *", null, strcatstar_instantiate))/* line 312 */
-    /*  for fakepipe */                                /* line 313 */
-    register_component ( reg,mkTemplate ( "fakepipename", null, fakepipename_instantiate))/* line 314 *//* line 315 *//* line 316 */
+/*  all of the the built_in leaves are listed here */  /* line 297 */
+/*  future: refactor this such that programmers can pick and choose which (lumps of) builtins are used in a specific project *//* line 298 *//* line 299 */
+function initialize_stock_components (reg) {           /* line 300 */
+    register_component ( reg,mkTemplate ( "1then2", null, deracer_instantiate))/* line 301 */
+    register_component ( reg,mkTemplate ( "1→2", null, deracer_instantiate))/* line 302 */
+    register_component ( reg,mkTemplate ( "trash", null, trash_instantiate))/* line 303 */
+    register_component ( reg,mkTemplate ( "🗑️", null, trash_instantiate))/* line 304 */
+    register_component ( reg,mkTemplate ( "🚫", null, stop_instantiate))/* line 305 *//* line 306 *//* line 307 */
+    register_component ( reg,mkTemplate ( "Read Text File", null, low_level_read_text_file_instantiate))/* line 308 */
+    register_component ( reg,mkTemplate ( "Ensure String Datum", null, ensure_string_datum_instantiate))/* line 309 *//* line 310 */
+    register_component ( reg,mkTemplate ( "syncfilewrite", null, syncfilewrite_instantiate))/* line 311 */
+    register_component ( reg,mkTemplate ( "String Concat", null, stringconcat_instantiate))/* line 312 */
+    register_component ( reg,mkTemplate ( "switch1*", null, switch1star_instantiate))/* line 313 */
+    register_component ( reg,mkTemplate ( "String Concat *", null, strcatstar_instantiate))/* line 314 */
+    /*  for fakepipe */                                /* line 315 */
+    register_component ( reg,mkTemplate ( "fakepipename", null, fakepipename_instantiate))/* line 316 *//* line 317 *//* line 318 */
 }

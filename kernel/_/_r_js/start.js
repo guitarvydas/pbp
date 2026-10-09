@@ -1,6 +1,6 @@
-let  load_errors =  false;                             /* line 1 */
-let  runtime_errors =  false;                          /* line 2 */
-let  ticktime =  0;                                    /* line 3 *//* line 4 */
+let load_errors =  false;                              /* line 1 */
+let runtime_errors =  false;                           /* line 2 */
+let ticktime =  0;                                     /* line 3 *//* line 4 */
 function load_error (s) {                              /* line 5 *//* line 6 */
     console.error ( s);                                /* line 7 */
                                                        /* line 8 */
@@ -63,28 +63,28 @@ function start_bare (part_name,palette,env) {          /* line 59 */
     return  part;                                      /* line 69 *//* line 70 *//* line 71 */
 }
 
-function inject (part,port,payload) {                  /* line 72 */
-    if ((!  load_errors)) {                            /* line 73 */
-      let  d =  new Datum ();                          /* line 74 */;
-      d.v =  payload;                                  /* line 75 */
-      d.clone =  function () {return obj_clone ( d)    /* line 76 */;};
-      d.reclaim =  null;                               /* line 77 */
-      let  mev = make_mevent ( port, d)                /* line 78 */;
-      inject_mevent ( part, mev)                       /* line 79 */
+function inject (part,port,payload) {                  /* line 72 *//* line 73 */
+    if ((!  load_errors)) {                            /* line 74 */
+      let  d =  new Datum ();                          /* line 75 */;
+      d.v =  payload;                                  /* line 76 */
+      d.clone =  function () {return obj_clone ( d)    /* line 77 */;};
+      d.reclaim =  null;                               /* line 78 */
+      let  mev = make_mevent ( port, d)                /* line 79 */;
+      inject_mevent ( part, mev)                       /* line 80 */
     }
-    else {                                             /* line 80 */
-      process.exit (1)                                 /* line 81 *//* line 82 */
-    }                                                  /* line 83 *//* line 84 */
+    else {                                             /* line 81 */
+      process.exit (1)                                 /* line 82 *//* line 83 */
+    }                                                  /* line 84 *//* line 85 */
 }
 
-function finalize (part) {                             /* line 85 */
-    console.log (JSON.stringify ( part.outq.map(item => ({ [item.port]: item.datum.v })), null, 2));/* line 86 *//* line 87 *//* line 88 */
+function finalize (part) {                             /* line 86 */
+    console.log (JSON.stringify ( part.outq.map(item => ({ [item.port]: item.datum.v })), null, 2));/* line 87 *//* line 88 *//* line 89 */
 }
 
-function new_datum_bang () {                           /* line 89 */
-    let  d =  new Datum ();                            /* line 90 */;
-    d.v =  "!";                                        /* line 91 */
-    d.clone =  function () {return obj_clone ( d)      /* line 92 */;};
-    d.reclaim =  null;                                 /* line 93 */
-    return  d                                          /* line 94 *//* line 95 */;
+function new_datum_bang () {                           /* line 90 */
+    let  d =  new Datum ();                            /* line 91 */;
+    d.v =  "!";                                        /* line 92 */
+    d.clone =  function () {return obj_clone ( d)      /* line 93 */;};
+    d.reclaim =  null;                                 /* line 94 */
+    return  d                                          /* line 95 *//* line 96 */;
 }

@@ -268,7 +268,7 @@ defn make_container (name, owner) {
 defn send (eh,port,obj,causingMevent) {
     deftemp d ⇐ #fresh (Datum)
     d.v ⇐ obj
-    d.clone ⇐ ↪︎obj_clone
+    d.clone ⇐ λ: obj_clone (d)
     d.reclaim ⇐ ϕ
     mev ≡ make_mevent(port, d)
     put_output (eh, mev)

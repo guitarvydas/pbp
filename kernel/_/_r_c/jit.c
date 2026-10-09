@@ -23,23 +23,24 @@ void* handle_jit (void* eh,void* mev) {
 
 void* probe_handler (void* eh,void* tag,void* mev) {
                                                        /* line 27 */
-    s =    (*mev).payload.v                            /* line 28 */
-    external live_update ( "Info",  str( "  @") +  str(str ( ticktime)) +  str( "  ") +  str( "probe ") +  str(  (*eh).name) +  str( ": ") + str ( s)      )/* line 36 *//* line 37 *//* line 38 */}
+    static ticktime                                    /* line 28 */
+    s =    (*mev).payload.v                            /* line 29 */
+    external live_update ( "Info",  str( "  @") +  str(str ( ticktime)) +  str( "  ") +  str( "probe ") +  str(  (*eh).name) +  str( ": ") + str ( s)      )/* line 37 *//* line 38 *//* line 39 */}
 
 void* shell_out_handler (void* eh,void* cmd,void* mev) {
-                                                       /* line 39 */
-    s =    (*mev).payload.v                            /* line 40 */
-    ret =  NULL                                        /* line 41 */
-    rc =  NULL                                         /* line 42 */
-    stdout =  NULL                                     /* line 43 */
-    stderr =  NULL                                     /* line 44 */
-    command =  cmd                                     /* line 45 */
-    pbpRoot = os.getenv('PBP', '<none>')               /* line 46 */
-    if  pbpRoot!= "":                                  /* line 47 */
-        command = re.sub ( "_/",  str( pbpRoot) +  "/" ,  command)/* line 50 */;/* line 51 */
-    if ( ("PBPSHELLUT" in os.environ) ):               /* line 52 */
-        external print ( str( "- --- shell-out: ") +  command , file=sys.stderr)/* line 53 */
-        external                                       /* line 54 *//* line 55 */
+                                                       /* line 40 */
+    s =    (*mev).payload.v                            /* line 41 */
+    ret =  NULL                                        /* line 42 */
+    rc =  NULL                                         /* line 43 */
+    stdout =  NULL                                     /* line 44 */
+    stderr =  NULL                                     /* line 45 */
+    command =  cmd                                     /* line 46 */
+    pbpRoot = os.getenv('PBP', '<none>')               /* line 47 */
+    if  pbpRoot!= "":                                  /* line 48 */
+        command = re.sub ( "_/",  str( pbpRoot) +  "/" ,  command)/* line 51 */;/* line 52 */
+    if ( ("PBPSHELLUT" in os.environ) ):               /* line 53 */
+        external print ( str( "- --- shell-out: ") +  command , file=sys.stderr)/* line 54 */
+        external                                       /* line 55 *//* line 56 */
     external
     try:
         with tempfile.NamedTemporaryFile(mode='w', suffix='.txt', delete=False) as tmp:
@@ -62,8 +63,8 @@ void* shell_out_handler (void* eh,void* cmd,void* mev) {
         rc = 1
         stdout = ''
         stderr = str(e)
-                                                       /* line 56 */
-    if  rc ==  0:                                      /* line 57 */
-        send ( eh, "", str( stdout) +  stderr , mev)   /* line 58 */
-    else:                                              /* line 59 */
-        send ( eh, "✗", str( stdout) +  stderr , mev)  /* line 60 *//* line 61 *//* line 62 *//* line 63 */}
+                                                       /* line 57 */
+    if  rc ==  0:                                      /* line 58 */
+        send ( eh, "", str( stdout) +  stderr , mev)   /* line 59 */
+    else:                                              /* line 60 */
+        send ( eh, "✗", str( stdout) +  stderr , mev)  /* line 61 *//* line 62 *//* line 63 *//* line 64 */}

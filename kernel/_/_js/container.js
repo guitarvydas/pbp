@@ -270,7 +270,7 @@ function make_container (name,owner) {                 /* line 253 */
 function send (eh,port,obj,causingMevent) {            /* line 268 */
     let  d =  new Datum ();                            /* line 269 */;
     d.v =  obj;                                        /* line 270 */
-    d.clone =  obj_clone;                              /* line 271 */
+    d.clone =  function () {return obj_clone ( d)      /* line 271 */;};
     d.reclaim =  null;                                 /* line 272 */
     let mev = make_mevent ( port, d)                   /* line 273 */;
     put_output ( eh, mev)                              /* line 274 *//* line 275 *//* line 276 */

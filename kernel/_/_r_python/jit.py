@@ -20,22 +20,23 @@ def handle_jit (eh,mev):                               #line 14
         send ( eh, "",  s[1:] , mev)                   #line 23#line 24#line 25#line 26
 
 def probe_handler (eh,tag,mev):                        #line 27
-    s =  mev.payload.v                                 #line 28
-    live_update ( "Info",  str( "  @") +  str(str ( ticktime)) +  str( "  ") +  str( "probe ") +  str( eh.name) +  str( ": ") + str ( s)      )#line 36#line 37#line 38
+    global ticktime                                    #line 28
+    s =  mev.payload.v                                 #line 29
+    live_update ( "Info",  str( "  @") +  str(str ( ticktime)) +  str( "  ") +  str( "probe ") +  str( eh.name) +  str( ": ") + str ( s)      )#line 37#line 38#line 39
 
-def shell_out_handler (eh,cmd,mev):                    #line 39
-    s =  mev.payload.v                                 #line 40
-    ret =  None                                        #line 41
-    rc =  None                                         #line 42
-    stdout =  None                                     #line 43
-    stderr =  None                                     #line 44
-    command =  cmd                                     #line 45
-    pbpRoot = os.getenv('PBP', '<none>')               #line 46
-    if  pbpRoot!= "":                                  #line 47
-        command = re.sub ( "_/",  str( pbpRoot) +  "/" ,  command)#line 50#line 51
-    if ( ("PBPSHELLUT" in os.environ) ):               #line 52
-        print ( str( "- --- shell-out: ") +  command , file=sys.stderr)#line 53
-                                                       #line 54#line 55
+def shell_out_handler (eh,cmd,mev):                    #line 40
+    s =  mev.payload.v                                 #line 41
+    ret =  None                                        #line 42
+    rc =  None                                         #line 43
+    stdout =  None                                     #line 44
+    stderr =  None                                     #line 45
+    command =  cmd                                     #line 46
+    pbpRoot = os.getenv('PBP', '<none>')               #line 47
+    if  pbpRoot!= "":                                  #line 48
+        command = re.sub ( "_/",  str( pbpRoot) +  "/" ,  command)#line 51#line 52
+    if ( ("PBPSHELLUT" in os.environ) ):               #line 53
+        print ( str( "- --- shell-out: ") +  command , file=sys.stderr)#line 54
+                                                       #line 55#line 56
 
     try:
         with tempfile.NamedTemporaryFile(mode='w', suffix='.txt', delete=False) as tmp:
@@ -58,8 +59,8 @@ def shell_out_handler (eh,cmd,mev):                    #line 39
         rc = 1
         stdout = ''
         stderr = str(e)
-                                                       #line 56
-    if  rc ==  0:                                      #line 57
-        send ( eh, "", str( stdout) +  stderr , mev)   #line 58
-    else:                                              #line 59
-        send ( eh, "✗", str( stdout) +  stderr , mev)  #line 60#line 61#line 62#line 63
+                                                       #line 57
+    if  rc ==  0:                                      #line 58
+        send ( eh, "", str( stdout) +  stderr , mev)   #line 59
+    else:                                              #line 60
+        send ( eh, "✗", str( stdout) +  stderr , mev)  #line 61#line 62#line 63#line 64

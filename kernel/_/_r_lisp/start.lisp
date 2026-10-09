@@ -1,6 +1,6 @@
-(defparameter  load_errors  nil)                            #|line 1|#
-(defparameter  runtime_errors  nil)                         #|line 2|#
-(defparameter  ticktime  0)                                 #|line 3|# #|line 4|#
+(defparameter load_errors  nil)                             #|line 1|#
+(defparameter runtime_errors  nil)                          #|line 2|#
+(defparameter ticktime  0)                                  #|line 3|# #|line 4|#
 (defun load_error (&optional  s)
   (declare (ignorable  s))                                  #|line 5|# #|line 6|#
   (format *error-output* "~a~%"  s)                         #|line 7|#
@@ -86,32 +86,32 @@
       (return-from start_bare  part)                        #|line 69|#)) #|line 70|#
   )
 (defun inject (&optional  part  port  payload)
-  (declare (ignorable  part  port  payload))                #|line 72|#
+  (declare (ignorable  part  port  payload))                #|line 72|# #|line 73|#
   (cond
-    ((not  load_errors)                                     #|line 73|#
-      (let (( d  (make-instance 'Datum)                     #|line 74|#))
+    ((not  load_errors)                                     #|line 74|#
+      (let (( d  (make-instance 'Datum)                     #|line 75|#))
         (declare (ignorable  d))
-        (setf (slot-value  d 'v)  payload)                  #|line 75|#
-        (setf (slot-value  d 'clone)  #'(lambda (&optional )(funcall (quote obj_clone)   d  #|line 76|#)))
-        (setf (slot-value  d 'reclaim)  nil)                #|line 77|#
-        (let (( mev (funcall (quote make_mevent)   port  d  #|line 78|#)))
+        (setf (slot-value  d 'v)  payload)                  #|line 76|#
+        (setf (slot-value  d 'clone)  #'(lambda (&optional )(funcall (quote obj_clone)   d  #|line 77|#)))
+        (setf (slot-value  d 'reclaim)  nil)                #|line 78|#
+        (let (( mev (funcall (quote make_mevent)   port  d  #|line 79|#)))
           (declare (ignorable  mev))
-          (funcall (quote inject_mevent)   part  mev        #|line 79|#)))
+          (funcall (quote inject_mevent)   part  mev        #|line 80|#)))
       )
-    (t                                                      #|line 80|#
-      (break)                                               #|line 81|# #|line 82|#
-      ))                                                    #|line 83|#
+    (t                                                      #|line 81|#
+      (break)                                               #|line 82|# #|line 83|#
+      ))                                                    #|line 84|#
   )
 (defun finalize (&optional  part)
-  (declare (ignorable  part))                               #|line 85|#
-  (queue-as-json-to-stdout (slot-value  part 'outq))        #|line 86|# #|line 87|#
+  (declare (ignorable  part))                               #|line 86|#
+  (queue-as-json-to-stdout (slot-value  part 'outq))        #|line 87|# #|line 88|#
   )
 (defun new_datum_bang (&optional )
-  (declare (ignorable ))                                    #|line 89|#
-  (let (( d  (make-instance 'Datum)                         #|line 90|#))
+  (declare (ignorable ))                                    #|line 90|#
+  (let (( d  (make-instance 'Datum)                         #|line 91|#))
     (declare (ignorable  d))
-    (setf (slot-value  d 'v)  "!")                          #|line 91|#
-    (setf (slot-value  d 'clone)  #'(lambda (&optional )(funcall (quote obj_clone)   d  #|line 92|#)))
-    (setf (slot-value  d 'reclaim)  nil)                    #|line 93|#
-    (return-from new_datum_bang  d                          #|line 94|# #|line 95|#))
+    (setf (slot-value  d 'v)  "!")                          #|line 92|#
+    (setf (slot-value  d 'clone)  #'(lambda (&optional )(funcall (quote obj_clone)   d  #|line 93|#)))
+    (setf (slot-value  d 'reclaim)  nil)                    #|line 94|#
+    (return-from new_datum_bang  d                          #|line 95|# #|line 96|#))
   )
