@@ -27,7 +27,7 @@ defobj Sender {
 defobj Receiver {
                                                        #line 32
     name ≡ @Str                                            #line 33
-    queue ≡ @Queue                                           #line 34
+    queue ≡ @Queue_of_Mevent                                           #line 34
     port ≡ Port                                            #line 35
     component ≡ @Eh                                       #line 36#line 37
 }

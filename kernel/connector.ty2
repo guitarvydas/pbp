@@ -16,7 +16,7 @@
 {"op":"newscope", "operand":"Receiver"}
 {"op":"insert", "operand":{"name":"Receiver", "indir":2, "type":"Receiver", "scope":"_global", "kind":"obj"}}
 {"op":"insert", "operand":{"name":"name", "indir":2, "type":"Str", "scope":"_global/Receiver", "kind":"variable"}}
-{"op":"insert", "operand":{"name":"queue", "indir":2, "type":"Queue", "scope":"_global/Receiver", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"queue", "indir":2, "type":"Queue_of_Mevent", "scope":"_global/Receiver", "kind":"variable"}}
 {"op":"insert", "operand":{"name":"port", "indir":1, "type":"Port", "scope":"_global/Receiver", "kind":"variable"}}
 {"op":"insert", "operand":{"name":"component", "indir":2, "type":"Eh", "scope":"_global/Receiver", "kind":"variable"}}
 {"op":"newscope", "operand":"mkSender"}

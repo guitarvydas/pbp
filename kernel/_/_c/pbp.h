@@ -1,3 +1,6 @@
+#ifndef PBP_H
+#define PBP_H
+
 // hardware level types
 typedef char* Str;
 typedef unsigned char Byte;
@@ -21,9 +24,12 @@ typedef Byte Dir;
 #define Through 3
 
 typedef struct s_Eh Eh;
-typedef struct s_Eh Part;
-typedef struct s_Eh Leaf;
-typedef struct s_Eh Container;
+typedef struct s_Part Part;
+typedef struct s_Leaf Leaf;
+typedef struct s_Container Container;
+
+typedef struct s_Dict Dict;
+typedef Dict Dict_of_Template;
 
 typedef struct s_Mevent Mevent;
 typedef struct s_Datum Datum;
@@ -72,20 +78,9 @@ typedef struct s_List_of_Wire {
 
 #include "eh.h"
 
-typedef Part Sender;
-typedef Port SenderPort;
-typedef Part Receiver;
-typedef Port ReceiverPort;
-typedef Part Container;
-typedef Part Leaf;
-
-typedef struct s_Connector {
-  Dir direction;
-  Sender* sender;
-  SenderPort source_port;
-  Receiver* receiver;
-  ReceiverPort receiver_port;
-} Connector;
+typedef struct s_Sender Sender;
+typedef struct s_Receiver Receiver;
+typedef struct s_Connector Connector;
 typedef Connector Wire;
 typedef Wire Wire_Proto;
 
@@ -97,7 +92,7 @@ typedef struct s_List_of_Connector {
 #include "preamble.h"
 #include "gensym.h"
 #include "connector.h"
-#include "template.h"
+#include "templates.h"
 #include "container.h"
 #include "leaf.h"
 #include "jit.h"
@@ -105,5 +100,6 @@ typedef struct s_List_of_Connector {
 #include "start.h"
 
 
-// typedef Fhandler ???;
-// typedef Finject ???;
+typedef (Connector*) fresh_Connector ();
+
+#endif

@@ -31,7 +31,7 @@ typedef struct s_Sender {
 typedef struct s_Receiver {
                                                        /* line 32 */
     Str* name;                                         /* line 33 */
-    Queue* queue;                                      /* line 34 */
+    Queue_of_Mevent* queue;                            /* line 34 */
     Port port;                                         /* line 35 */
     Eh* component;                                     /* line 36 *//* line 37 */
 } Receiver;

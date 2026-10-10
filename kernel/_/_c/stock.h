@@ -13,7 +13,7 @@ typedef struct s_TwoMevents {
 #define Deracer_Instance_Data_H
 typedef struct s_Deracer_Instance_Data {
                                                        /* line 21 */
-    State state;                                       /* line 22 */
+    Str* state;                                        /* line 22 */
     TwoMevents* buffer;                                /* line 23 *//* line 24 */
 } Deracer_Instance_Data;
 #endif

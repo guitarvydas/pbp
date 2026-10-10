@@ -39,7 +39,7 @@ defobj TwoMevents {
                                                        #line 16
 defobj Deracer_Instance_Data {
                                                        #line 17
-    state ≡ State                                            #line 18
+    state ≡ @Str                                            #line 18
     buffer ≡ @TwoMevents                                          #line 19#line 20
 }
                                                        #line 21

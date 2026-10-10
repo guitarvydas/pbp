@@ -20,7 +20,7 @@
 {"op":"insert", "operand":{"name":"secondmev", "indir":2, "type":"Mevent", "scope":"_global/TwoMevents", "kind":"variable"}}
 {"op":"newscope", "operand":"Deracer_Instance_Data"}
 {"op":"insert", "operand":{"name":"Deracer_Instance_Data", "indir":2, "type":"Deracer_Instance_Data", "scope":"_global", "kind":"obj"}}
-{"op":"insert", "operand":{"name":"state", "indir":1, "type":"State", "scope":"_global/Deracer_Instance_Data", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"state", "indir":2, "type":"Str", "scope":"_global/Deracer_Instance_Data", "kind":"variable"}}
 {"op":"insert", "operand":{"name":"buffer", "indir":2, "type":"TwoMevents", "scope":"_global/Deracer_Instance_Data", "kind":"variable"}}
 {"op":"newscope", "operand":"reclaim_Buffers_from_heap"}
 {"op":"insert", "operand":{"name":"reclaim_Buffers_from_heap", "indir":0, "type":"void", "kind":"proc", "scope":"_global" }}
