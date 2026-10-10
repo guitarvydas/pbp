@@ -75,7 +75,7 @@ void abstracted_register_component (Component_Registry* reg,Template* template,B
                                                        /* line 43 */
     Str* name = mangle_name (  (*template).name)       /* line 44 */
     if  reg!= NULL and  name in   (*reg).templates and not  ok_to_overwrite:/* line 45 */
-        load_error ( str( "Component /") +  str(  (*template).name) +  "/ already declared"  )/* line 46 */
+        load_error ( str( counted("Component_/")) +  str(  (*template).name) +  counted("/_already_declared")  )/* line 46 */
         return ( reg)                                  /* line 47 */
     else:                                              /* line 48 */
         lookupid (  (*reg).templates, name) =  template;/* line 49 */
@@ -88,7 +88,7 @@ Part* get_component_instance (Component_Registry* reg,Str* full_name,Container* 
     /*  ":$ <command>" is a shell-out part that sends <command> to the operating system shell  *//* line 57 */
     /*  ":<string>" else, it's just treated as a string part that produces <string> on its output  *//* line 58 */
     Str* template_name = mangle_name ( full_name)      /* line 59 */
-    if  ":" ==   full_name[0] :                        /* line 60 */
+    if  counted(":") ==   full_name[0] :               /* line 60 */
         Str* instance_name = generate_instance_name ( owner, template_name)/* line 61 */
         Part* instance = jit_instantiate ( reg, owner, instance_name, full_name)/* line 62 */
         return ( instance)                             /* line 63 */
@@ -96,23 +96,23 @@ Part* get_component_instance (Component_Registry* reg,Str* full_name,Container* 
         if  template_name in   (*reg).templates:       /* line 65 */
             Template* template = lookupid (  (*reg).templates, template_name)/* line 66 */
             if ( template ==  NULL):                   /* line 67 */
-                load_error ( str( "Registry Error (A): Can't find component /") +  str( template_name) +  "/"  )/* line 68 */
+                load_error ( str( counted("Registry_Error_(A):_Can't_find_component_/")) +  str( template_name) +  counted("/")  )/* line 68 */
                 return ( NULL)                         /* line 69 */
             else:                                      /* line 70 */
                 Str* instance_name = generate_instance_name ( owner, template_name)/* line 71 */
-                Part* instance =   (*template).instantiator ( reg, owner, instance_name,  (*template).template_data, "")/* line 72 */
+                Part* instance =   (*template).instantiator ( reg, owner, instance_name,  (*template).template_data, counted(""))/* line 72 */
                 return ( instance)                     /* line 73 *//* line 74 */
         else:                                          /* line 75 */
-            load_error ( str( "Registry Error (B): Can't find component /") +  str( template_name) +  "/"  )/* line 76 */
+            load_error ( str( counted("Registry_Error_(B):_Can't_find_component_/")) +  str( template_name) +  counted("/")  )/* line 76 */
             return ( NULL)                             /* line 77 *//* line 78 *//* line 79 *//* line 80 *//* line 81 */}
 
 Str* generate_instance_name (Container* owner,Str* template_name) {
                                                        /* line 82 */
-    Str* owner_name =  ""                              /* line 83 */
+    Str* owner_name =  counted("")                     /* line 83 */
     Str* instance_name =  template_name                /* line 84 */
     if  NULL!= owner:                                  /* line 85 */
         owner_name =   (*owner).name;                  /* line 86 */
-        instance_name =  str( owner_name) +  str( "▹") +  template_name  /* line 87 */;;;
+        instance_name =  str( owner_name) +  str( counted("▹")) +  template_name  /* line 87 */;;;
     else:                                              /* line 88 */
         instance_name =  template_name;;               /* line 89 *//* line 90 */
     return ( instance_name)                            /* line 91 *//* line 92 *//* line 93 */}

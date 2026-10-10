@@ -221,8 +221,7 @@ boolNeq [op] = ‛!=’
 phi [ _192] = ‛ nil’
 
 string [lb cs* rb] = ‛«lb»«cs»«rb»’
-stringchar_rec [lb cs* rb] = ‛«lb»«cs»«rb»’
-stringchar_other [c] = ‛«c»’
+stringchar [c] = ‛«c»’
 
 
 kw [lb s rb] = ‛«lb»«s»«rb»’

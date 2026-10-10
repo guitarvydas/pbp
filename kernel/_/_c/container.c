@@ -4,57 +4,57 @@ Wire* create_down_connector (Container* container,Wire_Proto* proto_conn,List_of
                                                        /* line 1 */
     /*  JSON: {;dir': 0, 'source': {'name': '', 'id': 0}, 'source_port': '', 'target': {'name': 'Echo', 'id': 12}, 'target_port': ''}, *//* line 2 */
     Wire*  connector =  fresh_Connector ()             /* line 3 */;
-    (*connector).direction =  "down";                  /* line 4 */
-    (*connector).sender = mkSender (  (*container).name, container,lookupstring ( proto_conn, "source_port"))/* line 5 */;
-    Part* target_proto = lookupstring ( proto_conn, "target")/* line 6 */
-    ID id_proto = lookupstring ( target_proto, "id")   /* line 7 */
+    (*connector).direction =  counted("down");         /* line 4 */
+    (*connector).sender = mkSender (  (*container).name, container,lookupstring ( proto_conn, counted("source_port")))/* line 5 */;
+    Part* target_proto = lookupstring ( proto_conn, counted("target"))/* line 6 */
+    ID id_proto = lookupstring ( target_proto, counted("id"))/* line 7 */
     Part* target_component = lookupid ( children_by_id, id_proto)/* line 8 */
     if ( target_component ==  NULL):                   /* line 9 */
-        load_error ( str( "internal error: .Down connection target internal error ") + lookupstring ((lookupstring ( proto_conn, "target")), "name") )/* line 10 */
+        load_error ( str( counted("internal_error:_.Down_connection_target_internal_error_")) + lookupstring ((lookupstring ( proto_conn, counted("target"))), counted("name")) )/* line 10 */
     else:                                              /* line 11 */
-        (*connector).receiver = mkReceiver (  (*target_component).name, target_component,lookupstring ( proto_conn, "target_port"),  (*target_component).inq)/* line 12 */;;/* line 13 */
+        (*connector).receiver = mkReceiver (  (*target_component).name, target_component,lookupstring ( proto_conn, counted("target_port")),  (*target_component).inq)/* line 12 */;;/* line 13 */
     return ( connector)                                /* line 14 */;;/* line 15 *//* line 16 */}
 
 Wire* create_across_connector (Container* container,Wire_Proto* proto_conn,List_of_Wire* connectors,Table_by_ID_of_Part* children_by_id) {
                                                        /* line 17 */
     Wire*  connector =  fresh_Connector ()             /* line 18 */;
-    (*connector).direction =  "across";                /* line 19 */
-    Str sid = lookupstring ((lookupstring ( proto_conn, "source")), "id")/* line 20 */
+    (*connector).direction =  counted("across");       /* line 19 */
+    Str sid = lookupstring ((lookupstring ( proto_conn, counted("source"))), counted("id"))/* line 20 */
     Part* source_component = lookupid ( children_by_id, sid)/* line 21 */
-    Str tid = lookupstring ((lookupstring ( proto_conn, "target")), "id")/* line 22 */
+    Str tid = lookupstring ((lookupstring ( proto_conn, counted("target"))), counted("id"))/* line 22 */
     Part* target_component = lookupid ( children_by_id, tid)/* line 23 */
     if  source_component ==  NULL:                     /* line 24 */
-        load_error ( str( "internal error: .Across connection source not ok ") + lookupstring ((lookupstring ( proto_conn, "source")), "name") )/* line 25 */
+        load_error ( str( counted("internal_error:_.Across_connection_source_not_ok_")) + lookupstring ((lookupstring ( proto_conn, counted("source"))), counted("name")) )/* line 25 */
     else:                                              /* line 26 */
-        (*connector).sender = mkSender (  (*source_component).name, source_component,lookupstring ( proto_conn, "source_port"))/* line 27 */;
+        (*connector).sender = mkSender (  (*source_component).name, source_component,lookupstring ( proto_conn, counted("source_port")))/* line 27 */;
         if  target_component ==  NULL:                 /* line 28 */
-            load_error ( str( "internal error: .Across connection target not ok ") + lookupstring ((lookupstring ( proto_conn, "target")), "name") )/* line 29 */
+            load_error ( str( counted("internal_error:_.Across_connection_target_not_ok_")) + lookupstring ((lookupstring ( proto_conn, counted("target"))), counted("name")) )/* line 29 */
         else:                                          /* line 30 */
-            (*connector).receiver = mkReceiver (  (*target_component).name, target_component,lookupstring ( proto_conn, "target_port"),  (*target_component).inq)/* line 31 */;;/* line 32 */;/* line 33 */
+            (*connector).receiver = mkReceiver (  (*target_component).name, target_component,lookupstring ( proto_conn, counted("target_port")),  (*target_component).inq)/* line 31 */;;/* line 32 */;/* line 33 */
     return ( connector)                                /* line 34 */;/* line 35 *//* line 36 */}
 
 Wire* create_up_connector (Container* container,Wire_Proto* proto_conn,List_of_Wire* connectors,Table_by_ID_of_Part* children_by_id) {
                                                        /* line 37 */
     Wire*  connector =  fresh_Connector ()             /* line 38 */;
-    (*connector).direction =  "up";                    /* line 39 */
-    Str sid = lookupstring ((lookupstring ( proto_conn, "source")), "id")/* line 40 */
+    (*connector).direction =  counted("up");           /* line 39 */
+    Str sid = lookupstring ((lookupstring ( proto_conn, counted("source"))), counted("id"))/* line 40 */
     Part* source_component = lookupid ( children_by_id, sid)/* line 41 */
     if  source_component ==  NULL:                     /* line 42 */
-        load_error ( str( "internal error: .Up connection source not ok ") + lookupstring ((lookupstring ( proto_conn, "source")), "name") )/* line 43 */
+        load_error ( str( counted("internal_error:_.Up_connection_source_not_ok_")) + lookupstring ((lookupstring ( proto_conn, counted("source"))), counted("name")) )/* line 43 */
     else:                                              /* line 44 */
-        (*connector).sender = mkSender (  (*source_component).name, source_component,lookupstring ( proto_conn, "source_port"))/* line 45 */;
-        (*connector).receiver = mkReceiver (  (*container).name, container,lookupstring ( proto_conn, "target_port"),  (*container).outq)/* line 46 */;;;/* line 47 */
+        (*connector).sender = mkSender (  (*source_component).name, source_component,lookupstring ( proto_conn, counted("source_port")))/* line 45 */;
+        (*connector).receiver = mkReceiver (  (*container).name, container,lookupstring ( proto_conn, counted("target_port")),  (*container).outq)/* line 46 */;;;/* line 47 */
     return ( connector)                                /* line 48 */;/* line 49 *//* line 50 */}
 
 Wire* create_through_connector (Container* container,Wire_Proto* proto_conn,List_of_Wire* connectors,Table_by_ID_of_Part* children_by_id) {
                                                        /* line 51 */
     Wire*  connector =  fresh_Connector ()             /* line 52 */;
-    (*connector).direction =  "through";               /* line 53 */
-    (*connector).sender = mkSender (  (*container).name, container,lookupstring ( proto_conn, "source_port"))/* line 54 */;
-    (*connector).receiver = mkReceiver (  (*container).name, container,lookupstring ( proto_conn, "target_port"),  (*container).outq)/* line 55 */;
+    (*connector).direction =  counted("through");      /* line 53 */
+    (*connector).sender = mkSender (  (*container).name, container,lookupstring ( proto_conn, counted("source_port")))/* line 54 */;
+    (*connector).receiver = mkReceiver (  (*container).name, container,lookupstring ( proto_conn, counted("target_port")),  (*container).outq)/* line 55 */;
     return ( connector)                                /* line 56 */;;;/* line 57 *//* line 58 */}
                                                        /* line 59 */
-Container* container_instantiator (Component_Registry* reg,Container* owner,Str container_name,Template* desc,Str arg) {
+Container* container_instantiator (Component_Registry* reg,Container* owner,Str* container_name,Template* desc,Str* arg) {
                                                        /* line 60 */
     static enumDown                                    /* line 61 */
     static enumUp                                      /* line 62 */
@@ -65,22 +65,22 @@ Container* container_instantiator (Component_Registry* reg,Container* owner,Str 
     List_of_PartI* children_by_id = dict_fresh()
     /*  not strictly necessary, but, we can remove 1 runtime lookup by "compiling it out“ here *//* line 67 */
     /*  collect children */                            /* line 68 */
-    for child_desc in lookupstring ( desc, "children"):/* line 69 */
-        PartI* child_instance = get_component_instance ( reg,lookupstring ( child_desc, "name"), container)/* line 70 */
+    for child_desc in lookupstring ( desc, counted("children")):/* line 69 */
+        PartI* child_instance = get_component_instance ( reg,lookupstring ( child_desc, counted("name")), container)/* line 70 */
         children.append ( child_instance)              /* line 71 */
-        Str id = lookupstring ( child_desc, "id")      /* line 72 */
+        Str* id = lookupstring ( child_desc, counted("id"))/* line 72 */
         lookupid ( children_by_id, id) =  child_instance;/* line 73 *//* line 74 */;/* line 75 */
     (*container).children =  children;                 /* line 76 *//* line 77 */
     List_of_WireI* connectors = list_fresh()           /* line 78 */
-    for proto_conn in lookupstring ( desc, "connections"):/* line 79 */
+    for proto_conn in lookupstring ( desc, counted("connections")):/* line 79 */
         WireI*  connector =  fresh_Connector ()        /* line 80 */;
-        if lookupstring ( proto_conn, "dir") ==  enumDown:/* line 81 */
+        if lookupstring ( proto_conn, counted("dir")) ==  enumDown:/* line 81 */
             connectors.append (create_down_connector ( container, proto_conn, connectors, children_by_id)) /* line 82 */
-        elif lookupstring ( proto_conn, "dir") ==  enumAcross:/* line 83 */
+        elif lookupstring ( proto_conn, counted("dir")) ==  enumAcross:/* line 83 */
             connectors.append (create_across_connector ( container, proto_conn, connectors, children_by_id)) /* line 84 */
-        elif lookupstring ( proto_conn, "dir") ==  enumUp:/* line 85 */
+        elif lookupstring ( proto_conn, counted("dir")) ==  enumUp:/* line 85 */
             connectors.append (create_up_connector ( container, proto_conn, connectors, children_by_id)) /* line 86 */
-        elif lookupstring ( proto_conn, "dir") ==  enumThrough:/* line 87 */
+        elif lookupstring ( proto_conn, counted("dir")) ==  enumThrough:/* line 87 */
             connectors.append (create_through_connector ( container, proto_conn, connectors, children_by_id)) /* line 88 *//* line 89 *//* line 90 */
     (*container).connections =  connectors;            /* line 91 */
     return ( container)                                /* line 92 */;;/* line 93 *//* line 94 */}
@@ -104,7 +104,7 @@ void container_reset (Container* container) {
     queue_clear(  (*container).inq)                    /* line 108 */
 
     queue_clear(  (*container).outq)                   /* line 109 */
-    (*container).state =  "idle";;                     /* line 110 *//* line 111 *//* line 112 */}
+    (*container).state =  counted("idle");;            /* line 110 *//* line 111 *//* line 112 */}
 
 /*  Frees the given container and associated data. */  /* line 113 */
 void destroy_container (Part* eh) {
@@ -126,7 +126,7 @@ void deposit (Container* parent,Wire* conn,Mevent* mevent) {
 
 void force_tick (Container* parent,Part* eh) {
                                                        /* line 131 */
-    Mevent* tick_mev = make_mevent ( ".",new_datum_bang ())/* line 132 */
+    Mevent* tick_mev = make_mevent ( counted("."),new_datum_bang ())/* line 132 */
     push_mevent ( parent, eh,  (*eh).inq, tick_mev)    /* line 133 */
     return ( tick_mev)                                 /* line 134 *//* line 135 *//* line 136 */}
 
@@ -146,13 +146,13 @@ Bool is_self (Part* child,Container* container) {
 void step_child_once (Part* child,Mevent* mev) {
                                                        /* line 152 */
     if ( ("PBPSTEPPING" in os.environ) ):              /* line 153 */
-        print ( str( "-- stepping ❮") +  str(  (*child).name) +  "❯"  , file=sys.stderr)/* line 154 */
+        print ( str( counted("--_stepping_❮")) +  str(  (*child).name) +  counted("❯")  , file=sys.stderr)/* line 154 */
                                                        /* line 155 *//* line 156 */
     (*child).handler ( child, mev)                     /* line 157 *//* line 158 *//* line 159 */}
 
 void step_children (Container* container,Mevent* causingMevent) {
                                                        /* line 160 */
-    (*container).state =  "idle";                      /* line 161 *//* line 162 */
+    (*container).state =  counted("idle");             /* line 161 *//* line 162 */
     /*  phase 1 - loop through children and process inputs or children that not "idle"  *//* line 163 */
     for child in  list (  (*container).visit_ordering):/* line 164 */
         /*  child = container represents self, skip it *//* line 165 */
@@ -162,7 +162,7 @@ void step_children (Container* container,Mevent* causingMevent) {
                 step_child_once ( child, mev)          /* line 169 *//* line 170 */
                 destroy_mevent ( mev)                  /* line 171 */
             else:                                      /* line 172 */
-                if   (*child).state ==  "idle":        /* line 173 */
+                if   (*child).state ==  counted("idle"):/* line 173 */
                                                        /* line 174 */
                 else:                                  /* line 175 */
                     Mevent* mev = force_tick ( container, child)/* line 176 */
@@ -172,9 +172,9 @@ void step_children (Container* container,Mevent* causingMevent) {
     queue_clear(  (*container).visit_ordering)         /* line 183 *//* line 184 */
     /*  phase 2 - loop through children and route their outputs to appropriate receiver queues based on .connections  *//* line 185 */
     for child in   (*container).children:              /* line 186 */
-        if   (*child).state ==  "active":              /* line 187 */
+        if   (*child).state ==  counted("active"):     /* line 187 */
             /*  if child remains active, then the container must remain active and must propagate “ticks“ to child *//* line 188 */
-            (*container).state =  "active";;           /* line 189 *//* line 190 *//* line 191 */
+            (*container).state =  counted("active");;  /* line 189 *//* line 190 *//* line 191 */
         while (not ((0==len(  (*child).outq)))):       /* line 192 */
             Mevent* mev =   (*child).outq.popleft ()   /* line 193 */
             route ( container, child, mev)             /* line 194 */
@@ -182,12 +182,12 @@ void step_children (Container* container,Mevent* causingMevent) {
 
 void attempt_tick (Container* parent,Part* eh) {
                                                        /* line 200 */
-    if   (*eh).state!= "idle":                         /* line 201 */
+    if   (*eh).state!= counted("idle"):                /* line 201 */
         force_tick ( parent, eh)                       /* line 202 *//* line 203 *//* line 204 *//* line 205 */}
 
 Bool is_tick (Mevent* mev) {
                                                        /* line 206 */
-    return ( "." ==   (*mev).port)
+    return ( counted(".") ==   (*mev).port)
     /*  assume that any mevent that is sent to port "." is a tick  *//* line 207 *//* line 208 *//* line 209 */}
 
 /*  Routes a single mevent to all matching destinations, according to *//* line 210 */
@@ -196,7 +196,7 @@ void route (Container* container,Part* from_component,Mevent* mevent) {
                                                        /* line 213 */
     Bool  was_sent =  FALSE;
     /*  for checking that output went somewhere (at least during bootstrap) *//* line 214 */
-    Str  fromname =  "";                               /* line 215 */
+    Str*  fromname =  counted("");                     /* line 215 */
     static ticktime                                    /* line 216 */
     ticktime =  ticktime+ 1;                           /* line 217 */
     if is_tick ( mevent):                              /* line 218 */
@@ -212,7 +212,7 @@ void route (Container* container,Part* from_component,Mevent* mevent) {
                 deposit ( container, connector, mevent)/* line 230 */
                 was_sent =  TRUE;;                     /* line 231 *//* line 232 *//* line 233 *//* line 234 */
     if not ( was_sent):                                /* line 235 */
-        live_update ( "internal error",  str(  (*container).name) +  str( ": mevent on port '") +  str(  (*mevent).port) +  str( "' from ") +  str( fromname) +  " dropped on floor..."     )/* line 236 *//* line 237 */;/* line 238 *//* line 239 */}
+        live_update ( counted("internal_error"),  str(  (*container).name) +  str( counted(":_mevent_on_port_'")) +  str(  (*mevent).port) +  str( counted("'_from_")) +  str( fromname) +  counted("_dropped_on_floor...")     )/* line 236 *//* line 237 */;/* line 238 *//* line 239 */}
 
 Bool any_child_ready (Container* container) {
                                                        /* line 240 */
@@ -223,11 +223,11 @@ Bool any_child_ready (Container* container) {
 
 Bool child_is_ready (Part* eh) {
                                                        /* line 249 */
-    return ((not ((0==len(  (*eh).outq)))) or (not ((0==len(  (*eh).inq)))) or (  (*eh).state!= "idle") or (any_child_ready ( eh)))/* line 250 *//* line 251 *//* line 252 */}
+    return ((not ((0==len(  (*eh).outq)))) or (not ((0==len(  (*eh).inq)))) or (  (*eh).state!= counted("idle")) or (any_child_ready ( eh)))/* line 250 *//* line 251 *//* line 252 */}
                                                        /* line 253 */
 /*  Creates a component that acts as a container. It is the same as a `Eh` instance *//* line 254 */
 /*  whose handler function is `container_handler`. */  /* line 255 */
-Container* make_container (Str name,Container* owner) {
+Container* make_container (Str* name,Container* owner) {
                                                        /* line 256 */
     Container*  eh =  fresh_Eh ()                      /* line 257 */;
     (*eh).name =  name;                                /* line 258 */
@@ -235,8 +235,8 @@ Container* make_container (Str name,Container* owner) {
     (*eh).handler =  container_handler;                /* line 260 */
     (*eh).finject =  injector;                         /* line 261 */
     (*eh).reset =  container_reset;                    /* line 262 */
-    (*eh).state =  "idle";                             /* line 263 */
-    (*eh).kind =  "container";                         /* line 264 */
+    (*eh).state =  counted("idle");                    /* line 263 */
+    (*eh).kind =  counted("container");                /* line 264 */
     return ( eh)                                       /* line 265 */;;;;;;;/* line 266 *//* line 267 */}
 
 /*  Sends a mevent on the given `port` with `data`, placing it on the output *//* line 268 */
@@ -261,11 +261,11 @@ Mevent* inject_mevent (Part* eh,Mevent* mev) {
 
 void set_active (Part* eh) {
                                                        /* line 289 */
-    (*eh).state =  "active";;                          /* line 290 *//* line 291 *//* line 292 */}
+    (*eh).state =  counted("active");;                 /* line 290 *//* line 291 *//* line 292 */}
 
 void set_idle (Part* eh) {
                                                        /* line 293 */
-    (*eh).state =  "idle";;                            /* line 294 *//* line 295 *//* line 296 */}
+    (*eh).state =  counted("idle");;                   /* line 294 *//* line 295 *//* line 296 */}
 
 void put_output (Part* eh,Mevent* mev) {
                                                        /* line 297 */

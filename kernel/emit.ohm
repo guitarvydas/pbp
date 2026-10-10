@@ -220,9 +220,7 @@ emit {
   boolNeq = "!="
 
   string = "“" stringchar* "”"
-  stringchar = 
-    | "“" stringchar* "”" -- rec
-    | ~"“" ~"”" any -- other
+  stringchar = ~"“" ~"”" any
 
     keyword = (
         kw<"deftemp">

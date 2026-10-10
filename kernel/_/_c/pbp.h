@@ -2,7 +2,11 @@
 #define PBP_H
 
 // hardware level types
-typedef char* Str;
+typedef struct s_Str {
+  int count;
+  char* s;
+} Str;
+
 typedef unsigned char Byte;
 typedef unsigned char Bool;
 typedef int Index;

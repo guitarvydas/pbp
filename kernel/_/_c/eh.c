@@ -17,7 +17,7 @@
 Eh* fresh_Eh () {
     Eh *self;
     self = (Eh*)malloc(sizeof(Eh*));
-    self->name =  "";                                  /* line 17 */
+    self->name =  counted("");                         /* line 17 */
     self->inq =  queue_fresh()                         /* line 18 */;
     self->outq =  queue_fresh()                        /* line 19 */;
     self->owner =  NULL;                               /* line 20 */
@@ -28,8 +28,8 @@ Eh* fresh_Eh () {
     self->finject =  NULL;                             /* line 25 */
     self->reset =  NULL;                               /* line 26 */
     self->instance_data =  NULL;                       /* line 27 *//*  arg needed for probe support  *//* line 28 */
-    self->arg =  "";                                   /* line 29 */
-    self->state =  "idle";                             /* line 30 */
+    self->arg =  counted("");                          /* line 29 */
+    self->state =  counted("idle");                    /* line 30 */
     self->special =  FALSE;                            /* line 31 *//* line 32 */
     return self;
 }

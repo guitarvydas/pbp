@@ -58,16 +58,16 @@ void destroy_port (Mevent* mev) {
                                                        /* line 51 *//* line 52 *//* line 53 */}
 
 /*  */                                                 /* line 54 */
-Str format_mevent (Mevent* m) {
+Str* format_mevent (Mevent* m) {
                                                        /* line 55 */
     if  m ==  NULL:                                    /* line 56 */
-        return ( "{}")                                 /* line 57 */
+        return ( counted("{}"))                        /* line 57 */
     else:                                              /* line 58 */
-        return ( str( "{%5C”") +  str(  (*m).port) +  str( "%5C”:%5C”") +  str(   (*m).payload.v) +  "%5C”}"    /* line 59 */)/* line 60 *//* line 61 */}
+        return ( str( counted("{%5C”")) +  str(  (*m).port) +  str( counted("%5C”:%5C”")) +  str(   (*m).payload.v) +  counted("%5C”}")    /* line 59 */)/* line 60 *//* line 61 */}
 
-Str format_mevent_raw (Mevent* m) {
+Str* format_mevent_raw (Mevent* m) {
                                                        /* line 62 */
     if  m ==  NULL:                                    /* line 63 */
-        return ( "")                                   /* line 64 */
+        return ( counted(""))                          /* line 64 */
     else:                                              /* line 65 */
         return (   (*m).payload.v)                     /* line 66 *//* line 67 *//* line 68 */}

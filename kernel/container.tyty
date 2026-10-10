@@ -59,9 +59,9 @@ defn container_instantiator ≡ @Container
 (
     reg ≡ @Component_Registry,
     owner ≡ @Container,
-    container_name ≡ Str,
+    container_name ≡ @Str,
     desc ≡ @Template,
-    arg ≡ Str
+    arg ≡ @Str
 )
 {
                                                        #line 57
@@ -76,7 +76,7 @@ defn container_instantiator ≡ @Container
         for child_desc in  desc [ "children"] {
                                                        #line 66
             child_instance ≡ @PartI
-            id ≡ Str                                      #line 69
+            id ≡ @Str                                      #line 69
         }
         connectors ≡ @List_of_WireI                                  #line 75
         proto_conn ≡ @WireTemplate
@@ -244,11 +244,11 @@ defn route ≡ ~
 {
                                                        #line 210
         was_sent ≡ Bool                                    #line 211
-        fromname ≡ Str                                    #line 212
+        fromname ≡ @Str                                    #line 212
         ticktime  ≡ [_global,ticktime]                 #line 213
             child ≡ @PartI
                                                        #line 220
-                fromname ≡ Str                            #line 221#line 222
+                fromname ≡ @Str                            #line 221#line 222
             from_sender ≡ @Sender                              #line 224
             connector ≡ @WireI
 }
@@ -282,7 +282,7 @@ defn append_routing_descriptor ≡ ~
                                                        #line 254
 defn make_container ≡ @Container
 (
-    name ≡ Str,
+    name ≡ @Str,
     owner ≡ @Container
 )
 {

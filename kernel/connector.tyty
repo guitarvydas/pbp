@@ -17,7 +17,7 @@ defobj Connector {
                                                        #line 19#line 20
 defobj Sender {
                                                        #line 21
-    name ≡ Str                                            #line 22
+    name ≡ @Str                                            #line 22
     component ≡ @Eh                                       #line 23
     port ≡ Port                                            #line 24#line 25
 }
@@ -26,7 +26,7 @@ defobj Sender {
                                                        #line 30#line 31
 defobj Receiver {
                                                        #line 32
-    name ≡ Str                                            #line 33
+    name ≡ @Str                                            #line 33
     queue ≡ @Queue_of_Mevent                                           #line 34
     port ≡ Port                                            #line 35
     component ≡ @Eh                                       #line 36#line 37
@@ -34,7 +34,7 @@ defobj Receiver {
                                                        #line 38
 defn mkSender ≡ @Sender
 (
-    name ≡ Str,
+    name ≡ @Str,
     component ≡ @Eh,
     port ≡ Port
 )
@@ -45,7 +45,7 @@ defn mkSender ≡ @Sender
 
 defn mkReceiver ≡ @Receiver
 (
-    name ≡ Str,
+    name ≡ @Str,
     component ≡ @Eh,
     port ≡ Port,
     q ≡ @Queue
