@@ -55,7 +55,6 @@ rm -f temp.*
 
 
 
-# ./extract2.bash "container.tyty" | tee "container.ty2" | python3 rm_extra_commas.py
-./do_typeextractor2.bash
-cat *.ty2 >typetable.jsn
+node das2json.mjs kernel.drawio
+./tas.bash "container"
 

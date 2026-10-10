@@ -1,13 +1,13 @@
 
 {"op":"newscope", "operand":"Eh"}
-{"op":"insert", "operand":{"name":"Eh", "indir":1, "type":"obj", "scope":"_global", "kind":"obj"}}
+{"op":"insert", "operand":{"name":"Eh", "indir":2, "type":"Eh", "scope":"_global", "kind":"obj"}}
 {"op":"insert", "operand":{"name":"name", "indir":2, "type":"Str", "scope":"_global/Eh", "kind":"variable"}}
 {"op":"insert", "operand":{"name":"inq", "indir":2, "type":"Queue", "scope":"_global/Eh", "kind":"variable"}}
 {"op":"insert", "operand":{"name":"outq", "indir":2, "type":"Queue", "scope":"_global/Eh", "kind":"variable"}}
 {"op":"insert", "operand":{"name":"owner", "indir":2, "type":"Container", "scope":"_global/Eh", "kind":"variable"}}
-{"op":"insert", "operand":{"name":"children", "indir":2, "type":"Collection_of_Part", "scope":"_global/Eh", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"children", "indir":2, "type":"List_of_Part", "scope":"_global/Eh", "kind":"variable"}}
 {"op":"insert", "operand":{"name":"visit_ordering", "indir":2, "type":"Queue_of_Part", "scope":"_global/Eh", "kind":"variable"}}
-{"op":"insert", "operand":{"name":"connections", "indir":2, "type":"Collection_ofWire", "scope":"_global/Eh", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"connections", "indir":2, "type":"List_ofWire", "scope":"_global/Eh", "kind":"variable"}}
 {"op":"insert", "operand":{"name":"handler", "indir":1, "type":"Fhandler", "scope":"_global/Eh", "kind":"variable"}}
 {"op":"insert", "operand":{"name":"finject", "indir":1, "type":"Finject", "scope":"_global/Eh", "kind":"variable"}}
 {"op":"insert", "operand":{"name":"reset", "indir":1, "type":"Freset", "scope":"_global/Eh", "kind":"variable"}}

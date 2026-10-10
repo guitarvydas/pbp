@@ -1,20 +1,20 @@
 /* line 1 */
-void* enumDown =  0                                    /* line 2 */;
-void* enumAcross =  1                                  /* line 3 */;
-void* enumUp =  2                                      /* line 4 */;
-void* enumThrough =  3                                 /* line 5 */;/* line 6 *//* line 7 */
+Dir =  0                                               /* line 2 */;
+Dir =  1                                               /* line 3 */;
+Dir =  2                                               /* line 4 */;
+Dir =  3                                               /* line 5 */;/* line 6 *//* line 7 */
 /*  Routing connection for a container component. The `direction` field has *//* line 8 */
 /*  no affect on the default mevent routing system _ it is there for debugging *//* line 9 */
 /*  purposes, or for reading by other tools. */        /* line 10 *//* line 11 */
-typedef struct _Connector {
+typedef struct s_Connector {
                                                        /* line 12 */
-    direction; /*  down, across, up, through */        /* line 13 */
-    sender;                                            /* line 14 */
-    receiver;                                          /* line 15 *//* line 16 */
+    Dir direction; /*  down, across, up, through */    /* line 13 */
+    Sender* sender;                                    /* line 14 */
+    Receiver* receiver;                                /* line 15 *//* line 16 */
 } Connector;
-Connector fresh_Connector () {
+Connector* fresh_Connector () {
     Connector *self;
-    self = (Mevent*)malloc(sizeof(Mevent));
+    self = (Connector*)malloc(sizeof(Connector*));
     self->direction =  NULL; /*  down, across, up, through *//* line 13 */
     self->sender =  NULL;                              /* line 14 */
     self->receiver =  NULL;                            /* line 15 *//* line 16 */
@@ -23,15 +23,15 @@ Connector fresh_Connector () {
                                                        /* line 17 */
 /*  `Sender` is used to "pattern match“ which `Receiver` a mevent should go to, *//* line 18 */
 /*  based on component ID (pointer) and port name. */  /* line 19 *//* line 20 */
-typedef struct _Sender {
+typedef struct s_Sender {
                                                        /* line 21 */
-    name;                                              /* line 22 */
-    component;                                         /* line 23 */
-    port;                                              /* line 24 *//* line 25 */
+    Str* name;                                         /* line 22 */
+    Eh* component;                                     /* line 23 */
+    Port port;                                         /* line 24 *//* line 25 */
 } Sender;
-Sender fresh_Sender () {
+Sender* fresh_Sender () {
     Sender *self;
-    self = (Mevent*)malloc(sizeof(Mevent));
+    self = (Sender*)malloc(sizeof(Sender*));
     self->name =  NULL;                                /* line 22 */
     self->component =  NULL;                           /* line 23 */
     self->port =  NULL;                                /* line 24 *//* line 25 */
@@ -40,16 +40,16 @@ Sender fresh_Sender () {
                                                        /* line 26 *//* line 27 *//* line 28 */
 /*  `Receiver` is a handle to a destination queue, and a `port` name to assign *//* line 29 */
 /*  to incoming mevents to this queue. */              /* line 30 *//* line 31 */
-typedef struct _Receiver {
+typedef struct s_Receiver {
                                                        /* line 32 */
-    name;                                              /* line 33 */
-    queue;                                             /* line 34 */
-    port;                                              /* line 35 */
-    component;                                         /* line 36 *//* line 37 */
+    Str* name;                                         /* line 33 */
+    Queue* queue;                                      /* line 34 */
+    Port port;                                         /* line 35 */
+    Eh* component;                                     /* line 36 *//* line 37 */
 } Receiver;
-Receiver fresh_Receiver () {
+Receiver* fresh_Receiver () {
     Receiver *self;
-    self = (Mevent*)malloc(sizeof(Mevent));
+    self = (Receiver*)malloc(sizeof(Receiver*));
     self->name =  NULL;                                /* line 33 */
     self->queue =  NULL;                               /* line 34 */
     self->port =  NULL;                                /* line 35 */
@@ -57,17 +57,17 @@ Receiver fresh_Receiver () {
     return self;
 }
                                                        /* line 38 */
-void* mkSender (void* name,void* component,void* port) {
+Sender* mkSender (Str* name,Eh* component,Port port) {
                                                        /* line 39 */
-    s =  Sender ()                                     /* line 40 */
+    Sender*  s =  fresh_Sender ()                      /* line 40 */;
     (*s).name =  name                                  /* line 41 */
     (*s).component =  component                        /* line 42 */
     (*s).port =  port                                  /* line 43 */
     return ( s)                                        /* line 44 */;;;/* line 45 *//* line 46 */}
 
-void* mkReceiver (void* name,void* component,void* port,void* q) {
+Receiver* mkReceiver (Str* name,Eh* component,Port port,Queue* q) {
                                                        /* line 47 */
-    r =  Receiver ()                                   /* line 48 */
+    Receiver*  r =  fresh_Receiver ()                  /* line 48 */;
     (*r).name =  name                                  /* line 49 */
     (*r).component =  component                        /* line 50 */
     (*r).port =  port                                  /* line 51 */

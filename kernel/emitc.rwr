@@ -23,26 +23,29 @@ kw [ s] = ‛«s»’
 Defvar [ __ id _eq e line?] = ‛\n⎨getdeclaration ‛1’ ‛⟪scope⟫’ ‛«id»’⎬ = «e»«line»;’
 Defn [ _4 ident Formals StatementBlock line?] = 
   ⎡ scope=‛«ident»’
-     ‛\n⎨getdeclaration ‛2’ ‛⎨genscoperest ‛scope’⎬’ ‛«ident»’⎬ «Formals» {\n«StatementBlock»«line»}\n’
+     ‛\n⎨getdeclaration ‛2’ ‛⎨genscoperest ‛scope’⎬’ ‛«ident»’⎬ «ident» «Formals» {\n«StatementBlock»«line»}\n’
   ⎦
 
-Defobj [ _defobj ident line1? lb line2? init+ rb line3?] = ‛
-typedef struct _«ident» {⤷
-  «line1»«line2»⎨first ‛«init»’⎬«line3»⤶
-} «ident»;
-«ident» fresh_«ident» () {⤷
-  «ident» *self;
-  self = (Mevent*)malloc(sizeof(Mevent));⎨second ‛«init»’⎬«line3»
-  return self;⤶
-}
-’
+Defobj [ _defobj ident line1? lb line2? init+ rb line3?] = 
+  ⎡ scope=‛«ident»’
+      ‛
+      typedef struct s_«ident» {⤷
+	«line1»«line2»⎨first ‛«init»’⎬«line3»⤶
+      } «ident»;
+      ⎨getdeclaration ‛6’ ‛⎨genscoperest ‛scope’⎬’ ‛«ident»’⎬ fresh_«ident» () {⤷
+	«ident» *self;
+	self = (⎨getdeclaration ‛6’ ‛⎨genscoperest ‛scope’⎬’ ‛«ident»’⎬)malloc(sizeof(⎨getdeclaration ‛7’ ‛⎨genscoperest ‛scope’⎬’ ‛«ident»’⎬));⎨second ‛«init»’⎬«line3»
+	return self;⤶
+      }
+      ’
+  ⎦
 
 StatementBlock [ line1? lb line2? Statement     line3? rb  line4?] = ‛«line1»«line2»⤷«Statement»«line3»«line4»⤶’
 
 Rec_Statement [line1? R_Statement line2?] = ‛«line1»«R_Statement»«line2»’
 R_Statement_globals [ _24 ident1  cidents* scope?] =‛\nstatic «ident1»«cidents»«scope»’
 R_Statement_comment [s rec?] =‛\n«s»«rec»’
-R_Statement_external [x rec?] = ‛\nexternal «x»«rec»’
+R_Statement_external [x rec?] = ‛\n«x»«rec»’
 R_Statement_if [ IfStatement] =‛«IfStatement»’
 R_Statement_pass [ _27 scope?] =‛\n«scope»’
 R_Statement_return [ _29 ReturnExp] =‛\nreturn «ReturnExp»’
@@ -93,17 +96,17 @@ ExternalPhrase_internalizeLnetFromString [_octothorpe _ lp rp] = ‛
         print ("Error decoding JSON from string 'lnet': '{e}'")
         return None⤶
 ’
-ExternalPhrase_freshQueue [_octothorpe _ lp rp] = ‛ deque ([])’
-ExternalPhrase_resetQueue [_octothorpe _ lp e rp] = ‛\n«e».clear ()’
-ExternalPhrase_freshStack [_octothorpe _ lp rp] = ‛ []’
-ExternalPhrase_fresh [_octothorpe _83 _84 ident _85] =‛ «ident» ()’
+ExternalPhrase_freshQueue [_octothorpe _ lp rp] = ‛ queue_fresh()’
+ExternalPhrase_resetQueue [_octothorpe _ lp e rp] = ‛\nqueue_clear(«e»)’
+ExternalPhrase_freshStack [_octothorpe _ lp rp] = ‛ stack_fresh()’
+ExternalPhrase_fresh [_octothorpe _83 _84 ident _85] =‛ fresh_«ident» ()’
 ExternalPhrase_stringshrink [_octothorpe _83 _84 e _85 ] =‛ str(«e»)[:30].replace ('\\r','⦙').replace ('\\n', '⧚') ’
 ExternalPhrase_stringcar [_octothorpe _83 _84 e _85 ] =‛ «e»[0] ’
 ExternalPhrase_stringcdr [_octothorpe _83 _84 e _85 ] =‛ «e»[1:] ’
 ExternalPhrase_strcons [_octothorpe _strcons lp e1 _comma e2 rp] =‛ str(«e1») + «e2» ’
 ExternalPhrase_append [_octothorpe _ lp e1 _comma e2 rp] =‛ «e1».append («e2») ’
 ExternalPhrase_basename [_octothorpe _basename lp s rp] = ‛ os.path.basename («s»)’
-ExternalPhrase_preamble [_octothorpe _preamble lb rp] = ‛’
+ExternalPhrase_preamble [_octothorpe _preamble lb rp] = ‛#include "pbp.h"’
 ExternalPhrase_print_stdout [_octothorpe _ lp e rp] = ‛print («e»)’
 ExternalPhrase_print_stderr [_octothorpe _ lp e rp] = ‛print («e», file=sys.stderr)’
 ExternalPhrase_print_nl [_octothorpe _ lp rp] = ‛print ()’
@@ -159,12 +162,12 @@ ExternalPhrase_showCommand [_octothorpe _ lp rp] = ‛ ("PBPSHELLUT" in os.envir
 
 ExternalPhrase_unrecognized [_octothorpe ident lp stuff* rp] = ‛«_octothorpe» «ident» ⎝ error - unrecognized external (with given arguments) ⎠ «lp»«stuff»«rp» ’
 
-Deftemp [_deftemp lval _mutate e rec?] = ‛\n«lval» = «e»«rec»’
+Deftemp [_deftemp ident _mutate e rec?] = ‛\n⎨getdeclaration ‛8’ ‛⎨genscope ‛scope’⎬’ ‛«ident»’⎬ «ident» = «e»;«rec»’
 Defsynonym_illegal [ lval err _eqv e rec?] = ‛\n«lval» «err» = «e»«rec»’
-Defsynonym_legal [id _eqv e rec?] = ‛\n«id» = «e»«rec»’
+Defsynonym_legal [id _eqv e rec?] = ‛\n⎨getdeclaration ‛9’ ‛⎨genscope ‛scope’⎬’ ‛«id»’⎬ «id» = «e»«rec»’
 
 
-InitStatement [ _mark ident _33 Exp fluff*] = ‛\n«ident»; «fluff»◦\nself->«ident» = «Exp»; «fluff»⫶’
+InitStatement [ _mark ident _33 Exp fluff*] = ‛\n⎨getdeclaration ‛4’ ‛⎨genscope ‛scope’⎬’ ‛«ident»’⎬ «ident»; «fluff»◦\nself->«ident» = «Exp»; «fluff»⫶’
 
 IfStatement [ _35 Exp StatementBlock ElifStatement* ElseStatement? rec?] = ‛\nif «Exp»:«StatementBlock»«ElifStatement»«ElseStatement»«rec»’
 ElifStatement [ _37 Exp StatementBlock] = ‛\nelif «Exp»:«StatementBlock»’
@@ -231,15 +234,15 @@ PrimaryIndexed_nthslice [p lb ds+ _colon rb] =
 PrimaryIndexed_atom [a] = ‛«a»’
 
 Atom_external [x] = ‛«x»’
-Atom_emptylistconst [ _72 _73] =‛«_72»«_73»’
-Atom_emptydict [ _76 _77] =‛«_76»«_77»’
+Atom_emptylistconst [ _72 _73] =‛list_fresh()’
+Atom_emptydict [ _76 _77] =‛dict_fresh()’
 Atom_paren [ _70 Exp _71] =‛«_70»«Exp»«_71»’
 Atom_listconst [ lb line1? PrimaryComma+ line2? rb] =‛«lb»«PrimaryComma»«rb»«line2»’
 Atom_dict [ _78 line1? PairComma+ line2? _79] =‛«_78»«line1»«PairComma»«line2»«_79»’
 Atom_lambda [ _80 Formals? _81 Exp] =‛ lambda «Formals»: «Exp»’
 Atom_phi [ phi] =‛ NULL’
-Atom_true [ _88] =‛ True’
-Atom_false [ _89] =‛ False’
+Atom_true [ _88] =‛ TRUE’
+Atom_false [ _89] =‛ FALSE’
 Atom_subr [_ ident] = ‛ «ident»’
 Atom_range [ _91 _92 Exp _93] =‛«_91»«_92»«Exp»«_93»’
 Atom_callident [id actuals] = ‛«id» «actuals»’
@@ -259,7 +262,7 @@ Formals_noformals [ _148 _149] =‛«_148»«_149»’
 Formals_withformals [ _150 FormalComma* _151] =‛«_150»«FormalComma»«_151»’
 LambdaFormals_noformals [ _148 _149] =‛’
 LambdaFormals_withformals [ _150 FormalComma* _151] =‛«FormalComma»’
-Formal [ ident] = ‛⎨getdeclaration ‛3’ ‛⎨genscope ‛scope’⎬’ ‛«ident»’⎬’
+Formal [ ident] = ‛⎨getdeclaration ‛3’ ‛⎨genscope ‛scope’⎬’ ‛«ident»’⎬ «ident»’
 FormalComma [Formal comma?] =‛«Formal»«comma»’
 
 Actuals_noactuals [ _154 _155] =‛«_154»«_155»’

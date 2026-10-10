@@ -15,11 +15,11 @@
 {"op":"insert", "operand":{"name":"eh", "indir":2, "type":"Part", "scope":"_global/trash_handler","kind":"parameter"}}
 {"op":"insert", "operand":{"name":"mev", "indir":2, "type":"Mevent", "scope":"_global/trash_handler","kind":"parameter"}}
 {"op":"newscope", "operand":"TwoMevents"}
-{"op":"insert", "operand":{"name":"TwoMevents", "indir":1, "type":"obj", "scope":"_global", "kind":"obj"}}
+{"op":"insert", "operand":{"name":"TwoMevents", "indir":2, "type":"TwoMevents", "scope":"_global", "kind":"obj"}}
 {"op":"insert", "operand":{"name":"firstmev", "indir":2, "type":"Mevent", "scope":"_global/TwoMevents", "kind":"variable"}}
 {"op":"insert", "operand":{"name":"secondmev", "indir":2, "type":"Mevent", "scope":"_global/TwoMevents", "kind":"variable"}}
 {"op":"newscope", "operand":"Deracer_Instance_Data"}
-{"op":"insert", "operand":{"name":"Deracer_Instance_Data", "indir":1, "type":"obj", "scope":"_global", "kind":"obj"}}
+{"op":"insert", "operand":{"name":"Deracer_Instance_Data", "indir":2, "type":"Deracer_Instance_Data", "scope":"_global", "kind":"obj"}}
 {"op":"insert", "operand":{"name":"state", "indir":1, "type":"State", "scope":"_global/Deracer_Instance_Data", "kind":"variable"}}
 {"op":"insert", "operand":{"name":"buffer", "indir":2, "type":"TwoMevents", "scope":"_global/Deracer_Instance_Data", "kind":"variable"}}
 {"op":"newscope", "operand":"reclaim_Buffers_from_heap"}
@@ -75,7 +75,7 @@
 {"op":"insert", "operand":{"name":"mev", "indir":2, "type":"Mevent", "scope":"_global/ensure_string_datum_handler","kind":"parameter"}}
 {"op":"insert", "operand":{"name":"emev", "indir":2, "type":"Str", "scope":"_global/ensure_string_datum_handler", "kind":"variable"}}
 {"op":"newscope", "operand":"Syncfilewrite_Data"}
-{"op":"insert", "operand":{"name":"Syncfilewrite_Data", "indir":1, "type":"obj", "scope":"_global", "kind":"obj"}}
+{"op":"insert", "operand":{"name":"Syncfilewrite_Data", "indir":2, "type":"Syncfilewrite_Data", "scope":"_global", "kind":"obj"}}
 {"op":"insert", "operand":{"name":"filename", "indir":2, "type":"Str", "scope":"_global/Syncfilewrite_Data", "kind":"variable"}}
 {"op":"newscope", "operand":"syncfilewrite_reset_handler"}
 {"op":"insert", "operand":{"name":"syncfilewrite_reset_handler", "indir":0, "type":"void", "kind":"proc", "scope":"_global" }}
@@ -97,7 +97,7 @@
 {"op":"insert", "operand":{"name":"contents", "indir":2, "type":"Payload", "scope":"_global/syncfilewrite_handler", "kind":"variable"}}
 {"op":"insert", "operand":{"name":"f", "indir":2, "type":"FileDescriptor", "scope":"_global/syncfilewrite_handler", "kind":"variable"}}
 {"op":"newscope", "operand":"StringConcat_Instance_Data"}
-{"op":"insert", "operand":{"name":"StringConcat_Instance_Data", "indir":1, "type":"obj", "scope":"_global", "kind":"obj"}}
+{"op":"insert", "operand":{"name":"StringConcat_Instance_Data", "indir":2, "type":"StringConcat_Instance_Data", "scope":"_global", "kind":"obj"}}
 {"op":"insert", "operand":{"name":"buffer1", "indir":2, "type":"Str", "scope":"_global/StringConcat_Instance_Data", "kind":"variable"}}
 {"op":"insert", "operand":{"name":"buffer2", "indir":2, "type":"Str", "scope":"_global/StringConcat_Instance_Data", "kind":"variable"}}
 {"op":"newscope", "operand":"stringconcat_reset_handler"}
@@ -157,7 +157,7 @@
 {"op":"insert", "operand":{"name":"mev", "indir":2, "type":"Mevent", "scope":"_global/fakepipename_handler","kind":"parameter"}}
 {"op":"insert", "operand":{"name":"rand", "lookup":{"scope":"_global", "name":"rand"}, "scope":"_global/fakepipename_handler", "kind":"variable"}}
 {"op":"newscope", "operand":"Switch1star_Instance_Data"}
-{"op":"insert", "operand":{"name":"Switch1star_Instance_Data", "indir":1, "type":"obj", "scope":"_global", "kind":"obj"}}
+{"op":"insert", "operand":{"name":"Switch1star_Instance_Data", "indir":2, "type":"Switch1star_Instance_Data", "scope":"_global", "kind":"obj"}}
 {"op":"insert", "operand":{"name":"state", "indir":2, "type":"Str", "scope":"_global/Switch1star_Instance_Data", "kind":"variable"}}
 {"op":"newscope", "operand":"switch1star_reset_handler"}
 {"op":"insert", "operand":{"name":"switch1star_reset_handler", "indir":0, "type":"void", "kind":"proc", "scope":"_global" }}
@@ -180,7 +180,7 @@
 {"op":"insert", "operand":{"name":"inst", "indir":2, "type":"Switch1star_Instance_Data", "scope":"_global/switch1star_handler", "kind":"variable"}}
 {"op":"insert", "operand":{"name":"whichOutput", "indir":2, "type":"Str", "scope":"_global/switch1star_handler", "kind":"variable"}}
 {"op":"newscope", "operand":"StringAccumulator"}
-{"op":"insert", "operand":{"name":"StringAccumulator", "indir":1, "type":"obj", "scope":"_global", "kind":"obj"}}
+{"op":"insert", "operand":{"name":"StringAccumulator", "indir":2, "type":"StringAccumulator", "scope":"_global", "kind":"obj"}}
 {"op":"insert", "operand":{"name":"s", "indir":2, "type":"Str", "scope":"_global/StringAccumulator", "kind":"variable"}}
 {"op":"newscope", "operand":"strcatstar_reset_handler"}
 {"op":"insert", "operand":{"name":"strcatstar_reset_handler", "indir":0, "type":"void", "kind":"proc", "scope":"_global" }}

@@ -89,7 +89,7 @@ function genscoperest (pname) {
 
 function lookup (scope, ubid) {
     let sc = fetchscopeobject(scope);
-    let id = rmub(ubid);
+    let id = rmub(ubid).trim();
     let descriptor = sc[id];
     if (!descriptor) {
 	throw `can't find "${id}" in "${scope}"`;
@@ -103,13 +103,15 @@ function lookup (scope, ubid) {
 
 
 function getdeclaration(n, scope, id) {
-    pbplog (`getdeclaration(${n}, "${scope}", "${id}")`);
     let desc = lookup (rmub(scope), rmub(id));
-    return `void* ${id}`;
+    let ptr = "";
+    if (desc.indir == 2) {
+	ptr = "*";
+    }
+    return `${desc.type}${ptr}`;
 }
 
 function getmaybederef(deref, scope, id) {
-    pbplog (`getmaybederef(${deref}, "${scope}", "${id}")`);
     let desc = lookup (rmub(scope), rmub(id));
     if (deref === "⊥") {
 	return id;

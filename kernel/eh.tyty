@@ -19,9 +19,9 @@ defobj Eh {
     inq ≡ @Queue
     outq ≡ @Queue
     owner ≡ @Container                                           #line 20
-    children ≡ @Collection_of_Part                                        #line 21
+    children ≡ @List_of_Part                                        #line 21
     visit_ordering ≡ @Queue_of_Part
-    connections ≡ @Collection_ofWire                                     #line 23
+    connections ≡ @List_ofWire                                     #line 23
     handler ≡ Fhandler                                         #line 24
     finject ≡ Finject                                         #line 25
     reset ≡ Freset                                           #line 26

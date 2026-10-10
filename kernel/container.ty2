@@ -3,7 +3,7 @@
 {"op":"insert", "operand":{"name":"create_down_connector", "indir":2, "type":"Wire", "kind":"retproc", "scope":"_global" }}
 {"op":"insert", "operand":{"name":"container", "indir":2, "type":"Container", "scope":"_global/create_down_connector","kind":"parameter"}}
 {"op":"insert", "operand":{"name":"proto_conn", "indir":2, "type":"Wire_Proto", "scope":"_global/create_down_connector","kind":"parameter"}}
-{"op":"insert", "operand":{"name":"connectors", "indir":2, "type":"Collection_of_Wire", "scope":"_global/create_down_connector","kind":"parameter"}}
+{"op":"insert", "operand":{"name":"connectors", "indir":2, "type":"List_of_Wire", "scope":"_global/create_down_connector","kind":"parameter"}}
 {"op":"insert", "operand":{"name":"children_by_id", "indir":2, "type":"Table_by_ID_of_Part", "scope":"_global/create_down_connector","kind":"parameter"}}
 {"op":"insert", "operand":{"name":"connector", "indir":2, "type":"Wire", "scope":"_global/create_down_connector", "kind":"variable"}}
 {"op":"insert", "operand":{"name":"target_proto", "indir":2, "type":"Part", "scope":"_global/create_down_connector", "kind":"variable"}}
@@ -13,7 +13,7 @@
 {"op":"insert", "operand":{"name":"create_across_connector", "indir":2, "type":"Wire", "kind":"retproc", "scope":"_global" }}
 {"op":"insert", "operand":{"name":"container", "indir":2, "type":"Container", "scope":"_global/create_across_connector","kind":"parameter"}}
 {"op":"insert", "operand":{"name":"proto_conn", "indir":2, "type":"Wire_Proto", "scope":"_global/create_across_connector","kind":"parameter"}}
-{"op":"insert", "operand":{"name":"connectors", "indir":2, "type":"Collection_of_Wire", "scope":"_global/create_across_connector","kind":"parameter"}}
+{"op":"insert", "operand":{"name":"connectors", "indir":2, "type":"List_of_Wire", "scope":"_global/create_across_connector","kind":"parameter"}}
 {"op":"insert", "operand":{"name":"children_by_id", "indir":2, "type":"Table_by_ID_of_Part", "scope":"_global/create_across_connector","kind":"parameter"}}
 {"op":"insert", "operand":{"name":"connector", "indir":2, "type":"Wire", "scope":"_global/create_across_connector", "kind":"variable"}}
 {"op":"insert", "operand":{"name":"source_component", "indir":2, "type":"Part", "scope":"_global/create_across_connector", "kind":"variable"}}
@@ -22,7 +22,7 @@
 {"op":"insert", "operand":{"name":"create_up_connector", "indir":2, "type":"Wire", "kind":"retproc", "scope":"_global" }}
 {"op":"insert", "operand":{"name":"container", "indir":2, "type":"Container", "scope":"_global/create_up_connector","kind":"parameter"}}
 {"op":"insert", "operand":{"name":"proto_conn", "indir":2, "type":"Wire_Proto", "scope":"_global/create_up_connector","kind":"parameter"}}
-{"op":"insert", "operand":{"name":"connectors", "indir":2, "type":"Collection_of_Wire", "scope":"_global/create_up_connector","kind":"parameter"}}
+{"op":"insert", "operand":{"name":"connectors", "indir":2, "type":"List_of_Wire", "scope":"_global/create_up_connector","kind":"parameter"}}
 {"op":"insert", "operand":{"name":"children_by_id", "indir":2, "type":"Table_by_ID_of_Part", "scope":"_global/create_up_connector","kind":"parameter"}}
 {"op":"insert", "operand":{"name":"connector", "indir":2, "type":"Wire", "scope":"_global/create_up_connector", "kind":"variable"}}
 {"op":"insert", "operand":{"name":"source_component", "indir":2, "type":"Part", "scope":"_global/create_up_connector", "kind":"variable"}}
@@ -30,7 +30,7 @@
 {"op":"insert", "operand":{"name":"create_through_connector", "indir":2, "type":"Wire", "kind":"retproc", "scope":"_global" }}
 {"op":"insert", "operand":{"name":"container", "indir":2, "type":"Container", "scope":"_global/create_through_connector","kind":"parameter"}}
 {"op":"insert", "operand":{"name":"proto_conn", "indir":2, "type":"Wire_Proto", "scope":"_global/create_through_connector","kind":"parameter"}}
-{"op":"insert", "operand":{"name":"connectors", "indir":2, "type":"Collection_of_Wire", "scope":"_global/create_through_connector","kind":"parameter"}}
+{"op":"insert", "operand":{"name":"connectors", "indir":2, "type":"List_of_Wire", "scope":"_global/create_through_connector","kind":"parameter"}}
 {"op":"insert", "operand":{"name":"children_by_id", "indir":2, "type":"Table_by_ID_of_Part", "scope":"_global/create_through_connector","kind":"parameter"}}
 {"op":"insert", "operand":{"name":"connector", "indir":2, "type":"Wire", "scope":"_global/create_through_connector", "kind":"variable"}}
 {"op":"newscope", "operand":"container_instantiator"}
@@ -45,14 +45,14 @@
 {"op":"insert", "operand":{"name":"enumAcross", "lookup":{"scope":"_global", "name":"enumAcross"}, "scope":"_global/container_instantiator", "kind":"variable"}}
 {"op":"insert", "operand":{"name":"enumThrough", "lookup":{"scope":"_global", "name":"enumThrough"}, "scope":"_global/container_instantiator", "kind":"variable"}}
 {"op":"insert", "operand":{"name":"container", "indir":2, "type":"Container", "scope":"_global/container_instantiator", "kind":"variable"}}
-{"op":"insert", "operand":{"name":"children", "indir":2, "type":"Collection_of_PartInstance", "scope":"_global/container_instantiator", "kind":"variable"}}
-{"op":"insert", "operand":{"name":"children_by_id", "indir":2, "type":"Collection_of_PartInstance", "scope":"_global/container_instantiator", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"children", "indir":2, "type":"List_of_PartI", "scope":"_global/container_instantiator", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"children_by_id", "indir":2, "type":"List_of_PartI", "scope":"_global/container_instantiator", "kind":"variable"}}
 {"op":"insert", "operand":{"name":"child_desc", "indir":2, "type":"Template", "scope":"_global/container_instantiator", "kind":"variable"}}
-{"op":"insert", "operand":{"name":"child_instance", "indir":2, "type":"PartInstance", "scope":"_global/container_instantiator", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"child_instance", "indir":2, "type":"PartI", "scope":"_global/container_instantiator", "kind":"variable"}}
 {"op":"insert", "operand":{"name":"id", "indir":2, "type":"Str", "scope":"_global/container_instantiator", "kind":"variable"}}
-{"op":"insert", "operand":{"name":"connectors", "indir":2, "type":"Collection_of_WireInstance", "scope":"_global/container_instantiator", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"connectors", "indir":2, "type":"List_of_WireI", "scope":"_global/container_instantiator", "kind":"variable"}}
 {"op":"insert", "operand":{"name":"proto_conn", "indir":2, "type":"WireTemplate", "scope":"_global/container_instantiator", "kind":"variable"}}
-{"op":"insert", "operand":{"name":"connector", "indir":2, "type":"WireInstance", "scope":"_global/container_instantiator", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"connector", "indir":2, "type":"WireI", "scope":"_global/container_instantiator", "kind":"variable"}}
 {"op":"newscope", "operand":"container_handler"}
 {"op":"insert", "operand":{"name":"container_handler", "indir":0, "type":"void", "kind":"proc", "scope":"_global" }}
 {"op":"insert", "operand":{"name":"container", "indir":2, "type":"Container", "scope":"_global/container_handler","kind":"parameter"}}
@@ -119,10 +119,10 @@
 {"op":"insert", "operand":{"name":"was_sent", "indir":1, "type":"Bool", "scope":"_global/route", "kind":"variable"}}
 {"op":"insert", "operand":{"name":"fromname", "indir":2, "type":"Str", "scope":"_global/route", "kind":"variable"}}
 {"op":"insert", "operand":{"name":"ticktime", "lookup":{"scope":"_global", "name":"ticktime"}, "scope":"_global/route", "kind":"variable"}}
-{"op":"insert", "operand":{"name":"child", "indir":2, "type":"PartInstance", "scope":"_global/route", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"child", "indir":2, "type":"PartI", "scope":"_global/route", "kind":"variable"}}
 {"op":"insert", "operand":{"name":"fromname", "indir":2, "type":"Str", "scope":"_global/route", "kind":"variable"}}
 {"op":"insert", "operand":{"name":"from_sender", "indir":2, "type":"Sender", "scope":"_global/route", "kind":"variable"}}
-{"op":"insert", "operand":{"name":"connector", "indir":2, "type":"WireInstance", "scope":"_global/route", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"connector", "indir":2, "type":"WireI", "scope":"_global/route", "kind":"variable"}}
 {"op":"newscope", "operand":"any_child_ready"}
 {"op":"insert", "operand":{"name":"any_child_ready", "indir":1, "type":"Bool", "kind":"retproc", "scope":"_global" }}
 {"op":"insert", "operand":{"name":"container", "indir":2, "type":"Container", "scope":"_global/any_child_ready","kind":"parameter"}}

@@ -23,7 +23,7 @@ defn runtime_error ≡ ~
                                                        #line 16
 defn initialize_component_palette_from_files ≡ @Component_Registry
 (
-    diagram_source_files ≡ @Collection_of_Pathname
+    diagram_source_files ≡ @List_of_Pathname
 )
 {
                                                        #line 17
@@ -31,7 +31,7 @@ defn initialize_component_palette_from_files ≡ @Component_Registry
         diagram_source ≡ @Pathname
         for diagram_source in  diagram_source_files {
                                                        #line 19
-            all_containers_within_single_file ≡ @Collection_of_Container
+            all_containers_within_single_file ≡ @List_of_Container
             container ≡ @Container
             for container in  all_containers_within_single_file {
                                                        #line 21#line 23
@@ -46,7 +46,7 @@ defn initialize_component_palette_from_string ≡ ~
 {
                                                        #line 29
         reg ≡ @Component_Registry                                         #line 30
-        all_containers ≡ @Collection_of_Container
+        all_containers ≡ @List_of_Container
         container ≡ @Container
         for container in  all_containers {
                                                        #line 32#line 34
@@ -55,7 +55,7 @@ defn initialize_component_palette_from_string ≡ ~
 
 defn initialize_from_files ≡ @Tuple_Palette_DiagramNames_ArgStr
 (
-    diagram_names ≡ @Collection_of_DiagramsName
+    diagram_names ≡ @List_of_DiagramsName
 )
 {
                                                        #line 38
@@ -92,7 +92,7 @@ defn start_bare ≡ @Part
 )
 {
                                                        #line 56
-        diagram_names ≡ @Collection_of_DiagramsName                                #line 57#line 58
+        diagram_names ≡ @List_of_DiagramsName                                #line 57#line 58
         part ≡ @Part
 }
 

@@ -14,7 +14,7 @@
   ⎦
   DefObj [_defobj_ id ObjBody] =
   ⎡ scope=‛«id»’
-     ‛\n{"op":"newscope", "operand":"«id»"}\n{"op":"insert", "operand":{"name":"«id»", "indir":1, "type":"obj", "scope":"⎨genscoperest ‛scope’⎬", "kind":"obj"}}«ObjBody»’
+     ‛\n{"op":"newscope", "operand":"«id»"}\n{"op":"insert", "operand":{"name":"«id»", "indir":2, "type":"«id»", "scope":"⎨genscoperest ‛scope’⎬", "kind":"obj"}}«ObjBody»’
   ⎦
   DefVar [_1 id _3 ty] = ‛\n{"op":"insert", "operand":{"name":"«id»", «ty», "scope":"⎨genscope ‛scope’⎬", "kind":"variable"}}’
   FunctionType_procedure [_tilde_] = ‛"indir":0, "type":"void", "kind":"proc"’

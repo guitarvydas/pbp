@@ -1,9 +1,9 @@
 /*  Creates a new leaf component out of a handler function, and a data parameter *//* line 1 */
 /*  that will be passed back to your handler when called. *//* line 2 *//* line 3 */
-void* make_leaf (void* name,void* owner,void* instance_data,void* arg,void* handler,void* reset_handler) {
+Leaf* make_leaf (Str* name,Container* owner,any* instance_data,Str* arg,Fhandler handler,Freset reset_handler) {
                                                        /* line 4 */
-    eh =  Eh ()                                        /* line 5 */
-    nm =  ""                                           /* line 6 */
+    Leaf*  eh =  fresh_Eh ()                           /* line 5 */;
+    Part*  nm =  "";                                   /* line 6 */
     if  NULL!= owner:                                  /* line 7 */
         nm =   (*owner).name;                          /* line 8 *//* line 9 */
     (*eh).name =  str( nm) +  str( "▹") +  name        /* line 10 */
@@ -18,12 +18,12 @@ void* make_leaf (void* name,void* owner,void* instance_data,void* arg,void* hand
     return ( eh)                                       /* line 19 */;;;;;;;;;/* line 20 *//* line 21 */}
 
 /*  Reset Leaf part to a known, idle state. Hit the big red button.  *//* line 22 */
-void* leaf_reset (void* part) {
+void leaf_reset (Leaf* part) {
                                                        /* line 23 */
-    external
-    (*part).inq.clear ()                               /* line 24 */
-    external
-    (*part).outq.clear ()                              /* line 25 */
+
+    queue_clear(  (*part).inq)                         /* line 24 */
+
+    queue_clear(  (*part).outq)                        /* line 25 */
     if (  (*part).reset_handler!= NULL):               /* line 26 */
         (*part).reset_handler ( part)                  /* line 27 *//* line 28 */
     (*part).state =  "idle";                           /* line 29 *//* line 30 */}

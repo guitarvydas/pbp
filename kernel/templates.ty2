@@ -1,9 +1,9 @@
 
 {"op":"newscope", "operand":"Component_Registry"}
-{"op":"insert", "operand":{"name":"Component_Registry", "indir":1, "type":"obj", "scope":"_global", "kind":"obj"}}
+{"op":"insert", "operand":{"name":"Component_Registry", "indir":2, "type":"Component_Registry", "scope":"_global", "kind":"obj"}}
 {"op":"insert", "operand":{"name":"templates", "indir":2, "type":"Dict_of_Template", "scope":"_global/Component_Registry", "kind":"variable"}}
 {"op":"newscope", "operand":"Template"}
-{"op":"insert", "operand":{"name":"Template", "indir":1, "type":"obj", "scope":"_global", "kind":"obj"}}
+{"op":"insert", "operand":{"name":"Template", "indir":2, "type":"Template", "scope":"_global", "kind":"obj"}}
 {"op":"insert", "operand":{"name":"name", "indir":2, "type":"Str", "scope":"_global/Template", "kind":"variable"}}
 {"op":"insert", "operand":{"name":"container", "indir":2, "type":"Container", "scope":"_global/Template", "kind":"variable"}}
 {"op":"insert", "operand":{"name":"instantiator", "indir":1, "type":"Finstantiator", "scope":"_global/Template", "kind":"variable"}}
@@ -14,12 +14,12 @@
 {"op":"insert", "operand":{"name":"instantiator", "indir":1, "type":"Finstantiator", "scope":"_global/mkTemplate","kind":"parameter"}}
 {"op":"insert", "operand":{"name":"templ", "indir":2, "type":"Template", "scope":"_global/mkTemplate", "kind":"variable"}}
 {"op":"newscope", "operand":"lnet2internal_from_file"}
-{"op":"insert", "operand":{"name":"lnet2internal_from_file", "indir":2, "type":"Collection_of_Wire", "kind":"retproc", "scope":"_global" }}
+{"op":"insert", "operand":{"name":"lnet2internal_from_file", "indir":2, "type":"List_of_Wire", "kind":"retproc", "scope":"_global" }}
 {"op":"insert", "operand":{"name":"container_xml", "indir":2, "type":"Pathname", "scope":"_global/lnet2internal_from_file","kind":"parameter"}}
 {"op":"insert", "operand":{"name":"pathname", "indir":2, "type":"Pathname", "scope":"_global/lnet2internal_from_file", "kind":"variable"}}
 {"op":"insert", "operand":{"name":"filename", "indir":2, "type":"Str", "scope":"_global/lnet2internal_from_file", "kind":"variable"}}
 {"op":"newscope", "operand":"lnet2internal_from_string"}
-{"op":"insert", "operand":{"name":"lnet2internal_from_string", "indir":2, "type":"Collection_of_Wire", "kind":"retproc", "scope":"_global" }}
+{"op":"insert", "operand":{"name":"lnet2internal_from_string", "indir":2, "type":"List_of_Wire", "kind":"retproc", "scope":"_global" }}
 {"op":"insert", "operand":{"name":"lnet", "indir":2, "type":"Str", "scope":"_global/lnet2internal_from_string","kind":"parameter"}}
 {"op":"newscope", "operand":"make_component_registry"}
 {"op":"insert", "operand":{"name":"make_component_registry", "indir":2, "type":"Component_Registry", "kind":"retproc", "scope":"_global" }}

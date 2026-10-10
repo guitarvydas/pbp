@@ -12,43 +12,43 @@
 /*  `instance_data` is a pointer to instance data that the `leaf_handler` *//* line 12 */
 /*  function may want whenever it is invoked again. */ /* line 13 *//* line 14 */
 /*  Eh_States :: enum { idle, active } */              /* line 15 */
-typedef struct _Eh {
+typedef struct s_Eh {
                                                        /* line 16 */
-    name;                                              /* line 17 */
-    inq;
-    outq;
-    owner;                                             /* line 20 */
-    children;                                          /* line 21 */
-    visit_ordering;
-    connections;                                       /* line 23 */
-    handler;                                           /* line 24 */
-    finject;                                           /* line 25 */
-    reset;                                             /* line 26 */
-    instance_data;                                     /* line 27 *//*  arg needed for probe support  *//* line 28 */
-    arg;                                               /* line 29 */
-    state;                                             /* line 30 */
-    special;                                           /* line 31 *//* line 32 */
+    Str* name;                                         /* line 17 */
+    Queue* inq;
+    Queue* outq;
+    Container* owner;                                  /* line 20 */
+    List_of_Part* children;                            /* line 21 */
+    Queue_of_Part* visit_ordering;
+    List_ofWire* connections;                          /* line 23 */
+    Fhandler handler;                                  /* line 24 */
+    Finject finject;                                   /* line 25 */
+    Freset reset;                                      /* line 26 */
+    any* instance_data;                                /* line 27 *//*  arg needed for probe support  *//* line 28 */
+    Str* arg;                                          /* line 29 */
+    Str* state;                                        /* line 30 */
+    Bool special;                                      /* line 31 *//* line 32 */
 } Eh;
-Eh fresh_Eh () {
+Eh* fresh_Eh () {
     Eh *self;
-    self = (Mevent*)malloc(sizeof(Mevent));
+    self = (Eh*)malloc(sizeof(Eh*));
     self->name =  "";                                  /* line 17 */
-    self->inq =  deque ([])                            /* line 18 */;
-    self->outq =  deque ([])                           /* line 19 */;
+    self->inq =  queue_fresh()                         /* line 18 */;
+    self->outq =  queue_fresh()                        /* line 19 */;
     self->owner =  NULL;                               /* line 20 */
-    self->children = [];                               /* line 21 */
-    self->visit_ordering =  deque ([])                 /* line 22 */;
-    self->connections = [];                            /* line 23 */
+    self->children = list_fresh();                     /* line 21 */
+    self->visit_ordering =  queue_fresh()              /* line 22 */;
+    self->connections = list_fresh();                  /* line 23 */
     self->handler =  NULL;                             /* line 24 */
     self->finject =  NULL;                             /* line 25 */
     self->reset =  NULL;                               /* line 26 */
     self->instance_data =  NULL;                       /* line 27 *//*  arg needed for probe support  *//* line 28 */
     self->arg =  "";                                   /* line 29 */
     self->state =  "idle";                             /* line 30 */
-    self->special =  False;                            /* line 31 *//* line 32 */
+    self->special =  FALSE;                            /* line 31 *//* line 32 */
     return self;
 }
                                                        /* line 33 */
-void* injector (void* eh,void* mevent) {
+void injector (Eh* eh,Mevent* mevent) {
                                                        /* line 34 */
     (*eh).handler ( eh, mevent)                        /* line 35 *//* line 36 *//* line 37 */}

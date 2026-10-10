@@ -2,7 +2,7 @@ defn create_down_connector ≡ @Wire
 (
     container ≡ @Container,
     proto_conn ≡ @Wire_Proto,
-    connectors ≡ @Collection_of_Wire,
+    connectors ≡ @List_of_Wire,
     children_by_id ≡ @Table_by_ID_of_Part
 )
 {
@@ -17,7 +17,7 @@ defn create_across_connector ≡ @Wire
 (
     container ≡ @Container,
     proto_conn ≡ @Wire_Proto,
-    connectors ≡ @Collection_of_Wire,
+    connectors ≡ @List_of_Wire,
     children_by_id ≡ @Table_by_ID_of_Part
 )
 {
@@ -31,7 +31,7 @@ defn create_up_connector ≡ @Wire
 (
     container ≡ @Container,
     proto_conn ≡ @Wire_Proto,
-    connectors ≡ @Collection_of_Wire,
+    connectors ≡ @List_of_Wire,
     children_by_id ≡ @Table_by_ID_of_Part
 )
 {
@@ -44,7 +44,7 @@ defn create_through_connector ≡ @Wire
 (
     container ≡ @Container,
     proto_conn ≡ @Wire_Proto,
-    connectors ≡ @Collection_of_Wire,
+    connectors ≡ @List_of_Wire,
     children_by_id ≡ @Table_by_ID_of_Part
 )
 {
@@ -67,19 +67,19 @@ defn container_instantiator ≡ @Container
         enumAcross  ≡ [_global,enumAcross]             #line 60
         enumThrough  ≡ [_global,enumThrough]           #line 61
         container ≡ @Container
-        children ≡ @Collection_of_PartInstance                                    #line 63
-        children_by_id ≡ @Collection_of_PartInstance                              #line 64#line 65
+        children ≡ @List_of_PartI                                    #line 63
+        children_by_id ≡ @List_of_PartI                              #line 64#line 65
         child_desc ≡ @Template
         for child_desc in  desc [ "children"] {
                                                        #line 66
-            child_instance ≡ @PartInstance
+            child_instance ≡ @PartI
             id ≡ @Str                                      #line 69
         }
-        connectors ≡ @Collection_of_WireInstance                                  #line 75
+        connectors ≡ @List_of_WireI                                  #line 75
         proto_conn ≡ @WireTemplate
         for proto_conn in  desc [ "connections"] {
                                                        #line 76
-            connector ≡ @WireInstance
+            connector ≡ @WireI
         }
         return  container                              #line 89#line 90#line 91
 }
@@ -243,11 +243,11 @@ defn route ≡ ~
         was_sent ≡ Bool                                    #line 211
         fromname ≡ @Str                                    #line 212
         ticktime  ≡ [_global,ticktime]                 #line 213
-            child ≡ @PartInstance
+            child ≡ @PartI
                                                        #line 220
                 fromname ≡ @Str                            #line 221#line 222
             from_sender ≡ @Sender                              #line 224
-            connector ≡ @WireInstance
+            connector ≡ @WireI
 }
 
 defn any_child_ready ≡ Bool

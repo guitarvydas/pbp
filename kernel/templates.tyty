@@ -25,7 +25,7 @@ defn mkTemplate ≡ @Template
                                                        #line 21
                                                        #line 22#line 23
                                                        #line 24
-defn lnet2internal_from_file ≡ @Collection_of_Wire
+defn lnet2internal_from_file ≡ @List_of_Wire
 (
     container_xml ≡ @Pathname
 )
@@ -36,7 +36,7 @@ defn lnet2internal_from_file ≡ @Collection_of_Wire
 }
 
                                                        #line 31
-defn lnet2internal_from_string ≡ @Collection_of_Wire
+defn lnet2internal_from_string ≡ @List_of_Wire
 (
     lnet ≡ @Str
 )
