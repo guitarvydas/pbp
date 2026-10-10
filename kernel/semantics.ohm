@@ -92,7 +92,7 @@ semantics {
 
     Primary =
       | Primary "@" ident -- lookupident
-      | Primary "@" Primary -- lookup
+      | Primary "@" string -- lookupstring
       | Primary "." ident -- fieldident
       | Primary "." Primary -- field
       | Primary "[" Exp "]" -- index

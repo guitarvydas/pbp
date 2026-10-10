@@ -47,7 +47,7 @@
 {"op":"insert", "operand":{"name":"instance", "indir":2, "type":"Part", "scope":"_global/get_component_instance", "kind":"variable"}}
 {"op":"insert", "operand":{"name":"template", "indir":2, "type":"Template", "scope":"_global/get_component_instance", "kind":"variable"}}
 {"op":"insert", "operand":{"name":"instance_name", "indir":2, "type":"Str", "scope":"_global/get_component_instance", "kind":"variable"}}
-{"op":"insert", "operand":{"name":"instance", "indir":2, "type":"PART", "scope":"_global/get_component_instance", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"instance", "indir":2, "type":"Part", "scope":"_global/get_component_instance", "kind":"variable"}}
 {"op":"newscope", "operand":"generate_instance_name"}
 {"op":"insert", "operand":{"name":"generate_instance_name", "indir":2, "type":"Str", "kind":"retproc", "scope":"_global" }}
 {"op":"insert", "operand":{"name":"owner", "indir":2, "type":"Container", "scope":"_global/generate_instance_name","kind":"parameter"}}

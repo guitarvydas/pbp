@@ -22,6 +22,8 @@ defn create_across_connector ≡ @Wire
 )
 {
                                                        #line 17
+        sid ≡ Str
+        tid ≡ Str
         connector ≡ @Wire
         source_component ≡ @Part                            #line 20
         target_component ≡ @Part                            #line 21
@@ -36,6 +38,7 @@ defn create_up_connector ≡ @Wire
 )
 {
                                                        #line 35
+        sid ≡ Str
         connector ≡ @Wire
         source_component ≡ @Part                            #line 38
 }

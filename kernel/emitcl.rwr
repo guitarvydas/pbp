@@ -260,8 +260,8 @@ ExpExp_basic [ Primary] =‛«Primary»’
 Primary_call [p actuals] = ‛(funcall «p» «actuals»)’
 Primary_plain [p] = ‛«p»’
 
-PrimaryIndexed_lookupident [p _at key] = ‛(gethash «key» «p»)’
-PrimaryIndexed_lookup [p _at key] = ‛(gethash «key» «p»)’
+PrimaryIndexed_lookupident [p _at id] = ‛(gethash «key» «id»)’
+PrimaryIndexed_lookupstring [p _at s] = ‛(gethash «key» «s»)’
 PrimaryIndexed_fieldident [p _dot key] = ‛(slot-value «p» '«key»)’ 
 PrimaryIndexed_field [p _dot key] = ‛(slot-value «p» «key»)’ 
 PrimaryIndexed_index [p lb e rb] = ‛(nth «e» «p»)’ 

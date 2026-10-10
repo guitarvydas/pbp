@@ -103,7 +103,7 @@ defn get_component_instance ≡ @Part
                 else
                 {                                      #line 74
 #                    instance_name ≡ @Str
-#                    instance ≡ @PART
+#                    instance ≡ @Part
                 }
             }
             else

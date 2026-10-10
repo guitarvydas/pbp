@@ -78,7 +78,7 @@ void abstracted_register_component (Component_Registry* reg,Template* template,B
         load_error ( str( "Component /") +  str(  (*template).name) +  "/ already declared"  )/* line 46 */
         return ( reg)                                  /* line 47 */
     else:                                              /* line 48 */
-        (*reg).templates [name] =  template            /* line 49 */
+        lookupid (  (*reg).templates, name) =  template/* line 49 */
         return ( reg)                                  /* line 50 */;/* line 51 *//* line 52 *//* line 53 */}
 
 Part* get_component_instance (Component_Registry* reg,Str* full_name,Container* owner) {
@@ -90,17 +90,17 @@ Part* get_component_instance (Component_Registry* reg,Str* full_name,Container* 
     Str* template_name = mangle_name ( full_name)      /* line 59 */
     if  ":" ==   full_name[0] :                        /* line 60 */
         Str* instance_name = generate_instance_name ( owner, template_name)/* line 61 */
-        PART* instance = jit_instantiate ( reg, owner, instance_name, full_name)/* line 62 */
+        Part* instance = jit_instantiate ( reg, owner, instance_name, full_name)/* line 62 */
         return ( instance)                             /* line 63 */
     else:                                              /* line 64 */
         if  template_name in   (*reg).templates:       /* line 65 */
-            Template* template =   (*reg).templates [template_name]/* line 66 */
+            Template* template = lookupid (  (*reg).templates, template_name)/* line 66 */
             if ( template ==  NULL):                   /* line 67 */
                 load_error ( str( "Registry Error (A): Can't find component /") +  str( template_name) +  "/"  )/* line 68 */
                 return ( NULL)                         /* line 69 */
             else:                                      /* line 70 */
                 Str* instance_name = generate_instance_name ( owner, template_name)/* line 71 */
-                PART* instance =   (*template).instantiator ( reg, owner, instance_name,  (*template).template_data, "")/* line 72 */
+                Part* instance =   (*template).instantiator ( reg, owner, instance_name,  (*template).template_data, "")/* line 72 */
                 return ( instance)                     /* line 73 *//* line 74 */
         else:                                          /* line 75 */
             load_error ( str( "Registry Error (B): Can't find component /") +  str( template_name) +  "/"  )/* line 76 */

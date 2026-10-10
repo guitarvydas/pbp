@@ -17,8 +17,10 @@ defn create_down_connector (container, proto_conn, connectors, children_by_id) {
 defn create_across_connector (container, proto_conn, connectors, children_by_id) {
     deftemp connector ⇐ #fresh (Connector)
     connector.direction ⇐ “across”
-    source_component ≡ children_by_id@((proto_conn@“source”)@“id”)
-    target_component ≡ children_by_id@((proto_conn@“target”)@“id”)
+    sid ≡ (proto_conn@“source”)@“id”
+    source_component ≡ children_by_id@sid
+    tid ≡ (proto_conn@“target”)@“id”
+    target_component ≡ children_by_id@tid
     if source_component = ϕ {
         load_error (#strcons (“internal error: .Across connection source not ok ”, (proto_conn@“source”)@“name”))
     } else {
@@ -35,7 +37,8 @@ defn create_across_connector (container, proto_conn, connectors, children_by_id)
 defn create_up_connector (container, proto_conn, connectors, children_by_id) {
     deftemp connector ⇐ #fresh (Connector)
     connector.direction ⇐ “up”
-    source_component ≡ children_by_id@((proto_conn@“source”)@“id”)
+    sid ≡ (proto_conn@“source”)@“id”
+    source_component ≡ children_by_id@sid
     if source_component = ϕ {
         load_error (#strcons (“internal error: .Up connection source not ok ”, (proto_conn@“source”)@“name”)) }
     else {

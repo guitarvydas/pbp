@@ -18,7 +18,7 @@ def initialize_component_palette_from_files (diagram_source_files):#line 20
     for diagram_source in  diagram_source_files:       #line 22
         all_containers_within_single_file = lnet2internal_from_file ( diagram_source)#line 23
         for container in  all_containers_within_single_file:#line 24
-            register_component ( reg,mkTemplate ( container [ "name"], container, container_instantiator))#line 25#line 26#line 27
+            register_component ( reg,mkTemplate ( container ["name"], container, container_instantiator))#line 25#line 26#line 27
     initialize_stock_components ( reg)                 #line 28
     return  reg                                        #line 29#line 30#line 31
 
@@ -26,7 +26,7 @@ def initialize_component_palette_from_string (lnet):   #line 32
     reg = make_component_registry ()                   #line 33
     all_containers = lnet2internal_from_string ( lnet) #line 34
     for container in  all_containers:                  #line 35
-        register_component ( reg,mkTemplate ( container [ "name"], container, container_instantiator))#line 36#line 37
+        register_component ( reg,mkTemplate ( container ["name"], container, container_instantiator))#line 36#line 37
     initialize_stock_components ( reg)                 #line 38
     return  reg                                        #line 39#line 40
 

@@ -31,22 +31,24 @@ defn create_across_connector ≡
 {
                                                        #line 17
         connector ≡
-        source_component ≡                             #line 20
-        target_component ≡                             #line 21
+        sid ≡                                          #line 20
+        source_component ≡                             #line 21
+        tid ≡                                          #line 22
+        target_component ≡                             #line 23
         if  source_component ==  None {
-                                                       #line 22
+                                                       #line 24
         }
         else
-        {                                              #line 24
+        {                                              #line 26
             if  target_component ==  None {
-                                                       #line 26
+                                                       #line 28
             }
             else
-            {                                          #line 28
+            {                                          #line 30
 
-            }                                          #line 31
+            }                                          #line 33
         }
-        return  connector                              #line 32#line 33#line 34
+        return  connector                              #line 34#line 35#line 36
 }
 
 defn create_up_connector ≡
@@ -57,17 +59,18 @@ defn create_up_connector ≡
     children_by_id ≡
 )
 {
-                                                       #line 35
+                                                       #line 37
         connector ≡
-        source_component ≡                             #line 38
+        sid ≡                                          #line 40
+        source_component ≡                             #line 41
         if  source_component ==  None {
-                                                       #line 39#line 40
+                                                       #line 42#line 43
         }
         else
-        {                                              #line 41
+        {                                              #line 44
 
         }
-        return  connector                              #line 45#line 46#line 47
+        return  connector                              #line 48#line 49#line 50
 }
 
 defn create_through_connector ≡
@@ -78,11 +81,11 @@ defn create_through_connector ≡
     children_by_id ≡
 )
 {
-                                                       #line 48
+                                                       #line 51
         connector ≡
-        return  connector                              #line 53#line 54#line 55
+        return  connector                              #line 56#line 57#line 58
 }
-                                                       #line 56
+                                                       #line 59
 defn container_instantiator ≡
 (
     reg ≡ ,
@@ -92,89 +95,89 @@ defn container_instantiator ≡
     arg ≡
 )
 {
-                                                       #line 57
-        enumDown  ≡ [_global,enumDown]                 #line 58
-        enumUp  ≡ [_global,enumUp]                     #line 59
-        enumAcross  ≡ [_global,enumAcross]             #line 60
-        enumThrough  ≡ [_global,enumThrough]           #line 61
+                                                       #line 60
+        enumDown  ≡ [_global,enumDown]                 #line 61
+        enumUp  ≡ [_global,enumUp]                     #line 62
+        enumAcross  ≡ [_global,enumAcross]             #line 63
+        enumThrough  ≡ [_global,enumThrough]           #line 64
         container ≡
-        children ≡                                     #line 63
-        children_by_id ≡                               #line 64#line 65
+        children ≡                                     #line 66
+        children_by_id ≡                               #line 67#line 68
         child_desc ≡
-        for child_desc in  desc [ "children"] {
-                                                       #line 66
+        for child_desc in  desc ["children"] {
+                                                       #line 69
             child_instance ≡
-            id ≡                                       #line 69
-            children_by_id [id] ≡                      #line 70#line 71#line 72
+            id ≡                                       #line 72
+            children_by_id [id] ≡                      #line 73#line 74#line 75
         }
-        connectors ≡                                   #line 75
+        connectors ≡                                   #line 78
         proto_conn ≡
-        for proto_conn in  desc [ "connections"] {
-                                                       #line 76
+        for proto_conn in  desc ["connections"] {
+                                                       #line 79
             connector ≡
-            if  proto_conn [ "dir"] ==  enumDown {
-                                                       #line 78
+            if  proto_conn ["dir"] ==  enumDown {
+                                                       #line 81
             }
-            elif  proto_conn [ "dir"] ==  enumAcross
-            {                                          #line 80
+            elif  proto_conn ["dir"] ==  enumAcross
+            {                                          #line 83
             }
-            elif  proto_conn [ "dir"] ==  enumUp
-            {                                          #line 82
+            elif  proto_conn ["dir"] ==  enumUp
+            {                                          #line 85
             }
-            elif  proto_conn [ "dir"] ==  enumThrough
-            {                                          #line 84#line 86
-            }                                          #line 87
+            elif  proto_conn ["dir"] ==  enumThrough
+            {                                          #line 87#line 89
+            }                                          #line 90
         }
-        return  container                              #line 89#line 90#line 91
+        return  container                              #line 92#line 93#line 94
 }
 
-                                                       #line 92
+                                                       #line 95
 defn container_handler ≡
 (
     container ≡ ,
     mevent ≡
 )
 {
-                                                       #line 93#line 97#line 98
+                                                       #line 96#line 100#line 101
 }
 
-                                                       #line 99
+                                                       #line 102
 defn container_reset ≡
 (
     container ≡
 )
 {
-                                                       #line 100
+                                                       #line 103
         child ≡
         for child in  container.children {
-                                                       #line 101#line 103
+                                                       #line 104#line 106
         }
-                                                       #line 109
+                                                       #line 112
 }
 
-                                                       #line 110
+                                                       #line 113
 defn destroy_container ≡
 (
     eh ≡
 )
 {
-                                                       #line 111#line 112#line 113
+                                                       #line 114#line 115#line 116
 }
 
-                                                       #line 114
+                                                       #line 117
 defn sender_eq ≡
 (
     s1 ≡ ,
     s2 ≡
 )
 {
-                                                       #line 115
-        same_components ≡                              #line 116
-        same_ports ≡                                   #line 117
-        return  same_components and  same_ports        #line 118#line 119#line 120
+                                                       #line 118
+        same_components ≡                              #line 119
+        same_ports ≡                                   #line 120
+        return  same_components and  same_ports        #line 121#line 122#line 123
 }
 
-                                                       #line 121#line 122
+                                                       #line 124#line 125
 defn deposit ≡
 (
     parent ≡ ,
@@ -182,8 +185,8 @@ defn deposit ≡
     mevent ≡
 )
 {
-                                                       #line 123
-        new_mevent ≡                                   #line 126#line 127
+                                                       #line 126
+        new_mevent ≡                                   #line 129#line 130
 }
 
 defn force_tick ≡
@@ -192,8 +195,8 @@ defn force_tick ≡
     eh ≡
 )
 {
-                                                       #line 128
-        tick_mev ≡                                     #line 132#line 133
+                                                       #line 131
+        tick_mev ≡                                     #line 135#line 136
 }
 
 defn push_mevent ≡
@@ -204,13 +207,13 @@ defn push_mevent ≡
     m ≡
 )
 {
-                                                       #line 134
+                                                       #line 137
         if ( receiver.special) {
-                                                       #line 136
+                                                       #line 139
         }
         else
-        {                                              #line 138#line 140
-        }                                              #line 141#line 142#line 143
+        {                                              #line 141#line 143
+        }                                              #line 144#line 145#line 146
 }
 
 defn is_self ≡
@@ -219,8 +222,8 @@ defn is_self ≡
     container ≡
 )
 {
-                                                       #line 144#line 145
-        return  child ==  container                    #line 146#line 147#line 148
+                                                       #line 147#line 148
+        return  child ==  container                    #line 149#line 150#line 151
 }
 
 defn step_child_once ≡
@@ -229,10 +232,10 @@ defn step_child_once ≡
     mev ≡
 )
 {
-                                                       #line 149
+                                                       #line 152
         if ( ("PBPSTEPPING" in os.environ) ) {
-                                                       #line 150#line 153
-        }                                              #line 155#line 156
+                                                       #line 153#line 156
+        }                                              #line 158#line 159
 }
 
 defn step_children ≡
@@ -241,40 +244,40 @@ defn step_children ≡
     causingMevent ≡
 )
 {
-                                                       #line 157
+                                                       #line 160
         child ≡
         for child in  list ( container.visit_ordering) {
-                                                       #line 161#line 162
+                                                       #line 164#line 165
             if (not (is_self ( child, container))) {
-                                                       #line 163
+                                                       #line 166
                 if (not ((0==len( child.inq)))) {
-                                                       #line 164
+                                                       #line 167
                     mev ≡
                 }
                 else
-                {                                      #line 169
+                {                                      #line 172
                     if  child.state ==  "idle" {
-                                                       #line 170#line 171
+                                                       #line 173#line 174
                     }
                     else
-                    {                                  #line 172
-                        mev ≡                          #line 176
-                    }                                  #line 177
-                }                                      #line 178
-            }                                          #line 179
-        }                                              #line 181#line 182
+                    {                                  #line 175
+                        mev ≡                          #line 179
+                    }                                  #line 180
+                }                                      #line 181
+            }                                          #line 182
+        }                                              #line 184#line 185
         child ≡
         for child in  container.children {
-                                                       #line 183
+                                                       #line 186
             if  child.state ==  "active" {
-                                                       #line 184#line 185
+                                                       #line 187#line 188
 
-            }                                          #line 188
+            }                                          #line 191
             while (not ((0==len( child.outq)))) {
-                                                       #line 189
-                mev ≡                                  #line 193
-            }                                          #line 194
-        }                                              #line 195#line 196
+                                                       #line 192
+                mev ≡                                  #line 196
+            }                                          #line 197
+        }                                              #line 198#line 199
 }
 
 defn attempt_tick ≡
@@ -283,10 +286,10 @@ defn attempt_tick ≡
     eh ≡
 )
 {
-                                                       #line 197
+                                                       #line 200
         if  eh.state!= "idle" {
-                                                       #line 198#line 200
-        }                                              #line 201#line 202
+                                                       #line 201#line 203
+        }                                              #line 204#line 205
 }
 
 defn is_tick ≡
@@ -294,12 +297,12 @@ defn is_tick ≡
     mev ≡
 )
 {
-                                                       #line 203
-        return  "." ==  mev.port                       #line 204#line 205#line 206
+                                                       #line 206
+        return  "." ==  mev.port                       #line 207#line 208#line 209
 }
 
-                                                       #line 207
-                                                       #line 208#line 209
+                                                       #line 210
+                                                       #line 211#line 212
 defn route ≡
 (
     container ≡ ,
@@ -307,37 +310,37 @@ defn route ≡
     mevent ≡
 )
 {
-                                                       #line 210
-        was_sent ≡                                     #line 211
-        fromname ≡                                     #line 212
-        ticktime  ≡ [_global,ticktime]                 #line 213
-        ticktime ≡                                     #line 214
+                                                       #line 213
+        was_sent ≡                                     #line 214
+        fromname ≡                                     #line 215
+        ticktime  ≡ [_global,ticktime]                 #line 216
+        ticktime ≡                                     #line 217
         if is_tick ( mevent) {
-                                                       #line 215
+                                                       #line 218
             child ≡
             for child in  container.children {
-                                                       #line 216#line 217
+                                                       #line 219#line 220
             }
-            was_sent ≡                                 #line 218
+            was_sent ≡                                 #line 221
         }
         else
-        {                                              #line 219
+        {                                              #line 222
             if (not (is_self ( from_component, container))) {
-                                                       #line 220
-                fromname ≡                             #line 221#line 222
+                                                       #line 223
+                fromname ≡                             #line 224#line 225
             }
-            from_sender ≡                              #line 224
+            from_sender ≡                              #line 227
             connector ≡
             for connector in  container.connections {
-                                                       #line 225
+                                                       #line 228
                 if sender_eq ( from_sender, connector.sender) {
-                                                       #line 226#line 229
-                }                                      #line 230
-            }                                          #line 231
+                                                       #line 229#line 232
+                }                                      #line 233
+            }                                          #line 234
         }
         if not ( was_sent) {
-                                                       #line 232#line 234
-        }                                              #line 235#line 236
+                                                       #line 235#line 237
+        }                                              #line 238#line 239
 }
 
 defn any_child_ready ≡
@@ -345,16 +348,16 @@ defn any_child_ready ≡
     container ≡
 )
 {
-                                                       #line 237
+                                                       #line 240
         child ≡
         for child in  container.children {
-                                                       #line 238
+                                                       #line 241
             if child_is_ready ( child) {
-                                                       #line 239
-                return  True                           #line 240#line 241
-            }                                          #line 242
+                                                       #line 242
+                return  True                           #line 243#line 244
+            }                                          #line 245
         }
-        return  False                                  #line 243#line 244#line 245
+        return  False                                  #line 246#line 247#line 248
 }
 
 defn child_is_ready ≡
@@ -362,25 +365,25 @@ defn child_is_ready ≡
     eh ≡
 )
 {
-                                                       #line 246
-        return (not ((0==len( eh.outq)))) or (not ((0==len( eh.inq)))) or ( eh.state!= "idle") or (any_child_ready ( eh))#line 247#line 248#line 249
+                                                       #line 249
+        return (not ((0==len( eh.outq)))) or (not ((0==len( eh.inq)))) or ( eh.state!= "idle") or (any_child_ready ( eh))#line 250#line 251#line 252
 }
-                                                       #line 250
-                                                       #line 251
-                                                       #line 252
+                                                       #line 253
+                                                       #line 254
+                                                       #line 255
 defn make_container ≡
 (
     name ≡ ,
     owner ≡
 )
 {
-                                                       #line 253
+                                                       #line 256
         eh ≡
-        return  eh                                     #line 262#line 263#line 264
+        return  eh                                     #line 265#line 266#line 267
 }
 
-                                                       #line 265
-                                                       #line 266#line 267
+                                                       #line 268
+                                                       #line 269#line 270
 defn send ≡
 (
     eh ≡ ,
@@ -389,9 +392,9 @@ defn send ≡
     causingMevent ≡
 )
 {
-                                                       #line 268
+                                                       #line 271
         d ≡
-        mev ≡                                          #line 275#line 276
+        mev ≡                                          #line 278#line 279
 }
 
 defn forward ≡
@@ -401,8 +404,8 @@ defn forward ≡
     mev ≡
 )
 {
-                                                       #line 277
-        fwdmev ≡                                       #line 280#line 281
+                                                       #line 280
+        fwdmev ≡                                       #line 283#line 284
 }
 
 defn inject_mevent ≡
@@ -411,7 +414,7 @@ defn inject_mevent ≡
     mev ≡
 )
 {
-                                                       #line 282#line 284#line 285
+                                                       #line 285#line 287#line 288
 }
 
 defn set_active ≡
@@ -419,8 +422,8 @@ defn set_active ≡
     eh ≡
 )
 {
-                                                       #line 286
                                                        #line 289
+                                                       #line 292
 }
 
 defn set_idle ≡
@@ -428,8 +431,8 @@ defn set_idle ≡
     eh ≡
 )
 {
-                                                       #line 290
                                                        #line 293
+                                                       #line 296
 }
 
 defn put_output ≡
@@ -438,7 +441,7 @@ defn put_output ≡
     mev ≡
 )
 {
-                                                       #line 294#line 296#line 297
+                                                       #line 297#line 299#line 300
 }
 
 defn obj_clone ≡
@@ -446,6 +449,6 @@ defn obj_clone ≡
     obj ≡
 )
 {
-                                                       #line 298
-        return  obj                                    #line 299#line 300
+                                                       #line 301
+        return  obj                                    #line 302#line 303
 }

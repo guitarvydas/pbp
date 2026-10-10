@@ -72,7 +72,7 @@ ExpExp_power [ Primary _68 ExpExp] =‛«Primary»«_68»«ExpExp»’
 ExpExp_basic [ Primary] =‛«Primary»’
 
 Primary_lookupident [ Primary _69 ident] =‛«Primary»«_69»«ident»’
-Primary_lookup [ Primary _70 ePrimary] =‛«Primary»«_70»«ePrimary»’
+Primary_lookupstring [ Primary _70 s] =‛«Primary»«_70»«s»’
 Primary_fieldident [ Primary _71 e] =‛«Primary»«_71»«e»’
 Primary_field [ Primary _71 e] =‛«Primary»«_71»«e»’
 Primary_index [ Primary _72 Exp _73] =‛«Primary»«_72»«Exp»«_73»’

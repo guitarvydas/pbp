@@ -28,7 +28,7 @@
               do
                 (progn
                   container                                 #|line 24|#
-                  (funcall (quote register_component)   reg (funcall (quote mkTemplate)  (gethash  "name"  container)  #| container= |# container  #| instantiator= |# #'container_instantiator )  #|line 25|#) #|line 26|#
+                  (funcall (quote register_component)   reg (funcall (quote mkTemplate)  (gethash undefined "name")  #| container= |# container  #| instantiator= |# #'container_instantiator )  #|line 25|#) #|line 26|#
                   )))                                       #|line 27|#
           ))
     (funcall (quote initialize_stock_components)   reg      #|line 28|#)
@@ -44,7 +44,7 @@
         do
           (progn
             container                                       #|line 35|#
-            (funcall (quote register_component)   reg (funcall (quote mkTemplate)  (gethash  "name"  container)  #| container= |# container  #| instantiator= |# #'container_instantiator )  #|line 36|#) #|line 37|#
+            (funcall (quote register_component)   reg (funcall (quote mkTemplate)  (gethash undefined "name")  #| container= |# container  #| instantiator= |# #'container_instantiator )  #|line 36|#) #|line 37|#
             ))
       (funcall (quote initialize_stock_components)   reg    #|line 38|#)
       (return-from initialize_component_palette_from_string  reg) #|line 39|#)) #|line 40|#

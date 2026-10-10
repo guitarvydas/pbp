@@ -58,7 +58,7 @@
         (return-from abstracted_register_component  reg)    #|line 47|#
         )
       (t                                                    #|line 48|#
-        (setf (gethash name (slot-value  reg 'templates))  template) #|line 49|#
+        (setf (gethash undefined name)  template)           #|line 49|#
         (return-from abstracted_register_component  reg)    #|line 50|# #|line 51|#
         )))                                                 #|line 52|#
   )
@@ -81,7 +81,7 @@
       (t                                                    #|line 64|#
         (cond
           (( dict-in?   template_name (slot-value  reg 'templates)) #|line 65|#
-            (let ((template (gethash template_name (slot-value  reg 'templates))))
+            (let ((template (gethash undefined template_name)))
               (declare (ignorable template))                #|line 66|#
               (cond
                 (( equal    template  nil)                  #|line 67|#

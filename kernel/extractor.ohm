@@ -148,7 +148,7 @@ extractor {
 
     PrimaryIndexed =
       | PrimaryIndexed "@" ident -- lookupident
-      | PrimaryIndexed "@" PrimaryIndexed -- lookup
+      | PrimaryIndexed "@" string -- lookupstring
       | PrimaryIndexed "." ident -- fieldident
       | PrimaryIndexed "." PrimaryIndexed -- field
       | PrimaryIndexed "[" Exp "]" -- index

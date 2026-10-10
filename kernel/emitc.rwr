@@ -204,13 +204,13 @@ ExpExp_basic [ Primary] =‛«Primary»’
 Primary_call [p actuals] = ‛«p» «actuals»’
 Primary_plain [p] = ‛«p»’
 
-PrimaryIndexed_lookupident [p _at key] =
+PrimaryIndexed_lookupident [p _at id] =
   ⎡ deref=‛⊤’ 
-    ‛«p» [«key»]’ 
+    ‛lookupid («p», «id»)’ 
   ⎦
-PrimaryIndexed_lookup [p _at key] = 
+PrimaryIndexed_lookupstring [p _at s] = 
   ⎡ deref=‛⊤’
-      ‛«p» [«key»]’
+      ‛lookupstring («p», «s»)’
   ⎦
 PrimaryIndexed_fieldident [p _dot key] =
   ⎡ deref=‛⊤’

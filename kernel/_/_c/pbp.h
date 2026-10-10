@@ -17,16 +17,16 @@ typedef Bool Byte;
 #define FALSE 0
 #define TRUE 1
 
-typedef Byte Dir;
-#define Down 0
-#define Across 1
-#define Up 2
-#define Through 3
+typedef Str Dir;
+#define Down "down"
+#define Across "across"
+#define Up "up"
+#define Through "through"
 
 typedef struct s_Eh Eh;
-typedef struct s_Part Part;
-typedef struct s_Leaf Leaf;
-typedef struct s_Container Container;
+typedef struct s_Eh Part;
+typedef struct s_Eh Leaf;
+typedef struct s_Eh Container;
 
 typedef struct s_Dict Dict;
 typedef Dict Dict_of_Template;
@@ -89,6 +89,10 @@ typedef struct s_List_of_Connector {
   struct s_List_of_Connector* cdr;
 } List_of_Connector;
 
+typedef struct s_Component_Registry Component_Registry;
+typedef struct s_Template Template;
+typedef Eh* (*Finstantiator) (Component_Registry*, Eh*, Str, Template*);
+
 #include "preamble.h"
 #include "gensym.h"
 #include "connector.h"
@@ -100,6 +104,8 @@ typedef struct s_List_of_Connector {
 #include "start.h"
 
 
-typedef (Connector*) fresh_Connector ();
+Connector* fresh_Connector (void);
+
+Sender* mkSender (Str, Eh*, Connector*);
 
 #endif
