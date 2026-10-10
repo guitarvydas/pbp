@@ -31,8 +31,8 @@
 {"op":"insert", "operand":{"name":"destroy_port", "indir":0, "type":"void", "kind":"proc", "scope":"_global" }}
 {"op":"insert", "operand":{"name":"mev", "indir":2, "type":"Mevent", "scope":"_global/destroy_port","kind":"parameter"}}
 {"op":"newscope", "operand":"format_mevent"}
-{"op":"insert", "operand":{"name":"format_mevent", "indir":2, "type":"Str", "kind":"retproc", "scope":"_global" }}
+{"op":"insert", "operand":{"name":"format_mevent", "indir":1, "type":"Str", "kind":"retproc", "scope":"_global" }}
 {"op":"insert", "operand":{"name":"m", "indir":2, "type":"Mevent", "scope":"_global/format_mevent","kind":"parameter"}}
 {"op":"newscope", "operand":"format_mevent_raw"}
-{"op":"insert", "operand":{"name":"format_mevent_raw", "indir":2, "type":"Str", "kind":"retproc", "scope":"_global" }}
+{"op":"insert", "operand":{"name":"format_mevent_raw", "indir":1, "type":"Str", "kind":"retproc", "scope":"_global" }}
 {"op":"insert", "operand":{"name":"m", "indir":2, "type":"Mevent", "scope":"_global/format_mevent_raw","kind":"parameter"}}

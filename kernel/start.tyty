@@ -5,7 +5,7 @@ defvar  ticktime ≡ Int                                     #line 3#line 4
 
 defn load_error ≡ ~
 (
-    s ≡ @Str
+    s ≡ Str
 )
 {
                                                        #line 5
@@ -14,7 +14,7 @@ defn load_error ≡ ~
 
 defn runtime_error ≡ ~
 (
-    s ≡ @Str
+    s ≡ Str
 )
 {
                                                        #line 12
@@ -59,7 +59,7 @@ defn initialize_from_files ≡ @Tuple_Palette_DiagramNames_ArgStr
 )
 {
                                                        #line 38
-        arg ≡ @Str                                         #line 39
+        arg ≡ Str                                         #line 39
         palette ≡ @Component_Registry
 }
 
@@ -67,15 +67,15 @@ defn initialize_from_string ≡ @Tuple_Palette_DiagramNames_ArgStr
 ()
 {
                                                        #line 44
-        arg ≡ @Str                                         #line 45
+        arg ≡ Str                                         #line 45
         palette ≡ @Component_Registry                                     #line 46
         return [ palette,[ None, arg]]                 #line 47#line 48#line 49
 }
 
 defn start ≡ ~
 (
-    arg ≡ @Str ,
-    part_name ≡ @Str,
+    arg ≡ Str ,
+    part_name ≡ Str,
     palette ≡  @Component_Registry,
     env ≡  @Tuple_Palette_DiagramNames_ArgStr
 )
@@ -86,7 +86,7 @@ defn start ≡ ~
 
 defn start_bare ≡ @Part
 (
-    part_name ≡ @Str,
+    part_name ≡ Str,
     palette ≡ @Component_Registry,
     env ≡  @Tuple_Palette_DiagramNames_ArgStr
 )

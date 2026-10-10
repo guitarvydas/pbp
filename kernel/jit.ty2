@@ -3,16 +3,16 @@
 {"op":"insert", "operand":{"name":"jit_instantiate", "indir":2, "type":"Part", "kind":"retproc", "scope":"_global" }}
 {"op":"insert", "operand":{"name":"reg", "indir":2, "type":"Component_Registry", "scope":"_global/jit_instantiate","kind":"parameter"}}
 {"op":"insert", "operand":{"name":"owner", "indir":2, "type":"Container", "scope":"_global/jit_instantiate","kind":"parameter"}}
-{"op":"insert", "operand":{"name":"name", "indir":2, "type":"Str", "scope":"_global/jit_instantiate","kind":"parameter"}}
-{"op":"insert", "operand":{"name":"arg", "indir":2, "type":"Str", "scope":"_global/jit_instantiate","kind":"parameter"}}
-{"op":"insert", "operand":{"name":"name_with_id", "indir":2, "type":"Str", "scope":"_global/jit_instantiate", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"name", "indir":1, "type":"Str", "scope":"_global/jit_instantiate","kind":"parameter"}}
+{"op":"insert", "operand":{"name":"arg", "indir":1, "type":"Str", "scope":"_global/jit_instantiate","kind":"parameter"}}
+{"op":"insert", "operand":{"name":"name_with_id", "indir":1, "type":"Str", "scope":"_global/jit_instantiate", "kind":"variable"}}
 {"op":"insert", "operand":{"name":"inst", "indir":2, "type":"Part", "scope":"_global/jit_instantiate", "kind":"variable"}}
 {"op":"insert", "operand":{"name":"firstc", "indir":1, "type":"Char", "scope":"_global/jit_instantiate", "kind":"variable"}}
 {"op":"newscope", "operand":"handle_jit"}
 {"op":"insert", "operand":{"name":"handle_jit", "indir":0, "type":"void", "kind":"proc", "scope":"_global" }}
 {"op":"insert", "operand":{"name":"eh", "indir":2, "type":"Part", "scope":"_global/handle_jit","kind":"parameter"}}
 {"op":"insert", "operand":{"name":"mev", "indir":2, "type":"Mevent", "scope":"_global/handle_jit","kind":"parameter"}}
-{"op":"insert", "operand":{"name":"s", "indir":2, "type":"Str", "scope":"_global/handle_jit", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"s", "indir":1, "type":"Str", "scope":"_global/handle_jit", "kind":"variable"}}
 {"op":"insert", "operand":{"name":"firstc", "indir":1, "type":"Char", "scope":"_global/handle_jit", "kind":"variable"}}
 {"op":"newscope", "operand":"probe_handler"}
 {"op":"insert", "operand":{"name":"probe_handler", "indir":0, "type":"void", "kind":"proc", "scope":"_global" }}
@@ -20,17 +20,17 @@
 {"op":"insert", "operand":{"name":"tag", "indir":1, "type":"Port", "scope":"_global/probe_handler","kind":"parameter"}}
 {"op":"insert", "operand":{"name":"mev", "indir":2, "type":"Mevent", "scope":"_global/probe_handler","kind":"parameter"}}
 {"op":"insert", "operand":{"name":"ticktime", "lookup":{"scope":"_global", "name":"ticktime"}, "scope":"_global/probe_handler", "kind":"variable"}}
-{"op":"insert", "operand":{"name":"s", "indir":2, "type":"Str", "scope":"_global/probe_handler", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"s", "indir":1, "type":"Str", "scope":"_global/probe_handler", "kind":"variable"}}
 {"op":"newscope", "operand":"shell_out_handler"}
 {"op":"insert", "operand":{"name":"shell_out_handler", "indir":0, "type":"void", "kind":"proc", "scope":"_global" }}
 {"op":"insert", "operand":{"name":"eh", "indir":2, "type":"Part", "scope":"_global/shell_out_handler","kind":"parameter"}}
 {"op":"insert", "operand":{"name":"cmd", "indir":1, "type":"Port", "scope":"_global/shell_out_handler","kind":"parameter"}}
 {"op":"insert", "operand":{"name":"mev", "indir":2, "type":"Mevent", "scope":"_global/shell_out_handler","kind":"parameter"}}
-{"op":"insert", "operand":{"name":"s", "indir":2, "type":"Str", "scope":"_global/shell_out_handler", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"s", "indir":1, "type":"Str", "scope":"_global/shell_out_handler", "kind":"variable"}}
 {"op":"insert", "operand":{"name":"ret", "indir":1, "type":"Int", "scope":"_global/shell_out_handler", "kind":"variable"}}
 {"op":"insert", "operand":{"name":"rc", "indir":1, "type":"Int", "scope":"_global/shell_out_handler", "kind":"variable"}}
-{"op":"insert", "operand":{"name":"stdout", "indir":2, "type":"Str", "scope":"_global/shell_out_handler", "kind":"variable"}}
-{"op":"insert", "operand":{"name":"stderr", "indir":2, "type":"Str", "scope":"_global/shell_out_handler", "kind":"variable"}}
-{"op":"insert", "operand":{"name":"command", "indir":2, "type":"Str", "scope":"_global/shell_out_handler", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"stdout", "indir":1, "type":"Str", "scope":"_global/shell_out_handler", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"stderr", "indir":1, "type":"Str", "scope":"_global/shell_out_handler", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"command", "indir":1, "type":"Str", "scope":"_global/shell_out_handler", "kind":"variable"}}
 {"op":"insert", "operand":{"name":"pbpRoot", "indir":2, "type":"Pathname", "scope":"_global/shell_out_handler", "kind":"variable"}}
-{"op":"insert", "operand":{"name":"command", "indir":2, "type":"Str", "scope":"_global/shell_out_handler", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"command", "indir":1, "type":"Str", "scope":"_global/shell_out_handler", "kind":"variable"}}

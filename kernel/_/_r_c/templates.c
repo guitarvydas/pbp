@@ -19,9 +19,9 @@ Template* fresh_Template () {
 Template* mkTemplate (Str* name,Container* template_data,Finstantiator instantiator) {
                                                        /* line 11 */
     Template*  templ =  fresh_Template ()              /* line 12 */;
-    (*templ).name =  name                              /* line 13 */
-    (*templ).template_data =  template_data            /* line 14 */
-    (*templ).instantiator =  instantiator              /* line 15 */
+    (*templ).name =  name;                             /* line 13 */
+    (*templ).template_data =  template_data;           /* line 14 */
+    (*templ).instantiator =  instantiator;             /* line 15 */
     return ( templ)                                    /* line 16 */;;;/* line 17 *//* line 18 */}
                                                        /* line 19 */
 /*  convert a little-network to internal form (an object data structure created by json parser) ...  *//* line 20 */
@@ -78,7 +78,7 @@ void abstracted_register_component (Component_Registry* reg,Template* template,B
         load_error ( str( "Component /") +  str(  (*template).name) +  "/ already declared"  )/* line 46 */
         return ( reg)                                  /* line 47 */
     else:                                              /* line 48 */
-        lookupid (  (*reg).templates, name) =  template/* line 49 */
+        lookupid (  (*reg).templates, name) =  template;/* line 49 */
         return ( reg)                                  /* line 50 */;/* line 51 *//* line 52 *//* line 53 */}
 
 Part* get_component_instance (Component_Registry* reg,Str* full_name,Container* owner) {
@@ -111,10 +111,10 @@ Str* generate_instance_name (Container* owner,Str* template_name) {
     Str* owner_name =  ""                              /* line 83 */
     Str* instance_name =  template_name                /* line 84 */
     if  NULL!= owner:                                  /* line 85 */
-        owner_name =   (*owner).name                   /* line 86 */
-        instance_name =  str( owner_name) +  str( "▹") +  template_name  /* line 87 */;;
+        owner_name =   (*owner).name;                  /* line 86 */
+        instance_name =  str( owner_name) +  str( "▹") +  template_name  /* line 87 */;;;
     else:                                              /* line 88 */
-        instance_name =  template_name;                /* line 89 *//* line 90 */
+        instance_name =  template_name;;               /* line 89 *//* line 90 */
     return ( instance_name)                            /* line 91 *//* line 92 *//* line 93 */}
 
 Str* mangle_name (Str* s) {

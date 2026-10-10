@@ -1,0 +1,17 @@
+given
+```
+typedef char* Str;
+typedef Str Dir;
+typedef struct s_Sender Sender;
+typedef struct s_Receiver Receiver;
+typedef struct s_Connector {
+                                                       /* line 12 */
+    Dir direction; /*  down, across, up, through */    /* line 13 */
+    Sender* sender;                                    /* line 14 */
+    Receiver* receiver;                                /* line 15 *//* line 16 */
+} Connector;
+```
+why do I get an error for this line?
+```
+(*connector).direction =  "down"
+```

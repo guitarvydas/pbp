@@ -10,6 +10,8 @@ typedef int Index;
 
 
 // DI level types
+typedef void TBD; // for things I haven't determined yet
+
 typedef Str Port;
 typedef Str Payload;
 
@@ -18,10 +20,6 @@ typedef Bool Byte;
 #define TRUE 1
 
 typedef Str Dir;
-#define Down "down"
-#define Across "across"
-#define Up "up"
-#define Through "through"
 
 typedef struct s_Eh Eh;
 typedef struct s_Eh Part;
@@ -107,5 +105,9 @@ typedef Eh* (*Finstantiator) (Component_Registry*, Eh*, Str, Template*);
 Connector* fresh_Connector (void);
 
 Sender* mkSender (Str, Eh*, Connector*);
+
+typedef TBD Table_by_ID_of_Part;
+
+Eh* lookupstring (Connector*, Str);
 
 #endif

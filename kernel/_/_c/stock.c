@@ -38,15 +38,15 @@ void reclaim_Buffers_from_heap (Leaf* inst) {
 void deracer_reset_handler (Leaf* eh) {
                                                        /* line 30 */
     Deracer_Instance_Data*  inst =   (*eh).instance_data;/* line 31 */
-    (*inst).state =  "idle"                            /* line 32 */
-    (*inst).buffer =  fresh_TwoMevents ()              /* line 33 */;;/* line 34 *//* line 35 */}
+    (*inst).state =  "idle";                           /* line 32 */
+    (*inst).buffer =  fresh_TwoMevents ()              /* line 33 */;;;/* line 34 *//* line 35 */}
 
 Leaf* deracer_instantiate (Component_Registry* reg,Container* owner,Str* name,Ignored template_data,Ignored arg) {
                                                        /* line 36 */
     Str* name_with_id = gensymbol ( "deracer")         /* line 37 */
     Deracer_Instance_Data*  inst =  fresh_Deracer_Instance_Data ()/* line 38 */;
-    (*inst).state =  "idle"                            /* line 39 */
-    (*inst).buffer =  fresh_TwoMevents ()              /* line 40 */
+    (*inst).state =  "idle";                           /* line 39 */
+    (*inst).buffer =  fresh_TwoMevents ()              /* line 40 */;
     Leaf* eh = make_leaf ( name_with_id, owner, inst, "", deracer_handler, deracer_reset_handler)/* line 41 */
     return ( eh)                                       /* line 42 */;;/* line 43 *//* line 44 */}
 
@@ -61,25 +61,25 @@ void deracer_handler (Leaf* eh,Mevent* mev) {
     Deracer_Instance_Data*  inst =   (*eh).instance_data;/* line 52 */
     if   (*inst).state ==  "idle":                     /* line 53 */
         if  "1" ==   (*mev).port:                      /* line 54 */
-            (*inst).buffer.firstmev =  mev             /* line 55 */
-            (*inst).state =  "waitingForSecondmev";    /* line 56 */;
+            (*inst).buffer.firstmev =  mev;            /* line 55 */
+            (*inst).state =  "waitingForSecondmev";;   /* line 56 */;
         elif  "2" ==   (*mev).port:                    /* line 57 */
-            (*inst).buffer.secondmev =  mev            /* line 58 */
-            (*inst).state =  "waitingForFirstmev";     /* line 59 */;
+            (*inst).buffer.secondmev =  mev;           /* line 58 */
+            (*inst).state =  "waitingForFirstmev";;    /* line 59 */;
         else:                                          /* line 60 */
             runtime_error ( str( "bad mev.port (case A) for deracer ") +   (*mev).port )/* line 61 *//* line 62 */
     elif   (*inst).state ==  "waitingForFirstmev":     /* line 63 */
         if  "1" ==   (*mev).port:                      /* line 64 */
-            (*inst).buffer.firstmev =  mev             /* line 65 */
+            (*inst).buffer.firstmev =  mev;            /* line 65 */
             send_firstmev_then_secondmev ( eh, inst)   /* line 66 */
-            (*inst).state =  "idle";                   /* line 67 */;
+            (*inst).state =  "idle";;                  /* line 67 */;
         else:                                          /* line 68 */
             runtime_error ( str( "deracer: waiting for 1 but got [") +  str(  (*mev).port) +  "] (case B)"  )/* line 69 *//* line 70 */
     elif   (*inst).state ==  "waitingForSecondmev":    /* line 71 */
         if  "2" ==   (*mev).port:                      /* line 72 */
-            (*inst).buffer.secondmev =  mev            /* line 73 */
+            (*inst).buffer.secondmev =  mev;           /* line 73 */
             send_firstmev_then_secondmev ( eh, inst)   /* line 74 */
-            (*inst).state =  "idle";                   /* line 75 */;
+            (*inst).state =  "idle";;                  /* line 75 */;
         else:                                          /* line 76 */
             runtime_error ( str( "deracer: waiting for 2 but got [") +  str(  (*mev).port) +  "] (case C)"  )/* line 77 *//* line 78 */
     else:                                              /* line 79 */
@@ -131,7 +131,7 @@ Syncfilewrite_Data* fresh_Syncfilewrite_Data () {
                                                        /* line 111 */
 void syncfilewrite_reset_handler (Leaf* eh) {
                                                        /* line 112 */
-    (*eh).instance_data =  fresh_Syncfilewrite_Data () /* line 113 */;/* line 114 *//* line 115 */}
+    (*eh).instance_data =  fresh_Syncfilewrite_Data () /* line 113 */;;/* line 114 *//* line 115 */}
 
 /*  temp copy for bootstrap, sends "done“ (error during bootstrap if not wired) *//* line 116 */
 Leaf* syncfilewrite_instantiate (Component_Registry* reg,Container* owner,Str* name,Ignored template_data,Ignored arg) {
@@ -144,7 +144,7 @@ void syncfilewrite_handler (Leaf* eh,Mevent* mev) {
                                                        /* line 123 */
     Synfilewrite_Data*  inst =   (*eh).instance_data;  /* line 124 */
     if  "filename" ==   (*mev).port:                   /* line 125 */
-        (*inst).filename =    (*mev).payload.v;        /* line 126 */
+        (*inst).filename =    (*mev).payload.v;;       /* line 126 */
     elif  "input" ==   (*mev).port:                    /* line 127 */
         Payload* contents =    (*mev).payload.v        /* line 128 */
         FileDescriptor*  f = open (  (*inst).filename, "w")/* line 129 */;
@@ -166,8 +166,8 @@ StringConcat_Instance_Data* fresh_StringConcat_Instance_Data () {
 void stringconcat_reset_handler (Leaf* eh) {
                                                        /* line 145 */
     StringConcat_Instance_Data*  inst =   (*eh).instance_data;/* line 146 */
-    (*inst).buffer1 =  NULL                            /* line 147 */
-    (*inst).buffer2 =  NULL;                           /* line 148 */;/* line 149 *//* line 150 */}
+    (*inst).buffer1 =  NULL;                           /* line 147 */
+    (*inst).buffer2 =  NULL;;                          /* line 148 */;/* line 149 *//* line 150 */}
 
 Leaf* stringconcat_instantiate (Component_Registry* reg,Container* owner,Str* name,Ignored template_data,Ignored arg) {
                                                        /* line 151 */
@@ -179,14 +179,14 @@ void stringconcat_handler (Leaf* eh,Mevent* mev) {
                                                        /* line 157 */
     StringConcat_Instance_Data*  inst =   (*eh).instance_data;/* line 158 */
     if  "1" ==   (*mev).port:                          /* line 159 */
-        (*inst).buffer1 = clone_string (   (*mev).payload.v)/* line 160 */
+        (*inst).buffer1 = clone_string (   (*mev).payload.v)/* line 160 */;
         maybe_stringconcat ( eh, inst, mev)            /* line 161 */;
     elif  "2" ==   (*mev).port:                        /* line 162 */
-        (*inst).buffer2 = clone_string (   (*mev).payload.v)/* line 163 */
+        (*inst).buffer2 = clone_string (   (*mev).payload.v)/* line 163 */;
         maybe_stringconcat ( eh, inst, mev)            /* line 164 */;
     elif  "reset" ==   (*mev).port:                    /* line 165 */
-        (*inst).buffer1 =  NULL                        /* line 166 */
-        (*inst).buffer2 =  NULL;                       /* line 167 */;
+        (*inst).buffer1 =  NULL;                       /* line 166 */
+        (*inst).buffer2 =  NULL;;                      /* line 167 */;
     else:                                              /* line 168 */
         runtime_error ( str( "bad mev.port for stringconcat: ") +   (*mev).port )/* line 169 *//* line 170 *//* line 171 *//* line 172 */}
 
@@ -195,14 +195,14 @@ void maybe_stringconcat (Leaf* eh,StringConcat_Instance_Dat* inst,Mevent* mev) {
     if   (*inst).buffer1!= NULL and   (*inst).buffer2!= NULL:/* line 174 */
         Str*  concatenated_string =  "";               /* line 175 */
         if  0 == len (  (*inst).buffer1):              /* line 176 */
-            concatenated_string =   (*inst).buffer2;   /* line 177 */
+            concatenated_string =   (*inst).buffer2;;  /* line 177 */
         elif  0 == len (  (*inst).buffer2):            /* line 178 */
-            concatenated_string =   (*inst).buffer1;   /* line 179 */
+            concatenated_string =   (*inst).buffer1;;  /* line 179 */
         else:                                          /* line 180 */
-            concatenated_string =   (*inst).buffer1+  (*inst).buffer2;/* line 181 *//* line 182 */
+            concatenated_string =   (*inst).buffer1+  (*inst).buffer2;;/* line 181 *//* line 182 */
         send ( eh, "", concatenated_string, mev)       /* line 183 */
-        (*inst).buffer1 =  NULL                        /* line 184 */
-        (*inst).buffer2 =  NULL;                       /* line 185 */;/* line 186 *//* line 187 *//* line 188 */}
+        (*inst).buffer1 =  NULL;                       /* line 184 */
+        (*inst).buffer2 =  NULL;;                      /* line 185 */;/* line 186 *//* line 187 *//* line 188 */}
 
 /*  */                                                 /* line 189 *//* line 190 */
 Str* =  "."                                            /* line 191 */;/* line 192 */
@@ -212,7 +212,7 @@ Leaf* string_constant_instantiate (Component_Registry* reg,Container* owner,Str*
     Str* name_with_id = gensymbol ( "strconst")        /* line 195 */
     Str*  s =  template_data;                          /* line 196 */
     if  projectRoot!= "":                              /* line 197 */
-        s = re.sub ( "_00_",  projectRoot,  s)         /* line 198 */;/* line 199 */
+        s = re.sub ( "_00_",  projectRoot,  s)         /* line 198 */;;/* line 199 */
     return (make_leaf ( name_with_id, owner, s, "", string_constant_handler, NULL)/* line 200 */)/* line 201 *//* line 202 */}
 
 void string_constant_handler (Leaf* eh,Mevent* mev) {
@@ -229,7 +229,7 @@ Number =  0                                            /* line 213 */;/* line 21
 void fakepipename_handler (Leaf* eh,Mevent* mev) {
                                                        /* line 215 */
     static rand                                        /* line 216 */
-    rand =  rand+ 1
+    rand =  rand+ 1;
     /*  not very random, but good enough _ ;rand' must be unique within a single run *//* line 217 */
     send ( eh, "", str( "/tmp/fakepipe") +  rand , mev)/* line 218 */;/* line 219 *//* line 220 */}
                                                        /* line 221 */
@@ -243,7 +243,7 @@ Switch1star_Instance_Data* fresh_Switch1star_Instance_Data () {
 void switch1star_reset_handler (Leaf* eh) {
                                                        /* line 226 */
     Switch1star_Instance_Data*  inst =   (*eh).instance_data;/* line 227 */
-    inst =  fresh_Switch1star_Instance_Data ()         /* line 228 */;/* line 229 *//* line 230 */}
+    inst =  fresh_Switch1star_Instance_Data ()         /* line 228 */;;/* line 229 *//* line 230 */}
 
 Leaf* switch1star_instantiate (Component_Registry* reg,Container* owner,Str* name,Ignored template_data,Ignored arg) {
                                                        /* line 231 */
@@ -258,13 +258,13 @@ void switch1star_handler (Leaf* eh,Mevent* mev) {
     if  "" ==   (*mev).port:                           /* line 240 */
         if  "1" ==  whichOutput:                       /* line 241 */
             forward ( eh, "1", mev)                    /* line 242 */
-            (*inst).state =  "*";                      /* line 243 */
+            (*inst).state =  "*";;                     /* line 243 */
         elif  "*" ==  whichOutput:                     /* line 244 */
             forward ( eh, "*", mev)                    /* line 245 */
         else:                                          /* line 246 */
             send ( eh, "✗", "internal error bad state in switch1*", mev)/* line 247 *//* line 248 */
     elif  "reset" ==   (*mev).port:                    /* line 249 */
-        (*inst).state =  "1";                          /* line 250 */
+        (*inst).state =  "1";;                         /* line 250 */
     else:                                              /* line 251 */
         send ( eh, "✗", "internal error bad mevent for switch1*", mev)/* line 252 *//* line 253 *//* line 254 *//* line 255 */}
 
@@ -277,7 +277,7 @@ StringAccumulator* fresh_StringAccumulator () {
                                                        /* line 259 */
 void strcatstar_reset_handler (Leaf* eh) {
                                                        /* line 260 */
-    (*eh).instance_data =  fresh_StringAccumulator ()  /* line 261 */;/* line 262 *//* line 263 */}
+    (*eh).instance_data =  fresh_StringAccumulator ()  /* line 261 */;;/* line 262 *//* line 263 */}
 
 Leaf* strcatstar_instantiate (Component_Registry* reg,Container* owner,Str* name,Ignored template_data,Ignored arg) {
                                                        /* line 264 */
@@ -289,7 +289,7 @@ void strcatstar_handler (Leaf* eh,Mevent* mev) {
                                                        /* line 270 */
     Switch1star_Instance_Data*  accum =   (*eh).instance_data;/* line 271 */
     if  "" ==   (*mev).port:                           /* line 272 */
-        (*accum).s =  str(  (*accum).s) +    (*mev).payload.v /* line 273 */;
+        (*accum).s =  str(  (*accum).s) +    (*mev).payload.v /* line 273 */;;
     elif  "fini" ==   (*mev).port:                     /* line 274 */
         send ( eh, "",  (*accum).s, mev)               /* line 275 */
     else:                                              /* line 276 */

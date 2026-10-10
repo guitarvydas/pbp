@@ -18,7 +18,7 @@ typedef struct s_Connector {
 #define Sender_H
 typedef struct s_Sender {
                                                        /* line 21 */
-    Str* name;                                         /* line 22 */
+    Str name;                                          /* line 22 */
     Eh* component;                                     /* line 23 */
     Port port;                                         /* line 24 *//* line 25 */
 } Sender;
@@ -30,7 +30,7 @@ typedef struct s_Sender {
 #define Receiver_H
 typedef struct s_Receiver {
                                                        /* line 32 */
-    Str* name;                                         /* line 33 */
+    Str name;                                          /* line 33 */
     Queue_of_Mevent* queue;                            /* line 34 */
     Port port;                                         /* line 35 */
     Eh* component;                                     /* line 36 *//* line 37 */

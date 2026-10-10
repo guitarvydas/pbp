@@ -39,20 +39,20 @@ Receiver* fresh_Receiver () {
     return self;
 }
                                                        /* line 38 */
-Sender* mkSender (Str* name,Eh* component,Port port) {
+Sender* mkSender (Str name,Eh* component,Port port) {
                                                        /* line 39 */
     Sender*  s =  fresh_Sender ()                      /* line 40 */;
-    (*s).name =  name                                  /* line 41 */
-    (*s).component =  component                        /* line 42 */
-    (*s).port =  port                                  /* line 43 */
+    (*s).name =  name;                                 /* line 41 */
+    (*s).component =  component;                       /* line 42 */
+    (*s).port =  port;                                 /* line 43 */
     return ( s)                                        /* line 44 */;;;/* line 45 *//* line 46 */}
 
-Receiver* mkReceiver (Str* name,Eh* component,Port port,Queue* q) {
+Receiver* mkReceiver (Str name,Eh* component,Port port,Queue* q) {
                                                        /* line 47 */
     Receiver*  r =  fresh_Receiver ()                  /* line 48 */;
-    (*r).name =  name                                  /* line 49 */
-    (*r).component =  component                        /* line 50 */
-    (*r).port =  port                                  /* line 51 */
+    (*r).name =  name;                                 /* line 49 */
+    (*r).component =  component;                       /* line 50 */
+    (*r).port =  port;                                 /* line 51 */
     /*  We need a way to determine which queue to target. "Down" and "Across" go to inq, "Up" and "Through" go to outq. *//* line 52 */
-    (*r).queue =  q                                    /* line 53 */
+    (*r).queue =  q;                                   /* line 53 */
     return ( r)                                        /* line 54 */;;;;/* line 55 */}

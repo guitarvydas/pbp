@@ -16,7 +16,7 @@
 #define Eh_H
 typedef struct s_Eh {
                                                        /* line 16 */
-    Str* name;                                         /* line 17 */
+    Str name;                                          /* line 17 */
     Queue_of_Mevent* inq;
     Queue_of_Mevent* outq;
     Container* owner;                                  /* line 20 */
@@ -27,8 +27,8 @@ typedef struct s_Eh {
     Finject finject;                                   /* line 25 */
     Freset reset;                                      /* line 26 */
     Any* instance_data;                                /* line 27 *//*  arg needed for probe support  *//* line 28 */
-    Str* arg;                                          /* line 29 */
-    Str* state;                                        /* line 30 */
+    Str arg;                                           /* line 29 */
+    Str state;                                         /* line 30 */
     Bool special;                                      /* line 31 *//* line 32 */
 } Eh;
 #endif

@@ -74,14 +74,14 @@ defn destroy_port ≡ ~
 }
 
                                                        #line 55
-defn format_mevent ≡ @Str
+defn format_mevent ≡ Str
 (
     m ≡ @Mevent
 )
 {
 }
 
-defn format_mevent_raw ≡ @Str
+defn format_mevent_raw ≡ Str
 (
     m ≡ @Mevent
 )

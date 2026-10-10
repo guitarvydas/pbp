@@ -10,24 +10,24 @@
 {"op":"insert", "operand":{"name":"receiver", "indir":2, "type":"Receiver", "scope":"_global/Connector", "kind":"variable"}}
 {"op":"newscope", "operand":"Sender"}
 {"op":"insert", "operand":{"name":"Sender", "indir":2, "type":"Sender", "scope":"_global", "kind":"obj"}}
-{"op":"insert", "operand":{"name":"name", "indir":2, "type":"Str", "scope":"_global/Sender", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"name", "indir":1, "type":"Str", "scope":"_global/Sender", "kind":"variable"}}
 {"op":"insert", "operand":{"name":"component", "indir":2, "type":"Eh", "scope":"_global/Sender", "kind":"variable"}}
 {"op":"insert", "operand":{"name":"port", "indir":1, "type":"Port", "scope":"_global/Sender", "kind":"variable"}}
 {"op":"newscope", "operand":"Receiver"}
 {"op":"insert", "operand":{"name":"Receiver", "indir":2, "type":"Receiver", "scope":"_global", "kind":"obj"}}
-{"op":"insert", "operand":{"name":"name", "indir":2, "type":"Str", "scope":"_global/Receiver", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"name", "indir":1, "type":"Str", "scope":"_global/Receiver", "kind":"variable"}}
 {"op":"insert", "operand":{"name":"queue", "indir":2, "type":"Queue_of_Mevent", "scope":"_global/Receiver", "kind":"variable"}}
 {"op":"insert", "operand":{"name":"port", "indir":1, "type":"Port", "scope":"_global/Receiver", "kind":"variable"}}
 {"op":"insert", "operand":{"name":"component", "indir":2, "type":"Eh", "scope":"_global/Receiver", "kind":"variable"}}
 {"op":"newscope", "operand":"mkSender"}
 {"op":"insert", "operand":{"name":"mkSender", "indir":2, "type":"Sender", "kind":"retproc", "scope":"_global" }}
-{"op":"insert", "operand":{"name":"name", "indir":2, "type":"Str", "scope":"_global/mkSender","kind":"parameter"}}
+{"op":"insert", "operand":{"name":"name", "indir":1, "type":"Str", "scope":"_global/mkSender","kind":"parameter"}}
 {"op":"insert", "operand":{"name":"component", "indir":2, "type":"Eh", "scope":"_global/mkSender","kind":"parameter"}}
 {"op":"insert", "operand":{"name":"port", "indir":1, "type":"Port", "scope":"_global/mkSender","kind":"parameter"}}
 {"op":"insert", "operand":{"name":"s", "indir":2, "type":"Sender", "scope":"_global/mkSender", "kind":"variable"}}
 {"op":"newscope", "operand":"mkReceiver"}
 {"op":"insert", "operand":{"name":"mkReceiver", "indir":2, "type":"Receiver", "kind":"retproc", "scope":"_global" }}
-{"op":"insert", "operand":{"name":"name", "indir":2, "type":"Str", "scope":"_global/mkReceiver","kind":"parameter"}}
+{"op":"insert", "operand":{"name":"name", "indir":1, "type":"Str", "scope":"_global/mkReceiver","kind":"parameter"}}
 {"op":"insert", "operand":{"name":"component", "indir":2, "type":"Eh", "scope":"_global/mkReceiver","kind":"parameter"}}
 {"op":"insert", "operand":{"name":"port", "indir":1, "type":"Port", "scope":"_global/mkReceiver","kind":"parameter"}}
 {"op":"insert", "operand":{"name":"q", "indir":2, "type":"Queue", "scope":"_global/mkReceiver","kind":"parameter"}}

@@ -2,17 +2,17 @@
                                                        #line 2#line 3
 defn make_leaf ≡ @Leaf
 (
-    name ≡ @Str,
+    name ≡ Str,
     owner ≡ @Container,
     instance_data ≡ @Any,
-    arg ≡ @Str,
+    arg ≡ Str,
     handler ≡ Fhandler
     reset_handler ≡ Freset
 )
 {
                                                        #line 4
         eh ≡ @Leaf
-        nm ≡ @Str                                          #line 6
+        nm ≡ Str                                          #line 6
         if  None!= owner {
                                                        #line 7
             nm ≡ @Part                                      #line 8#line 9

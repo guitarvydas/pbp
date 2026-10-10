@@ -1,7 +1,7 @@
 
 {"op":"newscope", "operand":"Eh"}
 {"op":"insert", "operand":{"name":"Eh", "indir":2, "type":"Eh", "scope":"_global", "kind":"obj"}}
-{"op":"insert", "operand":{"name":"name", "indir":2, "type":"Str", "scope":"_global/Eh", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"name", "indir":1, "type":"Str", "scope":"_global/Eh", "kind":"variable"}}
 {"op":"insert", "operand":{"name":"inq", "indir":2, "type":"Queue_of_Mevent", "scope":"_global/Eh", "kind":"variable"}}
 {"op":"insert", "operand":{"name":"outq", "indir":2, "type":"Queue_of_Mevent", "scope":"_global/Eh", "kind":"variable"}}
 {"op":"insert", "operand":{"name":"owner", "indir":2, "type":"Container", "scope":"_global/Eh", "kind":"variable"}}
@@ -12,8 +12,8 @@
 {"op":"insert", "operand":{"name":"finject", "indir":1, "type":"Finject", "scope":"_global/Eh", "kind":"variable"}}
 {"op":"insert", "operand":{"name":"reset", "indir":1, "type":"Freset", "scope":"_global/Eh", "kind":"variable"}}
 {"op":"insert", "operand":{"name":"instance_data", "indir":2, "type":"Any", "scope":"_global/Eh", "kind":"variable"}}
-{"op":"insert", "operand":{"name":"arg", "indir":2, "type":"Str", "scope":"_global/Eh", "kind":"variable"}}
-{"op":"insert", "operand":{"name":"state", "indir":2, "type":"Str", "scope":"_global/Eh", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"arg", "indir":1, "type":"Str", "scope":"_global/Eh", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"state", "indir":1, "type":"Str", "scope":"_global/Eh", "kind":"variable"}}
 {"op":"insert", "operand":{"name":"special", "indir":1, "type":"Bool", "scope":"_global/Eh", "kind":"variable"}}
 {"op":"newscope", "operand":"injector"}
 {"op":"insert", "operand":{"name":"injector", "indir":0, "type":"void", "kind":"proc", "scope":"_global" }}

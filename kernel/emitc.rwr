@@ -172,8 +172,8 @@ ElseStatement [ _39 StatementBlock] = ‛\nelse:«StatementBlock»’
 ForStatement [ _41 ident _43 Exp StatementBlock rec?] = ‛\nfor «ident» in «Exp»:«StatementBlock»«rec»’
 WhileStatement [ _45 Exp StatementBlock rec?] = ‛\nwhile «Exp»:«StatementBlock»«rec»’
 
-Assignment_multiple [ _55 Lvals+ _57 _58 Exp rec?] =‛\n[«Lvals»] = «Exp»«rec»’
-Assignment_single [ Lval _59 Exp rec?] =‛\n«Lval» = «Exp»«rec»’
+Assignment_multiple [ _55 Lvals+ _57 _58 Exp rec?] =‛\n[«Lvals»] = «Exp»;«rec»’
+Assignment_single [ Lval _59 Exp rec?] =‛\n«Lval» = «Exp»;«rec»’
 LvalComma [Lval Comma?] = ‛«Lval»«Comma»’
 
 ReturnExp_multiple [ _60 Exps+ _62 rec?] =‛[«Exps»]«rec»’
@@ -205,11 +205,11 @@ Primary_call [p actuals] = ‛«p» «actuals»’
 Primary_plain [p] = ‛«p»’
 
 PrimaryIndexed_lookupident [p _at id] =
-  ⎡ deref=‛⊤’ 
+  ⎡ deref=‛⊥’
     ‛lookupid («p», «id»)’ 
   ⎦
 PrimaryIndexed_lookupstring [p _at s] = 
-  ⎡ deref=‛⊤’
+  ⎡ deref=‛⊥’
       ‛lookupstring («p», «s»)’
   ⎦
 PrimaryIndexed_fieldident [p _dot key] =
@@ -263,7 +263,10 @@ Formal [ ident] = ‛⎨getdeclaration ‛3’ ‛⎨genscope ‛scope’⎬’ 
 FormalComma [Formal comma?] =‛«Formal»«comma»’
 
 Actuals_noactuals [ _154 _155] =‛«_154»«_155»’
-Actuals_actuals [ _156 ActualComma* _157 line?] =‛«_156»«ActualComma»«_157»«line»’
+Actuals_actuals [ _156 ActualComma* _157 line?] =
+  ⎡ deref=‛⊥’
+     ‛«_156»«ActualComma»«_157»«line»’
+  ⎦
 Actual [Exp] = ‛«Exp»’
 ActualComma [comment? Actual comma? line?] = ‛«Actual»«comma»«line»’
 

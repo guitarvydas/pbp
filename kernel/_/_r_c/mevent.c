@@ -31,16 +31,16 @@ Mevent* make_mevent (Port port,Datum* datum) {
                                                        /* line 24 */
     Port p = clone_string ( port)                      /* line 25 */
     Mevent*  m =  fresh_Mevent ()                      /* line 26 */;
-    (*m).port =  p                                     /* line 27 */
-    (*m).payload =   (*datum).clone ()                 /* line 28 */
+    (*m).port =  p;                                    /* line 27 */
+    (*m).payload =   (*datum).clone ();                /* line 28 */
     return ( m)                                        /* line 29 */;;/* line 30 *//* line 31 */}
 
 /*  Clones a mevent. Primarily used internally for “fanning out“ a mevent to multiple destinations. *//* line 32 */
 Mevent* mevent_clone (Mevent* mev) {
                                                        /* line 33 */
     Mevent*  m =  fresh_Mevent ()                      /* line 34 */;
-    (*m).port = clone_port (  (*mev).port)             /* line 35 */
-    (*m).payload =    (*mev).payload.clone ()          /* line 36 */
+    (*m).port = clone_port (  (*mev).port)             /* line 35 */;
+    (*m).payload =    (*mev).payload.clone ();         /* line 36 */
     return ( m)                                        /* line 37 */;;/* line 38 *//* line 39 */}
 
 /*  Frees a mevent. */                                 /* line 40 */
@@ -58,14 +58,14 @@ void destroy_port (Mevent* mev) {
                                                        /* line 51 *//* line 52 *//* line 53 */}
 
 /*  */                                                 /* line 54 */
-Str* format_mevent (Mevent* m) {
+Str format_mevent (Mevent* m) {
                                                        /* line 55 */
     if  m ==  NULL:                                    /* line 56 */
         return ( "{}")                                 /* line 57 */
     else:                                              /* line 58 */
         return ( str( "{%5C”") +  str(  (*m).port) +  str( "%5C”:%5C”") +  str(   (*m).payload.v) +  "%5C”}"    /* line 59 */)/* line 60 *//* line 61 */}
 
-Str* format_mevent_raw (Mevent* m) {
+Str format_mevent_raw (Mevent* m) {
                                                        /* line 62 */
     if  m ==  NULL:                                    /* line 63 */
         return ( "")                                   /* line 64 */
