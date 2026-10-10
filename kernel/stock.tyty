@@ -416,7 +416,7 @@ defn stop_handler ≡ ~
 )
 {
                                                        #line 281
-        inst ≡ @                                        #line 282
+        inst ≡ @Any                                        #line 282
         parent ≡ @Container                                      #line 283
         s ≡ @Str                                            #line 289#line 290
 }

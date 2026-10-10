@@ -589,7 +589,7 @@ Payload* obj_clone (Payload* obj) {
 
 /*  Creates a new leaf component out of a handler function, and a data parameter *//* line 1 */
 /*  that will be passed back to your handler when called. *//* line 2 *//* line 3 */
-Leaf* make_leaf (Str* name,Container* owner,any* instance_data,Str* arg,Fhandler handler,Freset reset_handler) {
+Leaf* make_leaf (Str* name,Container* owner,Any* instance_data,Str* arg,Fhandler handler,Freset reset_handler) {
                                                        /* line 4 */
     Leaf*  eh =  fresh_Eh ()                           /* line 5 */;
     Part*  nm =  "";                                   /* line 6 */
@@ -993,7 +993,7 @@ Leaf* stop_instantiate (Component_Registry* reg,Container* owner,Str* name,Ignor
 
 void stop_handler (Leaf* eh,Mevent* mev) {
                                                        /* line 287 */
-    any*  inst =   (*eh).instance_data;                /* line 288 */
+    Any*  inst =   (*eh).instance_data;                /* line 288 */
     Container*  parent =   (*eh).owner;                /* line 289 */
     Str*  s =  str( "   !!! stopping: '") +  str(  (*parent).name) +  "'"  /* line 290 */;
     print ( s, file=sys.stderr)                        /* line 291 */

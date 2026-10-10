@@ -31,7 +31,6 @@
   BodyInnards_TypedVar [typedid rec?] = ‛\n{"op":"insert", "operand":{«typedid», "kind":"variable"}}«rec»’
   BodyInnards_other [c rec?] = ‛«rec»’
   Type_pointer [_at id] = ‛"indir":2, "type":"«id»"’
-  Type_pointerany [_at] = ‛"indir":2, "type":"any"’
   Type_plain [id] = ‛"indir":1, "type":"«id»"’
   id [c cs*] = ‛«c»«cs»’
   Line [_line digit+] = ‛’

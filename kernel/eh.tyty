@@ -25,7 +25,7 @@ defobj Eh {
     handler ≡ Fhandler                                         #line 24
     finject ≡ Finject                                         #line 25
     reset ≡ Freset                                           #line 26
-    instance_data ≡ @                                   #line 27#line 28
+    instance_data ≡ @Any                                   #line 27#line 28
     arg ≡ @Str                                             #line 29
     state ≡ @Str                                           #line 30
     special ≡ Bool                                         #line 31#line 32

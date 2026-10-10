@@ -4,7 +4,7 @@ defn make_leaf ≡ @Leaf
 (
     name ≡ @Str,
     owner ≡ @Container,
-    instance_data ≡ @,
+    instance_data ≡ @Any,
     arg ≡ @Str,
     handler ≡ Fhandler
     reset_handler ≡ Freset

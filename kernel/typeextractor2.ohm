@@ -26,7 +26,6 @@ typeExtractor2 {
     | ~"}" ~")" ~"]" any  BodyInnards? -- other
   Type =
     | "@" id -- pointer
-    | "@" ~id -- pointerany
     | id     -- plain
   id = (letter | "_" | "%") (alnum | "_" | "%")*
   Line = "#line" digit+

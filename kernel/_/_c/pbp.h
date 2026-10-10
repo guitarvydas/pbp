@@ -20,9 +20,19 @@ typedef Byte Dir;
 #define Up 2
 #define Through 3
 
+typedef struct s_Eh Eh;
 typedef struct s_Eh Part;
 typedef struct s_Eh Leaf;
 typedef struct s_Eh Container;
+
+typedef struct s_Mevent Mevent;
+typedef struct s_Datum Datum;
+typedef Datum* (*Fclone) (Datum*);
+typedef void (*Freclaim) (Datum*);
+typedef void (*Fhandler) (Eh*, Mevent*);
+typedef void (*Finject) (Eh*, Mevent*);
+typedef void (*Freset) (Eh*);
+typedef void Any;
 
 #include "mevent.h"
 

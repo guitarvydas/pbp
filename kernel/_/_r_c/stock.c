@@ -303,7 +303,7 @@ Leaf* stop_instantiate (Component_Registry* reg,Container* owner,Str* name,Ignor
 
 void stop_handler (Leaf* eh,Mevent* mev) {
                                                        /* line 287 */
-    any*  inst =   (*eh).instance_data;                /* line 288 */
+    Any*  inst =   (*eh).instance_data;                /* line 288 */
     Container*  parent =   (*eh).owner;                /* line 289 */
     Str*  s =  str( "   !!! stopping: '") +  str(  (*parent).name) +  "'"  /* line 290 */;
     print ( s, file=sys.stderr)                        /* line 291 */

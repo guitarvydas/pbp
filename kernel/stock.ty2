@@ -212,7 +212,7 @@
 {"op":"insert", "operand":{"name":"stop_handler", "indir":0, "type":"void", "kind":"proc", "scope":"_global" }}
 {"op":"insert", "operand":{"name":"eh", "indir":2, "type":"Leaf", "scope":"_global/stop_handler","kind":"parameter"}}
 {"op":"insert", "operand":{"name":"mev", "indir":2, "type":"Mevent", "scope":"_global/stop_handler","kind":"parameter"}}
-{"op":"insert", "operand":{"name":"inst", "indir":2, "type":"any", "scope":"_global/stop_handler", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"inst", "indir":2, "type":"Any", "scope":"_global/stop_handler", "kind":"variable"}}
 {"op":"insert", "operand":{"name":"parent", "indir":2, "type":"Container", "scope":"_global/stop_handler", "kind":"variable"}}
 {"op":"insert", "operand":{"name":"s", "indir":2, "type":"Str", "scope":"_global/stop_handler", "kind":"variable"}}
 {"op":"newscope", "operand":"initialize_stock_components"}

@@ -26,7 +26,7 @@ typedef struct s_Eh {
     Fhandler handler;                                  /* line 24 */
     Finject finject;                                   /* line 25 */
     Freset reset;                                      /* line 26 */
-    any* instance_data;                                /* line 27 *//*  arg needed for probe support  *//* line 28 */
+    Any* instance_data;                                /* line 27 *//*  arg needed for probe support  *//* line 28 */
     Str* arg;                                          /* line 29 */
     Str* state;                                        /* line 30 */
     Bool special;                                      /* line 31 *//* line 32 */

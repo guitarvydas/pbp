@@ -11,7 +11,7 @@
 {"op":"insert", "operand":{"name":"handler", "indir":1, "type":"Fhandler", "scope":"_global/Eh", "kind":"variable"}}
 {"op":"insert", "operand":{"name":"finject", "indir":1, "type":"Finject", "scope":"_global/Eh", "kind":"variable"}}
 {"op":"insert", "operand":{"name":"reset", "indir":1, "type":"Freset", "scope":"_global/Eh", "kind":"variable"}}
-{"op":"insert", "operand":{"name":"instance_data", "indir":2, "type":"any", "scope":"_global/Eh", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"instance_data", "indir":2, "type":"Any", "scope":"_global/Eh", "kind":"variable"}}
 {"op":"insert", "operand":{"name":"arg", "indir":2, "type":"Str", "scope":"_global/Eh", "kind":"variable"}}
 {"op":"insert", "operand":{"name":"state", "indir":2, "type":"Str", "scope":"_global/Eh", "kind":"variable"}}
 {"op":"insert", "operand":{"name":"special", "indir":1, "type":"Bool", "scope":"_global/Eh", "kind":"variable"}}
