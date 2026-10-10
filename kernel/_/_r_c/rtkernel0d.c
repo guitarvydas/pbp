@@ -1,4 +1,8 @@
+#include "pbp.h"
+
 #include "pbp.h"                                       /* line 1 */
+#include "pbp.h"
+
 /*  Data for an asyncronous component _ effectively, a function with input *//* line 1 */
 /*  and output queues of mevents. */                   /* line 2 */
 /*  */                                                 /* line 3 */
@@ -13,23 +17,6 @@
 /*  `instance_data` is a pointer to instance data that the `leaf_handler` *//* line 12 */
 /*  function may want whenever it is invoked again. */ /* line 13 *//* line 14 */
 /*  Eh_States :: enum { idle, active } */              /* line 15 */
-typedef struct s_Eh {
-                                                       /* line 16 */
-    Str* name;                                         /* line 17 */
-    Queue* inq;
-    Queue* outq;
-    Container* owner;                                  /* line 20 */
-    List_of_Part* children;                            /* line 21 */
-    Queue_of_Part* visit_ordering;
-    List_ofWire* connections;                          /* line 23 */
-    Fhandler handler;                                  /* line 24 */
-    Finject finject;                                   /* line 25 */
-    Freset reset;                                      /* line 26 */
-    any* instance_data;                                /* line 27 *//*  arg needed for probe support  *//* line 28 */
-    Str* arg;                                          /* line 29 */
-    Str* state;                                        /* line 30 */
-    Bool special;                                      /* line 31 *//* line 32 */
-} Eh;
 Eh* fresh_Eh () {
     Eh *self;
     self = (Eh*)malloc(sizeof(Eh*));
@@ -53,6 +40,8 @@ Eh* fresh_Eh () {
 void injector (Eh* eh,Mevent* mevent) {
                                                        /* line 34 */
     (*eh).handler ( eh, mevent)                        /* line 35 *//* line 36 *//* line 37 */}
+#include "pbp.h"
+
 Array_of_Str = [ "₀", "₁", "₂", "₃", "₄", "₅", "₆", "₇", "₈", "₉", "₁₀", "₁₁", "₁₂", "₁₃", "₁₄", "₁₅", "₁₆", "₁₇", "₁₈", "₁₉", "₂₀", "₂₁", "₂₂", "₂₃", "₂₄", "₂₅", "₂₆", "₂₇", "₂₈", "₂₉"]/* line 7 */;/* line 8 *//* line 9 */
 Str* subscripted_digit (Int n) {
                                                        /* line 10 */
@@ -69,92 +58,81 @@ Str* gensymbol (Str* s) {
     Str* name_with_id =  str( s) + subscripted_digit ( counter) /* line 23 */
     counter =  counter+ 1                              /* line 24 */
     return ( name_with_id)                             /* line 25 */;/* line 26 */}
-/* line 1 */
-typedef struct s_Datum {
-                                                       /* line 2 */
-    Payload* v;                                        /* line 3 */
-    Fclone clone;                                      /* line 4 */
-    Freclaim reclaim;                                  /* line 5 */
-    any* other; /*  reserved for use on per-project basis  *//* line 6 *//* line 7 */
-} Datum;
+#include "pbp.h"
+                                                       /* line 1 */
 Datum* fresh_Datum () {
     Datum *self;
     self = (Datum*)malloc(sizeof(Datum*));
     self->v =  NULL;                                   /* line 3 */
     self->clone =  NULL;                               /* line 4 */
-    self->reclaim =  NULL;                             /* line 5 */
-    self->other =  NULL; /*  reserved for use on per-project basis  *//* line 6 *//* line 7 */
+    self->reclaim =  NULL;                             /* line 5 *//* line 6 */
     return self;
 }
-                                                       /* line 8 *//* line 9 */
-/*  Mevent passed to a leaf component. */              /* line 10 */
-/*  */                                                 /* line 11 */
-/*  `port` refers to the name of the incoming or outgoing port of this component. *//* line 12 */
-/*  `payload` is the data attached to this mevent. */  /* line 13 */
-typedef struct s_Mevent {
-                                                       /* line 14 */
-    Port port;                                         /* line 15 */
-    Payload* payload;                                  /* line 16 *//* line 17 */
-} Mevent;
+                                                       /* line 7 *//* line 8 */
+/*  Mevent passed to a leaf component. */              /* line 9 */
+/*  */                                                 /* line 10 */
+/*  `port` refers to the name of the incoming or outgoing port of this component. *//* line 11 */
+/*  `payload` is the data attached to this mevent. */  /* line 12 */
 Mevent* fresh_Mevent () {
     Mevent *self;
     self = (Mevent*)malloc(sizeof(Mevent*));
-    self->port =  NULL;                                /* line 15 */
-    self->payload =  NULL;                             /* line 16 *//* line 17 */
+    self->port =  NULL;                                /* line 14 */
+    self->payload =  NULL;                             /* line 15 *//* line 16 */
     return self;
 }
-                                                       /* line 18 */
+                                                       /* line 17 */
 Port clone_port (Port s) {
-                                                       /* line 19 */
-    return (clone_string ( s)                          /* line 20 */)/* line 21 *//* line 22 */}
+                                                       /* line 18 */
+    return (clone_string ( s)                          /* line 19 */)/* line 20 *//* line 21 */}
 
-/*  Utility for making a `Mevent`. Used to safely "seed“ mevents *//* line 23 */
-/*  entering the very top of a network. */             /* line 24 */
+/*  Utility for making a `Mevent`. Used to safely "seed“ mevents *//* line 22 */
+/*  entering the very top of a network. */             /* line 23 */
 Mevent* make_mevent (Port port,Datum* datum) {
-                                                       /* line 25 */
-    Port p = clone_string ( port)                      /* line 26 */
-    Mevent*  m =  fresh_Mevent ()                      /* line 27 */;
-    (*m).port =  p                                     /* line 28 */
-    (*m).payload =   (*datum).clone ()                 /* line 29 */
-    return ( m)                                        /* line 30 */;;/* line 31 *//* line 32 */}
+                                                       /* line 24 */
+    Port p = clone_string ( port)                      /* line 25 */
+    Mevent*  m =  fresh_Mevent ()                      /* line 26 */;
+    (*m).port =  p                                     /* line 27 */
+    (*m).payload =   (*datum).clone ()                 /* line 28 */
+    return ( m)                                        /* line 29 */;;/* line 30 *//* line 31 */}
 
-/*  Clones a mevent. Primarily used internally for “fanning out“ a mevent to multiple destinations. *//* line 33 */
+/*  Clones a mevent. Primarily used internally for “fanning out“ a mevent to multiple destinations. *//* line 32 */
 Mevent* mevent_clone (Mevent* mev) {
-                                                       /* line 34 */
-    Mevent*  m =  fresh_Mevent ()                      /* line 35 */;
-    (*m).port = clone_port (  (*mev).port)             /* line 36 */
-    (*m).payload =    (*mev).payload.clone ()          /* line 37 */
-    return ( m)                                        /* line 38 */;;/* line 39 *//* line 40 */}
+                                                       /* line 33 */
+    Mevent*  m =  fresh_Mevent ()                      /* line 34 */;
+    (*m).port = clone_port (  (*mev).port)             /* line 35 */
+    (*m).payload =    (*mev).payload.clone ()          /* line 36 */
+    return ( m)                                        /* line 37 */;;/* line 38 *//* line 39 */}
 
-/*  Frees a mevent. */                                 /* line 41 */
+/*  Frees a mevent. */                                 /* line 40 */
 void destroy_mevent (Mevent* mev) {
-                                                       /* line 42 */
-    /*  during debug, dont destroy any mevent, since we want to trace mevents, thus, we need to persist ancestor mevents *//* line 43 */
-                                                       /* line 44 *//* line 45 *//* line 46 */}
+                                                       /* line 41 */
+    /*  during debug, dont destroy any mevent, since we want to trace mevents, thus, we need to persist ancestor mevents *//* line 42 */
+                                                       /* line 43 *//* line 44 *//* line 45 */}
 
 void destroy_datum (Mevent* mev) {
-                                                       /* line 47 */
-                                                       /* line 48 *//* line 49 *//* line 50 */}
+                                                       /* line 46 */
+                                                       /* line 47 *//* line 48 *//* line 49 */}
 
 void destroy_port (Mevent* mev) {
-                                                       /* line 51 */
-                                                       /* line 52 *//* line 53 *//* line 54 */}
+                                                       /* line 50 */
+                                                       /* line 51 *//* line 52 *//* line 53 */}
 
-/*  */                                                 /* line 55 */
+/*  */                                                 /* line 54 */
 Str* format_mevent (Mevent* m) {
-                                                       /* line 56 */
-    if  m ==  NULL:                                    /* line 57 */
-        return ( "{}")                                 /* line 58 */
-    else:                                              /* line 59 */
-        return ( str( "{%5C”") +  str(  (*m).port) +  str( "%5C”:%5C”") +  str(   (*m).payload.v) +  "%5C”}"    /* line 60 */)/* line 61 *//* line 62 */}
+                                                       /* line 55 */
+    if  m ==  NULL:                                    /* line 56 */
+        return ( "{}")                                 /* line 57 */
+    else:                                              /* line 58 */
+        return ( str( "{%5C”") +  str(  (*m).port) +  str( "%5C”:%5C”") +  str(   (*m).payload.v) +  "%5C”}"    /* line 59 */)/* line 60 *//* line 61 */}
 
 Str* format_mevent_raw (Mevent* m) {
-                                                       /* line 63 */
-    if  m ==  NULL:                                    /* line 64 */
-        return ( "")                                   /* line 65 */
-    else:                                              /* line 66 */
-        return (   (*m).payload.v)                     /* line 67 *//* line 68 *//* line 69 */}
-/* line 1 */
+                                                       /* line 62 */
+    if  m ==  NULL:                                    /* line 63 */
+        return ( "")                                   /* line 64 */
+    else:                                              /* line 65 */
+        return (   (*m).payload.v)                     /* line 66 *//* line 67 *//* line 68 */}
+#include "pbp.h"
+                                                       /* line 1 */
 Dir =  0                                               /* line 2 */;
 Dir =  1                                               /* line 3 */;
 Dir =  2                                               /* line 4 */;
@@ -162,12 +140,6 @@ Dir =  3                                               /* line 5 */;/* line 6 */
 /*  Routing connection for a container component. The `direction` field has *//* line 8 */
 /*  no affect on the default mevent routing system _ it is there for debugging *//* line 9 */
 /*  purposes, or for reading by other tools. */        /* line 10 *//* line 11 */
-typedef struct s_Connector {
-                                                       /* line 12 */
-    Dir direction; /*  down, across, up, through */    /* line 13 */
-    Sender* sender;                                    /* line 14 */
-    Receiver* receiver;                                /* line 15 *//* line 16 */
-} Connector;
 Connector* fresh_Connector () {
     Connector *self;
     self = (Connector*)malloc(sizeof(Connector*));
@@ -179,12 +151,6 @@ Connector* fresh_Connector () {
                                                        /* line 17 */
 /*  `Sender` is used to "pattern match“ which `Receiver` a mevent should go to, *//* line 18 */
 /*  based on component ID (pointer) and port name. */  /* line 19 *//* line 20 */
-typedef struct s_Sender {
-                                                       /* line 21 */
-    Str* name;                                         /* line 22 */
-    Eh* component;                                     /* line 23 */
-    Port port;                                         /* line 24 *//* line 25 */
-} Sender;
 Sender* fresh_Sender () {
     Sender *self;
     self = (Sender*)malloc(sizeof(Sender*));
@@ -196,13 +162,6 @@ Sender* fresh_Sender () {
                                                        /* line 26 *//* line 27 *//* line 28 */
 /*  `Receiver` is a handle to a destination queue, and a `port` name to assign *//* line 29 */
 /*  to incoming mevents to this queue. */              /* line 30 *//* line 31 */
-typedef struct s_Receiver {
-                                                       /* line 32 */
-    Str* name;                                         /* line 33 */
-    Queue* queue;                                      /* line 34 */
-    Port port;                                         /* line 35 */
-    Eh* component;                                     /* line 36 *//* line 37 */
-} Receiver;
 Receiver* fresh_Receiver () {
     Receiver *self;
     self = (Receiver*)malloc(sizeof(Receiver*));
@@ -230,10 +189,8 @@ Receiver* mkReceiver (Str* name,Eh* component,Port port,Queue* q) {
     /*  We need a way to determine which queue to target. "Down" and "Across" go to inq, "Up" and "Through" go to outq. *//* line 52 */
     (*r).queue =  q                                    /* line 53 */
     return ( r)                                        /* line 54 */;;;;/* line 55 */}
-typedef struct s_Component_Registry {
-                                                       /* line 1 */
-    Dict_of_Template* templates;                       /* line 2 *//* line 3 */
-} Component_Registry;
+#include "pbp.h"
+
 Component_Registry* fresh_Component_Registry () {
     Component_Registry *self;
     self = (Component_Registry*)malloc(sizeof(Component_Registry*));
@@ -241,12 +198,6 @@ Component_Registry* fresh_Component_Registry () {
     return self;
 }
                                                        /* line 4 */
-typedef struct s_Template {
-                                                       /* line 5 */
-    Str* name;                                         /* line 6 */
-    Container* container;                              /* line 7 */
-    Finstantiator instantiator;                        /* line 8 *//* line 9 */
-} Template;
 Template* fresh_Template () {
     Template *self;
     self = (Template*)malloc(sizeof(Template*));
@@ -361,6 +312,8 @@ Str* mangle_name (Str* s) {
                                                        /* line 94 */
     /*  trim name to remove code from Container component names _ deferred until later (or never) *//* line 95 */
     return ( s)                                        /* line 96 *//* line 97 */}
+#include "pbp.h"
+
 Wire* create_down_connector (Container* container,Wire_Proto* proto_conn,List_of_Wire* connectors,Table_by_ID_of_Part* children_by_id) {
                                                        /* line 1 */
     /*  JSON: {;dir': 0, 'source': {'name': '', 'id': 0}, 'source_port': '', 'target': {'name': 'Echo', 'id': 12}, 'target_port': ''}, *//* line 2 */
@@ -632,6 +585,8 @@ void put_output (Part* eh,Mevent* mev) {
 Payload* obj_clone (Payload* obj) {
                                                        /* line 298 */
     return ( obj)                                      /* line 299 *//* line 300 */}
+#include "pbp.h"
+
 /*  Creates a new leaf component out of a handler function, and a data parameter *//* line 1 */
 /*  that will be passed back to your handler when called. *//* line 2 *//* line 3 */
 Leaf* make_leaf (Str* name,Container* owner,any* instance_data,Str* arg,Fhandler handler,Freset reset_handler) {
@@ -661,6 +616,8 @@ void leaf_reset (Leaf* part) {
     if (  (*part).reset_handler!= NULL):               /* line 26 */
         (*part).reset_handler ( part)                  /* line 27 *//* line 28 */
     (*part).state =  "idle";                           /* line 29 *//* line 30 */}
+#include "pbp.h"
+
 /*  (This used to be called `external` due to historical reasons). This has evolved into 2 kinds of Leaf parts: AOT and JIT (statically generated before runtime, vs. dynamically generated at runtime). If a part name begins with ;:', it is treated specially as a JIT part, else the part is assumed to have been pre-loaded into the register in the regular way.  *//* line 1 *//* line 2 */
 Part* jit_instantiate (Component_Registry* reg,Container* owner,Str* name,Str* arg) {
                                                        /* line 3 */
@@ -731,6 +688,8 @@ void shell_out_handler (Part* eh,Port cmd,Mevent* mev) {
         send ( eh, "", str( stdout) +  stderr , mev)   /* line 59 */
     else:                                              /* line 60 */
         send ( eh, "✗", str( stdout) +  stderr , mev)  /* line 61 *//* line 62 *//* line 63 *//* line 64 */}
+#include "pbp.h"
+
 Str* clone_string (Str* s) {
                                                        /* line 1 */
     return ( s)                                        /* line 2 *//* line 3 *//* line 4 */}
@@ -745,11 +704,6 @@ void trash_handler (Part* eh,Mevent* mev) {
     /*  to appease dumped_on_floor checker */          /* line 12 */
                                                        /* line 13 *//* line 14 */}
 
-typedef struct s_TwoMevents {
-                                                       /* line 15 */
-    Mevent* firstmev;                                  /* line 16 */
-    Mevent* secondmev;                                 /* line 17 *//* line 18 */
-} TwoMevents;
 TwoMevents* fresh_TwoMevents () {
     TwoMevents *self;
     self = (TwoMevents*)malloc(sizeof(TwoMevents*));
@@ -759,11 +713,6 @@ TwoMevents* fresh_TwoMevents () {
 }
                                                        /* line 19 */
 /*  Deracer_States :: enum { idle, waitingForFirstmev, waitingForSecondmev } *//* line 20 */
-typedef struct s_Deracer_Instance_Data {
-                                                       /* line 21 */
-    State state;                                       /* line 22 */
-    TwoMevents* buffer;                                /* line 23 *//* line 24 */
-} Deracer_Instance_Data;
 Deracer_Instance_Data* fresh_Deracer_Instance_Data () {
     Deracer_Instance_Data *self;
     self = (Deracer_Instance_Data*)malloc(sizeof(Deracer_Instance_Data*));
@@ -863,10 +812,6 @@ void ensure_string_datum_handler (Leaf* eh,Mevent* mev) {
         Str* emev =  str( "*** ensure: type error (expected a string payload) but got ") +   (*mev).payload /* line 103 */
         send ( eh, "✗", emev, mev)                     /* line 104 *//* line 105 *//* line 106 *//* line 107 */}
 
-typedef struct s_Syncfilewrite_Data {
-                                                       /* line 108 */
-    Str* filename;                                     /* line 109 *//* line 110 */
-} Syncfilewrite_Data;
 Syncfilewrite_Data* fresh_Syncfilewrite_Data () {
     Syncfilewrite_Data *self;
     self = (Syncfilewrite_Data*)malloc(sizeof(Syncfilewrite_Data*));
@@ -900,11 +845,6 @@ void syncfilewrite_handler (Leaf* eh,Mevent* mev) {
         else:                                          /* line 134 */
             send ( eh, "✗", str( "open error on file ") +   (*inst).filename , mev)/* line 135 *//* line 136 *//* line 137 *//* line 138 *//* line 139 */}
 
-typedef struct s_StringConcat_Instance_Data {
-                                                       /* line 140 */
-    Str* buffer1;                                      /* line 141 */
-    Str* buffer2;                                      /* line 142 *//* line 143 */
-} StringConcat_Instance_Data;
 StringConcat_Instance_Data* fresh_StringConcat_Instance_Data () {
     StringConcat_Instance_Data *self;
     self = (StringConcat_Instance_Data*)malloc(sizeof(StringConcat_Instance_Data*));
@@ -983,10 +923,6 @@ void fakepipename_handler (Leaf* eh,Mevent* mev) {
     /*  not very random, but good enough _ ;rand' must be unique within a single run *//* line 217 */
     send ( eh, "", str( "/tmp/fakepipe") +  rand , mev)/* line 218 */;/* line 219 *//* line 220 */}
                                                        /* line 221 */
-typedef struct s_Switch1star_Instance_Data {
-                                                       /* line 222 */
-    Str* state;                                        /* line 223 *//* line 224 */
-} Switch1star_Instance_Data;
 Switch1star_Instance_Data* fresh_Switch1star_Instance_Data () {
     Switch1star_Instance_Data *self;
     self = (Switch1star_Instance_Data*)malloc(sizeof(Switch1star_Instance_Data*));
@@ -1022,10 +958,6 @@ void switch1star_handler (Leaf* eh,Mevent* mev) {
     else:                                              /* line 251 */
         send ( eh, "✗", "internal error bad mevent for switch1*", mev)/* line 252 *//* line 253 *//* line 254 *//* line 255 */}
 
-typedef struct s_StringAccumulator {
-                                                       /* line 256 */
-    Str* s;                                            /* line 257 *//* line 258 */
-} StringAccumulator;
 StringAccumulator* fresh_StringAccumulator () {
     StringAccumulator *self;
     self = (StringAccumulator*)malloc(sizeof(StringAccumulator*));
@@ -1086,6 +1018,8 @@ void initialize_stock_components (Component_Registry* reg) {
     register_component ( reg,mkTemplate ( "String Concat *", NULL, strcatstar_instantiate))/* line 314 */
     /*  for fakepipe */                                /* line 315 */
     register_component ( reg,mkTemplate ( "fakepipename", NULL, fakepipename_instantiate))/* line 316 *//* line 317 *//* line 318 */}
+#include "pbp.h"
+
 Bool =  FALSE                                          /* line 1 */;
 Bool =  FALSE                                          /* line 2 */;
 Int =  0                                               /* line 3 */;/* line 4 */

@@ -7,7 +7,7 @@ Main [ TopLevel+] =
   ⎡ ⎨gettypeinfo ⎬
     ⎡ scope=‛_global’
       ⎡ deref=‛⊥’
-	 ‛#include "pbp.h"\n«TopLevel»’
+	 ‛«TopLevel»’
       ⎦
     ⎦
   ⎦
@@ -20,20 +20,18 @@ TopLevel_comment [s line?] =‛\n«s»«line»’
 TopLevel_line [line] =‛«line»’
 
 kw [ s] = ‛«s»’
-Defvar [ __ id _eq e line?] = ‛\n⎨getdeclaration ‛1’ ‛⟪scope⟫’ ‛«id»’⎬ = «e»«line»;’
-Defn [ _4 ident Formals StatementBlock line?] = 
-  ⎡ scope=‛«ident»’
-     ‛\n⎨getdeclaration ‛2’ ‛⎨genscoperest ‛scope’⎬’ ‛«ident»’⎬ «ident» «Formals» {\n«StatementBlock»«line»}\n’
-  ⎦
+Defvar [ __ id _eq e line?] = ‛’
+Defn [ _4 ident Formals StatementBlock line?] = ‛’
 
 Defobj [ _defobj ident line1? lb line2? init+ rb line3?] = 
   ⎡ scope=‛«ident»’
       ‛
-      ⎨getdeclaration ‛6’ ‛⎨genscoperest ‛scope’⎬’ ‛«ident»’⎬ fresh_«ident» () {⤷
-	«ident» *self;
-	self = (⎨getdeclaration ‛6’ ‛⎨genscoperest ‛scope’⎬’ ‛«ident»’⎬)malloc(sizeof(⎨getdeclaration ‛7’ ‛⎨genscoperest ‛scope’⎬’ ‛«ident»’⎬));⎨second ‛«init»’⎬«line3»
-	return self;⤶
-      }
+      #ifndef «ident»_H
+      #define «ident»_H
+      typedef struct s_«ident» {⤷
+	«line1»«line2»⎨first ‛«init»’⎬«line3»⤶
+      } «ident»;
+       #endif
       ’
   ⎦
 
@@ -54,45 +52,9 @@ R_Statement_line [line rec?] = ‛«line»«rec»’
 CommaIdent [_comma ident] = ‛, «ident»’
 
 External [x line?] = ‛«x»«line»’
-ExternalPhrase_read [_octothorpe _read lp eh _comma1 msg _comma2 fname _comma3 ok _comma4 err rp] = ‛
-    try:⤷
-        f = open («fname»)⤶
-    except Exception as e:⤷
-        f = None⤶
-    if f != None:⤷
-        data = f.read ()
-        if data!= None:⤷
-            send (eh, «ok», data, «msg»)⤶
-        else:⤷
-            send (eh, «err», f"read error on file '{«fname»}'", «msg»)⤶
-        f.close ()⤶
-    else:⤷
-        send (eh, «err», f"open error on file '{«fname»}'", «msg»)⤶
-’
-
-ExternalPhrase_raclnetf [_octothorpe _ lp pathname _comma fname rp] = ‛
-    try:⤷
-        fil = open(«fname», “r”)
-        json_data = fil.read()
-        routings = json.loads(json_data)
-	fil.close ()
-        return routings ⤶
-    except FileNotFoundError:⤷
-        print (f"File not found: '{«fname»}'", file=sys.stderr)
-        return None⤶
-    except json.JSONDecodeError as e:⤷
-        print (f"Error decoding JSON in path /{pathname}/: '{e}'", file=sys.stderr)
-        return None⤶
-’
-
-ExternalPhrase_internalizeLnetFromString [_octothorpe _ lp rp] = ‛
-    try:⤷
-        routings = json.loads(lnet)
-        return routings ⤶
-    except json.JSONDecodeError as e:⤷
-        print ("Error decoding JSON from string 'lnet': '{e}'")
-        return None⤶
-’
+ExternalPhrase_read [_octothorpe _read lp eh _comma1 msg _comma2 fname _comma3 ok _comma4 err rp] = ‛’
+ExternalPhrase_raclnetf [_octothorpe _ lp pathname _comma fname rp] = ‛’
+ExternalPhrase_internalizeLnetFromString [_octothorpe _ lp rp] = ‛’
 ExternalPhrase_freshQueue [_octothorpe _ lp rp] = ‛ queue_fresh()’
 ExternalPhrase_resetQueue [_octothorpe _ lp e rp] = ‛\nqueue_clear(«e»)’
 ExternalPhrase_freshStack [_octothorpe _ lp rp] = ‛ stack_fresh()’
@@ -110,29 +72,7 @@ ExternalPhrase_print_nl [_octothorpe _ lp rp] = ‛print ()’
 ExternalPhrase_print_nl_stderr [_octothorpe _ lp rp] = ‛’
 ExternalPhrase_display_queue_as_json [_octothorpe _ lp e rp] = ‛print (deque_to_json («e»), file=sys.stderr)’
 ExternalPhrase_substitute [_octothorpe _ lp find _comma1 replace _comma2 s rp] = ‛re.sub («find», «replace», «s»)’
-ExternalPhrase_run_command [_octothorpe _ lp cmd _comma1 args _comma2 ret _comma3 rc _comma4 out _comma5 errout rp] = ‛
-    try:⤷
-        with tempfile.NamedTemporaryFile(mode='w', suffix='.txt', delete=False) as tmp:⤷
-            tmp.write(«args»)
-            tmp_path = tmp.name⤶
-        try:⤷
-            with open(tmp_path, 'r') as stdin_file:⤷
-                «ret» = subprocess.run(
-                    shlex.split(«cmd»),
-                    stdin=stdin_file,
-                    text=True,
-                    capture_output=True
-                )⤶⤶
-        finally:⤷
-            os.unlink(tmp_path)⤶
-        «rc» = ret.returncode
-        «out» = ret.stdout.strip()
-        «errout» = ret.stderr.strip()⤶
-    except Exception as e:⤷
-        «rc» = 1
-        «out» = ''
-        «errout» = str(e)⤶
-’
+ExternalPhrase_run_command [_octothorpe _ lp cmd _comma1 args _comma2 ret _comma3 rc _comma4 out _comma5 errout rp] = ‛’
 ExternalPhrase_abort [_octothorpe _ lp rp] = ‛exit (1)’
 ExternalPhrase_asstr [_octothorpe _ lp e rp] = ‛str («e»)’
 ExternalPhrase_len [_octothorpe _ lp e rp] = ‛len («e»)’

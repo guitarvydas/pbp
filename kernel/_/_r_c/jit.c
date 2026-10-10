@@ -1,3 +1,5 @@
+#include "pbp.h"
+
 /*  (This used to be called `external` due to historical reasons). This has evolved into 2 kinds of Leaf parts: AOT and JIT (statically generated before runtime, vs. dynamically generated at runtime). If a part name begins with ;:', it is treated specially as a JIT part, else the part is assumed to have been pre-loaded into the register in the regular way.  *//* line 1 *//* line 2 */
 Part* jit_instantiate (Component_Registry* reg,Container* owner,Str* name,Str* arg) {
                                                        /* line 3 */

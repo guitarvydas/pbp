@@ -4,7 +4,6 @@
 {"op":"insert", "operand":{"name":"v", "indir":2, "type":"Payload", "scope":"_global/Datum", "kind":"variable"}}
 {"op":"insert", "operand":{"name":"clone", "indir":1, "type":"Fclone", "scope":"_global/Datum", "kind":"variable"}}
 {"op":"insert", "operand":{"name":"reclaim", "indir":1, "type":"Freclaim", "scope":"_global/Datum", "kind":"variable"}}
-{"op":"insert", "operand":{"name":"other", "indir":2, "type":"any", "scope":"_global/Datum", "kind":"variable"}}
 {"op":"newscope", "operand":"Mevent"}
 {"op":"insert", "operand":{"name":"Mevent", "indir":2, "type":"Mevent", "scope":"_global", "kind":"obj"}}
 {"op":"insert", "operand":{"name":"port", "indir":1, "type":"Port", "scope":"_global/Mevent", "kind":"variable"}}

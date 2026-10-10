@@ -1,3 +1,5 @@
+#include "pbp.h"
+
 Str* clone_string (Str* s) {
                                                        /* line 1 */
     return ( s)                                        /* line 2 *//* line 3 *//* line 4 */}
@@ -12,11 +14,6 @@ void trash_handler (Part* eh,Mevent* mev) {
     /*  to appease dumped_on_floor checker */          /* line 12 */
                                                        /* line 13 *//* line 14 */}
 
-typedef struct s_TwoMevents {
-                                                       /* line 15 */
-    Mevent* firstmev;                                  /* line 16 */
-    Mevent* secondmev;                                 /* line 17 *//* line 18 */
-} TwoMevents;
 TwoMevents* fresh_TwoMevents () {
     TwoMevents *self;
     self = (TwoMevents*)malloc(sizeof(TwoMevents*));
@@ -26,11 +23,6 @@ TwoMevents* fresh_TwoMevents () {
 }
                                                        /* line 19 */
 /*  Deracer_States :: enum { idle, waitingForFirstmev, waitingForSecondmev } *//* line 20 */
-typedef struct s_Deracer_Instance_Data {
-                                                       /* line 21 */
-    State state;                                       /* line 22 */
-    TwoMevents* buffer;                                /* line 23 *//* line 24 */
-} Deracer_Instance_Data;
 Deracer_Instance_Data* fresh_Deracer_Instance_Data () {
     Deracer_Instance_Data *self;
     self = (Deracer_Instance_Data*)malloc(sizeof(Deracer_Instance_Data*));
@@ -130,10 +122,6 @@ void ensure_string_datum_handler (Leaf* eh,Mevent* mev) {
         Str* emev =  str( "*** ensure: type error (expected a string payload) but got ") +   (*mev).payload /* line 103 */
         send ( eh, "✗", emev, mev)                     /* line 104 *//* line 105 *//* line 106 *//* line 107 */}
 
-typedef struct s_Syncfilewrite_Data {
-                                                       /* line 108 */
-    Str* filename;                                     /* line 109 *//* line 110 */
-} Syncfilewrite_Data;
 Syncfilewrite_Data* fresh_Syncfilewrite_Data () {
     Syncfilewrite_Data *self;
     self = (Syncfilewrite_Data*)malloc(sizeof(Syncfilewrite_Data*));
@@ -167,11 +155,6 @@ void syncfilewrite_handler (Leaf* eh,Mevent* mev) {
         else:                                          /* line 134 */
             send ( eh, "✗", str( "open error on file ") +   (*inst).filename , mev)/* line 135 *//* line 136 *//* line 137 *//* line 138 *//* line 139 */}
 
-typedef struct s_StringConcat_Instance_Data {
-                                                       /* line 140 */
-    Str* buffer1;                                      /* line 141 */
-    Str* buffer2;                                      /* line 142 *//* line 143 */
-} StringConcat_Instance_Data;
 StringConcat_Instance_Data* fresh_StringConcat_Instance_Data () {
     StringConcat_Instance_Data *self;
     self = (StringConcat_Instance_Data*)malloc(sizeof(StringConcat_Instance_Data*));
@@ -250,10 +233,6 @@ void fakepipename_handler (Leaf* eh,Mevent* mev) {
     /*  not very random, but good enough _ ;rand' must be unique within a single run *//* line 217 */
     send ( eh, "", str( "/tmp/fakepipe") +  rand , mev)/* line 218 */;/* line 219 *//* line 220 */}
                                                        /* line 221 */
-typedef struct s_Switch1star_Instance_Data {
-                                                       /* line 222 */
-    Str* state;                                        /* line 223 *//* line 224 */
-} Switch1star_Instance_Data;
 Switch1star_Instance_Data* fresh_Switch1star_Instance_Data () {
     Switch1star_Instance_Data *self;
     self = (Switch1star_Instance_Data*)malloc(sizeof(Switch1star_Instance_Data*));
@@ -289,10 +268,6 @@ void switch1star_handler (Leaf* eh,Mevent* mev) {
     else:                                              /* line 251 */
         send ( eh, "✗", "internal error bad mevent for switch1*", mev)/* line 252 *//* line 253 *//* line 254 *//* line 255 */}
 
-typedef struct s_StringAccumulator {
-                                                       /* line 256 */
-    Str* s;                                            /* line 257 *//* line 258 */
-} StringAccumulator;
 StringAccumulator* fresh_StringAccumulator () {
     StringAccumulator *self;
     self = (StringAccumulator*)malloc(sizeof(StringAccumulator*));

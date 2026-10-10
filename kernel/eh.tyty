@@ -16,12 +16,12 @@
 defobj Eh {
                                                        #line 16
     name ≡ @Str                                            #line 17
-    inq ≡ @Queue
-    outq ≡ @Queue
+    inq ≡ @Queue_of_Mevent
+    outq ≡ @Queue_of_Mevent
     owner ≡ @Container                                           #line 20
     children ≡ @List_of_Part                                        #line 21
     visit_ordering ≡ @Queue_of_Part
-    connections ≡ @List_ofWire                                     #line 23
+    connections ≡ @List_of_Wire                                     #line 23
     handler ≡ Fhandler                                         #line 24
     finject ≡ Finject                                         #line 25
     reset ≡ Freset                                           #line 26

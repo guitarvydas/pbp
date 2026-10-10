@@ -4,7 +4,6 @@ defobj Datum {
     v ≡ @Payload                                               #line 3
     clone ≡ Fclone
     reclaim ≡ Freclaim
-    other ≡ @                                           #line 6#line 7
 }
 
                                                        #line 8#line 9

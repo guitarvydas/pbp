@@ -7,3 +7,4 @@ mv out.py _/_python/$1.py
 mv out.js _/_js/$1.js
 mv out.lisp _/_lisp/$1.lisp
 mv out.c _/_c/$1.c
+mv out.h _/_c/$1.h

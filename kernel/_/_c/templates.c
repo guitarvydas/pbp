@@ -1,7 +1,5 @@
-typedef struct s_Component_Registry {
-                                                       /* line 1 */
-    Dict_of_Template* templates;                       /* line 2 *//* line 3 */
-} Component_Registry;
+#include "pbp.h"
+
 Component_Registry* fresh_Component_Registry () {
     Component_Registry *self;
     self = (Component_Registry*)malloc(sizeof(Component_Registry*));
@@ -9,12 +7,6 @@ Component_Registry* fresh_Component_Registry () {
     return self;
 }
                                                        /* line 4 */
-typedef struct s_Template {
-                                                       /* line 5 */
-    Str* name;                                         /* line 6 */
-    Container* container;                              /* line 7 */
-    Finstantiator instantiator;                        /* line 8 *//* line 9 */
-} Template;
 Template* fresh_Template () {
     Template *self;
     self = (Template*)malloc(sizeof(Template*));

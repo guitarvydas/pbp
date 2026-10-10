@@ -3,61 +3,60 @@ defobj Datum {
                                                        #line 2
     v ≡                                                #line 3
     clone ≡                                            #line 4
-    reclaim ≡                                          #line 5
-    other ≡                                            #line 6#line 7
+    reclaim ≡                                          #line 5#line 6
 }
-                                                       #line 8#line 9
+                                                       #line 7#line 8
+                                                       #line 9
                                                        #line 10
                                                        #line 11
                                                        #line 12
-                                                       #line 13
 defobj Mevent {
-                                                       #line 14
-    port ≡                                             #line 15
-    payload ≡                                          #line 16#line 17
+                                                       #line 13
+    port ≡                                             #line 14
+    payload ≡                                          #line 15#line 16
 }
-                                                       #line 18
+                                                       #line 17
 defn clone_port ≡
 (
     s ≡
 )
 {
-                                                       #line 19
-        return clone_string ( s)                       #line 20#line 21#line 22
+                                                       #line 18
+        return clone_string ( s)                       #line 19#line 20#line 21
 }
 
+                                                       #line 22
                                                        #line 23
-                                                       #line 24
 defn make_mevent ≡
 (
     port ≡ ,
     datum ≡
 )
 {
-                                                       #line 25
+                                                       #line 24
         p ≡
         m ≡
-        return  m                                      #line 30#line 31#line 32
+        return  m                                      #line 29#line 30#line 31
 }
 
-                                                       #line 33
+                                                       #line 32
 defn mevent_clone ≡
 (
     mev ≡
 )
 {
-                                                       #line 34
+                                                       #line 33
         m ≡
-        return  m                                      #line 38#line 39#line 40
+        return  m                                      #line 37#line 38#line 39
 }
 
-                                                       #line 41
+                                                       #line 40
 defn destroy_mevent ≡
 (
     mev ≡
 )
 {
-                                                       #line 42#line 43#line 44#line 45#line 46
+                                                       #line 41#line 42#line 43#line 44#line 45
 }
 
 defn destroy_datum ≡
@@ -65,7 +64,7 @@ defn destroy_datum ≡
     mev ≡
 )
 {
-                                                       #line 47#line 48#line 49#line 50
+                                                       #line 46#line 47#line 48#line 49
 }
 
 defn destroy_port ≡
@@ -73,24 +72,24 @@ defn destroy_port ≡
     mev ≡
 )
 {
-                                                       #line 51#line 52#line 53#line 54
+                                                       #line 50#line 51#line 52#line 53
 }
 
-                                                       #line 55
+                                                       #line 54
 defn format_mevent ≡
 (
     m ≡
 )
 {
-                                                       #line 56
+                                                       #line 55
         if  m ==  None {
-                                                       #line 57
-            return  "{}"                               #line 58
+                                                       #line 56
+            return  "{}"                               #line 57
         }
         else
-        {                                              #line 59
-            return  str( "{%5C”") +  str( m.port) +  str( "%5C”:%5C”") +  str( m.payload.v) +  "%5C”}"    #line 60#line 61
-        }                                              #line 62
+        {                                              #line 58
+            return  str( "{%5C”") +  str( m.port) +  str( "%5C”:%5C”") +  str( m.payload.v) +  "%5C”}"    #line 59#line 60
+        }                                              #line 61
 }
 
 defn format_mevent_raw ≡
@@ -98,13 +97,13 @@ defn format_mevent_raw ≡
     m ≡
 )
 {
-                                                       #line 63
+                                                       #line 62
         if  m ==  None {
-                                                       #line 64
-            return  ""                                 #line 65
+                                                       #line 63
+            return  ""                                 #line 64
         }
         else
-        {                                              #line 66
-            return  m.payload.v                        #line 67#line 68
-        }                                              #line 69
+        {                                              #line 65
+            return  m.payload.v                        #line 66#line 67
+        }                                              #line 68
 }

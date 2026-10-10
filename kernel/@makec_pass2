@@ -27,6 +27,7 @@ for i in $NTYLIST; do
 done
 
 for i in $TYLIST; do
+    cat "_/_c/$i.h" >> new_kernel0d.h
     cat "_/_c/$i.c" >> new_kernel0d.c
 done
 

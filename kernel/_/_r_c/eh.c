@@ -1,3 +1,5 @@
+#include "pbp.h"
+
 /*  Data for an asyncronous component _ effectively, a function with input *//* line 1 */
 /*  and output queues of mevents. */                   /* line 2 */
 /*  */                                                 /* line 3 */
@@ -12,23 +14,6 @@
 /*  `instance_data` is a pointer to instance data that the `leaf_handler` *//* line 12 */
 /*  function may want whenever it is invoked again. */ /* line 13 *//* line 14 */
 /*  Eh_States :: enum { idle, active } */              /* line 15 */
-typedef struct s_Eh {
-                                                       /* line 16 */
-    Str* name;                                         /* line 17 */
-    Queue* inq;
-    Queue* outq;
-    Container* owner;                                  /* line 20 */
-    List_of_Part* children;                            /* line 21 */
-    Queue_of_Part* visit_ordering;
-    List_ofWire* connections;                          /* line 23 */
-    Fhandler handler;                                  /* line 24 */
-    Finject finject;                                   /* line 25 */
-    Freset reset;                                      /* line 26 */
-    any* instance_data;                                /* line 27 *//*  arg needed for probe support  *//* line 28 */
-    Str* arg;                                          /* line 29 */
-    Str* state;                                        /* line 30 */
-    Bool special;                                      /* line 31 *//* line 32 */
-} Eh;
 Eh* fresh_Eh () {
     Eh *self;
     self = (Eh*)malloc(sizeof(Eh*));
