@@ -6,9 +6,9 @@ Wire* create_down_connector (Container* container,Wire_Proto* proto_conn,List_of
     Wire*  connector =  fresh_Connector ()             /* line 3 */;
     (*connector).direction =  counted("down");         /* line 4 */
     (*connector).sender = mkSender (  (*container).name, container,lookupstring ( proto_conn, counted("source_port")))/* line 5 */;
-    Part* target_proto = lookupstring ( proto_conn, counted("target"))/* line 6 */
-    ID id_proto = lookupstring ( target_proto, counted("id"))/* line 7 */
-    Part* target_component = lookupid ( children_by_id, id_proto)/* line 8 */
+    Part* target_proto = lookupstring ( proto_conn, counted("target"));/* line 6 */
+    ID id_proto = lookupstring ( target_proto, counted("id"));/* line 7 */
+    Part* target_component = lookupid ( children_by_id, id_proto);/* line 8 */
     if ( target_component ==  NULL):                   /* line 9 */
         load_error ( str( counted("internal_error:_.Down_connection_target_internal_error_")) + lookupstring ((lookupstring ( proto_conn, counted("target"))), counted("name")) )/* line 10 */
     else:                                              /* line 11 */
@@ -19,10 +19,10 @@ Wire* create_across_connector (Container* container,Wire_Proto* proto_conn,List_
                                                        /* line 17 */
     Wire*  connector =  fresh_Connector ()             /* line 18 */;
     (*connector).direction =  counted("across");       /* line 19 */
-    Str sid = lookupstring ((lookupstring ( proto_conn, counted("source"))), counted("id"))/* line 20 */
-    Part* source_component = lookupid ( children_by_id, sid)/* line 21 */
-    Str tid = lookupstring ((lookupstring ( proto_conn, counted("target"))), counted("id"))/* line 22 */
-    Part* target_component = lookupid ( children_by_id, tid)/* line 23 */
+    Str* sid = lookupstring ((lookupstring ( proto_conn, counted("source"))), counted("id"));/* line 20 */
+    Part* source_component = lookupid ( children_by_id, sid);/* line 21 */
+    Str* tid = lookupstring ((lookupstring ( proto_conn, counted("target"))), counted("id"));/* line 22 */
+    Part* target_component = lookupid ( children_by_id, tid);/* line 23 */
     if  source_component ==  NULL:                     /* line 24 */
         load_error ( str( counted("internal_error:_.Across_connection_source_not_ok_")) + lookupstring ((lookupstring ( proto_conn, counted("source"))), counted("name")) )/* line 25 */
     else:                                              /* line 26 */
@@ -37,8 +37,8 @@ Wire* create_up_connector (Container* container,Wire_Proto* proto_conn,List_of_W
                                                        /* line 37 */
     Wire*  connector =  fresh_Connector ()             /* line 38 */;
     (*connector).direction =  counted("up");           /* line 39 */
-    Str sid = lookupstring ((lookupstring ( proto_conn, counted("source"))), counted("id"))/* line 40 */
-    Part* source_component = lookupid ( children_by_id, sid)/* line 41 */
+    Str* sid = lookupstring ((lookupstring ( proto_conn, counted("source"))), counted("id"));/* line 40 */
+    Part* source_component = lookupid ( children_by_id, sid);/* line 41 */
     if  source_component ==  NULL:                     /* line 42 */
         load_error ( str( counted("internal_error:_.Up_connection_source_not_ok_")) + lookupstring ((lookupstring ( proto_conn, counted("source"))), counted("name")) )/* line 43 */
     else:                                              /* line 44 */
@@ -60,18 +60,18 @@ Container* container_instantiator (Component_Registry* reg,Container* owner,Str*
     static enumUp                                      /* line 62 */
     static enumAcross                                  /* line 63 */
     static enumThrough                                 /* line 64 */
-    Container* container = make_container ( container_name, owner)/* line 65 */
-    List_of_PartI* children = list_fresh()             /* line 66 */
-    List_of_PartI* children_by_id = dict_fresh()
+    Container* container = make_container ( container_name, owner)/* line 65 */;
+    List_of_PartI* children = list_fresh();            /* line 66 */
+    List_of_PartI* children_by_id = dict_fresh();
     /*  not strictly necessary, but, we can remove 1 runtime lookup by "compiling it out“ here *//* line 67 */
     /*  collect children */                            /* line 68 */
     for child_desc in lookupstring ( desc, counted("children")):/* line 69 */
-        PartI* child_instance = get_component_instance ( reg,lookupstring ( child_desc, counted("name")), container)/* line 70 */
+        PartI* child_instance = get_component_instance ( reg,lookupstring ( child_desc, counted("name")), container)/* line 70 */;
         children.append ( child_instance)              /* line 71 */
-        Str* id = lookupstring ( child_desc, counted("id"))/* line 72 */
+        Str* id = lookupstring ( child_desc, counted("id"));/* line 72 */
         lookupid ( children_by_id, id) =  child_instance;/* line 73 *//* line 74 */;/* line 75 */
     (*container).children =  children;                 /* line 76 *//* line 77 */
-    List_of_WireI* connectors = list_fresh()           /* line 78 */
+    List_of_WireI* connectors = list_fresh();          /* line 78 */
     for proto_conn in lookupstring ( desc, counted("connections")):/* line 79 */
         WireI*  connector =  fresh_Connector ()        /* line 80 */;
         if lookupstring ( proto_conn, counted("dir")) ==  enumDown:/* line 81 */
@@ -114,19 +114,19 @@ void destroy_container (Part* eh) {
 /*  Checks if two senders match, by pointer equality and port name matching. *//* line 117 */
 BOOL sender_eq (Part* s1,Part* s2) {
                                                        /* line 118 */
-    BOOL same_components = (  (*s1).component ==   (*s2).component)/* line 119 */
-    BOOL same_ports = (  (*s1).port ==   (*s2).port)   /* line 120 */
+    BOOL same_components = (  (*s1).component ==   (*s2).component);/* line 119 */
+    BOOL same_ports = (  (*s1).port ==   (*s2).port);  /* line 120 */
     return ( same_components and  same_ports)          /* line 121 *//* line 122 *//* line 123 */}
 
 /*  Delivers the given mevent to the receiver of this connector. *//* line 124 *//* line 125 */
 void deposit (Container* parent,Wire* conn,Mevent* mevent) {
                                                        /* line 126 */
-    Mevent* new_mevent = make_mevent (   (*conn).receiver.port,  (*mevent).payload)/* line 127 */
+    Mevent* new_mevent = make_mevent (   (*conn).receiver.port,  (*mevent).payload)/* line 127 */;
     push_mevent ( parent,   (*conn).receiver.component,   (*conn).receiver.queue, new_mevent)/* line 128 *//* line 129 *//* line 130 */}
 
 void force_tick (Container* parent,Part* eh) {
                                                        /* line 131 */
-    Mevent* tick_mev = make_mevent ( counted("."),new_datum_bang ())/* line 132 */
+    Mevent* tick_mev = make_mevent ( counted("."),new_datum_bang ())/* line 132 */;
     push_mevent ( parent, eh,  (*eh).inq, tick_mev)    /* line 133 */
     return ( tick_mev)                                 /* line 134 *//* line 135 *//* line 136 */}
 
@@ -158,14 +158,14 @@ void step_children (Container* container,Mevent* causingMevent) {
         /*  child = container represents self, skip it *//* line 165 */
         if (not (is_self ( child, container))):        /* line 166 */
             if (not ((0==len(  (*child).inq)))):       /* line 167 */
-                Mevent* mev =   (*child).inq.popleft ()/* line 168 */
+                Mevent* mev =   (*child).inq.popleft ()/* line 168 */;
                 step_child_once ( child, mev)          /* line 169 *//* line 170 */
                 destroy_mevent ( mev)                  /* line 171 */
             else:                                      /* line 172 */
                 if   (*child).state ==  counted("idle"):/* line 173 */
                                                        /* line 174 */
                 else:                                  /* line 175 */
-                    Mevent* mev = force_tick ( container, child)/* line 176 */
+                    Mevent* mev = force_tick ( container, child)/* line 176 */;
                     step_child_once ( child, mev)      /* line 177 */
                     destroy_mevent ( mev)              /* line 178 *//* line 179 *//* line 180 *//* line 181 *//* line 182 */
 
@@ -176,7 +176,7 @@ void step_children (Container* container,Mevent* causingMevent) {
             /*  if child remains active, then the container must remain active and must propagate “ticks“ to child *//* line 188 */
             (*container).state =  counted("active");;  /* line 189 *//* line 190 *//* line 191 */
         while (not ((0==len(  (*child).outq)))):       /* line 192 */
-            Mevent* mev =   (*child).outq.popleft ()   /* line 193 */
+            Mevent* mev =   (*child).outq.popleft ()   /* line 193 */;
             route ( container, child, mev)             /* line 194 */
             destroy_mevent ( mev)                      /* line 195 *//* line 196 *//* line 197 */;/* line 198 *//* line 199 */}
 
@@ -206,7 +206,7 @@ void route (Container* container,Part* from_component,Mevent* mevent) {
     else:                                              /* line 222 */
         if (not (is_self ( from_component, container))):/* line 223 */
             fromname =   (*from_component).name;;      /* line 224 *//* line 225 */
-        Sender* from_sender = mkSender ( fromname, from_component,  (*mevent).port)/* line 226 *//* line 227 */
+        Sender* from_sender = mkSender ( fromname, from_component,  (*mevent).port)/* line 226 */;/* line 227 */
         for connector in   (*container).connections:   /* line 228 */
             if sender_eq ( from_sender,  (*connector).sender):/* line 229 */
                 deposit ( container, connector, mevent)/* line 230 */
@@ -247,12 +247,12 @@ void send (Part* eh,Port port,Part* obj,Mevent* causingMevent) {
     (*d).v =  obj;                                     /* line 273 */
     (*d).clone =  lambda : obj_clone ( d)              /* line 274 */;
     (*d).reclaim =  NULL;                              /* line 275 */
-    Mevent* mev = make_mevent ( port, d)               /* line 276 */
+    Mevent* mev = make_mevent ( port, d)               /* line 276 */;
     put_output ( eh, mev)                              /* line 277 */;;;/* line 278 *//* line 279 */}
 
 void forward (Part* eh,Port port,Mevent* mev) {
                                                        /* line 280 */
-    Mevent* fwdmev = make_mevent ( port,  (*mev).payload)/* line 281 */
+    Mevent* fwdmev = make_mevent ( port,  (*mev).payload)/* line 281 */;
     put_output ( eh, fwdmev)                           /* line 282 *//* line 283 *//* line 284 */}
 
 Mevent* inject_mevent (Part* eh,Mevent* mev) {

@@ -160,8 +160,8 @@ ExternalPhrase_showCommand [_octothorpe _ lp rp] = ‛ ("PBPSHELLUT" in os.envir
 ExternalPhrase_unrecognized [_octothorpe ident lp stuff* rp] = ‛«_octothorpe» «ident» ⎝ error - unrecognized external (with given arguments) ⎠ «lp»«stuff»«rp» ’
 
 Deftemp [_deftemp ident _mutate e rec?] = ‛\n⎨getdeclaration ‛8’ ‛⎨genscope ‛scope’⎬’ ‛«ident»’⎬ «ident» = «e»;«rec»’
-Defsynonym_illegal [ lval err _eqv e rec?] = ‛\n«lval» «err» = «e»«rec»’
-Defsynonym_legal [id _eqv e rec?] = ‛\n⎨getdeclaration ‛9’ ‛⎨genscope ‛scope’⎬’ ‛«id»’⎬ «id» = «e»«rec»’
+Defsynonym_illegal [ lval err _eqv e rec?] = ‛\n«lval» «err» = «e»;«rec»’
+Defsynonym_legal [id _eqv e rec?] = ‛\n⎨getdeclaration ‛9’ ‛⎨genscope ‛scope’⎬’ ‛«id»’⎬ «id» = «e»;«rec»’
 
 
 InitStatement [ _mark ident _33 Exp fluff*] = ‛\n⎨getdeclaration ‛4’ ‛⎨genscope ‛scope’⎬’ ‛«ident»’⎬ «ident»; «fluff»◦\nself->«ident» = «Exp»; «fluff»⫶’

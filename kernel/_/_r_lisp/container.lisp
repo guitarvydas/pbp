@@ -4,19 +4,19 @@
   (let (( connector  (make-instance 'Connector)             #|line 3|#))
     (declare (ignorable  connector))
     (setf (slot-value  connector 'direction)  "down")       #|line 4|#
-    (setf (slot-value  connector 'sender) (funcall (quote mkSender)  (slot-value  container 'name)  container (gethash undefined "source_port")  #|line 5|#))
-    (let ((target_proto (gethash undefined "target")))
+    (setf (slot-value  connector 'sender) (funcall (quote mkSender)  (slot-value  container 'name)  container (gethash "source_port"  proto_conn)  #|line 5|#))
+    (let ((target_proto (gethash "target"  proto_conn)))
       (declare (ignorable target_proto))                    #|line 6|#
-      (let ((id_proto (gethash undefined "id")))
+      (let ((id_proto (gethash "id"  target_proto)))
         (declare (ignorable id_proto))                      #|line 7|#
-        (let ((target_component (gethash undefined id_proto)))
+        (let ((target_component (gethash id_proto  children_by_id)))
           (declare (ignorable target_component))            #|line 8|#
           (cond
             (( equal    target_component  nil)              #|line 9|#
-              (funcall (quote load_error)   (concatenate 'string  "internal error: .Down connection target internal error " (gethash undefined "name")) ) #|line 10|#
+              (funcall (quote load_error)   (concatenate 'string  "internal error: .Down connection target internal error " (gethash "name" (gethash "target"  proto_conn))) ) #|line 10|#
               )
             (t                                              #|line 11|#
-              (setf (slot-value  connector 'receiver) (funcall (quote mkReceiver)  (slot-value  target_component 'name)  target_component (gethash undefined "target_port") (slot-value  target_component 'inq)  #|line 12|#)) #|line 13|#
+              (setf (slot-value  connector 'receiver) (funcall (quote mkReceiver)  (slot-value  target_component 'name)  target_component (gethash "target_port"  proto_conn) (slot-value  target_component 'inq)  #|line 12|#)) #|line 13|#
               ))
           (return-from create_down_connector  connector)    #|line 14|#)))) #|line 15|#
   )
@@ -25,26 +25,26 @@
   (let (( connector  (make-instance 'Connector)             #|line 18|#))
     (declare (ignorable  connector))
     (setf (slot-value  connector 'direction)  "across")     #|line 19|#
-    (let ((sid (gethash undefined "id")))
+    (let ((sid (gethash "id" (gethash "source"  proto_conn))))
       (declare (ignorable sid))                             #|line 20|#
-      (let ((source_component (gethash undefined sid)))
+      (let ((source_component (gethash sid  children_by_id)))
         (declare (ignorable source_component))              #|line 21|#
-        (let ((tid (gethash undefined "id")))
+        (let ((tid (gethash "id" (gethash "target"  proto_conn))))
           (declare (ignorable tid))                         #|line 22|#
-          (let ((target_component (gethash undefined tid)))
+          (let ((target_component (gethash tid  children_by_id)))
             (declare (ignorable target_component))          #|line 23|#
             (cond
               (( equal    source_component  nil)            #|line 24|#
-                (funcall (quote load_error)   (concatenate 'string  "internal error: .Across connection source not ok " (gethash undefined "name"))  #|line 25|#)
+                (funcall (quote load_error)   (concatenate 'string  "internal error: .Across connection source not ok " (gethash "name" (gethash "source"  proto_conn)))  #|line 25|#)
                 )
               (t                                            #|line 26|#
-                (setf (slot-value  connector 'sender) (funcall (quote mkSender)  (slot-value  source_component 'name)  source_component (gethash undefined "source_port")  #|line 27|#))
+                (setf (slot-value  connector 'sender) (funcall (quote mkSender)  (slot-value  source_component 'name)  source_component (gethash "source_port"  proto_conn)  #|line 27|#))
                 (cond
                   (( equal    target_component  nil)        #|line 28|#
-                    (funcall (quote load_error)   (concatenate 'string  "internal error: .Across connection target not ok " (gethash undefined "name"))  #|line 29|#)
+                    (funcall (quote load_error)   (concatenate 'string  "internal error: .Across connection target not ok " (gethash "name" (gethash "target"  proto_conn)))  #|line 29|#)
                     )
                   (t                                        #|line 30|#
-                    (setf (slot-value  connector 'receiver) (funcall (quote mkReceiver)  (slot-value  target_component 'name)  target_component (gethash undefined "target_port") (slot-value  target_component 'inq)  #|line 31|#)) #|line 32|#
+                    (setf (slot-value  connector 'receiver) (funcall (quote mkReceiver)  (slot-value  target_component 'name)  target_component (gethash "target_port"  proto_conn) (slot-value  target_component 'inq)  #|line 31|#)) #|line 32|#
                     ))                                      #|line 33|#
                 ))
             (return-from create_across_connector  connector) #|line 34|#))))) #|line 35|#
@@ -54,17 +54,17 @@
   (let (( connector  (make-instance 'Connector)             #|line 38|#))
     (declare (ignorable  connector))
     (setf (slot-value  connector 'direction)  "up")         #|line 39|#
-    (let ((sid (gethash undefined "id")))
+    (let ((sid (gethash "id" (gethash "source"  proto_conn))))
       (declare (ignorable sid))                             #|line 40|#
-      (let ((source_component (gethash undefined sid)))
+      (let ((source_component (gethash sid  children_by_id)))
         (declare (ignorable source_component))              #|line 41|#
         (cond
           (( equal    source_component  nil)                #|line 42|#
-            (funcall (quote load_error)   (concatenate 'string  "internal error: .Up connection source not ok " (gethash undefined "name")) ) #|line 43|#
+            (funcall (quote load_error)   (concatenate 'string  "internal error: .Up connection source not ok " (gethash "name" (gethash "source"  proto_conn))) ) #|line 43|#
             )
           (t                                                #|line 44|#
-            (setf (slot-value  connector 'sender) (funcall (quote mkSender)  (slot-value  source_component 'name)  source_component (gethash undefined "source_port")  #|line 45|#))
-            (setf (slot-value  connector 'receiver) (funcall (quote mkReceiver)  (slot-value  container 'name)  container (gethash undefined "target_port") (slot-value  container 'outq)  #|line 46|#)) #|line 47|#
+            (setf (slot-value  connector 'sender) (funcall (quote mkSender)  (slot-value  source_component 'name)  source_component (gethash "source_port"  proto_conn)  #|line 45|#))
+            (setf (slot-value  connector 'receiver) (funcall (quote mkReceiver)  (slot-value  container 'name)  container (gethash "target_port"  proto_conn) (slot-value  container 'outq)  #|line 46|#)) #|line 47|#
             ))
         (return-from create_up_connector  connector)        #|line 48|#))) #|line 49|#
   )
@@ -73,8 +73,8 @@
   (let (( connector  (make-instance 'Connector)             #|line 52|#))
     (declare (ignorable  connector))
     (setf (slot-value  connector 'direction)  "through")    #|line 53|#
-    (setf (slot-value  connector 'sender) (funcall (quote mkSender)  (slot-value  container 'name)  container (gethash undefined "source_port")  #|line 54|#))
-    (setf (slot-value  connector 'receiver) (funcall (quote mkReceiver)  (slot-value  container 'name)  container (gethash undefined "target_port") (slot-value  container 'outq)  #|line 55|#))
+    (setf (slot-value  connector 'sender) (funcall (quote mkSender)  (slot-value  container 'name)  container (gethash "source_port"  proto_conn)  #|line 54|#))
+    (setf (slot-value  connector 'receiver) (funcall (quote mkReceiver)  (slot-value  container 'name)  container (gethash "target_port"  proto_conn) (slot-value  container 'outq)  #|line 55|#))
     (return-from create_through_connector  connector)       #|line 56|#) #|line 57|#
   )                                                         #|line 59|#
 (defun container_instantiator (&optional  reg  owner  container_name  desc  arg)
@@ -87,37 +87,37 @@
         (declare (ignorable children_by_id))
         #|  not strictly necessary, but, we can remove 1 runtime lookup by "compiling it out“ here |# #|line 67|#
         #|  collect children |#                             #|line 68|#
-        (loop for child_desc in (gethash undefined "children")
+        (loop for child_desc in (gethash "children"  desc)
           do
             (progn
               child_desc                                    #|line 69|#
-              (let ((child_instance (funcall (quote get_component_instance)   reg (gethash undefined "name")  container  #|line 70|#)))
+              (let ((child_instance (funcall (quote get_component_instance)   reg (gethash "name"  child_desc)  container  #|line 70|#)))
                 (declare (ignorable child_instance))
                 (setf  children (append  children (list  child_instance))) #|line 71|#
-                (let ((id (gethash undefined "id")))
+                (let ((id (gethash "id"  child_desc)))
                   (declare (ignorable id))                  #|line 72|#
-                  (setf (gethash undefined id)  child_instance) #|line 73|# #|line 74|#)) #|line 75|#
+                  (setf (gethash id  children_by_id)  child_instance) #|line 73|# #|line 74|#)) #|line 75|#
               ))
         (setf (slot-value  container 'children)  children)  #|line 76|# #|line 77|#
         (let ((connectors  nil))
           (declare (ignorable connectors))                  #|line 78|#
-          (loop for proto_conn in (gethash undefined "connections")
+          (loop for proto_conn in (gethash "connections"  desc)
             do
               (progn
                 proto_conn                                  #|line 79|#
                 (let (( connector  (make-instance 'Connector) #|line 80|#))
                   (declare (ignorable  connector))
                   (cond
-                    (( equal   (gethash undefined "dir")  enumDown) #|line 81|#
+                    (( equal   (gethash "dir"  proto_conn)  enumDown) #|line 81|#
                       (setf  connectors (append  connectors (list (funcall (quote create_down_connector)   container  proto_conn  connectors  children_by_id )))) #|line 82|#
                       )
-                    (( equal   (gethash undefined "dir")  enumAcross) #|line 83|#
+                    (( equal   (gethash "dir"  proto_conn)  enumAcross) #|line 83|#
                       (setf  connectors (append  connectors (list (funcall (quote create_across_connector)   container  proto_conn  connectors  children_by_id )))) #|line 84|#
                       )
-                    (( equal   (gethash undefined "dir")  enumUp) #|line 85|#
+                    (( equal   (gethash "dir"  proto_conn)  enumUp) #|line 85|#
                       (setf  connectors (append  connectors (list (funcall (quote create_up_connector)   container  proto_conn  connectors  children_by_id )))) #|line 86|#
                       )
-                    (( equal   (gethash undefined "dir")  enumThrough) #|line 87|#
+                    (( equal   (gethash "dir"  proto_conn)  enumThrough) #|line 87|#
                       (setf  connectors (append  connectors (list (funcall (quote create_through_connector)   container  proto_conn  connectors  children_by_id )))) #|line 88|# #|line 89|#
                       )))                                   #|line 90|#
                 ))

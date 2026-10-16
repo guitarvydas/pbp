@@ -29,7 +29,7 @@ Port clone_port (Port s) {
 /*  entering the very top of a network. */             /* line 23 */
 Mevent* make_mevent (Port port,Datum* datum) {
                                                        /* line 24 */
-    Port p = clone_string ( port)                      /* line 25 */
+    Port p = clone_string ( port)                      /* line 25 */;
     Mevent*  m =  fresh_Mevent ()                      /* line 26 */;
     (*m).port =  p;                                    /* line 27 */
     (*m).payload =   (*datum).clone ();                /* line 28 */

@@ -30,8 +30,8 @@ Template* mkTemplate (Str* name,Container* template_data,Finstantiator instantia
 /*  ... by reading the little-net from an external file  *//* line 24 */
 List_of_Wire* lnet2internal_from_file (Pathname* container_xml) {
                                                        /* line 25 */
-    Pathname* pathname = os.getenv('PBPWD', '<none>')  /* line 26 */
-    Str* filename =  os.path.basename ( container_xml) /* line 27 */
+    Pathname* pathname = os.getenv('PBPWD', '<none>')  /* line 26 */;
+    Str* filename =  os.path.basename ( container_xml) /* line 27 */;
 
     try:
         fil = open(filename, "r")
@@ -73,7 +73,7 @@ Component_Registry* register_component_allow_overwriting (Component_Registry* re
 
 void abstracted_register_component (Component_Registry* reg,Template* template,Bool ok_to_overwrite) {
                                                        /* line 43 */
-    Str* name = mangle_name (  (*template).name)       /* line 44 */
+    Str* name = mangle_name (  (*template).name)       /* line 44 */;
     if  reg!= NULL and  name in   (*reg).templates and not  ok_to_overwrite:/* line 45 */
         load_error ( str( counted("Component_/")) +  str(  (*template).name) +  counted("/_already_declared")  )/* line 46 */
         return ( reg)                                  /* line 47 */
@@ -87,20 +87,20 @@ Part* get_component_instance (Component_Registry* reg,Str* full_name,Container* 
     /*  ":?<string>" is a probe part that is tagged with <string>  *//* line 56 */
     /*  ":$ <command>" is a shell-out part that sends <command> to the operating system shell  *//* line 57 */
     /*  ":<string>" else, it's just treated as a string part that produces <string> on its output  *//* line 58 */
-    Str* template_name = mangle_name ( full_name)      /* line 59 */
+    Str* template_name = mangle_name ( full_name)      /* line 59 */;
     if  counted(":") ==   full_name[0] :               /* line 60 */
-        Str* instance_name = generate_instance_name ( owner, template_name)/* line 61 */
-        Part* instance = jit_instantiate ( reg, owner, instance_name, full_name)/* line 62 */
+        Str* instance_name = generate_instance_name ( owner, template_name)/* line 61 */;
+        Part* instance = jit_instantiate ( reg, owner, instance_name, full_name)/* line 62 */;
         return ( instance)                             /* line 63 */
     else:                                              /* line 64 */
         if  template_name in   (*reg).templates:       /* line 65 */
-            Template* template = lookupid (  (*reg).templates, template_name)/* line 66 */
+            Template* template = lookupid (  (*reg).templates, template_name);/* line 66 */
             if ( template ==  NULL):                   /* line 67 */
                 load_error ( str( counted("Registry_Error_(A):_Can't_find_component_/")) +  str( template_name) +  counted("/")  )/* line 68 */
                 return ( NULL)                         /* line 69 */
             else:                                      /* line 70 */
-                Str* instance_name = generate_instance_name ( owner, template_name)/* line 71 */
-                Part* instance =   (*template).instantiator ( reg, owner, instance_name,  (*template).template_data, counted(""))/* line 72 */
+                Str* instance_name = generate_instance_name ( owner, template_name)/* line 71 */;
+                Part* instance =   (*template).instantiator ( reg, owner, instance_name,  (*template).template_data, counted(""))/* line 72 */;
                 return ( instance)                     /* line 73 *//* line 74 */
         else:                                          /* line 75 */
             load_error ( str( counted("Registry_Error_(B):_Can't_find_component_/")) +  str( template_name) +  counted("/")  )/* line 76 */
@@ -108,8 +108,8 @@ Part* get_component_instance (Component_Registry* reg,Str* full_name,Container* 
 
 Str* generate_instance_name (Container* owner,Str* template_name) {
                                                        /* line 82 */
-    Str* owner_name =  counted("")                     /* line 83 */
-    Str* instance_name =  template_name                /* line 84 */
+    Str* owner_name =  counted("");                    /* line 83 */
+    Str* instance_name =  template_name;               /* line 84 */
     if  NULL!= owner:                                  /* line 85 */
         owner_name =   (*owner).name;                  /* line 86 */
         instance_name =  str( owner_name) +  str( counted("▹")) +  template_name  /* line 87 */;;;

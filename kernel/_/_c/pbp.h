@@ -7,6 +7,8 @@ typedef struct s_Str {
   char* s;
 } Str;
 
+Str* counted(char*);
+
 typedef unsigned char Byte;
 typedef unsigned char Bool;
 typedef int Index;
@@ -23,7 +25,7 @@ typedef Bool Byte;
 #define FALSE 0
 #define TRUE 1
 
-typedef Str Dir;
+typedef Str* Dir;
 
 typedef struct s_Eh Eh;
 typedef struct s_Eh Part;
@@ -108,10 +110,10 @@ typedef Eh* (*Finstantiator) (Component_Registry*, Eh*, Str, Template*);
 
 Connector* fresh_Connector (void);
 
-Sender* mkSender (Str, Eh*, Connector*);
+Sender* mkSender (Str*, Eh*, Connector*);
 
 typedef TBD Table_by_ID_of_Part;
 
-Eh* lookupstring (Connector*, Str);
+Wire* lookupstring (Connector*, Str*);
 
 #endif

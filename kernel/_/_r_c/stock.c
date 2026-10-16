@@ -6,7 +6,7 @@ Str* clone_string (Str* s) {
                                                        /* line 5 */
 Leaf* trash_instantiate (Component_Registry* reg,Container* owner,Str* name,Template* template_data,Str* arg) {
                                                        /* line 6 */
-    Str* name_with_id = gensymbol ( counted("trash"))  /* line 7 */
+    Str* name_with_id = gensymbol ( counted("trash"))  /* line 7 */;
     return (make_leaf ( name_with_id, owner, NULL, counted(""), trash_handler, NULL)/* line 8 */)/* line 9 *//* line 10 */}
 
 void trash_handler (Part* eh,Mevent* mev) {
@@ -43,11 +43,11 @@ void deracer_reset_handler (Leaf* eh) {
 
 Leaf* deracer_instantiate (Component_Registry* reg,Container* owner,Str* name,Ignored template_data,Ignored arg) {
                                                        /* line 36 */
-    Str* name_with_id = gensymbol ( counted("deracer"))/* line 37 */
+    Str* name_with_id = gensymbol ( counted("deracer"))/* line 37 */;
     Deracer_Instance_Data*  inst =  fresh_Deracer_Instance_Data ()/* line 38 */;
     (*inst).state =  counted("idle");                  /* line 39 */
     (*inst).buffer =  fresh_TwoMevents ()              /* line 40 */;
-    Leaf* eh = make_leaf ( name_with_id, owner, inst, counted(""), deracer_handler, deracer_reset_handler)/* line 41 */
+    Leaf* eh = make_leaf ( name_with_id, owner, inst, counted(""), deracer_handler, deracer_reset_handler)/* line 41 */;
     return ( eh)                                       /* line 42 */;;/* line 43 *//* line 44 */}
 
 void send_firstmev_then_secondmev (Leaf* eh,Deracer_Instance_Data* inst) {
@@ -87,12 +87,12 @@ void deracer_handler (Leaf* eh,Mevent* mev) {
 
 Leaf* low_level_read_text_file_instantiate (Component_Registry* reg,Container* owner,Str* name,Template* template_data,Str* arg) {
                                                        /* line 84 */
-    Str* name_with_id = gensymbol ( counted("Low_Level_Read_Text_File"))/* line 85 */
+    Str* name_with_id = gensymbol ( counted("Low_Level_Read_Text_File"))/* line 85 */;
     return (make_leaf ( name_with_id, owner, NULL, counted(""), low_level_read_text_file_handler, NULL)/* line 86 */)/* line 87 *//* line 88 */}
 
 void low_level_read_text_file_handler (Leaf* eh,Mevent* mev) {
                                                        /* line 89 */
-    Payload* fname =    (*mev).payload.v               /* line 90 */
+    Payload* fname =    (*mev).payload.v;              /* line 90 */
 
     try:
         f = open (fname)
@@ -111,7 +111,7 @@ void low_level_read_text_file_handler (Leaf* eh,Mevent* mev) {
 
 Leaf* ensure_string_datum_instantiate (Component_Registry* reg,Container* owner,Str* name,Ignored template_data,Ignored arg) {
                                                        /* line 94 */
-    Str* name_with_id = gensymbol ( counted("Ensure_String_Datum"))/* line 95 */
+    Str* name_with_id = gensymbol ( counted("Ensure_String_Datum"))/* line 95 */;
     return (make_leaf ( name_with_id, owner, NULL, counted(""), ensure_string_datum_handler, NULL)/* line 96 */)/* line 97 *//* line 98 */}
 
 void ensure_string_datum_handler (Leaf* eh,Mevent* mev) {
@@ -119,7 +119,7 @@ void ensure_string_datum_handler (Leaf* eh,Mevent* mev) {
     if  counted("string") ==    (*mev).payload.kind ():/* line 100 */
         forward ( eh, counted(""), mev)                /* line 101 */
     else:                                              /* line 102 */
-        Str* emev =  str( counted("***_ensure:_type_error_(expected_a_string_payload)_but_got_")) +   (*mev).payload /* line 103 */
+        Str* emev =  str( counted("***_ensure:_type_error_(expected_a_string_payload)_but_got_")) +   (*mev).payload /* line 103 */;
         send ( eh, counted("✗"), emev, mev)            /* line 104 *//* line 105 *//* line 106 *//* line 107 */}
 
 Syncfilewrite_Data* fresh_Syncfilewrite_Data () {
@@ -136,8 +136,8 @@ void syncfilewrite_reset_handler (Leaf* eh) {
 /*  temp copy for bootstrap, sends "done“ (error during bootstrap if not wired) *//* line 116 */
 Leaf* syncfilewrite_instantiate (Component_Registry* reg,Container* owner,Str* name,Ignored template_data,Ignored arg) {
                                                        /* line 117 */
-    Str* name_with_id = gensymbol ( counted("syncfilewrite"))/* line 118 */
-    SyncFilewrite_Data* inst =  fresh_Syncfilewrite_Data ()/* line 119 */
+    Str* name_with_id = gensymbol ( counted("syncfilewrite"))/* line 118 */;
+    SyncFilewrite_Data* inst =  fresh_Syncfilewrite_Data ()/* line 119 */;
     return (make_leaf ( name_with_id, owner, inst, counted(""), syncfilewrite_handler, syncfilewrite_reset_handler)/* line 120 */)/* line 121 *//* line 122 */}
 
 void syncfilewrite_handler (Leaf* eh,Mevent* mev) {
@@ -146,7 +146,7 @@ void syncfilewrite_handler (Leaf* eh,Mevent* mev) {
     if  counted("filename") ==   (*mev).port:          /* line 125 */
         (*inst).filename =    (*mev).payload.v;;       /* line 126 */
     elif  counted("input") ==   (*mev).port:           /* line 127 */
-        Payload* contents =    (*mev).payload.v        /* line 128 */
+        Payload* contents =    (*mev).payload.v;       /* line 128 */
         FileDescriptor*  f = open (  (*inst).filename, counted("w"))/* line 129 */;
         if  f!= NULL:                                  /* line 130 */
             (*f).write (   (*mev).payload.v)           /* line 131 */
@@ -171,8 +171,8 @@ void stringconcat_reset_handler (Leaf* eh) {
 
 Leaf* stringconcat_instantiate (Component_Registry* reg,Container* owner,Str* name,Ignored template_data,Ignored arg) {
                                                        /* line 151 */
-    Str* name_with_id = gensymbol ( counted("stringconcat"))/* line 152 */
-    StringConcat_Instance_Data* instp =  fresh_StringConcat_Instance_Data ()/* line 153 */
+    Str* name_with_id = gensymbol ( counted("stringconcat"))/* line 152 */;
+    StringConcat_Instance_Data* instp =  fresh_StringConcat_Instance_Data ()/* line 153 */;
     return (make_leaf ( name_with_id, owner, instp, counted(""), stringconcat_handler, stringconcat_reset_handler)/* line 154 */)/* line 155 *//* line 156 */}
 
 void stringconcat_handler (Leaf* eh,Mevent* mev) {
@@ -209,7 +209,7 @@ Str* =  counted(".")                                   /* line 191 */;/* line 19
 Leaf* string_constant_instantiate (Component_Registry* reg,Container* owner,Str* name,Ignored template_data,Ignored arg) {
                                                        /* line 193 */
     static projectRoot                                 /* line 194 */
-    Str* name_with_id = gensymbol ( counted("strconst"))/* line 195 */
+    Str* name_with_id = gensymbol ( counted("strconst"))/* line 195 */;
     Str*  s =  template_data;                          /* line 196 */
     if  projectRoot!= counted(""):                     /* line 197 */
         s = re.sub ( counted("_00_"),  projectRoot,  s)/* line 198 */;;/* line 199 */
@@ -217,12 +217,12 @@ Leaf* string_constant_instantiate (Component_Registry* reg,Container* owner,Str*
 
 void string_constant_handler (Leaf* eh,Mevent* mev) {
                                                        /* line 203 */
-    Str* s =   (*eh).instance_data                     /* line 204 */
+    Str* s =   (*eh).instance_data;                    /* line 204 */
     send ( eh, counted(""), s, mev)                    /* line 205 *//* line 206 *//* line 207 */}
 
 Leaf* fakepipename_instantiate (Component_Registry* reg,Container* owner,Str* name,Ignored template_data,Ignored arg) {
                                                        /* line 208 */
-    Str* instance_name = gensymbol ( counted("fakepipe"))/* line 209 */
+    Str* instance_name = gensymbol ( counted("fakepipe"))/* line 209 */;
     return (make_leaf ( instance_name, owner, NULL, counted(""), fakepipename_handler, NULL)/* line 210 */)/* line 211 *//* line 212 */}
 
 Number =  0                                            /* line 213 */;/* line 214 */
@@ -247,14 +247,14 @@ void switch1star_reset_handler (Leaf* eh) {
 
 Leaf* switch1star_instantiate (Component_Registry* reg,Container* owner,Str* name,Ignored template_data,Ignored arg) {
                                                        /* line 231 */
-    Str* name_with_id = gensymbol ( counted("switch1*"))/* line 232 */
-    Switch1star_Instance_Data* instp =  fresh_Switch1star_Instance_Data ()/* line 233 */
+    Str* name_with_id = gensymbol ( counted("switch1*"))/* line 232 */;
+    Switch1star_Instance_Data* instp =  fresh_Switch1star_Instance_Data ()/* line 233 */;
     return (make_leaf ( name_with_id, owner, instp, counted(""), switch1star_handler, switch1star_reset_handler)/* line 234 */)/* line 235 *//* line 236 */}
 
 void switch1star_handler (Leaf* eh,Mevent* mev) {
                                                        /* line 237 */
     Switch1star_Instance_Data*  inst =   (*eh).instance_data;/* line 238 */
-    Str* whichOutput =   (*inst).state                 /* line 239 */
+    Str* whichOutput =   (*inst).state;                /* line 239 */
     if  counted("") ==   (*mev).port:                  /* line 240 */
         if  counted("1") ==  whichOutput:              /* line 241 */
             forward ( eh, counted("1"), mev)           /* line 242 */
@@ -281,8 +281,8 @@ void strcatstar_reset_handler (Leaf* eh) {
 
 Leaf* strcatstar_instantiate (Component_Registry* reg,Container* owner,Str* name,Ignored template_data,Ignored arg) {
                                                        /* line 264 */
-    Str* name_with_id = gensymbol ( counted("String_Concat_*"))/* line 265 */
-    Switch1star_Instance_Data* instp =  fresh_StringAccumulator ()/* line 266 */
+    Str* name_with_id = gensymbol ( counted("String_Concat_*"))/* line 265 */;
+    Switch1star_Instance_Data* instp =  fresh_StringAccumulator ()/* line 266 */;
     return (make_leaf ( name_with_id, owner, instp, counted(""), strcatstar_handler, strcatstar_reset_handler)/* line 267 */)/* line 268 *//* line 269 */}
 
 void strcatstar_handler (Leaf* eh,Mevent* mev) {
@@ -297,8 +297,8 @@ void strcatstar_handler (Leaf* eh,Mevent* mev) {
 
 Leaf* stop_instantiate (Component_Registry* reg,Container* owner,Str* name,Ignored template_data,Ignored arg) {
                                                        /* line 281 */
-    Str* name_with_id = gensymbol ( counted("Stop"))   /* line 282 */
-    Switch1star_Instance_Data* inst =  NULL            /* line 283 */
+    Str* name_with_id = gensymbol ( counted("Stop"))   /* line 282 */;
+    Switch1star_Instance_Data* inst =  NULL;           /* line 283 */
     return (make_leaf ( name_with_id, owner, inst, counted(""), stop_handler, NULL)/* line 284 */)/* line 285 *//* line 286 */}
 
 void stop_handler (Leaf* eh,Mevent* mev) {

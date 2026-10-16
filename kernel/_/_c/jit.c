@@ -3,7 +3,7 @@
 /*  (This used to be called `external` due to historical reasons). This has evolved into 2 kinds of Leaf parts: AOT and JIT (statically generated before runtime, vs. dynamically generated at runtime). If a part name begins with ;:', it is treated specially as a JIT part, else the part is assumed to have been pre-loaded into the register in the regular way.  *//* line 1 *//* line 2 */
 Part* jit_instantiate (Component_Registry* reg,Container* owner,Str* name,Str* arg) {
                                                        /* line 3 */
-    Str* name_with_id = gensymbol ( name)              /* line 4 */
+    Str* name_with_id = gensymbol ( name)              /* line 4 */;
     Part*  inst = make_leaf ( name_with_id, owner, NULL, arg, handle_jit, NULL)/* line 5 */;
     Char  firstc =  (*name) [ 1];                      /* line 6 */
     if ( firstc!= counted("$")):                       /* line 7 */
@@ -13,7 +13,7 @@ Part* jit_instantiate (Component_Registry* reg,Container* owner,Str* name,Str* a
 
 void handle_jit (Part* eh,Mevent* mev) {
                                                        /* line 14 */
-    Str* s =   (*eh).arg                               /* line 15 */
+    Str* s =   (*eh).arg;                              /* line 15 */
     Char  firstc =  (*s) [ 1];                         /* line 16 */
     if  firstc ==  counted("$"):                       /* line 17 */
         shell_out_handler ( eh,    s[1:] [1:] [1:] , mev)/* line 18 */
@@ -26,12 +26,12 @@ void handle_jit (Part* eh,Mevent* mev) {
 void probe_handler (Part* eh,Port tag,Mevent* mev) {
                                                        /* line 27 */
     static ticktime                                    /* line 28 */
-    Str* s =    (*mev).payload.v                       /* line 29 */
+    Str* s =    (*mev).payload.v;                      /* line 29 */
     live_update ( counted("Info"),  str( counted("__@")) +  str(str ( ticktime)) +  str( counted("__")) +  str( counted("probe_")) +  str(  (*eh).name) +  str( counted(":_")) + str ( s)      )/* line 37 *//* line 38 *//* line 39 */}
 
 void shell_out_handler (Part* eh,Port cmd,Mevent* mev) {
                                                        /* line 40 */
-    Str* s =    (*mev).payload.v                       /* line 41 */
+    Str* s =    (*mev).payload.v;                      /* line 41 */
     Int  ret =  NULL;                                  /* line 42 */
     Int  rc =  NULL;                                   /* line 43 */
     Str*  stdout =  NULL;                              /* line 44 */

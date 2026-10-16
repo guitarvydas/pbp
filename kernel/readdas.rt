@@ -1,0 +1,41 @@
+defvar buffer
+defvar ix
+defvar ixmax
+parse/ mutate buffer, ix, ixmax
+readdas mutates buffer, ix, ixmax
+
+deffn readdas (filename) {
+  readdas mutates buffer, ix, ixmax
+  buffer <- #read_text_file (filename)
+  ix <- 0
+  ixmax <- len(filecontents)
+  while (ix < max) {
+    deftemp c <- filecontents [ix]
+    ix <- ix + 1
+    if (c = "[") {
+      parse/array ()
+    } else if (c = "{") {
+      parse/object ()
+    } else if (c = "\"") {
+      parse/kvpair ()
+    } else if ((c = ",") or (c = whitespace)) {
+      parse/skip ()
+    } else {
+      parse/exception ()
+    }
+  }
+}
+
+defmechanism parse {
+  defn array () {
+  }
+  defn object () {
+  }
+  defn kvpair () {
+  }
+  defn skip () {
+  }
+  defn exception () {
+  }
+}
+

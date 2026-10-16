@@ -21,7 +21,7 @@ Component_Registry* initialize_component_palette_from_files (List_of_Pathname* d
                                                        /* line 20 */
     Component_Registry*  reg = make_component_registry ();/* line 21 */
     for diagram_source in  diagram_source_files:       /* line 22 */
-        List_of_Container* all_containers_within_single_file = lnet2internal_from_file ( diagram_source)/* line 23 */
+        List_of_Container* all_containers_within_single_file = lnet2internal_from_file ( diagram_source)/* line 23 */;
         for container in  all_containers_within_single_file:/* line 24 */
             register_component ( reg,mkTemplate (lookupstring ( container, counted("name")), container, container_instantiator))/* line 25 *//* line 26 *//* line 27 */
     initialize_stock_components ( reg)                 /* line 28 */
@@ -30,7 +30,7 @@ Component_Registry* initialize_component_palette_from_files (List_of_Pathname* d
 void initialize_component_palette_from_string (JSONStr* lnet) {
                                                        /* line 32 */
     Component_Registry*  reg = make_component_registry ();/* line 33 */
-    List_of_Container* all_containers = lnet2internal_from_string ( lnet)/* line 34 */
+    List_of_Container* all_containers = lnet2internal_from_string ( lnet)/* line 34 */;
     for container in  all_containers:                  /* line 35 */
         register_component ( reg,mkTemplate (lookupstring ( container, counted("name")), container, container_instantiator))/* line 36 *//* line 37 */
     initialize_stock_components ( reg)                 /* line 38 */
@@ -38,25 +38,25 @@ void initialize_component_palette_from_string (JSONStr* lnet) {
 
 Tuple_Palette_DiagramNames_ArgStr* initialize_from_files (List_of_DiagramsName* diagram_names) {
                                                        /* line 41 */
-    Str* arg =  NULL                                   /* line 42 */
-    Component_Registry* palette = initialize_component_palette_from_files ( diagram_names)/* line 43 */
+    Str* arg =  NULL;                                  /* line 42 */
+    Component_Registry* palette = initialize_component_palette_from_files ( diagram_names)/* line 43 */;
     return [ palette,[ diagram_names, arg]]            /* line 44 *//* line 45 *//* line 46 */}
 
 Tuple_Palette_DiagramNames_ArgStr* initialize_from_string () {
                                                        /* line 47 */
-    Str* arg =  NULL                                   /* line 48 */
-    Component_Registry* palette = initialize_component_palette_from_string ()/* line 49 */
+    Str* arg =  NULL;                                  /* line 48 */
+    Component_Registry* palette = initialize_component_palette_from_string ();/* line 49 */
     return [ palette,[ NULL, arg]]                     /* line 50 *//* line 51 *//* line 52 */}
 
 void start (Str* arg,Str* part_name,Component_Registry* palette,Tuple_Palette_DiagramNames_ArgStr* env) {
                                                        /* line 53 */
-    Part* part = start_bare ( part_name, palette, env) /* line 54 */
+    Part* part = start_bare ( part_name, palette, env) /* line 54 */;
     inject ( part, counted(""), arg)                   /* line 55 */
     finalize ( part)                                   /* line 56 *//* line 57 *//* line 58 */}
 
 Part* start_bare (Str* part_name,Component_Registry* palette,Tuple_Palette_DiagramNames_ArgStr* env) {
                                                        /* line 59 */
-    List_of_DiagramsName* diagram_names =  (*env) [ 0] /* line 60 */
+    List_of_DiagramsName* diagram_names =  (*env) [ 0];/* line 60 */
     /*  get entrypoint container */                    /* line 61 */
     Part*  part = get_component_instance ( palette, part_name, NULL)/* line 62 */;
     if  NULL ==  part:                                 /* line 63 */

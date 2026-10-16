@@ -13,6 +13,6 @@ Int =  0                                               /* line 19 */;/* line 20 
 Str* gensymbol (Str* s) {
                                                        /* line 21 */
     static counter                                     /* line 22 */
-    Str* name_with_id =  str( s) + subscripted_digit ( counter) /* line 23 */
+    Str* name_with_id =  str( s) + subscripted_digit ( counter) /* line 23 */;
     counter =  counter+ 1;                             /* line 24 */
     return ( name_with_id)                             /* line 25 */;/* line 26 */}

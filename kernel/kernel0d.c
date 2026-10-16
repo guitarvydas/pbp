@@ -55,7 +55,7 @@ Int =  0                                               /* line 19 */;/* line 20 
 Str* gensymbol (Str* s) {
                                                        /* line 21 */
     static counter                                     /* line 22 */
-    Str* name_with_id =  str( s) + subscripted_digit ( counter) /* line 23 */
+    Str* name_with_id =  str( s) + subscripted_digit ( counter) /* line 23 */;
     counter =  counter+ 1;                             /* line 24 */
     return ( name_with_id)                             /* line 25 */;/* line 26 */}
 #include "pbp.h"
@@ -89,7 +89,7 @@ Port clone_port (Port s) {
 /*  entering the very top of a network. */             /* line 23 */
 Mevent* make_mevent (Port port,Datum* datum) {
                                                        /* line 24 */
-    Port p = clone_string ( port)                      /* line 25 */
+    Port p = clone_string ( port)                      /* line 25 */;
     Mevent*  m =  fresh_Mevent ()                      /* line 26 */;
     (*m).port =  p;                                    /* line 27 */
     (*m).payload =   (*datum).clone ();                /* line 28 */
@@ -221,8 +221,8 @@ Template* mkTemplate (Str* name,Container* template_data,Finstantiator instantia
 /*  ... by reading the little-net from an external file  *//* line 24 */
 List_of_Wire* lnet2internal_from_file (Pathname* container_xml) {
                                                        /* line 25 */
-    Pathname* pathname = os.getenv('PBPWD', '<none>')  /* line 26 */
-    Str* filename =  os.path.basename ( container_xml) /* line 27 */
+    Pathname* pathname = os.getenv('PBPWD', '<none>')  /* line 26 */;
+    Str* filename =  os.path.basename ( container_xml) /* line 27 */;
 
     try:
         fil = open(filename, "r")
@@ -264,7 +264,7 @@ Component_Registry* register_component_allow_overwriting (Component_Registry* re
 
 void abstracted_register_component (Component_Registry* reg,Template* template,Bool ok_to_overwrite) {
                                                        /* line 43 */
-    Str* name = mangle_name (  (*template).name)       /* line 44 */
+    Str* name = mangle_name (  (*template).name)       /* line 44 */;
     if  reg!= NULL and  name in   (*reg).templates and not  ok_to_overwrite:/* line 45 */
         load_error ( str( counted("Component_/")) +  str(  (*template).name) +  counted("/_already_declared")  )/* line 46 */
         return ( reg)                                  /* line 47 */
@@ -278,20 +278,20 @@ Part* get_component_instance (Component_Registry* reg,Str* full_name,Container* 
     /*  ":?<string>" is a probe part that is tagged with <string>  *//* line 56 */
     /*  ":$ <command>" is a shell-out part that sends <command> to the operating system shell  *//* line 57 */
     /*  ":<string>" else, it's just treated as a string part that produces <string> on its output  *//* line 58 */
-    Str* template_name = mangle_name ( full_name)      /* line 59 */
+    Str* template_name = mangle_name ( full_name)      /* line 59 */;
     if  counted(":") ==   full_name[0] :               /* line 60 */
-        Str* instance_name = generate_instance_name ( owner, template_name)/* line 61 */
-        Part* instance = jit_instantiate ( reg, owner, instance_name, full_name)/* line 62 */
+        Str* instance_name = generate_instance_name ( owner, template_name)/* line 61 */;
+        Part* instance = jit_instantiate ( reg, owner, instance_name, full_name)/* line 62 */;
         return ( instance)                             /* line 63 */
     else:                                              /* line 64 */
         if  template_name in   (*reg).templates:       /* line 65 */
-            Template* template = lookupid (  (*reg).templates, template_name)/* line 66 */
+            Template* template = lookupid (  (*reg).templates, template_name);/* line 66 */
             if ( template ==  NULL):                   /* line 67 */
                 load_error ( str( counted("Registry_Error_(A):_Can't_find_component_/")) +  str( template_name) +  counted("/")  )/* line 68 */
                 return ( NULL)                         /* line 69 */
             else:                                      /* line 70 */
-                Str* instance_name = generate_instance_name ( owner, template_name)/* line 71 */
-                Part* instance =   (*template).instantiator ( reg, owner, instance_name,  (*template).template_data, counted(""))/* line 72 */
+                Str* instance_name = generate_instance_name ( owner, template_name)/* line 71 */;
+                Part* instance =   (*template).instantiator ( reg, owner, instance_name,  (*template).template_data, counted(""))/* line 72 */;
                 return ( instance)                     /* line 73 *//* line 74 */
         else:                                          /* line 75 */
             load_error ( str( counted("Registry_Error_(B):_Can't_find_component_/")) +  str( template_name) +  counted("/")  )/* line 76 */
@@ -299,8 +299,8 @@ Part* get_component_instance (Component_Registry* reg,Str* full_name,Container* 
 
 Str* generate_instance_name (Container* owner,Str* template_name) {
                                                        /* line 82 */
-    Str* owner_name =  counted("")                     /* line 83 */
-    Str* instance_name =  template_name                /* line 84 */
+    Str* owner_name =  counted("");                    /* line 83 */
+    Str* instance_name =  template_name;               /* line 84 */
     if  NULL!= owner:                                  /* line 85 */
         owner_name =   (*owner).name;                  /* line 86 */
         instance_name =  str( owner_name) +  str( counted("▹")) +  template_name  /* line 87 */;;;
@@ -320,9 +320,9 @@ Wire* create_down_connector (Container* container,Wire_Proto* proto_conn,List_of
     Wire*  connector =  fresh_Connector ()             /* line 3 */;
     (*connector).direction =  counted("down");         /* line 4 */
     (*connector).sender = mkSender (  (*container).name, container,lookupstring ( proto_conn, counted("source_port")))/* line 5 */;
-    Part* target_proto = lookupstring ( proto_conn, counted("target"))/* line 6 */
-    ID id_proto = lookupstring ( target_proto, counted("id"))/* line 7 */
-    Part* target_component = lookupid ( children_by_id, id_proto)/* line 8 */
+    Part* target_proto = lookupstring ( proto_conn, counted("target"));/* line 6 */
+    ID id_proto = lookupstring ( target_proto, counted("id"));/* line 7 */
+    Part* target_component = lookupid ( children_by_id, id_proto);/* line 8 */
     if ( target_component ==  NULL):                   /* line 9 */
         load_error ( str( counted("internal_error:_.Down_connection_target_internal_error_")) + lookupstring ((lookupstring ( proto_conn, counted("target"))), counted("name")) )/* line 10 */
     else:                                              /* line 11 */
@@ -333,10 +333,10 @@ Wire* create_across_connector (Container* container,Wire_Proto* proto_conn,List_
                                                        /* line 17 */
     Wire*  connector =  fresh_Connector ()             /* line 18 */;
     (*connector).direction =  counted("across");       /* line 19 */
-    Str sid = lookupstring ((lookupstring ( proto_conn, counted("source"))), counted("id"))/* line 20 */
-    Part* source_component = lookupid ( children_by_id, sid)/* line 21 */
-    Str tid = lookupstring ((lookupstring ( proto_conn, counted("target"))), counted("id"))/* line 22 */
-    Part* target_component = lookupid ( children_by_id, tid)/* line 23 */
+    Str* sid = lookupstring ((lookupstring ( proto_conn, counted("source"))), counted("id"));/* line 20 */
+    Part* source_component = lookupid ( children_by_id, sid);/* line 21 */
+    Str* tid = lookupstring ((lookupstring ( proto_conn, counted("target"))), counted("id"));/* line 22 */
+    Part* target_component = lookupid ( children_by_id, tid);/* line 23 */
     if  source_component ==  NULL:                     /* line 24 */
         load_error ( str( counted("internal_error:_.Across_connection_source_not_ok_")) + lookupstring ((lookupstring ( proto_conn, counted("source"))), counted("name")) )/* line 25 */
     else:                                              /* line 26 */
@@ -351,8 +351,8 @@ Wire* create_up_connector (Container* container,Wire_Proto* proto_conn,List_of_W
                                                        /* line 37 */
     Wire*  connector =  fresh_Connector ()             /* line 38 */;
     (*connector).direction =  counted("up");           /* line 39 */
-    Str sid = lookupstring ((lookupstring ( proto_conn, counted("source"))), counted("id"))/* line 40 */
-    Part* source_component = lookupid ( children_by_id, sid)/* line 41 */
+    Str* sid = lookupstring ((lookupstring ( proto_conn, counted("source"))), counted("id"));/* line 40 */
+    Part* source_component = lookupid ( children_by_id, sid);/* line 41 */
     if  source_component ==  NULL:                     /* line 42 */
         load_error ( str( counted("internal_error:_.Up_connection_source_not_ok_")) + lookupstring ((lookupstring ( proto_conn, counted("source"))), counted("name")) )/* line 43 */
     else:                                              /* line 44 */
@@ -374,18 +374,18 @@ Container* container_instantiator (Component_Registry* reg,Container* owner,Str*
     static enumUp                                      /* line 62 */
     static enumAcross                                  /* line 63 */
     static enumThrough                                 /* line 64 */
-    Container* container = make_container ( container_name, owner)/* line 65 */
-    List_of_PartI* children = list_fresh()             /* line 66 */
-    List_of_PartI* children_by_id = dict_fresh()
+    Container* container = make_container ( container_name, owner)/* line 65 */;
+    List_of_PartI* children = list_fresh();            /* line 66 */
+    List_of_PartI* children_by_id = dict_fresh();
     /*  not strictly necessary, but, we can remove 1 runtime lookup by "compiling it out“ here *//* line 67 */
     /*  collect children */                            /* line 68 */
     for child_desc in lookupstring ( desc, counted("children")):/* line 69 */
-        PartI* child_instance = get_component_instance ( reg,lookupstring ( child_desc, counted("name")), container)/* line 70 */
+        PartI* child_instance = get_component_instance ( reg,lookupstring ( child_desc, counted("name")), container)/* line 70 */;
         children.append ( child_instance)              /* line 71 */
-        Str* id = lookupstring ( child_desc, counted("id"))/* line 72 */
+        Str* id = lookupstring ( child_desc, counted("id"));/* line 72 */
         lookupid ( children_by_id, id) =  child_instance;/* line 73 *//* line 74 */;/* line 75 */
     (*container).children =  children;                 /* line 76 *//* line 77 */
-    List_of_WireI* connectors = list_fresh()           /* line 78 */
+    List_of_WireI* connectors = list_fresh();          /* line 78 */
     for proto_conn in lookupstring ( desc, counted("connections")):/* line 79 */
         WireI*  connector =  fresh_Connector ()        /* line 80 */;
         if lookupstring ( proto_conn, counted("dir")) ==  enumDown:/* line 81 */
@@ -428,19 +428,19 @@ void destroy_container (Part* eh) {
 /*  Checks if two senders match, by pointer equality and port name matching. *//* line 117 */
 BOOL sender_eq (Part* s1,Part* s2) {
                                                        /* line 118 */
-    BOOL same_components = (  (*s1).component ==   (*s2).component)/* line 119 */
-    BOOL same_ports = (  (*s1).port ==   (*s2).port)   /* line 120 */
+    BOOL same_components = (  (*s1).component ==   (*s2).component);/* line 119 */
+    BOOL same_ports = (  (*s1).port ==   (*s2).port);  /* line 120 */
     return ( same_components and  same_ports)          /* line 121 *//* line 122 *//* line 123 */}
 
 /*  Delivers the given mevent to the receiver of this connector. *//* line 124 *//* line 125 */
 void deposit (Container* parent,Wire* conn,Mevent* mevent) {
                                                        /* line 126 */
-    Mevent* new_mevent = make_mevent (   (*conn).receiver.port,  (*mevent).payload)/* line 127 */
+    Mevent* new_mevent = make_mevent (   (*conn).receiver.port,  (*mevent).payload)/* line 127 */;
     push_mevent ( parent,   (*conn).receiver.component,   (*conn).receiver.queue, new_mevent)/* line 128 *//* line 129 *//* line 130 */}
 
 void force_tick (Container* parent,Part* eh) {
                                                        /* line 131 */
-    Mevent* tick_mev = make_mevent ( counted("."),new_datum_bang ())/* line 132 */
+    Mevent* tick_mev = make_mevent ( counted("."),new_datum_bang ())/* line 132 */;
     push_mevent ( parent, eh,  (*eh).inq, tick_mev)    /* line 133 */
     return ( tick_mev)                                 /* line 134 *//* line 135 *//* line 136 */}
 
@@ -472,14 +472,14 @@ void step_children (Container* container,Mevent* causingMevent) {
         /*  child = container represents self, skip it *//* line 165 */
         if (not (is_self ( child, container))):        /* line 166 */
             if (not ((0==len(  (*child).inq)))):       /* line 167 */
-                Mevent* mev =   (*child).inq.popleft ()/* line 168 */
+                Mevent* mev =   (*child).inq.popleft ()/* line 168 */;
                 step_child_once ( child, mev)          /* line 169 *//* line 170 */
                 destroy_mevent ( mev)                  /* line 171 */
             else:                                      /* line 172 */
                 if   (*child).state ==  counted("idle"):/* line 173 */
                                                        /* line 174 */
                 else:                                  /* line 175 */
-                    Mevent* mev = force_tick ( container, child)/* line 176 */
+                    Mevent* mev = force_tick ( container, child)/* line 176 */;
                     step_child_once ( child, mev)      /* line 177 */
                     destroy_mevent ( mev)              /* line 178 *//* line 179 *//* line 180 *//* line 181 *//* line 182 */
 
@@ -490,7 +490,7 @@ void step_children (Container* container,Mevent* causingMevent) {
             /*  if child remains active, then the container must remain active and must propagate “ticks“ to child *//* line 188 */
             (*container).state =  counted("active");;  /* line 189 *//* line 190 *//* line 191 */
         while (not ((0==len(  (*child).outq)))):       /* line 192 */
-            Mevent* mev =   (*child).outq.popleft ()   /* line 193 */
+            Mevent* mev =   (*child).outq.popleft ()   /* line 193 */;
             route ( container, child, mev)             /* line 194 */
             destroy_mevent ( mev)                      /* line 195 *//* line 196 *//* line 197 */;/* line 198 *//* line 199 */}
 
@@ -520,7 +520,7 @@ void route (Container* container,Part* from_component,Mevent* mevent) {
     else:                                              /* line 222 */
         if (not (is_self ( from_component, container))):/* line 223 */
             fromname =   (*from_component).name;;      /* line 224 *//* line 225 */
-        Sender* from_sender = mkSender ( fromname, from_component,  (*mevent).port)/* line 226 *//* line 227 */
+        Sender* from_sender = mkSender ( fromname, from_component,  (*mevent).port)/* line 226 */;/* line 227 */
         for connector in   (*container).connections:   /* line 228 */
             if sender_eq ( from_sender,  (*connector).sender):/* line 229 */
                 deposit ( container, connector, mevent)/* line 230 */
@@ -561,12 +561,12 @@ void send (Part* eh,Port port,Part* obj,Mevent* causingMevent) {
     (*d).v =  obj;                                     /* line 273 */
     (*d).clone =  lambda : obj_clone ( d)              /* line 274 */;
     (*d).reclaim =  NULL;                              /* line 275 */
-    Mevent* mev = make_mevent ( port, d)               /* line 276 */
+    Mevent* mev = make_mevent ( port, d)               /* line 276 */;
     put_output ( eh, mev)                              /* line 277 */;;;/* line 278 *//* line 279 */}
 
 void forward (Part* eh,Port port,Mevent* mev) {
                                                        /* line 280 */
-    Mevent* fwdmev = make_mevent ( port,  (*mev).payload)/* line 281 */
+    Mevent* fwdmev = make_mevent ( port,  (*mev).payload)/* line 281 */;
     put_output ( eh, fwdmev)                           /* line 282 *//* line 283 *//* line 284 */}
 
 Mevent* inject_mevent (Part* eh,Mevent* mev) {
@@ -624,7 +624,7 @@ void leaf_reset (Leaf* part) {
 /*  (This used to be called `external` due to historical reasons). This has evolved into 2 kinds of Leaf parts: AOT and JIT (statically generated before runtime, vs. dynamically generated at runtime). If a part name begins with ;:', it is treated specially as a JIT part, else the part is assumed to have been pre-loaded into the register in the regular way.  *//* line 1 *//* line 2 */
 Part* jit_instantiate (Component_Registry* reg,Container* owner,Str* name,Str* arg) {
                                                        /* line 3 */
-    Str* name_with_id = gensymbol ( name)              /* line 4 */
+    Str* name_with_id = gensymbol ( name)              /* line 4 */;
     Part*  inst = make_leaf ( name_with_id, owner, NULL, arg, handle_jit, NULL)/* line 5 */;
     Char  firstc =  (*name) [ 1];                      /* line 6 */
     if ( firstc!= counted("$")):                       /* line 7 */
@@ -634,7 +634,7 @@ Part* jit_instantiate (Component_Registry* reg,Container* owner,Str* name,Str* a
 
 void handle_jit (Part* eh,Mevent* mev) {
                                                        /* line 14 */
-    Str* s =   (*eh).arg                               /* line 15 */
+    Str* s =   (*eh).arg;                              /* line 15 */
     Char  firstc =  (*s) [ 1];                         /* line 16 */
     if  firstc ==  counted("$"):                       /* line 17 */
         shell_out_handler ( eh,    s[1:] [1:] [1:] , mev)/* line 18 */
@@ -647,12 +647,12 @@ void handle_jit (Part* eh,Mevent* mev) {
 void probe_handler (Part* eh,Port tag,Mevent* mev) {
                                                        /* line 27 */
     static ticktime                                    /* line 28 */
-    Str* s =    (*mev).payload.v                       /* line 29 */
+    Str* s =    (*mev).payload.v;                      /* line 29 */
     live_update ( counted("Info"),  str( counted("__@")) +  str(str ( ticktime)) +  str( counted("__")) +  str( counted("probe_")) +  str(  (*eh).name) +  str( counted(":_")) + str ( s)      )/* line 37 *//* line 38 *//* line 39 */}
 
 void shell_out_handler (Part* eh,Port cmd,Mevent* mev) {
                                                        /* line 40 */
-    Str* s =    (*mev).payload.v                       /* line 41 */
+    Str* s =    (*mev).payload.v;                      /* line 41 */
     Int  ret =  NULL;                                  /* line 42 */
     Int  rc =  NULL;                                   /* line 43 */
     Str*  stdout =  NULL;                              /* line 44 */
@@ -699,7 +699,7 @@ Str* clone_string (Str* s) {
                                                        /* line 5 */
 Leaf* trash_instantiate (Component_Registry* reg,Container* owner,Str* name,Template* template_data,Str* arg) {
                                                        /* line 6 */
-    Str* name_with_id = gensymbol ( counted("trash"))  /* line 7 */
+    Str* name_with_id = gensymbol ( counted("trash"))  /* line 7 */;
     return (make_leaf ( name_with_id, owner, NULL, counted(""), trash_handler, NULL)/* line 8 */)/* line 9 *//* line 10 */}
 
 void trash_handler (Part* eh,Mevent* mev) {
@@ -736,11 +736,11 @@ void deracer_reset_handler (Leaf* eh) {
 
 Leaf* deracer_instantiate (Component_Registry* reg,Container* owner,Str* name,Ignored template_data,Ignored arg) {
                                                        /* line 36 */
-    Str* name_with_id = gensymbol ( counted("deracer"))/* line 37 */
+    Str* name_with_id = gensymbol ( counted("deracer"))/* line 37 */;
     Deracer_Instance_Data*  inst =  fresh_Deracer_Instance_Data ()/* line 38 */;
     (*inst).state =  counted("idle");                  /* line 39 */
     (*inst).buffer =  fresh_TwoMevents ()              /* line 40 */;
-    Leaf* eh = make_leaf ( name_with_id, owner, inst, counted(""), deracer_handler, deracer_reset_handler)/* line 41 */
+    Leaf* eh = make_leaf ( name_with_id, owner, inst, counted(""), deracer_handler, deracer_reset_handler)/* line 41 */;
     return ( eh)                                       /* line 42 */;;/* line 43 *//* line 44 */}
 
 void send_firstmev_then_secondmev (Leaf* eh,Deracer_Instance_Data* inst) {
@@ -780,12 +780,12 @@ void deracer_handler (Leaf* eh,Mevent* mev) {
 
 Leaf* low_level_read_text_file_instantiate (Component_Registry* reg,Container* owner,Str* name,Template* template_data,Str* arg) {
                                                        /* line 84 */
-    Str* name_with_id = gensymbol ( counted("Low_Level_Read_Text_File"))/* line 85 */
+    Str* name_with_id = gensymbol ( counted("Low_Level_Read_Text_File"))/* line 85 */;
     return (make_leaf ( name_with_id, owner, NULL, counted(""), low_level_read_text_file_handler, NULL)/* line 86 */)/* line 87 *//* line 88 */}
 
 void low_level_read_text_file_handler (Leaf* eh,Mevent* mev) {
                                                        /* line 89 */
-    Payload* fname =    (*mev).payload.v               /* line 90 */
+    Payload* fname =    (*mev).payload.v;              /* line 90 */
 
     try:
         f = open (fname)
@@ -804,7 +804,7 @@ void low_level_read_text_file_handler (Leaf* eh,Mevent* mev) {
 
 Leaf* ensure_string_datum_instantiate (Component_Registry* reg,Container* owner,Str* name,Ignored template_data,Ignored arg) {
                                                        /* line 94 */
-    Str* name_with_id = gensymbol ( counted("Ensure_String_Datum"))/* line 95 */
+    Str* name_with_id = gensymbol ( counted("Ensure_String_Datum"))/* line 95 */;
     return (make_leaf ( name_with_id, owner, NULL, counted(""), ensure_string_datum_handler, NULL)/* line 96 */)/* line 97 *//* line 98 */}
 
 void ensure_string_datum_handler (Leaf* eh,Mevent* mev) {
@@ -812,7 +812,7 @@ void ensure_string_datum_handler (Leaf* eh,Mevent* mev) {
     if  counted("string") ==    (*mev).payload.kind ():/* line 100 */
         forward ( eh, counted(""), mev)                /* line 101 */
     else:                                              /* line 102 */
-        Str* emev =  str( counted("***_ensure:_type_error_(expected_a_string_payload)_but_got_")) +   (*mev).payload /* line 103 */
+        Str* emev =  str( counted("***_ensure:_type_error_(expected_a_string_payload)_but_got_")) +   (*mev).payload /* line 103 */;
         send ( eh, counted("✗"), emev, mev)            /* line 104 *//* line 105 *//* line 106 *//* line 107 */}
 
 Syncfilewrite_Data* fresh_Syncfilewrite_Data () {
@@ -829,8 +829,8 @@ void syncfilewrite_reset_handler (Leaf* eh) {
 /*  temp copy for bootstrap, sends "done“ (error during bootstrap if not wired) *//* line 116 */
 Leaf* syncfilewrite_instantiate (Component_Registry* reg,Container* owner,Str* name,Ignored template_data,Ignored arg) {
                                                        /* line 117 */
-    Str* name_with_id = gensymbol ( counted("syncfilewrite"))/* line 118 */
-    SyncFilewrite_Data* inst =  fresh_Syncfilewrite_Data ()/* line 119 */
+    Str* name_with_id = gensymbol ( counted("syncfilewrite"))/* line 118 */;
+    SyncFilewrite_Data* inst =  fresh_Syncfilewrite_Data ()/* line 119 */;
     return (make_leaf ( name_with_id, owner, inst, counted(""), syncfilewrite_handler, syncfilewrite_reset_handler)/* line 120 */)/* line 121 *//* line 122 */}
 
 void syncfilewrite_handler (Leaf* eh,Mevent* mev) {
@@ -839,7 +839,7 @@ void syncfilewrite_handler (Leaf* eh,Mevent* mev) {
     if  counted("filename") ==   (*mev).port:          /* line 125 */
         (*inst).filename =    (*mev).payload.v;;       /* line 126 */
     elif  counted("input") ==   (*mev).port:           /* line 127 */
-        Payload* contents =    (*mev).payload.v        /* line 128 */
+        Payload* contents =    (*mev).payload.v;       /* line 128 */
         FileDescriptor*  f = open (  (*inst).filename, counted("w"))/* line 129 */;
         if  f!= NULL:                                  /* line 130 */
             (*f).write (   (*mev).payload.v)           /* line 131 */
@@ -864,8 +864,8 @@ void stringconcat_reset_handler (Leaf* eh) {
 
 Leaf* stringconcat_instantiate (Component_Registry* reg,Container* owner,Str* name,Ignored template_data,Ignored arg) {
                                                        /* line 151 */
-    Str* name_with_id = gensymbol ( counted("stringconcat"))/* line 152 */
-    StringConcat_Instance_Data* instp =  fresh_StringConcat_Instance_Data ()/* line 153 */
+    Str* name_with_id = gensymbol ( counted("stringconcat"))/* line 152 */;
+    StringConcat_Instance_Data* instp =  fresh_StringConcat_Instance_Data ()/* line 153 */;
     return (make_leaf ( name_with_id, owner, instp, counted(""), stringconcat_handler, stringconcat_reset_handler)/* line 154 */)/* line 155 *//* line 156 */}
 
 void stringconcat_handler (Leaf* eh,Mevent* mev) {
@@ -902,7 +902,7 @@ Str* =  counted(".")                                   /* line 191 */;/* line 19
 Leaf* string_constant_instantiate (Component_Registry* reg,Container* owner,Str* name,Ignored template_data,Ignored arg) {
                                                        /* line 193 */
     static projectRoot                                 /* line 194 */
-    Str* name_with_id = gensymbol ( counted("strconst"))/* line 195 */
+    Str* name_with_id = gensymbol ( counted("strconst"))/* line 195 */;
     Str*  s =  template_data;                          /* line 196 */
     if  projectRoot!= counted(""):                     /* line 197 */
         s = re.sub ( counted("_00_"),  projectRoot,  s)/* line 198 */;;/* line 199 */
@@ -910,12 +910,12 @@ Leaf* string_constant_instantiate (Component_Registry* reg,Container* owner,Str*
 
 void string_constant_handler (Leaf* eh,Mevent* mev) {
                                                        /* line 203 */
-    Str* s =   (*eh).instance_data                     /* line 204 */
+    Str* s =   (*eh).instance_data;                    /* line 204 */
     send ( eh, counted(""), s, mev)                    /* line 205 *//* line 206 *//* line 207 */}
 
 Leaf* fakepipename_instantiate (Component_Registry* reg,Container* owner,Str* name,Ignored template_data,Ignored arg) {
                                                        /* line 208 */
-    Str* instance_name = gensymbol ( counted("fakepipe"))/* line 209 */
+    Str* instance_name = gensymbol ( counted("fakepipe"))/* line 209 */;
     return (make_leaf ( instance_name, owner, NULL, counted(""), fakepipename_handler, NULL)/* line 210 */)/* line 211 *//* line 212 */}
 
 Number =  0                                            /* line 213 */;/* line 214 */
@@ -940,14 +940,14 @@ void switch1star_reset_handler (Leaf* eh) {
 
 Leaf* switch1star_instantiate (Component_Registry* reg,Container* owner,Str* name,Ignored template_data,Ignored arg) {
                                                        /* line 231 */
-    Str* name_with_id = gensymbol ( counted("switch1*"))/* line 232 */
-    Switch1star_Instance_Data* instp =  fresh_Switch1star_Instance_Data ()/* line 233 */
+    Str* name_with_id = gensymbol ( counted("switch1*"))/* line 232 */;
+    Switch1star_Instance_Data* instp =  fresh_Switch1star_Instance_Data ()/* line 233 */;
     return (make_leaf ( name_with_id, owner, instp, counted(""), switch1star_handler, switch1star_reset_handler)/* line 234 */)/* line 235 *//* line 236 */}
 
 void switch1star_handler (Leaf* eh,Mevent* mev) {
                                                        /* line 237 */
     Switch1star_Instance_Data*  inst =   (*eh).instance_data;/* line 238 */
-    Str* whichOutput =   (*inst).state                 /* line 239 */
+    Str* whichOutput =   (*inst).state;                /* line 239 */
     if  counted("") ==   (*mev).port:                  /* line 240 */
         if  counted("1") ==  whichOutput:              /* line 241 */
             forward ( eh, counted("1"), mev)           /* line 242 */
@@ -974,8 +974,8 @@ void strcatstar_reset_handler (Leaf* eh) {
 
 Leaf* strcatstar_instantiate (Component_Registry* reg,Container* owner,Str* name,Ignored template_data,Ignored arg) {
                                                        /* line 264 */
-    Str* name_with_id = gensymbol ( counted("String_Concat_*"))/* line 265 */
-    Switch1star_Instance_Data* instp =  fresh_StringAccumulator ()/* line 266 */
+    Str* name_with_id = gensymbol ( counted("String_Concat_*"))/* line 265 */;
+    Switch1star_Instance_Data* instp =  fresh_StringAccumulator ()/* line 266 */;
     return (make_leaf ( name_with_id, owner, instp, counted(""), strcatstar_handler, strcatstar_reset_handler)/* line 267 */)/* line 268 *//* line 269 */}
 
 void strcatstar_handler (Leaf* eh,Mevent* mev) {
@@ -990,8 +990,8 @@ void strcatstar_handler (Leaf* eh,Mevent* mev) {
 
 Leaf* stop_instantiate (Component_Registry* reg,Container* owner,Str* name,Ignored template_data,Ignored arg) {
                                                        /* line 281 */
-    Str* name_with_id = gensymbol ( counted("Stop"))   /* line 282 */
-    Switch1star_Instance_Data* inst =  NULL            /* line 283 */
+    Str* name_with_id = gensymbol ( counted("Stop"))   /* line 282 */;
+    Switch1star_Instance_Data* inst =  NULL;           /* line 283 */
     return (make_leaf ( name_with_id, owner, inst, counted(""), stop_handler, NULL)/* line 284 */)/* line 285 *//* line 286 */}
 
 void stop_handler (Leaf* eh,Mevent* mev) {
@@ -1044,7 +1044,7 @@ Component_Registry* initialize_component_palette_from_files (List_of_Pathname* d
                                                        /* line 20 */
     Component_Registry*  reg = make_component_registry ();/* line 21 */
     for diagram_source in  diagram_source_files:       /* line 22 */
-        List_of_Container* all_containers_within_single_file = lnet2internal_from_file ( diagram_source)/* line 23 */
+        List_of_Container* all_containers_within_single_file = lnet2internal_from_file ( diagram_source)/* line 23 */;
         for container in  all_containers_within_single_file:/* line 24 */
             register_component ( reg,mkTemplate (lookupstring ( container, counted("name")), container, container_instantiator))/* line 25 *//* line 26 *//* line 27 */
     initialize_stock_components ( reg)                 /* line 28 */
@@ -1053,7 +1053,7 @@ Component_Registry* initialize_component_palette_from_files (List_of_Pathname* d
 void initialize_component_palette_from_string (JSONStr* lnet) {
                                                        /* line 32 */
     Component_Registry*  reg = make_component_registry ();/* line 33 */
-    List_of_Container* all_containers = lnet2internal_from_string ( lnet)/* line 34 */
+    List_of_Container* all_containers = lnet2internal_from_string ( lnet)/* line 34 */;
     for container in  all_containers:                  /* line 35 */
         register_component ( reg,mkTemplate (lookupstring ( container, counted("name")), container, container_instantiator))/* line 36 *//* line 37 */
     initialize_stock_components ( reg)                 /* line 38 */
@@ -1061,25 +1061,25 @@ void initialize_component_palette_from_string (JSONStr* lnet) {
 
 Tuple_Palette_DiagramNames_ArgStr* initialize_from_files (List_of_DiagramsName* diagram_names) {
                                                        /* line 41 */
-    Str* arg =  NULL                                   /* line 42 */
-    Component_Registry* palette = initialize_component_palette_from_files ( diagram_names)/* line 43 */
+    Str* arg =  NULL;                                  /* line 42 */
+    Component_Registry* palette = initialize_component_palette_from_files ( diagram_names)/* line 43 */;
     return [ palette,[ diagram_names, arg]]            /* line 44 *//* line 45 *//* line 46 */}
 
 Tuple_Palette_DiagramNames_ArgStr* initialize_from_string () {
                                                        /* line 47 */
-    Str* arg =  NULL                                   /* line 48 */
-    Component_Registry* palette = initialize_component_palette_from_string ()/* line 49 */
+    Str* arg =  NULL;                                  /* line 48 */
+    Component_Registry* palette = initialize_component_palette_from_string ();/* line 49 */
     return [ palette,[ NULL, arg]]                     /* line 50 *//* line 51 *//* line 52 */}
 
 void start (Str* arg,Str* part_name,Component_Registry* palette,Tuple_Palette_DiagramNames_ArgStr* env) {
                                                        /* line 53 */
-    Part* part = start_bare ( part_name, palette, env) /* line 54 */
+    Part* part = start_bare ( part_name, palette, env) /* line 54 */;
     inject ( part, counted(""), arg)                   /* line 55 */
     finalize ( part)                                   /* line 56 *//* line 57 *//* line 58 */}
 
 Part* start_bare (Str* part_name,Component_Registry* palette,Tuple_Palette_DiagramNames_ArgStr* env) {
                                                        /* line 59 */
-    List_of_DiagramsName* diagram_names =  (*env) [ 0] /* line 60 */
+    List_of_DiagramsName* diagram_names =  (*env) [ 0];/* line 60 */
     /*  get entrypoint container */                    /* line 61 */
     Part*  part = get_component_instance ( palette, part_name, NULL)/* line 62 */;
     if  NULL ==  part:                                 /* line 63 */
