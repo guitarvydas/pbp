@@ -1,4 +1,4 @@
-<mxfile host="Electron" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.6.1 Chrome/142.0.7444.265 Electron/39.8.0 Safari/537.36" version="29.6.1" pages="4">
+<mxfile host="Electron" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.6.1 Chrome/142.0.7444.265 Electron/39.8.0 Safari/537.36" version="29.6.1" pages="6">
   <diagram name="proto" id="ND0tR9qKS6qrDmmF7NXm">
     <mxGraphModel dx="1106" dy="850" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
       <root>
@@ -1079,6 +1079,61 @@
         </mxCell>
         <mxCell id="0b1LLFF5a-bki-gT51rU-18" parent="1" style="rounded=1;whiteSpace=wrap;html=1;sketch=1;curveFitting=1;jiggle=2;dashed=1;" value="80" vertex="1">
           <mxGeometry height="40" width="80" x="80" y="480" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="It81NObqTM4G2PoilJIv" name="list">
+    <mxGraphModel dx="1096" dy="884" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="TskLBK9KkMBySFldtDbR-4" edge="1" parent="1" source="TskLBK9KkMBySFldtDbR-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="160" y="200" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="TskLBK9KkMBySFldtDbR-1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="" vertex="1">
+          <mxGeometry height="40" width="80" x="120" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="TskLBK9KkMBySFldtDbR-6" edge="1" parent="1" source="TskLBK9KkMBySFldtDbR-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="240" y="200" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="TskLBK9KkMBySFldtDbR-2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="" vertex="1">
+          <mxGeometry height="40" width="80" x="200" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="TskLBK9KkMBySFldtDbR-7" edge="1" parent="1" source="TskLBK9KkMBySFldtDbR-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="400" y="140" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="TskLBK9KkMBySFldtDbR-3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="" vertex="1">
+          <mxGeometry height="40" width="80" x="280" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="TskLBK9KkMBySFldtDbR-8" parent="1" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=none;fillColor=none;" value="item" vertex="1">
+          <mxGeometry height="20" width="80" x="120" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="TskLBK9KkMBySFldtDbR-9" parent="1" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=none;fillColor=none;" value="item reclaim function or NULL" vertex="1">
+          <mxGeometry height="40" width="80" x="200" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="TskLBK9KkMBySFldtDbR-10" parent="1" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=none;fillColor=none;" value="next cell or NULL" vertex="1">
+          <mxGeometry height="30" width="80" x="400" y="125" as="geometry" />
+        </mxCell>
+        <mxCell id="TskLBK9KkMBySFldtDbR-11" parent="1" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=none;fillColor=none;" value="CONS cell" vertex="1">
+          <mxGeometry height="30" width="80" x="80" y="50" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram name="result-stack" id="W13EdSbDGZI9LDRqeMBG">
+    <mxGraphModel dx="1096" dy="884" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+      <root>
+        <mxCell id="h7VQOZg6jsbNsBfwsQgb-0" />
+        <mxCell id="h7VQOZg6jsbNsBfwsQgb-1" parent="h7VQOZg6jsbNsBfwsQgb-0" />
+        <mxCell id="h7VQOZg6jsbNsBfwsQgb-11" parent="h7VQOZg6jsbNsBfwsQgb-1" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=none;fillColor=none;" value="Result Stack is just a list" vertex="1">
+          <mxGeometry height="30" width="80" x="80" y="50" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

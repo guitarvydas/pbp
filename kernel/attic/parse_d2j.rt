@@ -1,0 +1,194 @@
+buff contains the input source string
+buffx is the index to the next uncomsumed character (if buffx > len(buff), no more chars)
+put resulting object onto result_stack
+
+defn parse_wire () {
+  if parse_down_wire () {
+    return #Sucess
+  } else if parse_across_wire () {
+    return #Sucess
+  } else if parse_up_wire () {
+    return #Sucess
+  } else if parse_through_wire () {
+    return #Sucess
+  } else {
+    return #Fail
+  }
+  severe_internal_error ()
+  return #Abort
+}
+
+defn parse_down_wire () {
+  mark_result_stack ()
+  loop {
+    parse_one_of {
+      parse_down_dir ()
+      parse_source_port ()
+      parse_target_port ()
+      parse_target ()
+    } otherwise {
+      return #Fail
+    }
+  }
+  fold_all_results_into_a_wire_with_all_objects_above_mark ()   
+        
+  }
+}
+
+///////////////
+
+defn accept () {
+  buffx += 1
+}
+
+defn match_char (s) {
+  if buff[buffx] = s[0] {
+    return #True
+  } else {
+    return #False
+  }
+}
+
+defn parse_fail () {
+  reset_buffx
+  return #Fail
+///////////////
+
+
+defn parse_key (s) {
+  deftemp old_buffx = buffx
+  if match_char ("\"") {
+    accept ()
+    cx = 0
+    while (cx < len (s)) {
+      if match_char (s[cx]) {
+        cx += 1
+      } else {
+        return #Fail
+      }
+    }
+    if match_char ("\"") {
+      return #Success
+    } else {
+      return #Fail
+    }
+  } else {
+    pass
+  }
+}
+
+///////////
+
+defn parse_down_dir () {
+  // on a successful parse, this leaves a down_wire object on the result_stack
+  try {
+  one of each of these in any order {
+    | parse dir down to kv object
+    | parse source_port to kv object 
+    | parse target_port to kv object
+    | parse child_id to child_id object
+  } then {
+    collapse 4 results into a down_dir object on the result stack
+    return parse success
+  } otherwise {
+    reset parse
+    return parse fail
+  }
+}
+
+defn parse_across_dir () {
+...
+}
+
+//////////////
+// kv means "key value"
+//////////////
+
+defparser dir down to kv object {
+  // on success, leaves 1 "dir" : 0 kv(int) object on result stack
+  all of the following in order {
+    parse keyword "dir"
+    parse string ":"
+    parse int 0
+  } then {
+    create dir down kv object on result stack
+    return parse success
+  } otherwise {
+    return parse fail
+  }  
+}
+
+defparser source_port to kv object {
+  // on success, leaves 1 "source_port" kv(string) object on result stack 
+  all of the following in order {
+    parse keyword "source_port"
+    parse string ":"
+    parse string any
+  } then {
+    create source_port kv object on result stack
+    return parse success
+  } otherwise {
+    return parse fail
+  }  
+}
+
+defparser target_port to kv object {
+  // on success, leaves 1 "target_port" kv(string) object on the result stack 
+  all of the following in order {
+    parse keyword "target_port"
+    parse string ":"
+    parse string any
+  } then {
+    create target_port kv object on result stack
+    return parse success
+  } otherwise {
+    return parse fail
+  }  
+}
+
+defparser source to child_id object {
+  // on success, leaves 1 "source" kv(child_id) object on the result stack
+  all of the following in order {
+    parse keyword "source"
+    parse string ":"
+    parse child_id
+  } then {
+    create source child_id object on result stack
+    return parse success
+  } otherwise {
+    return parse fail
+  }  
+}
+
+defparser target to child_id object {
+  // on success, leaves 1 "target" kv(child_id) object on the result stack
+  all of the following in order {
+    parse keyword "target"
+    parse string ":"
+    parse child_id
+  } then {
+    create target child_id object on result stack
+    return parse success
+  } otherwise {
+    return parse fail
+  }  
+}
+
+defparser child_id {
+  // on success, leaves 1 child_id object on the result stack
+  try {
+    parse string "{"
+    one of each of these in any order {
+      | parse name to kv(string)
+      | parse id to kv(int)
+    }
+    parse string "}"
+    create child_id object on result stack
+    return parse success
+  } otherwise {
+    return parse fail
+  }
+}
+
+}
+
