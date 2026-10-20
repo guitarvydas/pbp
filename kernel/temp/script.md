@@ -71,3 +71,32 @@ In the rule PrimaryIndexed_fieldident, though, we set the deref parameter to Tru
 This is what we want and seems to work.
 
 
+
+---
+--- re. 3 cell cons cell
+
+Here's something I'm going to try out.
+
+I find that a list data structure is quite flexible.
+
+It could be more efficient, but we don't need to care about efficiency here. We are only building a tool here - the C code emitter - which will only be used during development. The goal is to speed up development and to cut corners where possible. We don't need speed nor size optimization like in production code, we simply need something that will help us work faster.
+
+In Lisp, lists are made of CONS cells with two parts. The first part, traditionally called CAR, then later simply called FIRST, holds a pointer to an item. The second part, traditionally called the CDR and now REST is essentially a pointer to the NEXT cell in the list. If it's the end of the list, the CDR is NIL. Sometimes, we can fit small immediate items, like integers directly into the CAR part instead of using a pointer.
+
+For this specific application, we don't need to optimize the CAR in this way, the CAR will always hold a pointer to either a KV cell or an Object cell. I might wish to optimize KV cells like that in a very few cases, though.
+
+The problem with a 2-part CONS cell is that a generalized garbage collector is needed to reclaim unused CAR items.
+
+A specialized garbage collector needs to know the kind of item that is in the CAR of the cell and how to reclaim it.
+
+Instead of insisting that every item be derived from some kind of class, I'm going to try to add a third field to the CONS cell, which holds a pointer to a reclaim function. If the pointer is NULL, then the item does not need to be reclaimed, like an immediate integer value stored in the CAR. As I said earlier, I'm not going to need immediate values in list cells, but when I get to KV cells there is one use-case - the direction kind of KV - that I might want to insert immediate integer values into the cells.
+
+So, to reclaim a list cell, I intend to call the reclaim function and give it the pointer to the CAR item as a parameter. Then, simply NULL out the list cell and put the list cell back onto a free list.
+
+This might not be the most efficient approach, maybe later I'll want to create classes for items that include procedures for reclamation, but I'll stick with this dynamic approach and see where it leads.
+
+I will define Object and KV cells in a similar way.
+
+
+
+
