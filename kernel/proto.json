@@ -1,0 +1,9 @@
+{
+    "dir": 0,
+    "source_port": "abc",
+    "target_port": "def",
+    "target": {
+        "name": "A",
+        "id": 42
+    }
+}
