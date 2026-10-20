@@ -1,0 +1,7 @@
+class Datum {
+    v ≡ @Payload         
+    clone ≡ Fclone
+    reclaim ≡ Freclaim
+    other ≡ @         
+}
+
