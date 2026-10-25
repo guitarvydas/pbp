@@ -1,0 +1,66 @@
+⌈ JIT parts. A part name that begins with ":" is made when the network is built, instead of being looked up in the palette.⌉
+⌈ ":?tag"       a probe: reports "probe <instance name>: <payload>" and sends nothing. Probes are VIP.⌉
+⌈ ":$ command"  a shell-out: the payload is the standard input of the command. The output goes to port "" if⌉
+⌈               the command succeeds, to port "✗" if it fails.⌉
+⌈ ":text"       a string part: sends "text" on port "" for each mevent it receives.⌉
+
+defn jit_instantiate (reg, owner, name, arg) {
+    deftemp inst ⇐ make_leaf (name, owner, ϕ, arg, ↪︎handle_jit, ϕ)
+    deftemp firstc ⇐ arg [1]
+    if (firstc = “?”) {
+        ⌈ probes get to go to the front of the line ⌉
+        inst.vip ⇐ ⊤
+    }
+    return inst
+}
+
+defn handle_jit (eh, mev) {
+    s ≡ eh.arg
+    deftemp firstc ⇐ s [1]
+    if firstc = “$” {
+      shell_out_handler (eh, #stringcdr (#stringcdr (#stringcdr (s))), mev)
+    } elif firstc = “?” {
+      probe_handler (eh, mev)
+    } else {
+      ⌈ just a string, send it out ⌉
+      send (eh, “”, #stringcdr (s))
+    }
+}
+
+defn probe_handler (eh, mev) {
+    global ticktime
+    s ≡ mev.payload
+    report (“Info”,
+        #strcons (“  @”,
+                  #strcons (#asstr (ticktime),
+                            #strcons (“  ”,
+                                      #strcons (“probe ”,
+                                                #strcons (eh.name,
+                                                          #strcons (“: ”,
+                                                                    #asstr (s))))))))
+}
+
+defn shell_out_handler (eh, cmd, mev) {
+    s ≡ mev.payload
+    deftemp ret ⇐ ϕ
+    deftemp rc ⇐ ϕ
+    deftemp stdout ⇐ ϕ
+    deftemp stderr ⇐ ϕ
+    deftemp command ⇐ cmd
+    deftemp pbpRoot ⇐ #get_pbp_root ()
+    if pbpRoot != “” {
+        command ⇐ #substitute (“_/”,
+                               #strcons (pbpRoot, “/”),
+                               command)
+    }
+    if (#show_command ()) {
+        #print_stderr (#strcons (“- --- shell-out: ”, command))
+        #print_nl_stderr ()
+    }
+    #run_command (command, s, ret, rc, stdout, stderr)
+    if rc = 0 {
+        send (eh, “”, #strcons (stdout, stderr))
+    } else {
+        send (eh, “✗”, #strcons (stdout, stderr))
+    }
+}

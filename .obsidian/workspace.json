@@ -197,6 +197,7 @@
   },
   "active": "c769a219810c4f52",
   "lastOpenFiles": [
+    "kernel/jit.rt",
     "kernel/out.✗",
     "kernel/temp.nanodsl.17191.mjs",
     "kernel/temp.nanodsl.13557.mjs",
@@ -207,7 +208,6 @@
     "kernel/temp.nanodsl.15915.mjs",
     "kernel/temp.nanodsl.13190.mjs",
     "kernel/temp.nanodsl.27302.mjs",
-    "kernel/temp.nanodsl.5495.mjs",
     "kernel/temp/script.md",
     "kernel/dlisp.md",
     "kernel/dict.md",
