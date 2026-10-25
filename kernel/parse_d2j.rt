@@ -1,46 +1,132 @@
-buff contains the input source string
-buffx is the index to the next uncomsumed character (if buffx > len(buff), no more chars)
-put resulting object onto result_stack
-
-parse { ... } otherwise { ... }
-
-defparser parse_down_dir () {
-  // on a successful parse, this leaves a down_wire object on the result_stack
-  parse {
-    "{" <dirDown | sourcePort | targetPort | target> "}"
-    collapse 4 results into a down_dir object on the result stack
-  }
-}
-
-defparser parse_across_dir () {
-  // on a successful parse, this leaves an across_wire object on the result_stack
-  parse {
-    "{" <dirAcross | source | sourcePort | target | targetPort > "}"
-    collapse 5 results into a across_dir object on the result stack
-  }
-}
-
-defparser parse_up_dir () {
-  // on a successful parse, this leaves an up_wire object on the result_stack
-  parse {
-    "{" <dirAcross | source | sourcePort | target | targetPort > "}"
-    collapse 5 results into a up_dir object on the result stack
-  }
-}
-
-defparser parse_through_dir () {
-  // on a successful parse, this leaves an through_wire object on the result_stack
-  parse {
-    "{" <dirAcross | sourcePort | targetPort > "}"
-    collapse 3 results into a through_dir object on the result stack
-  }
-}
-
-
-
 //////////////
 // kv means "key value"
 //////////////
+
+defparser parse_down {
+  uparse {
+    @kv_down
+    @sourcePort
+    @targetPort
+    @target
+  }
+  pack-obj 4  
+}
+
+defparser parse_across {
+  uparse {
+    @kv_across
+    @sourcePort
+    @targetPort
+    @target
+    @source
+  }
+  pack-obj 5
+}
+
+defparser parse_up {
+  uparse {
+    @kv_up
+    @targetPort
+    @sourcePort
+    @source
+  }
+  pack-obj 4
+}
+
+defparser parse_through {
+  uparse {
+    @kv_through
+    @targetPort
+    @sourcePort
+  }
+  pack-obj 3
+}
+
+
+
+
+defparser kv_down {
+  parse {
+    key "dir"
+    int 0
+  }
+  pack-kv 2
+}
+defparser kv_across {
+  parse {
+    key "dir"
+    int 1
+  }
+  pack-kv 2
+}
+defparser kv_up {
+  parse {
+    key "dir"
+    int 2
+  }
+  pack-kv 2
+}
+defparser kv_through {
+  parse {
+    key "dir"
+    int 3
+  }
+  pack-kv 2
+}
+
+defparser sourcePort {
+  parse {
+    key "source_port"
+    string _
+  }
+  pack-kv 2
+}
+
+// key parse string and colon and leaves only key as an istr on the stack, string _ parses any dquoted string
+// and leaves it as a str on the stack
+// parse { ... } contains parsing actions, if parse is successful, then commands following { ... }
+// are executed, else stack is returned to pre-parse state (i.e. partial parse items removed)
+defparser targetPort {
+  parse {
+    key "target_port"
+    string _
+  }
+  pack-kv 2
+}
+
+defparser target {
+  parse {
+    key "target"
+    @child_id
+  }
+  pack-kv 2
+}
+
+defparser child_id {
+  parse {
+    @name
+    @id
+  }
+  pack-obj 2
+}
+
+defparser name {
+  parse {
+    key "name"
+    string _
+  }
+  pack-kv 2
+}
+
+defparser name {
+  parse {
+    key "id"
+    int _
+  }
+  pack-kv 2
+}
+
+---
 
 defparser dirDown >> kv(int) object {
   // on success, leaves 1 kv("dir",int(0)) object on result stack
