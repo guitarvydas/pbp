@@ -34,7 +34,7 @@ semantics {
 
    External = "#" ident "(" ExpComma* ")" line?
 
-   Deftemp = kw<"deftemp"> Lval "⇐" Exp Rec_Statement?
+   Deftemp = kw<"deftemp"> ident "⇐" Exp Rec_Statement?
    Defsynonym =
      | ident "≡" Exp Rec_Statement? -- legal
      | Lval "≡" Exp Rec_Statement? -- illegal
@@ -179,7 +179,6 @@ semantics {
       | kw<"range">
       | kw<"while">
       | kw<"as">
-      | kw<"pair">
       | kw<"push">
       | lambda
       | phi

@@ -1,55 +1,89 @@
 ⌈ Stock parts. All others are assumed to exist in supplementary palette libraries.⌉
 
 defn trash_instantiate (reg, owner, name, template_data, arg) {
-    return make_leaf (name, owner, ϕ, “”, ↪︎trash_handler, ϕ)
+    return make_leaf (name, owner, ϕ, “”, ↪︎trash_handler, ↪︎leaf_tick, ↪︎leaf_reset)
 }
 
 defn trash_handler (eh, mev) {
     pass
 }
 
-⌈ Stop: asks the parent to reset itself and all its children.⌉
+⌈ Stop: asks the parent to reset itself and all its children, then sends its payload on port "".⌉
 defn stop_instantiate (reg, owner, name, template_data, arg) {
-    return make_leaf (name, owner, ϕ, “”, ↪︎stop_handler, ϕ)
+    return make_leaf (name, owner, ϕ, “”, ↪︎stop_handler, ↪︎leaf_tick, ↪︎leaf_reset)
 }
 
 defn stop_handler (eh, mev) {
     request_reset (eh)
+    send (eh, “”, mev.payload)
 }
 
 ⌈ 1→2: waits for a mevent on port “1” and one on port “2”, in either order, then sends the payloads on “1” and “2”, in that order.⌉
-defobj Pair {
-        • first ⇐ ϕ
-        • second ⇐ ϕ
+defobj TwoMevents {
+        • firstmev ⇐ ϕ
+        • secondmev ⇐ ϕ
 }
 
-defn deracer_reset_handler (eh) {
-    eh.instance_data ⇐ #fresh (Pair)
+⌈ Deracer_States :: enum { idle, waitingForFirstmev, waitingForSecondmev }⌉
+defobj Deracer_Instance_Data {
+        • state ⇐ “idle”
+        • buffer ⇐ ϕ
+}
+
+defn deracer_reset (eh) {
+    leaf_reset (eh)
+    deftemp inst ⇐ eh.instance_data
+    inst.state ⇐ “idle”
+    inst.buffer ⇐ #fresh (TwoMevents)
 }
 
 defn deracer_instantiate (reg, owner, name, template_data, arg) {
-    return make_leaf (name, owner, #fresh (Pair), “”, ↪︎deracer_handler, ↪︎deracer_reset_handler)
+    deftemp inst ⇐ #fresh (Deracer_Instance_Data)
+    inst.buffer ⇐ #fresh (TwoMevents)
+    return make_leaf (name, owner, inst, “”, ↪︎deracer_handler, ↪︎leaf_tick, ↪︎deracer_reset)
+}
+
+defn send_firstmev_then_secondmev (eh, inst) {
+    send (eh, “1”, inst.buffer.firstmev.payload)
+    send (eh, “2”, inst.buffer.secondmev.payload)
 }
 
 defn deracer_handler (eh, mev) {
-    deftemp pair ⇐ eh.instance_data
-    if “1” = mev.port and pair.first = ϕ {
-        pair.first ⇐ mev
-    } elif “2” = mev.port and pair.second = ϕ {
-        pair.second ⇐ mev
+    deftemp inst ⇐ eh.instance_data
+    if inst.state = “idle” {
+        if “1” = mev.port {
+            inst.buffer.firstmev ⇐ mev
+            inst.state ⇐ “waitingForSecondmev”
+        } elif “2” = mev.port {
+            inst.buffer.secondmev ⇐ mev
+            inst.state ⇐ “waitingForFirstmev”
+        } else {
+            runtime_error (#strcons (“bad mev.port (case A) for deracer ”, mev.port))
+        }
+    } elif inst.state = “waitingForFirstmev” {
+        if “1” = mev.port {
+            inst.buffer.firstmev ⇐ mev
+            send_firstmev_then_secondmev (eh, inst)
+            inst.state ⇐ “idle”
+        } else {
+            runtime_error (#strcons (“deracer: waiting for 1 but got [”, #strcons (mev.port, “] (case B)”)))
+        }
+    } elif inst.state = “waitingForSecondmev” {
+        if “2” = mev.port {
+            inst.buffer.secondmev ⇐ mev
+            send_firstmev_then_secondmev (eh, inst)
+            inst.state ⇐ “idle”
+        } else {
+            runtime_error (#strcons (“deracer: waiting for 2 but got [”, #strcons (mev.port, “] (case C)”)))
+        }
     } else {
-        runtime_error (#strcons (“1→2: unexpected mevent on port '”, #strcons (mev.port, “'”)))
-    }
-    if pair.first != ϕ and pair.second != ϕ {
-        send (eh, “1”, pair.first.payload)
-        send (eh, “2”, pair.second.payload)
-        eh.instance_data ⇐ #fresh (Pair)
+        runtime_error (#strcons (“bad state for deracer ”, inst.state))
     }
 }
 
 ⌈ Read Text File: the payload is a file name; sends the contents on “”, or an error message on “✗”.⌉
 defn read_text_file_instantiate (reg, owner, name, template_data, arg) {
-    return make_leaf (name, owner, ϕ, “”, ↪︎read_text_file_handler, ϕ)
+    return make_leaf (name, owner, ϕ, “”, ↪︎read_text_file_handler, ↪︎leaf_tick, ↪︎leaf_reset)
 }
 
 defn read_text_file_handler (eh, mev) {

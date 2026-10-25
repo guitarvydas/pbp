@@ -3,7 +3,8 @@
 ⌈ `handler` is called as handler (eh, mev).⌉
 ⌈ `instance_data` is private to the leaf; the handler finds it again each time it is invoked.⌉
 ⌈ `visit_queue` (containers only) holds the children that have been sent a mevent, once for each mevent.⌉
-⌈ `reset_requested` is set on a container by a child that calls request_reset.⌉
+⌈ `tick` is a function (eh) that continues the processing of an active part. make_container sets it to container_tick; the programmer supplies it to make_leaf.⌉
+⌈ `reset` is a function (eh) that puts the part back into a known state. make_container sets it to container_reset; the programmer supplies it to make_leaf.⌉
 ⌈ Eh_States :: enum { idle, active }⌉
 defobj Eh {
         • name ⇐ “”
@@ -14,11 +15,10 @@ defobj Eh {
         • visit_queue ⇐ #freshQueue ()
         • connections ⇐ []
         • handler ⇐ ϕ
-        • reset_function ⇐ ϕ
-        • reset_handler ⇐ ϕ
+        • tick ⇐ ϕ
+        • reset ⇐ ϕ
         • instance_data ⇐ ϕ
         • arg ⇐ “”
         • state ⇐ “idle”
         • vip ⇐ ⊥
-        • reset_requested ⇐ ⊥
 }

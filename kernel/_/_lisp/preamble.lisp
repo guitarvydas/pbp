@@ -106,4 +106,4 @@ x))))
 
 (defmethod queue2list ((self Queue))
 (contents self))
-                                                            #|line 1|#
+                                                            #|line 1|# #|line 2|#

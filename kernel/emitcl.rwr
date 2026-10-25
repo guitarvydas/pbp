@@ -215,7 +215,7 @@ ExternalPhrase_showCommand [_octothorpe _ lp rp] = ‛ (not (null (uiop:getenv "
 
 ExternalPhrase_unrecognized [_octothorpe ident lp stuff* rp] = ‛«_octothorpe» «ident» ⎝ error - unrecognized external (with given arguments) ⎠ «lp»«stuff»«rp» ’
 
-Deftemp [_deftemp lval _mutate e rec?] = ‛\n(let ((«lval» «e»))⤷\n(declare (ignorable «lval»))«rec»⤶)’
+Deftemp [_deftemp id _mutate e rec?] = ‛\n(let ((«id» «e»))⤷\n(declare (ignorable «id»))«rec»⤶)’
 Defsynonym_illegal [ lval err _eqv e rec?] = ‛\n«lval» «err» = «e»«rec»’
 Defsynonym_legal [id _eqv e rec?] = ‛\n(let ((«id» «e»))⤷\n(declare (ignorable «id»))«rec»⤶)’
 

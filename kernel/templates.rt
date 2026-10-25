@@ -60,7 +60,10 @@ defn generate_instance_name (owner, template_name) {
 }
 
 defn get_component_instance (reg, template_name, owner) {
-    if template_name in reg.templates {
+    ⌈ A name that begins with ":" is a JIT part (see jit.rt)⌉
+    if “:” = #stringcar (template_name) {
+        return jit_instantiate (reg, owner, generate_instance_name (owner, template_name), template_name)
+    } elif template_name in reg.templates {
         template ≡ reg.templates@template_name
         instance_name ≡ generate_instance_name (owner, template_name)
         return template.instantiator (reg, owner, instance_name, template.template_data, “”)

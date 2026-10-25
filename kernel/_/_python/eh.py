@@ -1,33 +1,24 @@
-# Data for an asyncronous component _ effectively, a function with input#line 1
-# and output queues of mevents.                        #line 2
-#                                                      #line 3
-# Components can either be a user_supplied function ("leaf“), or a “container“#line 4
-# that routes mevents to child components according to a list of connections#line 5
-# that serve as a mevent routing table.                #line 6
-#                                                      #line 7
-# Child components themselves can be leaves or other containers.#line 8
-#                                                      #line 9
-# `handler` invokes the code that is attached to this component.#line 10
-#                                                      #line 11
-# `instance_data` is a pointer to instance data that the `leaf_handler`#line 12
-# function may want whenever it is invoked again.      #line 13#line 14
-# Eh_States :: enum { idle, active }                   #line 15
+# Runtime data of a Part.                              #line 1
+# Parts are either leaves (a user-supplied handler) or containers (a handler that routes mevents to children).#line 2
+# `handler` is called as handler (eh, mev).            #line 3
+# `instance_data` is private to the leaf; the handler finds it again each time it is invoked.#line 4
+# `visit_queue` (containers only) holds the children that have been sent a mevent, once for each mevent.#line 5
+# `tick` is a function (eh) that continues the processing of an active part. make_container sets it to container_tick; the programmer supplies it to make_leaf.#line 6
+# `reset` is a function (eh) that puts the part back into a known state. make_container sets it to container_reset; the programmer supplies it to make_leaf.#line 7
+# Eh_States :: enum { idle, active }                   #line 8
 class Eh:
-    def __init__ (self):                               #line 16
-        self.name =  ""                                #line 17
-        self.inq =  deque ([])                         #line 18
-        self.outq =  deque ([])                        #line 19
-        self.owner =  None                             #line 20
-        self.children = []                             #line 21
-        self.visit_ordering =  deque ([])              #line 22
-        self.connections = []                          #line 23
-        self.handler =  None                           #line 24
-        self.finject =  None                           #line 25
-        self.reset =  None                             #line 26
-        self.instance_data =  None                     #line 27# arg needed for probe support #line 28
-        self.arg =  ""                                 #line 29
-        self.state =  "idle"                           #line 30
-        self.special =  False                          #line 31#line 32
-                                                       #line 33
-def injector (eh,mevent):                              #line 34
-    eh.handler ( eh, mevent)                           #line 35#line 36#line 37
+    def __init__ (self):                               #line 9
+        self.name =  ""                                #line 10
+        self.inq =  deque ([])                         #line 11
+        self.outq =  deque ([])                        #line 12
+        self.owner =  None                             #line 13
+        self.children = []                             #line 14
+        self.visit_queue =  deque ([])                 #line 15
+        self.connections = []                          #line 16
+        self.handler =  None                           #line 17
+        self.tick =  None                              #line 18
+        self.reset =  None                             #line 19
+        self.instance_data =  None                     #line 20
+        self.arg =  ""                                 #line 21
+        self.state =  "idle"                           #line 22
+        self.vip =  False                              #line 23#line 24

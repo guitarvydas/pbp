@@ -1,35 +1,17 @@
 #line 1
-                                                       #line 2
 defobj Mevent {
-                                                       #line 3
-    port ≡                                             #line 4
-    payload ≡                                          #line 5#line 6
+                                                       #line 2
+    port ≡                                             #line 3
+    payload ≡                                          #line 4#line 5
 }
-                                                       #line 7
+                                                       #line 6
 defn make_mevent ≡
 (
     port ≡ ,
     payload ≡
 )
 {
-                                                       #line 8
+                                                       #line 7
         m ≡
-        return  m                                      #line 12#line 13#line 14
-}
-
-                                                       #line 15
-defn make_tick ≡
-()
-{
-                                                       #line 16
-        return make_mevent ( ".", "!")                 #line 17#line 18#line 19
-}
-
-defn is_tick ≡
-(
-    mev ≡
-)
-{
-                                                       #line 20
-        return  "." ==  mev.port                       #line 21#line 22
+        return  m                                      #line 11#line 12
 }

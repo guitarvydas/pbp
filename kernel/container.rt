@@ -3,7 +3,8 @@ defn make_container (name, owner) {
     eh.name ⇐ name
     eh.owner ⇐ owner
     eh.handler ⇐ ↪︎container_handler
-    eh.reset_function ⇐ ↪︎container_reset
+    eh.tick ⇐ ↪︎container_tick
+    eh.reset ⇐ ↪︎container_reset
     return eh
 }
 
@@ -26,44 +27,46 @@ defn container_instantiator (reg, owner, name, desc, arg) {
 }
 
 ⌈ The handler of every container.⌉
-⌈ A tick ticks the active children. Any other mevent is routed from the container itself (down and through wires).⌉
-⌈ Then the container steps its children until it is no longer busy.⌉
+⌈ The mevent is routed from the container itself (down and through wires).⌉
+⌈ Then the container steps its children until they are quiescent.⌉
 defn container_handler (container, mev) {
-    if is_tick (mev) {
-        for child in container.children {
-            if child.state = “active” {
-                tick (child)
-            }
-        }
-    } else {
-        route (container, container, mev)
+    route (container, container, mev)
+    run (container)
+}
+
+⌈ The tick of every container: tick all the children, then step the children until they are quiescent.⌉
+defn container_tick (container) {
+    for child in container.children {
+        tick (child)
     }
     run (container)
 }
 
 defn run (container) {
-    while busy (container) {
-        if step_children (container) {
-            return ϕ
-        }
+    while not (children_quiescent (container)) {
+        step_children (container)
     }
 }
 
-⌈ A leaf is busy if its input queue is non-empty or it is active.⌉
-⌈ A container is busy if its visit queue is non-empty or any child is busy.⌉
-defn busy (part) {
-    if 0 = #len (part.children) {
-        return (not (#empty (part.inq))) or part.state = “active”
+⌈ A part is quiescent when it has no mevent to handle, is not active, and (for a container)⌉
+⌈ all of its children are quiescent. A container runs until its children are quiescent.⌉
+defn quiescent (part) {
+    if not (#empty (part.inq)) {
+        return ⊥
     }
-    if not (#empty (part.visit_queue)) {
-        return ⊤
+    if part.state = “active” {
+        return ⊥
     }
+    return children_quiescent (part)
+}
+
+defn children_quiescent (part) {
     for child in part.children {
-        if busy (child) {
-            return ⊤
+        if not (quiescent (child)) {
+            return ⊥
         }
     }
-    return ⊥
+    return ⊤
 }
 
 ⌈ A VIP part goes to the head of the visit queue, any other part to the end.⌉
@@ -75,7 +78,7 @@ defn visit (container, part) {
     }
 }
 
-⌈ One pass over the children. Returns ⊤ if a reset was carried out.⌉
+⌈ One pass over the children.⌉
 defn step_children (container) {
     todo ≡ #queue2list (container.visit_queue)
     #resetQueue (container.visit_queue)
@@ -85,11 +88,6 @@ defn step_children (container) {
         if not (#empty (child.inq)) {
             handle (child)
             #append (handled, child)
-            if container.reset_requested {
-                container.reset_requested ⇐ ⊥
-                container_reset (container)
-                return ⊤
-            }
         }
     }
     ⌈ active parts that were not given a mevent are ticked⌉
@@ -108,11 +106,12 @@ defn step_children (container) {
             route (container, child, mev)
         }
     }
-    return ⊥
 }
 
 ⌈ Routes a single mevent to all matching wires of the container.⌉
 defn route (container, from_part, mev) {
+    global ticktime
+    ticktime ⇐ ticktime + 1
     deftemp was_sent ⇐ ⊥
     for conn in container.connections {
         if conn.sender.component = from_part and conn.sender.port = mev.port {
@@ -126,9 +125,12 @@ defn route (container, from_part, mev) {
 }
 
 ⌈ Delivers a copy of the mevent, with the port of the receiver, to the receiver of the wire.⌉
+⌈ The direction of the wire says where the mevent goes:⌉
+⌈   receiver is a child (down, across):          the input queue of the child, and the child is visited⌉
+⌈   receiver is the container (up, through):    the output queue of the container (an output gate)⌉
 defn deposit (container, conn, mev) {
     new_mev ≡ make_mevent (conn.receiver.port, mev.payload)
-    if conn.receiver.to_output {
+    if receiver_is_container (conn.direction) {
         #enqueue (conn.receiver.component.outq, new_mev)
     } else {
         enqueue (conn.receiver.component, new_mev)
@@ -144,6 +146,5 @@ defn container_reset (container) {
     #resetQueue (container.visit_queue)
     #resetQueue (container.inq)
     #resetQueue (container.outq)
-    container.reset_requested ⇐ ⊥
     container.state ⇐ “idle”
 }

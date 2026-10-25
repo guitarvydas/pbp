@@ -5,21 +5,21 @@
                                                        #line 5
                                                        #line 6
                                                        #line 7
-defobj Eh {
                                                        #line 8
-    name ≡                                             #line 9
+defobj Eh {
+                                                       #line 9
+    name ≡                                             #line 10
     inq ≡
     outq ≡
-    owner ≡                                            #line 12
-    children ≡                                         #line 13
+    owner ≡                                            #line 13
+    children ≡                                         #line 14
     visit_queue ≡
-    connections ≡                                      #line 15
-    handler ≡                                          #line 16
-    reset_function ≡                                   #line 17
-    reset_handler ≡                                    #line 18
-    instance_data ≡                                    #line 19
-    arg ≡                                              #line 20
-    state ≡                                            #line 21
-    vip ≡                                              #line 22
-    reset_requested ≡                                  #line 23#line 24
+    connections ≡                                      #line 16
+    handler ≡                                          #line 17
+    tick ≡                                             #line 18
+    reset ≡                                            #line 19
+    instance_data ≡                                    #line 20
+    arg ≡                                              #line 21
+    state ≡                                            #line 22
+    vip ≡                                              #line 23#line 24
 }

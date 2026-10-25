@@ -1,7 +1,46 @@
-defvar enumDown ⇐ 0
-defvar enumAcross ⇐ 1
-defvar enumUp ⇐ 2
-defvar enumThrough ⇐ 3
+⌈ Directions of wires. This section is the only place that knows how a direction is represented⌉
+⌈ (here: strings). To use integers, change the four constants and direction_label; nothing else changes.⌉
+defvar directionDown ⇐ “down”
+defvar directionAcross ⇐ “across”
+defvar directionUp ⇐ “up”
+defvar directionThrough ⇐ “through”
+
+⌈ d is the number used for a direction in the diagram JSON: 0 down, 1 across, 2 up, 3 through.⌉
+⌈ Returns ϕ for any other number.⌉
+defn direction_of_json (d) {
+    global directionDown
+    global directionAcross
+    global directionUp
+    global directionThrough
+    if d = 0 {
+        return directionDown
+    } elif d = 1 {
+        return directionAcross
+    } elif d = 2 {
+        return directionUp
+    } elif d = 3 {
+        return directionThrough
+    } else {
+        return ϕ
+    }
+}
+
+⌈ direction   sender                   receiver⌉
+⌈ down        the container            a child⌉
+⌈ across      a child                  a child⌉
+⌈ up          a child                  the container⌉
+⌈ through     the container            the container⌉
+defn sender_is_container (direction) {
+    global directionDown
+    global directionThrough
+    return direction = directionDown or direction = directionThrough
+}
+
+defn receiver_is_container (direction) {
+    global directionUp
+    global directionThrough
+    return direction = directionUp or direction = directionThrough
+}
 
 ⌈ Routing connection (wire) for a container. The `direction` field has no effect⌉
 ⌈ on routing; it is there for debugging, or for reading by other tools.⌉
@@ -18,12 +57,10 @@ defobj Sender {
 }
 
 ⌈ `Receiver` is the part and port that a mevent is delivered to.⌉
-⌈ `to_output` is true when the receiver is an output gate of the container (up and through wires):⌉
-⌈ the mevent goes on the container's output queue. Otherwise it goes on the input queue of the child.⌉
+⌈ When the receiver is the container itself (up and through wires) the port is an output gate.⌉
 defobj Receiver {
         • component ⇐ ϕ
         • port ⇐ ϕ
-        • to_output ⇐ ⊥
 }
 
 defn mkSender (component, port) {
@@ -33,11 +70,10 @@ defn mkSender (component, port) {
     return s
 }
 
-defn mkReceiver (component, port, to_output) {
+defn mkReceiver (component, port) {
     deftemp r ⇐ #fresh (Receiver)
     r.component ⇐ component
     r.port ⇐ port
-    r.to_output ⇐ to_output
     return r
 }
 
@@ -50,72 +86,30 @@ defn mkConnector (direction, sender, receiver) {
 }
 
 ⌈ JSON: {'dir': 0, 'source': {'name': '', 'id': 0}, 'source_port': '', 'target': {'name': 'Echo', 'id': 12}, 'target_port': ''},⌉
-⌈ `down` and `through` use the container as the sender, `up` and `through` use the container as the receiver.⌉
+⌈ The sender port is proto_conn@"source_port" and the receiver port is proto_conn@"target_port".⌉
+⌈ A child sender is proto_conn@"source", a child receiver is proto_conn@"target".⌉
 ⌈ Returns ϕ if the wire can not be made.⌉
-
-defn create_down_connector (container, proto_conn, children_by_id) {
-    tid ≡ (proto_conn@“target”)@“id”
-    target_component ≡ children_by_id@tid
-    if target_component = ϕ {
-        load_error (#strcons (“down wire: no such target ”, (proto_conn@“target”)@“name”))
-        return ϕ
-    } else {
-        return mkConnector (“down”,
-                            mkSender (container, proto_conn@“source_port”),
-                            mkReceiver (target_component, proto_conn@“target_port”, ⊥))
-    }
-}
-
-defn create_across_connector (container, proto_conn, children_by_id) {
-    sid ≡ (proto_conn@“source”)@“id”
-    source_component ≡ children_by_id@sid
-    tid ≡ (proto_conn@“target”)@“id”
-    target_component ≡ children_by_id@tid
-    if source_component = ϕ or target_component = ϕ {
-        load_error (“across wire: no such source or target”)
-        return ϕ
-    } else {
-        return mkConnector (“across”,
-                            mkSender (source_component, proto_conn@“source_port”),
-                            mkReceiver (target_component, proto_conn@“target_port”, ⊥))
-    }
-}
-
-defn create_up_connector (container, proto_conn, children_by_id) {
-    sid ≡ (proto_conn@“source”)@“id”
-    source_component ≡ children_by_id@sid
-    if source_component = ϕ {
-        load_error (#strcons (“up wire: no such source ”, (proto_conn@“source”)@“name”))
-        return ϕ
-    } else {
-        return mkConnector (“up”,
-                            mkSender (source_component, proto_conn@“source_port”),
-                            mkReceiver (container, proto_conn@“target_port”, ⊤))
-    }
-}
-
-defn create_through_connector (container, proto_conn, children_by_id) {
-    return mkConnector (“through”,
-                        mkSender (container, proto_conn@“source_port”),
-                        mkReceiver (container, proto_conn@“target_port”, ⊤))
-}
-
 defn create_connector (container, proto_conn, children_by_id) {
-    global enumDown
-    global enumAcross
-    global enumUp
-    global enumThrough
-    d ≡ proto_conn@“dir”
-    if d = enumDown {
-        return create_down_connector (container, proto_conn, children_by_id)
-    } elif d = enumAcross {
-        return create_across_connector (container, proto_conn, children_by_id)
-    } elif d = enumUp {
-        return create_up_connector (container, proto_conn, children_by_id)
-    } elif d = enumThrough {
-        return create_through_connector (container, proto_conn, children_by_id)
-    } else {
-        load_error (#strcons (“unknown wire direction ”, #asstr (d)))
+    direction ≡ direction_of_json (proto_conn@“dir”)
+    if direction = ϕ {
+        load_error (#strcons (“unknown wire direction ”, #asstr (proto_conn@“dir”)))
         return ϕ
     }
+    deftemp sender_component ⇐ container
+    if not (sender_is_container (direction)) {
+        sid ≡ (proto_conn@“source”)@“id”
+        sender_component ⇐ children_by_id@sid
+    }
+    deftemp receiver_component ⇐ container
+    if not (receiver_is_container (direction)) {
+        tid ≡ (proto_conn@“target”)@“id”
+        receiver_component ⇐ children_by_id@tid
+    }
+    if sender_component = ϕ or receiver_component = ϕ {
+        load_error (#strcons (#dirAsString (direction), “ wire: no such source or target”))
+        return ϕ
+    }
+    return mkConnector (direction,
+                        mkSender (sender_component, proto_conn@“source_port”),
+                        mkReceiver (receiver_component, proto_conn@“target_port”))
 }

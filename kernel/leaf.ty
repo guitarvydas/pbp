@@ -1,6 +1,11 @@
 #line 1
                                                        #line 2
-                                                       #line 3#line 4
+                                                       #line 3
+                                                       #line 4
+                                                       #line 5
+                                                       #line 6
+                                                       #line 7
+                                                       #line 8#line 9
 defn make_leaf ≡
 (
     name ≡ ,
@@ -8,23 +13,29 @@ defn make_leaf ≡
     instance_data ≡ ,
     arg ≡ ,
     handler ≡ ,
-    reset_handler ≡
+    tick ≡ ,
+    reset ≡
 )
 {
-                                                       #line 5
+                                                       #line 10
         eh ≡
-        return  eh                                     #line 14#line 15#line 16
+        return  eh                                     #line 19#line 20#line 21
 }
 
-                                                       #line 17
+defn leaf_tick ≡
+(
+    part ≡
+)
+{
+                                                       #line 22#line 23#line 24#line 25
+}
+
+                                                       #line 26
 defn leaf_reset ≡
 (
     part ≡
 )
 {
-                                                       #line 18
-        if ( part.reset_handler!= None) {
-                                                       #line 21#line 23
-        }
+                                                       #line 27
 
 }

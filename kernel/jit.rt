@@ -5,7 +5,7 @@
 ⌈ ":text"       a string part: sends "text" on port "" for each mevent it receives.⌉
 
 defn jit_instantiate (reg, owner, name, arg) {
-    deftemp inst ⇐ make_leaf (name, owner, ϕ, arg, ↪︎handle_jit, ϕ)
+    deftemp inst ⇐ make_leaf (name, owner, ϕ, arg, ↪︎handle_jit, ↪︎leaf_tick, ↪︎leaf_reset)
     deftemp firstc ⇐ arg [1]
     if (firstc = “?”) {
         ⌈ probes get to go to the front of the line ⌉
@@ -37,7 +37,7 @@ defn probe_handler (eh, mev) {
                                       #strcons (“probe ”,
                                                 #strcons (eh.name,
                                                           #strcons (“: ”,
-                                                                    #asstr (s))))))))
+                                                                    s)))))))
 }
 
 defn shell_out_handler (eh, cmd, mev) {

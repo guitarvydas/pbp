@@ -86,7 +86,7 @@ extractor {
    stdout = ident
    stderr = ident
    
-   Deftemp = kw<"deftemp"> Lval "⇐" Exp Rec_Statement?
+   Deftemp = kw<"deftemp"> ident "⇐" Exp Rec_Statement?
    Defsynonym =
      | Lval errorMessage "≡" Exp Rec_Statement? -- illegal
      | ident "≡" Exp Rec_Statement? -- legal
@@ -240,7 +240,6 @@ extractor {
       | kw<"range">
       | kw<"while">
       | kw<"as">
-      | kw<"pair">
       | kw<"push">
       | lambda
       | phi

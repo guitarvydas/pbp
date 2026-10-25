@@ -1,5 +1,4 @@
-⌈ A mevent has a port (the name of the incoming or outgoing port) and a payload (the value itself).⌉
-⌈ The kernel never copies a payload. Parts must not modify a payload that they have received.⌉
+⌈ A mevent has a port (the name of the incoming or outgoing port) and a payload. The payload is always a string.⌉
 defobj Mevent {
         • port ⇐ ϕ
         • payload ⇐ ϕ
@@ -10,13 +9,4 @@ defn make_mevent (port, payload) {
     m.port ⇐ port
     m.payload ⇐ payload
     return m
-}
-
-⌈ A tick is a mevent on the reserved port "." It is handed to a handler by `tick`, it is never queued.⌉
-defn make_tick () {
-    return make_mevent (“.”, “!”)
-}
-
-defn is_tick (mev) {
-    return “.” = mev.port
 }

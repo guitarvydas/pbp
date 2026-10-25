@@ -115,14 +115,18 @@ defn get_component_instance ≡
     owner ≡
 )
 {
-                                                       #line 62
-        if  template_name in  reg.templates {
-                                                       #line 63
-            template ≡                                 #line 64
+                                                       #line 62#line 63
+        if  ":" ==   template_name[0]  {
+                                                       #line 64
+            return jit_instantiate ( reg, owner,generate_instance_name ( owner, template_name), template_name)#line 65
+        }
+        elif  template_name in  reg.templates
+        {                                              #line 66
+            template ≡                                 #line 67
             instance_name ≡
-            return  template.instantiator ( reg, owner, instance_name, template.template_data, "")#line 66
+            return  template.instantiator ( reg, owner, instance_name, template.template_data, "")#line 69
         }
         else
-        {                                              #line 67#line 70
-        }                                              #line 71
+        {                                              #line 70#line 73
+        }                                              #line 74
 }

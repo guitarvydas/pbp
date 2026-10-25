@@ -1,4 +1,8 @@
-#line 1#line 2
+#line 1
+                                                       #line 2
+                                                       #line 3
+                                                       #line 4
+                                                       #line 5#line 6
 defn jit_instantiate ≡
 (
     reg ≡ ,
@@ -7,15 +11,14 @@ defn jit_instantiate ≡
     arg ≡
 )
 {
-                                                       #line 3
-        name_with_id ≡
+                                                       #line 7
         inst ≡
-        firstc ≡                                       #line 6
-        if ( firstc!= "$") {
-                                                       #line 7#line 8
+        firstc ≡                                       #line 9
+        if ( firstc ==  "?") {
+                                                       #line 10#line 11
 
         }
-        return  inst                                   #line 11#line 12#line 13
+        return  inst                                   #line 14#line 15#line 16
 }
 
 defn handle_jit ≡
@@ -24,30 +27,29 @@ defn handle_jit ≡
     mev ≡
 )
 {
-                                                       #line 14
-        s ≡                                            #line 15
-        firstc ≡                                       #line 16
-        if  firstc ==  "$" {
                                                        #line 17
+        s ≡                                            #line 18
+        firstc ≡                                       #line 19
+        if  firstc ==  "$" {
+                                                       #line 20
         }
         elif  firstc ==  "?"
-        {                                              #line 19
+        {                                              #line 22
         }
         else
-        {                                              #line 21#line 22#line 24
-        }                                              #line 25#line 26
+        {                                              #line 24#line 25#line 27
+        }                                              #line 28#line 29
 }
 
 defn probe_handler ≡
 (
     eh ≡ ,
-    tag ≡ ,
     mev ≡
 )
 {
-                                                       #line 27
-        ticktime  ≡ [_global,ticktime]                 #line 28
-        s ≡                                            #line 29#line 38#line 39
+                                                       #line 30
+        ticktime  ≡ [_global,ticktime]                 #line 31
+        s ≡                                            #line 32#line 41#line 42
 }
 
 defn shell_out_handler ≡
@@ -57,25 +59,25 @@ defn shell_out_handler ≡
     mev ≡
 )
 {
-                                                       #line 40
-        s ≡                                            #line 41
-        ret ≡                                          #line 42
-        rc ≡                                           #line 43
-        stdout ≡                                       #line 44
-        stderr ≡                                       #line 45
-        command ≡                                      #line 46
+                                                       #line 43
+        s ≡                                            #line 44
+        ret ≡                                          #line 45
+        rc ≡                                           #line 46
+        stdout ≡                                       #line 47
+        stderr ≡                                       #line 48
+        command ≡                                      #line 49
         pbpRoot ≡
         if  pbpRoot!= "" {
-                                                       #line 48
-            command ≡                                  #line 52
+                                                       #line 51
+            command ≡                                  #line 55
         }
         if ( ("PBPSHELLUT" in os.environ) ) {
-                                                       #line 53#line 56
+                                                       #line 56#line 59
         }
         if  rc ==  0 {
-                                                       #line 58
+                                                       #line 61
         }
         else
-        {                                              #line 60#line 62
-        }                                              #line 63#line 64
+        {                                              #line 63#line 65
+        }                                              #line 66
 }

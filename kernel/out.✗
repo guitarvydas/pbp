@@ -1,1 +1,4 @@
-open error on file 'jit.rt'
+can't find "directionDown" in "_global"
+
+grammar = "emit
+"

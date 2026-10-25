@@ -12,11 +12,11 @@ defn handle (eh) {
 
 ⌈ The part continues processing; no mevent is popped.⌉
 defn tick (eh) {
-    eh.handler (eh, make_tick ())
+    eh.tick (eh)
 }
 
 defn reset (eh) {
-    eh.reset_function (eh)
+    eh.reset (eh)
 }
 
 ⌈ Returns the output queue of the part, in order, and clears it.⌉
@@ -32,12 +32,13 @@ defn send (eh, port, payload) {
     #enqueue (eh.outq, make_mevent (port, payload))
 }
 
-⌈ Has the effect of calling reset on the parent container. The parent carries it out when this part has returned.⌉
+⌈ Calls reset on the parent container at once. This resets the calling part too, so request_reset⌉
+⌈ should be the last thing a part does (it may still send afterwards).⌉
 defn request_reset (eh) {
     if ϕ = eh.owner {
         runtime_error (#strcons (“request_reset: ”, #strcons (eh.name, “ has no parent”)))
     } else {
-        eh.owner.reset_requested ⇐ ⊤
+        reset (eh.owner)
     }
 }
 

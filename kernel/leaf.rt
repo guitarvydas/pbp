@@ -1,25 +1,31 @@
 ⌈ Creates a new leaf out of a handler function, and a data parameter⌉
 ⌈ that will be handed back to your handler when called.⌉
 ⌈ `name` is the full instance name made by get_component_instance.⌉
+⌈ `tick` is a function (eh) supplied by the programmer. It is called while the leaf is active and is given no mevent.⌉
+⌈ A leaf that never calls remain_active passes ↪︎leaf_tick, which does nothing.⌉
+⌈ `reset` is a function (eh) supplied by the programmer that puts the leaf back into a known state.⌉
+⌈ A leaf without private state passes ↪︎leaf_reset. A leaf with private state passes its own function,⌉
+⌈ which calls leaf_reset and then resets the private state.⌉
 
-defn make_leaf (name, owner, instance_data, arg, handler, reset_handler) {
+defn make_leaf (name, owner, instance_data, arg, handler, tick, reset) {
     deftemp eh ⇐ #fresh (Eh)
     eh.name ⇐ name
     eh.owner ⇐ owner
     eh.handler ⇐ handler
-    eh.reset_handler ⇐ reset_handler
-    eh.reset_function ⇐ ↪︎leaf_reset
+    eh.tick ⇐ tick
+    eh.reset ⇐ reset
     eh.instance_data ⇐ instance_data
     eh.arg ⇐ arg
     return eh
 }
 
-⌈ Reset a leaf to a known, idle state.⌉
+defn leaf_tick (part) {
+    pass
+}
+
+⌈ Clear the queues of a leaf and make it idle.⌉
 defn leaf_reset (part) {
     #resetQueue (part.inq)
     #resetQueue (part.outq)
-    if (part.reset_handler != ϕ) {
-        part.reset_handler (part)
-    }
     part.state ⇐ “idle”
 }

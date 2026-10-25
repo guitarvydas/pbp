@@ -6,15 +6,15 @@
 {"op":"insert", "operand":{"name":"outq", "indir":2, "type":"Queue_of_Mevent", "scope":"_global/Eh", "kind":"variable"}}
 {"op":"insert", "operand":{"name":"owner", "indir":2, "type":"Container", "scope":"_global/Eh", "kind":"variable"}}
 {"op":"insert", "operand":{"name":"children", "indir":2, "type":"List_of_Part", "scope":"_global/Eh", "kind":"variable"}}
-{"op":"insert", "operand":{"name":"visit_ordering", "indir":2, "type":"Queue_of_Part", "scope":"_global/Eh", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"visit_queue", "indir":2, "type":"Queue_of_Part", "scope":"_global/Eh", "kind":"variable"}}
 {"op":"insert", "operand":{"name":"connections", "indir":2, "type":"List_of_Wire", "scope":"_global/Eh", "kind":"variable"}}
 {"op":"insert", "operand":{"name":"handler", "indir":1, "type":"Fhandler", "scope":"_global/Eh", "kind":"variable"}}
-{"op":"insert", "operand":{"name":"finject", "indir":1, "type":"Finject", "scope":"_global/Eh", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"tick", "indir":1, "type":"Ftick", "scope":"_global/Eh", "kind":"variable"}}
 {"op":"insert", "operand":{"name":"reset", "indir":1, "type":"Freset", "scope":"_global/Eh", "kind":"variable"}}
 {"op":"insert", "operand":{"name":"instance_data", "indir":2, "type":"Any", "scope":"_global/Eh", "kind":"variable"}}
 {"op":"insert", "operand":{"name":"arg", "indir":2, "type":"Str", "scope":"_global/Eh", "kind":"variable"}}
 {"op":"insert", "operand":{"name":"state", "indir":2, "type":"Str", "scope":"_global/Eh", "kind":"variable"}}
-{"op":"insert", "operand":{"name":"special", "indir":1, "type":"Bool", "scope":"_global/Eh", "kind":"variable"}}
+{"op":"insert", "operand":{"name":"vip", "indir":1, "type":"Bool", "scope":"_global/Eh", "kind":"variable"}}
 {"op":"newscope", "operand":"injector"}
 {"op":"insert", "operand":{"name":"injector", "indir":0, "type":"void", "kind":"proc", "scope":"_global" }}
 {"op":"insert", "operand":{"name":"eh", "indir":2, "type":"Eh", "scope":"_global/injector","kind":"parameter"}}
