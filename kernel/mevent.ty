@@ -1,109 +1,35 @@
 #line 1
-defobj Datum {
                                                        #line 2
-    v ≡                                                #line 3
-    clone ≡                                            #line 4
-    reclaim ≡                                          #line 5#line 6
-}
-                                                       #line 7#line 8
-                                                       #line 9
-                                                       #line 10
-                                                       #line 11
-                                                       #line 12
 defobj Mevent {
-                                                       #line 13
-    port ≡                                             #line 14
-    payload ≡                                          #line 15#line 16
+                                                       #line 3
+    port ≡                                             #line 4
+    payload ≡                                          #line 5#line 6
 }
-                                                       #line 17
-defn clone_port ≡
-(
-    s ≡
-)
-{
-                                                       #line 18
-        return clone_string ( s)                       #line 19#line 20#line 21
-}
-
-                                                       #line 22
-                                                       #line 23
+                                                       #line 7
 defn make_mevent ≡
 (
     port ≡ ,
-    datum ≡
+    payload ≡
 )
 {
-                                                       #line 24
-        p ≡
+                                                       #line 8
         m ≡
-        return  m                                      #line 29#line 30#line 31
+        return  m                                      #line 12#line 13#line 14
 }
 
-                                                       #line 32
-defn mevent_clone ≡
+                                                       #line 15
+defn make_tick ≡
+()
+{
+                                                       #line 16
+        return make_mevent ( ".", "!")                 #line 17#line 18#line 19
+}
+
+defn is_tick ≡
 (
     mev ≡
 )
 {
-                                                       #line 33
-        m ≡
-        return  m                                      #line 37#line 38#line 39
-}
-
-                                                       #line 40
-defn destroy_mevent ≡
-(
-    mev ≡
-)
-{
-                                                       #line 41#line 42#line 43#line 44#line 45
-}
-
-defn destroy_datum ≡
-(
-    mev ≡
-)
-{
-                                                       #line 46#line 47#line 48#line 49
-}
-
-defn destroy_port ≡
-(
-    mev ≡
-)
-{
-                                                       #line 50#line 51#line 52#line 53
-}
-
-                                                       #line 54
-defn format_mevent ≡
-(
-    m ≡
-)
-{
-                                                       #line 55
-        if  m ==  None {
-                                                       #line 56
-            return  "{}"                               #line 57
-        }
-        else
-        {                                              #line 58
-            return  str( "{%5C”") +  str( m.port) +  str( "%5C”:%5C”") +  str( m.payload.v) +  "%5C”}"    #line 59#line 60
-        }                                              #line 61
-}
-
-defn format_mevent_raw ≡
-(
-    m ≡
-)
-{
-                                                       #line 62
-        if  m ==  None {
-                                                       #line 63
-            return  ""                                 #line 64
-        }
-        else
-        {                                              #line 65
-            return  m.payload.v                        #line 66#line 67
-        }                                              #line 68
+                                                       #line 20
+        return  "." ==  mev.port                       #line 21#line 22
 }

@@ -1,5 +1,6 @@
 #line 1
-                                                       #line 2#line 3
+                                                       #line 2
+                                                       #line 3#line 4
 defn make_leaf ≡
 (
     name ≡ ,
@@ -10,25 +11,20 @@ defn make_leaf ≡
     reset_handler ≡
 )
 {
-                                                       #line 4
+                                                       #line 5
         eh ≡
-        nm ≡                                           #line 6
-        if  None!= owner {
-                                                       #line 7
-            nm ≡                                       #line 8#line 9
-        }
-        return  eh                                     #line 19#line 20#line 21
+        return  eh                                     #line 14#line 15#line 16
 }
 
-                                                       #line 22
+                                                       #line 17
 defn leaf_reset ≡
 (
     part ≡
 )
 {
-                                                       #line 23
+                                                       #line 18
         if ( part.reset_handler!= None) {
-                                                       #line 26#line 28
+                                                       #line 21#line 23
         }
 
 }

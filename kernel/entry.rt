@@ -1,0 +1,54 @@
+⌈ Entry points. Invoked by the parent container.⌉
+
+defn enqueue (eh, mev) {
+    #enqueue (eh.inq, mev)
+}
+
+⌈ The part pops the first mevent of its own input queue and handles it.⌉
+defn handle (eh) {
+    mev ≡ #dequeue (eh.inq)
+    eh.handler (eh, mev)
+}
+
+⌈ The part continues processing; no mevent is popped.⌉
+defn tick (eh) {
+    eh.handler (eh, make_tick ())
+}
+
+defn reset (eh) {
+    eh.reset_function (eh)
+}
+
+⌈ Returns the output queue of the part, in order, and clears it.⌉
+defn fetch_output_queue (eh) {
+    out ≡ #queue2list (eh.outq)
+    #resetQueue (eh.outq)
+    return out
+}
+
+⌈ Calls available inside a part.⌉
+
+defn send (eh, port, payload) {
+    #enqueue (eh.outq, make_mevent (port, payload))
+}
+
+⌈ Has the effect of calling reset on the parent container. The parent carries it out when this part has returned.⌉
+defn request_reset (eh) {
+    if ϕ = eh.owner {
+        runtime_error (#strcons (“request_reset: ”, #strcons (eh.name, “ has no parent”)))
+    } else {
+        eh.owner.reset_requested ⇐ ⊤
+    }
+}
+
+defn remain_active (eh, flag) {
+    if flag {
+        eh.state ⇐ “active”
+    } else {
+        eh.state ⇐ “idle”
+    }
+}
+
+defn enable_vip (eh, flag) {
+    eh.vip ⇐ flag
+}

@@ -1,55 +1,121 @@
-
 defvar enumDown ⇐ 0
 defvar enumAcross ⇐ 1
 defvar enumUp ⇐ 2
 defvar enumThrough ⇐ 3
 
-
-⌈ Routing connection for a container component. The `direction` field has⌉
-⌈ no affect on the default mevent routing system _ it is there for debugging⌉
-⌈ purposes, or for reading by other tools.⌉
-
+⌈ Routing connection (wire) for a container. The `direction` field has no effect⌉
+⌈ on routing; it is there for debugging, or for reading by other tools.⌉
 defobj Connector {
         • direction ⇐ ϕ ⌈ down, across, up, through⌉
         • sender ⇐ ϕ
         • receiver ⇐ ϕ
 }
 
-⌈ `Sender` is used to “pattern match“ which `Receiver` a mevent should go to,⌉
-⌈ based on component ID (pointer) and port name.⌉
-
+⌈ `Sender` is matched on the part (identity) and the port name.⌉
 defobj Sender {
-        • name ⇐ ϕ
         • component ⇐ ϕ
         • port ⇐ ϕ
 }
 
-
-
-⌈ `Receiver` is a handle to a destination queue, and a `port` name to assign⌉
-⌈ to incoming mevents to this queue.⌉
-
+⌈ `Receiver` is the part and port that a mevent is delivered to.⌉
+⌈ `to_output` is true when the receiver is an output gate of the container (up and through wires):⌉
+⌈ the mevent goes on the container's output queue. Otherwise it goes on the input queue of the child.⌉
 defobj Receiver {
-        • name ⇐ ϕ
-        • queue ⇐ ϕ
-        • port ⇐ ϕ
         • component ⇐ ϕ
+        • port ⇐ ϕ
+        • to_output ⇐ ⊥
 }
 
-defn mkSender (name, component, port) {
+defn mkSender (component, port) {
     deftemp s ⇐ #fresh (Sender)
-    s.name ⇐ name
     s.component ⇐ component
     s.port ⇐ port
     return s
 }
 
-defn mkReceiver (name, component, port, q) {
+defn mkReceiver (component, port, to_output) {
     deftemp r ⇐ #fresh (Receiver)
-    r.name ⇐ name
     r.component ⇐ component
     r.port ⇐ port
-    ⌈ We need a way to determine which queue to target. "Down" and "Across" go to inq, "Up" and "Through" go to outq.⌉
-    r.queue ⇐ q
+    r.to_output ⇐ to_output
     return r
+}
+
+defn mkConnector (direction, sender, receiver) {
+    deftemp c ⇐ #fresh (Connector)
+    c.direction ⇐ direction
+    c.sender ⇐ sender
+    c.receiver ⇐ receiver
+    return c
+}
+
+⌈ JSON: {'dir': 0, 'source': {'name': '', 'id': 0}, 'source_port': '', 'target': {'name': 'Echo', 'id': 12}, 'target_port': ''},⌉
+⌈ `down` and `through` use the container as the sender, `up` and `through` use the container as the receiver.⌉
+⌈ Returns ϕ if the wire can not be made.⌉
+
+defn create_down_connector (container, proto_conn, children_by_id) {
+    tid ≡ (proto_conn@“target”)@“id”
+    target_component ≡ children_by_id@tid
+    if target_component = ϕ {
+        load_error (#strcons (“down wire: no such target ”, (proto_conn@“target”)@“name”))
+        return ϕ
+    } else {
+        return mkConnector (“down”,
+                            mkSender (container, proto_conn@“source_port”),
+                            mkReceiver (target_component, proto_conn@“target_port”, ⊥))
+    }
+}
+
+defn create_across_connector (container, proto_conn, children_by_id) {
+    sid ≡ (proto_conn@“source”)@“id”
+    source_component ≡ children_by_id@sid
+    tid ≡ (proto_conn@“target”)@“id”
+    target_component ≡ children_by_id@tid
+    if source_component = ϕ or target_component = ϕ {
+        load_error (“across wire: no such source or target”)
+        return ϕ
+    } else {
+        return mkConnector (“across”,
+                            mkSender (source_component, proto_conn@“source_port”),
+                            mkReceiver (target_component, proto_conn@“target_port”, ⊥))
+    }
+}
+
+defn create_up_connector (container, proto_conn, children_by_id) {
+    sid ≡ (proto_conn@“source”)@“id”
+    source_component ≡ children_by_id@sid
+    if source_component = ϕ {
+        load_error (#strcons (“up wire: no such source ”, (proto_conn@“source”)@“name”))
+        return ϕ
+    } else {
+        return mkConnector (“up”,
+                            mkSender (source_component, proto_conn@“source_port”),
+                            mkReceiver (container, proto_conn@“target_port”, ⊤))
+    }
+}
+
+defn create_through_connector (container, proto_conn, children_by_id) {
+    return mkConnector (“through”,
+                        mkSender (container, proto_conn@“source_port”),
+                        mkReceiver (container, proto_conn@“target_port”, ⊤))
+}
+
+defn create_connector (container, proto_conn, children_by_id) {
+    global enumDown
+    global enumAcross
+    global enumUp
+    global enumThrough
+    d ≡ proto_conn@“dir”
+    if d = enumDown {
+        return create_down_connector (container, proto_conn, children_by_id)
+    } elif d = enumAcross {
+        return create_across_connector (container, proto_conn, children_by_id)
+    } elif d = enumUp {
+        return create_up_connector (container, proto_conn, children_by_id)
+    } elif d = enumThrough {
+        return create_through_connector (container, proto_conn, children_by_id)
+    } else {
+        load_error (#strcons (“unknown wire direction ”, #asstr (d)))
+        return ϕ
+    }
 }

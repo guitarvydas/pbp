@@ -1,454 +1,215 @@
-defn create_down_connector ≡
-(
-    container ≡ ,
-    proto_conn ≡ ,
-    connectors ≡ ,
-    children_by_id ≡
-)
-{
-                                                       #line 1#line 2
-        connector ≡
-        target_proto ≡                                 #line 6
-        id_proto ≡                                     #line 7
-        target_component ≡                             #line 8
-        if ( target_component ==  None) {
-                                                       #line 9#line 10
-        }
-        else
-        {                                              #line 11
-
-        }
-        return  connector                              #line 14#line 15#line 16
-}
-
-defn create_across_connector ≡
-(
-    container ≡ ,
-    proto_conn ≡ ,
-    connectors ≡ ,
-    children_by_id ≡
-)
-{
-                                                       #line 17
-        connector ≡
-        sid ≡                                          #line 20
-        source_component ≡                             #line 21
-        tid ≡                                          #line 22
-        target_component ≡                             #line 23
-        if  source_component ==  None {
-                                                       #line 24
-        }
-        else
-        {                                              #line 26
-            if  target_component ==  None {
-                                                       #line 28
-            }
-            else
-            {                                          #line 30
-
-            }                                          #line 33
-        }
-        return  connector                              #line 34#line 35#line 36
-}
-
-defn create_up_connector ≡
-(
-    container ≡ ,
-    proto_conn ≡ ,
-    connectors ≡ ,
-    children_by_id ≡
-)
-{
-                                                       #line 37
-        connector ≡
-        sid ≡                                          #line 40
-        source_component ≡                             #line 41
-        if  source_component ==  None {
-                                                       #line 42#line 43
-        }
-        else
-        {                                              #line 44
-
-        }
-        return  connector                              #line 48#line 49#line 50
-}
-
-defn create_through_connector ≡
-(
-    container ≡ ,
-    proto_conn ≡ ,
-    connectors ≡ ,
-    children_by_id ≡
-)
-{
-                                                       #line 51
-        connector ≡
-        return  connector                              #line 56#line 57#line 58
-}
-                                                       #line 59
-defn container_instantiator ≡
-(
-    reg ≡ ,
-    owner ≡ ,
-    container_name ≡ ,
-    desc ≡ ,
-    arg ≡
-)
-{
-                                                       #line 60
-        enumDown  ≡ [_global,enumDown]                 #line 61
-        enumUp  ≡ [_global,enumUp]                     #line 62
-        enumAcross  ≡ [_global,enumAcross]             #line 63
-        enumThrough  ≡ [_global,enumThrough]           #line 64
-        container ≡
-        children ≡                                     #line 66
-        children_by_id ≡                               #line 67#line 68
-        child_desc ≡
-        for child_desc in  desc ["children"] {
-                                                       #line 69
-            child_instance ≡
-            id ≡                                       #line 72
-            children_by_id [id] ≡                      #line 73#line 74#line 75
-        }
-        connectors ≡                                   #line 78
-        proto_conn ≡
-        for proto_conn in  desc ["connections"] {
-                                                       #line 79
-            connector ≡
-            if  proto_conn ["dir"] ==  enumDown {
-                                                       #line 81
-            }
-            elif  proto_conn ["dir"] ==  enumAcross
-            {                                          #line 83
-            }
-            elif  proto_conn ["dir"] ==  enumUp
-            {                                          #line 85
-            }
-            elif  proto_conn ["dir"] ==  enumThrough
-            {                                          #line 87#line 89
-            }                                          #line 90
-        }
-        return  container                              #line 92#line 93#line 94
-}
-
-                                                       #line 95
-defn container_handler ≡
-(
-    container ≡ ,
-    mevent ≡
-)
-{
-                                                       #line 96#line 100#line 101
-}
-
-                                                       #line 102
-defn container_reset ≡
-(
-    container ≡
-)
-{
-                                                       #line 103
-        child ≡
-        for child in  container.children {
-                                                       #line 104#line 106
-        }
-                                                       #line 112
-}
-
-                                                       #line 113
-defn destroy_container ≡
-(
-    eh ≡
-)
-{
-                                                       #line 114#line 115#line 116
-}
-
-                                                       #line 117
-defn sender_eq ≡
-(
-    s1 ≡ ,
-    s2 ≡
-)
-{
-                                                       #line 118
-        same_components ≡                              #line 119
-        same_ports ≡                                   #line 120
-        return  same_components and  same_ports        #line 121#line 122#line 123
-}
-
-                                                       #line 124#line 125
-defn deposit ≡
-(
-    parent ≡ ,
-    conn ≡ ,
-    mevent ≡
-)
-{
-                                                       #line 126
-        new_mevent ≡                                   #line 129#line 130
-}
-
-defn force_tick ≡
-(
-    parent ≡ ,
-    eh ≡
-)
-{
-                                                       #line 131
-        tick_mev ≡                                     #line 135#line 136
-}
-
-defn push_mevent ≡
-(
-    parent ≡ ,
-    receiver ≡ ,
-    inq ≡ ,
-    m ≡
-)
-{
-                                                       #line 137
-        if ( receiver.special) {
-                                                       #line 139
-        }
-        else
-        {                                              #line 141#line 143
-        }                                              #line 144#line 145#line 146
-}
-
-defn is_self ≡
-(
-    child ≡ ,
-    container ≡
-)
-{
-                                                       #line 147#line 148
-        return  child ==  container                    #line 149#line 150#line 151
-}
-
-defn step_child_once ≡
-(
-    child ≡ ,
-    mev ≡
-)
-{
-                                                       #line 152
-        if ( ("PBPSTEPPING" in os.environ) ) {
-                                                       #line 153#line 156
-        }                                              #line 158#line 159
-}
-
-defn step_children ≡
-(
-    container ≡ ,
-    causingMevent ≡
-)
-{
-                                                       #line 160
-        child ≡
-        for child in  list ( container.visit_ordering) {
-                                                       #line 164#line 165
-            if (not (is_self ( child, container))) {
-                                                       #line 166
-                if (not ((0==len( child.inq)))) {
-                                                       #line 167
-                    mev ≡
-                }
-                else
-                {                                      #line 172
-                    if  child.state ==  "idle" {
-                                                       #line 173#line 174
-                    }
-                    else
-                    {                                  #line 175
-                        mev ≡                          #line 179
-                    }                                  #line 180
-                }                                      #line 181
-            }                                          #line 182
-        }                                              #line 184#line 185
-        child ≡
-        for child in  container.children {
-                                                       #line 186
-            if  child.state ==  "active" {
-                                                       #line 187#line 188
-
-            }                                          #line 191
-            while (not ((0==len( child.outq)))) {
-                                                       #line 192
-                mev ≡                                  #line 196
-            }                                          #line 197
-        }                                              #line 198#line 199
-}
-
-defn attempt_tick ≡
-(
-    parent ≡ ,
-    eh ≡
-)
-{
-                                                       #line 200
-        if  eh.state!= "idle" {
-                                                       #line 201#line 203
-        }                                              #line 204#line 205
-}
-
-defn is_tick ≡
-(
-    mev ≡
-)
-{
-                                                       #line 206
-        return  "." ==  mev.port                       #line 207#line 208#line 209
-}
-
-                                                       #line 210
-                                                       #line 211#line 212
-defn route ≡
-(
-    container ≡ ,
-    from_component ≡ ,
-    mevent ≡
-)
-{
-                                                       #line 213
-        was_sent ≡                                     #line 214
-        fromname ≡                                     #line 215
-        ticktime  ≡ [_global,ticktime]                 #line 216
-        ticktime ≡                                     #line 217
-        if is_tick ( mevent) {
-                                                       #line 218
-            child ≡
-            for child in  container.children {
-                                                       #line 219#line 220
-            }
-            was_sent ≡                                 #line 221
-        }
-        else
-        {                                              #line 222
-            if (not (is_self ( from_component, container))) {
-                                                       #line 223
-                fromname ≡                             #line 224#line 225
-            }
-            from_sender ≡                              #line 227
-            connector ≡
-            for connector in  container.connections {
-                                                       #line 228
-                if sender_eq ( from_sender, connector.sender) {
-                                                       #line 229#line 232
-                }                                      #line 233
-            }                                          #line 234
-        }
-        if not ( was_sent) {
-                                                       #line 235#line 237
-        }                                              #line 238#line 239
-}
-
-defn any_child_ready ≡
-(
-    container ≡
-)
-{
-                                                       #line 240
-        child ≡
-        for child in  container.children {
-                                                       #line 241
-            if child_is_ready ( child) {
-                                                       #line 242
-                return  True                           #line 243#line 244
-            }                                          #line 245
-        }
-        return  False                                  #line 246#line 247#line 248
-}
-
-defn child_is_ready ≡
-(
-    eh ≡
-)
-{
-                                                       #line 249
-        return (not ((0==len( eh.outq)))) or (not ((0==len( eh.inq)))) or ( eh.state!= "idle") or (any_child_ready ( eh))#line 250#line 251#line 252
-}
-                                                       #line 253
-                                                       #line 254
-                                                       #line 255
 defn make_container ≡
 (
     name ≡ ,
     owner ≡
 )
 {
-                                                       #line 256
+                                                       #line 1
         eh ≡
-        return  eh                                     #line 265#line 266#line 267
+        return  eh                                     #line 7#line 8#line 9
 }
 
-                                                       #line 268
-                                                       #line 269#line 270
-defn send ≡
+defn container_instantiator ≡
 (
-    eh ≡ ,
-    port ≡ ,
-    obj ≡ ,
-    causingMevent ≡
+    reg ≡ ,
+    owner ≡ ,
+    name ≡ ,
+    desc ≡ ,
+    arg ≡
 )
 {
-                                                       #line 271
-        d ≡
-        mev ≡                                          #line 278#line 279
+                                                       #line 10
+        container ≡
+        children_by_id ≡                               #line 12
+        child_desc ≡
+        for child_desc in  desc ["children"] {
+                                                       #line 13
+            child ≡
+            id ≡                                       #line 16
+            children_by_id [id] ≡                      #line 17#line 18
+        }
+        proto_conn ≡
+        for proto_conn in  desc ["connections"] {
+                                                       #line 19
+            conn ≡
+            if  conn!= None {
+                                                       #line 21#line 23
+            }                                          #line 24
+        }
+        return  container                              #line 25#line 26#line 27
 }
 
-defn forward ≡
+                                                       #line 28
+                                                       #line 29
+                                                       #line 30
+defn container_handler ≡
 (
-    eh ≡ ,
-    port ≡ ,
+    container ≡ ,
     mev ≡
 )
 {
-                                                       #line 280
-        fwdmev ≡                                       #line 283#line 284
+                                                       #line 31
+        if is_tick ( mev) {
+                                                       #line 32
+            child ≡
+            for child in  container.children {
+                                                       #line 33
+                if  child.state ==  "active" {
+                                                       #line 34#line 36
+                }                                      #line 37
+            }
+        }
+        else
+        {                                              #line 38#line 40
+        }                                              #line 42#line 43
 }
 
-defn inject_mevent ≡
+defn run ≡
 (
-    eh ≡ ,
+    container ≡
+)
+{
+                                                       #line 44
+        while busy ( container) {
+                                                       #line 45
+            if step_children ( container) {
+                                                       #line 46
+                return  None                           #line 47#line 48
+            }                                          #line 49
+        }                                              #line 50#line 51
+}
+
+                                                       #line 52
+                                                       #line 53
+defn busy ≡
+(
+    part ≡
+)
+{
+                                                       #line 54
+        if  0 == len ( part.children) {
+                                                       #line 55
+            return (not ((0==len( part.inq)))) or  part.state ==  "active"#line 56#line 57
+        }
+        if not ((0==len( part.visit_queue))) {
+                                                       #line 58
+            return  True                               #line 59#line 60
+        }
+        child ≡
+        for child in  part.children {
+                                                       #line 61
+            if busy ( child) {
+                                                       #line 62
+                return  True                           #line 63#line 64
+            }                                          #line 65
+        }
+        return  False                                  #line 66#line 67#line 68
+}
+
+                                                       #line 69
+defn visit ≡
+(
+    container ≡ ,
+    part ≡
+)
+{
+                                                       #line 70
+        if  part.vip {
+                                                       #line 71
+        }
+        else
+        {                                              #line 73#line 75
+        }                                              #line 76#line 77
+}
+
+                                                       #line 78
+defn step_children ≡
+(
+    container ≡
+)
+{
+                                                       #line 79
+        todo ≡
+        handled ≡                                      #line 82#line 83
+        child ≡
+        for child in  todo {
+                                                       #line 84
+            if not ((0==len( child.inq))) {
+                                                       #line 85#line 93
+            }                                          #line 94
+        }                                              #line 95
+        child ≡
+        for child in  container.children {
+                                                       #line 96
+            if  child.state ==  "active" and not ( child in  handled) {
+                                                       #line 97#line 99
+            }                                          #line 100
+        }                                              #line 101
+        child ≡
+        for child in  container.children {
+                                                       #line 103
+            if  child.state ==  "active" {
+                                                       #line 104
+
+            }
+            mev ≡
+            for mev in fetch_output_queue ( child) {
+                                                       #line 107#line 109
+            }                                          #line 110
+        }
+        return  False                                  #line 111#line 112#line 113
+}
+
+                                                       #line 114
+defn route ≡
+(
+    container ≡ ,
+    from_part ≡ ,
     mev ≡
 )
 {
-                                                       #line 285#line 287#line 288
+                                                       #line 115
+        was_sent ≡                                     #line 116
+        conn ≡
+        for conn in  container.connections {
+                                                       #line 117
+            if  conn.sender.component ==  from_part and  conn.sender.port ==  mev.port {
+                                                       #line 118#line 121
+            }                                          #line 122
+        }
+        if not  was_sent {
+                                                       #line 123#line 125
+        }                                              #line 126#line 127
 }
 
-defn set_active ≡
+                                                       #line 128
+defn deposit ≡
 (
-    eh ≡
-)
-{
-                                                       #line 289
-                                                       #line 292
-}
-
-defn set_idle ≡
-(
-    eh ≡
-)
-{
-                                                       #line 293
-                                                       #line 296
-}
-
-defn put_output ≡
-(
-    eh ≡ ,
+    container ≡ ,
+    conn ≡ ,
     mev ≡
 )
 {
-                                                       #line 297#line 299#line 300
+                                                       #line 129
+        new_mev ≡
+        if  conn.receiver.to_output {
+                                                       #line 131
+        }
+        else
+        {                                              #line 133#line 136
+        }                                              #line 137#line 138
 }
 
-defn obj_clone ≡
+                                                       #line 139
+defn container_reset ≡
 (
-    obj ≡
+    container ≡
 )
 {
-                                                       #line 301
-        return  obj                                    #line 302#line 303
+                                                       #line 140
+        child ≡
+        for child in  container.children {
+                                                       #line 141#line 143
+        }
+
 }

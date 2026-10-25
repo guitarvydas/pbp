@@ -1,6 +1,4 @@
 defvar load_errors ⇐ ⊥
-defvar runtime_errors ⇐ ⊥
-defvar ticktime ⇐ 0
 
 defn load_error (s) {
     global load_errors
@@ -10,88 +8,70 @@ defn load_error (s) {
 }
 
 defn runtime_error (s) {
-    global runtime_errors
     #print_stderr (s)
+    #print_nl_stderr ()
     #abort ()
-    runtime_errors ⇐ ⊤
 }
 
+⌈ diagnostics (dropped mevents, probes); redefine to redirect⌉
+defn report (kind, s) {
+    #live_update (kind, s)
+}
 
-defn initialize_component_palette_from_files (diagram_source_files) {
+defn initialize_palette (containers) {
     deftemp reg ⇐ make_component_registry ()
-    for diagram_source in diagram_source_files {
-        all_containers_within_single_file ≡ lnet2internal_from_file (diagram_source)
-        for container in all_containers_within_single_file {
-            register_component (reg, mkTemplate (container@“name” , ⌈container=⌉ container, ⌈instantiator=⌉ ↪︎container_instantiator))
-        }
+    for container in containers {
+        register_component (reg, mkTemplate (container@“name”, container, ↪︎container_instantiator))
     }
     initialize_stock_components (reg)
     return reg
 }
 
-defn initialize_component_palette_from_string (lnet) {
-    deftemp reg ⇐ make_component_registry ()
-    all_containers ≡ lnet2internal_from_string (lnet)
-    for container in all_containers {
-            register_component (reg, mkTemplate (container@“name” , ⌈container=⌉ container, ⌈instantiator=⌉ ↪︎container_instantiator))
+defn initialize_palette_from_files (diagram_source_files) {
+    deftemp containers ⇐ []
+    for diagram_source in diagram_source_files {
+        all_containers_within_single_file ≡ lnet2internal_from_file (diagram_source)
+        for container in all_containers_within_single_file {
+            #append (containers, container)
         }
-    initialize_stock_components (reg)
-    return reg
-}
-defn initialize_from_files (diagram_names) {
-    arg ≡ ϕ
-    palette ≡ initialize_component_palette_from_files (diagram_names)
-    return [palette, [diagram_names, arg]]
+    }
+    return initialize_palette (containers)
 }
 
-defn initialize_from_string () {
-    arg ≡ ϕ
-    palette ≡ initialize_component_palette_from_string ()
-    return [palette, [ϕ, arg]]
+defn initialize_palette_from_string (lnet) {
+    return initialize_palette (lnet2internal_from_string (lnet))
 }
 
-defn start (arg, part_name, palette, env) {
-     part ≡ start_bare (part_name, palette, env)
-     inject (part, "", arg)
+defn start (arg, part_name, palette) {
+     part ≡ start_bare (part_name, palette)
+     inject (part, “”, arg)
      finalize (part)
 }
-     
-defn start_bare (part_name, palette, env) {
-    diagram_names ≡ env [0]
+
+defn start_bare (part_name, palette) {
     ⌈ get entrypoint container⌉
-    deftemp part ⇐ get_component_instance(palette, part_name, ϕ)
+    deftemp part ⇐ get_component_instance (palette, part_name, ϕ)
     if ϕ = part {
-        load_error (#strcons (“Couldn't find container with page name /”,
-                      #strcons (part_name,
-                        #strcons (“/ in files ”,
-                          #strcons (#asstr (diagram_names), “ (check tab names, or disable compression?)”)))))
+        load_error (#strcons (“Couldn't find container /”, #strcons (part_name, “/”)))
     }
     return part
 }
 
+⌈ Enqueue a mevent on the part, handle it, and keep ticking while the part is active.⌉
+⌈ Used for testing a part, or to run a complete app from a kick-off mevent.⌉
 defn inject (part, port, payload) {
     global load_errors
-    if not load_errors {
-        deftemp d ⇐ #fresh (Datum)
-        d.v ⇐ payload
-        d.clone ⇐ λ: obj_clone (d)
-        d.reclaim ⇐ ϕ
-        deftemp mev ⇐ make_mevent(port, d)
-        inject_mevent (part, mev)
-     } else {
-         #abort ()
-     }  
+    if load_errors {
+        #abort ()
+    } else {
+        enqueue (part, make_mevent (port, payload))
+        handle (part)
+        while part.state = “active” {
+            tick (part)
+        }
+    }
 }
 
 defn finalize (part) {
     #queue_as_json_to_stdout (part.outq)
-}
-
-defn new_datum_bang () {
-    deftemp d ⇐ #fresh (Datum)
-    d.v ⇐ “!”
-    d.clone ⇐ λ: obj_clone (d)
-    d.reclaim ⇐ ϕ
-    return d
-    
 }

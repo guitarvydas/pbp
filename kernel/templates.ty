@@ -6,7 +6,7 @@ defobj Component_Registry {
 defobj Template {
                                                        #line 5
     name ≡                                             #line 6
-    container ≡                                        #line 7
+    template_data ≡                                    #line 7
     instantiator ≡                                     #line 8#line 9
 }
                                                        #line 10
@@ -21,35 +21,35 @@ defn mkTemplate ≡
         templ ≡
         return  templ                                  #line 16#line 17#line 18
 }
+
                                                        #line 19
                                                        #line 20
-                                                       #line 21
-                                                       #line 22#line 23
-                                                       #line 24
+                                                       #line 21#line 22
+                                                       #line 23
 defn lnet2internal_from_file ≡
 (
     container_xml ≡
 )
 {
-                                                       #line 25
+                                                       #line 24
         pathname ≡
-        filename ≡                                     #line 29#line 30
+        filename ≡                                     #line 28#line 29
 }
 
-                                                       #line 31
+                                                       #line 30
 defn lnet2internal_from_string ≡
 (
     lnet ≡
 )
 {
-                                                       #line 32#line 34#line 35
+                                                       #line 31#line 33#line 34
 }
 
 defn make_component_registry ≡
 ()
 {
-                                                       #line 36
-        return  Component_Registry ()                  #line 37#line 38#line 39
+                                                       #line 35
+        return  Component_Registry ()                  #line 36#line 37#line 38
 }
 
 defn register_component ≡
@@ -59,7 +59,7 @@ defn register_component ≡
 )
 {
 
-        return abstracted_register_component ( reg, template, False)#line 40
+        return abstracted_register_component ( reg, template, False)#line 39
 }
 
 defn register_component_allow_overwriting ≡
@@ -69,7 +69,7 @@ defn register_component_allow_overwriting ≡
 )
 {
 
-        return abstracted_register_component ( reg, template, True)#line 41#line 42
+        return abstracted_register_component ( reg, template, True)#line 40#line 41
 }
 
 defn abstracted_register_component ≡
@@ -79,79 +79,50 @@ defn abstracted_register_component ≡
     ok_to_overwrite ≡
 )
 {
-                                                       #line 43
-        name ≡
+                                                       #line 42
+        name ≡                                         #line 43
         if  reg!= None and  name in  reg.templates and not  ok_to_overwrite {
-                                                       #line 45
+                                                       #line 44
         }
         else
-        {                                              #line 48
-            return  reg                                #line 50#line 51
-        }                                              #line 52#line 53
+        {                                              #line 47
+            return  reg                                #line 49#line 50
+        }                                              #line 51#line 52
 }
 
-defn get_component_instance ≡
-(
-    reg ≡ ,
-    full_name ≡ ,
-    owner ≡
-)
-{
-                                                       #line 54#line 55#line 56#line 57#line 58
-        template_name ≡
-        if  ":" ==   full_name[0]  {
-                                                       #line 60
-            instance_name ≡
-            instance ≡
-            return  instance                           #line 63
-        }
-        else
-        {                                              #line 64
-            if  template_name in  reg.templates {
-                                                       #line 65
-                template ≡                             #line 66
-                if ( template ==  None) {
-                                                       #line 67
-                }
-                else
-                {                                      #line 70
-                    instance_name ≡
-                    instance ≡
-                    return  instance                   #line 73#line 74
-                }
-            }
-            else
-            {                                          #line 75#line 78
-            }                                          #line 79
-        }                                              #line 80#line 81
-}
-
+                                                       #line 53
 defn generate_instance_name ≡
 (
     owner ≡ ,
     template_name ≡
 )
 {
-                                                       #line 82
-        owner_name ≡                                   #line 83
-        instance_name ≡                                #line 84
-        if  None!= owner {
-                                                       #line 85
-            owner_name ≡                               #line 86
-            instance_name ≡
+                                                       #line 54
+        if  None ==  owner {
+                                                       #line 55
+            return gensymbol ( template_name)          #line 56
         }
         else
-        {                                              #line 88
-            instance_name ≡                            #line 89#line 90
-        }
-        return  instance_name                          #line 91#line 92#line 93
+        {                                              #line 57
+            return  str( owner.name) +  str( "▹") + gensymbol ( template_name)  #line 58#line 59
+        }                                              #line 60#line 61
 }
 
-defn mangle_name ≡
+defn get_component_instance ≡
 (
-    s ≡
+    reg ≡ ,
+    template_name ≡ ,
+    owner ≡
 )
 {
-                                                       #line 94#line 95
-        return  s                                      #line 96#line 97
+                                                       #line 62
+        if  template_name in  reg.templates {
+                                                       #line 63
+            template ≡                                 #line 64
+            instance_name ≡
+            return  template.instantiator ( reg, owner, instance_name, template.template_data, "")#line 66
+        }
+        else
+        {                                              #line 67#line 70
+        }                                              #line 71
 }

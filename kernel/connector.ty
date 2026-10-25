@@ -1,58 +1,171 @@
-#line 1
-defvar  enumDown ≡                                     #line 2
-defvar  enumAcross ≡                                   #line 3
-defvar  enumUp ≡                                       #line 4
-defvar  enumThrough ≡                                  #line 5#line 6#line 7
-                                                       #line 8
-                                                       #line 9
-                                                       #line 10#line 11
+defvar  enumDown ≡                                     #line 1
+defvar  enumAcross ≡                                   #line 2
+defvar  enumUp ≡                                       #line 3
+defvar  enumThrough ≡                                  #line 4#line 5
+                                                       #line 6
+                                                       #line 7
 defobj Connector {
-                                                       #line 12
-    direction ≡                                        #line 13
-    sender ≡                                           #line 14
-    receiver ≡                                         #line 15#line 16
+                                                       #line 8
+    direction ≡                                        #line 9
+    sender ≡                                           #line 10
+    receiver ≡                                         #line 11#line 12
 }
-                                                       #line 17
-                                                       #line 18
-                                                       #line 19#line 20
+                                                       #line 13
+                                                       #line 14
 defobj Sender {
+                                                       #line 15
+    component ≡                                        #line 16
+    port ≡                                             #line 17#line 18
+}
+                                                       #line 19
+                                                       #line 20
                                                        #line 21
-    name ≡                                             #line 22
-    component ≡                                        #line 23
-    port ≡                                             #line 24#line 25
-}
-                                                       #line 26#line 27#line 28
-                                                       #line 29
-                                                       #line 30#line 31
+                                                       #line 22
 defobj Receiver {
-                                                       #line 32
-    name ≡                                             #line 33
-    queue ≡                                            #line 34
-    port ≡                                             #line 35
-    component ≡                                        #line 36#line 37
+                                                       #line 23
+    component ≡                                        #line 24
+    port ≡                                             #line 25
+    to_output ≡                                        #line 26#line 27
 }
-                                                       #line 38
+                                                       #line 28
 defn mkSender ≡
 (
-    name ≡ ,
     component ≡ ,
     port ≡
 )
 {
-                                                       #line 39
+                                                       #line 29
         s ≡
-        return  s                                      #line 44#line 45#line 46
+        return  s                                      #line 33#line 34#line 35
 }
 
 defn mkReceiver ≡
 (
-    name ≡ ,
     component ≡ ,
     port ≡ ,
-    q ≡
+    to_output ≡
 )
 {
-                                                       #line 47
+                                                       #line 36
         r ≡
-        return  r                                      #line 54#line 55
+        return  r                                      #line 41#line 42#line 43
+}
+
+defn mkConnector ≡
+(
+    direction ≡ ,
+    sender ≡ ,
+    receiver ≡
+)
+{
+                                                       #line 44
+        c ≡
+        return  c                                      #line 49#line 50#line 51
+}
+
+                                                       #line 52
+                                                       #line 53
+                                                       #line 54#line 55
+defn create_down_connector ≡
+(
+    container ≡ ,
+    proto_conn ≡ ,
+    children_by_id ≡
+)
+{
+                                                       #line 56
+        tid ≡                                          #line 57
+        target_component ≡                             #line 58
+        if  target_component ==  None {
+                                                       #line 59
+        }
+        else
+        {                                              #line 62
+            return mkConnector ( "down",mkSender ( container, proto_conn ["source_port"]),mkReceiver ( target_component, proto_conn ["target_port"], False))#line 65#line 66
+        }                                              #line 67#line 68
+}
+
+defn create_across_connector ≡
+(
+    container ≡ ,
+    proto_conn ≡ ,
+    children_by_id ≡
+)
+{
+                                                       #line 69
+        sid ≡                                          #line 70
+        source_component ≡                             #line 71
+        tid ≡                                          #line 72
+        target_component ≡                             #line 73
+        if  source_component ==  None or  target_component ==  None {
+                                                       #line 74
+        }
+        else
+        {                                              #line 77
+            return mkConnector ( "across",mkSender ( source_component, proto_conn ["source_port"]),mkReceiver ( target_component, proto_conn ["target_port"], False))#line 80#line 81
+        }                                              #line 82#line 83
+}
+
+defn create_up_connector ≡
+(
+    container ≡ ,
+    proto_conn ≡ ,
+    children_by_id ≡
+)
+{
+                                                       #line 84
+        sid ≡                                          #line 85
+        source_component ≡                             #line 86
+        if  source_component ==  None {
+                                                       #line 87
+        }
+        else
+        {                                              #line 90
+            return mkConnector ( "up",mkSender ( source_component, proto_conn ["source_port"]),mkReceiver ( container, proto_conn ["target_port"], True))#line 93#line 94
+        }                                              #line 95#line 96
+}
+
+defn create_through_connector ≡
+(
+    container ≡ ,
+    proto_conn ≡ ,
+    children_by_id ≡
+)
+{
+                                                       #line 97
+        return mkConnector ( "through",mkSender ( container, proto_conn ["source_port"]),mkReceiver ( container, proto_conn ["target_port"], True))#line 100#line 101#line 102
+}
+
+defn create_connector ≡
+(
+    container ≡ ,
+    proto_conn ≡ ,
+    children_by_id ≡
+)
+{
+                                                       #line 103
+        enumDown  ≡ [_global,enumDown]                 #line 104
+        enumAcross  ≡ [_global,enumAcross]             #line 105
+        enumUp  ≡ [_global,enumUp]                     #line 106
+        enumThrough  ≡ [_global,enumThrough]           #line 107
+        d ≡                                            #line 108
+        if  d ==  enumDown {
+                                                       #line 109
+            return create_down_connector ( container, proto_conn, children_by_id)#line 110
+        }
+        elif  d ==  enumAcross
+        {                                              #line 111
+            return create_across_connector ( container, proto_conn, children_by_id)#line 112
+        }
+        elif  d ==  enumUp
+        {                                              #line 113
+            return create_up_connector ( container, proto_conn, children_by_id)#line 114
+        }
+        elif  d ==  enumThrough
+        {                                              #line 115
+            return create_through_connector ( container, proto_conn, children_by_id)#line 116
+        }
+        else
+        {                                              #line 117#line 120
+        }                                              #line 121
 }

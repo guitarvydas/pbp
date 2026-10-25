@@ -5,36 +5,21 @@
                                                        #line 5
                                                        #line 6
                                                        #line 7
-                                                       #line 8
-                                                       #line 9
-                                                       #line 10
-                                                       #line 11
-                                                       #line 12
-                                                       #line 13#line 14
-                                                       #line 15
 defobj Eh {
-                                                       #line 16
-    name ≡                                             #line 17
+                                                       #line 8
+    name ≡                                             #line 9
     inq ≡
     outq ≡
-    owner ≡                                            #line 20
-    children ≡                                         #line 21
-    visit_ordering ≡
-    connections ≡                                      #line 23
-    handler ≡                                          #line 24
-    finject ≡                                          #line 25
-    reset ≡                                            #line 26
-    instance_data ≡                                    #line 27#line 28
-    arg ≡                                              #line 29
-    state ≡                                            #line 30
-    special ≡                                          #line 31#line 32
-}
-                                                       #line 33
-defn injector ≡
-(
-    eh ≡ ,
-    mevent ≡
-)
-{
-                                                       #line 34#line 36#line 37
+    owner ≡                                            #line 12
+    children ≡                                         #line 13
+    visit_queue ≡
+    connections ≡                                      #line 15
+    handler ≡                                          #line 16
+    reset_function ≡                                   #line 17
+    reset_handler ≡                                    #line 18
+    instance_data ≡                                    #line 19
+    arg ≡                                              #line 20
+    state ≡                                            #line 21
+    vip ≡                                              #line 22
+    reset_requested ≡                                  #line 23#line 24
 }
