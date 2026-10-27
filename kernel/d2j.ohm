@@ -1,8 +1,29 @@
 d2j {
-  Main = Array
-  Array = "[" (KV | Object)+ "]"
-  Object = "{" KV+ "}"
-  KV = keystring ":" (Array | Object | string | emptyString | number)
+  Main = DiagramArray
+  DiagramArray = "[" Diagram+ "]"
+  Diagram = "{" DiagramKV+ "}"
+  DiagramKV =
+    | Key<"name"> ":" str -- name
+    | Key<"children"> ":" ChildrenArray -- children
+    | Key<"connections"> ":" WireArray -- wires
+    | Key<"file"> ":" string -- file
+  ChildrenArray = "[" ChildObject+ "]"
+  WireArray = "[" WireObject+ "]"
+
+  ChildObject = "{" Key<"name"> ":" str Key<"id"> ":" number "}"
+  WireObject = "{" (Direction | Source_port | Target_port | Source | Target)+ "}"
+  Direction =
+    | Key<"dir"> ":" "0" -- down
+    | Key<"dir"> ":" "1" -- across
+    | Key<"dir"> ":" "2" -- up
+    | Key<"dir"> ":" "3" -- through
+  Source_port = Key<"source_port"> ":" str
+  Target_port = Key<"target_port"> ":" str
+  Source = Key<"source"> ":" ChildObject
+  Target = Key<"target"> ":" ChildObject
+
+  Key<s> = "\"" s "\""
+  str = string | emptyString
   string = "\"" (~"\"" any)+ "\""
   keystring = string
   emptyString = "\"" "\""

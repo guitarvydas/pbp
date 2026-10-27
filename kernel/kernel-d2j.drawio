@@ -285,8 +285,8 @@
       </root>
     </mxGraphModel>
   </diagram>
-  <diagram name="diagram-main" id="wUVZrJqKqWEIOh92L0EM">
-    <mxGraphModel dx="1864" dy="2317" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+  <diagram name="exploring-diagram-main" id="wUVZrJqKqWEIOh92L0EM">
+    <mxGraphModel dx="1025" dy="1657" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
       <root>
         <mxCell id="-7Vb5JrlhmKnIQchYafR-0" />
         <mxCell id="-7Vb5JrlhmKnIQchYafR-1" parent="-7Vb5JrlhmKnIQchYafR-0" />
@@ -1708,7 +1708,7 @@
       </root>
     </mxGraphModel>
   </diagram>
-  <diagram name="Copy of diagram-main" id="RiFyWzUtohKW9DGHWWPJ">
+  <diagram name="diagram-main" id="RiFyWzUtohKW9DGHWWPJ">
     <mxGraphModel dx="1025" dy="807" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
       <root>
         <mxCell id="AE1xzw8GJLaDWqdf3GvO-0" />
