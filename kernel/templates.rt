@@ -1,11 +1,202 @@
-defobj Component_Registry {
-        • templates ⇐ {}
+defproc readContainerTemplate (filename) {
+  withTempString fstr = #readTextFileIntoString (filename) {
+    parse {
+      @diagramArray
+    }
+  }
 }
 
+defparser diagramArray {
+  parse {
+    "["
+      {
+        @diagram
+      }
+    "]"
+  }
+  pack-array-obj
+}
+
+defparser diagram {
+  parse {
+    @name
+    @children
+    @connections
+    @file
+  }
+  pack-obj 4
+}
+
+defparser name {
+  parse {
+    key "name"
+    string _
+  }
+  pack-kv 2
+}
+
+defparser children {
+  parse {
+    "["
+      {
+        @child
+      }
+    "]"
+  }
+  pack-array-obj
+}
+
+defparser connections {
+  parse {
+    "["
+      {
+        @connection
+      }
+    "]"
+  }
+  pack-array-obj
+}
+
+defparser file {
+  parse {
+    key "file"
+    string _
+  }
+  pack-kv 2
+}
+
+defparser child {
+  parse {
+    "{"
+    @name
+    @id
+    "}"
+  }
+  pack-obj 4
+}
+
+defparser id {
+  parse {
+    key "id"
+    int _
+  }
+  pack-kv 2
+}
+
+defparser connection {
+  parse one of {
+    @acrossConnection
+    @downConnection
+    @upConnection
+    @throughConnection
+  }
+}
+
+defparser acrossConnection {
+  parse in any order {
+    @directionAcross
+    @source
+    @sourcePort
+    @target
+    @targetPort
+  }
+  pack-kv 5
+}
+
+defparser downConnection {
+  parse in any order {
+    @directionDown
+    @sourcePort
+    @target
+    @targetPort
+  }
+  pack-kv 4
+}
+
+defparser upConnection {
+  parse in any order {
+    @directionUp
+    @source
+    @sourcePort
+    @targetPort
+  }
+  pack-kv 4
+}
+
+defparser throughConnection {
+  parse in any order {
+    @directionThrough
+    @sourcePort
+    @targetPort
+  }
+  pack-kv 3
+}
+
+defparser acrossDirection {
+  parse {
+    key "dir"
+    int 1
+  }
+  pack-kv 2
+}
+
+defparser downDirection {
+  parse {
+    key "dir"
+    int 0
+  }
+  pack-kv 2
+}
+
+defparser upDirection {
+  parse {
+    key "dir"
+    int 2
+  }
+  pack-kv 2
+}
+
+defparser throughDirection {
+  parse {
+    key "dir"
+    int 3
+  }
+  pack-kv 2
+}
+
+
+
+
+defvar registry ⇐ #fresh_kvdict (Template)
+
+
+defkvobj LeafTemplate {
+  • name
+  • instantiator
+}
+
+defkvobj ChildTemplate {
+  • name
+  • id
+}
+
+defkvobj ContainerTemplate {
+  • name
+  • instantiator
+  • children
+  • wires
+}
+
+defkvobj WireTemplate {
+  • direction
+  • sender
+  • receiver
+}
+
+----------------------------
+
 defobj Template {
-        • name ⇐ ϕ
         • template_data ⇐ ϕ
-        • instantiator ⇐ ϕ
 }
 
 defn mkTemplate (name, template_data, instantiator) {
