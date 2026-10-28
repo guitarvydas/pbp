@@ -4,6 +4,13 @@ class StringBuffer ():
     def __init__ (self, input):
         self.buff = input
         self.bx = 0
+        self.marks = []
+    def push_mark (self):
+        self.marks.append (self.bx)
+    def pop_mark (self):
+        self.marks.pop ()
+    def rewind (self):
+        self.bx = self.marks.pop ()
     def accept_char (self):
         print (f'accept_char c={self.buff [self.bx]}')
         self.bx += 1
@@ -27,11 +34,24 @@ class StringBuffer ():
 
 buffer = StringBuffer ("")
 
+def fail ():
+    global buffer
+    buffer.rewind ()
+    raise Exception ("Fail")
+
+def begin ():
+    global buffer
+    buffer.push_mark ()
+
+def accept ():
+    global buffer
+    buffer.pop_mark ()
+
 def parse (f):
     try:
         f ()
     except:
-        raise Exception ("Fail")
+        fail ()
 
 def parse_string (s):
     global buffer
@@ -42,9 +62,9 @@ def parse_string (s):
                 buffer.parse_char (s [i])
                 i += 1
             except:
-                raise Exception ("Fail")
+                fail ()
     except:
-        raise Exception ("Fail")
+        fail ()
     
 def parse_range (first, last):
     global buffer
@@ -52,10 +72,9 @@ def parse_range (first, last):
         if buffer.next_char >= first and buffer.next_char <= last:
             buffer.accept_char ()
         else:
-            raise Exception ("Fail")
+            fail ()
     except:
-        raise Exception ("Fail")
-        
+        fail ()
 
 def parse_ignore ():
     while (buffer.is_space ()):
@@ -69,33 +88,35 @@ def parse_one_or_more (f):
         except:
             pass
     except:
-        raise Exception ("Fail")
-
+        fail ()
+    
 def parse_either (flist):
     while True:
         try:
             f = flist [0]
             flist = flist [1:]
             parse (f)
-            return True
         except:
             if flist:
                 flist = flist [1:]
             else:
-                raise Exception ("Fail")
-    raise Exception ("Fail")
+                fail ()
+    fail ()
 
 
 ## Parser
 def s_Main ():
+    begin ()
     try:
         parse_ignore ()
         s_Array ()
         parse_ignore ()
+        accept ()
     except:
         raise Exception("Fail")
 
 def s_Array ():
+    begin ()
     try:
         parse_ignore ()
         parse_string ("[")
@@ -104,10 +125,12 @@ def s_Array ():
         parse_ignore ()
         parse_string ("]")
         parse_ignore ()
+        accept ()
     except:
         raise Exception("Fail")
 
 def s_Object ():
+    begin ()
     try:
         parse_ignore ()
         parse_string ("{")
@@ -116,10 +139,12 @@ def s_Object ():
         parse_ignore ()
         parse_string ("}")
         parse_ignore ()
+        accept ()
     except:
         raise Exception("Fail")
 
 def s_KV ():
+    begin ()
     try:
         parse_ignore ()
         parse (l_keystring)
@@ -128,35 +153,44 @@ def s_KV ():
         parse_ignore ()
         parse_either ([s_Array, s_Object, l_string, l_emptyString, l_number])
         parse_ignore ()
+        accept ()
     except:
         raise Exception("Fail")
 
 def l_string ():
+    begin ()
     try:
         parse_string ('"')
         parse_upto ('"')
         parse_string ('"')
+        accept ()
     except:
-        raise Exception ("Fail")
+        fail ()
         
 def l_keystring ():
+    begin ()
     try:
         parse (l_string)
+        accept ()
     except:
-        raise Exception ("Fail")
+        fail ()
 
 def l_keystring ():
+    begin ()
     try:
         parse_string ("\"")
         parse_string ("\"")
+        accept ()
     except:
-        raise Exception ("Fail")
+        fail ()
 
 def l_number ():
+    begin ()
     try:
         parse_range ("0", "9")
+        accept ()
     except:
-        raise Exception ("Fail")
+        fail ()
 
 
 stest = '[ "name" : "hello" ]'
@@ -165,4 +199,4 @@ try:
     parse (s_Main)
     print (f'\nsuccess')
 except:
-    print (f'\nfail buff={buffer.buff [buffer.bx:]}')
+    print (f'\nfail {buffer.buff [buffer.bx:]}')
