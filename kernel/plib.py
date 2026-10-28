@@ -1,9 +1,11 @@
 ## builtins
 class StringBuffer ():
-    def __init__ (self, input):
-        self.buff = input
+    def __init__ (self):
+        self.buff = ""
         self.bx = 0
         self.marks = []
+    def set_input (self, s):
+        self.buff = s
     def push_mark (self):
         self.marks.append (self.bx)
     def pop_mark (self):
@@ -21,7 +23,7 @@ class StringBuffer ():
             return True
     def look (self):
         if self.overrun ():
-            bifail ()
+            bifail (e)
         else:
             return self.buff [self.bx]
     def parse_char (self, c):
@@ -46,7 +48,7 @@ class Indentation ():
     def pr (self):
         print (" " * self.indent, end="")
         
-buffer = StringBuffer ("")
+buffer = StringBuffer ()
 indent = Indentation ()
 
 def fail (s):
@@ -74,14 +76,14 @@ def accept (s):
     prev = buffer.pop_mark ()
     print (f'accept {s}  {buffer.buff[prev:buffer.bx]}')
 
-def bifail ():
-    raise Exception ("Builtin Fail")
+def bifail (e):
+    raise Exception (f'Builtin Fail {e}')
 
 def parse (f):
     try:
         f ()
-    except:
-        bifail ()
+    except Exception as e:
+        bifail (e)
 
 def parse_string (s):
     global buffer
@@ -91,16 +93,16 @@ def parse_string (s):
             try:
                 buffer.parse_char (s [i])
                 i += 1
-            except:
-                bifail ()
-    except:
-        bifail ()
+            except Exception as e:
+                bifail (e)
+    except Exception as e:
+        bifail (e)
     
 def parse_upto (c):
     global buffer
     while True:
         if buffer.overrun ():
-            bifail ()
+            bifail ("overrun")
         else:
             if c == buffer.look ():
                 return True
@@ -113,9 +115,9 @@ def parse_range (first, last):
         if buffer.next_char >= first and buffer.next_char <= last:
             buffer.accept_char ()
         else:
-            bifail ()
-    except:
-        bifail ()
+            bifail ("parse_range")
+    except Exception as e:
+        bifail (e)
 
 def parse_ignore ():
     while (buffer.is_space ()):
@@ -129,8 +131,8 @@ def parse_one_or_more (f):
                 parse (f)
             except:
                 pass
-    except:
-        bifail ()
+    except Exception as e:
+        bifail (e)
     
 def parse_either (flist):
     while True:
@@ -138,9 +140,11 @@ def parse_either (flist):
             f = flist [0]
             parse (f)
             return
-        except:
+        except Exception as e:
             if flist:
                 flist = flist [1:]
             else:
-                bifail ()
+                bifail (e)
 
+def parse_set_input (s):
+    buffer.set_input (s)

@@ -1,4 +1,4 @@
-import plib
+from plib import parse, StringBuffer, fail, accept, begin, parse_ignore, parse_string, parse_one_or_more, parse_either, parse_upto, parse_range, parse_set_input
 
 ##########
 ## Parser
@@ -10,7 +10,7 @@ def s_Main ():
         s_Array ()
         parse_ignore ()
         accept ("s_Main")
-    except:
+    except Exception as e:
         fail ("s_Main")
 
 def s_Array ():
@@ -24,7 +24,7 @@ def s_Array ():
         parse_string ("]")
         parse_ignore ()
         accept ("s_Array")
-    except:
+    except Exception as e:
         fail ("s_Array")
 
 def s_Object ():
@@ -38,7 +38,7 @@ def s_Object ():
         parse_string ("}")
         parse_ignore ()
         accept ("s_Object")
-    except:
+    except Exception as e:
         fail ("s_Object")
 
 def s_KV ():
@@ -63,7 +63,7 @@ def l_string ():
         parse_upto ('"')
         parse_string ('"')
         accept ("l_string")
-    except:
+    except Exception as e:
         fail ("l_string")
         
 def l_keystring ():
@@ -71,7 +71,7 @@ def l_keystring ():
     try:
         parse (l_string)
         accept ("l_keystring")
-    except:
+    except Exception as e:
         fail ("l_keystring")
 
 def l_emptyString ():
@@ -80,7 +80,7 @@ def l_emptyString ():
         parse_string ("\"")
         parse_string ("\"")
         accept ("l_emptystring")
-    except:
+    except Exception as e:
         fail ("l_emptystring")
 
 def l_number ():
@@ -88,12 +88,12 @@ def l_number ():
     try:
         parse_range ("0", "9")
         accept ("l_number")
-    except:
+    except Exception as e:
         fail ("l_number")
 
 
 stest = '"name" : "hello"'
-buffer = plib.StringBuffer (stest)
+parse_set_input (stest)
 try:
     parse (s_KV)
     print (f'\nsuccess')
