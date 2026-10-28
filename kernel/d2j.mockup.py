@@ -64,7 +64,7 @@ def begin (s):
     global indent
     indent.pr ()
     indent.ind ()
-    print (f'begin {s}')
+    print (f'begin {s} {buffer.buff[buffer.bx:]}')
     buffer.push_mark ()
 
 def accept (s):
@@ -73,7 +73,7 @@ def accept (s):
     indent.out ()
     indent.pr ()
     prev = buffer.pop_mark ()
-    print (f'accept {s} {buffer.buff[prev:buffer.bx]}')
+    print (f'accept {s}  {buffer.buff[prev:buffer.bx]}')
 
 def bifail ():
     raise Exception ("Builtin Fail")
@@ -134,11 +134,9 @@ def parse_one_or_more (f):
         bifail ()
     
 def parse_either (flist):
-    print (f'either {flist}')
     while True:
         try:
             f = flist [0]
-            print (f'either trying {f.__name__}')
             parse (f)
             return
         except:
