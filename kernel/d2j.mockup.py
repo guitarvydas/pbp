@@ -12,7 +12,6 @@ class StringBuffer ():
     def rewind (self):
         self.bx = self.marks.pop ()
     def accept_char (self):
-        print (f'{self.buff [self.bx]}')
         self.bx += 1
     def overrun (self):
         return self.bx >= len (self.buff)
@@ -73,8 +72,8 @@ def accept (s):
     global indent
     indent.out ()
     indent.pr ()
-    print (f'accept {s}')
-    buffer.pop_mark ()
+    prev = buffer.pop_mark ()
+    print (f'accept {s} {buffer.buff[prev:buffer.bx]}')
 
 def bifail ():
     raise Exception ("Builtin Fail")
