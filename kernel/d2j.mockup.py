@@ -21,6 +21,11 @@ class StringBuffer ():
             return False
         elif self.buff [self.bx] == " " or self.buff [self.bx] == "," or self.buff [self.bx] == "\n" :
             return True
+    def look (self, c):
+        if self.overrun ():
+            return False
+        elif self.buff [self.bx] == c:
+            return True
     def parse_char (self, c):
         try:
             if self.overrun ():
@@ -37,7 +42,7 @@ buffer = StringBuffer ("")
 def fail ():
     global buffer
     buffer.rewind ()
-    raise Exception ("Fail")
+    raise Exception ("Parse Failure")
 
 def begin ():
     global buffer
@@ -47,11 +52,14 @@ def accept ():
     global buffer
     buffer.pop_mark ()
 
+def bifail ():
+    raise Exception ("Builtin Fail")
+
 def parse (f):
     try:
         f ()
     except:
-        fail ()
+        bifail ()
 
 def parse_string (s):
     global buffer
@@ -62,19 +70,30 @@ def parse_string (s):
                 buffer.parse_char (s [i])
                 i += 1
             except:
-                fail ()
+                bifail ()
     except:
-        fail ()
+        bifail ()
     
+def parse_upto (c):
+    global buffer
+    while True:
+        if buffer.overrun ():
+            bifail ()
+        else:
+            if c == buffer.look ():
+                return True
+            else:
+                buffer.accept_char ()
+
 def parse_range (first, last):
     global buffer
     try:
         if buffer.next_char >= first and buffer.next_char <= last:
             buffer.accept_char ()
         else:
-            fail ()
+            bifail ()
     except:
-        fail ()
+        bifail ()
 
 def parse_ignore ():
     while (buffer.is_space ()):
@@ -88,7 +107,7 @@ def parse_one_or_more (f):
         except:
             pass
     except:
-        fail ()
+        bifail ()
     
 def parse_either (flist):
     while True:
@@ -100,11 +119,15 @@ def parse_either (flist):
             if flist:
                 flist = flist [1:]
             else:
-                fail ()
-    fail ()
+                bifail ()
+    bifail ()
+
+    
 
 
+##########
 ## Parser
+##########
 def s_Main ():
     begin ()
     try:
@@ -113,7 +136,7 @@ def s_Main ():
         parse_ignore ()
         accept ()
     except:
-        raise Exception("Fail")
+        fail ()
 
 def s_Array ():
     begin ()
@@ -127,7 +150,7 @@ def s_Array ():
         parse_ignore ()
         accept ()
     except:
-        raise Exception("Fail")
+        fail ()
 
 def s_Object ():
     begin ()
@@ -141,7 +164,7 @@ def s_Object ():
         parse_ignore ()
         accept ()
     except:
-        raise Exception("Fail")
+        fail ()
 
 def s_KV ():
     begin ()
@@ -155,7 +178,7 @@ def s_KV ():
         parse_ignore ()
         accept ()
     except:
-        raise Exception("Fail")
+        fail ()
 
 def l_string ():
     begin ()
