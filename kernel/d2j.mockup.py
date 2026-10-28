@@ -12,7 +12,7 @@ class StringBuffer ():
     def rewind (self):
         self.bx = self.marks.pop ()
     def accept_char (self):
-        print (f'accept_char c={self.buff [self.bx]}')
+        print (f'{self.buff [self.bx]}')
         self.bx += 1
     def overrun (self):
         return self.bx >= len (self.buff)
@@ -21,11 +21,11 @@ class StringBuffer ():
             return False
         elif self.buff [self.bx] == " " or self.buff [self.bx] == "," or self.buff [self.bx] == "\n" :
             return True
-    def look (self, c):
+    def look (self):
         if self.overrun ():
-            return False
-        elif self.buff [self.bx] == c:
-            return True
+            bifail ()
+        else:
+            return self.buff [self.bx]
     def parse_char (self, c):
         try:
             if self.overrun ():
@@ -37,19 +37,43 @@ class StringBuffer ():
         except:
             raise Exception ("Fail")
 
-buffer = StringBuffer ("")
 
-def fail ():
+class Indentation ():
+    def __init__ (self):
+        self.indent = 0
+    def ind (self):
+        self.indent += 1
+    def out (self):
+        self.indent -= 1
+    def pr (self):
+        print (" " * self.indent, end="")
+        
+buffer = StringBuffer ("")
+indent = Indentation ()
+
+def fail (s):
     global buffer
+    global indent
+    indent.out ()
+    indent.pr ()
+    print (f'fail {s}')
     buffer.rewind ()
     raise Exception ("Parse Failure")
 
-def begin ():
+def begin (s):
     global buffer
+    global indent
+    indent.pr ()
+    indent.ind ()
+    print (f'begin {s}')
     buffer.push_mark ()
 
-def accept ():
+def accept (s):
     global buffer
+    global indent
+    indent.out ()
+    indent.pr ()
+    print (f'accept {s}')
     buffer.pop_mark ()
 
 def bifail ():
@@ -102,25 +126,27 @@ def parse_ignore ():
 def parse_one_or_more (f):
     try:
         parse (f)
-        try:
-            parse (f)
-        except:
-            pass
+        while True:
+            try:
+                parse (f)
+            except:
+                pass
     except:
         bifail ()
     
 def parse_either (flist):
+    print (f'either {flist}')
     while True:
         try:
             f = flist [0]
-            flist = flist [1:]
+            print (f'either trying {f.__name__}')
             parse (f)
+            return
         except:
             if flist:
                 flist = flist [1:]
             else:
                 bifail ()
-    bifail ()
 
     
 
@@ -129,31 +155,31 @@ def parse_either (flist):
 ## Parser
 ##########
 def s_Main ():
-    begin ()
+    begin ("s_Main")
     try:
         parse_ignore ()
         s_Array ()
         parse_ignore ()
-        accept ()
+        accept ("s_Main")
     except:
-        fail ()
+        fail ("s_Main")
 
 def s_Array ():
-    begin ()
+    begin ("s_Array")
     try:
         parse_ignore ()
         parse_string ("[")
         parse_ignore ()
-        parse_one_or_more (parse_either ([s_KV, s_Object]))
+        parse_one_or_more (lambda : parse_either ([s_KV, s_Object]))
         parse_ignore ()
         parse_string ("]")
         parse_ignore ()
-        accept ()
+        accept ("s_Array")
     except:
-        fail ()
+        fail ("s_Array")
 
 def s_Object ():
-    begin ()
+    begin ("s_Object")
     try:
         parse_ignore ()
         parse_string ("{")
@@ -162,64 +188,65 @@ def s_Object ():
         parse_ignore ()
         parse_string ("}")
         parse_ignore ()
-        accept ()
+        accept ("s_Object")
     except:
-        fail ()
+        fail ("s_Object")
 
 def s_KV ():
-    begin ()
+    begin ("s_KV")
     try:
         parse_ignore ()
         parse (l_keystring)
         parse_ignore ()
         parse_string (":")
         parse_ignore ()
-        parse_either ([s_Array, s_Object, l_string, l_emptyString, l_number])
+        parse_either ([s_Array, s_Object, l_emptyString, l_string, l_number])
         parse_ignore ()
-        accept ()
-    except:
-        fail ()
+        accept ("s_KV")
+    except Exception as e:
+        print(e)
+        fail ("s_KV")
 
 def l_string ():
-    begin ()
+    begin ("l_string")
     try:
         parse_string ('"')
         parse_upto ('"')
         parse_string ('"')
-        accept ()
+        accept ("l_string")
     except:
-        fail ()
+        fail ("l_string")
         
 def l_keystring ():
-    begin ()
+    begin ("l_keystring")
     try:
         parse (l_string)
-        accept ()
+        accept ("l_keystring")
     except:
-        fail ()
+        fail ("l_keystring")
 
-def l_keystring ():
-    begin ()
+def l_emptyString ():
+    begin ("l_emptystring")
     try:
         parse_string ("\"")
         parse_string ("\"")
-        accept ()
+        accept ("l_emptystring")
     except:
-        fail ()
+        fail ("l_emptystring")
 
 def l_number ():
-    begin ()
+    begin ("l_number")
     try:
         parse_range ("0", "9")
-        accept ()
+        accept ("l_number")
     except:
-        fail ()
+        fail ("l_number")
 
 
-stest = '[ "name" : "hello" ]'
+stest = '"name" : "hello"'
 buffer = StringBuffer (stest)
 try:
-    parse (s_Main)
+    parse (s_KV)
     print (f'\nsuccess')
 except:
     print (f'\nfail {buffer.buff [buffer.bx:]}')
