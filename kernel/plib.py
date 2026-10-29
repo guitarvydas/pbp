@@ -38,7 +38,7 @@ class StringBuffer ():
             else:
                 raise Exception ("Fail")
         except:
-            raise Exception ("Fail")
+            raise
 
 
 class Indentation ():
@@ -71,7 +71,6 @@ def fail (s):
     if debug ():
         print (f'fail {s}')
     buffer.rewind ()
-    raise Exception ("Parse Failure")
 
 def begin (s):
     global buffer
@@ -97,8 +96,8 @@ def bifail (e):
 def parse (f):
     try:
         f ()
-    except Exception as e:
-        bifail (e)
+    except:
+        raise
 
 def parse_string (s):
     global buffer
@@ -108,10 +107,10 @@ def parse_string (s):
             try:
                 buffer.parse_char (s [i])
                 i += 1
-            except Exception as e:
-                bifail (e)
-    except Exception as e:
-        bifail (e)
+            except:
+                raise
+    except:
+        raise
     
 def parse_upto (c):
     global buffer
@@ -127,12 +126,12 @@ def parse_upto (c):
 def parse_range (first, last):
     global buffer
     try:
-        if buffer.next_char >= first and buffer.next_char <= last:
+        if buffer.look () >= first and buffer.look () <= last:
             buffer.accept_char ()
         else:
-            bifail ("parse_range")
-    except Exception as e:
-        bifail (e)
+            raise
+    except:
+        raise
 
 def parse_ignore ():
     while (buffer.is_space ()):
@@ -147,9 +146,9 @@ def parse_one_or_more (f):
                 parse (f)
             except:
                 break
-    except Exception as e:
+    except:
         parse_debug_prefix ('')
-        bifail (e)
+        raise
     parse_debug_prefix ('')
     
 def parse_either (flist):
@@ -159,16 +158,16 @@ def parse_either (flist):
             f = flist [0]
             parse (f)
             break
-        except Exception as e:
+        except:
             if flist:
                 if len (flist) > 0:
                     flist = flist [1:]
                 else:
                     parse_debug_prefix ('')
-                    bifail ("parse_either A")
+                    raise
             else:
                 parse_debug_prefix ('')
-                bifail ("parse_either B")
+                raise
     parse_debug_prefix ('')
 
 def parse_set_input (s):
