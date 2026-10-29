@@ -91,23 +91,13 @@ def l_number ():
         fail ("l_number")
 
 
-stest = '"name" : "hello" ]'
+stest = '[ "name" : "hello" ]'
 parse_set_input (stest)
 begin ("test")
 try:
+    parse_string ("[")
+    parse_ignore ()
     parse (s_KV)
-    # parse_ignore ()
-    # print (f'c')
-    # parse_string (":")
-    # print (f'd')
-    # parse_ignore ()
-    # print (f'e')
-    # parse (l_string)
-    # print (f'f')
-    # parse_ignore ()
-    # print (f'g')
-    # parse_string ("]")
-    # print (f'h')
     accept ("test")
     print (f'\nsuccess')
 except Exception as e:
