@@ -1,4 +1,7 @@
 ## builtins
+def debug ():
+    return False
+
 class StringBuffer ():
     def __init__ (self):
         self.buff = ""
@@ -47,8 +50,10 @@ class Indentation ():
     def out (self):
         self.indent -= 1
     def pr (self):
-        print (" " * self.indent, end="")
-        print (self.prefix, end="")
+        if debug ():
+            print (" " * self.indent, end="")
+            print (self.prefix, end="")
+        pass
 
     
 buffer = StringBuffer ()
@@ -63,7 +68,8 @@ def fail (s):
     global indent
     indent.out ()
     indent.pr ()
-    print (f'fail {s}')
+    if debug ():
+        print (f'fail {s}')
     buffer.rewind ()
     raise Exception ("Parse Failure")
 
@@ -72,7 +78,8 @@ def begin (s):
     global indent
     indent.pr ()
     indent.ind ()
-    print (f'begin {s} {buffer.buff[buffer.bx:]}')
+    if debug ():
+        print (f'begin {s} {buffer.buff[buffer.bx:]}')
     buffer.push_mark ()
 
 def accept (s):
@@ -81,7 +88,8 @@ def accept (s):
     indent.out ()
     indent.pr ()
     prev = buffer.pop_mark ()
-    print (f'accept {s}  {buffer.buff[prev:buffer.bx]}')
+    if debug ():
+        print (f'accept {s}  {buffer.buff[prev:buffer.bx]}')
 
 def bifail (e):
     raise Exception (f'Builtin Fail {e}')
