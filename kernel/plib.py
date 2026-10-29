@@ -8,10 +8,13 @@ class StringBuffer ():
         self.buff = s
     def push_mark (self):
         self.marks.append (self.bx)
+        print (f'push {self.marks}')
     def pop_mark (self):
         self.marks.pop ()
+        print (f'pop {self.bx} {self.marks}')
     def rewind (self):
         self.bx = self.marks.pop ()
+        print (f'rewind {self.bx} {self.marks}')
     def accept_char (self):
         self.bx += 1
     def overrun (self):
@@ -41,16 +44,23 @@ class StringBuffer ():
 class Indentation ():
     def __init__ (self):
         self.indent = 0
+        self.prefix = ''
     def ind (self):
         self.indent += 1
     def out (self):
         self.indent -= 1
     def pr (self):
         print (" " * self.indent, end="")
-        
+        print (self.prefix, end="")
+
+    
 buffer = StringBuffer ()
 indent = Indentation ()
 
+def parse_debug_prefix (s):
+    global indent
+    indent.prefix = s
+    
 def fail (s):
     global buffer
     global indent
@@ -105,10 +115,10 @@ def parse_upto (c):
             bifail ("overrun")
         else:
             if c == buffer.look ():
-                return True
+                break
             else:
                 buffer.accept_char ()
-
+                
 def parse_range (first, last):
     global buffer
     try:
@@ -124,27 +134,37 @@ def parse_ignore ():
         buffer.accept_char ()
 
 def parse_one_or_more (f):
+    parse_debug_prefix ('+')
     try:
         parse (f)
         while True:
             try:
                 parse (f)
             except:
-                pass
+                break
     except Exception as e:
+        parse_debug_prefix ('')
         bifail (e)
+    parse_debug_prefix ('')
     
 def parse_either (flist):
+    parse_debug_prefix ('|')
     while True:
         try:
             f = flist [0]
             parse (f)
-            return
+            break
         except Exception as e:
             if flist:
-                flist = flist [1:]
+                if len (flist) > 0:
+                    flist = flist [1:]
+                else:
+                    parse_debug_prefix ('')
+                    bifail ("parse_either A")
             else:
-                bifail (e)
+                parse_debug_prefix ('')
+                bifail ("parse_either B")
+    parse_debug_prefix ('')
 
 def parse_set_input (s):
     buffer.set_input (s)

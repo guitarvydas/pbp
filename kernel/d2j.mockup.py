@@ -16,14 +16,23 @@ def s_Main ():
 def s_Array ():
     begin ("s_Array")
     try:
+        print (f'a')
         parse_ignore ()
+        print (f'b')
         parse_string ("[")
+        print (f'c')
         parse_ignore ()
+        print (f'd')
         parse_one_or_more (lambda : parse_either ([s_KV, s_Object]))
+        print (f'e')
         parse_ignore ()
+        print (f'f')
         parse_string ("]")
+        print (f'g')
         parse_ignore ()
+        print (f'h')
         accept ("s_Array")
+        print (f'i')
     except Exception as e:
         fail ("s_Array")
 
@@ -53,7 +62,6 @@ def s_KV ():
         parse_ignore ()
         accept ("s_KV")
     except Exception as e:
-        print(e)
         fail ("s_KV")
 
 def l_string ():
@@ -92,10 +100,27 @@ def l_number ():
         fail ("l_number")
 
 
-stest = '"name" : "hello"'
+stest = '"name" : "hello" ]'
 parse_set_input (stest)
+begin ("test")
 try:
+    print (f'0')
     parse (s_KV)
+    print (f'1')
+    # parse_ignore ()
+    # print (f'c')
+    # parse_string (":")
+    # print (f'd')
+    # parse_ignore ()
+    # print (f'e')
+    # parse (l_string)
+    # print (f'f')
+    # parse_ignore ()
+    # print (f'g')
+    # parse_string ("]")
+    # print (f'h')
+    accept ("test")
     print (f'\nsuccess')
 except Exception as e:
-    print (f'\nfail {e} {buffer.buff [buffer.bx:]}')
+    fail ("test")
+    print (f'\nfail {e}')

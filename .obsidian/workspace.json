@@ -197,7 +197,9 @@
   },
   "active": "c769a219810c4f52",
   "lastOpenFiles": [
+    "kernel/junk.txt",
     "kernel/#plib.py#",
+    "kernel/dev",
     "kernel/#d2j.mockup.py#",
     "kernel/__pycache__/plib.cpython-312.pyc",
     "kernel/plib.py",
@@ -206,8 +208,6 @@
     "kernel/d2j.mockup.py",
     "kernel/d2j.modckup.py",
     "kernel/#d2j.modckup.py#",
-    "kernel/#d2j.ohm#",
-    "kernel/d2j.1.ohm",
     "kernel/temp/script.md",
     "kernel/dlisp.md",
     "kernel/dict.md",
