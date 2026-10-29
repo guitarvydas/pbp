@@ -95,9 +95,7 @@ stest = '[ "name" : "hello" ]'
 parse_set_input (stest)
 begin ("test")
 try:
-    parse_string ("[")
-    parse_ignore ()
-    parse (s_KV)
+    parse (s_Main)
     accept ("test")
     print (f'\nsuccess')
 except Exception as e:
