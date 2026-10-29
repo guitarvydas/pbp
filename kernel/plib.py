@@ -8,13 +8,10 @@ class StringBuffer ():
         self.buff = s
     def push_mark (self):
         self.marks.append (self.bx)
-        print (f'push {self.marks}')
     def pop_mark (self):
         self.marks.pop ()
-        print (f'pop {self.bx} {self.marks}')
     def rewind (self):
         self.bx = self.marks.pop ()
-        print (f'rewind {self.bx} {self.marks}')
     def accept_char (self):
         self.bx += 1
     def overrun (self):

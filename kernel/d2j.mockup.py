@@ -16,23 +16,14 @@ def s_Main ():
 def s_Array ():
     begin ("s_Array")
     try:
-        print (f'a')
         parse_ignore ()
-        print (f'b')
         parse_string ("[")
-        print (f'c')
         parse_ignore ()
-        print (f'd')
         parse_one_or_more (lambda : parse_either ([s_KV, s_Object]))
-        print (f'e')
         parse_ignore ()
-        print (f'f')
         parse_string ("]")
-        print (f'g')
         parse_ignore ()
-        print (f'h')
         accept ("s_Array")
-        print (f'i')
     except Exception as e:
         fail ("s_Array")
 
@@ -104,9 +95,7 @@ stest = '"name" : "hello" ]'
 parse_set_input (stest)
 begin ("test")
 try:
-    print (f'0')
     parse (s_KV)
-    print (f'1')
     # parse_ignore ()
     # print (f'c')
     # parse_string (":")
