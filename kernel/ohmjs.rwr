@@ -1,0 +1,26 @@
+%rewrite ohmjs {
+
+Main [ id _1 Rules _2] = ‛«id»«_1»«Rules»«_2»’
+Rules [ _3+] = ‛«_3»’
+SyntacticRule [ uppercaseid _4 RuleBody] = ‛«uppercaseid»«_4»«RuleBody»’
+LexicalRule [ lowercaseid _5 RuleBody] = ‛«lowercaseid»«_5»«RuleBody»’
+SyntacticExtension [ uppercaseid _6 RuleBody] = ‛«uppercaseid»«_6»«RuleBody»’
+LexicalExtension [ lowercaseid _7 RuleBody] = ‛«lowercaseid»«_7»«RuleBody»’
+RuleBody [ MatchItem+] = ‛«MatchItem»’
+MatchItem_parenthesizedplus [ _8 MatchItem+ _9 plussuffix] =‛«_8»«MatchItem»«_9»«plussuffix»’
+MatchItem_parenthesized [ _10 MatchItem+ _11] =‛«_10»«MatchItem»«_11»’
+MatchItem_string [ dqstring] =‛«dqstring»’
+MatchItem_notprefixed [ notprefix MatchItem] =‛«notprefix»«MatchItem»’
+MatchItem_plussuffixed [ MatchItem plussuffix] =‛«MatchItem»«plussuffix»’
+MatchItem_alts [ MatchItem AlternateItem+] =‛«MatchItem»«AlternateItem»’
+MatchItem_single [ id] =‛«id»’
+AlternateItem [ _14 MatchItem] = ‛«_14»«MatchItem»’
+plussuffix [ _15] = ‛«_15»’
+notprefix [ _17] = ‛«_17»’
+dqstring [ _18 sqchar+ _19] = ‛«_18»«sqchar»«_19»’
+sqchar_escdq [ _20 _21] =‛«_20»«_21»’
+sqchar_any [ any] =‛«any»’
+id [ _23] = ‛«_23»’
+uppercaseid [ upper alnum*] = ‛«upper»«alnum»’
+lowercaseid [ lower alnum*] = ‛«lower»«alnum»’
+}

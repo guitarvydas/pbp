@@ -1,0 +1,28 @@
+ohmjs {
+  Main = id "{" Rules "}"
+  Rules = (SyntacticRule | LexicalRule | SyntacticExtension | LexicalExtension)+
+  SyntacticRule = uppercaseid "=" RuleBody
+  LexicalRule = lowercaseid "=" RuleBody
+  SyntacticExtension = uppercaseid "+=" RuleBody
+  LexicalExtension = lowercaseid "+=" RuleBody
+  RuleBody = MatchItem+
+  MatchItem =
+    | "(" MatchItem+ ")" plussuffix -- parenthesizedplus
+    | "(" MatchItem+ ")" -- parenthesized
+    | dqstring -- string
+    | notprefix MatchItem -- notprefixed
+    | MatchItem plussuffix -- plussuffixed
+    | MatchItem AlternateItem+ -- alts
+    | id ~"=" ~"+="-- single
+
+  AlternateItem = "|" MatchItem
+  plussuffix = "+" ~"="
+  notprefix = "~"
+  dqstring = "\"" sqchar+ "\""
+  sqchar =
+    | "\\" "\"" -- escdq
+    | ~"\"" any -- any
+  id = uppercaseid | lowercaseid
+  uppercaseid = upper alnum*
+  lowercaseid = lower alnum*
+}
