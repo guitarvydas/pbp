@@ -1,4 +1,8 @@
-can't find "directionDown" in "_global"
+Error: Line 1, col 2:
+> 1 | ❲defproc❳ ❲readContainerTemplate❳ (❲filename❳) {⎩1⎭
+       ^
+  2 |   ❲withTempString❳ ❲fstr❳ = #❲readTextFileIntoString❳ (❲filename❳) {⎩2⎭
+Expected "defobj", "defn", or "defvar"
 
-grammar = "emit
+grammar = "extractor
 "

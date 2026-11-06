@@ -1,14 +1,14 @@
 #line 1
                                                        #line 2
-defvar  directionDown ≡ Dir                                #line 3
-defvar  directionAcross ≡ Dir                             #line 4
-defvar  directionUp ≡ Dir                                 #line 5
-defvar  directionThrough ≡ Dir                            #line 6#line 7
+defvar  directionDown ≡                                #line 3
+defvar  directionAcross ≡                              #line 4
+defvar  directionUp ≡                                  #line 5
+defvar  directionThrough ≡                             #line 6#line 7
                                                        #line 8
                                                        #line 9
-defn direction_of_json ≡ Dir
+defn direction_of_json ≡
 (
-    d ≡ Int
+    d ≡
 )
 {
                                                        #line 10
@@ -43,9 +43,9 @@ defn direction_of_json ≡ Dir
                                                        #line 30
                                                        #line 31
                                                        #line 32
-defn sender_is_container ≡ Bool
+defn sender_is_container ≡
 (
-    direction ≡ Dir
+    direction ≡
 )
 {
                                                        #line 33
@@ -54,9 +54,9 @@ defn sender_is_container ≡ Bool
         return  direction ==  directionDown or  direction ==  directionThrough#line 36#line 37#line 38
 }
 
-defn receiver_is_container ≡ Bool
+defn receiver_is_container ≡
 (
-    direction ≡ Dir
+    direction ≡
 )
 {
                                                        #line 39
@@ -66,95 +66,93 @@ defn receiver_is_container ≡ Bool
 }
 
                                                        #line 45
-
-                                                       #line 50
-                                                       #line 51
+                                                       #line 46
 defobj Connector {
+                                                       #line 47
+    direction ≡                                        #line 48
+    sender ≡                                           #line 49
+    receiver ≡                                         #line 50#line 51
+}
                                                        #line 52
-    direction ≡ Dir                                       #line 53
-    sender ≡ @Sender                                          #line 54
-    receiver ≡ @Receiver                                        #line 55#line 56
-}
-                                                       #line 57
-                                                       #line 58
+                                                       #line 53
 defobj Sender {
+                                                       #line 54
+    component ≡                                        #line 55
+    port ≡                                             #line 56#line 57
+}
+                                                       #line 58
                                                        #line 59
-    component ≡ @Part                                        #line 60
-    port ≡ Port                                            #line 61#line 62
-}
-                                                       #line 63
-                                                       #line 64
-                                                       #line 65
+                                                       #line 60
 defobj Receiver {
+                                                       #line 61
+    component ≡                                        #line 62
+    port ≡                                             #line 63#line 64
+}
+                                                       #line 65
+defn mkSender ≡
+(
+    component ≡ ,
+    port ≡
+)
+{
                                                        #line 66
-    component ≡ @Part                                       #line 67
-    port ≡ Port                                            #line 68#line 69
-}
-                                                       #line 70
-defn mkSender ≡ @Sender
-(
-    component ≡ @Part,
-    port ≡ Port
-)
-{
-                                                       #line 71
-        s ≡ @Sender
-        return  s                                      #line 75#line 76#line 77
+        s ≡
+        return  s                                      #line 70#line 71#line 72
 }
 
-defn mkReceiver ≡ @Reciever
+defn mkReceiver ≡
 (
-    component ≡ @Part,
-    port ≡ Port
+    component ≡ ,
+    port ≡
 )
 {
-                                                       #line 78
-        r ≡ @Receiver
-        return  r                                      #line 82#line 83#line 84
+                                                       #line 73
+        r ≡
+        return  r                                      #line 77#line 78#line 79
 }
 
-defn mkConnector ≡ @Connector
+defn mkConnector ≡
 (
-    direction ≡ Dir,
-    sender ≡ @Sender,
-    receiver ≡ @Receiver
+    direction ≡ ,
+    sender ≡ ,
+    receiver ≡
 )
 {
-                                                       #line 85
-        c ≡ @Connector
-        return  c                                      #line 90#line 91#line 92
+                                                       #line 80
+        c ≡
+        return  c                                      #line 85#line 86#line 87
 }
 
-                                                       #line 93
-                                                       #line 94
-                                                       #line 95
-                                                       #line 96
-defn create_connector ≡ @Connector
+                                                       #line 88
+                                                       #line 89
+                                                       #line 90
+                                                       #line 91
+defn create_connector ≡
 (
-    container ≡ @Part,
-    proto_conn ≡ @KVObject,
-    children_by_id ≡ @KVObject
+    container ≡ ,
+    proto_conn ≡ ,
+    children_by_id ≡
 )
 {
-                                                       #line 97
-        direction ≡ Dir
+                                                       #line 92
+        direction ≡
         if  direction ==  None {
-                                                       #line 99#line 102
+                                                       #line 94#line 97
         }
-        sender_component ≡ @Part                             #line 103
+        sender_component ≡                             #line 98
         if not (sender_is_container ( direction)) {
-                                                       #line 104
-            sid ≡ Int                                     #line 105
-            sender_component ≡ @Part                         #line 106#line 107
+                                                       #line 99
+            sid ≡                                      #line 100
+            sender_component ≡                         #line 101#line 102
         }
-        receiver_component ≡ @Part                          #line 108
+        receiver_component ≡                           #line 103
         if not (receiver_is_container ( direction)) {
-                                                       #line 109
-            tid ≡ Int                                     #line 110
-            receiver_component ≡ @Part                      #line 111#line 112
+                                                       #line 104
+            tid ≡                                      #line 105
+            receiver_component ≡                       #line 106#line 107
         }
         if  sender_component ==  None or  receiver_component ==  None {
-                                                       #line 113#line 116
+                                                       #line 108#line 111
         }
-        return mkConnector ( direction,mkSender ( sender_component, proto_conn ["source_port"]),mkReceiver ( receiver_component, proto_conn ["target_port"]))#line 119#line 120
+        return mkConnector ( direction,mkSender ( sender_component, proto_conn ["source_port"]),mkReceiver ( receiver_component, proto_conn ["target_port"]))#line 114#line 115
 }
