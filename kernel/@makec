@@ -1,12 +1,6 @@
 #!/bin/bash
 set -e
 
-if [ -n "$PBPDEV" ]; then
-    # do something
-    echo "*** Dev: skipping build"
-    exit 0
-fi
-
 # npm install
 node das2json.mjs kernel.drawio
 
