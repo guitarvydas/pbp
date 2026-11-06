@@ -8,9 +8,9 @@ export PYTHONPATH="${PBP}/kernel:${PYTHONPATH}"
 export T2TLIBD="${PBP}/t2td/lib"
 
 # These are the top-level defaults.
-# For use at a sub-level (@makec is called with 3 args), @makec must override CALLERPATH and TARGET
+# For use at a sub-level (@makec is called with 3 args), @makec must override CALLERPATH, TARGET, TOOLNAME
 export CALLERPATH="${TOOLWD}"
-export TRANSMOGRIFIER="<customize this>"
+export TOOLNAME="<customize this>"
 export TARGET="<customize this>"
 export SRC_EXTENSION="<customize this>"
 export DEST_EXTENSION="<customize this>"
