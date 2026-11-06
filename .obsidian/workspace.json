@@ -197,6 +197,7 @@
   },
   "active": "c769a219810c4f52",
   "lastOpenFiles": [
+    "#t2t#",
     "kernel/_/_backup/_20261106_080338_kernel0d.py",
     "kernel/out.c",
     "kernel/out.js",
@@ -207,7 +208,6 @@
     "kernel/temp.nanodsl.17193.mjs",
     "kernel/temp.nanodsl.31306.mjs",
     "kernel/temp.nanodsl.10833.mjs",
-    "kernel/temp.nanodsl.8107.mjs",
     "kernel/typetable.md",
     "kernel/temp/script.md",
     "kernel/dlisp.md",

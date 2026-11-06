@@ -2,11 +2,11 @@
 set -e
 
 if [ "$#" -eq 1 ]; then
-  grammar="${WD}/$1.ohm"
-  rewrite="${WD}/$1.rwr"
+  grammar="$1.ohm"
+  rewrite="$1.rwr"
 elif [ "$#" -eq 2 ]; then
-  grammar="${WD}/$1.ohm"
-  rewrite="${WD}/$2.rwr"
+  grammar="$1.ohm"
+  rewrite="$2.rwr"
 else
   echo "Usage: $0 base            # uses base.ohm and base.rwr" >&2
   echo "   or: $0 grammar-base rewrite-base" >&2
